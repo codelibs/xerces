@@ -31,7 +31,7 @@ import org.w3c.dom.html.HTMLDocument;
  * 
  * @xerces.internal
  * 
- * @version $Revision: 645327 $ $Date: 2008-04-07 08:17:54 +0900 (2008年04月07日 (月)) $
+ * @version $Revision: 645327 $ $Date: 2008-04-07 04:47:54 +0530 (Mon, 07 Apr 2008) $
  * @author <a href="mailto:arkin@exoffice.com">Assaf Arkin</a>
  * @see org.w3c.dom.DOMImplementation
  */

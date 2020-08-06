@@ -107,7 +107,7 @@ import org.apache.xerces.xs.XSTypeDefinition;
  * @author Elena Litani IBM
  * @author Andy Clark IBM
  * @author Neeraj Bajaj, Sun Microsystems, inc.
- * @version $Id: XMLSchemaValidator.java 1428379 2013-01-03 14:55:20Z mukulg $
+ * @version $Id: XMLSchemaValidator.java 1871903 2019-12-22 06:45:03Z mukulg $
  */
 public class XMLSchemaValidator
     implements XMLComponent, XMLDocumentFilter, FieldActivator, RevalidationHandler, XSElementDeclHelper {
@@ -2442,7 +2442,7 @@ public class XMLSchemaValidator
                             fValueStoreCache.getValueStoreFor(id, selMatcher.getInitialDepth());
                         // nothing to do if nothing matched, or if not all
                         // fields are present.
-                        if (values != null && values.fValuesCount == values.fFieldCount)
+                        if (values != null && values.fHasValue)
                             values.endDocumentFragment();
                     }
                 }
@@ -3714,6 +3714,7 @@ public class XMLSchemaValidator
 
         /** Current data value count. */
         protected int fValuesCount;
+        protected boolean fHasValue = false;
 
         /** global data */
         public final Vector fValues = new Vector();
@@ -3881,6 +3882,7 @@ public class XMLSchemaValidator
             } 
             else {
                 fValuesCount++;
+                fHasValue = true;
             }
             fLocalValues[i] = actualValue;
             fLocalValueTypes[i] = valueType;
@@ -4248,7 +4250,7 @@ public class XMLSchemaValidator
             if (fKeyValueStore == null) {
                 // report error
                 String code = "KeyRefOutOfScope";
-                String value = fIdentityConstraint.toString();
+                String value = fIdentityConstraint.getName();
                 reportSchemaError(code, new Object[] { value });
                 return;
             }

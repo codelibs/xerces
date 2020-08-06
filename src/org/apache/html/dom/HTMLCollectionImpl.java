@@ -56,7 +56,7 @@ import org.w3c.dom.html.HTMLTableSectionElement;
  * 
  * @xerces.internal
  * 
- * @version $Revision: 1035042 $ $Date: 2010-11-15 03:41:49 +0900 (2010年11月15日 (月)) $
+ * @version $Revision: 1035042 $ $Date: 2010-11-15 00:11:49 +0530 (Mon, 15 Nov 2010) $
  * @author <a href="mailto:arkin@exoffice.com">Assaf Arkin</a>
  * @see org.w3c.dom.html.HTMLCollection
  */

@@ -88,7 +88,7 @@ import org.xml.sax.helpers.AttributesImpl;
  * @author <a href="mailto:arkin@intalio.com">Assaf Arkin</a>
  * @author <a href="mailto:rahul.srivastava@sun.com">Rahul Srivastava</a>
  * @author Elena Litani IBM
- * @version $Revision: 704573 $ $Date: 2008-10-15 01:11:22 +0900 (2008年10月15日 (水)) $
+ * @version $Revision: 704573 $ $Date: 2008-10-14 21:41:22 +0530 (Tue, 14 Oct 2008) $
  * @see Serializer
  */
 public class XMLSerializer

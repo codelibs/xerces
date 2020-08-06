@@ -77,7 +77,7 @@ import org.xml.sax.SAXException;
  * @author <a href="mailto:arkin@intalio.com">Assaf Arkin</a>
  * @author <a href="mailto:rahul.srivastava@sun.com">Rahul Srivastava</a>
  * @author Elena Litani IBM
- * @version $Revision: 476047 $ $Date: 2006-11-17 13:27:45 +0900 (2006年11月17日 (金)) $
+ * @version $Revision: 476047 $ $Date: 2006-11-17 09:57:45 +0530 (Fri, 17 Nov 2006) $
  * @see Serializer
  */
 public class XML11Serializer 

@@ -18,13 +18,13 @@
 package org.apache.xerces.util;
 
 /**
- * This class is an unsynchronized hash table primary used for String
+ * This class is an unsynchronized hash table primarily used for String
  * to Object mapping.
  * <p>
  * The hash code uses the same algorithm as SymbolTable class.
  * 
  * @author Elena Litani
- * @version $Id: SymbolHash.java 1357381 2012-07-04 19:56:10Z mrglavas $
+ * @version $Id: SymbolHash.java 1867092 2019-09-18 03:54:53Z mukulg $
  */
 public class SymbolHash {
 

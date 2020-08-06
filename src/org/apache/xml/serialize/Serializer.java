@@ -56,7 +56,7 @@ import org.xml.sax.DocumentHandler;
  * that new applications use the DOM Level 3 LSSerializer or JAXP's Transformation 
  * API for XML (TrAX) for serializing XML and HTML. See the Xerces documentation for more 
  * information.
- * @version $Revision: 699892 $ $Date: 2008-09-29 06:08:27 +0900 (2008年09月29日 (月)) $
+ * @version $Revision: 699892 $ $Date: 2008-09-29 02:38:27 +0530 (Mon, 29 Sep 2008) $
  * @author <a href="mailto:arkin@intalio.com">Assaf Arkin</a>
  * @author <a href="mailto:Scott_Boag/CAM/Lotus@lotus.com">Scott Boag</a>
  * @see DocumentHandler

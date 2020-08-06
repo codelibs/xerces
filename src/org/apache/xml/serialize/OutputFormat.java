@@ -55,7 +55,7 @@ import org.w3c.dom.html.HTMLDocument;
  * that new applications use the DOM Level 3 LSSerializer or JAXP's Transformation 
  * API for XML (TrAX) for serializing XML and HTML. See the Xerces documentation for 
  * more information.
- * @version $Revision: 476048 $ $Date: 2006-11-17 13:32:47 +0900 (2006年11月17日 (金)) $
+ * @version $Revision: 476048 $ $Date: 2006-11-17 10:02:47 +0530 (Fri, 17 Nov 2006) $
  * @author <a href="mailto:arkin@intalio.com">Assaf Arkin</a>
  *         <a href="mailto:visco@intalio.com">Keith Visco</a>
  * @see Serializer

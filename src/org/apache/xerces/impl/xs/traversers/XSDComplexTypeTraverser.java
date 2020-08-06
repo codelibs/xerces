@@ -58,7 +58,7 @@ import org.w3c.dom.Element;
  * 
  * @xerces.internal  
  * 
- * @version $Id: XSDComplexTypeTraverser.java 1631026 2014-10-11 07:30:37Z mukulg $
+ * @version $Id: XSDComplexTypeTraverser.java 1867108 2019-09-18 09:31:04Z mukulg $
  */
 
 class  XSDComplexTypeTraverser extends XSDAbstractParticleTraverser {
@@ -1237,7 +1237,7 @@ class  XSDComplexTypeTraverser extends XSDAbstractParticleTraverser {
         if(annotation == null)
             return;
         // it isn't very likely that there will be more than one annotation
-        // in a complexType decl.  This saves us fromhaving to push/pop
+        // in a complexType decl. This saves us from having to push/pop
         // one more object from the fGlobalStore, and that's bound
         // to be a savings for most applications
         if(fAnnotations == null) {

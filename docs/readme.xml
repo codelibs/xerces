@@ -19,12 +19,11 @@
 <s1 title='&ParserNameLong; Readme'>
   <s2 title='&ParserNameLong; &ParserVersion; Release'>
     <p>
-      Welcome to the future! Xerces2 is the next generation of
-      high performance, fully compliant XML parsers in the Apache
-      Xerces family. This new version of Xerces introduces the
-      Xerces Native Interface (XNI), a complete framework for
-      building parser components and configurations that is
-      extremely modular and easy to program. 
+      Welcome to the home of Xerces Java. Xerces2 provides high performance, 
+      fully compliant XML parsers in the Apache Xerces family. This new version 
+      of Xerces continues to build upon the Xerces Native Interface (XNI), a 
+      complete framework for building parser components and configurations that 
+      is extremely modular and easy to program. 
     </p>
     <p>
       The Apache Xerces2 parser is the reference implementation 
@@ -34,7 +33,7 @@
       <link idref='xni'>XNI Manual</link>.
     </p>
     <p>
-      Xerces2 is a fully conforming XML Schema 1.0 and 1.1 processor. An experimental implementation of the 
+      Xerces2 provides fully conforming XML Schema 1.0 and 1.1 processors. An experimental implementation of the 
 	  <jump href='http://www.w3.org/TR/2010/CR-xmlschema-ref-20100119/'>XML Schema Definition
 	  Language (XSD): Component Designators</jump> (SCD) Candidate Recommendation (January 2010)	  
 	  is also provided for evaluation. For more information, refer to the <link idref='xml-schema'>
@@ -149,11 +148,10 @@
   </s2>
   
   <s2 title='Changes from Previous Release'>
-
     <p>
-      The &ParserNameLong; &ParserVersion; expands on its experimental support for XML Schema 1.1
-      by providing fully compliant XML Schema 1.1 implementation. It fixes several bugs which
-      were present in the previous release and also includes a few other minor enhancements.
+      The &ParserNameLong; &ParserVersion; is a bug fix release, and is largely compatible with
+      the previous release in terms of broad functionality offered. It fixes few bugs which were 
+      present in the previous release and also includes a few other minor enhancements.
     </p>
     <p>
       For a more complete list of changes, refer to the 

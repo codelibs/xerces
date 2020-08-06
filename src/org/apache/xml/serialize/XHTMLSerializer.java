@@ -32,7 +32,7 @@ import java.io.Writer;
  * recommended that new applications use JAXP's Transformation API 
  * for XML (TrAX) for serializing XHTML. See the Xerces documentation
  * for more information.
- * @version $Revision: 447253 $ $Date: 2006-09-18 14:32:50 +0900 (2006年09月18日 (月)) $
+ * @version $Revision: 447253 $ $Date: 2006-09-18 11:02:50 +0530 (Mon, 18 Sep 2006) $
  * @author <a href="mailto:arkin@intalio.com">Assaf Arkin</a>
  * @see Serializer
  */

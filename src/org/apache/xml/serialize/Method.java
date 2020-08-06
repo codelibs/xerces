@@ -24,7 +24,7 @@ package org.apache.xml.serialize;
  * that new applications use the DOM Level 3 LSSerializer or JAXP's Transformation 
  * API for XML (TrAX) for serializing XML. See the Xerces documentation for more 
  * information.
- * @version $Revision: 476047 $ $Date: 2006-11-17 13:27:45 +0900 (2006年11月17日 (金)) $
+ * @version $Revision: 476047 $ $Date: 2006-11-17 09:57:45 +0530 (Fri, 17 Nov 2006) $
  * @author <a href="mailto:arkin@intalio.com">Assaf Arkin</a>
  * @see OutputFormat
  */

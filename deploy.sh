@@ -5,7 +5,7 @@ BASE_DIR=`pwd`
 BUILD_DIR=$BASE_DIR/build
 DIST_DIR=$BASE_DIR/dist
 GROUP_ID=org.codelibs.xerces
-VERSION=2.12.0-sp1
+VERSION=2.12.1-sp1
 
 java -version 2>&1|head -n1|grep 1.8
 if [ $? != 0 ] ; then

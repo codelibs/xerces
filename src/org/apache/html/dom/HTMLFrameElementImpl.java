@@ -16,11 +16,12 @@
  */
 package org.apache.html.dom;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.html.HTMLFrameElement;
 
 /**
  * @xerces.internal
- * @version $Revision: 1029415 $ $Date: 2010-11-01 02:02:22 +0900 (2010年11月01日 (月)) $
+ * @version $Revision: 1866821 $ $Date: 2019-09-12 09:55:36 +0530 (Thu, 12 Sep 2019) $
  * @author <a href="mailto:arkin@exoffice.com">Assaf Arkin</a>
  * @see org.w3c.dom.html.HTMLFrameElement
  * @see org.apache.xerces.dom.ElementImpl
@@ -125,6 +126,12 @@ public class HTMLFrameElementImpl
     public void setSrc( String src )
     {
         setAttribute( "src", src );
+    }
+    
+    
+    // method added, so that xerces can be built with JDK 9 & above
+    public Document getContentDocument() {
+        return null;
     }
 
     
