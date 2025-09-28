@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.html.dom;
+package org.codelibs.xerces.html.dom;
 
 import org.w3c.dom.html.HTMLQuoteElement;
 
@@ -23,7 +23,7 @@ import org.w3c.dom.html.HTMLQuoteElement;
  * @version $Revision: 1029415 $ $Date: 2010-10-31 22:32:22 +0530 (Sun, 31 Oct 2010) $
  * @author <a href="mailto:arkin@exoffice.com">Assaf Arkin</a>
  * @see org.w3c.dom.html.HTMLQuoteElement
- * @see org.apache.xerces.dom.ElementImpl
+ * @see org.codelibs.xerces.dom.ElementImpl
  */
 public class HTMLQuoteElementImpl extends HTMLElementImpl implements HTMLQuoteElement {
 

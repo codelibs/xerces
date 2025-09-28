@@ -88,7 +88,7 @@ public class TreeView extends JFrame implements ActionListener, TextListener {
   
     /** Default parser name. */
     static final String 
-        DEFAULT_PARSER_NAME = "org.apache.xerces.parsers.DOMParser";
+        DEFAULT_PARSER_NAME = "org.codelibs.xerces.parsers.DOMParser";
     static int WARNING = 0;
     static int ERROR=1;
     static int FATAL_ERROR=2;

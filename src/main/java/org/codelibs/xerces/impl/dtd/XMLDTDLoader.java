@@ -15,28 +15,28 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.dtd;
+package org.codelibs.xerces.impl.dtd;
 
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.Locale;
 
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.impl.XMLDTDScannerImpl;
-import org.apache.xerces.impl.XMLEntityManager;
-import org.apache.xerces.impl.XMLErrorReporter;
-import org.apache.xerces.impl.msg.XMLMessageFormatter;
-import org.apache.xerces.util.DefaultErrorHandler;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xni.grammars.Grammar;
-import org.apache.xerces.xni.grammars.XMLGrammarLoader;
-import org.apache.xerces.xni.grammars.XMLGrammarPool;
-import org.apache.xerces.xni.parser.XMLConfigurationException;
-import org.apache.xerces.xni.parser.XMLEntityResolver;
-import org.apache.xerces.xni.parser.XMLErrorHandler;
-import org.apache.xerces.xni.parser.XMLInputSource;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.impl.XMLDTDScannerImpl;
+import org.codelibs.xerces.impl.XMLEntityManager;
+import org.codelibs.xerces.impl.XMLErrorReporter;
+import org.codelibs.xerces.impl.msg.XMLMessageFormatter;
+import org.codelibs.xerces.util.DefaultErrorHandler;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.grammars.Grammar;
+import org.codelibs.xerces.xni.grammars.XMLGrammarLoader;
+import org.codelibs.xerces.xni.grammars.XMLGrammarPool;
+import org.codelibs.xerces.xni.parser.XMLConfigurationException;
+import org.codelibs.xerces.xni.parser.XMLEntityResolver;
+import org.codelibs.xerces.xni.parser.XMLErrorHandler;
+import org.codelibs.xerces.xni.parser.XMLInputSource;
 
 /**
  * The DTD loader. The loader knows how to build grammars from XMLInputSources.

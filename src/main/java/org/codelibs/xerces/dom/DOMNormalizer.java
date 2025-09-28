@@ -15,39 +15,39 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.dom;
+package org.codelibs.xerces.dom;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Vector;
 
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.impl.RevalidationHandler;
-import org.apache.xerces.impl.dtd.XMLDTDLoader;
-import org.apache.xerces.impl.dtd.XMLDTDValidator;
-import org.apache.xerces.impl.dv.XSSimpleType;
-import org.apache.xerces.impl.xs.util.SimpleLocator;
-import org.apache.xerces.util.AugmentationsImpl;
-import org.apache.xerces.util.NamespaceSupport;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.util.XML11Char;
-import org.apache.xerces.util.XMLChar;
-import org.apache.xerces.util.XMLSymbols;
-import org.apache.xerces.xni.Augmentations;
-import org.apache.xerces.xni.NamespaceContext;
-import org.apache.xerces.xni.QName;
-import org.apache.xerces.xni.XMLAttributes;
-import org.apache.xerces.xni.XMLDocumentHandler;
-import org.apache.xerces.xni.XMLLocator;
-import org.apache.xerces.xni.XMLResourceIdentifier;
-import org.apache.xerces.xni.XMLString;
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xni.grammars.XMLGrammarDescription;
-import org.apache.xerces.xni.parser.XMLComponent;
-import org.apache.xerces.xni.parser.XMLDocumentSource;
-import org.apache.xerces.xs.AttributePSVI;
-import org.apache.xerces.xs.ElementPSVI;
-import org.apache.xerces.xs.XSTypeDefinition;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.impl.RevalidationHandler;
+import org.codelibs.xerces.impl.dtd.XMLDTDLoader;
+import org.codelibs.xerces.impl.dtd.XMLDTDValidator;
+import org.codelibs.xerces.impl.dv.XSSimpleType;
+import org.codelibs.xerces.impl.xs.util.SimpleLocator;
+import org.codelibs.xerces.util.AugmentationsImpl;
+import org.codelibs.xerces.util.NamespaceSupport;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.util.XML11Char;
+import org.codelibs.xerces.util.XMLChar;
+import org.codelibs.xerces.util.XMLSymbols;
+import org.codelibs.xerces.xni.Augmentations;
+import org.codelibs.xerces.xni.NamespaceContext;
+import org.codelibs.xerces.xni.QName;
+import org.codelibs.xerces.xni.XMLAttributes;
+import org.codelibs.xerces.xni.XMLDocumentHandler;
+import org.codelibs.xerces.xni.XMLLocator;
+import org.codelibs.xerces.xni.XMLResourceIdentifier;
+import org.codelibs.xerces.xni.XMLString;
+import org.codelibs.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.grammars.XMLGrammarDescription;
+import org.codelibs.xerces.xni.parser.XMLComponent;
+import org.codelibs.xerces.xni.parser.XMLDocumentSource;
+import org.codelibs.xerces.xs.AttributePSVI;
+import org.codelibs.xerces.xs.ElementPSVI;
+import org.codelibs.xerces.xs.XSTypeDefinition;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Comment;
 import org.w3c.dom.DOMError;
@@ -1392,7 +1392,7 @@ public class DOMNormalizer implements XMLDocumentHandler {
 
         /**
          * This method adds default declarations
-         * @see org.apache.xerces.xni.XMLAttributes#addAttribute(QName, String, String)
+         * @see org.codelibs.xerces.xni.XMLAttributes#addAttribute(QName, String, String)
          */
         public int addAttribute(QName qname, String attrType, String attrValue) {
             int index = fElement.getXercesAttribute(qname.uri, qname.localpart);

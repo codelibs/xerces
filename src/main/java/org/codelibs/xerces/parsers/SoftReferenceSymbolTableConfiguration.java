@@ -15,12 +15,12 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.parsers;
+package org.codelibs.xerces.parsers;
 
-import org.apache.xerces.util.SoftReferenceSymbolTable;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.xni.grammars.XMLGrammarPool;
-import org.apache.xerces.xni.parser.XMLComponentManager;
+import org.codelibs.xerces.util.SoftReferenceSymbolTable;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.xni.grammars.XMLGrammarPool;
+import org.codelibs.xerces.xni.parser.XMLComponentManager;
 
 /**
  * This parser configuration extends the default configuration allowing Xerces to
@@ -29,7 +29,7 @@ import org.apache.xerces.xni.parser.XMLComponentManager;
  * strings stored in this <code>SymbolTable</code> are softly reachable and may be
  * cleared by the garbage collector in response to memory demand.
  *
- * @see org.apache.xerces.util.SoftReferenceSymbolTable
+ * @see org.codelibs.xerces.util.SoftReferenceSymbolTable
  *
  * @author Peter McCracken, IBM
  *

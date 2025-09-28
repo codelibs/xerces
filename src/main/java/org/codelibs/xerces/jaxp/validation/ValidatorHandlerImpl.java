@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.jaxp.validation;
+package org.codelibs.xerces.jaxp.validation;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,37 +32,37 @@ import javax.xml.transform.sax.SAXSource;
 import javax.xml.validation.TypeInfoProvider;
 import javax.xml.validation.ValidatorHandler;
 
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.impl.XMLEntityManager;
-import org.apache.xerces.impl.XMLErrorReporter;
-import org.apache.xerces.impl.dv.XSSimpleType;
-import org.apache.xerces.impl.validation.EntityState;
-import org.apache.xerces.impl.validation.ValidationManager;
-import org.apache.xerces.impl.xs.XMLSchemaValidator;
-import org.apache.xerces.util.AttributesProxy;
-import org.apache.xerces.util.SAXLocatorWrapper;
-import org.apache.xerces.util.SAXMessageFormatter;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.util.URI;
-import org.apache.xerces.util.XMLAttributesImpl;
-import org.apache.xerces.util.XMLSymbols;
-import org.apache.xerces.xni.Augmentations;
-import org.apache.xerces.xni.NamespaceContext;
-import org.apache.xerces.xni.QName;
-import org.apache.xerces.xni.XMLAttributes;
-import org.apache.xerces.xni.XMLDocumentHandler;
-import org.apache.xerces.xni.XMLLocator;
-import org.apache.xerces.xni.XMLResourceIdentifier;
-import org.apache.xerces.xni.XMLString;
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xni.parser.XMLConfigurationException;
-import org.apache.xerces.xni.parser.XMLDocumentSource;
-import org.apache.xerces.xni.parser.XMLParseException;
-import org.apache.xerces.xs.AttributePSVI;
-import org.apache.xerces.xs.ElementPSVI;
-import org.apache.xerces.xs.ItemPSVI;
-import org.apache.xerces.xs.PSVIProvider;
-import org.apache.xerces.xs.XSTypeDefinition;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.impl.XMLEntityManager;
+import org.codelibs.xerces.impl.XMLErrorReporter;
+import org.codelibs.xerces.impl.dv.XSSimpleType;
+import org.codelibs.xerces.impl.validation.EntityState;
+import org.codelibs.xerces.impl.validation.ValidationManager;
+import org.codelibs.xerces.impl.xs.XMLSchemaValidator;
+import org.codelibs.xerces.util.AttributesProxy;
+import org.codelibs.xerces.util.SAXLocatorWrapper;
+import org.codelibs.xerces.util.SAXMessageFormatter;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.util.URI;
+import org.codelibs.xerces.util.XMLAttributesImpl;
+import org.codelibs.xerces.util.XMLSymbols;
+import org.codelibs.xerces.xni.Augmentations;
+import org.codelibs.xerces.xni.NamespaceContext;
+import org.codelibs.xerces.xni.QName;
+import org.codelibs.xerces.xni.XMLAttributes;
+import org.codelibs.xerces.xni.XMLDocumentHandler;
+import org.codelibs.xerces.xni.XMLLocator;
+import org.codelibs.xerces.xni.XMLResourceIdentifier;
+import org.codelibs.xerces.xni.XMLString;
+import org.codelibs.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.parser.XMLConfigurationException;
+import org.codelibs.xerces.xni.parser.XMLDocumentSource;
+import org.codelibs.xerces.xni.parser.XMLParseException;
+import org.codelibs.xerces.xs.AttributePSVI;
+import org.codelibs.xerces.xs.ElementPSVI;
+import org.codelibs.xerces.xs.ItemPSVI;
+import org.codelibs.xerces.xs.PSVIProvider;
+import org.codelibs.xerces.xs.XSTypeDefinition;
 import org.w3c.dom.TypeInfo;
 import org.w3c.dom.ls.LSInput;
 import org.w3c.dom.ls.LSResourceResolver;
@@ -641,7 +641,7 @@ final class ValidatorHandlerImpl extends ValidatorHandler
                     try {
                         reader = spf.newSAXParser().getXMLReader();
                         // If this is a Xerces SAX parser, set the security manager if there is one
-                        if (reader instanceof org.apache.xerces.parsers.SAXParser) {
+                        if (reader instanceof org.codelibs.xerces.parsers.SAXParser) {
                             Object securityManager = fComponentManager.getProperty(SECURITY_MANAGER);
                             if (securityManager != null) {
                                 try {

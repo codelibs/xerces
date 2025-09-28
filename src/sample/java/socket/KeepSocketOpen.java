@@ -27,7 +27,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Random;
 
-import org.apache.xerces.parsers.SAXParser;
+import org.codelibs.xerces.parsers.SAXParser;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;

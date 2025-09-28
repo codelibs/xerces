@@ -15,44 +15,44 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.parsers;
+package org.codelibs.xerces.parsers;
 
 import java.util.Locale;
 import java.util.Stack;
 
-import org.apache.xerces.dom.AttrImpl;
-import org.apache.xerces.dom.CoreDocumentImpl;
-import org.apache.xerces.dom.DOMErrorImpl;
-import org.apache.xerces.dom.DOMMessageFormatter;
-import org.apache.xerces.dom.DeferredDocumentImpl;
-import org.apache.xerces.dom.DocumentImpl;
-import org.apache.xerces.dom.DocumentTypeImpl;
-import org.apache.xerces.dom.ElementDefinitionImpl;
-import org.apache.xerces.dom.ElementImpl;
-import org.apache.xerces.dom.ElementNSImpl;
-import org.apache.xerces.dom.EntityImpl;
-import org.apache.xerces.dom.EntityReferenceImpl;
-import org.apache.xerces.dom.NodeImpl;
-import org.apache.xerces.dom.NotationImpl;
-import org.apache.xerces.dom.PSVIAttrNSImpl;
-import org.apache.xerces.dom.PSVIDocumentImpl;
-import org.apache.xerces.dom.PSVIElementNSImpl;
-import org.apache.xerces.dom.TextImpl;
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.impl.dv.XSSimpleType;
-import org.apache.xerces.util.DOMErrorHandlerWrapper;
-import org.apache.xerces.xni.Augmentations;
-import org.apache.xerces.xni.NamespaceContext;
-import org.apache.xerces.xni.QName;
-import org.apache.xerces.xni.XMLAttributes;
-import org.apache.xerces.xni.XMLLocator;
-import org.apache.xerces.xni.XMLResourceIdentifier;
-import org.apache.xerces.xni.XMLString;
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xni.parser.XMLParserConfiguration;
-import org.apache.xerces.xs.AttributePSVI;
-import org.apache.xerces.xs.ElementPSVI;
-import org.apache.xerces.xs.XSTypeDefinition;
+import org.codelibs.xerces.dom.AttrImpl;
+import org.codelibs.xerces.dom.CoreDocumentImpl;
+import org.codelibs.xerces.dom.DOMErrorImpl;
+import org.codelibs.xerces.dom.DOMMessageFormatter;
+import org.codelibs.xerces.dom.DeferredDocumentImpl;
+import org.codelibs.xerces.dom.DocumentImpl;
+import org.codelibs.xerces.dom.DocumentTypeImpl;
+import org.codelibs.xerces.dom.ElementDefinitionImpl;
+import org.codelibs.xerces.dom.ElementImpl;
+import org.codelibs.xerces.dom.ElementNSImpl;
+import org.codelibs.xerces.dom.EntityImpl;
+import org.codelibs.xerces.dom.EntityReferenceImpl;
+import org.codelibs.xerces.dom.NodeImpl;
+import org.codelibs.xerces.dom.NotationImpl;
+import org.codelibs.xerces.dom.PSVIAttrNSImpl;
+import org.codelibs.xerces.dom.PSVIDocumentImpl;
+import org.codelibs.xerces.dom.PSVIElementNSImpl;
+import org.codelibs.xerces.dom.TextImpl;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.impl.dv.XSSimpleType;
+import org.codelibs.xerces.util.DOMErrorHandlerWrapper;
+import org.codelibs.xerces.xni.Augmentations;
+import org.codelibs.xerces.xni.NamespaceContext;
+import org.codelibs.xerces.xni.QName;
+import org.codelibs.xerces.xni.XMLAttributes;
+import org.codelibs.xerces.xni.XMLLocator;
+import org.codelibs.xerces.xni.XMLResourceIdentifier;
+import org.codelibs.xerces.xni.XMLString;
+import org.codelibs.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.parser.XMLParserConfiguration;
+import org.codelibs.xerces.xs.AttributePSVI;
+import org.codelibs.xerces.xs.ElementPSVI;
+import org.codelibs.xerces.xs.XSTypeDefinition;
 import org.w3c.dom.Attr;
 import org.w3c.dom.CDATASection;
 import org.w3c.dom.Comment;
@@ -129,11 +129,11 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
     // other
 
     /** Default document class name. */
-    protected static final String DEFAULT_DOCUMENT_CLASS_NAME = "org.apache.xerces.dom.DocumentImpl";
+    protected static final String DEFAULT_DOCUMENT_CLASS_NAME = "org.codelibs.xerces.dom.DocumentImpl";
 
-    protected static final String CORE_DOCUMENT_CLASS_NAME = "org.apache.xerces.dom.CoreDocumentImpl";
+    protected static final String CORE_DOCUMENT_CLASS_NAME = "org.codelibs.xerces.dom.CoreDocumentImpl";
 
-    protected static final String PSVI_DOCUMENT_CLASS_NAME = "org.apache.xerces.dom.PSVIDocumentImpl";
+    protected static final String PSVI_DOCUMENT_CLASS_NAME = "org.codelibs.xerces.dom.PSVIDocumentImpl";
 
     /**
      * If the user stops the process, this exception will be thrown.

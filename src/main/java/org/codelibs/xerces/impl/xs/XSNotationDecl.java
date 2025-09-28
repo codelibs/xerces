@@ -15,14 +15,14 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs;
+package org.codelibs.xerces.impl.xs;
 
-import org.apache.xerces.impl.xs.util.XSObjectListImpl;
-import org.apache.xerces.xs.XSAnnotation;
-import org.apache.xerces.xs.XSConstants;
-import org.apache.xerces.xs.XSNamespaceItem;
-import org.apache.xerces.xs.XSNotationDeclaration;
-import org.apache.xerces.xs.XSObjectList;
+import org.codelibs.xerces.impl.xs.util.XSObjectListImpl;
+import org.codelibs.xerces.xs.XSAnnotation;
+import org.codelibs.xerces.xs.XSConstants;
+import org.codelibs.xerces.xs.XSNamespaceItem;
+import org.codelibs.xerces.xs.XSNotationDeclaration;
+import org.codelibs.xerces.xs.XSObjectList;
 
 /**
  * The XML representation for a NOTATION declaration
@@ -105,7 +105,7 @@ public class XSNotationDecl implements XSNotationDeclaration {
     }
 
     /**
-     * @see org.apache.xerces.xs.XSObject#getNamespaceItem()
+     * @see org.codelibs.xerces.xs.XSObject#getNamespaceItem()
      */
     public XSNamespaceItem getNamespaceItem() {
         return fNamespaceItem;

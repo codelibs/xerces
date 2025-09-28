@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.jaxp.validation;
+package org.codelibs.xerces.jaxp.validation;
 
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
@@ -28,7 +28,7 @@ import javax.xml.stream.events.ProcessingInstruction;
 import javax.xml.stream.events.StartDocument;
 import javax.xml.transform.stax.StAXResult;
 
-import org.apache.xerces.xni.XMLDocumentHandler;
+import org.codelibs.xerces.xni.XMLDocumentHandler;
 
 /**
  * <p>An extension to XMLDocumentHandler for building StAX structures.</p>

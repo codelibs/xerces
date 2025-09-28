@@ -15,17 +15,17 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs.traversers;
+package org.codelibs.xerces.impl.xs.traversers;
 
 import java.util.Stack;
 import java.util.Vector;
 
-import org.apache.xerces.impl.validation.ValidationState;
-import org.apache.xerces.impl.xs.SchemaNamespaceSupport;
-import org.apache.xerces.impl.xs.SchemaSymbols;
-import org.apache.xerces.impl.xs.XMLSchemaException;
-import org.apache.xerces.impl.xs.util.XInt;
-import org.apache.xerces.util.SymbolTable;
+import org.codelibs.xerces.impl.validation.ValidationState;
+import org.codelibs.xerces.impl.xs.SchemaNamespaceSupport;
+import org.codelibs.xerces.impl.xs.SchemaSymbols;
+import org.codelibs.xerces.impl.xs.XMLSchemaException;
+import org.codelibs.xerces.impl.xs.util.XInt;
+import org.codelibs.xerces.util.SymbolTable;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -155,7 +155,7 @@ class XSDocumentInfo {
             buf.append(fTargetNamespace);
         }
         Document doc = (fSchemaElement != null) ? fSchemaElement.getOwnerDocument() : null;
-        if (doc instanceof org.apache.xerces.impl.xs.opti.SchemaDOM) {
+        if (doc instanceof org.codelibs.xerces.impl.xs.opti.SchemaDOM) {
             String documentURI = doc.getDocumentURI();
             if (documentURI != null && documentURI.length() > 0) {
                 buf.append(" :: schemaLocation is ");

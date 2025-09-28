@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.dtd.models;
+package org.codelibs.xerces.impl.dtd.models;
 
-import org.apache.xerces.impl.dtd.XMLContentSpec;
+import org.codelibs.xerces.impl.dtd.XMLContentSpec;
 
 /**
  * Content model Uni-Op node.

@@ -15,28 +15,28 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl;
+package org.codelibs.xerces.impl;
 
 import java.io.CharConversionException;
 import java.io.EOFException;
 import java.io.IOException;
 
-import org.apache.xerces.impl.dtd.XMLDTDDescription;
-import org.apache.xerces.impl.io.MalformedByteSequenceException;
-import org.apache.xerces.impl.msg.XMLMessageFormatter;
-import org.apache.xerces.impl.validation.ValidationManager;
-import org.apache.xerces.util.NamespaceSupport;
-import org.apache.xerces.util.XMLChar;
-import org.apache.xerces.util.XMLStringBuffer;
-import org.apache.xerces.xni.Augmentations;
-import org.apache.xerces.xni.NamespaceContext;
-import org.apache.xerces.xni.XMLResourceIdentifier;
-import org.apache.xerces.xni.XMLString;
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xni.parser.XMLComponentManager;
-import org.apache.xerces.xni.parser.XMLConfigurationException;
-import org.apache.xerces.xni.parser.XMLDTDScanner;
-import org.apache.xerces.xni.parser.XMLInputSource;
+import org.codelibs.xerces.impl.dtd.XMLDTDDescription;
+import org.codelibs.xerces.impl.io.MalformedByteSequenceException;
+import org.codelibs.xerces.impl.msg.XMLMessageFormatter;
+import org.codelibs.xerces.impl.validation.ValidationManager;
+import org.codelibs.xerces.util.NamespaceSupport;
+import org.codelibs.xerces.util.XMLChar;
+import org.codelibs.xerces.util.XMLStringBuffer;
+import org.codelibs.xerces.xni.Augmentations;
+import org.codelibs.xerces.xni.NamespaceContext;
+import org.codelibs.xerces.xni.XMLResourceIdentifier;
+import org.codelibs.xerces.xni.XMLString;
+import org.codelibs.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.parser.XMLComponentManager;
+import org.codelibs.xerces.xni.parser.XMLConfigurationException;
+import org.codelibs.xerces.xni.parser.XMLDTDScanner;
+import org.codelibs.xerces.xni.parser.XMLInputSource;
 
 /**
  * This class is responsible for scanning XML document structure

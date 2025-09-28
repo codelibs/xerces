@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.xni.grammars;
+package org.codelibs.xerces.xni.grammars;
 
-import org.apache.xerces.xni.QName;
-import org.apache.xerces.xni.XMLAttributes;
+import org.codelibs.xerces.xni.QName;
+import org.codelibs.xerces.xni.XMLAttributes;
 
 /**
  * All information specific to XML Schema grammars.

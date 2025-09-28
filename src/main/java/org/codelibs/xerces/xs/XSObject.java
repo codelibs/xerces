@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.xs;
+package org.codelibs.xerces.xs;
 
 /**
  * The <code>XSObject</code> is a base object for the XML Schema component

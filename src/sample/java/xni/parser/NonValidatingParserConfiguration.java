@@ -17,11 +17,11 @@
 
 package xni.parser;
 
-import org.apache.xerces.impl.XMLNamespaceBinder;
-import org.apache.xerces.impl.dtd.XMLDTDValidator;
-import org.apache.xerces.parsers.StandardParserConfiguration;
-import org.apache.xerces.xni.parser.XMLComponent;
-import org.apache.xerces.xni.parser.XMLParserConfiguration;
+import org.codelibs.xerces.impl.XMLNamespaceBinder;
+import org.codelibs.xerces.impl.dtd.XMLDTDValidator;
+import org.codelibs.xerces.parsers.StandardParserConfiguration;
+import org.codelibs.xerces.xni.parser.XMLComponent;
+import org.codelibs.xerces.xni.parser.XMLParserConfiguration;
 
 /**
  * Non-validating parser configuration.

@@ -105,7 +105,7 @@ public class Writer
     // default settings
 
     /** Default parser name. */
-    protected static final String DEFAULT_PARSER_NAME = "org.apache.xerces.parsers.SAXParser";
+    protected static final String DEFAULT_PARSER_NAME = "org.codelibs.xerces.parsers.SAXParser";
 
     /** Default namespaces support (true). */
     protected static final boolean DEFAULT_NAMESPACES = true;

@@ -15,11 +15,11 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.jaxp.validation;
+package org.codelibs.xerces.jaxp.validation;
 
 import java.lang.ref.WeakReference;
 
-import org.apache.xerces.xni.grammars.XMLGrammarPool;
+import org.codelibs.xerces.xni.grammars.XMLGrammarPool;
 
 /**
  * <p>An implementation of Schema for W3C XML Schemas

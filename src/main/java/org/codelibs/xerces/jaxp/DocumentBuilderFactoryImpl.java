@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.jaxp;
+package org.codelibs.xerces.jaxp;
 
 import java.util.Hashtable;
 
@@ -25,9 +25,9 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.validation.Schema;
 
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.parsers.DOMParser;
-import org.apache.xerces.util.SAXMessageFormatter;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.parsers.DOMParser;
+import org.codelibs.xerces.util.SAXMessageFormatter;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXNotRecognizedException;
 import org.xml.sax.SAXNotSupportedException;

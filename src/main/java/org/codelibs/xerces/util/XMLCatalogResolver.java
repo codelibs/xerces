@@ -15,18 +15,18 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.util;
+package org.codelibs.xerces.util;
 
 import java.io.IOException;
 
 import javax.xml.parsers.SAXParserFactory;
 
-import org.apache.xerces.dom.DOMInputImpl;
-import org.apache.xerces.jaxp.SAXParserFactoryImpl;
-import org.apache.xerces.xni.XMLResourceIdentifier;
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xni.parser.XMLEntityResolver;
-import org.apache.xerces.xni.parser.XMLInputSource;
+import org.codelibs.xerces.dom.DOMInputImpl;
+import org.codelibs.xerces.jaxp.SAXParserFactoryImpl;
+import org.codelibs.xerces.xni.XMLResourceIdentifier;
+import org.codelibs.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.parser.XMLEntityResolver;
+import org.codelibs.xerces.xni.parser.XMLInputSource;
 import org.apache.xml.resolver.Catalog;
 import org.apache.xml.resolver.CatalogManager;
 import org.apache.xml.resolver.readers.OASISXMLCatalogReader;

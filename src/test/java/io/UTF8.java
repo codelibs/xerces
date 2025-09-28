@@ -22,7 +22,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 
-import org.apache.xerces.impl.io.UTF8Reader;
+import org.codelibs.xerces.impl.io.UTF8Reader;
 
 /**
  * This program tests the customized UTF-8 reader for the parser,

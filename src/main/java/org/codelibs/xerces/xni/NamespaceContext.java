@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.xni;
+package org.codelibs.xerces.xni;
 
 import java.util.Enumeration;
 
@@ -27,7 +27,7 @@ import java.util.Enumeration;
  * or added to the <code>SymbolTable</code>
  *
  * @see <a href="../../../../../xerces2/org/apache/xerces/util/SymbolTable.html">
- * org.apache.xerces.util.SymbolTable</a>
+ * org.codelibs.xerces.util.SymbolTable</a>
  *
  * @author Andy Clark, IBM
  *

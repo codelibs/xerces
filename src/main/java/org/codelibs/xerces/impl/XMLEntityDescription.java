@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl;
+package org.codelibs.xerces.impl;
 
-import org.apache.xerces.xni.XMLResourceIdentifier;
+import org.codelibs.xerces.xni.XMLResourceIdentifier;
 
 /**
  * <p>This interface describes the properties of entities--their

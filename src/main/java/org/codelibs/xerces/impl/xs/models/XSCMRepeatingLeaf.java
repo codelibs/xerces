@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs.models;
+package org.codelibs.xerces.impl.xs.models;
 
 /**
  * A compound content model leaf node which carries occurence information.

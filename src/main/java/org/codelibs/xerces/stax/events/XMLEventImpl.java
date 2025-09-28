@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.stax.events;
+package org.codelibs.xerces.stax.events;
 
 import java.io.StringWriter;
 
@@ -27,8 +27,8 @@ import javax.xml.stream.events.EndElement;
 import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
 
-import org.apache.xerces.stax.EmptyLocation;
-import org.apache.xerces.stax.ImmutableLocation;
+import org.codelibs.xerces.stax.EmptyLocation;
+import org.codelibs.xerces.stax.ImmutableLocation;
 
 /**
  * @xerces.internal

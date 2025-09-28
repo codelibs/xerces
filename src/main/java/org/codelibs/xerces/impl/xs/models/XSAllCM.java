@@ -15,15 +15,15 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs.models;
+package org.codelibs.xerces.impl.xs.models;
 
 import java.util.Vector;
 
-import org.apache.xerces.impl.xs.SubstitutionGroupHandler;
-import org.apache.xerces.impl.xs.XMLSchemaException;
-import org.apache.xerces.impl.xs.XSConstraints;
-import org.apache.xerces.impl.xs.XSElementDecl;
-import org.apache.xerces.xni.QName;
+import org.codelibs.xerces.impl.xs.SubstitutionGroupHandler;
+import org.codelibs.xerces.impl.xs.XMLSchemaException;
+import org.codelibs.xerces.impl.xs.XSConstraints;
+import org.codelibs.xerces.impl.xs.XSElementDecl;
+import org.codelibs.xerces.xni.QName;
 
 /**
  * XSAllCM implements XSCMValidator and handles &lt;all&gt;.

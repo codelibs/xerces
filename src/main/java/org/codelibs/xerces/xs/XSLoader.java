@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.xs;
+package org.codelibs.xerces.xs;
 
 import org.w3c.dom.DOMConfiguration;
 import org.w3c.dom.ls.LSInput;

@@ -20,8 +20,8 @@ package dom.serialize;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 
-import org.apache.xerces.dom.DocumentImpl;
-import org.apache.xerces.dom.NodeImpl;
+import org.codelibs.xerces.dom.DocumentImpl;
+import org.codelibs.xerces.dom.NodeImpl;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 

@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.xerces.xni.grammars;
+package org.codelibs.xerces.xni.grammars;
 
 /**
  * <p> This interface specifies how the parser and the application
@@ -54,7 +54,7 @@ public interface XMLGrammarPool {
      * can provide an initial set of grammars available to the current
      * validation attempt. </p>
      * @param grammarType the type of the grammar, from the
-     *  <code>org.apache.xerces.xni.grammars.Grammar</code> interface.
+     *  <code>org.codelibs.xerces.xni.grammars.Grammar</code> interface.
      * @return the set of grammars the validator may put in its "bucket"
      */
     public Grammar[] retrieveInitialGrammarSet(String grammarType);

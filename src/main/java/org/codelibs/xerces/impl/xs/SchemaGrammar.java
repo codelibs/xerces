@@ -15,47 +15,47 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs;
+package org.codelibs.xerces.impl.xs;
 
 import java.lang.ref.SoftReference;
 import java.util.Vector;
 
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.impl.dv.SchemaDVFactory;
-import org.apache.xerces.impl.dv.ValidatedInfo;
-import org.apache.xerces.impl.dv.XSSimpleType;
-import org.apache.xerces.impl.dv.xs.XSSimpleTypeDecl;
-import org.apache.xerces.impl.xs.identity.IdentityConstraint;
-import org.apache.xerces.impl.xs.util.ObjectListImpl;
-import org.apache.xerces.impl.xs.util.SimpleLocator;
-import org.apache.xerces.impl.xs.util.StringListImpl;
-import org.apache.xerces.impl.xs.util.XSNamedMap4Types;
-import org.apache.xerces.impl.xs.util.XSNamedMapImpl;
-import org.apache.xerces.impl.xs.util.XSObjectListImpl;
-import org.apache.xerces.parsers.DOMParser;
-import org.apache.xerces.parsers.SAXParser;
-import org.apache.xerces.parsers.XML11Configuration;
-import org.apache.xerces.util.SymbolHash;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.xni.NamespaceContext;
-import org.apache.xerces.xni.grammars.XMLGrammarDescription;
-import org.apache.xerces.xni.grammars.XSGrammar;
-import org.apache.xerces.xs.StringList;
-import org.apache.xerces.xs.XSAnnotation;
-import org.apache.xerces.xs.XSAttributeDeclaration;
-import org.apache.xerces.xs.XSAttributeGroupDefinition;
-import org.apache.xerces.xs.XSConstants;
-import org.apache.xerces.xs.XSElementDeclaration;
-import org.apache.xerces.xs.XSIDCDefinition;
-import org.apache.xerces.xs.XSModel;
-import org.apache.xerces.xs.XSModelGroupDefinition;
-import org.apache.xerces.xs.XSNamedMap;
-import org.apache.xerces.xs.XSNamespaceItem;
-import org.apache.xerces.xs.XSNotationDeclaration;
-import org.apache.xerces.xs.XSObjectList;
-import org.apache.xerces.xs.XSTypeDefinition;
-import org.apache.xerces.xs.XSWildcard;
-import org.apache.xerces.xs.datatypes.ObjectList;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.impl.dv.SchemaDVFactory;
+import org.codelibs.xerces.impl.dv.ValidatedInfo;
+import org.codelibs.xerces.impl.dv.XSSimpleType;
+import org.codelibs.xerces.impl.dv.xs.XSSimpleTypeDecl;
+import org.codelibs.xerces.impl.xs.identity.IdentityConstraint;
+import org.codelibs.xerces.impl.xs.util.ObjectListImpl;
+import org.codelibs.xerces.impl.xs.util.SimpleLocator;
+import org.codelibs.xerces.impl.xs.util.StringListImpl;
+import org.codelibs.xerces.impl.xs.util.XSNamedMap4Types;
+import org.codelibs.xerces.impl.xs.util.XSNamedMapImpl;
+import org.codelibs.xerces.impl.xs.util.XSObjectListImpl;
+import org.codelibs.xerces.parsers.DOMParser;
+import org.codelibs.xerces.parsers.SAXParser;
+import org.codelibs.xerces.parsers.XML11Configuration;
+import org.codelibs.xerces.util.SymbolHash;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.xni.NamespaceContext;
+import org.codelibs.xerces.xni.grammars.XMLGrammarDescription;
+import org.codelibs.xerces.xni.grammars.XSGrammar;
+import org.codelibs.xerces.xs.StringList;
+import org.codelibs.xerces.xs.XSAnnotation;
+import org.codelibs.xerces.xs.XSAttributeDeclaration;
+import org.codelibs.xerces.xs.XSAttributeGroupDefinition;
+import org.codelibs.xerces.xs.XSConstants;
+import org.codelibs.xerces.xs.XSElementDeclaration;
+import org.codelibs.xerces.xs.XSIDCDefinition;
+import org.codelibs.xerces.xs.XSModel;
+import org.codelibs.xerces.xs.XSModelGroupDefinition;
+import org.codelibs.xerces.xs.XSNamedMap;
+import org.codelibs.xerces.xs.XSNamespaceItem;
+import org.codelibs.xerces.xs.XSNotationDeclaration;
+import org.codelibs.xerces.xs.XSObjectList;
+import org.codelibs.xerces.xs.XSTypeDefinition;
+import org.codelibs.xerces.xs.XSWildcard;
+import org.codelibs.xerces.xs.datatypes.ObjectList;
 import org.xml.sax.SAXException;
 
 /**
@@ -265,7 +265,7 @@ public class SchemaGrammar implements XSGrammar, XSNamespaceItem {
     // are immutable.
     public static class BuiltinSchemaGrammar extends SchemaGrammar {
 
-        private static final String EXTENDED_SCHEMA_FACTORY_CLASS = "org.apache.xerces.impl.dv.xs.ExtendedSchemaDVFactoryImpl";
+        private static final String EXTENDED_SCHEMA_FACTORY_CLASS = "org.codelibs.xerces.impl.dv.xs.ExtendedSchemaDVFactoryImpl";
 
         /**
          * Special constructor to create the grammars for the schema namespaces
@@ -1687,7 +1687,7 @@ public class SchemaGrammar implements XSGrammar, XSNamespaceItem {
     }
 
     /**
-     * @see org.apache.xerces.xs.XSNamespaceItem#getAnnotations()
+     * @see org.codelibs.xerces.xs.XSNamespaceItem#getAnnotations()
      */
     public XSObjectList getAnnotations() {
         if (fNumAnnotations == 0) {

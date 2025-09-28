@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.xni.grammars;
+package org.codelibs.xerces.xni.grammars;
 
 /**
  * A generic grammar for use in validating XML documents. The Grammar

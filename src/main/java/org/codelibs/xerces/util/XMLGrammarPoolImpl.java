@@ -15,11 +15,11 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.util;
+package org.codelibs.xerces.util;
 
-import org.apache.xerces.xni.grammars.Grammar;
-import org.apache.xerces.xni.grammars.XMLGrammarDescription;
-import org.apache.xerces.xni.grammars.XMLGrammarPool;
+import org.codelibs.xerces.xni.grammars.Grammar;
+import org.codelibs.xerces.xni.grammars.XMLGrammarDescription;
+import org.codelibs.xerces.xni.grammars.XMLGrammarPool;
 
 /**
  * Stores grammars in a pool associated to a specific key. This grammar pool
@@ -87,7 +87,7 @@ public class XMLGrammarPoolImpl implements XMLGrammarPool {
      * validation attempt. </p>
      *
      * @param grammarType The type of the grammar, from the
-     *  		  <code>org.apache.xerces.xni.grammars.XMLGrammarDescription</code>
+     *  		  <code>org.codelibs.xerces.xni.grammars.XMLGrammarDescription</code>
      *  		  interface.
      * @return 		  The set of grammars the validator may put in its "bucket"
      */

@@ -15,13 +15,13 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs.util;
+package org.codelibs.xerces.impl.xs.util;
 
 import java.lang.reflect.Array;
 import java.util.AbstractList;
 import java.util.Vector;
 
-import org.apache.xerces.xs.StringList;
+import org.codelibs.xerces.xs.StringList;
 
 /**
  * Contains a list of Strings.

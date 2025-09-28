@@ -17,19 +17,19 @@
 
 package simpletype;
 
-import org.apache.xerces.impl.dv.InvalidDatatypeValueException;
-import org.apache.xerces.impl.dv.SchemaDVFactory;
-import org.apache.xerces.impl.dv.ValidatedInfo;
-import org.apache.xerces.impl.dv.ValidationContext;
-import org.apache.xerces.impl.dv.XSFacets;
-import org.apache.xerces.impl.dv.XSSimpleType;
-import org.apache.xerces.impl.validation.ValidationState;
-import org.apache.xerces.xs.XSConstants;
-import org.apache.xerces.xs.XSObjectList;
-import org.apache.xerces.xs.XSTypeDefinition;
+import org.codelibs.xerces.impl.dv.InvalidDatatypeValueException;
+import org.codelibs.xerces.impl.dv.SchemaDVFactory;
+import org.codelibs.xerces.impl.dv.ValidatedInfo;
+import org.codelibs.xerces.impl.dv.ValidationContext;
+import org.codelibs.xerces.impl.dv.XSFacets;
+import org.codelibs.xerces.impl.dv.XSSimpleType;
+import org.codelibs.xerces.impl.validation.ValidationState;
+import org.codelibs.xerces.xs.XSConstants;
+import org.codelibs.xerces.xs.XSObjectList;
+import org.codelibs.xerces.xs.XSTypeDefinition;
 
 /**
- *  It demonstrates how to use the interfaces defined in 'org.apache.xerces.impl.dv'
+ *  It demonstrates how to use the interfaces defined in 'org.codelibs.xerces.impl.dv'
  *  package for the purpose of
  * 1. how to query property information of Simple Type Definition Schema Component.
  * 2. how to get instance of SchemaDVFactory implementation.
@@ -64,7 +64,7 @@ public SimpleTypeUsage(){
         //SchemaDVFactory.setFactoryClass("myApp.simpleType.MySchemaDVFactoryImpl.class");
 
         //this will give the instance of default implementation (SchemaDVFactoryImpl)
-        // in 'org.apache.xerces.impl.dv.xs_new' package.
+        // in 'org.codelibs.xerces.impl.dv.xs_new' package.
         factory = SchemaDVFactory.getInstance();
 
 } //SimpleTypeUsage()
@@ -84,7 +84,7 @@ private ValidationContext getValidationContext(){
     // create an instance of 'ValidationState' providing the information required for the
     // validation of datatypes id, idref, entity, notation, qname.
     //	application can also provide its own implementation of ValidationContext if required, 
-    // an implementation of 'ValidationContext' is in 'org.apache.xerces.impl.validation' package.
+    // an implementation of 'ValidationContext' is in 'org.codelibs.xerces.impl.validation' package.
     validationState = new ValidationState();
     
         // application need to pass validation context while validating string, object or creating simple type (applyFacets)
@@ -93,7 +93,7 @@ private ValidationContext getValidationContext(){
     //application should provide the namespace support by calling
     //validationState.setNamespaceSupport(...);
 
-    //application can also provide 'SymbolTable' (org.apache.xerces.util.SymbolTable) like    
+    //application can also provide 'SymbolTable' (org.codelibs.xerces.util.SymbolTable) like    
     //validationState.setSymbolTable(....);
 
         //set proper value (true/false) for the given validation context 

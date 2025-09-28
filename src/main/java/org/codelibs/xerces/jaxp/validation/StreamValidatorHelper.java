@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.jaxp.validation;
+package org.codelibs.xerces.jaxp.validation;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -26,21 +26,21 @@ import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.impl.XMLEntityManager;
-import org.apache.xerces.impl.XMLErrorReporter;
-import org.apache.xerces.impl.msg.XMLMessageFormatter;
-import org.apache.xerces.impl.xs.XMLSchemaValidator;
-import org.apache.xerces.parsers.SAXParser;
-import org.apache.xerces.parsers.XML11Configuration;
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xni.parser.XMLInputSource;
-import org.apache.xerces.xni.parser.XMLParseException;
-import org.apache.xerces.xni.parser.XMLParserConfiguration;
-import org.apache.xml.serialize.Method;
-import org.apache.xml.serialize.OutputFormat;
-import org.apache.xml.serialize.Serializer;
-import org.apache.xml.serialize.SerializerFactory;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.impl.XMLEntityManager;
+import org.codelibs.xerces.impl.XMLErrorReporter;
+import org.codelibs.xerces.impl.msg.XMLMessageFormatter;
+import org.codelibs.xerces.impl.xs.XMLSchemaValidator;
+import org.codelibs.xerces.parsers.SAXParser;
+import org.codelibs.xerces.parsers.XML11Configuration;
+import org.codelibs.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.parser.XMLInputSource;
+import org.codelibs.xerces.xni.parser.XMLParseException;
+import org.codelibs.xerces.xni.parser.XMLParserConfiguration;
+import org.codelibs.xerces.xml.serialize.Method;
+import org.codelibs.xerces.xml.serialize.OutputFormat;
+import org.codelibs.xerces.xml.serialize.Serializer;
+import org.codelibs.xerces.xml.serialize.SerializerFactory;
 import org.xml.sax.SAXException;
 
 /**

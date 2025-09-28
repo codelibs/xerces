@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.stax.events;
+package org.codelibs.xerces.stax.events;
 
 import javax.xml.XMLConstants;
 import javax.xml.namespace.QName;

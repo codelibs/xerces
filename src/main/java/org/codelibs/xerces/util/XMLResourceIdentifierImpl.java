@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.util;
+package org.codelibs.xerces.util;
 
-import org.apache.xerces.xni.XMLResourceIdentifier;
+import org.codelibs.xerces.xni.XMLResourceIdentifier;
 
 /**
  * The XMLResourceIdentifierImpl class is an implementation of the

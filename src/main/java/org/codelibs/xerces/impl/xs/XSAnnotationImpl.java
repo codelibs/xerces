@@ -14,17 +14,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.xerces.impl.xs;
+package org.codelibs.xerces.impl.xs;
 
 import java.io.IOException;
 import java.io.StringReader;
 
-import org.apache.xerces.dom.CoreDocumentImpl;
-import org.apache.xerces.parsers.DOMParser;
-import org.apache.xerces.parsers.SAXParser;
-import org.apache.xerces.xs.XSAnnotation;
-import org.apache.xerces.xs.XSConstants;
-import org.apache.xerces.xs.XSNamespaceItem;
+import org.codelibs.xerces.dom.CoreDocumentImpl;
+import org.codelibs.xerces.parsers.DOMParser;
+import org.codelibs.xerces.parsers.SAXParser;
+import org.codelibs.xerces.xs.XSAnnotation;
+import org.codelibs.xerces.xs.XSConstants;
+import org.codelibs.xerces.xs.XSNamespaceItem;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;

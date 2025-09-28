@@ -15,36 +15,36 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.parsers;
+package org.codelibs.xerces.parsers;
 
 import java.io.CharConversionException;
 import java.io.IOException;
 import java.util.Locale;
 
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.util.EntityResolver2Wrapper;
-import org.apache.xerces.util.EntityResolverWrapper;
-import org.apache.xerces.util.ErrorHandlerWrapper;
-import org.apache.xerces.util.SAXMessageFormatter;
-import org.apache.xerces.util.SymbolHash;
-import org.apache.xerces.util.XMLSymbols;
-import org.apache.xerces.xni.Augmentations;
-import org.apache.xerces.xni.NamespaceContext;
-import org.apache.xerces.xni.QName;
-import org.apache.xerces.xni.XMLAttributes;
-import org.apache.xerces.xni.XMLLocator;
-import org.apache.xerces.xni.XMLResourceIdentifier;
-import org.apache.xerces.xni.XMLString;
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xni.parser.XMLConfigurationException;
-import org.apache.xerces.xni.parser.XMLEntityResolver;
-import org.apache.xerces.xni.parser.XMLErrorHandler;
-import org.apache.xerces.xni.parser.XMLInputSource;
-import org.apache.xerces.xni.parser.XMLParseException;
-import org.apache.xerces.xni.parser.XMLParserConfiguration;
-import org.apache.xerces.xs.AttributePSVI;
-import org.apache.xerces.xs.ElementPSVI;
-import org.apache.xerces.xs.PSVIProvider;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.util.EntityResolver2Wrapper;
+import org.codelibs.xerces.util.EntityResolverWrapper;
+import org.codelibs.xerces.util.ErrorHandlerWrapper;
+import org.codelibs.xerces.util.SAXMessageFormatter;
+import org.codelibs.xerces.util.SymbolHash;
+import org.codelibs.xerces.util.XMLSymbols;
+import org.codelibs.xerces.xni.Augmentations;
+import org.codelibs.xerces.xni.NamespaceContext;
+import org.codelibs.xerces.xni.QName;
+import org.codelibs.xerces.xni.XMLAttributes;
+import org.codelibs.xerces.xni.XMLLocator;
+import org.codelibs.xerces.xni.XMLResourceIdentifier;
+import org.codelibs.xerces.xni.XMLString;
+import org.codelibs.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.parser.XMLConfigurationException;
+import org.codelibs.xerces.xni.parser.XMLEntityResolver;
+import org.codelibs.xerces.xni.parser.XMLErrorHandler;
+import org.codelibs.xerces.xni.parser.XMLInputSource;
+import org.codelibs.xerces.xni.parser.XMLParseException;
+import org.codelibs.xerces.xni.parser.XMLParserConfiguration;
+import org.codelibs.xerces.xs.AttributePSVI;
+import org.codelibs.xerces.xs.ElementPSVI;
+import org.codelibs.xerces.xs.PSVIProvider;
 import org.xml.sax.AttributeList;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.DTDHandler;

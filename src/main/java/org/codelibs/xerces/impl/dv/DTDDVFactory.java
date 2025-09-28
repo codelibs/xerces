@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.dv;
+package org.codelibs.xerces.impl.dv;
 
 import java.util.Hashtable;
 
@@ -32,7 +32,7 @@ import java.util.Hashtable;
  */
 public abstract class DTDDVFactory {
 
-    private static final String DEFAULT_FACTORY_CLASS = "org.apache.xerces.impl.dv.dtd.DTDDVFactoryImpl";
+    private static final String DEFAULT_FACTORY_CLASS = "org.codelibs.xerces.impl.dv.dtd.DTDDVFactoryImpl";
 
     /**
      * Get an instance of the default DTDDVFactory implementation.

@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.dv;
+package org.codelibs.xerces.impl.dv;
 
-import org.apache.xerces.util.SymbolHash;
-import org.apache.xerces.xs.XSObjectList;
+import org.codelibs.xerces.util.SymbolHash;
+import org.codelibs.xerces.xs.XSObjectList;
 
 /**
  * Defines a factory API that enables applications to <p>
@@ -40,7 +40,7 @@ import org.apache.xerces.xs.XSObjectList;
  */
 public abstract class SchemaDVFactory {
 
-    private static final String DEFAULT_FACTORY_CLASS = "org.apache.xerces.impl.dv.xs.SchemaDVFactoryImpl";
+    private static final String DEFAULT_FACTORY_CLASS = "org.codelibs.xerces.impl.dv.xs.SchemaDVFactoryImpl";
 
     /**
      * Get a default instance of SchemaDVFactory implementation.

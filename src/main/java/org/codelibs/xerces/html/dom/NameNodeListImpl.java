@@ -15,11 +15,11 @@
  * limitations under the License.
  */
 
-package org.apache.html.dom;
+package org.codelibs.xerces.html.dom;
 
-import org.apache.xerces.dom.DeepNodeListImpl;
-import org.apache.xerces.dom.ElementImpl;
-import org.apache.xerces.dom.NodeImpl;
+import org.codelibs.xerces.dom.DeepNodeListImpl;
+import org.codelibs.xerces.dom.ElementImpl;
+import org.codelibs.xerces.dom.NodeImpl;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 

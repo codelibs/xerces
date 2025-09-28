@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.util;
+package org.codelibs.xerces.util;
 
-import org.apache.xerces.xni.XMLString;
+import org.codelibs.xerces.xni.XMLString;
 
 /**
  * XMLString is a structure used to pass character arrays. However,

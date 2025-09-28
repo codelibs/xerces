@@ -15,16 +15,16 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl;
+package org.codelibs.xerces.impl;
 
 import java.io.IOException;
 
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.util.XML11Char;
-import org.apache.xerces.util.XMLChar;
-import org.apache.xerces.util.XMLStringBuffer;
-import org.apache.xerces.xni.XMLString;
-import org.apache.xerces.xni.XNIException;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.util.XML11Char;
+import org.codelibs.xerces.util.XMLChar;
+import org.codelibs.xerces.util.XMLStringBuffer;
+import org.codelibs.xerces.xni.XMLString;
+import org.codelibs.xerces.xni.XNIException;
 
 /**
  * This class is responsible for scanning the declarations found

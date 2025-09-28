@@ -14,12 +14,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.html.dom;
+package org.codelibs.xerces.html.dom;
 
 import java.util.Vector;
 
-import org.apache.xerces.dom.ElementImpl;
-import org.apache.xerces.dom.ProcessingInstructionImpl;
+import org.codelibs.xerces.dom.ElementImpl;
+import org.codelibs.xerces.dom.ProcessingInstructionImpl;
 import org.w3c.dom.Node;
 import org.w3c.dom.html.HTMLDocument;
 import org.xml.sax.AttributeList;

@@ -15,15 +15,15 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.dv.util;
+package org.codelibs.xerces.impl.dv.util;
 
 import java.util.AbstractList;
 
-import org.apache.xerces.xs.XSException;
-import org.apache.xerces.xs.datatypes.ByteList;
+import org.codelibs.xerces.xs.XSException;
+import org.codelibs.xerces.xs.datatypes.ByteList;
 
 /**
- * Implementation of <code>org.apache.xerces.xs.datatypes.ByteList</code>.
+ * Implementation of <code>org.codelibs.xerces.xs.datatypes.ByteList</code>.
  *
  * @xerces.internal
  *

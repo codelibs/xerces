@@ -15,20 +15,20 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl;
+package org.codelibs.xerces.impl;
 
 import java.io.EOFException;
 import java.io.IOException;
 import java.util.Locale;
 
-import org.apache.xerces.impl.io.UCSReader;
-import org.apache.xerces.impl.msg.XMLMessageFormatter;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.util.XMLChar;
-import org.apache.xerces.util.XMLStringBuffer;
-import org.apache.xerces.xni.QName;
-import org.apache.xerces.xni.XMLLocator;
-import org.apache.xerces.xni.XMLString;
+import org.codelibs.xerces.impl.io.UCSReader;
+import org.codelibs.xerces.impl.msg.XMLMessageFormatter;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.util.XMLChar;
+import org.codelibs.xerces.util.XMLStringBuffer;
+import org.codelibs.xerces.xni.QName;
+import org.codelibs.xerces.xni.XMLLocator;
+import org.codelibs.xerces.xni.XMLString;
 
 /**
  * Implements the entity scanner methods.
@@ -109,7 +109,7 @@ public class XMLEntityScanner implements XMLLocator {
      *
      * @throws IOException Thrown if the new encoding is not supported.
      *
-     * @see org.apache.xerces.util.EncodingMap
+     * @see org.codelibs.xerces.util.EncodingMap
      */
     public final void setEncoding(String encoding) throws IOException {
 
@@ -285,8 +285,8 @@ public class XMLEntityScanner implements XMLLocator {
      * @throws IOException  Thrown if i/o error occurs.
      * @throws EOFException Thrown on end of file.
      *
-     * @see org.apache.xerces.util.SymbolTable
-     * @see org.apache.xerces.util.XMLChar#isName
+     * @see org.codelibs.xerces.util.SymbolTable
+     * @see org.codelibs.xerces.util.XMLChar#isName
      */
     public String scanNmtoken() throws IOException {
         if (DEBUG_BUFFER) {
@@ -346,9 +346,9 @@ public class XMLEntityScanner implements XMLLocator {
      * @throws IOException  Thrown if i/o error occurs.
      * @throws EOFException Thrown on end of file.
      *
-     * @see org.apache.xerces.util.SymbolTable
-     * @see org.apache.xerces.util.XMLChar#isName
-     * @see org.apache.xerces.util.XMLChar#isNameStart
+     * @see org.codelibs.xerces.util.SymbolTable
+     * @see org.codelibs.xerces.util.XMLChar#isName
+     * @see org.codelibs.xerces.util.XMLChar#isNameStart
      */
     public String scanName() throws IOException {
         if (DEBUG_BUFFER) {
@@ -424,9 +424,9 @@ public class XMLEntityScanner implements XMLLocator {
      * @throws IOException  Thrown if i/o error occurs.
      * @throws EOFException Thrown on end of file.
      *
-     * @see org.apache.xerces.util.SymbolTable
-     * @see org.apache.xerces.util.XMLChar#isNCName
-     * @see org.apache.xerces.util.XMLChar#isNCNameStart
+     * @see org.codelibs.xerces.util.SymbolTable
+     * @see org.codelibs.xerces.util.XMLChar#isNCName
+     * @see org.codelibs.xerces.util.XMLChar#isNCNameStart
      */
     public String scanNCName() throws IOException {
         if (DEBUG_BUFFER) {
@@ -508,9 +508,9 @@ public class XMLEntityScanner implements XMLLocator {
      * @throws IOException  Thrown if i/o error occurs.
      * @throws EOFException Thrown on end of file.
      *
-     * @see org.apache.xerces.util.SymbolTable
-     * @see org.apache.xerces.util.XMLChar#isName
-     * @see org.apache.xerces.util.XMLChar#isNameStart
+     * @see org.codelibs.xerces.util.SymbolTable
+     * @see org.codelibs.xerces.util.XMLChar#isName
+     * @see org.codelibs.xerces.util.XMLChar#isNameStart
      */
     public boolean scanQName(QName qname) throws IOException {
         if (DEBUG_BUFFER) {
@@ -1192,7 +1192,7 @@ public class XMLEntityScanner implements XMLLocator {
      * @throws IOException  Thrown if i/o error occurs.
      * @throws EOFException Thrown on end of file.
      *
-     * @see org.apache.xerces.util.XMLChar#isSpace
+     * @see org.codelibs.xerces.util.XMLChar#isSpace
      */
     public boolean skipSpaces() throws IOException {
         if (DEBUG_BUFFER) {
@@ -1284,7 +1284,7 @@ public class XMLEntityScanner implements XMLLocator {
      * @throws IOException  Thrown if i/o error occurs.
      * @throws EOFException Thrown on end of file.
      *
-     * @see org.apache.xerces.util.XMLChar#isSpace
+     * @see org.codelibs.xerces.util.XMLChar#isSpace
      */
     public final boolean skipDeclSpaces() throws IOException {
         if (DEBUG_BUFFER) {

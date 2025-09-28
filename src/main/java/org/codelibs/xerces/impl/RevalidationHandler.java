@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl;
+package org.codelibs.xerces.impl;
 
-import org.apache.xerces.xni.Augmentations;
-import org.apache.xerces.xni.parser.XMLDocumentFilter;
+import org.codelibs.xerces.xni.Augmentations;
+import org.codelibs.xerces.xni.parser.XMLDocumentFilter;
 
 /**
  * DOM Revalidation handler adds additional functionality to XMLDocumentHandler

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs;
+package org.codelibs.xerces.impl.xs;
 
 import java.lang.reflect.Array;
 import java.util.AbstractList;
@@ -24,28 +24,28 @@ import java.util.ListIterator;
 import java.util.NoSuchElementException;
 import java.util.Vector;
 
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.impl.xs.util.StringListImpl;
-import org.apache.xerces.impl.xs.util.XSNamedMap4Types;
-import org.apache.xerces.impl.xs.util.XSNamedMapImpl;
-import org.apache.xerces.impl.xs.util.XSObjectListImpl;
-import org.apache.xerces.util.SymbolHash;
-import org.apache.xerces.util.XMLSymbols;
-import org.apache.xerces.xs.StringList;
-import org.apache.xerces.xs.XSAttributeDeclaration;
-import org.apache.xerces.xs.XSAttributeGroupDefinition;
-import org.apache.xerces.xs.XSConstants;
-import org.apache.xerces.xs.XSElementDeclaration;
-import org.apache.xerces.xs.XSIDCDefinition;
-import org.apache.xerces.xs.XSModel;
-import org.apache.xerces.xs.XSModelGroupDefinition;
-import org.apache.xerces.xs.XSNamedMap;
-import org.apache.xerces.xs.XSNamespaceItem;
-import org.apache.xerces.xs.XSNamespaceItemList;
-import org.apache.xerces.xs.XSNotationDeclaration;
-import org.apache.xerces.xs.XSObject;
-import org.apache.xerces.xs.XSObjectList;
-import org.apache.xerces.xs.XSTypeDefinition;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.impl.xs.util.StringListImpl;
+import org.codelibs.xerces.impl.xs.util.XSNamedMap4Types;
+import org.codelibs.xerces.impl.xs.util.XSNamedMapImpl;
+import org.codelibs.xerces.impl.xs.util.XSObjectListImpl;
+import org.codelibs.xerces.util.SymbolHash;
+import org.codelibs.xerces.util.XMLSymbols;
+import org.codelibs.xerces.xs.StringList;
+import org.codelibs.xerces.xs.XSAttributeDeclaration;
+import org.codelibs.xerces.xs.XSAttributeGroupDefinition;
+import org.codelibs.xerces.xs.XSConstants;
+import org.codelibs.xerces.xs.XSElementDeclaration;
+import org.codelibs.xerces.xs.XSIDCDefinition;
+import org.codelibs.xerces.xs.XSModel;
+import org.codelibs.xerces.xs.XSModelGroupDefinition;
+import org.codelibs.xerces.xs.XSNamedMap;
+import org.codelibs.xerces.xs.XSNamespaceItem;
+import org.codelibs.xerces.xs.XSNamespaceItemList;
+import org.codelibs.xerces.xs.XSNotationDeclaration;
+import org.codelibs.xerces.xs.XSObject;
+import org.codelibs.xerces.xs.XSObjectList;
+import org.codelibs.xerces.xs.XSTypeDefinition;
 
 /**
  * Implements XSModel:  a read-only interface that represents an XML Schema,
@@ -609,7 +609,7 @@ public final class XSModelImpl extends AbstractList implements XSModel, XSNamesp
     }
 
     /**
-     * @see org.apache.xerces.xs.XSModel#getNotationDeclaration(String, String)
+     * @see org.codelibs.xerces.xs.XSModel#getNotationDeclaration(String, String)
      */
     public XSNotationDeclaration getNotationDeclaration(String name, String namespace) {
         SchemaGrammar sg = (SchemaGrammar) fGrammarMap.get(null2EmptyString(namespace));

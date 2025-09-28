@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.dom.events;
+package org.codelibs.xerces.dom.events;
 
 import org.w3c.dom.events.UIEvent;
 import org.w3c.dom.views.AbstractView;

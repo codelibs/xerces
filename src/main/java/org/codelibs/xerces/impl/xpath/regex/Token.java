@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xpath.regex;
+package org.codelibs.xerces.impl.xpath.regex;
 
 import java.util.Hashtable;
 import java.util.Vector;
@@ -778,7 +778,7 @@ class Token implements java.io.Serializable {
                         type = CHAR_SYMBOL;
                         break;
                     default:
-                        throw new RuntimeException("org.apache.xerces.utils.regex.Token#getRange(): Unknown Unicode category: " + type);
+                        throw new RuntimeException("org.codelibs.xerces.utils.regex.Token#getRange(): Unknown Unicode category: " + type);
                     }
                     ranges[type].addRange(i, i);
                 } // for all characters

@@ -15,16 +15,16 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs.identity;
+package org.codelibs.xerces.impl.xs.identity;
 
-import org.apache.xerces.impl.xpath.XPathException;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.util.XMLChar;
-import org.apache.xerces.xni.NamespaceContext;
-import org.apache.xerces.xni.QName;
-import org.apache.xerces.xni.XMLAttributes;
-import org.apache.xerces.xs.ShortList;
-import org.apache.xerces.xs.XSTypeDefinition;
+import org.codelibs.xerces.impl.xpath.XPathException;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.util.XMLChar;
+import org.codelibs.xerces.xni.NamespaceContext;
+import org.codelibs.xerces.xni.QName;
+import org.codelibs.xerces.xni.XMLAttributes;
+import org.codelibs.xerces.xs.ShortList;
+import org.codelibs.xerces.xs.XSTypeDefinition;
 
 /**
  * Schema identity constraint selector.
@@ -65,9 +65,9 @@ public class Selector {
     //
 
     /** Returns the selector XPath. */
-    public org.apache.xerces.impl.xpath.XPath getXPath() {
+    public org.codelibs.xerces.impl.xpath.XPath getXPath() {
         return fXPath;
-    } // getXPath():org.apache.xerces.v1.schema.identity.XPath
+    } // getXPath():org.codelibs.xerces.v1.schema.identity.XPath
 
     /** Returns the identity constraint. */
     public IdentityConstraint getIDConstraint() {
@@ -104,7 +104,7 @@ public class Selector {
      * @author Andy Clark, IBM
      * @version $Id: Selector.java 572110 2007-09-02 19:04:44Z mrglavas $
      */
-    public static class XPath extends org.apache.xerces.impl.xpath.XPath {
+    public static class XPath extends org.codelibs.xerces.impl.xpath.XPath {
 
         //
         // Constructors
@@ -115,7 +115,7 @@ public class Selector {
             super(normalize(xpath), symbolTable, context);
             // verify that an attribute is not selected
             for (int i = 0; i < fLocationPaths.length; i++) {
-                org.apache.xerces.impl.xpath.XPath.Axis axis = fLocationPaths[i].steps[fLocationPaths[i].steps.length - 1].axis;
+                org.codelibs.xerces.impl.xpath.XPath.Axis axis = fLocationPaths[i].steps[fLocationPaths[i].steps.length - 1].axis;
                 if (axis.type == XPath.Axis.ATTRIBUTE) {
                     throw new XPathException("c-selector-xpath");
                 }

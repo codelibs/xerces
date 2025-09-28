@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.dv.xs;
+package org.codelibs.xerces.impl.dv.xs;
 
 import java.math.BigDecimal;
 
@@ -23,9 +23,9 @@ import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.Duration;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.jaxp.datatype.DatatypeFactoryImpl;
-import org.apache.xerces.xs.datatypes.XSDateTime;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.jaxp.datatype.DatatypeFactoryImpl;
+import org.codelibs.xerces.xs.datatypes.XSDateTime;
 
 /**
  * This is the base class of all date/time datatype validators.
@@ -949,7 +949,7 @@ public abstract class AbstractDateTimeDV extends TypeValidator {
         }
 
         /* (non-Javadoc)
-         * @see org.apache.xerces.xs.datatypes.XSDateTime#getYear()
+         * @see org.codelibs.xerces.xs.datatypes.XSDateTime#getYear()
          */
         public int getYears() {
             if (type instanceof DurationDV)
@@ -958,7 +958,7 @@ public abstract class AbstractDateTimeDV extends TypeValidator {
         }
 
         /* (non-Javadoc)
-         * @see org.apache.xerces.xs.datatypes.XSDateTime#getMonth()
+         * @see org.codelibs.xerces.xs.datatypes.XSDateTime#getMonth()
          */
         public int getMonths() {
             if (type instanceof DurationDV) {
@@ -968,7 +968,7 @@ public abstract class AbstractDateTimeDV extends TypeValidator {
         }
 
         /* (non-Javadoc)
-         * @see org.apache.xerces.xs.datatypes.XSDateTime#getDay()
+         * @see org.codelibs.xerces.xs.datatypes.XSDateTime#getDay()
          */
         public int getDays() {
             if (type instanceof DurationDV)
@@ -977,7 +977,7 @@ public abstract class AbstractDateTimeDV extends TypeValidator {
         }
 
         /* (non-Javadoc)
-         * @see org.apache.xerces.xs.datatypes.XSDateTime#getHour()
+         * @see org.codelibs.xerces.xs.datatypes.XSDateTime#getHour()
          */
         public int getHours() {
             if (type instanceof DurationDV)
@@ -986,7 +986,7 @@ public abstract class AbstractDateTimeDV extends TypeValidator {
         }
 
         /* (non-Javadoc)
-         * @see org.apache.xerces.xs.datatypes.XSDateTime#getMinutes()
+         * @see org.codelibs.xerces.xs.datatypes.XSDateTime#getMinutes()
          */
         public int getMinutes() {
             if (type instanceof DurationDV)
@@ -995,7 +995,7 @@ public abstract class AbstractDateTimeDV extends TypeValidator {
         }
 
         /* (non-Javadoc)
-         * @see org.apache.xerces.xs.datatypes.XSDateTime#getSeconds()
+         * @see org.codelibs.xerces.xs.datatypes.XSDateTime#getSeconds()
          */
         public double getSeconds() {
             if (type instanceof DurationDV) {
@@ -1005,35 +1005,35 @@ public abstract class AbstractDateTimeDV extends TypeValidator {
         }
 
         /* (non-Javadoc)
-         * @see org.apache.xerces.xs.datatypes.XSDateTime#hasTimeZone()
+         * @see org.codelibs.xerces.xs.datatypes.XSDateTime#hasTimeZone()
          */
         public boolean hasTimeZone() {
             return utc != 0;
         }
 
         /* (non-Javadoc)
-         * @see org.apache.xerces.xs.datatypes.XSDateTime#getTimeZoneHours()
+         * @see org.codelibs.xerces.xs.datatypes.XSDateTime#getTimeZoneHours()
          */
         public int getTimeZoneHours() {
             return timezoneHr;
         }
 
         /* (non-Javadoc)
-         * @see org.apache.xerces.xs.datatypes.XSDateTime#getTimeZoneMinutes()
+         * @see org.codelibs.xerces.xs.datatypes.XSDateTime#getTimeZoneMinutes()
          */
         public int getTimeZoneMinutes() {
             return timezoneMin;
         }
 
         /* (non-Javadoc)
-         * @see org.apache.xerces.xs.datatypes.XSDateTime#getLexicalValue()
+         * @see org.codelibs.xerces.xs.datatypes.XSDateTime#getLexicalValue()
          */
         public String getLexicalValue() {
             return originalValue;
         }
 
         /* (non-Javadoc)
-         * @see org.apache.xerces.xs.datatypes.XSDateTime#normalize()
+         * @see org.codelibs.xerces.xs.datatypes.XSDateTime#normalize()
          */
         public XSDateTime normalize() {
             if (!normalized) {
@@ -1045,7 +1045,7 @@ public abstract class AbstractDateTimeDV extends TypeValidator {
         }
 
         /* (non-Javadoc)
-         * @see org.apache.xerces.xs.datatypes.XSDateTime#isNormalized()
+         * @see org.codelibs.xerces.xs.datatypes.XSDateTime#isNormalized()
          */
         public boolean isNormalized() {
             return normalized;
@@ -1068,14 +1068,14 @@ public abstract class AbstractDateTimeDV extends TypeValidator {
         }
 
         /* (non-Javadoc)
-         * @see org.apache.xerces.xs.datatypes.XSDateTime#getXMLGregorianCalendar()
+         * @see org.codelibs.xerces.xs.datatypes.XSDateTime#getXMLGregorianCalendar()
          */
         public XMLGregorianCalendar getXMLGregorianCalendar() {
             return type.getXMLGregorianCalendar(this);
         }
 
         /* (non-Javadoc)
-         * @see org.apache.xerces.xs.datatypes.XSDateTime#getDuration()
+         * @see org.codelibs.xerces.xs.datatypes.XSDateTime#getDuration()
          */
         public Duration getDuration() {
             return type.getDuration(this);

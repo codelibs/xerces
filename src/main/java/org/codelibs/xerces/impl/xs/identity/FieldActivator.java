@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs.identity;
+package org.codelibs.xerces.impl.xs.identity;
 
 /**
  * Interface for a field activator. The field activator is responsible

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.validation;
+package org.codelibs.xerces.impl.validation;
 
 /**
  * The entity state interface defines methods that must be implemented

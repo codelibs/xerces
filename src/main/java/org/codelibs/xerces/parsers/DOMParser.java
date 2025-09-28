@@ -15,26 +15,26 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.parsers;
+package org.codelibs.xerces.parsers;
 
 import java.io.CharConversionException;
 import java.io.IOException;
 
-import org.apache.xerces.dom.DOMMessageFormatter;
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.util.EntityResolver2Wrapper;
-import org.apache.xerces.util.EntityResolverWrapper;
-import org.apache.xerces.util.ErrorHandlerWrapper;
-import org.apache.xerces.util.SAXMessageFormatter;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xni.grammars.XMLGrammarPool;
-import org.apache.xerces.xni.parser.XMLConfigurationException;
-import org.apache.xerces.xni.parser.XMLEntityResolver;
-import org.apache.xerces.xni.parser.XMLErrorHandler;
-import org.apache.xerces.xni.parser.XMLInputSource;
-import org.apache.xerces.xni.parser.XMLParseException;
-import org.apache.xerces.xni.parser.XMLParserConfiguration;
+import org.codelibs.xerces.dom.DOMMessageFormatter;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.util.EntityResolver2Wrapper;
+import org.codelibs.xerces.util.EntityResolverWrapper;
+import org.codelibs.xerces.util.ErrorHandlerWrapper;
+import org.codelibs.xerces.util.SAXMessageFormatter;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.grammars.XMLGrammarPool;
+import org.codelibs.xerces.xni.parser.XMLConfigurationException;
+import org.codelibs.xerces.xni.parser.XMLEntityResolver;
+import org.codelibs.xerces.xni.parser.XMLErrorHandler;
+import org.codelibs.xerces.xni.parser.XMLInputSource;
+import org.codelibs.xerces.xni.parser.XMLParseException;
+import org.codelibs.xerces.xni.parser.XMLParserConfiguration;
 import org.w3c.dom.Node;
 import org.xml.sax.EntityResolver;
 import org.xml.sax.ErrorHandler;
@@ -117,8 +117,8 @@ public class DOMParser extends AbstractDOMParser {
      * grammar pool.
      */
     public DOMParser(SymbolTable symbolTable, XMLGrammarPool grammarPool) {
-        super((XMLParserConfiguration) ObjectFactory.createObject("org.apache.xerces.xni.parser.XMLParserConfiguration",
-                "org.apache.xerces.parsers.XIncludeAwareParserConfiguration"));
+        super((XMLParserConfiguration) ObjectFactory.createObject("org.codelibs.xerces.xni.parser.XMLParserConfiguration",
+                "org.codelibs.xerces.parsers.XIncludeAwareParserConfiguration"));
 
         // set properties
         fConfiguration.addRecognizedProperties(RECOGNIZED_PROPERTIES);

@@ -15,12 +15,12 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.parsers;
+package org.codelibs.xerces.parsers;
 
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.xni.grammars.XMLGrammarPool;
-import org.apache.xerces.xni.parser.XMLParserConfiguration;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.xni.grammars.XMLGrammarPool;
+import org.codelibs.xerces.xni.parser.XMLParserConfiguration;
 
 /**
  * This is a concrete vanilla XML parser class. It uses the abstract parser
@@ -43,8 +43,8 @@ public class XMLDocumentParser extends AbstractXMLDocumentParser {
      * configuration.
      */
     public XMLDocumentParser() {
-        super((XMLParserConfiguration) ObjectFactory.createObject("org.apache.xerces.xni.parser.XMLParserConfiguration",
-                "org.apache.xerces.parsers.XIncludeAwareParserConfiguration"));
+        super((XMLParserConfiguration) ObjectFactory.createObject("org.codelibs.xerces.xni.parser.XMLParserConfiguration",
+                "org.codelibs.xerces.parsers.XIncludeAwareParserConfiguration"));
     } // <init>()
 
     /**
@@ -58,8 +58,8 @@ public class XMLDocumentParser extends AbstractXMLDocumentParser {
      * Constructs a document parser using the specified symbol table.
      */
     public XMLDocumentParser(SymbolTable symbolTable) {
-        super((XMLParserConfiguration) ObjectFactory.createObject("org.apache.xerces.xni.parser.XMLParserConfiguration",
-                "org.apache.xerces.parsers.XIncludeAwareParserConfiguration"));
+        super((XMLParserConfiguration) ObjectFactory.createObject("org.codelibs.xerces.xni.parser.XMLParserConfiguration",
+                "org.codelibs.xerces.parsers.XIncludeAwareParserConfiguration"));
         fConfiguration.setProperty(Constants.XERCES_PROPERTY_PREFIX + Constants.SYMBOL_TABLE_PROPERTY, symbolTable);
     } // <init>(SymbolTable)
 
@@ -68,8 +68,8 @@ public class XMLDocumentParser extends AbstractXMLDocumentParser {
      * grammar pool.
      */
     public XMLDocumentParser(SymbolTable symbolTable, XMLGrammarPool grammarPool) {
-        super((XMLParserConfiguration) ObjectFactory.createObject("org.apache.xerces.xni.parser.XMLParserConfiguration",
-                "org.apache.xerces.parsers.XIncludeAwareParserConfiguration"));
+        super((XMLParserConfiguration) ObjectFactory.createObject("org.codelibs.xerces.xni.parser.XMLParserConfiguration",
+                "org.codelibs.xerces.parsers.XIncludeAwareParserConfiguration"));
         fConfiguration.setProperty(Constants.XERCES_PROPERTY_PREFIX + Constants.SYMBOL_TABLE_PROPERTY, symbolTable);
         fConfiguration.setProperty(Constants.XERCES_PROPERTY_PREFIX + Constants.XMLGRAMMAR_POOL_PROPERTY, grammarPool);
     }

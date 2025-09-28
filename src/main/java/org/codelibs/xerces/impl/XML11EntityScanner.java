@@ -15,17 +15,17 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl;
+package org.codelibs.xerces.impl;
 
 import java.io.EOFException;
 import java.io.IOException;
 
-import org.apache.xerces.impl.msg.XMLMessageFormatter;
-import org.apache.xerces.util.XML11Char;
-import org.apache.xerces.util.XMLChar;
-import org.apache.xerces.util.XMLStringBuffer;
-import org.apache.xerces.xni.QName;
-import org.apache.xerces.xni.XMLString;
+import org.codelibs.xerces.impl.msg.XMLMessageFormatter;
+import org.codelibs.xerces.util.XML11Char;
+import org.codelibs.xerces.util.XMLChar;
+import org.codelibs.xerces.util.XMLStringBuffer;
+import org.codelibs.xerces.xni.QName;
+import org.codelibs.xerces.xni.XMLString;
 
 /**
  * Implements the entity scanner methods in
@@ -131,8 +131,8 @@ public class XML11EntityScanner extends XMLEntityScanner {
      * @throws IOException  Thrown if i/o error occurs.
      * @throws EOFException Thrown on end of file.
      *
-     * @see org.apache.xerces.util.SymbolTable
-     * @see org.apache.xerces.util.XML11Char#isXML11Name
+     * @see org.codelibs.xerces.util.SymbolTable
+     * @see org.codelibs.xerces.util.XML11Char#isXML11Name
      */
     public String scanNmtoken() throws IOException {
         // load more characters, if needed
@@ -222,9 +222,9 @@ public class XML11EntityScanner extends XMLEntityScanner {
      * @throws IOException  Thrown if i/o error occurs.
      * @throws EOFException Thrown on end of file.
      *
-     * @see org.apache.xerces.util.SymbolTable
-     * @see org.apache.xerces.util.XML11Char#isXML11Name
-     * @see org.apache.xerces.util.XML11Char#isXML11NameStart
+     * @see org.codelibs.xerces.util.SymbolTable
+     * @see org.codelibs.xerces.util.XML11Char#isXML11Name
+     * @see org.codelibs.xerces.util.XML11Char#isXML11NameStart
      */
     public String scanName() throws IOException {
         // load more characters, if needed
@@ -354,9 +354,9 @@ public class XML11EntityScanner extends XMLEntityScanner {
      * @throws IOException  Thrown if i/o error occurs.
      * @throws EOFException Thrown on end of file.
      *
-     * @see org.apache.xerces.util.SymbolTable
-     * @see org.apache.xerces.util.XML11Char#isXML11NCName
-     * @see org.apache.xerces.util.XML11Char#isXML11NCNameStart
+     * @see org.codelibs.xerces.util.SymbolTable
+     * @see org.codelibs.xerces.util.XML11Char#isXML11NCName
+     * @see org.codelibs.xerces.util.XML11Char#isXML11NCNameStart
      */
     public String scanNCName() throws IOException {
 
@@ -493,9 +493,9 @@ public class XML11EntityScanner extends XMLEntityScanner {
      * @throws IOException  Thrown if i/o error occurs.
      * @throws EOFException Thrown on end of file.
      *
-     * @see org.apache.xerces.util.SymbolTable
-     * @see org.apache.xerces.util.XML11Char#isXML11Name
-     * @see org.apache.xerces.util.XML11Char#isXML11NameStart
+     * @see org.codelibs.xerces.util.SymbolTable
+     * @see org.codelibs.xerces.util.XML11Char#isXML11Name
+     * @see org.codelibs.xerces.util.XML11Char#isXML11NameStart
      */
     public boolean scanQName(QName qname) throws IOException {
 
@@ -1197,8 +1197,8 @@ public class XML11EntityScanner extends XMLEntityScanner {
      * @throws IOException  Thrown if i/o error occurs.
      * @throws EOFException Thrown on end of file.
      *
-     * @see org.apache.xerces.util.XMLChar#isSpace
-     * @see org.apache.xerces.util.XML11Char#isXML11Space
+     * @see org.codelibs.xerces.util.XMLChar#isSpace
+     * @see org.codelibs.xerces.util.XML11Char#isXML11Space
      */
     public boolean skipSpaces() throws IOException {
 

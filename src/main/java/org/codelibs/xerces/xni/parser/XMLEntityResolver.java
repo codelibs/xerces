@@ -15,12 +15,12 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.xni.parser;
+package org.codelibs.xerces.xni.parser;
 
 import java.io.IOException;
 
-import org.apache.xerces.xni.XMLResourceIdentifier;
-import org.apache.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.XMLResourceIdentifier;
+import org.codelibs.xerces.xni.XNIException;
 
 /**
  * This interface is used to resolve external parsed entities. The
@@ -51,7 +51,7 @@ public interface XMLEntityResolver {
      * @throws XNIException Thrown on general error.
      * @throws IOException  Thrown if resolved entity stream cannot be
      *                      opened or some other i/o error occurs.
-     * @see org.apache.xerces.xni.XMLResourceIdentifier
+     * @see org.codelibs.xerces.xni.XMLResourceIdentifier
      */
     public XMLInputSource resolveEntity(XMLResourceIdentifier resourceIdentifier) throws XNIException, IOException;
 

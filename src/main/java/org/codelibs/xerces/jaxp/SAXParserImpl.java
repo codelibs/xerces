@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.jaxp;
+package org.codelibs.xerces.jaxp;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -26,21 +26,21 @@ import java.util.Map;
 import javax.xml.XMLConstants;
 import javax.xml.validation.Schema;
 
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.impl.validation.ValidationManager;
-import org.apache.xerces.impl.xs.XMLSchemaValidator;
-import org.apache.xerces.jaxp.validation.XSGrammarPoolContainer;
-import org.apache.xerces.util.SAXMessageFormatter;
-import org.apache.xerces.util.SecurityManager;
-import org.apache.xerces.xni.XMLDocumentHandler;
-import org.apache.xerces.xni.parser.XMLComponent;
-import org.apache.xerces.xni.parser.XMLComponentManager;
-import org.apache.xerces.xni.parser.XMLConfigurationException;
-import org.apache.xerces.xni.parser.XMLDocumentSource;
-import org.apache.xerces.xni.parser.XMLParserConfiguration;
-import org.apache.xerces.xs.AttributePSVI;
-import org.apache.xerces.xs.ElementPSVI;
-import org.apache.xerces.xs.PSVIProvider;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.impl.validation.ValidationManager;
+import org.codelibs.xerces.impl.xs.XMLSchemaValidator;
+import org.codelibs.xerces.jaxp.validation.XSGrammarPoolContainer;
+import org.codelibs.xerces.util.SAXMessageFormatter;
+import org.codelibs.xerces.util.SecurityManager;
+import org.codelibs.xerces.xni.XMLDocumentHandler;
+import org.codelibs.xerces.xni.parser.XMLComponent;
+import org.codelibs.xerces.xni.parser.XMLComponentManager;
+import org.codelibs.xerces.xni.parser.XMLConfigurationException;
+import org.codelibs.xerces.xni.parser.XMLDocumentSource;
+import org.codelibs.xerces.xni.parser.XMLParserConfiguration;
+import org.codelibs.xerces.xs.AttributePSVI;
+import org.codelibs.xerces.xs.ElementPSVI;
+import org.codelibs.xerces.xs.PSVIProvider;
 import org.xml.sax.EntityResolver;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.HandlerBase;
@@ -338,7 +338,7 @@ public class SAXParserImpl extends javax.xml.parsers.SAXParser implements JAXPCo
      * features and properties to allow the parser to be reset to
      * its initial state.
      */
-    public static class JAXPSAXParser extends org.apache.xerces.parsers.SAXParser {
+    public static class JAXPSAXParser extends org.codelibs.xerces.parsers.SAXParser {
 
         private final HashMap fInitFeatures = new HashMap();
         private final HashMap fInitProperties = new HashMap();

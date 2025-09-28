@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.xni;
+package org.codelibs.xerces.xni;
 
-import org.apache.xerces.xni.parser.XMLDocumentSource;
+import org.codelibs.xerces.xni.parser.XMLDocumentSource;
 
 /**
  * The document handler interface defines callback methods to report

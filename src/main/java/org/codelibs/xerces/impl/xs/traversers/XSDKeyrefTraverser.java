@@ -15,15 +15,15 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs.traversers;
+package org.codelibs.xerces.impl.xs.traversers;
 
-import org.apache.xerces.impl.xs.SchemaGrammar;
-import org.apache.xerces.impl.xs.SchemaSymbols;
-import org.apache.xerces.impl.xs.XSElementDecl;
-import org.apache.xerces.impl.xs.identity.IdentityConstraint;
-import org.apache.xerces.impl.xs.identity.KeyRef;
-import org.apache.xerces.impl.xs.identity.UniqueOrKey;
-import org.apache.xerces.xni.QName;
+import org.codelibs.xerces.impl.xs.SchemaGrammar;
+import org.codelibs.xerces.impl.xs.SchemaSymbols;
+import org.codelibs.xerces.impl.xs.XSElementDecl;
+import org.codelibs.xerces.impl.xs.identity.IdentityConstraint;
+import org.codelibs.xerces.impl.xs.identity.KeyRef;
+import org.codelibs.xerces.impl.xs.identity.UniqueOrKey;
+import org.codelibs.xerces.xni.QName;
 import org.w3c.dom.Element;
 
 /**

@@ -20,7 +20,7 @@
 //  the end of document processing.
 //  Reported by Patrick Higgins <phiggins@transzap.com>
 
-package org.apache.xml.serialize;
+package org.codelibs.xerces.xml.serialize;
 
 import java.io.IOException;
 import java.io.StringWriter;

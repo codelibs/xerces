@@ -17,27 +17,27 @@
 
 package schema.annotations;
 
-import org.apache.xerces.xs.XSAnnotation;
+import org.codelibs.xerces.xs.XSAnnotation;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import org.apache.xerces.xs.XSComplexTypeDefinition;
+import org.codelibs.xerces.xs.XSComplexTypeDefinition;
 
-import org.apache.xerces.xs.XSImplementation;
+import org.codelibs.xerces.xs.XSImplementation;
 
-import org.apache.xerces.xs.XSLoader;
+import org.codelibs.xerces.xs.XSLoader;
 
-import org.apache.xerces.xs.XSModel;
+import org.codelibs.xerces.xs.XSModel;
 
-import org.apache.xerces.xs.XSModelGroup;
+import org.codelibs.xerces.xs.XSModelGroup;
 
-import org.apache.xerces.xs.XSModelGroupDefinition;
+import org.codelibs.xerces.xs.XSModelGroupDefinition;
 
-import org.apache.xerces.xs.XSObjectList;
+import org.codelibs.xerces.xs.XSObjectList;
 
-import org.apache.xerces.xs.XSParticle;
+import org.codelibs.xerces.xs.XSParticle;
 
 import org.w3c.dom.DOMConfiguration;
 
@@ -71,7 +71,7 @@ public class XSModelGroupAnnotationsTest extends TestCase {
     protected void setUp() {
         try {
             // get DOM Implementation using DOM Registry
-            System.setProperty(DOMImplementationRegistry.PROPERTY, "org.apache.xerces.dom.DOMXSImplementationSourceImpl");
+            System.setProperty(DOMImplementationRegistry.PROPERTY, "org.codelibs.xerces.dom.DOMXSImplementationSourceImpl");
             DOMImplementationRegistry registry = DOMImplementationRegistry.newInstance();
 
             XSImplementation impl = (XSImplementation) registry.getDOMImplementation("XS-Loader");

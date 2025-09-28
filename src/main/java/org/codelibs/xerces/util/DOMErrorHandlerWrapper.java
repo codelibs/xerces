@@ -15,17 +15,17 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.util;
+package org.codelibs.xerces.util;
 
 import java.io.PrintWriter;
 import java.util.Hashtable;
 
-import org.apache.xerces.dom.DOMErrorImpl;
-import org.apache.xerces.dom.DOMLocatorImpl;
-import org.apache.xerces.impl.msg.XMLMessageFormatter;
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xni.parser.XMLErrorHandler;
-import org.apache.xerces.xni.parser.XMLParseException;
+import org.codelibs.xerces.dom.DOMErrorImpl;
+import org.codelibs.xerces.dom.DOMLocatorImpl;
+import org.codelibs.xerces.impl.msg.XMLMessageFormatter;
+import org.codelibs.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.parser.XMLErrorHandler;
+import org.codelibs.xerces.xni.parser.XMLParseException;
 import org.w3c.dom.DOMError;
 import org.w3c.dom.DOMErrorHandler;
 import org.w3c.dom.DOMLocator;

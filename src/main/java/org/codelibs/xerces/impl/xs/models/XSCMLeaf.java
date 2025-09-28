@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs.models;
+package org.codelibs.xerces.impl.xs.models;
 
-import org.apache.xerces.impl.dtd.models.CMNode;
-import org.apache.xerces.impl.dtd.models.CMStateSet;
+import org.codelibs.xerces.impl.dtd.models.CMNode;
+import org.codelibs.xerces.impl.dtd.models.CMStateSet;
 
 /**
  * Content model leaf node.

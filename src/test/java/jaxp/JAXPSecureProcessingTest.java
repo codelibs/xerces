@@ -63,12 +63,12 @@ public class JAXPSecureProcessingTest {
 
     @BeforeEach
     protected void setUp() throws Exception {
-        System.setProperty("javax.xml.parsers.SAXParserFactory", "org.apache.xerces.jaxp.SAXParserFactoryImpl");
-        System.setProperty("javax.xml.parsers.DocumentBuilderFactory", "org.apache.xerces.jaxp.DocumentBuilderFactoryImpl");
+        System.setProperty("javax.xml.parsers.SAXParserFactory", "org.codelibs.xerces.jaxp.SAXParserFactoryImpl");
+        System.setProperty("javax.xml.parsers.DocumentBuilderFactory", "org.codelibs.xerces.jaxp.DocumentBuilderFactoryImpl");
         System.setProperty("javax.xml.validation.SchemaFactory:" + XMLConstants.W3C_XML_SCHEMA_NS_URI,
-                "org.apache.xerces.jaxp.validation.XMLSchemaFactory");
-        System.setProperty("org.apache.xerces.xni.parser.XMLParserConfiguration",
-                "org.apache.xerces.parsers.SecureProcessingConfiguration");
+                "org.codelibs.xerces.jaxp.validation.XMLSchemaFactory");
+        System.setProperty("org.codelibs.xerces.xni.parser.XMLParserConfiguration",
+                "org.codelibs.xerces.parsers.SecureProcessingConfiguration");
         System.setProperty(ENTITY_EXPANSION_LIMIT_PROPERTY_NAME, "0");
         System.setProperty(MAX_OCCUR_LIMIT_PROPERTY_NAME, "0");
         System.setProperty(TOTAL_ENTITY_SIZE_LIMIT_PROPERTY_NAME, "0");

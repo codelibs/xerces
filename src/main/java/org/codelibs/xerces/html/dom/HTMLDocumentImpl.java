@@ -15,15 +15,15 @@
  * limitations under the License.
  */
 
-package org.apache.html.dom;
+package org.codelibs.xerces.html.dom;
 
 import java.io.StringWriter;
 import java.lang.reflect.Constructor;
 import java.util.Hashtable;
 import java.util.Locale;
 
-import org.apache.xerces.dom.DocumentImpl;
-import org.apache.xerces.dom.ElementImpl;
+import org.codelibs.xerces.dom.DocumentImpl;
+import org.codelibs.xerces.dom.ElementImpl;
 import org.w3c.dom.Attr;
 import org.w3c.dom.DOMException;
 import org.w3c.dom.Element;
@@ -667,8 +667,8 @@ public class HTMLDocumentImpl extends DocumentImpl implements HTMLDocument {
 
     private static void populateElementType(String tagName, String className) {
         try {
-            _elementTypesHTML.put(tagName,
-                    ObjectFactory.findProviderClass("org.apache.html.dom." + className, HTMLDocumentImpl.class.getClassLoader(), true));
+            _elementTypesHTML.put(tagName, ObjectFactory.findProviderClass("org.codelibs.xerces.html.dom." + className,
+                    HTMLDocumentImpl.class.getClassLoader(), true));
         } catch (Exception except) {
             throw new RuntimeException("HTM019 OpenXML Error: Could not find or execute class " + className + " implementing HTML element "
                     + tagName + "\n" + className + "\t" + tagName);

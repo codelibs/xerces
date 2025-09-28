@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.xinclude;
+package org.codelibs.xerces.xinclude;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -29,19 +29,19 @@ import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
 
-import org.apache.xerces.impl.XMLEntityManager;
-import org.apache.xerces.impl.XMLErrorReporter;
-import org.apache.xerces.impl.io.ASCIIReader;
-import org.apache.xerces.impl.io.Latin1Reader;
-import org.apache.xerces.impl.io.UTF16Reader;
-import org.apache.xerces.impl.io.UTF8Reader;
-import org.apache.xerces.impl.msg.XMLMessageFormatter;
-import org.apache.xerces.util.EncodingMap;
-import org.apache.xerces.util.HTTPInputSource;
-import org.apache.xerces.util.MessageFormatter;
-import org.apache.xerces.util.XMLChar;
-import org.apache.xerces.xni.XMLString;
-import org.apache.xerces.xni.parser.XMLInputSource;
+import org.codelibs.xerces.impl.XMLEntityManager;
+import org.codelibs.xerces.impl.XMLErrorReporter;
+import org.codelibs.xerces.impl.io.ASCIIReader;
+import org.codelibs.xerces.impl.io.Latin1Reader;
+import org.codelibs.xerces.impl.io.UTF16Reader;
+import org.codelibs.xerces.impl.io.UTF8Reader;
+import org.codelibs.xerces.impl.msg.XMLMessageFormatter;
+import org.codelibs.xerces.util.EncodingMap;
+import org.codelibs.xerces.util.HTTPInputSource;
+import org.codelibs.xerces.util.MessageFormatter;
+import org.codelibs.xerces.util.XMLChar;
+import org.codelibs.xerces.xni.XMLString;
+import org.codelibs.xerces.xni.parser.XMLInputSource;
 
 /**
  * This class is used for reading resources requested in &lt;include&gt; elements,
@@ -335,7 +335,7 @@ public class XIncludeTextReader {
     }
 
     /**
-     * REVISIT: This code is taken from org.apache.xerces.impl.XMLEntityManager.
+     * REVISIT: This code is taken from org.codelibs.xerces.impl.XMLEntityManager.
      *          Is there any way we can share the code, without having it implemented twice?
      *          I think we should make it public and static in XMLEntityManager. --PJM
      *

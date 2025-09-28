@@ -20,8 +20,8 @@ package schema.config;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.apache.xerces.dom.PSVIElementNSImpl;
-import org.apache.xerces.xs.ItemPSVI;
+import org.codelibs.xerces.dom.PSVIElementNSImpl;
+import org.codelibs.xerces.xs.ItemPSVI;
 
 /**
  * @author Peter McCracken, IBM

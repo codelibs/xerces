@@ -14,16 +14,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.xerces.dom;
+package org.codelibs.xerces.dom;
 
 import java.lang.ref.SoftReference;
 
-import org.apache.xerces.impl.RevalidationHandler;
-import org.apache.xerces.impl.dtd.XMLDTDLoader;
-import org.apache.xerces.parsers.DOMParserImpl;
-import org.apache.xerces.util.XMLChar;
-import org.apache.xerces.xni.grammars.XMLGrammarDescription;
-import org.apache.xml.serialize.DOMSerializerImpl;
+import org.codelibs.xerces.impl.RevalidationHandler;
+import org.codelibs.xerces.impl.dtd.XMLDTDLoader;
+import org.codelibs.xerces.parsers.DOMParserImpl;
+import org.codelibs.xerces.util.XMLChar;
+import org.codelibs.xerces.xni.grammars.XMLGrammarDescription;
+import org.codelibs.xerces.xml.serialize.DOMSerializerImpl;
 import org.w3c.dom.DOMException;
 import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
@@ -109,7 +109,7 @@ public class CoreDOMImplementationImpl implements DOMImplementation, DOMImplemen
      *
      * @param feature The package name of the feature to test.
      * In Level 1, supported values are "HTML" and "XML" (case-insensitive).
-     * At this writing, org.apache.xerces.dom supports only XML.
+     * At this writing, org.codelibs.xerces.dom supports only XML.
      *
      * @param version The version number of the feature being tested.
      * This is interpreted as "Version of the DOM API supported for the
@@ -334,10 +334,10 @@ public class CoreDOMImplementationImpl implements DOMImplementation, DOMImplemen
             throw new DOMException(DOMException.NOT_SUPPORTED_ERR, msg);
         }
         if (schemaType != null && schemaType.equals("http://www.w3.org/TR/REC-xml")) {
-            return new DOMParserImpl("org.apache.xerces.parsers.XML11DTDConfiguration", schemaType);
+            return new DOMParserImpl("org.codelibs.xerces.parsers.XML11DTDConfiguration", schemaType);
         } else {
             // create default parser configuration validating against XMLSchemas
-            return new DOMParserImpl("org.apache.xerces.parsers.XIncludeAwareParserConfiguration", schemaType);
+            return new DOMParserImpl("org.codelibs.xerces.parsers.XIncludeAwareParserConfiguration", schemaType);
         }
     }
 
@@ -356,7 +356,7 @@ public class CoreDOMImplementationImpl implements DOMImplementation, DOMImplemen
      */
     public LSSerializer createLSSerializer() {
         try {
-            Class serializerClass = ObjectFactory.findProviderClass("org.apache.xml.serializer.dom3.LSSerializerImpl",
+            Class serializerClass = ObjectFactory.findProviderClass("org.codelibs.xerces.xml.serializer.dom3.LSSerializerImpl",
                     ObjectFactory.findClassLoader(), true);
             return (LSSerializer) serializerClass.newInstance();
         } catch (Exception e) {}
@@ -395,7 +395,7 @@ public class CoreDOMImplementationImpl implements DOMImplementation, DOMImplemen
                 }
                 schemaValidators[freeSchemaValidatorIndex--] = null;
             }
-            return (RevalidationHandler) (ObjectFactory.newInstance("org.apache.xerces.impl.xs.XMLSchemaValidator",
+            return (RevalidationHandler) (ObjectFactory.newInstance("org.codelibs.xerces.impl.xs.XMLSchemaValidator",
                     ObjectFactory.findClassLoader(), true));
         } else if (schemaType == XMLGrammarDescription.XML_DTD) {
             // return an instance of XML11DTDValidator
@@ -412,7 +412,7 @@ public class CoreDOMImplementationImpl implements DOMImplementation, DOMImplemen
                     }
                     xml11DTDValidators[freeXML11DTDValidatorIndex--] = null;
                 }
-                return (RevalidationHandler) (ObjectFactory.newInstance("org.apache.xerces.impl.dtd.XML11DTDValidator",
+                return (RevalidationHandler) (ObjectFactory.newInstance("org.codelibs.xerces.impl.dtd.XML11DTDValidator",
                         ObjectFactory.findClassLoader(), true));
             }
             // return an instance of XMLDTDValidator
@@ -429,7 +429,7 @@ public class CoreDOMImplementationImpl implements DOMImplementation, DOMImplemen
                     }
                     xml10DTDValidators[freeXML10DTDValidatorIndex--] = null;
                 }
-                return (RevalidationHandler) (ObjectFactory.newInstance("org.apache.xerces.impl.dtd.XMLDTDValidator",
+                return (RevalidationHandler) (ObjectFactory.newInstance("org.codelibs.xerces.impl.dtd.XMLDTDValidator",
                         ObjectFactory.findClassLoader(), true));
             }
         }
@@ -516,7 +516,7 @@ public class CoreDOMImplementationImpl implements DOMImplementation, DOMImplemen
                 }
                 xml11DTDLoaders[freeXML11DTDLoaderIndex--] = null;
             }
-            return (XMLDTDLoader) (ObjectFactory.newInstance("org.apache.xerces.impl.dtd.XML11DTDProcessor",
+            return (XMLDTDLoader) (ObjectFactory.newInstance("org.codelibs.xerces.impl.dtd.XML11DTDProcessor",
                     ObjectFactory.findClassLoader(), true));
         }
         // return an instance of XMLDTDLoader

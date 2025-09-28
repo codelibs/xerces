@@ -97,7 +97,7 @@ public class Counter
     // default settings
 
     /** Default parser name. */
-    protected static final String DEFAULT_PARSER_NAME = "org.apache.xerces.parsers.SAXParser";
+    protected static final String DEFAULT_PARSER_NAME = "org.codelibs.xerces.parsers.SAXParser";
 
     /** Default repetition (1). */
     protected static final int DEFAULT_REPETITION = 1;

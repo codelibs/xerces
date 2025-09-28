@@ -15,13 +15,13 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.dv.xs;
+package org.codelibs.xerces.impl.dv.xs;
 
-import org.apache.xerces.impl.dv.InvalidDatatypeValueException;
-import org.apache.xerces.impl.dv.ValidationContext;
-import org.apache.xerces.util.XMLChar;
-import org.apache.xerces.xni.QName;
-import org.apache.xerces.xs.datatypes.XSQName;
+import org.codelibs.xerces.impl.dv.InvalidDatatypeValueException;
+import org.codelibs.xerces.impl.dv.ValidationContext;
+import org.codelibs.xerces.util.XMLChar;
+import org.codelibs.xerces.xni.QName;
+import org.codelibs.xerces.xs.datatypes.XSQName;
 
 /**
  * Represent the schema type "QName" and "NOTATION"

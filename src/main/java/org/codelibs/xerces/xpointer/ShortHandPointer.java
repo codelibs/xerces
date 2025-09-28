@@ -15,17 +15,17 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.xpointer;
+package org.codelibs.xerces.xpointer;
 
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.impl.dv.XSSimpleType;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.xni.Augmentations;
-import org.apache.xerces.xni.QName;
-import org.apache.xerces.xni.XMLAttributes;
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xs.AttributePSVI;
-import org.apache.xerces.xs.XSTypeDefinition;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.impl.dv.XSSimpleType;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.xni.Augmentations;
+import org.codelibs.xerces.xni.QName;
+import org.codelibs.xerces.xni.XMLAttributes;
+import org.codelibs.xerces.xni.XNIException;
+import org.codelibs.xerces.xs.AttributePSVI;
+import org.codelibs.xerces.xs.XSTypeDefinition;
 
 /**
  * <p>
@@ -61,7 +61,7 @@ final class ShortHandPointer implements XPointerPart {
     /**
      * The XPointerProcessor takes care of this.  Simply set the ShortHand Pointer here.
      *
-     * @see org.apache.xerces.xpointer.XPointerPart#parseXPointer(java.lang.String)
+     * @see org.codelibs.xerces.xpointer.XPointerPart#parseXPointer(java.lang.String)
      */
     public void parseXPointer(String part) throws XNIException {
         fShortHandPointer = part;
@@ -74,7 +74,7 @@ final class ShortHandPointer implements XPointerPart {
      * Section 3.2 of the XPointer Framework Recommendation.
      * Note that in the current implementation only supports DTD determined ID's.
      *
-     * @see org.apache.xerces.xpointer.XPointerPart#resolveXPointer(org.apache.xerces.xni.QName, org.apache.xerces.xni.XMLAttributes, org.apache.xerces.xni.Augmentations, int event)
+     * @see org.codelibs.xerces.xpointer.XPointerPart#resolveXPointer(org.codelibs.xerces.xni.QName, org.codelibs.xerces.xni.XMLAttributes, org.codelibs.xerces.xni.Augmentations, int event)
      */
     int fMatchingChildCount = 0;
 
@@ -238,7 +238,7 @@ final class ShortHandPointer implements XPointerPart {
 
     /**
      *
-     * @see org.apache.xerces.xpointer.XPointerPart#isFragmentResolved()
+     * @see org.codelibs.xerces.xpointer.XPointerPart#isFragmentResolved()
      */
     public boolean isFragmentResolved() {
         return fIsFragmentResolved;
@@ -246,7 +246,7 @@ final class ShortHandPointer implements XPointerPart {
 
     /**
      *
-     * @see org.apache.xerces.xpointer.XPointerPart#isChildFragmentResolved()
+     * @see org.codelibs.xerces.xpointer.XPointerPart#isChildFragmentResolved()
      */
     public boolean isChildFragmentResolved() {
         return fIsFragmentResolved && (fMatchingChildCount > 0);
@@ -255,28 +255,28 @@ final class ShortHandPointer implements XPointerPart {
     /**
      * Returns the name of the ShortHand pointer
      *
-     * @see org.apache.xerces.xpointer.XPointerPart#getSchemeName()
+     * @see org.codelibs.xerces.xpointer.XPointerPart#getSchemeName()
      */
     public String getSchemeName() {
         return fShortHandPointer;
     }
 
     /**
-     * @see org.apache.xerces.xpointer.XPointerPart#getSchemeData()
+     * @see org.codelibs.xerces.xpointer.XPointerPart#getSchemeData()
      */
     public String getSchemeData() {
         return null;
     }
 
     /**
-     * @see org.apache.xerces.xpointer.XPointerPart#setSchemeName(java.lang.String)
+     * @see org.codelibs.xerces.xpointer.XPointerPart#setSchemeName(java.lang.String)
      */
     public void setSchemeName(String schemeName) {
         fShortHandPointer = schemeName;
     }
 
     /**
-     * @see org.apache.xerces.xpointer.XPointerPart#setSchemeData(java.lang.String)
+     * @see org.codelibs.xerces.xpointer.XPointerPart#setSchemeData(java.lang.String)
      */
     public void setSchemeData(String schemeData) {
         // NA

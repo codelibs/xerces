@@ -29,7 +29,7 @@
 //   to ISO-8859-1 encoding. Reported by Mikael Staldal
 //   <d96-mst@d.kth.se>
 
-package org.apache.xml.serialize;
+package org.codelibs.xerces.xml.serialize;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -38,7 +38,7 @@ import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
 
-import org.apache.xerces.dom.DOMMessageFormatter;
+import org.codelibs.xerces.dom.DOMMessageFormatter;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;

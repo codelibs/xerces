@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.dtd.models;
+package org.codelibs.xerces.impl.dtd.models;
 
 /**
  * A content model node.

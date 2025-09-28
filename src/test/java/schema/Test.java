@@ -17,7 +17,7 @@
 
 package schema;
 
-import org.apache.xerces.parsers.SAXParser;
+import org.codelibs.xerces.parsers.SAXParser;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -108,7 +108,7 @@ public class Test extends DefaultHandler {
         System.err.println("#");
 
         try {
-            SAXParser parser = new org.apache.xerces.parsers.SAXParser();
+            SAXParser parser = new org.codelibs.xerces.parsers.SAXParser();
 
             // Set features
             parser.setFeature(NAMESPACES_FEATURE_ID, true);

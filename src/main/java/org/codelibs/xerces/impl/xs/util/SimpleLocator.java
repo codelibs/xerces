@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs.util;
+package org.codelibs.xerces.impl.xs.util;
 
-import org.apache.xerces.xni.XMLLocator;
+import org.codelibs.xerces.xni.XMLLocator;
 
 /**
  * An XMLLocator implementation used for schema error reporting.
@@ -103,27 +103,27 @@ public final class SimpleLocator implements XMLLocator {
     }
 
     /**
-     * @see org.apache.xerces.xni.XMLResourceIdentifier#setBaseSystemId(String)
+     * @see org.codelibs.xerces.xni.XMLResourceIdentifier#setBaseSystemId(String)
      */
     public void setBaseSystemId(String systemId) {
     }
 
     /**
-     * @see org.apache.xerces.xni.XMLResourceIdentifier#setExpandedSystemId(String)
+     * @see org.codelibs.xerces.xni.XMLResourceIdentifier#setExpandedSystemId(String)
      */
     public void setExpandedSystemId(String systemId) {
         esid = systemId;
     }
 
     /**
-     * @see org.apache.xerces.xni.XMLResourceIdentifier#setLiteralSystemId(String)
+     * @see org.codelibs.xerces.xni.XMLResourceIdentifier#setLiteralSystemId(String)
      */
     public void setLiteralSystemId(String systemId) {
         lsid = systemId;
     }
 
     /**
-     * @see org.apache.xerces.xni.XMLResourceIdentifier#setPublicId(String)
+     * @see org.codelibs.xerces.xni.XMLResourceIdentifier#setPublicId(String)
      */
     public void setPublicId(String publicId) {
     }

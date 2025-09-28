@@ -15,14 +15,14 @@
  * limitations under the License.
  */
 
-package org.apache.xml.serialize;
+package org.codelibs.xerces.xml.serialize;
 
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 
-import org.apache.xerces.util.EncodingMap;
+import org.codelibs.xerces.util.EncodingMap;
 
 /**
  * This class represents an encoding.

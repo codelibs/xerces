@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.dv;
+package org.codelibs.xerces.impl.dv;
 
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
@@ -81,14 +81,14 @@ public class DatatypeException extends Exception {
      */
     public String getMessage() {
         ResourceBundle resourceBundle = null;
-        resourceBundle = ResourceBundle.getBundle("org.apache.xerces.impl.msg.XMLSchemaMessages");
+        resourceBundle = ResourceBundle.getBundle("org.codelibs.xerces.impl.msg.XMLSchemaMessages");
         if (resourceBundle == null)
-            throw new MissingResourceException("Property file not found!", "org.apache.xerces.impl.msg.XMLSchemaMessages", key);
+            throw new MissingResourceException("Property file not found!", "org.codelibs.xerces.impl.msg.XMLSchemaMessages", key);
 
         String msg = resourceBundle.getString(key);
         if (msg == null) {
             msg = resourceBundle.getString("BadMessageKey");
-            throw new MissingResourceException(msg, "org.apache.xerces.impl.msg.XMLSchemaMessages", key);
+            throw new MissingResourceException(msg, "org.codelibs.xerces.impl.msg.XMLSchemaMessages", key);
         }
 
         if (args != null) {

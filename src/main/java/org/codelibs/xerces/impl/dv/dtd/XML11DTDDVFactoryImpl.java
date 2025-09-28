@@ -15,13 +15,13 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.dv.dtd;
+package org.codelibs.xerces.impl.dv.dtd;
 
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Map;
 
-import org.apache.xerces.impl.dv.DatatypeValidator;
+import org.codelibs.xerces.impl.dv.DatatypeValidator;
 
 /**
  * the factory to create/return built-in XML 1.1 DVs and create user-defined DVs

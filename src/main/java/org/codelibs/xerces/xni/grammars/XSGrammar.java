@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.xni.grammars;
+package org.codelibs.xerces.xni.grammars;
 
-import org.apache.xerces.xs.XSModel;
+import org.codelibs.xerces.xs.XSModel;
 
 /**
  * Representing a schema grammar. It contains declaration/definitions from

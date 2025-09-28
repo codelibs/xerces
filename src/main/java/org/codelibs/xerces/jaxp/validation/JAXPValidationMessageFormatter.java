@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.jaxp.validation;
+package org.codelibs.xerces.jaxp.validation;
 
 import java.util.Locale;
 import java.util.MissingResourceException;
@@ -49,7 +49,7 @@ final class JAXPValidationMessageFormatter {
         if (locale == null) {
             locale = Locale.getDefault();
         }
-        final ResourceBundle resourceBundle = ResourceBundle.getBundle("org.apache.xerces.impl.msg.JAXPValidationMessages", locale);
+        final ResourceBundle resourceBundle = ResourceBundle.getBundle("org.codelibs.xerces.impl.msg.JAXPValidationMessages", locale);
 
         // format message
         String msg;

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.dom;
+package org.codelibs.xerces.dom;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -28,10 +28,10 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.WeakHashMap;
 
-import org.apache.xerces.util.URI;
-import org.apache.xerces.util.XML11Char;
-import org.apache.xerces.util.XMLChar;
-import org.apache.xerces.xni.NamespaceContext;
+import org.codelibs.xerces.util.URI;
+import org.codelibs.xerces.util.XML11Char;
+import org.codelibs.xerces.util.XMLChar;
+import org.codelibs.xerces.xni.NamespaceContext;
 import org.w3c.dom.Attr;
 import org.w3c.dom.CDATASection;
 import org.w3c.dom.Comment;
@@ -1122,7 +1122,7 @@ public class CoreDocumentImpl extends ParentNode implements Document {
         if (fDocumentURI != null && fDocumentURI.length() != 0) {// attribute value is always empty string
             try {
                 return new URI(fDocumentURI).toString();
-            } catch (org.apache.xerces.util.URI.MalformedURIException e) {
+            } catch (org.codelibs.xerces.util.URI.MalformedURIException e) {
                 // REVISIT: what should happen in this case?
                 return null;
             }
@@ -1683,12 +1683,12 @@ public class CoreDocumentImpl extends ParentNode implements Document {
             // when the source node comes from a different implementation.
             if (thisImpl != otherImpl) {
                 // Adopting from a deferred DOM to a non-deferred DOM
-                if (thisImpl instanceof org.apache.xerces.dom.DOMImplementationImpl
-                        && otherImpl instanceof org.apache.xerces.dom.DeferredDOMImplementationImpl) {
+                if (thisImpl instanceof org.codelibs.xerces.dom.DOMImplementationImpl
+                        && otherImpl instanceof org.codelibs.xerces.dom.DeferredDOMImplementationImpl) {
                     // traverse the DOM and expand deferred nodes and then allow adoption
                     undeferChildren(node);
-                } else if (thisImpl instanceof org.apache.xerces.dom.DeferredDOMImplementationImpl
-                        && otherImpl instanceof org.apache.xerces.dom.DOMImplementationImpl) {
+                } else if (thisImpl instanceof org.codelibs.xerces.dom.DeferredDOMImplementationImpl
+                        && otherImpl instanceof org.codelibs.xerces.dom.DOMImplementationImpl) {
                     // Adopting from a non-deferred DOM into a deferred DOM, this should be okay
                 } else {
                     // Adopting between two dissimilar DOMs is not allowed
@@ -1696,7 +1696,7 @@ public class CoreDocumentImpl extends ParentNode implements Document {
                 }
             }
             // Adopting from a deferred DOM into another deferred DOM
-            else if (otherImpl instanceof org.apache.xerces.dom.DeferredDOMImplementationImpl) {
+            else if (otherImpl instanceof org.codelibs.xerces.dom.DeferredDOMImplementationImpl) {
                 // traverse the DOM and expand deferred nodes and then allow adoption
                 undeferChildren(node);
             }

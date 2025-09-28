@@ -71,7 +71,7 @@ public class Test {
             document.getDocumentElement().setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:foo", "boo");
             serialize(document, args[1]);
             Document newDocument = deserialize(args[1]);
-            Document emptyDoc = new org.apache.xerces.dom.DocumentImpl();
+            Document emptyDoc = new org.codelibs.xerces.dom.DocumentImpl();
             emptyDoc.importNode(newDocument.getDocumentElement(), true);
 
             System.out.println("done.");

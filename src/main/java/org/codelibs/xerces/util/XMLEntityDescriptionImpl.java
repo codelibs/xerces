@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.util;
+package org.codelibs.xerces.util;
 
-import org.apache.xerces.impl.XMLEntityDescription;
+import org.codelibs.xerces.impl.XMLEntityDescription;
 
 /**
  * <p>This class is an implementation of the XMLEntityDescription

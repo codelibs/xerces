@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.xinclude;
+package org.codelibs.xerces.xinclude;
 
 import java.io.File;
 import java.io.FileInputStream;

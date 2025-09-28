@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs.opti;
+package org.codelibs.xerces.impl.xs.opti;
 
 import org.w3c.dom.Attr;
 import org.w3c.dom.CDATASection;

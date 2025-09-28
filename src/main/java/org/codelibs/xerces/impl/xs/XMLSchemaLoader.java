@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs;
+package org.codelibs.xerces.impl.xs;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -31,43 +31,43 @@ import java.util.Locale;
 import java.util.StringTokenizer;
 import java.util.WeakHashMap;
 
-import org.apache.xerces.dom.DOMErrorImpl;
-import org.apache.xerces.dom.DOMMessageFormatter;
-import org.apache.xerces.dom.DOMStringListImpl;
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.impl.XMLEntityManager;
-import org.apache.xerces.impl.XMLErrorReporter;
-import org.apache.xerces.impl.dv.InvalidDatatypeValueException;
-import org.apache.xerces.impl.dv.SchemaDVFactory;
-import org.apache.xerces.impl.dv.xs.SchemaDVFactoryImpl;
-import org.apache.xerces.impl.xs.models.CMBuilder;
-import org.apache.xerces.impl.xs.models.CMNodeFactory;
-import org.apache.xerces.impl.xs.traversers.XSDHandler;
-import org.apache.xerces.util.DOMEntityResolverWrapper;
-import org.apache.xerces.util.DOMErrorHandlerWrapper;
-import org.apache.xerces.util.DefaultErrorHandler;
-import org.apache.xerces.util.MessageFormatter;
-import org.apache.xerces.util.ParserConfigurationSettings;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.util.XMLSymbols;
-import org.apache.xerces.util.URI.MalformedURIException;
-import org.apache.xerces.xni.QName;
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xni.grammars.Grammar;
-import org.apache.xerces.xni.grammars.XMLGrammarDescription;
-import org.apache.xerces.xni.grammars.XMLGrammarLoader;
-import org.apache.xerces.xni.grammars.XMLGrammarPool;
-import org.apache.xerces.xni.grammars.XSGrammar;
-import org.apache.xerces.xni.parser.XMLComponent;
-import org.apache.xerces.xni.parser.XMLComponentManager;
-import org.apache.xerces.xni.parser.XMLConfigurationException;
-import org.apache.xerces.xni.parser.XMLEntityResolver;
-import org.apache.xerces.xni.parser.XMLErrorHandler;
-import org.apache.xerces.xni.parser.XMLInputSource;
-import org.apache.xerces.xs.LSInputList;
-import org.apache.xerces.xs.StringList;
-import org.apache.xerces.xs.XSLoader;
-import org.apache.xerces.xs.XSModel;
+import org.codelibs.xerces.dom.DOMErrorImpl;
+import org.codelibs.xerces.dom.DOMMessageFormatter;
+import org.codelibs.xerces.dom.DOMStringListImpl;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.impl.XMLEntityManager;
+import org.codelibs.xerces.impl.XMLErrorReporter;
+import org.codelibs.xerces.impl.dv.InvalidDatatypeValueException;
+import org.codelibs.xerces.impl.dv.SchemaDVFactory;
+import org.codelibs.xerces.impl.dv.xs.SchemaDVFactoryImpl;
+import org.codelibs.xerces.impl.xs.models.CMBuilder;
+import org.codelibs.xerces.impl.xs.models.CMNodeFactory;
+import org.codelibs.xerces.impl.xs.traversers.XSDHandler;
+import org.codelibs.xerces.util.DOMEntityResolverWrapper;
+import org.codelibs.xerces.util.DOMErrorHandlerWrapper;
+import org.codelibs.xerces.util.DefaultErrorHandler;
+import org.codelibs.xerces.util.MessageFormatter;
+import org.codelibs.xerces.util.ParserConfigurationSettings;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.util.XMLSymbols;
+import org.codelibs.xerces.util.URI.MalformedURIException;
+import org.codelibs.xerces.xni.QName;
+import org.codelibs.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.grammars.Grammar;
+import org.codelibs.xerces.xni.grammars.XMLGrammarDescription;
+import org.codelibs.xerces.xni.grammars.XMLGrammarLoader;
+import org.codelibs.xerces.xni.grammars.XMLGrammarPool;
+import org.codelibs.xerces.xni.grammars.XSGrammar;
+import org.codelibs.xerces.xni.parser.XMLComponent;
+import org.codelibs.xerces.xni.parser.XMLComponentManager;
+import org.codelibs.xerces.xni.parser.XMLConfigurationException;
+import org.codelibs.xerces.xni.parser.XMLEntityResolver;
+import org.codelibs.xerces.xni.parser.XMLErrorHandler;
+import org.codelibs.xerces.xni.parser.XMLInputSource;
+import org.codelibs.xerces.xs.LSInputList;
+import org.codelibs.xerces.xs.StringList;
+import org.codelibs.xerces.xs.XSLoader;
+import org.codelibs.xerces.xs.XSModel;
 import org.w3c.dom.DOMConfiguration;
 import org.w3c.dom.DOMError;
 import org.w3c.dom.DOMErrorHandler;
@@ -838,7 +838,7 @@ public class XMLSchemaLoader implements XMLGrammarLoader, XMLComponent, XSElemen
     } //locationArray
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.xni.parser.XMLComponent#getFeatureDefault(java.lang.String)
+     * @see org.codelibs.xerces.xni.parser.XMLComponent#getFeatureDefault(java.lang.String)
      */
     public Boolean getFeatureDefault(String featureId) {
         if (featureId.equals(AUGMENT_PSVI)) {
@@ -848,7 +848,7 @@ public class XMLSchemaLoader implements XMLGrammarLoader, XMLComponent, XSElemen
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.xni.parser.XMLComponent#getPropertyDefault(java.lang.String)
+     * @see org.codelibs.xerces.xni.parser.XMLComponent#getPropertyDefault(java.lang.String)
      */
     public Object getPropertyDefault(String propertyId) {
         // TODO Auto-generated method stub
@@ -856,7 +856,7 @@ public class XMLSchemaLoader implements XMLGrammarLoader, XMLComponent, XSElemen
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.xni.parser.XMLComponent#reset(org.apache.xerces.xni.parser.XMLComponentManager)
+     * @see org.codelibs.xerces.xni.parser.XMLComponent#reset(org.codelibs.xerces.xni.parser.XMLComponentManager)
      */
     public void reset(XMLComponentManager componentManager) throws XMLConfigurationException {
 
@@ -1005,14 +1005,14 @@ public class XMLSchemaLoader implements XMLGrammarLoader, XMLComponent, XSElemen
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.xs.XSLoader#getConfig()
+     * @see org.codelibs.xerces.xs.XSLoader#getConfig()
      */
     public DOMConfiguration getConfig() {
         return this;
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.xs.XSLoader#load(org.w3c.dom.ls.LSInput)
+     * @see org.codelibs.xerces.xs.XSLoader#load(org.w3c.dom.ls.LSInput)
      */
     public XSModel load(LSInput is) {
         try {
@@ -1025,7 +1025,7 @@ public class XMLSchemaLoader implements XMLGrammarLoader, XMLComponent, XSElemen
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.xs.XSLoader#loadInputList(org.apache.xerces.xs.LSInputList)
+     * @see org.codelibs.xerces.xs.XSLoader#loadInputList(org.codelibs.xerces.xs.LSInputList)
      */
     public XSModel loadInputList(LSInputList is) {
         int length = is.getLength();
@@ -1042,7 +1042,7 @@ public class XMLSchemaLoader implements XMLGrammarLoader, XMLComponent, XSElemen
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.xs.XSLoader#loadURI(java.lang.String)
+     * @see org.codelibs.xerces.xs.XSLoader#loadURI(java.lang.String)
      */
     public XSModel loadURI(String uri) {
         try {
@@ -1055,7 +1055,7 @@ public class XMLSchemaLoader implements XMLGrammarLoader, XMLComponent, XSElemen
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.xs.XSLoader#loadURIList(org.apache.xerces.xs.StringList)
+     * @see org.codelibs.xerces.xs.XSLoader#loadURIList(org.codelibs.xerces.xs.StringList)
      */
     public XSModel loadURIList(StringList uriList) {
         int length = uriList.getLength();
@@ -1082,7 +1082,7 @@ public class XMLSchemaLoader implements XMLGrammarLoader, XMLComponent, XSElemen
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.dom3.DOMConfiguration#canSetParameter(java.lang.String, java.lang.Object)
+     * @see org.codelibs.xerces.dom3.DOMConfiguration#canSetParameter(java.lang.String, java.lang.Object)
      */
     public boolean canSetParameter(String name, Object value) {
         if (value instanceof Boolean) {
@@ -1105,7 +1105,7 @@ public class XMLSchemaLoader implements XMLGrammarLoader, XMLComponent, XSElemen
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.dom3.DOMConfiguration#getParameter(java.lang.String)
+     * @see org.codelibs.xerces.dom3.DOMConfiguration#getParameter(java.lang.String)
      */
     public Object getParameter(String name) throws DOMException {
 
@@ -1132,7 +1132,7 @@ public class XMLSchemaLoader implements XMLGrammarLoader, XMLComponent, XSElemen
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.dom3.DOMConfiguration#getParameterNames()
+     * @see org.codelibs.xerces.dom3.DOMConfiguration#getParameterNames()
      */
     public DOMStringList getParameterNames() {
         if (fRecognizedParameters == null) {
@@ -1163,7 +1163,7 @@ public class XMLSchemaLoader implements XMLGrammarLoader, XMLComponent, XSElemen
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.dom3.DOMConfiguration#setParameter(java.lang.String, java.lang.Object)
+     * @see org.codelibs.xerces.dom3.DOMConfiguration#setParameter(java.lang.String, java.lang.Object)
      */
     public void setParameter(String name, Object value) throws DOMException {
         if (value instanceof Boolean) {

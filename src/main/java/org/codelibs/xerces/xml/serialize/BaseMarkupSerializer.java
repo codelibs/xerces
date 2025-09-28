@@ -39,7 +39,7 @@
 //   entering element state.
 //   Reported by Lowell Vaughn <lvaughn@agillion.com>
 
-package org.apache.xml.serialize;
+package org.codelibs.xerces.xml.serialize;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -47,10 +47,10 @@ import java.io.Writer;
 import java.util.Hashtable;
 import java.util.Vector;
 
-import org.apache.xerces.dom.DOMErrorImpl;
-import org.apache.xerces.dom.DOMLocatorImpl;
-import org.apache.xerces.dom.DOMMessageFormatter;
-import org.apache.xerces.util.XMLChar;
+import org.codelibs.xerces.dom.DOMErrorImpl;
+import org.codelibs.xerces.dom.DOMLocatorImpl;
+import org.codelibs.xerces.dom.DOMMessageFormatter;
+import org.codelibs.xerces.util.XMLChar;
 import org.w3c.dom.DOMError;
 import org.w3c.dom.DOMErrorHandler;
 import org.w3c.dom.Document;

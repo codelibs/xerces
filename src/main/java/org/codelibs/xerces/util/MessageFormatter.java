@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.util;
+package org.codelibs.xerces.util;
 
 import java.util.Locale;
 import java.util.MissingResourceException;
@@ -25,7 +25,7 @@ import java.util.MissingResourceException;
  * is useful for producing messages that must be localized and/or formatted
  * with replacement text.
  *
- * @see org.apache.xerces.impl.XMLErrorReporter
+ * @see org.codelibs.xerces.impl.XMLErrorReporter
  *
  * @author Andy Clark
  *

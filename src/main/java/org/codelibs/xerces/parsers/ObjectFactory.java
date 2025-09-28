@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.parsers;
+package org.codelibs.xerces.parsers;
 
 import java.io.BufferedReader;
 import java.io.File;

@@ -22,7 +22,7 @@
 //  Added ability to omit comments.
 //  Contributed by Anupam Bagchi <abagchi@jtcsv.com>
 
-package org.apache.xml.serialize;
+package org.codelibs.xerces.xml.serialize;
 
 import java.io.UnsupportedEncodingException;
 

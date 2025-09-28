@@ -21,14 +21,14 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
 
-import org.apache.xerces.dom.DOMImplementationImpl;
-import org.apache.xerces.dom.DOMOutputImpl;
-import org.apache.xerces.dom.DocumentImpl;
-import org.apache.xerces.parsers.DOMParser;
-import org.apache.xml.serialize.DOMSerializerImpl;
-import org.apache.xml.serialize.OutputFormat;
-import org.apache.xml.serialize.Serializer;
-import org.apache.xml.serialize.SerializerFactory;
+import org.codelibs.xerces.dom.DOMImplementationImpl;
+import org.codelibs.xerces.dom.DOMOutputImpl;
+import org.codelibs.xerces.dom.DocumentImpl;
+import org.codelibs.xerces.parsers.DOMParser;
+import org.codelibs.xerces.xml.serialize.DOMSerializerImpl;
+import org.codelibs.xerces.xml.serialize.OutputFormat;
+import org.codelibs.xerces.xml.serialize.Serializer;
+import org.codelibs.xerces.xml.serialize.SerializerFactory;
 import org.w3c.dom.DOMConfiguration;
 import org.w3c.dom.DOMError;
 import org.w3c.dom.DOMErrorHandler;
@@ -103,7 +103,7 @@ public class TestXmlns implements DOMErrorHandler {
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.dom3.DOMErrorHandler#handleError(org.apache.xerces.dom3.DOMError)
+     * @see org.codelibs.xerces.dom3.DOMErrorHandler#handleError(org.codelibs.xerces.dom3.DOMError)
      */
     public boolean handleError(DOMError error) {
         short severity = error.getSeverity();

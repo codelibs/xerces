@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.xinclude;
+package org.codelibs.xerces.xinclude;
 
-import org.apache.xerces.xni.NamespaceContext;
+import org.codelibs.xerces.xni.NamespaceContext;
 
 /**
  * This is an implementation of NamespaceContext which is intended to be used for

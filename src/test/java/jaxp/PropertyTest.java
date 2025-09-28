@@ -38,14 +38,14 @@ public class PropertyTest extends DefaultHandler {
             SAXParser parser = spf.newSAXParser();
             parser.setProperty("http://java.sun.com/xml/jaxp/properties/schemaLanguage", "http://www.w3.org/2001/XMLSchema");
             parser.setProperty("http://java.sun.com/xml/jaxp/properties/schemaSource", new String[] { "personal.xsd", "ipo.xsd" });
-            parser.parse("tests/jaxp/data/personal-schema.xml", new PropertyTest());
+            parser.parse("src/test/resources/jaxp/data/personal-schema.xml", new PropertyTest());
 
             parser = spf.newSAXParser();
             parser.setProperty("http://java.sun.com/xml/jaxp/properties/schemaLanguage", "http://www.w3.org/2001/XMLSchema");
             parser.setProperty("http://java.sun.com/xml/jaxp/properties/schemaSource", new String[] { "address.xsd", "ipo.xsd", });
 
             try {
-                parser.parse("tests/jaxp/data/personal-schema.xml", new PropertyTest());
+                parser.parse("src/test/resources/jaxp/data/personal-schema.xml", new PropertyTest());
                 System.err.println("ERROR!");
             } catch (Exception e) {}
 
@@ -54,7 +54,7 @@ public class PropertyTest extends DefaultHandler {
             parser.setProperty("http://java.sun.com/xml/jaxp/properties/schemaSource", new String[] { "personal.xsd", "ipo.xsd", "a.xsd" });
 
             try {
-                parser.parse("tests/jaxp/data/personal-schema.xml", new PropertyTest());
+                parser.parse("src/test/resources/jaxp/data/personal-schema.xml", new PropertyTest());
                 System.err.println("ERROR!");
             } catch (Exception e) {}
 

@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.util;
+package org.codelibs.xerces.util;
 
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.xni.XMLAttributes;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.xni.XMLAttributes;
 import org.xml.sax.AttributeList;
 import org.xml.sax.ext.Attributes2;
 

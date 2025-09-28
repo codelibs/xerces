@@ -15,11 +15,11 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs.util;
+package org.codelibs.xerces.impl.xs.util;
 
-import org.apache.xerces.impl.xs.SchemaGrammar;
-import org.apache.xerces.xni.parser.XMLInputSource;
-import org.apache.xerces.xs.XSObject;
+import org.codelibs.xerces.impl.xs.SchemaGrammar;
+import org.codelibs.xerces.xni.parser.XMLInputSource;
+import org.codelibs.xerces.xs.XSObject;
 
 /**
  * @xerces.internal

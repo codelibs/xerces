@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs.identity;
+package org.codelibs.xerces.impl.xs.identity;
 
 /**
  * Schema unique or key identity constraint.

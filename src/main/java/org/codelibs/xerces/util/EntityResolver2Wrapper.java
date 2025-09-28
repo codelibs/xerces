@@ -15,18 +15,18 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.util;
+package org.codelibs.xerces.util;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
 
-import org.apache.xerces.impl.ExternalSubsetResolver;
-import org.apache.xerces.impl.XMLEntityDescription;
-import org.apache.xerces.xni.XMLResourceIdentifier;
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xni.grammars.XMLDTDDescription;
-import org.apache.xerces.xni.parser.XMLInputSource;
+import org.codelibs.xerces.impl.ExternalSubsetResolver;
+import org.codelibs.xerces.impl.XMLEntityDescription;
+import org.codelibs.xerces.xni.XMLResourceIdentifier;
+import org.codelibs.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.grammars.XMLDTDDescription;
+import org.codelibs.xerces.xni.parser.XMLInputSource;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.ext.EntityResolver2;

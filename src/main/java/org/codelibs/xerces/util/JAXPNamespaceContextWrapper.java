@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.util;
+package org.codelibs.xerces.util;
 
 import java.util.Collections;
 import java.util.Enumeration;
@@ -25,7 +25,7 @@ import java.util.Vector;
 
 import javax.xml.XMLConstants;
 
-import org.apache.xerces.xni.NamespaceContext;
+import org.codelibs.xerces.xni.NamespaceContext;
 
 /**
  * <p>A read-only XNI wrapper around a JAXP NamespaceContext.</p>

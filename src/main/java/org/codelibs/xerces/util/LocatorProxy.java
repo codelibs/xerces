@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.util;
+package org.codelibs.xerces.util;
 
-import org.apache.xerces.xni.XMLLocator;
+import org.codelibs.xerces.xni.XMLLocator;
 import org.xml.sax.Locator;
 import org.xml.sax.ext.Locator2;
 

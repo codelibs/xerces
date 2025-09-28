@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xpath.regex;
+package org.codelibs.xerces.impl.xpath.regex;
 
 /**
  * This class represents a character class such as [a-z] or a period.

@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.dv;
+package org.codelibs.xerces.impl.dv;
 
-import org.apache.xerces.xs.XSSimpleTypeDefinition;
+import org.codelibs.xerces.xs.XSSimpleTypeDefinition;
 
 /**
  * This interface <code>XSSimpleType</code> represents the simple type

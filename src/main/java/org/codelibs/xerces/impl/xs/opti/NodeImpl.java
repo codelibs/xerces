@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs.opti;
+package org.codelibs.xerces.impl.xs.opti;
 
 /**
  * @xerces.internal

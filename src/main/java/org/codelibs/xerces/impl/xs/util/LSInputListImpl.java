@@ -15,12 +15,12 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs.util;
+package org.codelibs.xerces.impl.xs.util;
 
 import java.lang.reflect.Array;
 import java.util.AbstractList;
 
-import org.apache.xerces.xs.LSInputList;
+import org.codelibs.xerces.xs.LSInputList;
 import org.w3c.dom.ls.LSInput;
 
 /**

@@ -15,17 +15,17 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.dtd;
+package org.codelibs.xerces.impl.dtd;
 
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.impl.XML11DTDScannerImpl;
-import org.apache.xerces.impl.XMLDTDScannerImpl;
-import org.apache.xerces.impl.XMLEntityManager;
-import org.apache.xerces.impl.XMLErrorReporter;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.util.XML11Char;
-import org.apache.xerces.xni.grammars.XMLGrammarPool;
-import org.apache.xerces.xni.parser.XMLEntityResolver;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.impl.XML11DTDScannerImpl;
+import org.codelibs.xerces.impl.XMLDTDScannerImpl;
+import org.codelibs.xerces.impl.XMLEntityManager;
+import org.codelibs.xerces.impl.XMLErrorReporter;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.util.XML11Char;
+import org.codelibs.xerces.xni.grammars.XMLGrammarPool;
+import org.codelibs.xerces.xni.parser.XMLEntityResolver;
 
 /**
  * This class extends XMLDTDProcessor by giving it

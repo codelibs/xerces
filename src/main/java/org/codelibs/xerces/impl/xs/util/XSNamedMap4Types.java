@@ -15,11 +15,11 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs.util;
+package org.codelibs.xerces.impl.xs.util;
 
-import org.apache.xerces.util.SymbolHash;
-import org.apache.xerces.xs.XSObject;
-import org.apache.xerces.xs.XSTypeDefinition;
+import org.codelibs.xerces.util.SymbolHash;
+import org.codelibs.xerces.xs.XSObject;
+import org.codelibs.xerces.xs.XSTypeDefinition;
 
 /**
  * Contains the map between qnames and XSObject's.

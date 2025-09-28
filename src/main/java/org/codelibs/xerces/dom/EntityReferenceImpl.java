@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.dom;
+package org.codelibs.xerces.dom;
 
-import org.apache.xerces.util.URI;
+import org.codelibs.xerces.util.URI;
 import org.w3c.dom.DocumentType;
 import org.w3c.dom.EntityReference;
 import org.w3c.dom.NamedNodeMap;
@@ -171,7 +171,7 @@ public class EntityReferenceImpl extends ParentNode implements EntityReference {
         } else if (baseURI != null && baseURI.length() != 0) {// attribute value is always empty string
             try {
                 return new URI(baseURI).toString();
-            } catch (org.apache.xerces.util.URI.MalformedURIException e) {
+            } catch (org.codelibs.xerces.util.URI.MalformedURIException e) {
                 // REVISIT: what should happen in this case?
                 return null;
             }

@@ -30,12 +30,12 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.StringTokenizer;
 
-import org.apache.xerces.parsers.XIncludeParserConfiguration;
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xni.parser.XMLErrorHandler;
-import org.apache.xerces.xni.parser.XMLInputSource;
-import org.apache.xerces.xni.parser.XMLParseException;
-import org.apache.xerces.xni.parser.XMLParserConfiguration;
+import org.codelibs.xerces.parsers.XIncludeParserConfiguration;
+import org.codelibs.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.parser.XMLErrorHandler;
+import org.codelibs.xerces.xni.parser.XMLInputSource;
+import org.codelibs.xerces.xni.parser.XMLParseException;
+import org.codelibs.xerces.xni.parser.XMLParserConfiguration;
 
 import xni.Writer;
 
@@ -283,21 +283,21 @@ public class Test implements XMLErrorHandler {
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.xni.parser.XMLErrorHandler#error(java.lang.String, java.lang.String, org.apache.xerces.xni.parser.XMLParseException)
+     * @see org.codelibs.xerces.xni.parser.XMLErrorHandler#error(java.lang.String, java.lang.String, org.codelibs.xerces.xni.parser.XMLParseException)
      */
     public void error(String domain, String key, XMLParseException exception) throws XNIException {
         printError("Error", exception);
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.xni.parser.XMLErrorHandler#fatalError(java.lang.String, java.lang.String, org.apache.xerces.xni.parser.XMLParseException)
+     * @see org.codelibs.xerces.xni.parser.XMLErrorHandler#fatalError(java.lang.String, java.lang.String, org.codelibs.xerces.xni.parser.XMLParseException)
      */
     public void fatalError(String domain, String key, XMLParseException exception) throws XNIException {
         printError("Fatal Error", exception);
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.xni.parser.XMLErrorHandler#warning(java.lang.String, java.lang.String, org.apache.xerces.xni.parser.XMLParseException)
+     * @see org.codelibs.xerces.xni.parser.XMLErrorHandler#warning(java.lang.String, java.lang.String, org.codelibs.xerces.xni.parser.XMLParseException)
      */
     public void warning(String domain, String key, XMLParseException exception) throws XNIException {
         printError("Warning", exception);

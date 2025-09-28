@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import javax.xml.XMLConstants;
 import javax.xml.namespace.QName;
 
-import org.apache.xerces.xs.ItemPSVI;
+import org.codelibs.xerces.xs.ItemPSVI;
 import org.xml.sax.SAXException;
 
 /**

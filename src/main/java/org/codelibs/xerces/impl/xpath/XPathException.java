@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xpath;
+package org.codelibs.xerces.impl.xpath;
 
 /**
  * XPath exception.

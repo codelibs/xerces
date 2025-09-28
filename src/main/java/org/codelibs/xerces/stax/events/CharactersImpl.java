@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.stax.events;
+package org.codelibs.xerces.stax.events;
 
 import java.io.IOException;
 import java.io.Writer;
@@ -24,7 +24,7 @@ import javax.xml.stream.Location;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.events.Characters;
 
-import org.apache.xerces.util.XMLChar;
+import org.codelibs.xerces.util.XMLChar;
 
 /**
  * @xerces.internal

@@ -15,37 +15,37 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.jaxp.validation;
+package org.codelibs.xerces.jaxp.validation;
 
 import java.util.ArrayList;
 
 import javax.xml.transform.dom.DOMResult;
 
-import org.apache.xerces.dom.AttrImpl;
-import org.apache.xerces.dom.CoreDocumentImpl;
-import org.apache.xerces.dom.DOMMessageFormatter;
-import org.apache.xerces.dom.DocumentTypeImpl;
-import org.apache.xerces.dom.ElementImpl;
-import org.apache.xerces.dom.ElementNSImpl;
-import org.apache.xerces.dom.EntityImpl;
-import org.apache.xerces.dom.NotationImpl;
-import org.apache.xerces.dom.PSVIAttrNSImpl;
-import org.apache.xerces.dom.PSVIDocumentImpl;
-import org.apache.xerces.dom.PSVIElementNSImpl;
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.impl.dv.XSSimpleType;
-import org.apache.xerces.xni.Augmentations;
-import org.apache.xerces.xni.NamespaceContext;
-import org.apache.xerces.xni.QName;
-import org.apache.xerces.xni.XMLAttributes;
-import org.apache.xerces.xni.XMLLocator;
-import org.apache.xerces.xni.XMLResourceIdentifier;
-import org.apache.xerces.xni.XMLString;
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xni.parser.XMLDocumentSource;
-import org.apache.xerces.xs.AttributePSVI;
-import org.apache.xerces.xs.ElementPSVI;
-import org.apache.xerces.xs.XSTypeDefinition;
+import org.codelibs.xerces.dom.AttrImpl;
+import org.codelibs.xerces.dom.CoreDocumentImpl;
+import org.codelibs.xerces.dom.DOMMessageFormatter;
+import org.codelibs.xerces.dom.DocumentTypeImpl;
+import org.codelibs.xerces.dom.ElementImpl;
+import org.codelibs.xerces.dom.ElementNSImpl;
+import org.codelibs.xerces.dom.EntityImpl;
+import org.codelibs.xerces.dom.NotationImpl;
+import org.codelibs.xerces.dom.PSVIAttrNSImpl;
+import org.codelibs.xerces.dom.PSVIDocumentImpl;
+import org.codelibs.xerces.dom.PSVIElementNSImpl;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.impl.dv.XSSimpleType;
+import org.codelibs.xerces.xni.Augmentations;
+import org.codelibs.xerces.xni.NamespaceContext;
+import org.codelibs.xerces.xni.QName;
+import org.codelibs.xerces.xni.XMLAttributes;
+import org.codelibs.xerces.xni.XMLLocator;
+import org.codelibs.xerces.xni.XMLResourceIdentifier;
+import org.codelibs.xerces.xni.XMLString;
+import org.codelibs.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.parser.XMLDocumentSource;
+import org.codelibs.xerces.xs.AttributePSVI;
+import org.codelibs.xerces.xs.ElementPSVI;
+import org.codelibs.xerces.xs.XSTypeDefinition;
 import org.w3c.dom.CDATASection;
 import org.w3c.dom.Comment;
 import org.w3c.dom.Document;

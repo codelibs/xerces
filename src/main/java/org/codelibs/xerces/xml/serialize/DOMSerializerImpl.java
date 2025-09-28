@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xml.serialize;
+package org.codelibs.xerces.xml.serialize;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -25,19 +25,19 @@ import java.io.Writer;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 
-import org.apache.xerces.dom.CoreDocumentImpl;
-import org.apache.xerces.dom.DOMErrorImpl;
-import org.apache.xerces.dom.DOMLocatorImpl;
-import org.apache.xerces.dom.DOMMessageFormatter;
-import org.apache.xerces.dom.DOMNormalizer;
-import org.apache.xerces.dom.DOMStringListImpl;
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.impl.XMLEntityManager;
-import org.apache.xerces.util.DOMUtil;
-import org.apache.xerces.util.NamespaceSupport;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.util.XML11Char;
-import org.apache.xerces.util.XMLChar;
+import org.codelibs.xerces.dom.CoreDocumentImpl;
+import org.codelibs.xerces.dom.DOMErrorImpl;
+import org.codelibs.xerces.dom.DOMLocatorImpl;
+import org.codelibs.xerces.dom.DOMMessageFormatter;
+import org.codelibs.xerces.dom.DOMNormalizer;
+import org.codelibs.xerces.dom.DOMStringListImpl;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.impl.XMLEntityManager;
+import org.codelibs.xerces.util.DOMUtil;
+import org.codelibs.xerces.util.NamespaceSupport;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.util.XML11Char;
+import org.codelibs.xerces.util.XMLChar;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Comment;
 import org.w3c.dom.DOMConfiguration;
@@ -69,7 +69,7 @@ import org.w3c.dom.ls.LSSerializerFilter;
  * @author Arun Yadav, Sun Microsystems
  * @version $Id: DOMSerializerImpl.java 944789 2010-05-16 10:06:57Z mukulg $
  *
- * @deprecated Replaced by org.apache.xml.serializer.dom3.LSSerializerImpl in Xerces 2.9.0.
+ * @deprecated Replaced by org.codelibs.xerces.xml.serializer.dom3.LSSerializerImpl in Xerces 2.9.0.
  */
 public class DOMSerializerImpl implements LSSerializer, DOMConfiguration {
 

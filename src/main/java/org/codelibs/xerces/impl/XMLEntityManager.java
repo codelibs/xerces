@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl;
+package org.codelibs.xerces.impl;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -37,30 +37,30 @@ import java.util.Map;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
-import org.apache.xerces.impl.io.ASCIIReader;
-import org.apache.xerces.impl.io.Latin1Reader;
-import org.apache.xerces.impl.io.UCSReader;
-import org.apache.xerces.impl.io.UTF16Reader;
-import org.apache.xerces.impl.io.UTF8Reader;
-import org.apache.xerces.impl.msg.XMLMessageFormatter;
-import org.apache.xerces.impl.validation.ValidationManager;
-import org.apache.xerces.util.AugmentationsImpl;
-import org.apache.xerces.util.EncodingMap;
-import org.apache.xerces.util.HTTPInputSource;
-import org.apache.xerces.util.SecurityManager;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.util.URI;
-import org.apache.xerces.util.XMLChar;
-import org.apache.xerces.util.XMLEntityDescriptionImpl;
-import org.apache.xerces.util.XMLResourceIdentifierImpl;
-import org.apache.xerces.xni.Augmentations;
-import org.apache.xerces.xni.XMLResourceIdentifier;
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xni.parser.XMLComponent;
-import org.apache.xerces.xni.parser.XMLComponentManager;
-import org.apache.xerces.xni.parser.XMLConfigurationException;
-import org.apache.xerces.xni.parser.XMLEntityResolver;
-import org.apache.xerces.xni.parser.XMLInputSource;
+import org.codelibs.xerces.impl.io.ASCIIReader;
+import org.codelibs.xerces.impl.io.Latin1Reader;
+import org.codelibs.xerces.impl.io.UCSReader;
+import org.codelibs.xerces.impl.io.UTF16Reader;
+import org.codelibs.xerces.impl.io.UTF8Reader;
+import org.codelibs.xerces.impl.msg.XMLMessageFormatter;
+import org.codelibs.xerces.impl.validation.ValidationManager;
+import org.codelibs.xerces.util.AugmentationsImpl;
+import org.codelibs.xerces.util.EncodingMap;
+import org.codelibs.xerces.util.HTTPInputSource;
+import org.codelibs.xerces.util.SecurityManager;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.util.URI;
+import org.codelibs.xerces.util.XMLChar;
+import org.codelibs.xerces.util.XMLEntityDescriptionImpl;
+import org.codelibs.xerces.util.XMLResourceIdentifierImpl;
+import org.codelibs.xerces.xni.Augmentations;
+import org.codelibs.xerces.xni.XMLResourceIdentifier;
+import org.codelibs.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.parser.XMLComponent;
+import org.codelibs.xerces.xni.parser.XMLComponentManager;
+import org.codelibs.xerces.xni.parser.XMLConfigurationException;
+import org.codelibs.xerces.xni.parser.XMLEntityResolver;
+import org.codelibs.xerces.xni.parser.XMLInputSource;
 
 /**
  * The entity manager handles the registration of general and parameter

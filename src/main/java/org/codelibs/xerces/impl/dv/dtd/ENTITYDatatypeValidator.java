@@ -15,11 +15,11 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.dv.dtd;
+package org.codelibs.xerces.impl.dv.dtd;
 
-import org.apache.xerces.impl.dv.DatatypeValidator;
-import org.apache.xerces.impl.dv.InvalidDatatypeValueException;
-import org.apache.xerces.impl.dv.ValidationContext;
+import org.codelibs.xerces.impl.dv.DatatypeValidator;
+import org.codelibs.xerces.impl.dv.InvalidDatatypeValueException;
+import org.codelibs.xerces.impl.dv.ValidationContext;
 
 /**
  * <P>ENTITYDatatypeValidator implements the

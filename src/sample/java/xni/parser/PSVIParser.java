@@ -17,7 +17,7 @@
 
 package xni.parser;
 
-import org.apache.xerces.parsers.AbstractSAXParser;
+import org.codelibs.xerces.parsers.AbstractSAXParser;
 
 /**
  * This parser class implements a SAX parser that includes DTDValidator, NamespaceBinder

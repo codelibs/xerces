@@ -84,7 +84,7 @@ public class DTest {
      * @author Philip W. Davis
      */
     public Document createDocument() {
-        return new org.apache.xerces.dom.DocumentImpl(); //Replace with a Document creator
+        return new org.codelibs.xerces.dom.DocumentImpl(); //Replace with a Document creator
     }
 
     /**
@@ -96,7 +96,7 @@ public class DTest {
      * @author Philip W. Davis
      */
     public DocumentType createDocumentType(Document doc, String name) {
-        return ((org.apache.xerces.dom.DocumentImpl) doc).createDocumentType(name, null, null); //Replace with a DocumentType creator
+        return ((org.codelibs.xerces.dom.DocumentImpl) doc).createDocumentType(name, null, null); //Replace with a DocumentType creator
     }
 
     /**
@@ -109,7 +109,7 @@ public class DTest {
      * @author Philip W. Davis
      */
     public Entity createEntity(Document doc, String name) {
-        return new org.apache.xerces.dom.EntityImpl((org.apache.xerces.dom.DocumentImpl) doc, name); //Replace with an Entity creator
+        return new org.codelibs.xerces.dom.EntityImpl((org.codelibs.xerces.dom.DocumentImpl) doc, name); //Replace with an Entity creator
     }
 
     /**
@@ -122,7 +122,7 @@ public class DTest {
      * @author Philip W. Davis
      */
     public Notation createNotation(Document doc, String name) {
-        return new org.apache.xerces.dom.NotationImpl((org.apache.xerces.dom.DocumentImpl) doc, name); // Replace with a Notation creator
+        return new org.codelibs.xerces.dom.NotationImpl((org.codelibs.xerces.dom.DocumentImpl) doc, name); // Replace with a Notation creator
     }
 
     /**
@@ -496,9 +496,9 @@ public class DTest {
 
         Entity docEntity = test.createEntity(d, "ourEntityNode");
         Text entityChildText = d.createTextNode("entityChildText information"); // Build a branch for entityReference tests
-        ((org.apache.xerces.dom.NodeImpl) docEntity).setReadOnly(false, true);
+        ((org.codelibs.xerces.dom.NodeImpl) docEntity).setReadOnly(false, true);
         docEntity.appendChild(entityChildText); // & for READONLY_ERR tests
-        ((org.apache.xerces.dom.NodeImpl) docEntity).setReadOnly(true, true);
+        ((org.codelibs.xerces.dom.NodeImpl) docEntity).setReadOnly(true, true);
         docDocType.getEntities().setNamedItem(docEntity);
 
         test.docBuilder(d, "d");
@@ -643,7 +643,7 @@ public class DTest {
             System.out.println("Warning!!! Attr's 'setNodeValue' method failed to work properly!");
             OK = false;
         }
-        ((org.apache.xerces.dom.AttrImpl) attributeNode).setSpecified(F);//***** How do we change this for external use??
+        ((org.codelibs.xerces.dom.AttrImpl) attributeNode).setSpecified(F);//***** How do we change this for external use??
         if (!F == attributeNode.getSpecified()) {
             System.out.println("Warning!!! Attr's 'setSpecified' method failed to work properly!");
             OK = false;
@@ -1375,19 +1375,19 @@ public class DTest {
         }
         // Deep clone test comparison is in testNode & testDocument
 
-        ((org.apache.xerces.dom.EntityImpl) entity).setNotationName("testNotationName");
+        ((org.codelibs.xerces.dom.EntityImpl) entity).setNotationName("testNotationName");
         compare = "testNotationName";
         if (!compare.equals(entity.getNotationName())) {
             System.out.println("Warning!!! Entity's 'setNotationName' and/or getNotationName' failed!");
             OK = false;
         }
-        ((org.apache.xerces.dom.EntityImpl) entity).setPublicId("testPublicId");
+        ((org.codelibs.xerces.dom.EntityImpl) entity).setPublicId("testPublicId");
         compare = "testPublicId";
         if (!compare.equals(entity.getPublicId())) {
             System.out.println("Warning!!! Entity's 'setPublicId' and/or getPublicId' failed!");
             OK = false;
         }
-        ((org.apache.xerces.dom.EntityImpl) entity).setSystemId("testSystemId");
+        ((org.codelibs.xerces.dom.EntityImpl) entity).setSystemId("testSystemId");
         compare = "testSystemId";
         if (!compare.equals(entity.getSystemId())) {
             System.out.println("Warning!!! Entity's 'setSystemId' and/or getSystemId' failed!");
@@ -1505,13 +1505,13 @@ public class DTest {
         }
         // Deep clone test comparison is in testNode & testDocument
 
-        ((org.apache.xerces.dom.NotationImpl) notation).setPublicId("testPublicId");//*****?
+        ((org.codelibs.xerces.dom.NotationImpl) notation).setPublicId("testPublicId");//*****?
         compare = "testPublicId";
         if (!compare.equals(notation.getPublicId())) {
             System.out.println("Warning!!! Notation's 'getPublicId' failed!");
             OK = false;
         }
-        ((org.apache.xerces.dom.NotationImpl) notation).setSystemId("testSystemId");//*****?
+        ((org.codelibs.xerces.dom.NotationImpl) notation).setSystemId("testSystemId");//*****?
         compare = "testSystemId";
         if (!compare.equals(notation.getSystemId())) {
             System.out.println("Warning!!! Notation's 'getSystemId' failed!");
@@ -1539,7 +1539,7 @@ public class DTest {
         boolean OK = true;
         // For debugging*****	println("\n          testPI's outputs:\n");
         pI = (ProcessingInstruction) document.getDocumentElement().getFirstChild();// Get doc's ProcessingInstruction
-        pI2 = (org.apache.xerces.dom.ProcessingInstructionImpl) pI.cloneNode(true);//*****?
+        pI2 = (org.codelibs.xerces.dom.ProcessingInstructionImpl) pI.cloneNode(true);//*****?
         // Check nodes for equality, both their name and value or lack thereof
         if (!(pI.getNodeName().equals(pI2.getNodeName()) && // Compares node names for equality
                 (pI.getNodeValue() != null && pI2.getNodeValue() != null) // Checks to make sure each node has a value node

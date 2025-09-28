@@ -15,17 +15,17 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs;
+package org.codelibs.xerces.impl.xs;
 
-import org.apache.xerces.impl.dv.ValidatedInfo;
-import org.apache.xerces.impl.xs.util.XSObjectListImpl;
-import org.apache.xerces.xs.XSAnnotation;
-import org.apache.xerces.xs.XSAttributeGroupDefinition;
-import org.apache.xerces.xs.XSAttributeUse;
-import org.apache.xerces.xs.XSConstants;
-import org.apache.xerces.xs.XSNamespaceItem;
-import org.apache.xerces.xs.XSObjectList;
-import org.apache.xerces.xs.XSWildcard;
+import org.codelibs.xerces.impl.dv.ValidatedInfo;
+import org.codelibs.xerces.impl.xs.util.XSObjectListImpl;
+import org.codelibs.xerces.xs.XSAnnotation;
+import org.codelibs.xerces.xs.XSAttributeGroupDefinition;
+import org.codelibs.xerces.xs.XSAttributeUse;
+import org.codelibs.xerces.xs.XSConstants;
+import org.codelibs.xerces.xs.XSNamespaceItem;
+import org.codelibs.xerces.xs.XSObjectList;
+import org.codelibs.xerces.xs.XSWildcard;
 
 /**
  * The XML representation for an attribute group declaration
@@ -375,7 +375,7 @@ public class XSAttributeGroupDecl implements XSAttributeGroupDefinition {
     }
 
     /**
-     * @see org.apache.xerces.xs.XSObject#getNamespaceItem()
+     * @see org.codelibs.xerces.xs.XSObject#getNamespaceItem()
      */
     public XSNamespaceItem getNamespaceItem() {
         return fNamespaceItem;

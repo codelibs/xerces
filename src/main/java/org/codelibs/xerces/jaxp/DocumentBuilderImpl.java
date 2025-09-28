@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.jaxp;
+package org.codelibs.xerces.jaxp;
 
 import java.io.IOException;
 import java.util.Hashtable;
@@ -25,20 +25,20 @@ import java.util.Map;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.validation.Schema;
 
-import org.apache.xerces.dom.DOMImplementationImpl;
-import org.apache.xerces.dom.DOMMessageFormatter;
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.impl.validation.ValidationManager;
-import org.apache.xerces.impl.xs.XMLSchemaValidator;
-import org.apache.xerces.jaxp.validation.XSGrammarPoolContainer;
-import org.apache.xerces.parsers.DOMParser;
-import org.apache.xerces.util.SecurityManager;
-import org.apache.xerces.xni.XMLDocumentHandler;
-import org.apache.xerces.xni.parser.XMLComponent;
-import org.apache.xerces.xni.parser.XMLComponentManager;
-import org.apache.xerces.xni.parser.XMLConfigurationException;
-import org.apache.xerces.xni.parser.XMLDocumentSource;
-import org.apache.xerces.xni.parser.XMLParserConfiguration;
+import org.codelibs.xerces.dom.DOMImplementationImpl;
+import org.codelibs.xerces.dom.DOMMessageFormatter;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.impl.validation.ValidationManager;
+import org.codelibs.xerces.impl.xs.XMLSchemaValidator;
+import org.codelibs.xerces.jaxp.validation.XSGrammarPoolContainer;
+import org.codelibs.xerces.parsers.DOMParser;
+import org.codelibs.xerces.util.SecurityManager;
+import org.codelibs.xerces.xni.XMLDocumentHandler;
+import org.codelibs.xerces.xni.parser.XMLComponent;
+import org.codelibs.xerces.xni.parser.XMLComponentManager;
+import org.codelibs.xerces.xni.parser.XMLConfigurationException;
+import org.codelibs.xerces.xni.parser.XMLDocumentSource;
+import org.codelibs.xerces.xni.parser.XMLParserConfiguration;
 import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
 import org.xml.sax.EntityResolver;
@@ -253,7 +253,7 @@ public class DocumentBuilderImpl extends DocumentBuilder implements JAXPConstant
      * Level 2 methods to create a DOM Document object.
      */
     public Document newDocument() {
-        return new org.apache.xerces.dom.DocumentImpl();
+        return new org.codelibs.xerces.dom.DocumentImpl();
     }
 
     public DOMImplementation getDOMImplementation() {

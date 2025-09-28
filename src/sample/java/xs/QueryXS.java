@@ -17,12 +17,12 @@
 
 package xs;
 
-import org.apache.xerces.xs.XSConstants;
-import org.apache.xerces.xs.XSImplementation;
-import org.apache.xerces.xs.XSLoader;
-import org.apache.xerces.xs.XSModel;
-import org.apache.xerces.xs.XSNamedMap;
-import org.apache.xerces.xs.XSObject;
+import org.codelibs.xerces.xs.XSConstants;
+import org.codelibs.xerces.xs.XSImplementation;
+import org.codelibs.xerces.xs.XSLoader;
+import org.codelibs.xerces.xs.XSModel;
+import org.codelibs.xerces.xs.XSNamedMap;
+import org.codelibs.xerces.xs.XSObject;
 import org.w3c.dom.DOMConfiguration;
 import org.w3c.dom.DOMError;
 import org.w3c.dom.DOMErrorHandler;
@@ -30,7 +30,7 @@ import org.w3c.dom.bootstrap.DOMImplementationRegistry;
 
 /**
  * This sample program illustrates how to use load XML Schemas and 
- * use XML Schema API (org.apache.xerces.xs) to navigate XML Schema components.
+ * use XML Schema API (org.codelibs.xerces.xs) to navigate XML Schema components.
  *
  * @author Elena Litani, IBM
  * @version $Id: QueryXS.java 1358668 2012-07-07 23:03:37Z mrglavas $
@@ -48,7 +48,7 @@ public class QueryXS implements DOMErrorHandler {
             // get DOM Implementation using DOM Registry
             // System.setProperty(
             //    DOMImplementationRegistry.PROPERTY,
-            //    "org.apache.xerces.dom.DOMXSImplementationSourceImpl");
+            //    "org.codelibs.xerces.dom.DOMXSImplementationSourceImpl");
             DOMImplementationRegistry registry = DOMImplementationRegistry.newInstance();
 
             XSImplementation impl = (XSImplementation) registry.getDOMImplementation("XS-Loader");

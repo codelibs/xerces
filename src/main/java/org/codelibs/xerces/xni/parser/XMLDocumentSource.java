@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.xni.parser;
+package org.codelibs.xerces.xni.parser;
 
-import org.apache.xerces.xni.XMLDocumentHandler;
+import org.codelibs.xerces.xni.XMLDocumentHandler;
 
 /**
  * Defines a document source. In other words, any object that implements

@@ -15,12 +15,12 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.parsers;
+package org.codelibs.xerces.parsers;
 
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.xni.grammars.XMLGrammarPool;
-import org.apache.xerces.xni.parser.XMLParserConfiguration;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.xni.grammars.XMLGrammarPool;
+import org.codelibs.xerces.xni.parser.XMLParserConfiguration;
 
 /**
  * This is the main Xerces SAX parser class. It uses the abstract SAX
@@ -87,8 +87,8 @@ public class SAXParser extends AbstractSAXParser {
      * grammar pool.
      */
     public SAXParser(SymbolTable symbolTable, XMLGrammarPool grammarPool) {
-        super((XMLParserConfiguration) ObjectFactory.createObject("org.apache.xerces.xni.parser.XMLParserConfiguration",
-                "org.apache.xerces.parsers.XIncludeAwareParserConfiguration"));
+        super((XMLParserConfiguration) ObjectFactory.createObject("org.codelibs.xerces.xni.parser.XMLParserConfiguration",
+                "org.codelibs.xerces.parsers.XIncludeAwareParserConfiguration"));
 
         // set features
         fConfiguration.addRecognizedFeatures(RECOGNIZED_FEATURES);

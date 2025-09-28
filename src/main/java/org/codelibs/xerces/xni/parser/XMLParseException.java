@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.xni.parser;
+package org.codelibs.xerces.xni.parser;
 
-import org.apache.xerces.xni.XMLLocator;
-import org.apache.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.XMLLocator;
+import org.codelibs.xerces.xni.XNIException;
 
 /**
  * A parsing exception. This exception is different from the standard

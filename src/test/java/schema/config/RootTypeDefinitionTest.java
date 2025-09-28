@@ -26,10 +26,10 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.validation.SchemaFactory;
 
-import org.apache.xerces.dom.PSVIElementNSImpl;
-import org.apache.xerces.impl.xs.SchemaSymbols;
-import org.apache.xerces.xs.ElementPSVI;
-import org.apache.xerces.xs.ItemPSVI;
+import org.codelibs.xerces.dom.PSVIElementNSImpl;
+import org.codelibs.xerces.impl.xs.SchemaSymbols;
+import org.codelibs.xerces.xs.ElementPSVI;
+import org.codelibs.xerces.xs.ItemPSVI;
 import org.xml.sax.SAXException;
 
 /**
@@ -75,7 +75,7 @@ public class RootTypeDefinitionTest extends BaseTest {
     public void testUsingDocumentBuilderFactory() throws Exception {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         dbf.setAttribute(ROOT_TYPE, typeX);
-        dbf.setAttribute(DOCUMENT_CLASS_NAME, "org.apache.xerces.dom.PSVIDocumentImpl");
+        dbf.setAttribute(DOCUMENT_CLASS_NAME, "org.codelibs.xerces.dom.PSVIDocumentImpl");
         dbf.setNamespaceAware(true);
         dbf.setValidating(false);
 

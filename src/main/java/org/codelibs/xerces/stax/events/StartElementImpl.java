@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.stax.events;
+package org.codelibs.xerces.stax.events;
 
 import java.io.IOException;
 import java.io.Writer;
@@ -33,7 +33,7 @@ import javax.xml.stream.events.Attribute;
 import javax.xml.stream.events.Namespace;
 import javax.xml.stream.events.StartElement;
 
-import org.apache.xerces.stax.DefaultNamespaceContext;
+import org.codelibs.xerces.stax.DefaultNamespaceContext;
 
 /**
  * @xerces.internal

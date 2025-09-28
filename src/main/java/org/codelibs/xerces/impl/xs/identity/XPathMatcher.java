@@ -15,16 +15,16 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs.identity;
+package org.codelibs.xerces.impl.xs.identity;
 
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.impl.xpath.XPath;
-import org.apache.xerces.util.IntStack;
-import org.apache.xerces.xni.QName;
-import org.apache.xerces.xni.XMLAttributes;
-import org.apache.xerces.xs.AttributePSVI;
-import org.apache.xerces.xs.ShortList;
-import org.apache.xerces.xs.XSTypeDefinition;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.impl.xpath.XPath;
+import org.codelibs.xerces.util.IntStack;
+import org.codelibs.xerces.xni.QName;
+import org.codelibs.xerces.xni.XMLAttributes;
+import org.codelibs.xerces.xs.AttributePSVI;
+import org.codelibs.xerces.xs.ShortList;
+import org.codelibs.xerces.xs.XSTypeDefinition;
 import org.xml.sax.SAXException;
 
 /**
@@ -488,8 +488,8 @@ public class XPathMatcher {
                 final String expr = argv[i];
                 final XPath xpath = new XPath(expr, symbols, null);
                 final XPathMatcher matcher = new XPathMatcher(xpath, true);
-                org.apache.xerces.parsers.SAXParser parser =
-                    new org.apache.xerces.parsers.SAXParser(symbols) {
+                org.codelibs.xerces.parsers.SAXParser parser =
+                    new org.codelibs.xerces.parsers.SAXParser(symbols) {
                     public void startDocument() throws XNIException {
                         matcher.startDocumentFragment(symbols, null);
                     }

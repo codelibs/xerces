@@ -15,21 +15,21 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs;
+package org.codelibs.xerces.impl.xs;
 
-import org.apache.xerces.impl.xs.util.XSGrammarPool;
-import org.apache.xerces.xni.grammars.Grammar;
-import org.apache.xerces.xni.grammars.XMLGrammarDescription;
-import org.apache.xerces.xni.grammars.XSGrammar;
-import org.apache.xerces.xni.parser.XMLInputSource;
-import org.apache.xerces.xs.LSInputList;
-import org.apache.xerces.xs.StringList;
-import org.apache.xerces.xs.XSConstants;
-import org.apache.xerces.xs.XSLoader;
-import org.apache.xerces.xs.XSModel;
-import org.apache.xerces.xs.XSNamedMap;
-import org.apache.xerces.xs.XSObjectList;
-import org.apache.xerces.xs.XSTypeDefinition;
+import org.codelibs.xerces.impl.xs.util.XSGrammarPool;
+import org.codelibs.xerces.xni.grammars.Grammar;
+import org.codelibs.xerces.xni.grammars.XMLGrammarDescription;
+import org.codelibs.xerces.xni.grammars.XSGrammar;
+import org.codelibs.xerces.xni.parser.XMLInputSource;
+import org.codelibs.xerces.xs.LSInputList;
+import org.codelibs.xerces.xs.StringList;
+import org.codelibs.xerces.xs.XSConstants;
+import org.codelibs.xerces.xs.XSLoader;
+import org.codelibs.xerces.xs.XSModel;
+import org.codelibs.xerces.xs.XSNamedMap;
+import org.codelibs.xerces.xs.XSObjectList;
+import org.codelibs.xerces.xs.XSTypeDefinition;
 import org.w3c.dom.DOMConfiguration;
 import org.w3c.dom.DOMException;
 import org.w3c.dom.DOMStringList;
@@ -167,28 +167,28 @@ public final class XSLoaderImpl implements XSLoader, DOMConfiguration {
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.dom3.DOMConfiguration#setParameter(java.lang.String, java.lang.Object)
+     * @see org.codelibs.xerces.dom3.DOMConfiguration#setParameter(java.lang.String, java.lang.Object)
      */
     public void setParameter(String name, Object value) throws DOMException {
         fSchemaLoader.setParameter(name, value);
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.dom3.DOMConfiguration#getParameter(java.lang.String)
+     * @see org.codelibs.xerces.dom3.DOMConfiguration#getParameter(java.lang.String)
      */
     public Object getParameter(String name) throws DOMException {
         return fSchemaLoader.getParameter(name);
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.dom3.DOMConfiguration#canSetParameter(java.lang.String, java.lang.Object)
+     * @see org.codelibs.xerces.dom3.DOMConfiguration#canSetParameter(java.lang.String, java.lang.Object)
      */
     public boolean canSetParameter(String name, Object value) {
         return fSchemaLoader.canSetParameter(name, value);
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.dom3.DOMConfiguration#getParameterNames()
+     * @see org.codelibs.xerces.dom3.DOMConfiguration#getParameterNames()
      */
     public DOMStringList getParameterNames() {
         return fSchemaLoader.getParameterNames();

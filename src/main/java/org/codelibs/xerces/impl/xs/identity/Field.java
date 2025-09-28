@@ -15,17 +15,17 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs.identity;
+package org.codelibs.xerces.impl.xs.identity;
 
-import org.apache.xerces.impl.xpath.XPathException;
-import org.apache.xerces.impl.xs.util.ShortListImpl;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.util.XMLChar;
-import org.apache.xerces.xni.NamespaceContext;
-import org.apache.xerces.xs.ShortList;
-import org.apache.xerces.xs.XSComplexTypeDefinition;
-import org.apache.xerces.xs.XSConstants;
-import org.apache.xerces.xs.XSTypeDefinition;
+import org.codelibs.xerces.impl.xpath.XPathException;
+import org.codelibs.xerces.impl.xs.util.ShortListImpl;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.util.XMLChar;
+import org.codelibs.xerces.xni.NamespaceContext;
+import org.codelibs.xerces.xs.ShortList;
+import org.codelibs.xerces.xs.XSComplexTypeDefinition;
+import org.codelibs.xerces.xs.XSConstants;
+import org.codelibs.xerces.xs.XSTypeDefinition;
 
 /**
  * Schema identity constraint field.
@@ -62,9 +62,9 @@ public class Field {
     //
 
     /** Returns the field XPath. */
-    public org.apache.xerces.impl.xpath.XPath getXPath() {
+    public org.codelibs.xerces.impl.xpath.XPath getXPath() {
         return fXPath;
-    } // getXPath():org.apache.xerces.impl.v1.schema.identity.XPath
+    } // getXPath():org.codelibs.xerces.impl.v1.schema.identity.XPath
 
     /** Returns the identity constraint. */
     public IdentityConstraint getIdentityConstraint() {
@@ -96,7 +96,7 @@ public class Field {
      *
      * @author Andy Clark, IBM
      */
-    public static class XPath extends org.apache.xerces.impl.xpath.XPath {
+    public static class XPath extends org.codelibs.xerces.impl.xpath.XPath {
 
         //
         // Constructors
@@ -109,7 +109,7 @@ public class Field {
             // verify that only one attribute is selected per branch
             for (int i = 0; i < fLocationPaths.length; i++) {
                 for (int j = 0; j < fLocationPaths[i].steps.length; j++) {
-                    org.apache.xerces.impl.xpath.XPath.Axis axis = fLocationPaths[i].steps[j].axis;
+                    org.codelibs.xerces.impl.xpath.XPath.Axis axis = fLocationPaths[i].steps[j].axis;
                     if (axis.type == XPath.Axis.ATTRIBUTE && (j < fLocationPaths[i].steps.length - 1)) {
                         throw new XPathException("c-fields-xpaths");
                     }

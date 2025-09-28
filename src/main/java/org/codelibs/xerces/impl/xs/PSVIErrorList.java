@@ -15,11 +15,11 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs;
+package org.codelibs.xerces.impl.xs;
 
 import java.util.AbstractList;
 
-import org.apache.xerces.xs.StringList;
+import org.codelibs.xerces.xs.StringList;
 
 /**
  * StringList implementation for schema error codes and error messages.

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs.util;
+package org.codelibs.xerces.impl.xs.util;
 
 import java.lang.reflect.Array;
 import java.util.AbstractList;
@@ -23,8 +23,8 @@ import java.util.Iterator;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
-import org.apache.xerces.xs.XSObject;
-import org.apache.xerces.xs.XSObjectList;
+import org.codelibs.xerces.xs.XSObject;
+import org.codelibs.xerces.xs.XSObjectList;
 
 /**
  * Contains a list of XSObjects.

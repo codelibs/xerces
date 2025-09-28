@@ -20,8 +20,8 @@ package schema.config;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.apache.xerces.xs.ElementPSVI;
-import org.apache.xerces.xs.ItemPSVI;
+import org.codelibs.xerces.xs.ElementPSVI;
+import org.codelibs.xerces.xs.ItemPSVI;
 
 /**
  * @version $Id: SurrogatePairLengthTest.java 1375622 2012-08-21 15:51:27Z mrglavas $
@@ -30,7 +30,7 @@ public class SurrogatePairLengthTest extends BaseTest {
 
     // Can only test when the property is set
     static {
-        System.setProperty("org.apache.xerces.impl.dv.xs.useCodePointCountForStringLength", "true");
+        System.setProperty("org.codelibs.xerces.impl.dv.xs.useCodePointCountForStringLength", "true");
     }
 
     private static final String LENGTH_ERROR = "cvc-length-valid";

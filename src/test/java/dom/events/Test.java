@@ -34,7 +34,7 @@ public class Test {
     }
 
     void runTest() {
-        Document doc = new org.apache.xerces.dom.DocumentImpl();
+        Document doc = new org.codelibs.xerces.dom.DocumentImpl();
         reportAllMutations(doc);
 
         Element root = addNoisyElement(doc, doc, 0);

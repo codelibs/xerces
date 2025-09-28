@@ -17,8 +17,8 @@
 
 package dom.registry;
 
-import org.apache.xerces.dom.CoreDOMImplementationImpl;
-import org.apache.xerces.dom.DOMImplementationImpl;
+import org.codelibs.xerces.dom.CoreDOMImplementationImpl;
+import org.codelibs.xerces.dom.DOMImplementationImpl;
 import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.bootstrap.DOMImplementationRegistry;
 
@@ -31,7 +31,7 @@ public class Test {
         System.out.println("Running dom.registry.Test...");
         // set DOMImplementationSource
         System.setProperty(DOMImplementationRegistry.PROPERTY,
-                "org.apache.xerces.dom.DOMImplementationSourceImpl" + " org.apache.xerces.dom.DOMXSImplementationSourceImpl");
+                "org.codelibs.xerces.dom.DOMImplementationSourceImpl" + " org.codelibs.xerces.dom.DOMXSImplementationSourceImpl");
 
         DOMImplementationRegistry registry = null;
         try {

@@ -16,12 +16,12 @@
  */
 package schema.annotations;
 
-import org.apache.xerces.xs.XSAnnotation;
-import org.apache.xerces.xs.XSAttributeGroupDefinition;
-import org.apache.xerces.xs.XSImplementation;
-import org.apache.xerces.xs.XSLoader;
-import org.apache.xerces.xs.XSModel;
-import org.apache.xerces.xs.XSObjectList;
+import org.codelibs.xerces.xs.XSAnnotation;
+import org.codelibs.xerces.xs.XSAttributeGroupDefinition;
+import org.codelibs.xerces.xs.XSImplementation;
+import org.codelibs.xerces.xs.XSLoader;
+import org.codelibs.xerces.xs.XSModel;
+import org.codelibs.xerces.xs.XSObjectList;
 import org.w3c.dom.DOMConfiguration;
 import org.w3c.dom.bootstrap.DOMImplementationRegistry;
 
@@ -58,7 +58,7 @@ public class XSAttributeGroupAnnotationsTest extends TestCase {
     protected void setUp() {
         try {
             // get DOM Implementation using DOM Registry
-            System.setProperty(DOMImplementationRegistry.PROPERTY, "org.apache.xerces.dom.DOMXSImplementationSourceImpl");
+            System.setProperty(DOMImplementationRegistry.PROPERTY, "org.codelibs.xerces.dom.DOMXSImplementationSourceImpl");
             DOMImplementationRegistry registry = DOMImplementationRegistry.newInstance();
 
             XSImplementation impl = (XSImplementation) registry.getDOMImplementation("XS-Loader");
