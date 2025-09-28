@@ -1,2 +1,7 @@
-/build/
-/dist/
+CLAUDE.md
+bin/
+.classpath
+.project
+/target
+/.settings
+/.serena

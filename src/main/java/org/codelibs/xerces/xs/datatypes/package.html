@@ -1,0 +1,305 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+    <head>
+        <!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+    </head>
+    <body bgcolor="white">
+        This package provides interfaces for accessing actual value information through PSVI for XML Schema 1.0 data types.
+        <br>
+        <br>
+        The table below gives the data type to applicable interface mapping:
+        <br>
+        <br>
+        <table border="1">
+            <tbody>
+                <tr>
+                    <td width="332" align="center">XML Schema Data Type</td>
+                    <td align="center" width="202">Interface/Class</td>
+                </tr>
+                <tr>
+                    <td width="332"></td>
+                    <td width="202"></td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">string</td>
+                    <td width="202" align="center">java.lang.String</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">boolean</td>
+                    <td width="202" align="center">java.lang.Boolean</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">decimal</td>
+                    <td width="202" align="center">XSDecimal</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">float</td>
+                    <td width="202" align="center">XSFloat</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">double</td>
+                    <td width="202" align="center">XSDouble</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">duration</td>
+                    <td width="202" align="center">XSDateTime</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">dateTime</td>
+                    <td width="202" align="center">XSDateTime</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">date</td>
+                    <td width="202" align="center">XSDateTime</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">time</td>
+                    <td width="202" align="center">XSDateTime</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">gYear</td>
+                    <td width="202" align="center">XSDateTime</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">gMonth</td>
+                    <td width="202" align="center">XSDateTime</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">gDay</td>
+                    <td width="202" align="center">XSDateTime</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">gYearMonth</td>
+                    <td width="202" align="center">XSDateTime</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">gMonthDay</td>
+                    <td width="202" align="center">XSDateTime</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">hexBinary</td>
+                    <td width="202" align="center">ByteList</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">base64Binary</td>
+                    <td width="202" align="center">ByteList</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">anyURI</td>
+                    <td width="202" align="center">java.lang.String</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">QName</td>
+                    <td width="202" align="center">XSQName</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">NOTATION</td>
+                    <td width="202" align="center">XSQName</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">normalizedString</td>
+                    <td width="202" align="center">java.lang.String</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">token</td>
+                    <td width="202" align="center">java.lang.String</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">language</td>
+                    <td width="202" align="center">java.lang.String</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">NMTOKEN</td>
+                    <td width="202" align="center">java.lang.String</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">NMTOKENS</td>
+                    <td width="202" align="center">ObjectList</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">Name</td>
+                    <td width="202" align="center">java.lang.String</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">NCName</td>
+                    <td width="202" align="center">java.lang.String</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">ID</td>
+                    <td width="202" align="center">java.lang.String</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">IDREF</td>
+                    <td width="202" align="center">java.lang.String</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">IDREFS</td>
+                    <td width="202" align="center">ObjectList</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">ENTITY</td>
+                    <td width="202" align="center">java.lang.String</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">ENTITIES</td>
+                    <td width="202" align="center">ObjectList</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">list</td>
+                    <td width="202" align="center">ObjectList</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">integer</td>
+                    <td width="202" align="center">XSDecimal</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">positiveInteger</td>
+                    <td width="202" align="center">XSDecimal</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">negativeInteger</td>
+                    <td width="202" align="center">XSDecimal</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">nonPositiveInteger</td>
+                    <td width="202" align="center">XSDecimal</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">nonNegativeInteger</td>
+                    <td width="202" align="center">XSDecimal</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">unsignedShort</td>
+                    <td width="202" align="center">XSDecimal</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">unsignedLong</td>
+                    <td width="202" align="center">XSDecimal</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">unsignedByte</td>
+                    <td width="202" align="center">XSDecimal</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">unsignedInt</td>
+                    <td width="202" align="center">XSDecimal</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">long</td>
+                    <td width="202" align="center">XSDecimal</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">int</td>
+                    <td width="202" align="center">XSDecimal</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">short</td>
+                    <td width="202" align="center">XSDecimal</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">byte</td>
+                    <td width="202" align="center">XSDecimal</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>
+            <br>
+            As shown above, the XSDateTime interface provides mapping to a number of decimal/integer data types. The application needs to ensure that appropriate methods for each of these types is invoked. The mapping of these types to defined methods is shown in the table below. Accessing methods that are undefined for a type will give unexpected results.
+        </p>
+        <p>
+            <br>
+        </p>
+        <table border="1">
+            <tbody>
+                <tr>
+                    <td width="308" align="center">XML Schema Data Type</td>
+                    <td width="228" align="center">Applicable method in XSDateTime*</td>
+                </tr>
+                <tr>
+                    <td width="308"></td>
+                    <td width="228"></td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">integer</td>
+                    <td width="202" align="center">getBigInteger()</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">positiveInteger</td>
+                    <td width="202" align="center">getBigInteger()</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">negativeInteger</td>
+                    <td width="202" align="center">getBigInteger()</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">nonPositiveInteger</td>
+                    <td width="202" align="center">getBigInteger()</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">nonNegativeInteger</td>
+                    <td width="202" align="center">getBigInteger()</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">unsignedShort</td>
+                    <td width="202" align="center">getInt()</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">unsignedLong</td>
+                    <td width="202" align="center">getBigInteger()</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">unsignedByte</td>
+                    <td width="202" align="center">getShort()</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">unsignedInt</td>
+                    <td width="202" align="center">getLong()</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">long</td>
+                    <td width="202" align="center">getLong()</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">int</td>
+                    <td width="202" align="center">getInt()</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">short</td>
+                    <td width="202" align="center">getShort()</td>
+                </tr>
+                <tr>
+                    <td width="332" align="center">byte</td>
+                    <td width="202" align="center">getByte()</td>
+                </tr>
+                <tr>
+                    <td width="308"></td>
+                    <td width="228"></td>
+                </tr>
+            </tbody>
+        </table>
+        <p>
+            <br>
+            *
+            <span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-ansi-language:EN-US;mso-fareast-language:
+EN-GB;mso-bidi-language:AR-SA">This shows the base method that can be called. That is, users can call this method and all methods returning bigger types than the base method according to the order: byte &lt; short &lt; int &lt; long &lt; BigInteger &lt; BigDecimal. For example, in the case of unsignedShort, users can call getInt(), getLong(), getBigInteger() and getBigDecimal() but NOT getShort() or getByte().</span>
+        </p>
+    </body>
+</html>
