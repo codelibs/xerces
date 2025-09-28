@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.xs;
+package org.codelibs.xerces.xs;
 
 /**
  * The XML Schema API operations only raise exceptions in "exceptional"

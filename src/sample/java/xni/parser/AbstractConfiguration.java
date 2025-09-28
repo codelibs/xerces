@@ -26,16 +26,16 @@ import java.util.Hashtable;
 import java.util.Locale;
 import java.util.Vector;
 
-import org.apache.xerces.xni.XMLDTDContentModelHandler;
-import org.apache.xerces.xni.XMLDTDHandler;
-import org.apache.xerces.xni.XMLDocumentHandler;
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xni.parser.XMLComponent;
-import org.apache.xerces.xni.parser.XMLConfigurationException;
-import org.apache.xerces.xni.parser.XMLEntityResolver;
-import org.apache.xerces.xni.parser.XMLErrorHandler;
-import org.apache.xerces.xni.parser.XMLInputSource;
-import org.apache.xerces.xni.parser.XMLParserConfiguration;
+import org.codelibs.xerces.xni.XMLDTDContentModelHandler;
+import org.codelibs.xerces.xni.XMLDTDHandler;
+import org.codelibs.xerces.xni.XMLDocumentHandler;
+import org.codelibs.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.parser.XMLComponent;
+import org.codelibs.xerces.xni.parser.XMLConfigurationException;
+import org.codelibs.xerces.xni.parser.XMLEntityResolver;
+import org.codelibs.xerces.xni.parser.XMLErrorHandler;
+import org.codelibs.xerces.xni.parser.XMLInputSource;
+import org.codelibs.xerces.xni.parser.XMLParserConfiguration;
 
 /**
  * This abstract parser configuration simply helps manage components, 

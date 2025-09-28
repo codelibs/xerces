@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.util;
+package org.codelibs.xerces.util;
 
 /**
  * Synchronized symbol table.

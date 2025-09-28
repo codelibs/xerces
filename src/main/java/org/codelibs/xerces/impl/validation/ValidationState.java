@@ -15,16 +15,16 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.validation;
+package org.codelibs.xerces.impl.validation;
 
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Locale;
 
-import org.apache.xerces.impl.dv.ValidationContext;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.xni.NamespaceContext;
+import org.codelibs.xerces.impl.dv.ValidationContext;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.xni.NamespaceContext;
 
 /**
  * Implementation of the ValidationContext interface. Used to establish an

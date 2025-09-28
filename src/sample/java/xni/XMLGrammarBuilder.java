@@ -19,15 +19,15 @@ package xni;
 
 import java.util.Vector;
 
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.parsers.XIncludeAwareParserConfiguration;
-import org.apache.xerces.parsers.XMLGrammarPreparser;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.util.XMLGrammarPoolImpl;
-import org.apache.xerces.xni.grammars.Grammar;
-import org.apache.xerces.xni.grammars.XMLGrammarDescription;
-import org.apache.xerces.xni.parser.XMLInputSource;
-import org.apache.xerces.xni.parser.XMLParserConfiguration;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.parsers.XIncludeAwareParserConfiguration;
+import org.codelibs.xerces.parsers.XMLGrammarPreparser;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.util.XMLGrammarPoolImpl;
+import org.codelibs.xerces.xni.grammars.Grammar;
+import org.codelibs.xerces.xni.grammars.XMLGrammarDescription;
+import org.codelibs.xerces.xni.parser.XMLInputSource;
+import org.codelibs.xerces.xni.parser.XMLParserConfiguration;
 
 /**
  * This sample program illustrates how to use Xerces2's grammar

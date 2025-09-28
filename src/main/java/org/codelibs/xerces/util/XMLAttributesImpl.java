@@ -15,11 +15,11 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.util;
+package org.codelibs.xerces.util;
 
-import org.apache.xerces.xni.Augmentations;
-import org.apache.xerces.xni.QName;
-import org.apache.xerces.xni.XMLAttributes;
+import org.codelibs.xerces.xni.Augmentations;
+import org.codelibs.xerces.xni.QName;
+import org.codelibs.xerces.xni.XMLAttributes;
 
 /**
  * The XMLAttributesImpl class is an implementation of the XMLAttributes
@@ -32,7 +32,7 @@ import org.apache.xerces.xni.XMLAttributes;
  * pipeline can modify the values or change the attributes that are
  * propogated to the next stage.
  *
- * @see org.apache.xerces.xni.XMLDocumentHandler#startElement
+ * @see org.codelibs.xerces.xni.XMLDocumentHandler#startElement
  *
  * @author Andy Clark, IBM
  * @author Elena Litani, IBM

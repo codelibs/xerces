@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.dom;
+package org.codelibs.xerces.dom;
 
-import org.apache.xerces.util.URI;
+import org.codelibs.xerces.util.URI;
 import org.w3c.dom.Attr;
 import org.w3c.dom.DOMException;
 import org.w3c.dom.Element;
@@ -201,14 +201,14 @@ public class ElementImpl extends ParentNode implements Element, ElementTraversal
                                 URI _parentBaseURI = new URI(parentBaseURI);
                                 _uri.absolutize(_parentBaseURI);
                                 return _uri.toString();
-                            } catch (org.apache.xerces.util.URI.MalformedURIException ex) {
+                            } catch (org.codelibs.xerces.util.URI.MalformedURIException ex) {
                                 // This should never happen: parent should have checked the URI and returned null if invalid.
                                 return null;
                             }
                         }
                         // REVISIT: what should happen in this case?
                         return null;
-                    } catch (org.apache.xerces.util.URI.MalformedURIException ex) {
+                    } catch (org.codelibs.xerces.util.URI.MalformedURIException ex) {
                         return null;
                     }
                 }

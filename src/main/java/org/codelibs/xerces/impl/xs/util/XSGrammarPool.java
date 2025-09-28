@@ -15,16 +15,16 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs.util;
+package org.codelibs.xerces.impl.xs.util;
 
 import java.util.ArrayList;
 
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.impl.xs.SchemaGrammar;
-import org.apache.xerces.impl.xs.XSModelImpl;
-import org.apache.xerces.util.XMLGrammarPoolImpl;
-import org.apache.xerces.xni.grammars.XMLGrammarDescription;
-import org.apache.xerces.xs.XSModel;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.impl.xs.SchemaGrammar;
+import org.codelibs.xerces.impl.xs.XSModelImpl;
+import org.codelibs.xerces.util.XMLGrammarPoolImpl;
+import org.codelibs.xerces.xni.grammars.XMLGrammarDescription;
+import org.codelibs.xerces.xs.XSModel;
 
 /**
  * Add a method that return an <code>XSModel</code> that represents components in

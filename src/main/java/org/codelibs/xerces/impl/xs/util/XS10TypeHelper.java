@@ -15,12 +15,12 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs.util;
+package org.codelibs.xerces.impl.xs.util;
 
-import org.apache.xerces.impl.dv.xs.XSSimpleTypeDecl;
-import org.apache.xerces.impl.xs.XSComplexTypeDecl;
-import org.apache.xerces.xs.XSSimpleTypeDefinition;
-import org.apache.xerces.xs.XSTypeDefinition;
+import org.codelibs.xerces.impl.dv.xs.XSSimpleTypeDecl;
+import org.codelibs.xerces.impl.xs.XSComplexTypeDecl;
+import org.codelibs.xerces.xs.XSSimpleTypeDefinition;
+import org.codelibs.xerces.xs.XSTypeDefinition;
 
 /**
  * Class defining utility/helper methods to support XML Schema 1.0 implementation.

@@ -15,12 +15,12 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.xinclude;
+package org.codelibs.xerces.xinclude;
 
 import java.io.IOException;
 
-import org.apache.xerces.util.XML11Char;
-import org.apache.xerces.xni.parser.XMLInputSource;
+import org.codelibs.xerces.util.XML11Char;
+import org.codelibs.xerces.xni.parser.XMLInputSource;
 
 /**
  * This class is used for reading resources requested in &lt;include&gt; elements in

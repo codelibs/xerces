@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.dv.xs;
+package org.codelibs.xerces.impl.dv.xs;
 
-import org.apache.xerces.impl.dv.InvalidDatatypeValueException;
-import org.apache.xerces.impl.dv.ValidationContext;
+import org.codelibs.xerces.impl.dv.InvalidDatatypeValueException;
+import org.codelibs.xerces.impl.dv.ValidationContext;
 
 /**
  * Validator for <precisionDecimal> datatype (W3C Schema 1.1)
@@ -315,7 +315,7 @@ class PrecisionDecimalDV extends TypeValidator {
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.impl.dv.xs.TypeValidator#getAllowedFacets()
+     * @see org.codelibs.xerces.impl.dv.xs.TypeValidator#getAllowedFacets()
      */
     public short getAllowedFacets() {
         return (XSSimpleTypeDecl.FACET_PATTERN | XSSimpleTypeDecl.FACET_WHITESPACE | XSSimpleTypeDecl.FACET_ENUMERATION
@@ -324,7 +324,7 @@ class PrecisionDecimalDV extends TypeValidator {
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.impl.dv.xs.TypeValidator#getActualValue(java.lang.String, org.apache.xerces.impl.dv.ValidationContext)
+     * @see org.codelibs.xerces.impl.dv.xs.TypeValidator#getActualValue(java.lang.String, org.codelibs.xerces.impl.dv.ValidationContext)
      */
     public Object getActualValue(String content, ValidationContext context) throws InvalidDatatypeValueException {
         try {

@@ -15,11 +15,11 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.dtd;
+package org.codelibs.xerces.impl.dtd;
 
 import java.util.Hashtable;
 
-import org.apache.xerces.xni.grammars.XMLGrammarDescription;
+import org.codelibs.xerces.xni.grammars.XMLGrammarDescription;
 
 /**
  * This very simple class is the skeleton of what the DTDValidator could use

@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.xs;
+package org.codelibs.xerces.xs;
 
-import org.apache.xerces.xs.datatypes.ObjectList;
+import org.codelibs.xerces.xs.datatypes.ObjectList;
 
 /**
  * Describes a multi-value constraining facets: pattern and enumeration.

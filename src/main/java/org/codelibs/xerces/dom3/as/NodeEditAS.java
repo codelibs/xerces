@@ -10,7 +10,7 @@
  * See W3C License http://www.w3.org/Consortium/Legal/ for more details.
  */
 
-package org.apache.xerces.dom3.as;
+package org.codelibs.xerces.dom3.as;
 
 import org.w3c.dom.Node;
 

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.dom;
+package org.codelibs.xerces.dom;
 
 import java.io.Serializable;
 import java.lang.ref.Reference;
@@ -28,10 +28,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
 
-import org.apache.xerces.dom.events.EventImpl;
-import org.apache.xerces.dom.events.MouseEventImpl;
-import org.apache.xerces.dom.events.MutationEventImpl;
-import org.apache.xerces.dom.events.UIEventImpl;
+import org.codelibs.xerces.dom.events.EventImpl;
+import org.codelibs.xerces.dom.events.MouseEventImpl;
+import org.codelibs.xerces.dom.events.MutationEventImpl;
+import org.codelibs.xerces.dom.events.UIEventImpl;
 import org.w3c.dom.Attr;
 import org.w3c.dom.DOMException;
 import org.w3c.dom.DOMImplementation;

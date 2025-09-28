@@ -15,25 +15,25 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.parsers;
+package org.codelibs.xerces.parsers;
 
 import java.io.IOException;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Locale;
 
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.impl.XMLEntityManager;
-import org.apache.xerces.impl.XMLErrorReporter;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xni.grammars.Grammar;
-import org.apache.xerces.xni.grammars.XMLGrammarDescription;
-import org.apache.xerces.xni.grammars.XMLGrammarLoader;
-import org.apache.xerces.xni.grammars.XMLGrammarPool;
-import org.apache.xerces.xni.parser.XMLEntityResolver;
-import org.apache.xerces.xni.parser.XMLErrorHandler;
-import org.apache.xerces.xni.parser.XMLInputSource;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.impl.XMLEntityManager;
+import org.codelibs.xerces.impl.XMLErrorReporter;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.grammars.Grammar;
+import org.codelibs.xerces.xni.grammars.XMLGrammarDescription;
+import org.codelibs.xerces.xni.grammars.XMLGrammarLoader;
+import org.codelibs.xerces.xni.grammars.XMLGrammarPool;
+import org.codelibs.xerces.xni.parser.XMLEntityResolver;
+import org.codelibs.xerces.xni.parser.XMLErrorHandler;
+import org.codelibs.xerces.xni.parser.XMLInputSource;
 
 /**
  * <p> This class provides an easy way for a user to preparse grammars
@@ -75,8 +75,8 @@ public class XMLGrammarPreparser {
     private static final Hashtable KNOWN_LOADERS = new Hashtable();
 
     static {
-        KNOWN_LOADERS.put(XMLGrammarDescription.XML_SCHEMA, "org.apache.xerces.impl.xs.XMLSchemaLoader");
-        KNOWN_LOADERS.put(XMLGrammarDescription.XML_DTD, "org.apache.xerces.impl.dtd.XMLDTDLoader");
+        KNOWN_LOADERS.put(XMLGrammarDescription.XML_SCHEMA, "org.codelibs.xerces.impl.xs.XMLSchemaLoader");
+        KNOWN_LOADERS.put(XMLGrammarDescription.XML_DTD, "org.codelibs.xerces.impl.dtd.XMLDTDLoader");
     }
 
     /** Recognized properties. */

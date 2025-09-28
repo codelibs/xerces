@@ -15,18 +15,18 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.xpointer;
+package org.codelibs.xerces.xpointer;
 
 import java.util.HashMap;
 
-import org.apache.xerces.impl.XMLErrorReporter;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.util.XMLChar;
-import org.apache.xerces.xni.Augmentations;
-import org.apache.xerces.xni.QName;
-import org.apache.xerces.xni.XMLAttributes;
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xni.parser.XMLErrorHandler;
+import org.codelibs.xerces.impl.XMLErrorReporter;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.util.XMLChar;
+import org.codelibs.xerces.xni.Augmentations;
+import org.codelibs.xerces.xni.QName;
+import org.codelibs.xerces.xni.XMLAttributes;
+import org.codelibs.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.parser.XMLErrorHandler;
 
 /**
  * <p>
@@ -117,7 +117,7 @@ final class ElementSchemePointer implements XPointerPart {
      * Parses the XPointer expression and tokenizes it into Strings
      * delimited by whitespace.
      *
-     * @see org.apache.xerces.xpointer.XPointerProcessor#parseXPointer(java.lang.String)
+     * @see org.codelibs.xerces.xpointer.XPointerProcessor#parseXPointer(java.lang.String)
      */
     public void parseXPointer(String xpointer) throws XNIException {
 
@@ -191,7 +191,7 @@ final class ElementSchemePointer implements XPointerPart {
 
     /**
      * Returns the scheme name i.e element
-     * @see org.apache.xerces.xpointer.XPointerPart#getSchemeName()
+     * @see org.codelibs.xerces.xpointer.XPointerPart#getSchemeName()
      */
     public String getSchemeName() {
         return fSchemeName;
@@ -200,7 +200,7 @@ final class ElementSchemePointer implements XPointerPart {
     /**
      * Returns the scheme data
      *
-     * @see org.apache.xerces.xpointer.XPointerPart#getSchemeData()
+     * @see org.codelibs.xerces.xpointer.XPointerPart#getSchemeData()
      */
     public String getSchemeData() {
         return fSchemeData;
@@ -209,7 +209,7 @@ final class ElementSchemePointer implements XPointerPart {
     /**
      * Sets the scheme name
      *
-     * @see org.apache.xerces.xpointer.XPointerPart#setSchemeName(java.lang.String)
+     * @see org.codelibs.xerces.xpointer.XPointerPart#setSchemeName(java.lang.String)
      */
     public void setSchemeName(String schemeName) {
         fSchemeName = schemeName;
@@ -219,7 +219,7 @@ final class ElementSchemePointer implements XPointerPart {
     /**
      * Sets the scheme data
      *
-     * @see org.apache.xerces.xpointer.XPointerPart#setSchemeData(java.lang.String)
+     * @see org.codelibs.xerces.xpointer.XPointerPart#setSchemeData(java.lang.String)
      */
     public void setSchemeData(String schemeData) {
         fSchemeData = schemeData;
@@ -230,7 +230,7 @@ final class ElementSchemePointer implements XPointerPart {
      * Pointer is present and it is successfully resolved and if a child
      * sequence is present, the child sequence is resolved relative to it.
      *
-     * @see org.apache.xerces.xpointer.XPointerProcessor#resolveXPointer(org.apache.xerces.xni.QName, org.apache.xerces.xni.XMLAttributes, org.apache.xerces.xni.Augmentations, int event)
+     * @see org.codelibs.xerces.xpointer.XPointerProcessor#resolveXPointer(org.codelibs.xerces.xni.QName, org.codelibs.xerces.xni.XMLAttributes, org.codelibs.xerces.xni.Augmentations, int event)
      */
     public boolean resolveXPointer(QName element, XMLAttributes attributes, Augmentations augs, int event) throws XNIException {
 
@@ -399,7 +399,7 @@ final class ElementSchemePointer implements XPointerPart {
      * Returns true if the node matches or is a child of a matching element()
      * scheme XPointer.
      *
-     * @see org.apache.xerces.xpointer.XPointerProcessor#isFragmentResolved()
+     * @see org.codelibs.xerces.xpointer.XPointerProcessor#isFragmentResolved()
      */
     public boolean isFragmentResolved() throws XNIException {
         // Return true if the Fragment was resolved and the current Node depth
@@ -411,7 +411,7 @@ final class ElementSchemePointer implements XPointerPart {
      * Returns true if the XPointer expression resolves to a non-element child
      * of the current resource fragment.
      *
-     * @see org.apache.xerces.xpointer.XPointerPart#isChildFragmentResolved()
+     * @see org.codelibs.xerces.xpointer.XPointerPart#isChildFragmentResolved()
      *
      */
     public boolean isChildFragmentResolved() {

@@ -36,13 +36,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.AfterEach;
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.apache.xerces.dom.PSVIElementNSImpl;
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.impl.xs.SchemaGrammar;
-import org.apache.xerces.xs.ElementPSVI;
-import org.apache.xerces.xs.ItemPSVI;
-import org.apache.xerces.xs.XSElementDeclaration;
-import org.apache.xerces.xs.XSTypeDefinition;
+import org.codelibs.xerces.dom.PSVIElementNSImpl;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.impl.xs.SchemaGrammar;
+import org.codelibs.xerces.xs.ElementPSVI;
+import org.codelibs.xerces.xs.ItemPSVI;
+import org.codelibs.xerces.xs.XSElementDeclaration;
+import org.codelibs.xerces.xs.XSTypeDefinition;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
@@ -86,7 +86,7 @@ public abstract class BaseTest {
     protected void setUp() throws Exception {
 
         DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-        docFactory.setAttribute(DOCUMENT_CLASS_NAME, "org.apache.xerces.dom.PSVIDocumentImpl");
+        docFactory.setAttribute(DOCUMENT_CLASS_NAME, "org.codelibs.xerces.dom.PSVIDocumentImpl");
         docFactory.setNamespaceAware(true);
         DocumentBuilder builder = docFactory.newDocumentBuilder();
         // build the location URL of the document

@@ -15,13 +15,13 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.util;
+package org.codelibs.xerces.util;
 
 import java.io.PrintWriter;
 
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xni.parser.XMLErrorHandler;
-import org.apache.xerces.xni.parser.XMLParseException;
+import org.codelibs.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.parser.XMLErrorHandler;
+import org.codelibs.xerces.xni.parser.XMLParseException;
 
 /**
  * Default error handler.

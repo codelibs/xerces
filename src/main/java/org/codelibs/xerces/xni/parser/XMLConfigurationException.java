@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.xni.parser;
+package org.codelibs.xerces.xni.parser;
 
-import org.apache.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.XNIException;
 
 /**
  * An XNI parser configuration exception. This exception class extends

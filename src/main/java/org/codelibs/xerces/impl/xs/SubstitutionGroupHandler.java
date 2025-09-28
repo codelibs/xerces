@@ -15,16 +15,16 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs;
+package org.codelibs.xerces.impl.xs;
 
 import java.util.Hashtable;
 import java.util.Vector;
 
-import org.apache.xerces.xni.QName;
-import org.apache.xerces.xs.XSConstants;
-import org.apache.xerces.xs.XSObjectList;
-import org.apache.xerces.xs.XSSimpleTypeDefinition;
-import org.apache.xerces.xs.XSTypeDefinition;
+import org.codelibs.xerces.xni.QName;
+import org.codelibs.xerces.xs.XSConstants;
+import org.codelibs.xerces.xs.XSObjectList;
+import org.codelibs.xerces.xs.XSSimpleTypeDefinition;
+import org.codelibs.xerces.xs.XSTypeDefinition;
 
 /**
  * To store and validate information about substitutionGroup

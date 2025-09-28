@@ -24,22 +24,22 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import javax.xml.validation.SchemaFactory;
 
-import org.apache.xerces.xs.ElementPSVI;
-import org.apache.xerces.xs.PSVIProvider;
-import org.apache.xerces.xs.XSConstants;
-import org.apache.xerces.xs.datatypes.ByteList;
-import org.apache.xerces.xs.datatypes.ObjectList;
-import org.apache.xerces.xs.datatypes.XSDateTime;
-import org.apache.xerces.xs.datatypes.XSDecimal;
-import org.apache.xerces.xs.datatypes.XSDouble;
-import org.apache.xerces.xs.datatypes.XSFloat;
-import org.apache.xerces.xs.datatypes.XSQName;
+import org.codelibs.xerces.xs.ElementPSVI;
+import org.codelibs.xerces.xs.PSVIProvider;
+import org.codelibs.xerces.xs.XSConstants;
+import org.codelibs.xerces.xs.datatypes.ByteList;
+import org.codelibs.xerces.xs.datatypes.ObjectList;
+import org.codelibs.xerces.xs.datatypes.XSDateTime;
+import org.codelibs.xerces.xs.datatypes.XSDecimal;
+import org.codelibs.xerces.xs.datatypes.XSDouble;
+import org.codelibs.xerces.xs.datatypes.XSFloat;
+import org.codelibs.xerces.xs.datatypes.XSQName;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * <p>Demonstrates how to use the datatype interfaces in 
- * <code>org.apache.xerces.xs.datatypes</code>.</p>
+ * <code>org.codelibs.xerces.xs.datatypes</code>.</p>
  * 
  * @author Ankit Pasricha, IBM
  * 

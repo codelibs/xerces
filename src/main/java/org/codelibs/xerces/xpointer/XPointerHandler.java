@@ -15,26 +15,26 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.xpointer;
+package org.codelibs.xerces.xpointer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.impl.XMLErrorReporter;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.util.XMLChar;
-import org.apache.xerces.util.XMLSymbols;
-import org.apache.xerces.xinclude.XIncludeHandler;
-import org.apache.xerces.xinclude.XIncludeNamespaceSupport;
-import org.apache.xerces.xni.Augmentations;
-import org.apache.xerces.xni.QName;
-import org.apache.xerces.xni.XMLAttributes;
-import org.apache.xerces.xni.XMLDocumentHandler;
-import org.apache.xerces.xni.XMLString;
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xni.parser.XMLConfigurationException;
-import org.apache.xerces.xni.parser.XMLErrorHandler;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.impl.XMLErrorReporter;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.util.XMLChar;
+import org.codelibs.xerces.util.XMLSymbols;
+import org.codelibs.xerces.xinclude.XIncludeHandler;
+import org.codelibs.xerces.xinclude.XIncludeNamespaceSupport;
+import org.codelibs.xerces.xni.Augmentations;
+import org.codelibs.xerces.xni.QName;
+import org.codelibs.xerces.xni.XMLAttributes;
+import org.codelibs.xerces.xni.XMLDocumentHandler;
+import org.codelibs.xerces.xni.XMLString;
+import org.codelibs.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.parser.XMLConfigurationException;
+import org.codelibs.xerces.xni.parser.XMLErrorHandler;
 
 /**
  * <p>
@@ -126,7 +126,7 @@ public final class XPointerHandler extends XIncludeHandler implements XPointerPr
     /**
      * Parses the XPointer framework expression and delegates scheme specific parsing.
      *
-     * @see org.apache.xerces.xpointer.XPointerProcessor#parseXPointer(java.lang.String)
+     * @see org.codelibs.xerces.xpointer.XPointerProcessor#parseXPointer(java.lang.String)
      */
     public void parseXPointer(String xpointer) throws XNIException {
 
@@ -267,7 +267,7 @@ public final class XPointerHandler extends XIncludeHandler implements XPointerPr
 
     /**
      *
-     * @see org.apache.xerces.xpointer.XPointerProcessor#resolveXPointer(org.apache.xerces.xni.QName, org.apache.xerces.xni.XMLAttributes, org.apache.xerces.xni.Augmentations, int event)
+     * @see org.codelibs.xerces.xpointer.XPointerProcessor#resolveXPointer(org.codelibs.xerces.xni.QName, org.codelibs.xerces.xni.XMLAttributes, org.codelibs.xerces.xni.Augmentations, int event)
      */
     public boolean resolveXPointer(QName element, XMLAttributes attributes, Augmentations augs, int event) throws XNIException {
         boolean resolved = false;
@@ -308,7 +308,7 @@ public final class XPointerHandler extends XIncludeHandler implements XPointerPr
     /**
      * Returns true if the Node fragment is resolved.
      *
-     * @see org.apache.xerces.xpointer.XPointerProcessor#isFragmentResolved()
+     * @see org.codelibs.xerces.xpointer.XPointerProcessor#isFragmentResolved()
      */
     public boolean isFragmentResolved() throws XNIException {
         boolean resolved = (fXPointerPart != null) ? fXPointerPart.isFragmentResolved() : false;
@@ -324,7 +324,7 @@ public final class XPointerHandler extends XIncludeHandler implements XPointerPr
      * Returns true if the XPointer expression resolves to a non-element child
      * of the current resource fragment.
      *
-     * @see org.apache.xerces.xpointer.XPointerPart#isChildFragmentResolved()
+     * @see org.codelibs.xerces.xpointer.XPointerPart#isChildFragmentResolved()
      *
      */
     public boolean isChildFragmentResolved() throws XNIException {
@@ -335,7 +335,7 @@ public final class XPointerHandler extends XIncludeHandler implements XPointerPr
     /**
      * Returns true if the XPointer successfully found a sub-resource .
      *
-     * @see org.apache.xerces.xpointer.XPointerProcessor#isFragmentResolved()
+     * @see org.codelibs.xerces.xpointer.XPointerProcessor#isFragmentResolved()
      */
     public boolean isXPointerResolved() throws XNIException {
         return fIsXPointerResolved;

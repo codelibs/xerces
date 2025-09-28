@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs;
+package org.codelibs.xerces.impl.xs;
 
 import java.util.Enumeration;
 import java.util.Hashtable;

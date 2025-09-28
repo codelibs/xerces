@@ -15,16 +15,16 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.xni.grammars;
+package org.codelibs.xerces.xni.grammars;
 
 import java.io.IOException;
 import java.util.Locale;
 
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xni.parser.XMLConfigurationException;
-import org.apache.xerces.xni.parser.XMLEntityResolver;
-import org.apache.xerces.xni.parser.XMLErrorHandler;
-import org.apache.xerces.xni.parser.XMLInputSource;
+import org.codelibs.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.parser.XMLConfigurationException;
+import org.codelibs.xerces.xni.parser.XMLEntityResolver;
+import org.codelibs.xerces.xni.parser.XMLErrorHandler;
+import org.codelibs.xerces.xni.parser.XMLInputSource;
 
 /**
  * The intention of this interface is to provide a generic means

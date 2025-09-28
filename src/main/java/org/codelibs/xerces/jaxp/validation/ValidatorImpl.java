@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.jaxp.validation;
+package org.codelibs.xerces.jaxp.validation;
 
 import java.io.IOException;
 
@@ -31,12 +31,12 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Validator;
 
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.util.SAXMessageFormatter;
-import org.apache.xerces.xni.parser.XMLConfigurationException;
-import org.apache.xerces.xs.AttributePSVI;
-import org.apache.xerces.xs.ElementPSVI;
-import org.apache.xerces.xs.PSVIProvider;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.util.SAXMessageFormatter;
+import org.codelibs.xerces.xni.parser.XMLConfigurationException;
+import org.codelibs.xerces.xs.AttributePSVI;
+import org.codelibs.xerces.xs.ElementPSVI;
+import org.codelibs.xerces.xs.PSVIProvider;
 import org.w3c.dom.ls.LSResourceResolver;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;

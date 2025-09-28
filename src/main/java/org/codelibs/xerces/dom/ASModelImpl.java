@@ -15,21 +15,21 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.dom;
+package org.codelibs.xerces.dom;
 
 import java.util.Vector;
 
-import org.apache.xerces.dom3.as.ASAttributeDeclaration;
-import org.apache.xerces.dom3.as.ASContentModel;
-import org.apache.xerces.dom3.as.ASElementDeclaration;
-import org.apache.xerces.dom3.as.ASEntityDeclaration;
-import org.apache.xerces.dom3.as.ASModel;
-import org.apache.xerces.dom3.as.ASNamedObjectMap;
-import org.apache.xerces.dom3.as.ASNotationDeclaration;
-import org.apache.xerces.dom3.as.ASObject;
-import org.apache.xerces.dom3.as.ASObjectList;
-import org.apache.xerces.dom3.as.DOMASException;
-import org.apache.xerces.impl.xs.SchemaGrammar;
+import org.codelibs.xerces.dom3.as.ASAttributeDeclaration;
+import org.codelibs.xerces.dom3.as.ASContentModel;
+import org.codelibs.xerces.dom3.as.ASElementDeclaration;
+import org.codelibs.xerces.dom3.as.ASEntityDeclaration;
+import org.codelibs.xerces.dom3.as.ASModel;
+import org.codelibs.xerces.dom3.as.ASNamedObjectMap;
+import org.codelibs.xerces.dom3.as.ASNotationDeclaration;
+import org.codelibs.xerces.dom3.as.ASObject;
+import org.codelibs.xerces.dom3.as.ASObjectList;
+import org.codelibs.xerces.dom3.as.DOMASException;
+import org.codelibs.xerces.impl.xs.SchemaGrammar;
 import org.w3c.dom.DOMException;
 
 /**

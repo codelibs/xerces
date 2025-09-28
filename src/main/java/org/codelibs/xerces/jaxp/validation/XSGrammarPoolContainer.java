@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.jaxp.validation;
+package org.codelibs.xerces.jaxp.validation;
 
-import org.apache.xerces.xni.grammars.XMLGrammarPool;
+import org.codelibs.xerces.xni.grammars.XMLGrammarPool;
 
 /**
  * <p>A container for grammar pools which only contain schema grammars.</p>

@@ -15,13 +15,13 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.xinclude;
+package org.codelibs.xerces.xinclude;
 
 import java.util.Enumeration;
 
-import org.apache.xerces.util.NamespaceSupport;
-import org.apache.xerces.util.XMLSymbols;
-import org.apache.xerces.xni.NamespaceContext;
+import org.codelibs.xerces.util.NamespaceSupport;
+import org.codelibs.xerces.util.XMLSymbols;
+import org.codelibs.xerces.xni.NamespaceContext;
 
 /**
  * This implementation of NamespaceContext has the ability to maintain multiple
@@ -61,7 +61,7 @@ public class MultipleScopeNamespaceSupport extends NamespaceSupport {
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.xni.NamespaceContext#getAllPrefixes()
+     * @see org.codelibs.xerces.xni.NamespaceContext#getAllPrefixes()
      */
     public Enumeration getAllPrefixes() {
         int count = 0;
@@ -97,14 +97,14 @@ public class MultipleScopeNamespaceSupport extends NamespaceSupport {
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.xni.NamespaceContext#getPrefix(java.lang.String)
+     * @see org.codelibs.xerces.xni.NamespaceContext#getPrefix(java.lang.String)
      */
     public String getPrefix(String uri) {
         return getPrefix(uri, fNamespaceSize, fContext[fScope[fCurrentScope]]);
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.xni.NamespaceContext#getURI(java.lang.String)
+     * @see org.codelibs.xerces.xni.NamespaceContext#getURI(java.lang.String)
      */
     public String getURI(String prefix) {
         return getURI(prefix, fNamespaceSize, fContext[fScope[fCurrentScope]]);

@@ -15,11 +15,11 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.dom;
+package org.codelibs.xerces.dom;
 
 import java.util.ArrayList;
 
-import org.apache.xerces.impl.xs.XSImplementationImpl;
+import org.codelibs.xerces.impl.xs.XSImplementationImpl;
 import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.DOMImplementationList;
 

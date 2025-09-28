@@ -15,21 +15,21 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl;
+package org.codelibs.xerces.impl;
 
 import java.util.Hashtable;
 import java.util.Locale;
 
-import org.apache.xerces.util.DefaultErrorHandler;
-import org.apache.xerces.util.ErrorHandlerProxy;
-import org.apache.xerces.util.MessageFormatter;
-import org.apache.xerces.xni.XMLLocator;
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xni.parser.XMLComponent;
-import org.apache.xerces.xni.parser.XMLComponentManager;
-import org.apache.xerces.xni.parser.XMLConfigurationException;
-import org.apache.xerces.xni.parser.XMLErrorHandler;
-import org.apache.xerces.xni.parser.XMLParseException;
+import org.codelibs.xerces.util.DefaultErrorHandler;
+import org.codelibs.xerces.util.ErrorHandlerProxy;
+import org.codelibs.xerces.util.MessageFormatter;
+import org.codelibs.xerces.xni.XMLLocator;
+import org.codelibs.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.parser.XMLComponent;
+import org.codelibs.xerces.xni.parser.XMLComponentManager;
+import org.codelibs.xerces.xni.parser.XMLConfigurationException;
+import org.codelibs.xerces.xni.parser.XMLErrorHandler;
+import org.codelibs.xerces.xni.parser.XMLParseException;
 import org.xml.sax.ErrorHandler;
 
 /**

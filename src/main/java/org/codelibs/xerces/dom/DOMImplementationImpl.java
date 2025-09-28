@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.dom;
+package org.codelibs.xerces.dom;
 
 import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.DocumentType;
@@ -64,7 +64,7 @@ public class DOMImplementationImpl extends CoreDOMImplementationImpl implements 
      *
      * @param feature      The package name of the feature to test.
      * In Level 1, supported values are "HTML" and "XML" (case-insensitive).
-     * At this writing, org.apache.xerces.dom supports only XML.
+     * At this writing, org.codelibs.xerces.dom supports only XML.
      *
      * @param version      The version number of the feature being tested.
      * This is interpreted as "Version of the DOM API supported for the

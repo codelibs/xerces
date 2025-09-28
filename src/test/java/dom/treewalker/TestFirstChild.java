@@ -44,7 +44,7 @@ public class TestFirstChild {
 
     public static void main(String args[]) throws Exception {
 
-        System.out.println(" --- " + org.apache.xerces.impl.Version.getVersion() + " --- ");
+        System.out.println(" --- " + org.codelibs.xerces.impl.Version.getVersion() + " --- ");
         Document doc = getNodeSet1();
         NodeFilter nodefilter = null;
         boolean entityReferenceExpansion = true;

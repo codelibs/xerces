@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.xerces.util;
+package org.codelibs.xerces.util;
 
 import java.io.InputStream;
 import java.io.Reader;
@@ -22,8 +22,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import org.apache.xerces.xni.XMLResourceIdentifier;
-import org.apache.xerces.xni.parser.XMLInputSource;
+import org.codelibs.xerces.xni.XMLResourceIdentifier;
+import org.codelibs.xerces.xni.parser.XMLInputSource;
 
 /**
  * This class represents an input source for an XML resource

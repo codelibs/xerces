@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.io;
+package org.codelibs.xerces.impl.io;
 
 import java.io.IOException;
 import java.io.InputStream;

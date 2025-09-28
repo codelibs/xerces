@@ -15,11 +15,11 @@
  * limitations under the License.
  */
 
-package org.apache.wml.dom;
+package org.codelibs.xerces.wml.dom;
 
-import org.apache.wml.WMLDOMImplementation;
-import org.apache.xerces.dom.CoreDocumentImpl;
-import org.apache.xerces.dom.DOMImplementationImpl;
+import org.codelibs.xerces.wml.WMLDOMImplementation;
+import org.codelibs.xerces.dom.CoreDocumentImpl;
+import org.codelibs.xerces.dom.DOMImplementationImpl;
 import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.DocumentType;
 

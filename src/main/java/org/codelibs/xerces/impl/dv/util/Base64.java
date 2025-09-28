@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.dv.util;
+package org.codelibs.xerces.impl.dv.util;
 
 /**
  * This class provides encode/decode for RFC 2045 Base64 as

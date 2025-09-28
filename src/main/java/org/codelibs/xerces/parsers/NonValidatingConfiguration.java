@@ -15,31 +15,31 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.parsers;
+package org.codelibs.xerces.parsers;
 
 import java.io.IOException;
 import java.util.Locale;
 
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.impl.XMLDTDScannerImpl;
-import org.apache.xerces.impl.XMLDocumentScannerImpl;
-import org.apache.xerces.impl.XMLEntityManager;
-import org.apache.xerces.impl.XMLErrorReporter;
-import org.apache.xerces.impl.XMLNSDocumentScannerImpl;
-import org.apache.xerces.impl.dv.DTDDVFactory;
-import org.apache.xerces.impl.msg.XMLMessageFormatter;
-import org.apache.xerces.impl.validation.ValidationManager;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.xni.XMLLocator;
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xni.grammars.XMLGrammarPool;
-import org.apache.xerces.xni.parser.XMLComponent;
-import org.apache.xerces.xni.parser.XMLComponentManager;
-import org.apache.xerces.xni.parser.XMLConfigurationException;
-import org.apache.xerces.xni.parser.XMLDTDScanner;
-import org.apache.xerces.xni.parser.XMLDocumentScanner;
-import org.apache.xerces.xni.parser.XMLInputSource;
-import org.apache.xerces.xni.parser.XMLPullParserConfiguration;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.impl.XMLDTDScannerImpl;
+import org.codelibs.xerces.impl.XMLDocumentScannerImpl;
+import org.codelibs.xerces.impl.XMLEntityManager;
+import org.codelibs.xerces.impl.XMLErrorReporter;
+import org.codelibs.xerces.impl.XMLNSDocumentScannerImpl;
+import org.codelibs.xerces.impl.dv.DTDDVFactory;
+import org.codelibs.xerces.impl.msg.XMLMessageFormatter;
+import org.codelibs.xerces.impl.validation.ValidationManager;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.xni.XMLLocator;
+import org.codelibs.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.grammars.XMLGrammarPool;
+import org.codelibs.xerces.xni.parser.XMLComponent;
+import org.codelibs.xerces.xni.parser.XMLComponentManager;
+import org.codelibs.xerces.xni.parser.XMLConfigurationException;
+import org.codelibs.xerces.xni.parser.XMLDTDScanner;
+import org.codelibs.xerces.xni.parser.XMLDocumentScanner;
+import org.codelibs.xerces.xni.parser.XMLInputSource;
+import org.codelibs.xerces.xni.parser.XMLPullParserConfiguration;
 
 /**
  * This is the non validating parser configuration. It extends the basic

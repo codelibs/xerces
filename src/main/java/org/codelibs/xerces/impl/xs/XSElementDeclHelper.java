@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs;
+package org.codelibs.xerces.impl.xs;
 
-import org.apache.xerces.xni.QName;
+import org.codelibs.xerces.xni.QName;
 
 /**
  * @xerces.internal

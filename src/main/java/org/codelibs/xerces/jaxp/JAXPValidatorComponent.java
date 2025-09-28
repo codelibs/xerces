@@ -15,38 +15,38 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.jaxp;
+package org.codelibs.xerces.jaxp;
 
 import java.io.IOException;
 
 import javax.xml.validation.TypeInfoProvider;
 import javax.xml.validation.ValidatorHandler;
 
-import org.apache.xerces.dom.DOMInputImpl;
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.impl.XMLErrorReporter;
-import org.apache.xerces.impl.xs.opti.DefaultXMLDocumentHandler;
-import org.apache.xerces.util.AttributesProxy;
-import org.apache.xerces.util.AugmentationsImpl;
-import org.apache.xerces.util.ErrorHandlerProxy;
-import org.apache.xerces.util.ErrorHandlerWrapper;
-import org.apache.xerces.util.LocatorProxy;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.util.XMLResourceIdentifierImpl;
-import org.apache.xerces.xni.Augmentations;
-import org.apache.xerces.xni.NamespaceContext;
-import org.apache.xerces.xni.QName;
-import org.apache.xerces.xni.XMLAttributes;
-import org.apache.xerces.xni.XMLDocumentHandler;
-import org.apache.xerces.xni.XMLLocator;
-import org.apache.xerces.xni.XMLString;
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xni.parser.XMLComponent;
-import org.apache.xerces.xni.parser.XMLComponentManager;
-import org.apache.xerces.xni.parser.XMLConfigurationException;
-import org.apache.xerces.xni.parser.XMLEntityResolver;
-import org.apache.xerces.xni.parser.XMLErrorHandler;
-import org.apache.xerces.xni.parser.XMLInputSource;
+import org.codelibs.xerces.dom.DOMInputImpl;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.impl.XMLErrorReporter;
+import org.codelibs.xerces.impl.xs.opti.DefaultXMLDocumentHandler;
+import org.codelibs.xerces.util.AttributesProxy;
+import org.codelibs.xerces.util.AugmentationsImpl;
+import org.codelibs.xerces.util.ErrorHandlerProxy;
+import org.codelibs.xerces.util.ErrorHandlerWrapper;
+import org.codelibs.xerces.util.LocatorProxy;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.util.XMLResourceIdentifierImpl;
+import org.codelibs.xerces.xni.Augmentations;
+import org.codelibs.xerces.xni.NamespaceContext;
+import org.codelibs.xerces.xni.QName;
+import org.codelibs.xerces.xni.XMLAttributes;
+import org.codelibs.xerces.xni.XMLDocumentHandler;
+import org.codelibs.xerces.xni.XMLLocator;
+import org.codelibs.xerces.xni.XMLString;
+import org.codelibs.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.parser.XMLComponent;
+import org.codelibs.xerces.xni.parser.XMLComponentManager;
+import org.codelibs.xerces.xni.parser.XMLConfigurationException;
+import org.codelibs.xerces.xni.parser.XMLEntityResolver;
+import org.codelibs.xerces.xni.parser.XMLErrorHandler;
+import org.codelibs.xerces.xni.parser.XMLInputSource;
 import org.w3c.dom.TypeInfo;
 import org.w3c.dom.ls.LSInput;
 import org.w3c.dom.ls.LSResourceResolver;
@@ -335,7 +335,7 @@ final class JAXPValidatorComponent extends TeeXMLDocumentFilterImpl implements X
      *
      * <p>
      * Deriving from {@link DefaultXMLDocumentHandler}
-     * to reuse its default {@link org.apache.xerces.xni.XMLDocumentHandler}
+     * to reuse its default {@link org.codelibs.xerces.xni.XMLDocumentHandler}
      * implementation.
      *
      * @author Kohsuke Kawaguchi (kohsuke.kawaguchi@sun.com)

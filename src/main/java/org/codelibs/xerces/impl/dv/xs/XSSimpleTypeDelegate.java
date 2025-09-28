@@ -15,21 +15,21 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.dv.xs;
+package org.codelibs.xerces.impl.dv.xs;
 
-import org.apache.xerces.impl.dv.DatatypeException;
-import org.apache.xerces.impl.dv.InvalidDatatypeFacetException;
-import org.apache.xerces.impl.dv.InvalidDatatypeValueException;
-import org.apache.xerces.impl.dv.ValidatedInfo;
-import org.apache.xerces.impl.dv.ValidationContext;
-import org.apache.xerces.impl.dv.XSFacets;
-import org.apache.xerces.impl.dv.XSSimpleType;
-import org.apache.xerces.xs.StringList;
-import org.apache.xerces.xs.XSNamespaceItem;
-import org.apache.xerces.xs.XSObject;
-import org.apache.xerces.xs.XSObjectList;
-import org.apache.xerces.xs.XSSimpleTypeDefinition;
-import org.apache.xerces.xs.XSTypeDefinition;
+import org.codelibs.xerces.impl.dv.DatatypeException;
+import org.codelibs.xerces.impl.dv.InvalidDatatypeFacetException;
+import org.codelibs.xerces.impl.dv.InvalidDatatypeValueException;
+import org.codelibs.xerces.impl.dv.ValidatedInfo;
+import org.codelibs.xerces.impl.dv.ValidationContext;
+import org.codelibs.xerces.impl.dv.XSFacets;
+import org.codelibs.xerces.impl.dv.XSSimpleType;
+import org.codelibs.xerces.xs.StringList;
+import org.codelibs.xerces.xs.XSNamespaceItem;
+import org.codelibs.xerces.xs.XSObject;
+import org.codelibs.xerces.xs.XSObjectList;
+import org.codelibs.xerces.xs.XSSimpleTypeDefinition;
+import org.codelibs.xerces.xs.XSTypeDefinition;
 
 /**
  * Base class for XSSimpleType wrapper implementations.

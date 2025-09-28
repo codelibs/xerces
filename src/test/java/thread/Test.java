@@ -23,9 +23,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StringReader;
 
-import org.apache.xerces.dom.CoreDocumentImpl;
-import org.apache.xerces.parsers.DOMParser;
-import org.apache.xerces.parsers.SAXParser;
+import org.codelibs.xerces.dom.CoreDocumentImpl;
+import org.codelibs.xerces.parsers.DOMParser;
+import org.codelibs.xerces.parsers.SAXParser;
 import org.w3c.dom.DOMConfiguration;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
@@ -165,14 +165,14 @@ public class Test {
         ThreadParser() {
             if (gRunInfo.dom) {
                 // Set up to use a DOM parser
-                fDOMParser = new org.apache.xerces.parsers.DOMParser();
+                fDOMParser = new org.codelibs.xerces.parsers.DOMParser();
                 try {
                     fDOMParser.setFeature("http://xml.org/sax/features/validation", gRunInfo.validating);
                 } catch (Exception e) {}
                 fDOMParser.setErrorHandler(this);
             } else {
                 // Set up to use a SAX parser.
-                fSAXParser = new org.apache.xerces.parsers.SAXParser();
+                fSAXParser = new org.codelibs.xerces.parsers.SAXParser();
                 try {
                     fSAXParser.setFeature("http://xml.org/sax/features/validation", gRunInfo.validating);
                 } catch (Exception e) {}

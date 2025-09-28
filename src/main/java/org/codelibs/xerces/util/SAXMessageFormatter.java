@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.util;
+package org.codelibs.xerces.util;
 
 import java.util.Locale;
 import java.util.MissingResourceException;
@@ -50,7 +50,7 @@ public class SAXMessageFormatter {
         if (locale == null) {
             locale = Locale.getDefault();
         }
-        final ResourceBundle resourceBundle = ResourceBundle.getBundle("org.apache.xerces.impl.msg.SAXMessages", locale);
+        final ResourceBundle resourceBundle = ResourceBundle.getBundle("org.codelibs.xerces.impl.msg.SAXMessages", locale);
 
         // format message
         String msg;

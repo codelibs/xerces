@@ -15,12 +15,12 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.xpointer;
+package org.codelibs.xerces.xpointer;
 
-import org.apache.xerces.xni.Augmentations;
-import org.apache.xerces.xni.QName;
-import org.apache.xerces.xni.XMLAttributes;
-import org.apache.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.Augmentations;
+import org.codelibs.xerces.xni.QName;
+import org.codelibs.xerces.xni.XMLAttributes;
+import org.codelibs.xerces.xni.XNIException;
 
 /**
  * <p>

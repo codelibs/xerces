@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.parsers;
+package org.codelibs.xerces.parsers;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -27,27 +27,27 @@ import java.io.Reader;
 import java.net.URL;
 import java.util.Properties;
 
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.impl.XMLEntityDescription;
-import org.apache.xerces.impl.XMLErrorReporter;
-import org.apache.xerces.impl.dtd.XMLDTDProcessor;
-import org.apache.xerces.impl.msg.XMLMessageFormatter;
-import org.apache.xerces.util.SecurityManager;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.xni.Augmentations;
-import org.apache.xerces.xni.XMLDTDHandler;
-import org.apache.xerces.xni.XMLLocator;
-import org.apache.xerces.xni.XMLResourceIdentifier;
-import org.apache.xerces.xni.XMLString;
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xni.grammars.XMLGrammarPool;
-import org.apache.xerces.xni.parser.XMLComponentManager;
-import org.apache.xerces.xni.parser.XMLConfigurationException;
-import org.apache.xerces.xni.parser.XMLDTDFilter;
-import org.apache.xerces.xni.parser.XMLDTDScanner;
-import org.apache.xerces.xni.parser.XMLDTDSource;
-import org.apache.xerces.xni.parser.XMLEntityResolver;
-import org.apache.xerces.xni.parser.XMLInputSource;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.impl.XMLEntityDescription;
+import org.codelibs.xerces.impl.XMLErrorReporter;
+import org.codelibs.xerces.impl.dtd.XMLDTDProcessor;
+import org.codelibs.xerces.impl.msg.XMLMessageFormatter;
+import org.codelibs.xerces.util.SecurityManager;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.xni.Augmentations;
+import org.codelibs.xerces.xni.XMLDTDHandler;
+import org.codelibs.xerces.xni.XMLLocator;
+import org.codelibs.xerces.xni.XMLResourceIdentifier;
+import org.codelibs.xerces.xni.XMLString;
+import org.codelibs.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.grammars.XMLGrammarPool;
+import org.codelibs.xerces.xni.parser.XMLComponentManager;
+import org.codelibs.xerces.xni.parser.XMLConfigurationException;
+import org.codelibs.xerces.xni.parser.XMLDTDFilter;
+import org.codelibs.xerces.xni.parser.XMLDTDScanner;
+import org.codelibs.xerces.xni.parser.XMLDTDSource;
+import org.codelibs.xerces.xni.parser.XMLEntityResolver;
+import org.codelibs.xerces.xni.parser.XMLInputSource;
 
 /**
  * This configuration enhances Xerces support for the JAXP secure processing feature.
@@ -178,7 +178,7 @@ public final class SecureProcessingConfiguration extends XIncludeAwareParserConf
                 super.setFeature(EXTERNAL_PARAMETER_ENTITIES, false);
                 super.setFeature(LOAD_EXTERNAL_DTD, false);
             }
-            fSecurityManager = new org.apache.xerces.util.SecurityManager();
+            fSecurityManager = new org.codelibs.xerces.util.SecurityManager();
             fSecurityManager.setEntityExpansionLimit(ENTITY_EXPANSION_LIMIT_SYSTEM_VALUE);
             fSecurityManager.setMaxOccurNodeLimit(MAX_OCCUR_LIMIT_SYSTEM_VALUE);
             super.setProperty(SECURITY_MANAGER_PROPERTY, fSecurityManager);

@@ -15,16 +15,16 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xpath;
+package org.codelibs.xerces.impl.xpath;
 
 import java.util.ArrayList;
 import java.util.Vector;
 
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.util.XMLChar;
-import org.apache.xerces.util.XMLSymbols;
-import org.apache.xerces.xni.NamespaceContext;
-import org.apache.xerces.xni.QName;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.util.XMLChar;
+import org.codelibs.xerces.util.XMLSymbols;
+import org.codelibs.xerces.xni.NamespaceContext;
+import org.codelibs.xerces.xni.QName;
 
 /**
  * Bare minimum XPath parser.

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.xs;
+package org.codelibs.xerces.xs;
 
 /**
  * Describes a constraining facet. Enumeration and pattern facets are exposed

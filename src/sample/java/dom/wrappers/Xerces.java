@@ -17,8 +17,8 @@
 
 package dom.wrappers;
 
-import org.apache.xerces.dom.TextImpl;
-import org.apache.xerces.parsers.DOMParser;
+import org.codelibs.xerces.dom.TextImpl;
+import org.codelibs.xerces.parsers.DOMParser;
 import org.w3c.dom.Document;
 import org.w3c.dom.Text;
 import org.xml.sax.ErrorHandler;

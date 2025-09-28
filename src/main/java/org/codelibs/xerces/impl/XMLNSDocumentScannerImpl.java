@@ -15,21 +15,21 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl;
+package org.codelibs.xerces.impl;
 
 import java.io.IOException;
 
-import org.apache.xerces.impl.dtd.XMLDTDValidatorFilter;
-import org.apache.xerces.impl.msg.XMLMessageFormatter;
-import org.apache.xerces.util.XMLAttributesImpl;
-import org.apache.xerces.util.XMLSymbols;
-import org.apache.xerces.xni.NamespaceContext;
-import org.apache.xerces.xni.QName;
-import org.apache.xerces.xni.XMLDocumentHandler;
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xni.parser.XMLComponentManager;
-import org.apache.xerces.xni.parser.XMLConfigurationException;
-import org.apache.xerces.xni.parser.XMLDocumentSource;
+import org.codelibs.xerces.impl.dtd.XMLDTDValidatorFilter;
+import org.codelibs.xerces.impl.msg.XMLMessageFormatter;
+import org.codelibs.xerces.util.XMLAttributesImpl;
+import org.codelibs.xerces.util.XMLSymbols;
+import org.codelibs.xerces.xni.NamespaceContext;
+import org.codelibs.xerces.xni.QName;
+import org.codelibs.xerces.xni.XMLDocumentHandler;
+import org.codelibs.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.parser.XMLComponentManager;
+import org.codelibs.xerces.xni.parser.XMLConfigurationException;
+import org.codelibs.xerces.xni.parser.XMLDocumentSource;
 
 /**
  * The scanner acts as the source for the document

@@ -15,23 +15,23 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.parsers;
+package org.codelibs.xerces.parsers;
 
-import org.apache.xerces.xni.Augmentations;
-import org.apache.xerces.xni.NamespaceContext;
-import org.apache.xerces.xni.QName;
-import org.apache.xerces.xni.XMLAttributes;
-import org.apache.xerces.xni.XMLDTDContentModelHandler;
-import org.apache.xerces.xni.XMLDTDHandler;
-import org.apache.xerces.xni.XMLDocumentHandler;
-import org.apache.xerces.xni.XMLLocator;
-import org.apache.xerces.xni.XMLResourceIdentifier;
-import org.apache.xerces.xni.XMLString;
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xni.parser.XMLDTDContentModelSource;
-import org.apache.xerces.xni.parser.XMLDTDSource;
-import org.apache.xerces.xni.parser.XMLDocumentSource;
-import org.apache.xerces.xni.parser.XMLParserConfiguration;
+import org.codelibs.xerces.xni.Augmentations;
+import org.codelibs.xerces.xni.NamespaceContext;
+import org.codelibs.xerces.xni.QName;
+import org.codelibs.xerces.xni.XMLAttributes;
+import org.codelibs.xerces.xni.XMLDTDContentModelHandler;
+import org.codelibs.xerces.xni.XMLDTDHandler;
+import org.codelibs.xerces.xni.XMLDocumentHandler;
+import org.codelibs.xerces.xni.XMLLocator;
+import org.codelibs.xerces.xni.XMLResourceIdentifier;
+import org.codelibs.xerces.xni.XMLString;
+import org.codelibs.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.parser.XMLDTDContentModelSource;
+import org.codelibs.xerces.xni.parser.XMLDTDSource;
+import org.codelibs.xerces.xni.parser.XMLDocumentSource;
+import org.codelibs.xerces.xni.parser.XMLParserConfiguration;
 
 /**
  * This is the base class for all XML document parsers. XMLDocumentParser

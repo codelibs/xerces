@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.html.dom;
+package org.codelibs.xerces.html.dom;
 
 import org.w3c.dom.html.HTMLAppletElement;
 

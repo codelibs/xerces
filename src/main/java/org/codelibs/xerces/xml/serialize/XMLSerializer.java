@@ -28,7 +28,7 @@
 // Aug 21, 2000:
 //  Added ability to omit DOCTYPE declaration.
 
-package org.apache.xml.serialize;
+package org.codelibs.xerces.xml.serialize;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -36,12 +36,12 @@ import java.io.Writer;
 import java.util.Iterator;
 import java.util.Map;
 
-import org.apache.xerces.dom.DOMMessageFormatter;
-import org.apache.xerces.util.NamespaceSupport;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.util.XMLChar;
-import org.apache.xerces.util.XMLSymbols;
-import org.apache.xerces.xni.NamespaceContext;
+import org.codelibs.xerces.dom.DOMMessageFormatter;
+import org.codelibs.xerces.util.NamespaceSupport;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.util.XMLChar;
+import org.codelibs.xerces.util.XMLSymbols;
+import org.codelibs.xerces.xni.NamespaceContext;
 import org.w3c.dom.Attr;
 import org.w3c.dom.DOMError;
 import org.w3c.dom.Document;

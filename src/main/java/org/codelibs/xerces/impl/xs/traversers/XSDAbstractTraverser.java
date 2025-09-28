@@ -15,36 +15,36 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs.traversers;
+package org.codelibs.xerces.impl.xs.traversers;
 
 import java.util.Locale;
 import java.util.Vector;
 
-import org.apache.xerces.impl.dv.InvalidDatatypeValueException;
-import org.apache.xerces.impl.dv.XSFacets;
-import org.apache.xerces.impl.dv.XSSimpleType;
-import org.apache.xerces.impl.dv.util.Base64;
-import org.apache.xerces.impl.dv.xs.XSSimpleTypeDecl;
-import org.apache.xerces.impl.validation.ValidationState;
-import org.apache.xerces.impl.xs.SchemaGrammar;
-import org.apache.xerces.impl.xs.SchemaSymbols;
-import org.apache.xerces.impl.xs.XSAnnotationImpl;
-import org.apache.xerces.impl.xs.XSAttributeGroupDecl;
-import org.apache.xerces.impl.xs.XSAttributeUseImpl;
-import org.apache.xerces.impl.xs.XSComplexTypeDecl;
-import org.apache.xerces.impl.xs.XSElementDecl;
-import org.apache.xerces.impl.xs.XSParticleDecl;
-import org.apache.xerces.impl.xs.XSWildcardDecl;
-import org.apache.xerces.impl.xs.util.XInt;
-import org.apache.xerces.impl.xs.util.XSObjectListImpl;
-import org.apache.xerces.util.DOMUtil;
-import org.apache.xerces.util.NamespaceSupport;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.xni.QName;
-import org.apache.xerces.xs.XSAttributeUse;
-import org.apache.xerces.xs.XSObjectList;
-import org.apache.xerces.xs.XSSimpleTypeDefinition;
-import org.apache.xerces.xs.XSTypeDefinition;
+import org.codelibs.xerces.impl.dv.InvalidDatatypeValueException;
+import org.codelibs.xerces.impl.dv.XSFacets;
+import org.codelibs.xerces.impl.dv.XSSimpleType;
+import org.codelibs.xerces.impl.dv.util.Base64;
+import org.codelibs.xerces.impl.dv.xs.XSSimpleTypeDecl;
+import org.codelibs.xerces.impl.validation.ValidationState;
+import org.codelibs.xerces.impl.xs.SchemaGrammar;
+import org.codelibs.xerces.impl.xs.SchemaSymbols;
+import org.codelibs.xerces.impl.xs.XSAnnotationImpl;
+import org.codelibs.xerces.impl.xs.XSAttributeGroupDecl;
+import org.codelibs.xerces.impl.xs.XSAttributeUseImpl;
+import org.codelibs.xerces.impl.xs.XSComplexTypeDecl;
+import org.codelibs.xerces.impl.xs.XSElementDecl;
+import org.codelibs.xerces.impl.xs.XSParticleDecl;
+import org.codelibs.xerces.impl.xs.XSWildcardDecl;
+import org.codelibs.xerces.impl.xs.util.XInt;
+import org.codelibs.xerces.impl.xs.util.XSObjectListImpl;
+import org.codelibs.xerces.util.DOMUtil;
+import org.codelibs.xerces.util.NamespaceSupport;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.xni.QName;
+import org.codelibs.xerces.xs.XSAttributeUse;
+import org.codelibs.xerces.xs.XSObjectList;
+import org.codelibs.xerces.xs.XSSimpleTypeDefinition;
+import org.codelibs.xerces.xs.XSTypeDefinition;
 import org.w3c.dom.Element;
 
 /**

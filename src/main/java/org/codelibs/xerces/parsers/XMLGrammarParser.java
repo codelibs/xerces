@@ -15,12 +15,12 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.parsers;
+package org.codelibs.xerces.parsers;
 
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.impl.dv.DTDDVFactory;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.xni.parser.XMLParserConfiguration;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.impl.dv.DTDDVFactory;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.xni.parser.XMLParserConfiguration;
 
 /**
  * @version $Id: XMLGrammarParser.java 447239 2006-09-18 05:08:26Z mrglavas $
@@ -44,8 +44,8 @@ public abstract class XMLGrammarParser extends XMLParser {
      * @param symbolTable
      */
     protected XMLGrammarParser(SymbolTable symbolTable) {
-        super((XMLParserConfiguration) ObjectFactory.createObject("org.apache.xerces.xni.parser.XMLParserConfiguration",
-                "org.apache.xerces.parsers.XIncludeAwareParserConfiguration"));
+        super((XMLParserConfiguration) ObjectFactory.createObject("org.codelibs.xerces.xni.parser.XMLParserConfiguration",
+                "org.codelibs.xerces.parsers.XIncludeAwareParserConfiguration"));
         fConfiguration.setProperty(Constants.XERCES_PROPERTY_PREFIX + Constants.SYMBOL_TABLE_PROPERTY, symbolTable);
     }
 

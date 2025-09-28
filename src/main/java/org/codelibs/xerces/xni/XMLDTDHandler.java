@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.xni;
+package org.codelibs.xerces.xni;
 
-import org.apache.xerces.xni.parser.XMLDTDSource;
+import org.codelibs.xerces.xni.parser.XMLDTDSource;
 
 /**
  * The DTD handler interface defines callback methods to report

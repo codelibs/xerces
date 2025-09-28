@@ -15,19 +15,19 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl;
+package org.codelibs.xerces.impl;
 
 import java.io.CharConversionException;
 import java.io.EOFException;
 import java.io.IOException;
 
-import org.apache.xerces.impl.io.MalformedByteSequenceException;
-import org.apache.xerces.impl.msg.XMLMessageFormatter;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xni.parser.XMLComponentManager;
-import org.apache.xerces.xni.parser.XMLConfigurationException;
-import org.apache.xerces.xni.parser.XMLInputSource;
+import org.codelibs.xerces.impl.io.MalformedByteSequenceException;
+import org.codelibs.xerces.impl.msg.XMLMessageFormatter;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.parser.XMLComponentManager;
+import org.codelibs.xerces.xni.parser.XMLConfigurationException;
+import org.codelibs.xerces.xni.parser.XMLInputSource;
 
 /**
  * This class scans the version of the document to determine

@@ -14,17 +14,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.xerces.parsers;
+package org.codelibs.xerces.parsers;
 
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.xinclude.XIncludeHandler;
-import org.apache.xerces.xinclude.XIncludeNamespaceSupport;
-import org.apache.xerces.xni.XMLDocumentHandler;
-import org.apache.xerces.xni.grammars.XMLGrammarPool;
-import org.apache.xerces.xni.parser.XMLComponentManager;
-import org.apache.xerces.xni.parser.XMLConfigurationException;
-import org.apache.xerces.xni.parser.XMLDocumentSource;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.xinclude.XIncludeHandler;
+import org.codelibs.xerces.xinclude.XIncludeNamespaceSupport;
+import org.codelibs.xerces.xni.XMLDocumentHandler;
+import org.codelibs.xerces.xni.grammars.XMLGrammarPool;
+import org.codelibs.xerces.xni.parser.XMLComponentManager;
+import org.codelibs.xerces.xni.parser.XMLConfigurationException;
+import org.codelibs.xerces.xni.parser.XMLDocumentSource;
 
 /**
  * This parser configuration includes an <code>XIncludeHandler</code> in the pipeline
@@ -34,7 +34,7 @@ import org.apache.xerces.xni.parser.XMLDocumentSource;
  * <code>XIncludeHandler</code>.
  *
  * @author Peter McCracken, IBM
- * @see org.apache.xerces.xinclude.XIncludeHandler
+ * @see org.codelibs.xerces.xinclude.XIncludeHandler
  */
 public class XIncludeParserConfiguration extends XML11Configuration {
 

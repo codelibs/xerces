@@ -15,16 +15,16 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs.identity;
+package org.codelibs.xerces.impl.xs.identity;
 
-import org.apache.xerces.impl.xs.XSAnnotationImpl;
-import org.apache.xerces.impl.xs.util.StringListImpl;
-import org.apache.xerces.impl.xs.util.XSObjectListImpl;
-import org.apache.xerces.xs.StringList;
-import org.apache.xerces.xs.XSConstants;
-import org.apache.xerces.xs.XSIDCDefinition;
-import org.apache.xerces.xs.XSNamespaceItem;
-import org.apache.xerces.xs.XSObjectList;
+import org.codelibs.xerces.impl.xs.XSAnnotationImpl;
+import org.codelibs.xerces.impl.xs.util.StringListImpl;
+import org.codelibs.xerces.impl.xs.util.XSObjectListImpl;
+import org.codelibs.xerces.xs.StringList;
+import org.codelibs.xerces.xs.XSConstants;
+import org.codelibs.xerces.xs.XSIDCDefinition;
+import org.codelibs.xerces.xs.XSNamespaceItem;
+import org.codelibs.xerces.xs.XSObjectList;
 
 /**
  * Base class of Schema identity constraint.
@@ -229,7 +229,7 @@ public abstract class IdentityConstraint implements XSIDCDefinition {
     }
 
     /**
-     * @see org.apache.xerces.xs.XSObject#getNamespaceItem()
+     * @see org.codelibs.xerces.xs.XSObject#getNamespaceItem()
      */
     public XSNamespaceItem getNamespaceItem() {
         // REVISIT: implement

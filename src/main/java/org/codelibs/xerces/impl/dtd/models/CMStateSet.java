@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.dtd.models;
+package org.codelibs.xerces.impl.dtd.models;
 
 /**
  * This class is a very simple bitset class. The DFA content model code needs

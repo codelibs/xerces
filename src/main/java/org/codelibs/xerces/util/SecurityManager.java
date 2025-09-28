@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.util;
+package org.codelibs.xerces.util;
 
 /**
  * This class is a container for parser settings that relate to

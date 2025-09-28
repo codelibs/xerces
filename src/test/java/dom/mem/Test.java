@@ -35,9 +35,9 @@ package dom.mem;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import org.apache.xerces.dom.DOMImplementationImpl;
-import org.apache.xerces.dom.DocumentImpl;
-import org.apache.xerces.dom.NodeImpl;
+import org.codelibs.xerces.dom.DOMImplementationImpl;
+import org.codelibs.xerces.dom.DocumentImpl;
+import org.codelibs.xerces.dom.NodeImpl;
 import org.w3c.dom.Attr;
 import org.w3c.dom.CDATASection;
 import org.w3c.dom.Comment;
@@ -477,7 +477,7 @@ public class Test {
             root.setAttribute("attr", "attrValue");
             Attr attr = root.getAttributeNode("attr");
             // turn this into a default attribute
-            ((org.apache.xerces.dom.AttrImpl) attr).setSpecified(false);
+            ((org.codelibs.xerces.dom.AttrImpl) attr).setSpecified(false);
             // add another attribute (this one is specified)
             root.setAttribute("attr2", "attr2Value");
 

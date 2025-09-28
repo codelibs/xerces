@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.util;
+package org.codelibs.xerces.util;
 
 import java.util.Collections;
 import java.util.Enumeration;
@@ -23,7 +23,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import org.apache.xerces.xni.Augmentations;
+import org.codelibs.xerces.xni.Augmentations;
 
 /**
  * This class provides an implementation for Augmentations interface.

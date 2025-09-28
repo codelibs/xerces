@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs.traversers;
+package org.codelibs.xerces.impl.xs.traversers;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -31,17 +31,17 @@ import javax.xml.stream.events.ProcessingInstruction;
 import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
 
-import org.apache.xerces.impl.xs.opti.SchemaDOMParser;
-import org.apache.xerces.util.JAXPNamespaceContextWrapper;
-import org.apache.xerces.util.StAXLocationWrapper;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.util.XMLAttributesImpl;
-import org.apache.xerces.util.XMLStringBuffer;
-import org.apache.xerces.util.XMLSymbols;
-import org.apache.xerces.xni.NamespaceContext;
-import org.apache.xerces.xni.QName;
-import org.apache.xerces.xni.XMLString;
-import org.apache.xerces.xni.XNIException;
+import org.codelibs.xerces.impl.xs.opti.SchemaDOMParser;
+import org.codelibs.xerces.util.JAXPNamespaceContextWrapper;
+import org.codelibs.xerces.util.StAXLocationWrapper;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.util.XMLAttributesImpl;
+import org.codelibs.xerces.util.XMLStringBuffer;
+import org.codelibs.xerces.util.XMLSymbols;
+import org.codelibs.xerces.xni.NamespaceContext;
+import org.codelibs.xerces.xni.QName;
+import org.codelibs.xerces.xni.XMLString;
+import org.codelibs.xerces.xni.XNIException;
 import org.w3c.dom.Document;
 
 /**

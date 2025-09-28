@@ -15,15 +15,15 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs.models;
+package org.codelibs.xerces.impl.xs.models;
 
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.impl.XMLErrorReporter;
-import org.apache.xerces.impl.dtd.models.CMNode;
-import org.apache.xerces.impl.xs.XSMessageFormatter;
-import org.apache.xerces.util.SecurityManager;
-import org.apache.xerces.xni.parser.XMLComponentManager;
-import org.apache.xerces.xni.parser.XMLConfigurationException;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.impl.XMLErrorReporter;
+import org.codelibs.xerces.impl.dtd.models.CMNode;
+import org.codelibs.xerces.impl.xs.XSMessageFormatter;
+import org.codelibs.xerces.util.SecurityManager;
+import org.codelibs.xerces.xni.parser.XMLComponentManager;
+import org.codelibs.xerces.xni.parser.XMLConfigurationException;
 
 /**
  *

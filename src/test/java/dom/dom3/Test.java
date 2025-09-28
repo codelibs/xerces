@@ -20,9 +20,9 @@ package dom.dom3;
 import java.io.Reader;
 import java.io.StringReader;
 
-import org.apache.xerces.dom.DocumentImpl;
-import org.apache.xerces.dom.NodeImpl;
-import org.apache.xerces.xs.ElementPSVI;
+import org.codelibs.xerces.dom.DocumentImpl;
+import org.codelibs.xerces.dom.NodeImpl;
+import org.codelibs.xerces.xs.ElementPSVI;
 import org.w3c.dom.Attr;
 import org.w3c.dom.DOMConfiguration;
 import org.w3c.dom.DOMError;
@@ -61,7 +61,7 @@ public class Test implements DOMErrorHandler, LSResourceResolver {
             boolean namespaces = true;
             System.out.println("Running dom.dom3.Test...");
             System.setProperty(DOMImplementationRegistry.PROPERTY,
-                    "org.apache.xerces.dom.DOMImplementationSourceImpl org.apache.xerces.dom.DOMXSImplementationSourceImpl");
+                    "org.codelibs.xerces.dom.DOMImplementationSourceImpl org.codelibs.xerces.dom.DOMXSImplementationSourceImpl");
 
             DOMImplementationLS impl = (DOMImplementationLS) DOMImplementationRegistry.newInstance().getDOMImplementation("LS");
 

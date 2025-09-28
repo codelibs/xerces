@@ -14,11 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.html.dom;
+package org.codelibs.xerces.html.dom;
 
 import java.util.Locale;
 
-import org.apache.xerces.dom.ElementImpl;
+import org.codelibs.xerces.dom.ElementImpl;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -28,7 +28,7 @@ import org.w3c.dom.html.HTMLFormElement;
 /**
  * Implements an HTML-specific element, an {@link org.w3c.dom.Element} that
  * will only appear inside HTML documents. This element extends {@link
- * org.apache.xerces.dom.ElementImpl} by adding methods for directly
+ * org.codelibs.xerces.dom.ElementImpl} by adding methods for directly
  * manipulating HTML-specific attributes. All HTML elements gain access to
  * the <code>id</code>, <code>title</code>, <code>lang</code>,
  * <code>dir</code> and <code>class</code> attributes. Other elements

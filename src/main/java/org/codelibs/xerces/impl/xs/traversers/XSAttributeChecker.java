@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs.traversers;
+package org.codelibs.xerces.impl.xs.traversers;
 
 import java.util.Hashtable;
 import java.util.Iterator;
@@ -23,22 +23,22 @@ import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
-import org.apache.xerces.impl.dv.InvalidDatatypeValueException;
-import org.apache.xerces.impl.dv.XSSimpleType;
-import org.apache.xerces.impl.xs.SchemaGrammar;
-import org.apache.xerces.impl.xs.SchemaNamespaceSupport;
-import org.apache.xerces.impl.xs.SchemaSymbols;
-import org.apache.xerces.impl.xs.XSAttributeDecl;
-import org.apache.xerces.impl.xs.XSGrammarBucket;
-import org.apache.xerces.impl.xs.XSWildcardDecl;
-import org.apache.xerces.impl.xs.util.XInt;
-import org.apache.xerces.impl.xs.util.XIntPool;
-import org.apache.xerces.util.DOMUtil;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.util.XMLChar;
-import org.apache.xerces.util.XMLSymbols;
-import org.apache.xerces.xni.QName;
-import org.apache.xerces.xs.XSConstants;
+import org.codelibs.xerces.impl.dv.InvalidDatatypeValueException;
+import org.codelibs.xerces.impl.dv.XSSimpleType;
+import org.codelibs.xerces.impl.xs.SchemaGrammar;
+import org.codelibs.xerces.impl.xs.SchemaNamespaceSupport;
+import org.codelibs.xerces.impl.xs.SchemaSymbols;
+import org.codelibs.xerces.impl.xs.XSAttributeDecl;
+import org.codelibs.xerces.impl.xs.XSGrammarBucket;
+import org.codelibs.xerces.impl.xs.XSWildcardDecl;
+import org.codelibs.xerces.impl.xs.util.XInt;
+import org.codelibs.xerces.impl.xs.util.XIntPool;
+import org.codelibs.xerces.util.DOMUtil;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.util.XMLChar;
+import org.codelibs.xerces.util.XMLSymbols;
+import org.codelibs.xerces.xni.QName;
+import org.codelibs.xerces.xs.XSConstants;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Element;
 

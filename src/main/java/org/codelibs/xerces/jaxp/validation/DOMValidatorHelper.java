@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.jaxp.validation;
+package org.codelibs.xerces.jaxp.validation;
 
 import java.io.IOException;
 import java.util.Enumeration;
@@ -28,22 +28,22 @@ import javax.xml.transform.Source;
 import javax.xml.transform.dom.DOMResult;
 import javax.xml.transform.dom.DOMSource;
 
-import org.apache.xerces.dom.NodeImpl;
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.impl.XMLErrorReporter;
-import org.apache.xerces.impl.validation.EntityState;
-import org.apache.xerces.impl.validation.ValidationManager;
-import org.apache.xerces.impl.xs.XMLSchemaValidator;
-import org.apache.xerces.impl.xs.util.SimpleLocator;
-import org.apache.xerces.util.NamespaceSupport;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.util.XMLAttributesImpl;
-import org.apache.xerces.util.XMLSymbols;
-import org.apache.xerces.xni.NamespaceContext;
-import org.apache.xerces.xni.QName;
-import org.apache.xerces.xni.XMLString;
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xni.parser.XMLParseException;
+import org.codelibs.xerces.dom.NodeImpl;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.impl.XMLErrorReporter;
+import org.codelibs.xerces.impl.validation.EntityState;
+import org.codelibs.xerces.impl.validation.ValidationManager;
+import org.codelibs.xerces.impl.xs.XMLSchemaValidator;
+import org.codelibs.xerces.impl.xs.util.SimpleLocator;
+import org.codelibs.xerces.util.NamespaceSupport;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.util.XMLAttributesImpl;
+import org.codelibs.xerces.util.XMLSymbols;
+import org.codelibs.xerces.xni.NamespaceContext;
+import org.codelibs.xerces.xni.QName;
+import org.codelibs.xerces.xni.XMLString;
+import org.codelibs.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.parser.XMLParseException;
 import org.w3c.dom.Attr;
 import org.w3c.dom.CDATASection;
 import org.w3c.dom.Comment;

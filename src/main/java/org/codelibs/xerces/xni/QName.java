@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.xni;
+package org.codelibs.xerces.xni;
 
 /**
  * A structure that holds the components of an XML Namespaces qualified
@@ -25,7 +25,7 @@ package org.apache.xerces.xni;
  * equal strings. Within the parser, these values are considered symbols
  * and should always be retrieved from the <code>SymbolTable</code>.
  *
- * @see <a href="../../../../../xerces2/org/apache/xerces/util/SymbolTable.html">org.apache.xerces.util.SymbolTable</a>
+ * @see <a href="../../../../../xerces2/org/apache/xerces/util/SymbolTable.html">org.codelibs.xerces.util.SymbolTable</a>
  *
  * @author Andy Clark, IBM
  *

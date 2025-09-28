@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.dv.xs;
+package org.codelibs.xerces.impl.dv.xs;
 
 import java.math.BigInteger;
 import java.util.AbstractList;
@@ -23,34 +23,34 @@ import java.util.Locale;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.impl.dv.DatatypeException;
-import org.apache.xerces.impl.dv.InvalidDatatypeFacetException;
-import org.apache.xerces.impl.dv.InvalidDatatypeValueException;
-import org.apache.xerces.impl.dv.ValidatedInfo;
-import org.apache.xerces.impl.dv.ValidationContext;
-import org.apache.xerces.impl.dv.XSFacets;
-import org.apache.xerces.impl.dv.XSSimpleType;
-import org.apache.xerces.impl.xpath.regex.RegularExpression;
-import org.apache.xerces.impl.xs.SchemaSymbols;
-import org.apache.xerces.impl.xs.util.ObjectListImpl;
-import org.apache.xerces.impl.xs.util.ShortListImpl;
-import org.apache.xerces.impl.xs.util.StringListImpl;
-import org.apache.xerces.impl.xs.util.XSObjectListImpl;
-import org.apache.xerces.util.XMLChar;
-import org.apache.xerces.xni.NamespaceContext;
-import org.apache.xerces.xs.ShortList;
-import org.apache.xerces.xs.StringList;
-import org.apache.xerces.xs.XSAnnotation;
-import org.apache.xerces.xs.XSConstants;
-import org.apache.xerces.xs.XSFacet;
-import org.apache.xerces.xs.XSMultiValueFacet;
-import org.apache.xerces.xs.XSNamespaceItem;
-import org.apache.xerces.xs.XSObject;
-import org.apache.xerces.xs.XSObjectList;
-import org.apache.xerces.xs.XSSimpleTypeDefinition;
-import org.apache.xerces.xs.XSTypeDefinition;
-import org.apache.xerces.xs.datatypes.ObjectList;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.impl.dv.DatatypeException;
+import org.codelibs.xerces.impl.dv.InvalidDatatypeFacetException;
+import org.codelibs.xerces.impl.dv.InvalidDatatypeValueException;
+import org.codelibs.xerces.impl.dv.ValidatedInfo;
+import org.codelibs.xerces.impl.dv.ValidationContext;
+import org.codelibs.xerces.impl.dv.XSFacets;
+import org.codelibs.xerces.impl.dv.XSSimpleType;
+import org.codelibs.xerces.impl.xpath.regex.RegularExpression;
+import org.codelibs.xerces.impl.xs.SchemaSymbols;
+import org.codelibs.xerces.impl.xs.util.ObjectListImpl;
+import org.codelibs.xerces.impl.xs.util.ShortListImpl;
+import org.codelibs.xerces.impl.xs.util.StringListImpl;
+import org.codelibs.xerces.impl.xs.util.XSObjectListImpl;
+import org.codelibs.xerces.util.XMLChar;
+import org.codelibs.xerces.xni.NamespaceContext;
+import org.codelibs.xerces.xs.ShortList;
+import org.codelibs.xerces.xs.StringList;
+import org.codelibs.xerces.xs.XSAnnotation;
+import org.codelibs.xerces.xs.XSConstants;
+import org.codelibs.xerces.xs.XSFacet;
+import org.codelibs.xerces.xs.XSMultiValueFacet;
+import org.codelibs.xerces.xs.XSNamespaceItem;
+import org.codelibs.xerces.xs.XSObject;
+import org.codelibs.xerces.xs.XSObjectList;
+import org.codelibs.xerces.xs.XSSimpleTypeDefinition;
+import org.codelibs.xerces.xs.XSTypeDefinition;
+import org.codelibs.xerces.xs.datatypes.ObjectList;
 import org.w3c.dom.TypeInfo;
 
 /**
@@ -2949,7 +2949,7 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
     }
 
     /**
-     * @see org.apache.xerces.xs.XSObject#getNamespaceItem()
+     * @see org.codelibs.xerces.xs.XSObject#getNamespaceItem()
      */
     public XSNamespaceItem getNamespaceItem() {
         return fNamespaceItem;
@@ -3126,7 +3126,7 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         /*
          * (non-Javadoc)
          *
-         * @see org.apache.xerces.xs.XSFacet#getAnnotation()
+         * @see org.codelibs.xerces.xs.XSFacet#getAnnotation()
          */
         /**
          * Optional. Annotation.
@@ -3138,7 +3138,7 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         /*
          * (non-Javadoc)
          *
-         * @see org.apache.xerces.xs.XSFacet#getAnnotations()
+         * @see org.codelibs.xerces.xs.XSFacet#getAnnotations()
          */
         /**
          * Optional. Annotations.
@@ -3148,14 +3148,14 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         }
 
         /* (non-Javadoc)
-         * @see org.apache.xerces.xs.XSFacet#getFacetKind()
+         * @see org.codelibs.xerces.xs.XSFacet#getFacetKind()
          */
         public short getFacetKind() {
             return kind;
         }
 
         /* (non-Javadoc)
-         * @see org.apache.xerces.xs.XSFacet#getLexicalFacetValue()
+         * @see org.codelibs.xerces.xs.XSFacet#getLexicalFacetValue()
          */
         public String getLexicalFacetValue() {
             return svalue;
@@ -3178,28 +3178,28 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         }
 
         /* (non-Javadoc)
-         * @see org.apache.xerces.xs.XSFacet#isFixed()
+         * @see org.codelibs.xerces.xs.XSFacet#isFixed()
          */
         public boolean getFixed() {
             return fixed;
         }
 
         /* (non-Javadoc)
-         * @see org.apache.xerces.xs.XSObject#getName()
+         * @see org.codelibs.xerces.xs.XSObject#getName()
          */
         public String getName() {
             return null;
         }
 
         /* (non-Javadoc)
-         * @see org.apache.xerces.xs.XSObject#getNamespace()
+         * @see org.codelibs.xerces.xs.XSObject#getNamespace()
          */
         public String getNamespace() {
             return null;
         }
 
         /* (non-Javadoc)
-         * @see org.apache.xerces.xs.XSObject#getNamespaceItem()
+         * @see org.codelibs.xerces.xs.XSObject#getNamespaceItem()
          */
         public XSNamespaceItem getNamespaceItem() {
             // REVISIT: implement
@@ -3207,7 +3207,7 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         }
 
         /* (non-Javadoc)
-         * @see org.apache.xerces.xs.XSObject#getType()
+         * @see org.codelibs.xerces.xs.XSObject#getType()
          */
         public short getType() {
             return XSConstants.FACET;
@@ -3229,21 +3229,21 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         }
 
         /* (non-Javadoc)
-         * @see org.apache.xerces.xs.XSFacet#getFacetKind()
+         * @see org.codelibs.xerces.xs.XSFacet#getFacetKind()
          */
         public short getFacetKind() {
             return kind;
         }
 
         /* (non-Javadoc)
-         * @see org.apache.xerces.xs.XSMultiValueFacet#getAnnotations()
+         * @see org.codelibs.xerces.xs.XSMultiValueFacet#getAnnotations()
          */
         public XSObjectList getAnnotations() {
             return annotations;
         }
 
         /* (non-Javadoc)
-         * @see org.apache.xerces.xs.XSMultiValueFacet#getLexicalFacetValues()
+         * @see org.codelibs.xerces.xs.XSMultiValueFacet#getLexicalFacetValues()
          */
         public StringList getLexicalFacetValues() {
             return svalues;
@@ -3254,21 +3254,21 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         }
 
         /* (non-Javadoc)
-         * @see org.apache.xerces.xs.XSObject#getName()
+         * @see org.codelibs.xerces.xs.XSObject#getName()
          */
         public String getName() {
             return null;
         }
 
         /* (non-Javadoc)
-         * @see org.apache.xerces.xs.XSObject#getNamespace()
+         * @see org.codelibs.xerces.xs.XSObject#getNamespace()
          */
         public String getNamespace() {
             return null;
         }
 
         /* (non-Javadoc)
-         * @see org.apache.xerces.xs.XSObject#getNamespaceItem()
+         * @see org.codelibs.xerces.xs.XSObject#getNamespaceItem()
          */
         public XSNamespaceItem getNamespaceItem() {
             // REVISIT: implement
@@ -3276,7 +3276,7 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         }
 
         /* (non-Javadoc)
-         * @see org.apache.xerces.xs.XSObject#getType()
+         * @see org.codelibs.xerces.xs.XSObject#getType()
          */
         public short getType() {
             return XSConstants.MULTIVALUE_FACET;

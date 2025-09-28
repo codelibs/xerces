@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.dom;
+package org.codelibs.xerces.dom;
 
 import java.util.Locale;
 import java.util.MissingResourceException;
@@ -122,9 +122,9 @@ public class DOMMessageFormatter {
         if (_locale == null) {
             _locale = Locale.getDefault();
         }
-        domResourceBundle = ResourceBundle.getBundle("org.apache.xerces.impl.msg.DOMMessages", _locale);
-        serResourceBundle = ResourceBundle.getBundle("org.apache.xerces.impl.msg.XMLSerializerMessages", _locale);
-        xmlResourceBundle = ResourceBundle.getBundle("org.apache.xerces.impl.msg.XMLMessages", _locale);
+        domResourceBundle = ResourceBundle.getBundle("org.codelibs.xerces.impl.msg.DOMMessages", _locale);
+        serResourceBundle = ResourceBundle.getBundle("org.codelibs.xerces.impl.msg.XMLSerializerMessages", _locale);
+        xmlResourceBundle = ResourceBundle.getBundle("org.codelibs.xerces.impl.msg.XMLMessages", _locale);
     }
 
     /**

@@ -14,14 +14,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.wml.dom;
+package org.codelibs.xerces.wml.dom;
 
 import java.lang.reflect.Constructor;
 import java.util.Hashtable;
 
-import org.apache.wml.WMLDocument;
-import org.apache.xerces.dom.DocumentImpl;
-import org.apache.xerces.dom.ElementImpl;
+import org.codelibs.xerces.wml.WMLDocument;
+import org.codelibs.xerces.dom.DocumentImpl;
+import org.codelibs.xerces.dom.ElementImpl;
 import org.w3c.dom.DOMException;
 import org.w3c.dom.DocumentType;
 import org.w3c.dom.Element;

@@ -15,16 +15,16 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.jaxp.validation;
+package org.codelibs.xerces.jaxp.validation;
 
 import java.lang.ref.Reference;
 import java.lang.ref.ReferenceQueue;
 import java.lang.ref.SoftReference;
 
-import org.apache.xerces.xni.grammars.Grammar;
-import org.apache.xerces.xni.grammars.XMLGrammarDescription;
-import org.apache.xerces.xni.grammars.XMLGrammarPool;
-import org.apache.xerces.xni.grammars.XMLSchemaDescription;
+import org.codelibs.xerces.xni.grammars.Grammar;
+import org.codelibs.xerces.xni.grammars.XMLGrammarDescription;
+import org.codelibs.xerces.xni.grammars.XMLGrammarPool;
+import org.codelibs.xerces.xni.grammars.XMLSchemaDescription;
 
 /**
  * <p>This grammar pool is a memory sensitive cache. The grammars
@@ -90,7 +90,7 @@ final class SoftReferenceGrammarPool implements XMLGrammarPool {
      * validation attempt. </p>
      *
      * @param grammarType The type of the grammar, from the
-     *  		  <code>org.apache.xerces.xni.grammars.XMLGrammarDescription</code>
+     *  		  <code>org.codelibs.xerces.xni.grammars.XMLGrammarDescription</code>
      *  		  interface.
      * @return 		  The set of grammars the validator may put in its "bucket"
      */

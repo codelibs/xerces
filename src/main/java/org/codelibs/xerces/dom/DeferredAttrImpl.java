@@ -21,7 +21,7 @@
  * DeferredAttrNSImpl.java at the same time.
  */
 
-package org.apache.xerces.dom;
+package org.codelibs.xerces.dom;
 
 /**
  * Attribute represents an XML-style attribute of an

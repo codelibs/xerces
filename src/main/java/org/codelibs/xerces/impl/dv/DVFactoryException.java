@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.dv;
+package org.codelibs.xerces.impl.dv;
 
 /**
  * A runtime exception that's thrown if an error happens when the application

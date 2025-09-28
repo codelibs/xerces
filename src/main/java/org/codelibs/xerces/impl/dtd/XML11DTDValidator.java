@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.dtd;
+package org.codelibs.xerces.impl.dtd;
 
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.xni.parser.XMLComponentManager;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.xni.parser.XMLComponentManager;
 
 /**
  * This allows the validator to correctlyhandle XML 1.1

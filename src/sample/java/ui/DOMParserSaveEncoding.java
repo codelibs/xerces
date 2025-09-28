@@ -16,11 +16,11 @@
  */
 package ui;
 
-import org.apache.xerces.parsers.DOMParser;
-import org.apache.xerces.util.EncodingMap;
-import org.apache.xerces.xni.Augmentations;
-import org.apache.xerces.xni.XMLResourceIdentifier;
-import org.apache.xerces.xni.XNIException;
+import org.codelibs.xerces.parsers.DOMParser;
+import org.codelibs.xerces.util.EncodingMap;
+import org.codelibs.xerces.xni.Augmentations;
+import org.codelibs.xerces.xni.XMLResourceIdentifier;
+import org.codelibs.xerces.xni.XNIException;
 
 /**
  *  The DOMParserSaveEncoding class extends DOMParser. It also provides

@@ -15,14 +15,14 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.util;
+package org.codelibs.xerces.util;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.xni.parser.XMLComponentManager;
-import org.apache.xerces.xni.parser.XMLConfigurationException;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.xni.parser.XMLComponentManager;
+import org.codelibs.xerces.xni.parser.XMLConfigurationException;
 
 /**
  * This class implements the basic operations for managing parser
@@ -126,7 +126,7 @@ public class ParserConfigurationSettings implements XMLComponentManager {
      * @param featureId The unique identifier (URI) of the feature.
      * @param state The requested state of the feature (true or false).
      *
-     * @exception org.apache.xerces.xni.parser.XMLConfigurationException If the
+     * @exception org.codelibs.xerces.xni.parser.XMLConfigurationException If the
      *            requested feature is not known.
      */
     public void setFeature(String featureId, boolean state) throws XMLConfigurationException {
@@ -162,7 +162,7 @@ public class ParserConfigurationSettings implements XMLComponentManager {
      *
      * @param propertyId
      * @param value
-     * @exception org.apache.xerces.xni.parser.XMLConfigurationException If the
+     * @exception org.codelibs.xerces.xni.parser.XMLConfigurationException If the
      *            requested feature is not known.
      */
     public void setProperty(String propertyId, Object value) throws XMLConfigurationException {
@@ -235,7 +235,7 @@ public class ParserConfigurationSettings implements XMLComponentManager {
      *
      * @param featureId The unique identifier (URI) of the feature.
      *
-     * @exception org.apache.xerces.xni.parser.XMLConfigurationException If the
+     * @exception org.codelibs.xerces.xni.parser.XMLConfigurationException If the
      *            requested feature is not known.
      */
     protected void checkFeature(String featureId) throws XMLConfigurationException {
@@ -258,7 +258,7 @@ public class ParserConfigurationSettings implements XMLComponentManager {
      *
      * @param propertyId The unique identifier (URI) of the property
      *                   being set.
-     * @exception org.apache.xerces.xni.parser.XMLConfigurationException If the
+     * @exception org.codelibs.xerces.xni.parser.XMLConfigurationException If the
      *            requested feature is not known.
      */
     protected void checkProperty(String propertyId) throws XMLConfigurationException {

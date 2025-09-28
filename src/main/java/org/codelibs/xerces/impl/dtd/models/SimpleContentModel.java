@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.dtd.models;
+package org.codelibs.xerces.impl.dtd.models;
 
-import org.apache.xerces.impl.dtd.XMLContentSpec;
-import org.apache.xerces.xni.QName;
+import org.codelibs.xerces.impl.dtd.XMLContentSpec;
+import org.codelibs.xerces.xni.QName;
 
 /**
  * SimpleContentModel is a derivative of the abstract content model base

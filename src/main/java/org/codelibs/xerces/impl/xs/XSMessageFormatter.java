@@ -15,13 +15,13 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs;
+package org.codelibs.xerces.impl.xs;
 
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
-import org.apache.xerces.util.MessageFormatter;
+import org.codelibs.xerces.util.MessageFormatter;
 
 /**
  * SchemaMessageProvider implements an XMLMessageProvider that
@@ -63,7 +63,7 @@ public class XSMessageFormatter implements MessageFormatter {
             locale = Locale.getDefault();
         }
         if (locale != fLocale) {
-            fResourceBundle = ResourceBundle.getBundle("org.apache.xerces.impl.msg.XMLSchemaMessages", locale);
+            fResourceBundle = ResourceBundle.getBundle("org.codelibs.xerces.impl.msg.XMLSchemaMessages", locale);
             // memorize the most-recent locale
             fLocale = locale;
         }
@@ -80,7 +80,7 @@ public class XSMessageFormatter implements MessageFormatter {
 
         if (msg == null) {
             msg = fResourceBundle.getString("BadMessageKey");
-            throw new MissingResourceException(msg, "org.apache.xerces.impl.msg.SchemaMessages", key);
+            throw new MissingResourceException(msg, "org.codelibs.xerces.impl.msg.SchemaMessages", key);
         }
 
         return msg;

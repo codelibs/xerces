@@ -15,13 +15,13 @@
  * limitations under the License.
  */
 
-package org.apache.xml.serialize;
+package org.codelibs.xerces.xml.serialize;
 
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 
-import org.apache.xerces.dom.DOMMessageFormatter;
+import org.codelibs.xerces.dom.DOMMessageFormatter;
 
 /**
  * Default serializer factory can construct serializers for the three

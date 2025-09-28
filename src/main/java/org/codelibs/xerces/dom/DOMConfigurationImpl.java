@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.dom;
+package org.codelibs.xerces.dom;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,29 +23,29 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.StringTokenizer;
 
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.impl.XMLEntityManager;
-import org.apache.xerces.impl.XMLErrorReporter;
-import org.apache.xerces.impl.dv.DTDDVFactory;
-import org.apache.xerces.impl.msg.XMLMessageFormatter;
-import org.apache.xerces.impl.validation.ValidationManager;
-import org.apache.xerces.util.DOMEntityResolverWrapper;
-import org.apache.xerces.util.DOMErrorHandlerWrapper;
-import org.apache.xerces.util.MessageFormatter;
-import org.apache.xerces.util.ParserConfigurationSettings;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.xni.XMLDTDContentModelHandler;
-import org.apache.xerces.xni.XMLDTDHandler;
-import org.apache.xerces.xni.XMLDocumentHandler;
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xni.grammars.XMLGrammarPool;
-import org.apache.xerces.xni.parser.XMLComponent;
-import org.apache.xerces.xni.parser.XMLComponentManager;
-import org.apache.xerces.xni.parser.XMLConfigurationException;
-import org.apache.xerces.xni.parser.XMLEntityResolver;
-import org.apache.xerces.xni.parser.XMLErrorHandler;
-import org.apache.xerces.xni.parser.XMLInputSource;
-import org.apache.xerces.xni.parser.XMLParserConfiguration;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.impl.XMLEntityManager;
+import org.codelibs.xerces.impl.XMLErrorReporter;
+import org.codelibs.xerces.impl.dv.DTDDVFactory;
+import org.codelibs.xerces.impl.msg.XMLMessageFormatter;
+import org.codelibs.xerces.impl.validation.ValidationManager;
+import org.codelibs.xerces.util.DOMEntityResolverWrapper;
+import org.codelibs.xerces.util.DOMErrorHandlerWrapper;
+import org.codelibs.xerces.util.MessageFormatter;
+import org.codelibs.xerces.util.ParserConfigurationSettings;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.xni.XMLDTDContentModelHandler;
+import org.codelibs.xerces.xni.XMLDTDHandler;
+import org.codelibs.xerces.xni.XMLDocumentHandler;
+import org.codelibs.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.grammars.XMLGrammarPool;
+import org.codelibs.xerces.xni.parser.XMLComponent;
+import org.codelibs.xerces.xni.parser.XMLComponentManager;
+import org.codelibs.xerces.xni.parser.XMLConfigurationException;
+import org.codelibs.xerces.xni.parser.XMLEntityResolver;
+import org.codelibs.xerces.xni.parser.XMLErrorHandler;
+import org.codelibs.xerces.xni.parser.XMLInputSource;
+import org.codelibs.xerces.xni.parser.XMLParserConfiguration;
 import org.w3c.dom.DOMConfiguration;
 import org.w3c.dom.DOMErrorHandler;
 import org.w3c.dom.DOMException;
@@ -67,7 +67,7 @@ public class DOMConfigurationImpl extends ParserConfigurationSettings implements
     // Constants
     //
 
-    protected static final String XML11_DATATYPE_VALIDATOR_FACTORY = "org.apache.xerces.impl.dv.dtd.XML11DTDDVFactoryImpl";
+    protected static final String XML11_DATATYPE_VALIDATOR_FACTORY = "org.codelibs.xerces.impl.dv.dtd.XML11DTDDVFactoryImpl";
 
     // feature identifiers
 
@@ -338,7 +338,7 @@ public class DOMConfigurationImpl extends ParserConfigurationSettings implements
         if (fErrorReporter.getMessageFormatter("http://www.w3.org/TR/xml-schema-1") == null) {
             MessageFormatter xmft = null;
             try {
-                xmft = (MessageFormatter) (ObjectFactory.newInstance("org.apache.xerces.impl.xs.XSMessageFormatter",
+                xmft = (MessageFormatter) (ObjectFactory.newInstance("org.codelibs.xerces.impl.xs.XSMessageFormatter",
                         ObjectFactory.findClassLoader(), true));
             } catch (Exception exception) {}
 
@@ -519,7 +519,7 @@ public class DOMConfigurationImpl extends ParserConfigurationSettings implements
      * @param featureId The unique identifier (URI) of the feature.
      * @param state The requested state of the feature (true or false).
      *
-     * @exception org.apache.xerces.xni.parser.XMLConfigurationException If the
+     * @exception org.codelibs.xerces.xni.parser.XMLConfigurationException If the
      *            requested feature is not known.
      */
     public void setFeature(String featureId, boolean state) throws XMLConfigurationException {
@@ -718,7 +718,7 @@ public class DOMConfigurationImpl extends ParserConfigurationSettings implements
                     throw newTypeMismatchError(name);
                 }
             } else if (name.equalsIgnoreCase(SECURITY_MANAGER)) {
-                if (value instanceof org.apache.xerces.util.SecurityManager || value == null) {
+                if (value instanceof org.codelibs.xerces.util.SecurityManager || value == null) {
                     setProperty(SECURITY_MANAGER, value);
                 } else {
                     throw newTypeMismatchError(name);
@@ -860,7 +860,7 @@ public class DOMConfigurationImpl extends ParserConfigurationSettings implements
         } else if (name.equalsIgnoreCase(GRAMMAR_POOL)) {
             return (value instanceof XMLGrammarPool) ? true : false;
         } else if (name.equalsIgnoreCase(SECURITY_MANAGER)) {
-            return (value instanceof org.apache.xerces.util.SecurityManager) ? true : false;
+            return (value instanceof org.codelibs.xerces.util.SecurityManager) ? true : false;
         } else {
             //false if the parameter is not recognized or the requested value is not supported.
             return false;
@@ -946,7 +946,7 @@ public class DOMConfigurationImpl extends ParserConfigurationSettings implements
      *
      * @param propertyId The unique identifier (URI) of the property
      *                   being set.
-     * @exception org.apache.xerces.xni.parser.XMLConfigurationException If the
+     * @exception org.codelibs.xerces.xni.parser.XMLConfigurationException If the
      *            requested feature is not known or supported.
      */
     protected void checkProperty(String propertyId) throws XMLConfigurationException {

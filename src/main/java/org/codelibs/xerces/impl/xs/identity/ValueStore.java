@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs.identity;
+package org.codelibs.xerces.impl.xs.identity;
 
-import org.apache.xerces.xs.ShortList;
+import org.codelibs.xerces.xs.ShortList;
 
 /**
  * Interface for storing values associated to an identity constraint.

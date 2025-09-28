@@ -87,7 +87,7 @@ public class JAXPSpecTest extends DefaultHandler {
         SAXParser saxParser = spf.newSAXParser();
         //Schema Language Property should be ignored since validation is set to false.
         saxParser.setProperty("http://java.sun.com/xml/jaxp/properties/schemaLanguage", "http://www.w3.org/2001/XMLSchema");
-        saxParser.parse("tests/jaxp/data/personal-schema.xml", this);
+        saxParser.parse("src/test/resources/jaxp/data/personal-schema.xml", this);
         System.out.println(" JAXPSpecTest.testSchemaLanguageSAX Passed ");
     }
 
@@ -104,8 +104,9 @@ public class JAXPSpecTest extends DefaultHandler {
             SAXParser saxParser = spf.newSAXParser();
             //Schema Language property should be set before setting schema source property.
             //setting this property should throw SAXNotSupportedException
-            saxParser.setProperty("http://java.sun.com/xml/jaxp/properties/schemaSource", "tests/jaxp/data/personal-schema.xsd");
-            saxParser.parse("tests/jaxp/data/personal-schema.xml", this);
+            saxParser.setProperty("http://java.sun.com/xml/jaxp/properties/schemaSource",
+                    "src/test/resources/jaxp/data/personal-schema.xsd");
+            saxParser.parse("src/test/resources/jaxp/data/personal-schema.xml", this);
         } catch (SAXNotSupportedException ne) {
             System.out.println(" JAXPSpecTest.testSchemaSourceSAX Passed");
         }
@@ -124,7 +125,7 @@ public class JAXPSpecTest extends DefaultHandler {
         dbf.setAttribute("http://java.sun.com/xml/jaxp/properties/schemaLanguage", "http://www.w3.org/2001/XMLSchema");
         DocumentBuilder docBuilder = dbf.newDocumentBuilder();
         docBuilder.setErrorHandler(this);
-        Document document = docBuilder.parse(new File("tests/jaxp/data/personal-schema.xml"));
+        Document document = docBuilder.parse(new File("src/test/resources/jaxp/data/personal-schema.xml"));
         System.out.println(" JAXPSpecTest.testSchemaLanguageDOM Passed");
 
     }
@@ -141,10 +142,10 @@ public class JAXPSpecTest extends DefaultHandler {
             dbf.setValidating(true);
             //Schema Language property should be set before setting schema source property.
             //setting this property should throw IllegalArgumentException
-            dbf.setAttribute("http://java.sun.com/xml/jaxp/properties/schemaSource", "tests/jaxp/data/personal-schema.xsd");
+            dbf.setAttribute("http://java.sun.com/xml/jaxp/properties/schemaSource", "src/test/resources/jaxp/data/personal-schema.xsd");
             DocumentBuilder docBuilder = dbf.newDocumentBuilder();
             docBuilder.setErrorHandler(this);
-            Document document = docBuilder.parse("tests/jaxp/data/personal-schema.xml");
+            Document document = docBuilder.parse("src/test/resources/jaxp/data/personal-schema.xml");
         } catch (IllegalArgumentException e) {
             System.out.println(" JAXPSpecTest.testSchemaSourceDOM Passed");
         }

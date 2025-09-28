@@ -21,7 +21,7 @@
  * DeferredAttrImpl.java at the same time.
  */
 
-package org.apache.xerces.dom;
+package org.codelibs.xerces.dom;
 
 /**
  * DeferredAttrNSImpl is to AttrNSImpl, what DeferredAttrImpl is to

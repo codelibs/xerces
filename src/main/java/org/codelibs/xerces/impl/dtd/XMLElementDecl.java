@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.dtd;
+package org.codelibs.xerces.impl.dtd;
 
-import org.apache.xerces.impl.dtd.models.ContentModelValidator;
-import org.apache.xerces.xni.QName;
+import org.codelibs.xerces.impl.dtd.models.ContentModelValidator;
+import org.codelibs.xerces.xni.QName;
 
 /**
  * @xerces.internal

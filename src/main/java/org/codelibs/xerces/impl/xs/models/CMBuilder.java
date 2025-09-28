@@ -15,15 +15,15 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs.models;
+package org.codelibs.xerces.impl.xs.models;
 
-import org.apache.xerces.impl.dtd.models.CMNode;
-import org.apache.xerces.impl.xs.SchemaSymbols;
-import org.apache.xerces.impl.xs.XSComplexTypeDecl;
-import org.apache.xerces.impl.xs.XSDeclarationPool;
-import org.apache.xerces.impl.xs.XSElementDecl;
-import org.apache.xerces.impl.xs.XSModelGroupImpl;
-import org.apache.xerces.impl.xs.XSParticleDecl;
+import org.codelibs.xerces.impl.dtd.models.CMNode;
+import org.codelibs.xerces.impl.xs.SchemaSymbols;
+import org.codelibs.xerces.impl.xs.XSComplexTypeDecl;
+import org.codelibs.xerces.impl.xs.XSDeclarationPool;
+import org.codelibs.xerces.impl.xs.XSElementDecl;
+import org.codelibs.xerces.impl.xs.XSModelGroupImpl;
+import org.codelibs.xerces.impl.xs.XSParticleDecl;
 
 /**
  * This class constructs content models for a given grammar.

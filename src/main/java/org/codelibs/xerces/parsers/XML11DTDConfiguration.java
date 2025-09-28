@@ -15,51 +15,51 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.parsers;
+package org.codelibs.xerces.parsers;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
 
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.impl.XML11DTDScannerImpl;
-import org.apache.xerces.impl.XML11DocumentScannerImpl;
-import org.apache.xerces.impl.XML11NSDocumentScannerImpl;
-import org.apache.xerces.impl.XMLDTDScannerImpl;
-import org.apache.xerces.impl.XMLDocumentScannerImpl;
-import org.apache.xerces.impl.XMLEntityHandler;
-import org.apache.xerces.impl.XMLEntityManager;
-import org.apache.xerces.impl.XMLErrorReporter;
-import org.apache.xerces.impl.XMLNSDocumentScannerImpl;
-import org.apache.xerces.impl.XMLVersionDetector;
-import org.apache.xerces.impl.dtd.XML11DTDProcessor;
-import org.apache.xerces.impl.dtd.XML11DTDValidator;
-import org.apache.xerces.impl.dtd.XML11NSDTDValidator;
-import org.apache.xerces.impl.dtd.XMLDTDProcessor;
-import org.apache.xerces.impl.dtd.XMLDTDValidator;
-import org.apache.xerces.impl.dtd.XMLNSDTDValidator;
-import org.apache.xerces.impl.dv.DTDDVFactory;
-import org.apache.xerces.impl.msg.XMLMessageFormatter;
-import org.apache.xerces.impl.validation.ValidationManager;
-import org.apache.xerces.util.ParserConfigurationSettings;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.xni.XMLDTDContentModelHandler;
-import org.apache.xerces.xni.XMLDTDHandler;
-import org.apache.xerces.xni.XMLDocumentHandler;
-import org.apache.xerces.xni.XMLLocator;
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xni.grammars.XMLGrammarPool;
-import org.apache.xerces.xni.parser.XMLComponent;
-import org.apache.xerces.xni.parser.XMLComponentManager;
-import org.apache.xerces.xni.parser.XMLConfigurationException;
-import org.apache.xerces.xni.parser.XMLDTDScanner;
-import org.apache.xerces.xni.parser.XMLDocumentScanner;
-import org.apache.xerces.xni.parser.XMLDocumentSource;
-import org.apache.xerces.xni.parser.XMLEntityResolver;
-import org.apache.xerces.xni.parser.XMLErrorHandler;
-import org.apache.xerces.xni.parser.XMLInputSource;
-import org.apache.xerces.xni.parser.XMLPullParserConfiguration;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.impl.XML11DTDScannerImpl;
+import org.codelibs.xerces.impl.XML11DocumentScannerImpl;
+import org.codelibs.xerces.impl.XML11NSDocumentScannerImpl;
+import org.codelibs.xerces.impl.XMLDTDScannerImpl;
+import org.codelibs.xerces.impl.XMLDocumentScannerImpl;
+import org.codelibs.xerces.impl.XMLEntityHandler;
+import org.codelibs.xerces.impl.XMLEntityManager;
+import org.codelibs.xerces.impl.XMLErrorReporter;
+import org.codelibs.xerces.impl.XMLNSDocumentScannerImpl;
+import org.codelibs.xerces.impl.XMLVersionDetector;
+import org.codelibs.xerces.impl.dtd.XML11DTDProcessor;
+import org.codelibs.xerces.impl.dtd.XML11DTDValidator;
+import org.codelibs.xerces.impl.dtd.XML11NSDTDValidator;
+import org.codelibs.xerces.impl.dtd.XMLDTDProcessor;
+import org.codelibs.xerces.impl.dtd.XMLDTDValidator;
+import org.codelibs.xerces.impl.dtd.XMLNSDTDValidator;
+import org.codelibs.xerces.impl.dv.DTDDVFactory;
+import org.codelibs.xerces.impl.msg.XMLMessageFormatter;
+import org.codelibs.xerces.impl.validation.ValidationManager;
+import org.codelibs.xerces.util.ParserConfigurationSettings;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.xni.XMLDTDContentModelHandler;
+import org.codelibs.xerces.xni.XMLDTDHandler;
+import org.codelibs.xerces.xni.XMLDocumentHandler;
+import org.codelibs.xerces.xni.XMLLocator;
+import org.codelibs.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.grammars.XMLGrammarPool;
+import org.codelibs.xerces.xni.parser.XMLComponent;
+import org.codelibs.xerces.xni.parser.XMLComponentManager;
+import org.codelibs.xerces.xni.parser.XMLConfigurationException;
+import org.codelibs.xerces.xni.parser.XMLDTDScanner;
+import org.codelibs.xerces.xni.parser.XMLDocumentScanner;
+import org.codelibs.xerces.xni.parser.XMLDocumentSource;
+import org.codelibs.xerces.xni.parser.XMLEntityResolver;
+import org.codelibs.xerces.xni.parser.XMLErrorHandler;
+import org.codelibs.xerces.xni.parser.XMLInputSource;
+import org.codelibs.xerces.xni.parser.XMLPullParserConfiguration;
 
 /**
  * This class is the DTD-only parser configuration
@@ -104,7 +104,7 @@ public class XML11DTDConfiguration extends ParserConfigurationSettings implement
     //
     // Constants
     //
-    protected final static String XML11_DATATYPE_VALIDATOR_FACTORY = "org.apache.xerces.impl.dv.dtd.XML11DTDDVFactoryImpl";
+    protected final static String XML11_DATATYPE_VALIDATOR_FACTORY = "org.codelibs.xerces.impl.dv.dtd.XML11DTDDVFactoryImpl";
 
     // feature identifiers
 
@@ -749,7 +749,7 @@ public class XML11DTDConfiguration extends ParserConfigurationSettings implement
      * @param featureId The unique identifier (URI) of the feature.
      * @param state The requested state of the feature (true or false).
      *
-     * @exception org.apache.xerces.xni.parser.XMLConfigurationException If the
+     * @exception org.codelibs.xerces.xni.parser.XMLConfigurationException If the
      *            requested feature is not known.
      */
     public void setFeature(String featureId, boolean state) throws XMLConfigurationException {

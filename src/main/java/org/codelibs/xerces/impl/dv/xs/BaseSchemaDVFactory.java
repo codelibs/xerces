@@ -15,15 +15,15 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.dv.xs;
+package org.codelibs.xerces.impl.dv.xs;
 
-import org.apache.xerces.impl.dv.SchemaDVFactory;
-import org.apache.xerces.impl.dv.XSFacets;
-import org.apache.xerces.impl.dv.XSSimpleType;
-import org.apache.xerces.impl.xs.XSDeclarationPool;
-import org.apache.xerces.util.SymbolHash;
-import org.apache.xerces.xs.XSConstants;
-import org.apache.xerces.xs.XSObjectList;
+import org.codelibs.xerces.impl.dv.SchemaDVFactory;
+import org.codelibs.xerces.impl.dv.XSFacets;
+import org.codelibs.xerces.impl.dv.XSSimpleType;
+import org.codelibs.xerces.impl.xs.XSDeclarationPool;
+import org.codelibs.xerces.util.SymbolHash;
+import org.codelibs.xerces.xs.XSConstants;
+import org.codelibs.xerces.xs.XSObjectList;
 
 /**
  * the base factory to create/return built-in schema DVs and create user-defined DVs

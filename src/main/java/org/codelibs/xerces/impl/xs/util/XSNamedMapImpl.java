@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs.util;
+package org.codelibs.xerces.impl.xs.util;
 
 import java.util.AbstractMap;
 import java.util.AbstractSet;
@@ -27,9 +27,9 @@ import java.util.Set;
 import javax.xml.XMLConstants;
 import javax.xml.namespace.QName;
 
-import org.apache.xerces.util.SymbolHash;
-import org.apache.xerces.xs.XSNamedMap;
-import org.apache.xerces.xs.XSObject;
+import org.codelibs.xerces.util.SymbolHash;
+import org.codelibs.xerces.xs.XSNamedMap;
+import org.codelibs.xerces.xs.XSObject;
 
 /**
  * Contains the map between qnames and XSObject's.

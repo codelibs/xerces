@@ -21,7 +21,7 @@
  * DeferredElementNSImpl.java at the same time.
  */
 
-package org.apache.xerces.dom;
+package org.codelibs.xerces.dom;
 
 import org.w3c.dom.NamedNodeMap;
 

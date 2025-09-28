@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xml.serialize;
+package org.codelibs.xerces.xml.serialize;
 
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
@@ -34,7 +34,7 @@ import java.util.StringTokenizer;
  */
 public abstract class SerializerFactory {
 
-    public static final String FactoriesProperty = "org.apache.xml.serialize.factories";
+    public static final String FactoriesProperty = "org.codelibs.xerces.xml.serialize.factories";
 
     private static Hashtable _factories = new Hashtable();
 

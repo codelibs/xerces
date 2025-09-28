@@ -15,15 +15,15 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.dtd;
+package org.codelibs.xerces.impl.dtd;
 
 import java.util.ArrayList;
 import java.util.Vector;
 
-import org.apache.xerces.util.XMLResourceIdentifierImpl;
-import org.apache.xerces.xni.XMLResourceIdentifier;
-import org.apache.xerces.xni.grammars.XMLGrammarDescription;
-import org.apache.xerces.xni.parser.XMLInputSource;
+import org.codelibs.xerces.util.XMLResourceIdentifierImpl;
+import org.codelibs.xerces.xni.XMLResourceIdentifier;
+import org.codelibs.xerces.xni.grammars.XMLGrammarDescription;
+import org.codelibs.xerces.xni.parser.XMLInputSource;
 
 /**
  * All information specific to DTD grammars.
@@ -33,7 +33,7 @@ import org.apache.xerces.xni.parser.XMLInputSource;
  * @author Neil Graham, IBM
  * @version $Id: XMLDTDDescription.java 699892 2008-09-28 21:08:27Z mrglavas $
  */
-public class XMLDTDDescription extends XMLResourceIdentifierImpl implements org.apache.xerces.xni.grammars.XMLDTDDescription {
+public class XMLDTDDescription extends XMLResourceIdentifierImpl implements org.codelibs.xerces.xni.grammars.XMLDTDDescription {
 
     // Data
 

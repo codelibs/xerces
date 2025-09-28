@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.dtd;
+package org.codelibs.xerces.impl.dtd;
 
 /**
  * ContentSpec really exists to aid the parser classes in implementing

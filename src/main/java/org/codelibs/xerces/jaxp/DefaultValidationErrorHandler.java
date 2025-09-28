@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.jaxp;
+package org.codelibs.xerces.jaxp;
 
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;

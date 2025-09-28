@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.html.dom;
+package org.codelibs.xerces.html.dom;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.html.HTMLIFrameElement;
@@ -24,7 +24,7 @@ import org.w3c.dom.html.HTMLIFrameElement;
  * @version $Revision: 1866821 $ $Date: 2019-09-12 09:55:36 +0530 (Thu, 12 Sep 2019) $
  * @author <a href="mailto:arkin@exoffice.com">Assaf Arkin</a>
  * @see org.w3c.dom.html.HTMLIFrameElement
- * @see org.apache.xerces.dom.ElementImpl
+ * @see org.codelibs.xerces.dom.ElementImpl
  */
 public class HTMLIFrameElementImpl extends HTMLElementImpl implements HTMLIFrameElement {
 

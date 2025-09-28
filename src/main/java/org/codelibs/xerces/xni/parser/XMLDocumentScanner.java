@@ -15,11 +15,11 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.xni.parser;
+package org.codelibs.xerces.xni.parser;
 
 import java.io.IOException;
 
-import org.apache.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.XNIException;
 
 /**
  * This interface defines a generic document scanner. This interface

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.dom;
+package org.codelibs.xerces.dom;
 
 /**
  * Text nodes hold the non-markup, non-Entity content of

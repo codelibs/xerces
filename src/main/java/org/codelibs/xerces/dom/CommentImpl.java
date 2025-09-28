@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.dom;
+package org.codelibs.xerces.dom;
 
 import org.w3c.dom.CharacterData;
 import org.w3c.dom.Comment;

@@ -15,19 +15,19 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.parsers;
+package org.codelibs.xerces.parsers;
 
-import org.apache.xerces.impl.XMLDocumentScannerImpl;
-import org.apache.xerces.impl.XMLNSDocumentScannerImpl;
-import org.apache.xerces.impl.dtd.XMLDTDValidator;
-import org.apache.xerces.impl.dtd.XMLNSDTDValidator;
-import org.apache.xerces.impl.xs.XMLSchemaValidator;
-import org.apache.xerces.impl.xs.XSMessageFormatter;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.xni.grammars.XMLGrammarPool;
-import org.apache.xerces.xni.parser.XMLComponent;
-import org.apache.xerces.xni.parser.XMLComponentManager;
-import org.apache.xerces.xni.parser.XMLDocumentScanner;
+import org.codelibs.xerces.impl.XMLDocumentScannerImpl;
+import org.codelibs.xerces.impl.XMLNSDocumentScannerImpl;
+import org.codelibs.xerces.impl.dtd.XMLDTDValidator;
+import org.codelibs.xerces.impl.dtd.XMLNSDTDValidator;
+import org.codelibs.xerces.impl.xs.XMLSchemaValidator;
+import org.codelibs.xerces.impl.xs.XSMessageFormatter;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.xni.grammars.XMLGrammarPool;
+import org.codelibs.xerces.xni.parser.XMLComponent;
+import org.codelibs.xerces.xni.parser.XMLComponentManager;
+import org.codelibs.xerces.xni.parser.XMLDocumentScanner;
 
 /**
  * This is configuration uses a scanner that integrates both scanning of the document

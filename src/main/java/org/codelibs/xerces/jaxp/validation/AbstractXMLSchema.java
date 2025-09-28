@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.jaxp.validation;
+package org.codelibs.xerces.jaxp.validation;
 
 import java.util.HashMap;
 

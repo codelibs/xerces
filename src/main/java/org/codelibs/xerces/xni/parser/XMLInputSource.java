@@ -15,12 +15,12 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.xni.parser;
+package org.codelibs.xerces.xni.parser;
 
 import java.io.InputStream;
 import java.io.Reader;
 
-import org.apache.xerces.xni.XMLResourceIdentifier;
+import org.codelibs.xerces.xni.XMLResourceIdentifier;
 
 /**
  * This class represents an input source for an XML document. The

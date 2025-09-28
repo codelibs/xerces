@@ -15,20 +15,20 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs.traversers;
+package org.codelibs.xerces.impl.xs.traversers;
 
-import org.apache.xerces.impl.xs.opti.SchemaDOMParser;
-import org.apache.xerces.util.NamespaceSupport;
-import org.apache.xerces.util.SAXLocatorWrapper;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.util.XMLAttributesImpl;
-import org.apache.xerces.util.XMLStringBuffer;
-import org.apache.xerces.util.XMLSymbols;
-import org.apache.xerces.xni.NamespaceContext;
-import org.apache.xerces.xni.QName;
-import org.apache.xerces.xni.XMLString;
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xni.parser.XMLParseException;
+import org.codelibs.xerces.impl.xs.opti.SchemaDOMParser;
+import org.codelibs.xerces.util.NamespaceSupport;
+import org.codelibs.xerces.util.SAXLocatorWrapper;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.util.XMLAttributesImpl;
+import org.codelibs.xerces.util.XMLStringBuffer;
+import org.codelibs.xerces.util.XMLSymbols;
+import org.codelibs.xerces.xni.NamespaceContext;
+import org.codelibs.xerces.xni.QName;
+import org.codelibs.xerces.xni.XMLString;
+import org.codelibs.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.parser.XMLParseException;
 import org.w3c.dom.Document;
 import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler;

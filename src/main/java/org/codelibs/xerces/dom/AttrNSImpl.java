@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.dom;
+package org.codelibs.xerces.dom;
 
-import org.apache.xerces.impl.dv.xs.XSSimpleTypeDecl;
-import org.apache.xerces.xni.NamespaceContext;
+import org.codelibs.xerces.impl.dv.xs.XSSimpleTypeDecl;
+import org.codelibs.xerces.xni.NamespaceContext;
 import org.w3c.dom.DOMException;
 
 /**

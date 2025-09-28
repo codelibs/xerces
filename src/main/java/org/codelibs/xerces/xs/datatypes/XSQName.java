@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.xs.datatypes;
+package org.codelibs.xerces.xs.datatypes;
 
 /**
  * Interface to expose QName actual values
@@ -25,9 +25,9 @@ package org.apache.xerces.xs.datatypes;
 public interface XSQName {
 
     /**
-     * @return org.apache.xerces.xni.QName class instance
+     * @return org.codelibs.xerces.xni.QName class instance
      */
-    public org.apache.xerces.xni.QName getXNIQName();
+    public org.codelibs.xerces.xni.QName getXNIQName();
 
     /**
      * @return javax.xml.namespace.QName class instance

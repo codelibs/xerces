@@ -15,12 +15,12 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.util;
+package org.codelibs.xerces.util;
 
 import java.util.Enumeration;
 import java.util.NoSuchElementException;
 
-import org.apache.xerces.xni.NamespaceContext;
+import org.codelibs.xerces.xni.NamespaceContext;
 
 /**
  * Namespace support for XML document handlers. This class doesn't
@@ -98,7 +98,7 @@ public class NamespaceSupport implements NamespaceContext {
     //
 
     /**
-     * @see org.apache.xerces.xni.NamespaceContext#reset()
+     * @see org.codelibs.xerces.xni.NamespaceContext#reset()
      */
     public void reset() {
 
@@ -118,7 +118,7 @@ public class NamespaceSupport implements NamespaceContext {
     } // reset(SymbolTable)
 
     /**
-     * @see org.apache.xerces.xni.NamespaceContext#pushContext()
+     * @see org.codelibs.xerces.xni.NamespaceContext#pushContext()
      */
     public void pushContext() {
 
@@ -135,14 +135,14 @@ public class NamespaceSupport implements NamespaceContext {
     } // pushContext()
 
     /**
-     * @see org.apache.xerces.xni.NamespaceContext#popContext()
+     * @see org.codelibs.xerces.xni.NamespaceContext#popContext()
      */
     public void popContext() {
         fNamespaceSize = fContext[fCurrentContext--];
     } // popContext()
 
     /**
-     * @see org.apache.xerces.xni.NamespaceContext#declarePrefix(String, String)
+     * @see org.codelibs.xerces.xni.NamespaceContext#declarePrefix(String, String)
      */
     public boolean declarePrefix(String prefix, String uri) {
         // ignore "xml" and "xmlns" prefixes
@@ -180,7 +180,7 @@ public class NamespaceSupport implements NamespaceContext {
     } // declarePrefix(String,String):boolean
 
     /**
-     * @see org.apache.xerces.xni.NamespaceContext#getURI(String)
+     * @see org.codelibs.xerces.xni.NamespaceContext#getURI(String)
      */
     public String getURI(String prefix) {
 
@@ -197,7 +197,7 @@ public class NamespaceSupport implements NamespaceContext {
     } // getURI(String):String
 
     /**
-     * @see org.apache.xerces.xni.NamespaceContext#getPrefix(String)
+     * @see org.codelibs.xerces.xni.NamespaceContext#getPrefix(String)
      */
     public String getPrefix(String uri) {
 
@@ -215,21 +215,21 @@ public class NamespaceSupport implements NamespaceContext {
     } // getPrefix(String):String
 
     /**
-     * @see org.apache.xerces.xni.NamespaceContext#getDeclaredPrefixCount()
+     * @see org.codelibs.xerces.xni.NamespaceContext#getDeclaredPrefixCount()
      */
     public int getDeclaredPrefixCount() {
         return (fNamespaceSize - fContext[fCurrentContext]) / 2;
     } // getDeclaredPrefixCount():int
 
     /**
-     * @see org.apache.xerces.xni.NamespaceContext#getDeclaredPrefixAt(int)
+     * @see org.codelibs.xerces.xni.NamespaceContext#getDeclaredPrefixAt(int)
      */
     public String getDeclaredPrefixAt(int index) {
         return fNamespace[fContext[fCurrentContext] + index * 2];
     } // getDeclaredPrefixAt(int):String
 
     /**
-     * @see org.apache.xerces.xni.NamespaceContext#getAllPrefixes()
+     * @see org.codelibs.xerces.xni.NamespaceContext#getAllPrefixes()
      */
     public Enumeration getAllPrefixes() {
         int count = 0;

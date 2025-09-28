@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.jaxp.datatype;
+package org.codelibs.xerces.jaxp.datatype;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -29,7 +29,7 @@ import javax.xml.datatype.DatatypeConstants;
 import javax.xml.datatype.Duration;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import org.apache.xerces.util.DatatypeMessageFormatter;
+import org.codelibs.xerces.util.DatatypeMessageFormatter;
 
 /**
  * <p>Immutable representation of a time span as defined in

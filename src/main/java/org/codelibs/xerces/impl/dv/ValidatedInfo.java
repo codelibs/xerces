@@ -15,15 +15,15 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.dv;
+package org.codelibs.xerces.impl.dv;
 
-import org.apache.xerces.impl.xs.util.ShortListImpl;
-import org.apache.xerces.impl.xs.util.XSObjectListImpl;
-import org.apache.xerces.xs.ShortList;
-import org.apache.xerces.xs.XSConstants;
-import org.apache.xerces.xs.XSObjectList;
-import org.apache.xerces.xs.XSSimpleTypeDefinition;
-import org.apache.xerces.xs.XSValue;
+import org.codelibs.xerces.impl.xs.util.ShortListImpl;
+import org.codelibs.xerces.impl.xs.util.XSObjectListImpl;
+import org.codelibs.xerces.xs.ShortList;
+import org.codelibs.xerces.xs.XSConstants;
+import org.codelibs.xerces.xs.XSObjectList;
+import org.codelibs.xerces.xs.XSSimpleTypeDefinition;
+import org.codelibs.xerces.xs.XSValue;
 
 /**
  * Class to get the information back after content is validated. This info

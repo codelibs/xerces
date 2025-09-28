@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs;
+package org.codelibs.xerces.impl.xs;
 
-import org.apache.xerces.impl.dv.xs.SchemaDVFactoryImpl;
-import org.apache.xerces.impl.dv.xs.XSSimpleTypeDecl;
+import org.codelibs.xerces.impl.dv.xs.SchemaDVFactoryImpl;
+import org.codelibs.xerces.impl.dv.xs.XSSimpleTypeDecl;
 
 /**
  * This class is pool that enables caching of XML Schema declaration objects.

@@ -15,15 +15,15 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.parsers;
+package org.codelibs.xerces.parsers;
 
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.impl.xs.XMLSchemaValidator;
-import org.apache.xerces.impl.xs.XSMessageFormatter;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.xni.grammars.XMLGrammarPool;
-import org.apache.xerces.xni.parser.XMLComponentManager;
-import org.apache.xerces.xni.parser.XMLConfigurationException;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.impl.xs.XMLSchemaValidator;
+import org.codelibs.xerces.impl.xs.XSMessageFormatter;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.xni.grammars.XMLGrammarPool;
+import org.codelibs.xerces.xni.parser.XMLComponentManager;
+import org.codelibs.xerces.xni.parser.XMLConfigurationException;
 
 /**
  * This is the "standard" parser configuration. It extends the DTD

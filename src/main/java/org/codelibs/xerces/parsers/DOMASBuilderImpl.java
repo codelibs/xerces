@@ -15,23 +15,23 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.parsers;
+package org.codelibs.xerces.parsers;
 
 import java.util.Vector;
 
-import org.apache.xerces.dom.ASModelImpl;
-import org.apache.xerces.dom3.as.ASModel;
-import org.apache.xerces.dom3.as.DOMASBuilder;
-import org.apache.xerces.dom3.as.DOMASException;
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.impl.xs.SchemaGrammar;
-import org.apache.xerces.impl.xs.XSGrammarBucket;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.util.XMLGrammarPoolImpl;
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xni.grammars.Grammar;
-import org.apache.xerces.xni.grammars.XMLGrammarPool;
-import org.apache.xerces.xni.parser.XMLInputSource;
+import org.codelibs.xerces.dom.ASModelImpl;
+import org.codelibs.xerces.dom3.as.ASModel;
+import org.codelibs.xerces.dom3.as.DOMASBuilder;
+import org.codelibs.xerces.dom3.as.DOMASException;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.impl.xs.SchemaGrammar;
+import org.codelibs.xerces.impl.xs.XSGrammarBucket;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.util.XMLGrammarPoolImpl;
+import org.codelibs.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.grammars.Grammar;
+import org.codelibs.xerces.xni.grammars.XMLGrammarPool;
+import org.codelibs.xerces.xni.parser.XMLInputSource;
 import org.w3c.dom.ls.LSInput;
 
 /**

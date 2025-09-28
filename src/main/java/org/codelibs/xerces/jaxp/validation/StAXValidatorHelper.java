@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.jaxp.validation;
+package org.codelibs.xerces.jaxp.validation;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -47,21 +47,21 @@ import javax.xml.transform.Source;
 import javax.xml.transform.stax.StAXResult;
 import javax.xml.transform.stax.StAXSource;
 
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.impl.XMLErrorReporter;
-import org.apache.xerces.impl.validation.EntityState;
-import org.apache.xerces.impl.validation.ValidationManager;
-import org.apache.xerces.impl.xs.XMLSchemaValidator;
-import org.apache.xerces.util.JAXPNamespaceContextWrapper;
-import org.apache.xerces.util.StAXLocationWrapper;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.util.XMLAttributesImpl;
-import org.apache.xerces.util.XMLStringBuffer;
-import org.apache.xerces.util.XMLSymbols;
-import org.apache.xerces.xni.QName;
-import org.apache.xerces.xni.XMLString;
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xni.parser.XMLParseException;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.impl.XMLErrorReporter;
+import org.codelibs.xerces.impl.validation.EntityState;
+import org.codelibs.xerces.impl.validation.ValidationManager;
+import org.codelibs.xerces.impl.xs.XMLSchemaValidator;
+import org.codelibs.xerces.util.JAXPNamespaceContextWrapper;
+import org.codelibs.xerces.util.StAXLocationWrapper;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.util.XMLAttributesImpl;
+import org.codelibs.xerces.util.XMLStringBuffer;
+import org.codelibs.xerces.util.XMLSymbols;
+import org.codelibs.xerces.xni.QName;
+import org.codelibs.xerces.xni.XMLString;
+import org.codelibs.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.parser.XMLParseException;
 import org.xml.sax.SAXException;
 
 /**

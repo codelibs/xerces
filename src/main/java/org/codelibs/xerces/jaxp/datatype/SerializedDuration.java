@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.jaxp.datatype;
+package org.codelibs.xerces.jaxp.datatype;
 
 import java.io.ObjectStreamException;
 import java.io.Serializable;

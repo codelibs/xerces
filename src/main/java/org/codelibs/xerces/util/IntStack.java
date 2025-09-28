@@ -15,12 +15,12 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.util;
+package org.codelibs.xerces.util;
 
 /**
  * A simple integer based stack.
  *
- * moved to org.apache.xerces.util by neilg to support the
+ * moved to org.codelibs.xerces.util by neilg to support the
  * XPathMatcher.
  * @author  Andy Clark, IBM
  *

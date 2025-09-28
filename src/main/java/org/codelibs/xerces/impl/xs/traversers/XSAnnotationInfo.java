@@ -14,9 +14,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.xerces.impl.xs.traversers;
+package org.codelibs.xerces.impl.xs.traversers;
 
-import org.apache.xerces.impl.xs.opti.ElementImpl;
+import org.codelibs.xerces.impl.xs.opti.ElementImpl;
 import org.w3c.dom.Element;
 
 /**

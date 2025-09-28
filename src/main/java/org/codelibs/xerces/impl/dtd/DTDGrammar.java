@@ -15,36 +15,36 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.dtd;
+package org.codelibs.xerces.impl.dtd;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Random;
 
-import org.apache.xerces.impl.dtd.models.CMAny;
-import org.apache.xerces.impl.dtd.models.CMBinOp;
-import org.apache.xerces.impl.dtd.models.CMLeaf;
-import org.apache.xerces.impl.dtd.models.CMNode;
-import org.apache.xerces.impl.dtd.models.CMUniOp;
-import org.apache.xerces.impl.dtd.models.ContentModelValidator;
-import org.apache.xerces.impl.dtd.models.DFAContentModel;
-import org.apache.xerces.impl.dtd.models.MixedContentModel;
-import org.apache.xerces.impl.dtd.models.SimpleContentModel;
-import org.apache.xerces.impl.dv.DatatypeValidator;
-import org.apache.xerces.impl.validation.EntityState;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.xni.Augmentations;
-import org.apache.xerces.xni.QName;
-import org.apache.xerces.xni.XMLDTDContentModelHandler;
-import org.apache.xerces.xni.XMLDTDHandler;
-import org.apache.xerces.xni.XMLLocator;
-import org.apache.xerces.xni.XMLResourceIdentifier;
-import org.apache.xerces.xni.XMLString;
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xni.grammars.Grammar;
-import org.apache.xerces.xni.grammars.XMLGrammarDescription;
-import org.apache.xerces.xni.parser.XMLDTDContentModelSource;
-import org.apache.xerces.xni.parser.XMLDTDSource;
+import org.codelibs.xerces.impl.dtd.models.CMAny;
+import org.codelibs.xerces.impl.dtd.models.CMBinOp;
+import org.codelibs.xerces.impl.dtd.models.CMLeaf;
+import org.codelibs.xerces.impl.dtd.models.CMNode;
+import org.codelibs.xerces.impl.dtd.models.CMUniOp;
+import org.codelibs.xerces.impl.dtd.models.ContentModelValidator;
+import org.codelibs.xerces.impl.dtd.models.DFAContentModel;
+import org.codelibs.xerces.impl.dtd.models.MixedContentModel;
+import org.codelibs.xerces.impl.dtd.models.SimpleContentModel;
+import org.codelibs.xerces.impl.dv.DatatypeValidator;
+import org.codelibs.xerces.impl.validation.EntityState;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.xni.Augmentations;
+import org.codelibs.xerces.xni.QName;
+import org.codelibs.xerces.xni.XMLDTDContentModelHandler;
+import org.codelibs.xerces.xni.XMLDTDHandler;
+import org.codelibs.xerces.xni.XMLLocator;
+import org.codelibs.xerces.xni.XMLResourceIdentifier;
+import org.codelibs.xerces.xni.XMLString;
+import org.codelibs.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.grammars.Grammar;
+import org.codelibs.xerces.xni.grammars.XMLGrammarDescription;
+import org.codelibs.xerces.xni.parser.XMLDTDContentModelSource;
+import org.codelibs.xerces.xni.parser.XMLDTDSource;
 
 /**
  * A DTD grammar. This class implements the XNI handler interfaces
@@ -988,8 +988,8 @@ public class DTDGrammar implements XMLDTDHandler, XMLDTDContentModelHandler, Ent
      *                      augmentations.
      * @throws XNIException Thrown by handler to signal an error.
      *
-     * @see org.apache.xerces.xni.XMLDTDContentModelHandler#SEPARATOR_CHOICE
-     * @see org.apache.xerces.xni.XMLDTDContentModelHandler#SEPARATOR_SEQUENCE
+     * @see org.codelibs.xerces.xni.XMLDTDContentModelHandler#SEPARATOR_CHOICE
+     * @see org.codelibs.xerces.xni.XMLDTDContentModelHandler#SEPARATOR_SEQUENCE
      */
     public void separator(short separator, Augmentations augs) throws XNIException {
 
@@ -1022,9 +1022,9 @@ public class DTDGrammar implements XMLDTDHandler, XMLDTDContentModelHandler, Ent
      *                      augmentations.
      * @throws XNIException Thrown by handler to signal an error.
      *
-     * @see org.apache.xerces.xni.XMLDTDContentModelHandler#OCCURS_ZERO_OR_ONE
-     * @see org.apache.xerces.xni.XMLDTDContentModelHandler#OCCURS_ZERO_OR_MORE
-     * @see org.apache.xerces.xni.XMLDTDContentModelHandler#OCCURS_ONE_OR_MORE
+     * @see org.codelibs.xerces.xni.XMLDTDContentModelHandler#OCCURS_ZERO_OR_ONE
+     * @see org.codelibs.xerces.xni.XMLDTDContentModelHandler#OCCURS_ZERO_OR_MORE
+     * @see org.codelibs.xerces.xni.XMLDTDContentModelHandler#OCCURS_ONE_OR_MORE
      */
     public void occurrence(short occurrence, Augmentations augs) throws XNIException {
 

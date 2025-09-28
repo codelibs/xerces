@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.xs;
+package org.codelibs.xerces.xs;
 
 /**
  *  This interface represents the Notation Declaration schema component.

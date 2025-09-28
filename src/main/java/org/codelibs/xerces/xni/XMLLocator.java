@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.xni;
+package org.codelibs.xerces.xni;
 
 /**
  * Location information.

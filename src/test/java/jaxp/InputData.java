@@ -28,7 +28,7 @@ import org.xml.sax.InputSource;
  * @author Edwin Goei
  */
 public class InputData extends InputSource {
-    static String dataPrefix = "tests/jaxp/data/";
+    static String dataPrefix = "src/test/resources/jaxp/data/";
     private String uri;
 
     /**

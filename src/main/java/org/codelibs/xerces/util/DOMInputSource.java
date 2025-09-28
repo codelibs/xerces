@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.util;
+package org.codelibs.xerces.util;
 
-import org.apache.xerces.xni.parser.XMLInputSource;
+import org.codelibs.xerces.xni.parser.XMLInputSource;
 import org.w3c.dom.Node;
 
 /**

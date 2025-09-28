@@ -15,12 +15,12 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs.util;
+package org.codelibs.xerces.impl.xs.util;
 
 import java.util.AbstractList;
 
-import org.apache.xerces.xs.ShortList;
-import org.apache.xerces.xs.XSException;
+import org.codelibs.xerces.xs.ShortList;
+import org.codelibs.xerces.xs.XSException;
 
 /**
  * Contains a list of shorts.

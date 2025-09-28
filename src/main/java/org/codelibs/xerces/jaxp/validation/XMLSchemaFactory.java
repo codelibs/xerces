@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.jaxp.validation;
+package org.codelibs.xerces.jaxp.validation;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -31,22 +31,22 @@ import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.impl.xs.XMLSchemaLoader;
-import org.apache.xerces.util.DOMEntityResolverWrapper;
-import org.apache.xerces.util.DOMInputSource;
-import org.apache.xerces.util.ErrorHandlerWrapper;
-import org.apache.xerces.util.SAXInputSource;
-import org.apache.xerces.util.SAXMessageFormatter;
-import org.apache.xerces.util.SecurityManager;
-import org.apache.xerces.util.StAXInputSource;
-import org.apache.xerces.util.XMLGrammarPoolImpl;
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xni.grammars.Grammar;
-import org.apache.xerces.xni.grammars.XMLGrammarDescription;
-import org.apache.xerces.xni.grammars.XMLGrammarPool;
-import org.apache.xerces.xni.parser.XMLConfigurationException;
-import org.apache.xerces.xni.parser.XMLInputSource;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.impl.xs.XMLSchemaLoader;
+import org.codelibs.xerces.util.DOMEntityResolverWrapper;
+import org.codelibs.xerces.util.DOMInputSource;
+import org.codelibs.xerces.util.ErrorHandlerWrapper;
+import org.codelibs.xerces.util.SAXInputSource;
+import org.codelibs.xerces.util.SAXMessageFormatter;
+import org.codelibs.xerces.util.SecurityManager;
+import org.codelibs.xerces.util.StAXInputSource;
+import org.codelibs.xerces.util.XMLGrammarPoolImpl;
+import org.codelibs.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.grammars.Grammar;
+import org.codelibs.xerces.xni.grammars.XMLGrammarDescription;
+import org.codelibs.xerces.xni.grammars.XMLGrammarPool;
+import org.codelibs.xerces.xni.parser.XMLConfigurationException;
+import org.codelibs.xerces.xni.parser.XMLInputSource;
 import org.w3c.dom.Node;
 import org.w3c.dom.ls.LSResourceResolver;
 import org.xml.sax.ErrorHandler;

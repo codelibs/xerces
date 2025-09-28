@@ -15,14 +15,14 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs;
+package org.codelibs.xerces.impl.xs;
 
-import org.apache.xerces.impl.xs.opti.ElementImpl;
-import org.apache.xerces.util.NamespaceSupport;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.util.XMLSymbols;
-import org.apache.xerces.xni.NamespaceContext;
-import org.apache.xerces.xni.QName;
+import org.codelibs.xerces.impl.xs.opti.ElementImpl;
+import org.codelibs.xerces.util.NamespaceSupport;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.util.XMLSymbols;
+import org.codelibs.xerces.xni.NamespaceContext;
+import org.codelibs.xerces.xni.QName;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

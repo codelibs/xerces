@@ -15,20 +15,20 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs;
+package org.codelibs.xerces.impl.xs;
 
-import org.apache.xerces.impl.dv.ValidatedInfo;
-import org.apache.xerces.impl.xs.util.StringListImpl;
-import org.apache.xerces.xs.ElementPSVI;
-import org.apache.xerces.xs.ItemPSVI;
-import org.apache.xerces.xs.ShortList;
-import org.apache.xerces.xs.StringList;
-import org.apache.xerces.xs.XSElementDeclaration;
-import org.apache.xerces.xs.XSModel;
-import org.apache.xerces.xs.XSNotationDeclaration;
-import org.apache.xerces.xs.XSSimpleTypeDefinition;
-import org.apache.xerces.xs.XSTypeDefinition;
-import org.apache.xerces.xs.XSValue;
+import org.codelibs.xerces.impl.dv.ValidatedInfo;
+import org.codelibs.xerces.impl.xs.util.StringListImpl;
+import org.codelibs.xerces.xs.ElementPSVI;
+import org.codelibs.xerces.xs.ItemPSVI;
+import org.codelibs.xerces.xs.ShortList;
+import org.codelibs.xerces.xs.StringList;
+import org.codelibs.xerces.xs.XSElementDeclaration;
+import org.codelibs.xerces.xs.XSModel;
+import org.codelibs.xerces.xs.XSNotationDeclaration;
+import org.codelibs.xerces.xs.XSSimpleTypeDefinition;
+import org.codelibs.xerces.xs.XSTypeDefinition;
+import org.codelibs.xerces.xs.XSValue;
 
 /**
  * Element PSV infoset augmentations implementation.
@@ -127,7 +127,7 @@ public class ElementPSVImpl implements ElementPSVI {
     //
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.xs.ItemPSVI#constant()
+     * @see org.codelibs.xerces.xs.ItemPSVI#constant()
      */
     public ItemPSVI constant() {
         if (isConstant()) {
@@ -137,7 +137,7 @@ public class ElementPSVImpl implements ElementPSVI {
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.xs.ItemPSVI#isConstant()
+     * @see org.codelibs.xerces.xs.ItemPSVI#isConstant()
      */
     public boolean isConstant() {
         return fIsConstant;
@@ -289,28 +289,28 @@ public class ElementPSVImpl implements ElementPSVI {
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.xs.ItemPSVI#getActualNormalizedValue()
+     * @see org.codelibs.xerces.xs.ItemPSVI#getActualNormalizedValue()
      */
     public Object getActualNormalizedValue() {
         return fValue.getActualValue();
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.xs.ItemPSVI#getActualNormalizedValueType()
+     * @see org.codelibs.xerces.xs.ItemPSVI#getActualNormalizedValueType()
      */
     public short getActualNormalizedValueType() {
         return fValue.getActualValueType();
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.xs.ItemPSVI#getItemValueTypes()
+     * @see org.codelibs.xerces.xs.ItemPSVI#getItemValueTypes()
      */
     public ShortList getItemValueTypes() {
         return fValue.getListValueTypes();
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.xs.ItemPSVI#getSchemaValue()
+     * @see org.codelibs.xerces.xs.ItemPSVI#getSchemaValue()
      */
     public XSValue getSchemaValue() {
         return fValue;

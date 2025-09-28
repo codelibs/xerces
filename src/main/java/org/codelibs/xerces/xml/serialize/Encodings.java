@@ -15,13 +15,13 @@
  * limitations under the License.
  */
 
-package org.apache.xml.serialize;
+package org.codelibs.xerces.xml.serialize;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Hashtable;
 import java.util.Locale;
 
-import org.apache.xerces.util.EncodingMap;
+import org.codelibs.xerces.util.EncodingMap;
 
 /**
  * Provides information about encodings. Depends on the Java runtime

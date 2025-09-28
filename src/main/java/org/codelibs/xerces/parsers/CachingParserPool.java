@@ -15,15 +15,15 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.parsers;
+package org.codelibs.xerces.parsers;
 
-import org.apache.xerces.util.ShadowedSymbolTable;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.util.SynchronizedSymbolTable;
-import org.apache.xerces.util.XMLGrammarPoolImpl;
-import org.apache.xerces.xni.grammars.Grammar;
-import org.apache.xerces.xni.grammars.XMLGrammarDescription;
-import org.apache.xerces.xni.grammars.XMLGrammarPool;
+import org.codelibs.xerces.util.ShadowedSymbolTable;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.util.SynchronizedSymbolTable;
+import org.codelibs.xerces.util.XMLGrammarPoolImpl;
+import org.codelibs.xerces.xni.grammars.Grammar;
+import org.codelibs.xerces.xni.grammars.XMLGrammarDescription;
+import org.codelibs.xerces.xni.grammars.XMLGrammarPool;
 
 /**
  * A parser pool that enables caching of grammars. The caching parser

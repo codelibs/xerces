@@ -15,12 +15,12 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.dtd;
+package org.codelibs.xerces.impl.dtd;
 
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.xni.Augmentations;
-import org.apache.xerces.xni.XMLDTDContentModelHandler;
-import org.apache.xerces.xni.XNIException;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.xni.Augmentations;
+import org.codelibs.xerces.xni.XMLDTDContentModelHandler;
+import org.codelibs.xerces.xni.XNIException;
 
 /**
  * <p>A DTD grammar that produces balanced syntax trees.</p>
@@ -137,8 +137,8 @@ final class BalancedDTDGrammar extends DTDGrammar {
      *                      augmentations.
      * @throws XNIException Thrown by handler to signal an error.
      *
-     * @see org.apache.xerces.xni.XMLDTDContentModelHandler#SEPARATOR_CHOICE
-     * @see org.apache.xerces.xni.XMLDTDContentModelHandler#SEPARATOR_SEQUENCE
+     * @see org.codelibs.xerces.xni.XMLDTDContentModelHandler#SEPARATOR_CHOICE
+     * @see org.codelibs.xerces.xni.XMLDTDContentModelHandler#SEPARATOR_SEQUENCE
      */
     public final void separator(short separator, Augmentations augs) throws XNIException {
         if (separator == XMLDTDContentModelHandler.SEPARATOR_CHOICE) {
@@ -158,9 +158,9 @@ final class BalancedDTDGrammar extends DTDGrammar {
      *                      augmentations.
      * @throws XNIException Thrown by handler to signal an error.
      *
-     * @see org.apache.xerces.xni.XMLDTDContentModelHandler#OCCURS_ZERO_OR_ONE
-     * @see org.apache.xerces.xni.XMLDTDContentModelHandler#OCCURS_ZERO_OR_MORE
-     * @see org.apache.xerces.xni.XMLDTDContentModelHandler#OCCURS_ONE_OR_MORE
+     * @see org.codelibs.xerces.xni.XMLDTDContentModelHandler#OCCURS_ZERO_OR_ONE
+     * @see org.codelibs.xerces.xni.XMLDTDContentModelHandler#OCCURS_ZERO_OR_MORE
+     * @see org.codelibs.xerces.xni.XMLDTDContentModelHandler#OCCURS_ONE_OR_MORE
      */
     public final void occurrence(short occurrence, Augmentations augs) throws XNIException {
         if (!fMixed) {

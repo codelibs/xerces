@@ -15,13 +15,13 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.util;
+package org.codelibs.xerces.util;
 
 import java.util.Hashtable;
 
-import org.apache.xerces.dom.AttrImpl;
-import org.apache.xerces.dom.DocumentImpl;
-import org.apache.xerces.impl.xs.opti.ElementImpl;
+import org.codelibs.xerces.dom.AttrImpl;
+import org.codelibs.xerces.dom.DocumentImpl;
+import org.codelibs.xerces.impl.xs.opti.ElementImpl;
 import org.w3c.dom.Attr;
 import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
@@ -302,16 +302,16 @@ public class DOMUtil {
 
     // set this Node as being hidden
     public static void setHidden(Node node) {
-        if (node instanceof org.apache.xerces.impl.xs.opti.NodeImpl)
-            ((org.apache.xerces.impl.xs.opti.NodeImpl) node).setReadOnly(true, false);
-        else if (node instanceof org.apache.xerces.dom.NodeImpl)
-            ((org.apache.xerces.dom.NodeImpl) node).setReadOnly(true, false);
+        if (node instanceof org.codelibs.xerces.impl.xs.opti.NodeImpl)
+            ((org.codelibs.xerces.impl.xs.opti.NodeImpl) node).setReadOnly(true, false);
+        else if (node instanceof org.codelibs.xerces.dom.NodeImpl)
+            ((org.codelibs.xerces.dom.NodeImpl) node).setReadOnly(true, false);
     } // setHidden(node):void
 
     // set this Node as being hidden, overloaded method
     public static void setHidden(Node node, Hashtable hiddenNodes) {
-        if (node instanceof org.apache.xerces.impl.xs.opti.NodeImpl) {
-            ((org.apache.xerces.impl.xs.opti.NodeImpl) node).setReadOnly(true, false);
+        if (node instanceof org.codelibs.xerces.impl.xs.opti.NodeImpl) {
+            ((org.codelibs.xerces.impl.xs.opti.NodeImpl) node).setReadOnly(true, false);
         } else {
             hiddenNodes.put(node, "");
         }
@@ -319,16 +319,16 @@ public class DOMUtil {
 
     // set this Node as being visible
     public static void setVisible(Node node) {
-        if (node instanceof org.apache.xerces.impl.xs.opti.NodeImpl)
-            ((org.apache.xerces.impl.xs.opti.NodeImpl) node).setReadOnly(false, false);
-        else if (node instanceof org.apache.xerces.dom.NodeImpl)
-            ((org.apache.xerces.dom.NodeImpl) node).setReadOnly(false, false);
+        if (node instanceof org.codelibs.xerces.impl.xs.opti.NodeImpl)
+            ((org.codelibs.xerces.impl.xs.opti.NodeImpl) node).setReadOnly(false, false);
+        else if (node instanceof org.codelibs.xerces.dom.NodeImpl)
+            ((org.codelibs.xerces.dom.NodeImpl) node).setReadOnly(false, false);
     } // setVisible(node):void
 
     // set this Node as being visible, overloaded method
     public static void setVisible(Node node, Hashtable hiddenNodes) {
-        if (node instanceof org.apache.xerces.impl.xs.opti.NodeImpl) {
-            ((org.apache.xerces.impl.xs.opti.NodeImpl) node).setReadOnly(false, false);
+        if (node instanceof org.codelibs.xerces.impl.xs.opti.NodeImpl) {
+            ((org.codelibs.xerces.impl.xs.opti.NodeImpl) node).setReadOnly(false, false);
         } else {
             hiddenNodes.remove(node);
         }
@@ -336,17 +336,17 @@ public class DOMUtil {
 
     // is this node hidden?
     public static boolean isHidden(Node node) {
-        if (node instanceof org.apache.xerces.impl.xs.opti.NodeImpl)
-            return ((org.apache.xerces.impl.xs.opti.NodeImpl) node).getReadOnly();
-        else if (node instanceof org.apache.xerces.dom.NodeImpl)
-            return ((org.apache.xerces.dom.NodeImpl) node).getReadOnly();
+        if (node instanceof org.codelibs.xerces.impl.xs.opti.NodeImpl)
+            return ((org.codelibs.xerces.impl.xs.opti.NodeImpl) node).getReadOnly();
+        else if (node instanceof org.codelibs.xerces.dom.NodeImpl)
+            return ((org.codelibs.xerces.dom.NodeImpl) node).getReadOnly();
         return false;
     } // isHidden(Node):boolean
 
     // is this node hidden? overloaded method
     public static boolean isHidden(Node node, Hashtable hiddenNodes) {
-        if (node instanceof org.apache.xerces.impl.xs.opti.NodeImpl) {
-            return ((org.apache.xerces.impl.xs.opti.NodeImpl) node).getReadOnly();
+        if (node instanceof org.codelibs.xerces.impl.xs.opti.NodeImpl) {
+            return ((org.codelibs.xerces.impl.xs.opti.NodeImpl) node).getReadOnly();
         } else {
             return hiddenNodes.containsKey(node);
         }

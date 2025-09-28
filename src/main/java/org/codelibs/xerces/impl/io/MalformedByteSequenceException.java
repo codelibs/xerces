@@ -15,12 +15,12 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.io;
+package org.codelibs.xerces.impl.io;
 
 import java.io.CharConversionException;
 import java.util.Locale;
 
-import org.apache.xerces.util.MessageFormatter;
+import org.codelibs.xerces.util.MessageFormatter;
 
 /**
  * <p>Signals that a malformed byte sequence was detected

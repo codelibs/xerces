@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.parsers;
+package org.codelibs.xerces.parsers;
 
 /**
  * <p>An <code>XMLParserConfiguration</code> implements this interface

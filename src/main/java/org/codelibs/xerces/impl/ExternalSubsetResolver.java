@@ -15,14 +15,14 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl;
+package org.codelibs.xerces.impl;
 
 import java.io.IOException;
 
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xni.grammars.XMLDTDDescription;
-import org.apache.xerces.xni.parser.XMLEntityResolver;
-import org.apache.xerces.xni.parser.XMLInputSource;
+import org.codelibs.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.grammars.XMLDTDDescription;
+import org.codelibs.xerces.xni.parser.XMLEntityResolver;
+import org.codelibs.xerces.xni.parser.XMLInputSource;
 
 /**
  * <p>This interface extends <code>XMLEntityResolver</code> providing

@@ -15,13 +15,13 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xpath.regex;
+package org.codelibs.xerces.impl.xpath.regex;
 
 import java.text.CharacterIterator;
 import java.util.Locale;
 import java.util.Stack;
 
-import org.apache.xerces.util.IntStack;
+import org.codelibs.xerces.util.IntStack;
 
 /**
  * A regular expression matching engine using Non-deterministic Finite Automaton (NFA).
@@ -317,7 +317,7 @@ import org.apache.xerces.util.IntStack;
  *       <dd>Grouping with capturing.
  * It make a group and applications can know
  * where in target text a group matched with methods of a <code>Match</code> instance
- * after <code><a href="#matches(java.lang.String, org.apache.xerces.utils.regex.Match)">matches(String,Match)</a></code>.
+ * after <code><a href="#matches(java.lang.String, org.codelibs.xerces.utils.regex.Match)">matches(String,Match)</a></code>.
  * The 0th group means whole of this regular expression.
  * The <VAR>N</VAR>th gorup is the inside of the <VAR>N</VAR>th left parenthesis.
  *
@@ -2169,7 +2169,7 @@ public class RegularExpression implements java.io.Serializable {
      * Creates a new RegularExpression instance.
      *
      * @param regex A regular expression
-     * @exception org.apache.xerces.utils.regex.ParseException <VAR>regex</VAR> is not conforming to the syntax.
+     * @exception org.codelibs.xerces.utils.regex.ParseException <VAR>regex</VAR> is not conforming to the syntax.
      */
     public RegularExpression(String regex) throws ParseException {
         this(regex, null);
@@ -2180,7 +2180,7 @@ public class RegularExpression implements java.io.Serializable {
      *
      * @param regex A regular expression
      * @param options A String consisted of "i" "m" "s" "u" "w" "," "X"
-     * @exception org.apache.xerces.utils.regex.ParseException <VAR>regex</VAR> is not conforming to the syntax.
+     * @exception org.codelibs.xerces.utils.regex.ParseException <VAR>regex</VAR> is not conforming to the syntax.
      */
     public RegularExpression(String regex, String options) throws ParseException {
         this.setPattern(regex, options);
@@ -2191,7 +2191,7 @@ public class RegularExpression implements java.io.Serializable {
      *
      * @param regex A regular expression
      * @param options A String consisted of "i" "m" "s" "u" "w" "," "X"
-     * @exception org.apache.xerces.utils.regex.ParseException <VAR>regex</VAR> is not conforming to the syntax.
+     * @exception org.codelibs.xerces.utils.regex.ParseException <VAR>regex</VAR> is not conforming to the syntax.
      */
     public RegularExpression(String regex, String options, Locale locale) throws ParseException {
         this.setPattern(regex, options, locale);

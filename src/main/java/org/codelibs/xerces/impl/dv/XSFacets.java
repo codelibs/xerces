@@ -15,13 +15,13 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.dv;
+package org.codelibs.xerces.impl.dv;
 
 import java.util.Vector;
 
-import org.apache.xerces.impl.xs.util.XSObjectListImpl;
-import org.apache.xerces.xs.XSAnnotation;
-import org.apache.xerces.xs.XSObjectList;
+import org.codelibs.xerces.impl.xs.util.XSObjectListImpl;
+import org.codelibs.xerces.xs.XSAnnotation;
+import org.codelibs.xerces.xs.XSObjectList;
 
 /**
  * The class used to pass all facets to {@link XSSimpleType#applyFacets}.

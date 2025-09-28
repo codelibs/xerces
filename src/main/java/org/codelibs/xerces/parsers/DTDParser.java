@@ -15,18 +15,18 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.parsers;
+package org.codelibs.xerces.parsers;
 
-import org.apache.xerces.impl.dtd.DTDGrammar;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.xni.Augmentations;
-import org.apache.xerces.xni.XMLDTDContentModelHandler;
-import org.apache.xerces.xni.XMLDTDHandler;
-import org.apache.xerces.xni.XMLLocator;
-import org.apache.xerces.xni.XMLResourceIdentifier;
-import org.apache.xerces.xni.XMLString;
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xni.parser.XMLDTDScanner;
+import org.codelibs.xerces.impl.dtd.DTDGrammar;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.xni.Augmentations;
+import org.codelibs.xerces.xni.XMLDTDContentModelHandler;
+import org.codelibs.xerces.xni.XMLDTDHandler;
+import org.codelibs.xerces.xni.XMLLocator;
+import org.codelibs.xerces.xni.XMLResourceIdentifier;
+import org.codelibs.xerces.xni.XMLString;
+import org.codelibs.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.parser.XMLDTDScanner;
 
 /**
  * @version $Id: DTDParser.java 699892 2008-09-28 21:08:27Z mrglavas $
@@ -342,10 +342,10 @@ public abstract class DTDParser extends XMLGrammarParser implements XMLDTDHandle
      *
      * @throws XNIException Thrown by handler to signal an error.
      *
-     * @see org.apache.xerces.impl.dtd.XMLElementDecl#TYPE_EMPTY
-     * @see org.apache.xerces.impl.dtd.XMLElementDecl#TYPE_ANY
-     * @see org.apache.xerces.impl.dtd.XMLElementDecl#TYPE_MIXED
-     * @see org.apache.xerces.impl.dtd.XMLElementDecl#TYPE_CHILDREN
+     * @see org.codelibs.xerces.impl.dtd.XMLElementDecl#TYPE_EMPTY
+     * @see org.codelibs.xerces.impl.dtd.XMLElementDecl#TYPE_ANY
+     * @see org.codelibs.xerces.impl.dtd.XMLElementDecl#TYPE_MIXED
+     * @see org.codelibs.xerces.impl.dtd.XMLElementDecl#TYPE_CHILDREN
      */
     public void startContentModel(String elementName, short type) throws XNIException {
     } // startContentModel
@@ -363,7 +363,7 @@ public abstract class DTDParser extends XMLGrammarParser implements XMLDTDHandle
      *
      * @throws XNIException Thrown by handler to signal an error.
      *
-     * @see org.apache.xerces.impl.dtd.XMLElementDecl#TYPE_MIXED
+     * @see org.codelibs.xerces.impl.dtd.XMLElementDecl#TYPE_MIXED
      */
     public void mixedElement(String elementName) throws XNIException {
     } // mixedElement
@@ -379,7 +379,7 @@ public abstract class DTDParser extends XMLGrammarParser implements XMLDTDHandle
      *
      * @throws XNIException Thrown by handler to signal an error.
      *
-     * @see org.apache.xerces.impl.dtd.XMLElementDecl#TYPE_CHILDREN
+     * @see org.codelibs.xerces.impl.dtd.XMLElementDecl#TYPE_CHILDREN
      */
     public void childrenStartGroup() throws XNIException {
     } // childrenStartGroup
@@ -391,7 +391,7 @@ public abstract class DTDParser extends XMLGrammarParser implements XMLDTDHandle
      *
      * @throws XNIException Thrown by handler to signal an error.
      *
-     * @see org.apache.xerces.impl.dtd.XMLElementDecl#TYPE_CHILDREN
+     * @see org.codelibs.xerces.impl.dtd.XMLElementDecl#TYPE_CHILDREN
      */
     public void childrenElement(String elementName) throws XNIException {
     } // childrenElement
@@ -409,7 +409,7 @@ public abstract class DTDParser extends XMLGrammarParser implements XMLDTDHandle
      *
      * @see XMLDTDContentModelHandler#SEPARATOR_CHOICE
      * @see XMLDTDContentModelHandler#SEPARATOR_SEQUENCE
-     * @see org.apache.xerces.impl.dtd.XMLElementDecl#TYPE_CHILDREN
+     * @see org.codelibs.xerces.impl.dtd.XMLElementDecl#TYPE_CHILDREN
      */
     public void childrenSeparator(short separator) throws XNIException {
     } // childrenSeparator
@@ -428,7 +428,7 @@ public abstract class DTDParser extends XMLGrammarParser implements XMLDTDHandle
      * @see XMLDTDContentModelHandler#OCCURS_ZERO_OR_ONE
      * @see XMLDTDContentModelHandler#OCCURS_ZERO_OR_MORE
      * @see XMLDTDContentModelHandler#OCCURS_ONE_OR_MORE
-     * @see org.apache.xerces.impl.dtd.XMLElementDecl#TYPE_CHILDREN
+     * @see org.codelibs.xerces.impl.dtd.XMLElementDecl#TYPE_CHILDREN
      */
     public void childrenOccurrence(short occurrence) throws XNIException {
     } // childrenOccurrence
@@ -439,7 +439,7 @@ public abstract class DTDParser extends XMLGrammarParser implements XMLDTDHandle
      * <strong>Note:</strong> This method is only called after a call to
      * the startContentModel method where the type is TYPE_CHILDREN.
      *
-     * @see org.apache.xerces.impl.dtd.XMLElementDecl#TYPE_CHILDREN
+     * @see org.codelibs.xerces.impl.dtd.XMLElementDecl#TYPE_CHILDREN
      */
     public void childrenEndGroup() throws XNIException {
     } // childrenEndGroup

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.xinclude;
+package org.codelibs.xerces.xinclude;
 
 import java.io.CharConversionException;
 import java.io.IOException;
@@ -25,46 +25,46 @@ import java.util.Locale;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.impl.XMLEntityManager;
-import org.apache.xerces.impl.XMLErrorReporter;
-import org.apache.xerces.impl.io.MalformedByteSequenceException;
-import org.apache.xerces.impl.msg.XMLMessageFormatter;
-import org.apache.xerces.util.AugmentationsImpl;
-import org.apache.xerces.util.HTTPInputSource;
-import org.apache.xerces.util.IntStack;
-import org.apache.xerces.util.ParserConfigurationSettings;
-import org.apache.xerces.util.SecurityManager;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.util.URI;
-import org.apache.xerces.util.XMLAttributesImpl;
-import org.apache.xerces.util.XMLChar;
-import org.apache.xerces.util.XMLLocatorWrapper;
-import org.apache.xerces.util.XMLResourceIdentifierImpl;
-import org.apache.xerces.util.XMLSymbols;
-import org.apache.xerces.util.URI.MalformedURIException;
-import org.apache.xerces.xni.Augmentations;
-import org.apache.xerces.xni.NamespaceContext;
-import org.apache.xerces.xni.QName;
-import org.apache.xerces.xni.XMLAttributes;
-import org.apache.xerces.xni.XMLDTDHandler;
-import org.apache.xerces.xni.XMLDocumentHandler;
-import org.apache.xerces.xni.XMLLocator;
-import org.apache.xerces.xni.XMLResourceIdentifier;
-import org.apache.xerces.xni.XMLString;
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xni.parser.XMLComponent;
-import org.apache.xerces.xni.parser.XMLComponentManager;
-import org.apache.xerces.xni.parser.XMLConfigurationException;
-import org.apache.xerces.xni.parser.XMLDTDFilter;
-import org.apache.xerces.xni.parser.XMLDTDSource;
-import org.apache.xerces.xni.parser.XMLDocumentFilter;
-import org.apache.xerces.xni.parser.XMLDocumentSource;
-import org.apache.xerces.xni.parser.XMLEntityResolver;
-import org.apache.xerces.xni.parser.XMLInputSource;
-import org.apache.xerces.xni.parser.XMLParserConfiguration;
-import org.apache.xerces.xpointer.XPointerHandler;
-import org.apache.xerces.xpointer.XPointerProcessor;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.impl.XMLEntityManager;
+import org.codelibs.xerces.impl.XMLErrorReporter;
+import org.codelibs.xerces.impl.io.MalformedByteSequenceException;
+import org.codelibs.xerces.impl.msg.XMLMessageFormatter;
+import org.codelibs.xerces.util.AugmentationsImpl;
+import org.codelibs.xerces.util.HTTPInputSource;
+import org.codelibs.xerces.util.IntStack;
+import org.codelibs.xerces.util.ParserConfigurationSettings;
+import org.codelibs.xerces.util.SecurityManager;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.util.URI;
+import org.codelibs.xerces.util.XMLAttributesImpl;
+import org.codelibs.xerces.util.XMLChar;
+import org.codelibs.xerces.util.XMLLocatorWrapper;
+import org.codelibs.xerces.util.XMLResourceIdentifierImpl;
+import org.codelibs.xerces.util.XMLSymbols;
+import org.codelibs.xerces.util.URI.MalformedURIException;
+import org.codelibs.xerces.xni.Augmentations;
+import org.codelibs.xerces.xni.NamespaceContext;
+import org.codelibs.xerces.xni.QName;
+import org.codelibs.xerces.xni.XMLAttributes;
+import org.codelibs.xerces.xni.XMLDTDHandler;
+import org.codelibs.xerces.xni.XMLDocumentHandler;
+import org.codelibs.xerces.xni.XMLLocator;
+import org.codelibs.xerces.xni.XMLResourceIdentifier;
+import org.codelibs.xerces.xni.XMLString;
+import org.codelibs.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.parser.XMLComponent;
+import org.codelibs.xerces.xni.parser.XMLComponentManager;
+import org.codelibs.xerces.xni.parser.XMLConfigurationException;
+import org.codelibs.xerces.xni.parser.XMLDTDFilter;
+import org.codelibs.xerces.xni.parser.XMLDTDSource;
+import org.codelibs.xerces.xni.parser.XMLDocumentFilter;
+import org.codelibs.xerces.xni.parser.XMLDocumentSource;
+import org.codelibs.xerces.xni.parser.XMLEntityResolver;
+import org.codelibs.xerces.xni.parser.XMLInputSource;
+import org.codelibs.xerces.xni.parser.XMLParserConfiguration;
+import org.codelibs.xerces.xpointer.XPointerHandler;
+import org.codelibs.xerces.xpointer.XPointerProcessor;
 
 /**
  * <p>
@@ -116,7 +116,7 @@ import org.apache.xerces.xpointer.XPointerProcessor;
  */
 public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDFilter {
 
-    public final static String XINCLUDE_DEFAULT_CONFIGURATION = "org.apache.xerces.parsers.XIncludeParserConfiguration";
+    public final static String XINCLUDE_DEFAULT_CONFIGURATION = "org.codelibs.xerces.parsers.XIncludeParserConfiguration";
     public final static String HTTP_ACCEPT = "Accept";
     public final static String HTTP_ACCEPT_LANGUAGE = "Accept-Language";
     public final static String XPOINTER = "xpointer";
@@ -1023,7 +1023,7 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
     // the rest we just pass on
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.xni.XMLDTDHandler#attributeDecl(java.lang.String, java.lang.String, java.lang.String, java.lang.String[], java.lang.String, org.apache.xerces.xni.XMLString, org.apache.xerces.xni.XMLString, org.apache.xerces.xni.Augmentations)
+     * @see org.codelibs.xerces.xni.XMLDTDHandler#attributeDecl(java.lang.String, java.lang.String, java.lang.String, java.lang.String[], java.lang.String, org.codelibs.xerces.xni.XMLString, org.codelibs.xerces.xni.XMLString, org.codelibs.xerces.xni.Augmentations)
      */
     public void attributeDecl(String elementName, String attributeName, String type, String[] enumeration, String defaultType,
             XMLString defaultValue, XMLString nonNormalizedDefaultValue, Augmentations augmentations) throws XNIException {
@@ -1034,7 +1034,7 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.xni.XMLDTDHandler#elementDecl(java.lang.String, java.lang.String, org.apache.xerces.xni.Augmentations)
+     * @see org.codelibs.xerces.xni.XMLDTDHandler#elementDecl(java.lang.String, java.lang.String, org.codelibs.xerces.xni.Augmentations)
      */
     public void elementDecl(String name, String contentModel, Augmentations augmentations) throws XNIException {
         if (fDTDHandler != null) {
@@ -1043,7 +1043,7 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.xni.XMLDTDHandler#endAttlist(org.apache.xerces.xni.Augmentations)
+     * @see org.codelibs.xerces.xni.XMLDTDHandler#endAttlist(org.codelibs.xerces.xni.Augmentations)
      */
     public void endAttlist(Augmentations augmentations) throws XNIException {
         if (fDTDHandler != null) {
@@ -1052,7 +1052,7 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.xni.XMLDTDHandler#endConditional(org.apache.xerces.xni.Augmentations)
+     * @see org.codelibs.xerces.xni.XMLDTDHandler#endConditional(org.codelibs.xerces.xni.Augmentations)
      */
     public void endConditional(Augmentations augmentations) throws XNIException {
         if (fDTDHandler != null) {
@@ -1061,7 +1061,7 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.xni.XMLDTDHandler#endDTD(org.apache.xerces.xni.Augmentations)
+     * @see org.codelibs.xerces.xni.XMLDTDHandler#endDTD(org.codelibs.xerces.xni.Augmentations)
      */
     public void endDTD(Augmentations augmentations) throws XNIException {
         if (fDTDHandler != null) {
@@ -1071,7 +1071,7 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.xni.XMLDTDHandler#endExternalSubset(org.apache.xerces.xni.Augmentations)
+     * @see org.codelibs.xerces.xni.XMLDTDHandler#endExternalSubset(org.codelibs.xerces.xni.Augmentations)
      */
     public void endExternalSubset(Augmentations augmentations) throws XNIException {
         if (fDTDHandler != null) {
@@ -1080,7 +1080,7 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.xni.XMLDTDHandler#endParameterEntity(java.lang.String, org.apache.xerces.xni.Augmentations)
+     * @see org.codelibs.xerces.xni.XMLDTDHandler#endParameterEntity(java.lang.String, org.codelibs.xerces.xni.Augmentations)
      */
     public void endParameterEntity(String name, Augmentations augmentations) throws XNIException {
         if (fDTDHandler != null) {
@@ -1089,7 +1089,7 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.xni.XMLDTDHandler#externalEntityDecl(java.lang.String, org.apache.xerces.xni.XMLResourceIdentifier, org.apache.xerces.xni.Augmentations)
+     * @see org.codelibs.xerces.xni.XMLDTDHandler#externalEntityDecl(java.lang.String, org.codelibs.xerces.xni.XMLResourceIdentifier, org.codelibs.xerces.xni.Augmentations)
      */
     public void externalEntityDecl(String name, XMLResourceIdentifier identifier, Augmentations augmentations) throws XNIException {
         if (fDTDHandler != null) {
@@ -1098,14 +1098,14 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.xni.XMLDTDHandler#getDTDSource()
+     * @see org.codelibs.xerces.xni.XMLDTDHandler#getDTDSource()
      */
     public XMLDTDSource getDTDSource() {
         return fDTDSource;
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.xni.XMLDTDHandler#ignoredCharacters(org.apache.xerces.xni.XMLString, org.apache.xerces.xni.Augmentations)
+     * @see org.codelibs.xerces.xni.XMLDTDHandler#ignoredCharacters(org.codelibs.xerces.xni.XMLString, org.codelibs.xerces.xni.Augmentations)
      */
     public void ignoredCharacters(XMLString text, Augmentations augmentations) throws XNIException {
         if (fDTDHandler != null) {
@@ -1114,7 +1114,7 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.xni.XMLDTDHandler#internalEntityDecl(java.lang.String, org.apache.xerces.xni.XMLString, org.apache.xerces.xni.XMLString, org.apache.xerces.xni.Augmentations)
+     * @see org.codelibs.xerces.xni.XMLDTDHandler#internalEntityDecl(java.lang.String, org.codelibs.xerces.xni.XMLString, org.codelibs.xerces.xni.XMLString, org.codelibs.xerces.xni.Augmentations)
      */
     public void internalEntityDecl(String name, XMLString text, XMLString nonNormalizedText, Augmentations augmentations)
             throws XNIException {
@@ -1124,7 +1124,7 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.xni.XMLDTDHandler#notationDecl(java.lang.String, org.apache.xerces.xni.XMLResourceIdentifier, org.apache.xerces.xni.Augmentations)
+     * @see org.codelibs.xerces.xni.XMLDTDHandler#notationDecl(java.lang.String, org.codelibs.xerces.xni.XMLResourceIdentifier, org.codelibs.xerces.xni.Augmentations)
      */
     public void notationDecl(String name, XMLResourceIdentifier identifier, Augmentations augmentations) throws XNIException {
         this.addNotation(name, identifier, augmentations);
@@ -1134,14 +1134,14 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.xni.XMLDTDHandler#setDTDSource(org.apache.xerces.xni.parser.XMLDTDSource)
+     * @see org.codelibs.xerces.xni.XMLDTDHandler#setDTDSource(org.codelibs.xerces.xni.parser.XMLDTDSource)
      */
     public void setDTDSource(XMLDTDSource source) {
         fDTDSource = source;
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.xni.XMLDTDHandler#startAttlist(java.lang.String, org.apache.xerces.xni.Augmentations)
+     * @see org.codelibs.xerces.xni.XMLDTDHandler#startAttlist(java.lang.String, org.codelibs.xerces.xni.Augmentations)
      */
     public void startAttlist(String elementName, Augmentations augmentations) throws XNIException {
         if (fDTDHandler != null) {
@@ -1150,7 +1150,7 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.xni.XMLDTDHandler#startConditional(short, org.apache.xerces.xni.Augmentations)
+     * @see org.codelibs.xerces.xni.XMLDTDHandler#startConditional(short, org.codelibs.xerces.xni.Augmentations)
      */
     public void startConditional(short type, Augmentations augmentations) throws XNIException {
         if (fDTDHandler != null) {
@@ -1159,7 +1159,7 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.xni.XMLDTDHandler#startDTD(org.apache.xerces.xni.XMLLocator, org.apache.xerces.xni.Augmentations)
+     * @see org.codelibs.xerces.xni.XMLDTDHandler#startDTD(org.codelibs.xerces.xni.XMLLocator, org.codelibs.xerces.xni.Augmentations)
      */
     public void startDTD(XMLLocator locator, Augmentations augmentations) throws XNIException {
         fInDTD = true;
@@ -1169,7 +1169,7 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.xni.XMLDTDHandler#startExternalSubset(org.apache.xerces.xni.XMLResourceIdentifier, org.apache.xerces.xni.Augmentations)
+     * @see org.codelibs.xerces.xni.XMLDTDHandler#startExternalSubset(org.codelibs.xerces.xni.XMLResourceIdentifier, org.codelibs.xerces.xni.Augmentations)
      */
     public void startExternalSubset(XMLResourceIdentifier identifier, Augmentations augmentations) throws XNIException {
         if (fDTDHandler != null) {
@@ -1178,7 +1178,7 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.xni.XMLDTDHandler#startParameterEntity(java.lang.String, org.apache.xerces.xni.XMLResourceIdentifier, java.lang.String, org.apache.xerces.xni.Augmentations)
+     * @see org.codelibs.xerces.xni.XMLDTDHandler#startParameterEntity(java.lang.String, org.codelibs.xerces.xni.XMLResourceIdentifier, java.lang.String, org.codelibs.xerces.xni.Augmentations)
      */
     public void startParameterEntity(String name, XMLResourceIdentifier identifier, String encoding, Augmentations augmentations)
             throws XNIException {
@@ -1188,7 +1188,7 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.xni.XMLDTDHandler#unparsedEntityDecl(java.lang.String, org.apache.xerces.xni.XMLResourceIdentifier, java.lang.String, org.apache.xerces.xni.Augmentations)
+     * @see org.codelibs.xerces.xni.XMLDTDHandler#unparsedEntityDecl(java.lang.String, org.codelibs.xerces.xni.XMLResourceIdentifier, java.lang.String, org.codelibs.xerces.xni.Augmentations)
      */
     public void unparsedEntityDecl(String name, XMLResourceIdentifier identifier, String notation, Augmentations augmentations)
             throws XNIException {
@@ -1199,14 +1199,14 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.xni.parser.XMLDTDSource#getDTDHandler()
+     * @see org.codelibs.xerces.xni.parser.XMLDTDSource#getDTDHandler()
      */
     public XMLDTDHandler getDTDHandler() {
         return fDTDHandler;
     }
 
     /* (non-Javadoc)
-     * @see org.apache.xerces.xni.parser.XMLDTDSource#setDTDHandler(org.apache.xerces.xni.XMLDTDHandler)
+     * @see org.codelibs.xerces.xni.parser.XMLDTDSource#setDTDHandler(org.codelibs.xerces.xni.XMLDTDHandler)
      */
     public void setDTDHandler(XMLDTDHandler handler) {
         fDTDHandler = handler;
@@ -1364,7 +1364,7 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 
                 String parserName = XINCLUDE_DEFAULT_CONFIGURATION;
                 if (xpointer != null)
-                    parserName = "org.apache.xerces.parsers.XPointerParserConfiguration";
+                    parserName = "org.codelibs.xerces.parsers.XPointerParserConfiguration";
 
                 fChildConfig = (XMLParserConfiguration) ObjectFactory.newInstance(parserName, ObjectFactory.findClassLoader(), true);
 

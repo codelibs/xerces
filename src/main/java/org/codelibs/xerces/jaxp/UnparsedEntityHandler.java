@@ -15,20 +15,20 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.jaxp;
+package org.codelibs.xerces.jaxp;
 
 import java.util.HashMap;
 
-import org.apache.xerces.impl.validation.EntityState;
-import org.apache.xerces.impl.validation.ValidationManager;
-import org.apache.xerces.xni.Augmentations;
-import org.apache.xerces.xni.XMLDTDHandler;
-import org.apache.xerces.xni.XMLLocator;
-import org.apache.xerces.xni.XMLResourceIdentifier;
-import org.apache.xerces.xni.XMLString;
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xni.parser.XMLDTDFilter;
-import org.apache.xerces.xni.parser.XMLDTDSource;
+import org.codelibs.xerces.impl.validation.EntityState;
+import org.codelibs.xerces.impl.validation.ValidationManager;
+import org.codelibs.xerces.xni.Augmentations;
+import org.codelibs.xerces.xni.XMLDTDHandler;
+import org.codelibs.xerces.xni.XMLLocator;
+import org.codelibs.xerces.xni.XMLResourceIdentifier;
+import org.codelibs.xerces.xni.XMLString;
+import org.codelibs.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.parser.XMLDTDFilter;
+import org.codelibs.xerces.xni.parser.XMLDTDSource;
 
 /**
  * <p>This filter records which unparsed entities have been

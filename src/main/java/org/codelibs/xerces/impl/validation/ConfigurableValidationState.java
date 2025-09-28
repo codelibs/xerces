@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.validation;
+package org.codelibs.xerces.impl.validation;
 
 import java.util.Iterator;
 

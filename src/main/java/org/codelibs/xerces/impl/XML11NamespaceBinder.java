@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl;
+package org.codelibs.xerces.impl;
 
 /**
  * This class performs namespace binding on the startElement and endElement

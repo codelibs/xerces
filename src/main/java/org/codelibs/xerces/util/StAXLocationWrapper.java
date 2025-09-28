@@ -15,11 +15,11 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.util;
+package org.codelibs.xerces.util;
 
 import javax.xml.stream.Location;
 
-import org.apache.xerces.xni.XMLLocator;
+import org.codelibs.xerces.xni.XMLLocator;
 
 /**
  * <p>A light wrapper around a StAX location. This is useful

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xpath.regex;
+package org.codelibs.xerces.impl.xpath.regex;
 
 import java.util.Locale;
 import java.util.MissingResourceException;
@@ -93,9 +93,9 @@ class RegexParser {
     public void setLocale(Locale locale) {
         try {
             if (locale != null) {
-                this.resources = ResourceBundle.getBundle("org.apache.xerces.impl.xpath.regex.message", locale);
+                this.resources = ResourceBundle.getBundle("org.codelibs.xerces.impl.xpath.regex.message", locale);
             } else {
-                this.resources = ResourceBundle.getBundle("org.apache.xerces.impl.xpath.regex.message");
+                this.resources = ResourceBundle.getBundle("org.codelibs.xerces.impl.xpath.regex.message");
             }
         } catch (MissingResourceException mre) {
             throw new RuntimeException("Installation Problem???  Couldn't load messages: " + mre.getMessage());

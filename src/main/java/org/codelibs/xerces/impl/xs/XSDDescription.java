@@ -15,13 +15,13 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs;
+package org.codelibs.xerces.impl.xs;
 
-import org.apache.xerces.util.XMLResourceIdentifierImpl;
-import org.apache.xerces.xni.QName;
-import org.apache.xerces.xni.XMLAttributes;
-import org.apache.xerces.xni.grammars.XMLGrammarDescription;
-import org.apache.xerces.xni.grammars.XMLSchemaDescription;
+import org.codelibs.xerces.util.XMLResourceIdentifierImpl;
+import org.codelibs.xerces.xni.QName;
+import org.codelibs.xerces.xni.XMLAttributes;
+import org.codelibs.xerces.xni.grammars.XMLGrammarDescription;
+import org.codelibs.xerces.xni.grammars.XMLSchemaDescription;
 
 /**
  * All information specific to XML Schema grammars.
@@ -100,7 +100,7 @@ public class XSDDescription extends XMLResourceIdentifierImpl implements XMLSche
     /**
      * the type of the grammar (e.g., DTD or XSD);
      *
-     * @see org.apache.xerces.xni.grammars.Grammar
+     * @see org.codelibs.xerces.xni.grammars.Grammar
      */
     public String getGrammarType() {
         return XMLGrammarDescription.XML_SCHEMA;

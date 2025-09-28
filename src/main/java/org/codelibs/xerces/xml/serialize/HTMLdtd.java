@@ -19,7 +19,7 @@
 //   Fixed bug in isElement and made HTMLdtd public.
 //   Contributed by Eric SCHAEFFER" <eschaeffer@posterconseil.com>
 
-package org.apache.xml.serialize;
+package org.codelibs.xerces.xml.serialize;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -27,7 +27,7 @@ import java.io.InputStreamReader;
 import java.util.Hashtable;
 import java.util.Locale;
 
-import org.apache.xerces.dom.DOMMessageFormatter;
+import org.codelibs.xerces.dom.DOMMessageFormatter;
 
 /**
  * Utility class for accessing information specific to HTML documents.

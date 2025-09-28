@@ -22,7 +22,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import junit.framework.TestSuite;
 
-import org.apache.xerces.dom.DocumentImpl;
+import org.codelibs.xerces.dom.DocumentImpl;
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
 import org.w3c.dom.ranges.Range;
@@ -65,7 +65,7 @@ public class TestCompare {
      * the DOM range specification.
      */
     private Range[] buildRanges() {
-        DocumentImpl doc = new org.apache.xerces.dom.DocumentImpl();
+        DocumentImpl doc = new org.codelibs.xerces.dom.DocumentImpl();
 
         Element body = doc.createElement("BODY");
         doc.appendChild(body);

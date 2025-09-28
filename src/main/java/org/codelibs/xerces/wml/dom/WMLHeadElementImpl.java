@@ -14,9 +14,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.wml.dom;
+package org.codelibs.xerces.wml.dom;
 
-import org.apache.wml.WMLHeadElement;
+import org.codelibs.xerces.wml.WMLHeadElement;
 
 /**
  * @xerces.internal

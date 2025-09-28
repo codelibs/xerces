@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xml.serialize;
+package org.codelibs.xerces.xml.serialize;
 
 /**
  * @deprecated This class was deprecated in Xerces 2.9.0. It is recommended

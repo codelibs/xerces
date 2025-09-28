@@ -15,12 +15,12 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.util;
+package org.codelibs.xerces.util;
 
 import java.io.InputStream;
 import java.io.Reader;
 
-import org.apache.xerces.xni.parser.XMLInputSource;
+import org.codelibs.xerces.xni.parser.XMLInputSource;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 

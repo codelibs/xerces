@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.util;
+package org.codelibs.xerces.util;
 
 import java.util.Locale;
 import java.util.MissingResourceException;
@@ -29,7 +29,7 @@ import java.util.ResourceBundle;
  */
 public class DatatypeMessageFormatter {
 
-    private static final String BASE_NAME = "org.apache.xerces.impl.msg.DatatypeMessages";
+    private static final String BASE_NAME = "org.codelibs.xerces.impl.msg.DatatypeMessages";
 
     /**
      * Formats a message with the specified arguments using the given

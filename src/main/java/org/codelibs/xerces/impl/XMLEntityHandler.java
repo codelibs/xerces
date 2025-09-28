@@ -15,11 +15,11 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl;
+package org.codelibs.xerces.impl;
 
-import org.apache.xerces.xni.Augmentations;
-import org.apache.xerces.xni.XMLResourceIdentifier;
-import org.apache.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.Augmentations;
+import org.codelibs.xerces.xni.XMLResourceIdentifier;
+import org.codelibs.xerces.xni.XNIException;
 
 /**
  * The entity handler interface defines methods to report information
@@ -27,7 +27,7 @@ import org.apache.xerces.xni.XNIException;
  *
  * @xerces.internal
  *
- * @see org.apache.xerces.impl.XMLEntityScanner
+ * @see org.codelibs.xerces.impl.XMLEntityScanner
  *
  * @author Andy Clark, IBM
  *

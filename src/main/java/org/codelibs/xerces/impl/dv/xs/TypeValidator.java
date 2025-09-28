@@ -15,14 +15,14 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.dv.xs;
+package org.codelibs.xerces.impl.dv.xs;
 
 import java.security.AccessController;
 import java.security.PrivilegedAction;
 
-import org.apache.xerces.impl.dv.InvalidDatatypeValueException;
-import org.apache.xerces.impl.dv.ValidationContext;
-import org.apache.xerces.util.XMLChar;
+import org.codelibs.xerces.impl.dv.InvalidDatatypeValueException;
+import org.codelibs.xerces.impl.dv.ValidationContext;
+import org.codelibs.xerces.util.XMLChar;
 
 /**
  * All primitive types plus ID/IDREF/ENTITY/INTEGER are derived from this abstract
@@ -42,7 +42,7 @@ public abstract class TypeValidator {
     private static final boolean USE_CODE_POINT_COUNT_FOR_STRING_LENGTH = AccessController.doPrivileged(new PrivilegedAction() {
         public Object run() {
             try {
-                return Boolean.getBoolean("org.apache.xerces.impl.dv.xs.useCodePointCountForStringLength") ? Boolean.TRUE : Boolean.FALSE;
+                return Boolean.getBoolean("org.codelibs.xerces.impl.dv.xs.useCodePointCountForStringLength") ? Boolean.TRUE : Boolean.FALSE;
             } catch (SecurityException ex) {}
             return Boolean.FALSE;
         }

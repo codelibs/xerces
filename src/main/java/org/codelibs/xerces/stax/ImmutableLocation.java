@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.stax;
+package org.codelibs.xerces.stax;
 
 import javax.xml.stream.Location;
 

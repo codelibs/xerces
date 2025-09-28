@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.stax;
+package org.codelibs.xerces.stax;
 
 import java.util.Iterator;
 
@@ -38,17 +38,17 @@ import javax.xml.stream.events.ProcessingInstruction;
 import javax.xml.stream.events.StartDocument;
 import javax.xml.stream.events.StartElement;
 
-import org.apache.xerces.stax.events.AttributeImpl;
-import org.apache.xerces.stax.events.CharactersImpl;
-import org.apache.xerces.stax.events.CommentImpl;
-import org.apache.xerces.stax.events.DTDImpl;
-import org.apache.xerces.stax.events.EndDocumentImpl;
-import org.apache.xerces.stax.events.EndElementImpl;
-import org.apache.xerces.stax.events.EntityReferenceImpl;
-import org.apache.xerces.stax.events.NamespaceImpl;
-import org.apache.xerces.stax.events.ProcessingInstructionImpl;
-import org.apache.xerces.stax.events.StartDocumentImpl;
-import org.apache.xerces.stax.events.StartElementImpl;
+import org.codelibs.xerces.stax.events.AttributeImpl;
+import org.codelibs.xerces.stax.events.CharactersImpl;
+import org.codelibs.xerces.stax.events.CommentImpl;
+import org.codelibs.xerces.stax.events.DTDImpl;
+import org.codelibs.xerces.stax.events.EndDocumentImpl;
+import org.codelibs.xerces.stax.events.EndElementImpl;
+import org.codelibs.xerces.stax.events.EntityReferenceImpl;
+import org.codelibs.xerces.stax.events.NamespaceImpl;
+import org.codelibs.xerces.stax.events.ProcessingInstructionImpl;
+import org.codelibs.xerces.stax.events.StartDocumentImpl;
+import org.codelibs.xerces.stax.events.StartElementImpl;
 
 /**
  * <p>Implementation of XMLEventFactory.</p>

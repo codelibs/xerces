@@ -15,13 +15,13 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.xinclude;
+package org.codelibs.xerces.xinclude;
 
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
-import org.apache.xerces.util.MessageFormatter;
+import org.codelibs.xerces.util.MessageFormatter;
 
 // TODO: fix error messages in XIncludeMessages.properties
 /**
@@ -60,7 +60,7 @@ public class XIncludeMessageFormatter implements MessageFormatter {
             locale = Locale.getDefault();
         }
         if (locale != fLocale) {
-            fResourceBundle = ResourceBundle.getBundle("org.apache.xerces.impl.msg.XIncludeMessages", locale);
+            fResourceBundle = ResourceBundle.getBundle("org.codelibs.xerces.impl.msg.XIncludeMessages", locale);
             // memorize the most-recent locale
             fLocale = locale;
         }
@@ -77,7 +77,7 @@ public class XIncludeMessageFormatter implements MessageFormatter {
 
         if (msg == null) {
             msg = fResourceBundle.getString("BadMessageKey");
-            throw new MissingResourceException(msg, "org.apache.xerces.impl.msg.XIncludeMessages", key);
+            throw new MissingResourceException(msg, "org.codelibs.xerces.impl.msg.XIncludeMessages", key);
         }
 
         return msg;

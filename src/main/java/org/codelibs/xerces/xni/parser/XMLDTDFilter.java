@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.xni.parser;
+package org.codelibs.xerces.xni.parser;
 
-import org.apache.xerces.xni.XMLDTDHandler;
+import org.codelibs.xerces.xni.XMLDTDHandler;
 
 /**
  * Defines a DTD filter that acts as both a receiver and an emitter

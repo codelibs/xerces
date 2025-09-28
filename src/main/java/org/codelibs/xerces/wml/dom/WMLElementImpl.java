@@ -14,10 +14,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.wml.dom;
+package org.codelibs.xerces.wml.dom;
 
-import org.apache.wml.WMLElement;
-import org.apache.xerces.dom.ElementImpl;
+import org.codelibs.xerces.wml.WMLElement;
+import org.codelibs.xerces.dom.ElementImpl;
 
 /**
  * @xerces.internal

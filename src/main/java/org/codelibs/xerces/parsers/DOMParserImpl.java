@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.parsers;
+package org.codelibs.xerces.parsers;
 
 import java.io.StringReader;
 import java.util.ArrayList;
@@ -23,35 +23,35 @@ import java.util.Locale;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
-import org.apache.xerces.dom.DOMErrorImpl;
-import org.apache.xerces.dom.DOMMessageFormatter;
-import org.apache.xerces.dom.DOMStringListImpl;
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.util.DOMEntityResolverWrapper;
-import org.apache.xerces.util.DOMErrorHandlerWrapper;
-import org.apache.xerces.util.DOMUtil;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.util.XMLSymbols;
-import org.apache.xerces.xni.Augmentations;
-import org.apache.xerces.xni.NamespaceContext;
-import org.apache.xerces.xni.QName;
-import org.apache.xerces.xni.XMLAttributes;
-import org.apache.xerces.xni.XMLDTDContentModelHandler;
-import org.apache.xerces.xni.XMLDTDHandler;
-import org.apache.xerces.xni.XMLDocumentHandler;
-import org.apache.xerces.xni.XMLLocator;
-import org.apache.xerces.xni.XMLResourceIdentifier;
-import org.apache.xerces.xni.XMLString;
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xni.grammars.XMLGrammarPool;
-import org.apache.xerces.xni.parser.XMLConfigurationException;
-import org.apache.xerces.xni.parser.XMLDTDContentModelSource;
-import org.apache.xerces.xni.parser.XMLDTDSource;
-import org.apache.xerces.xni.parser.XMLDocumentSource;
-import org.apache.xerces.xni.parser.XMLEntityResolver;
-import org.apache.xerces.xni.parser.XMLInputSource;
-import org.apache.xerces.xni.parser.XMLParseException;
-import org.apache.xerces.xni.parser.XMLParserConfiguration;
+import org.codelibs.xerces.dom.DOMErrorImpl;
+import org.codelibs.xerces.dom.DOMMessageFormatter;
+import org.codelibs.xerces.dom.DOMStringListImpl;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.util.DOMEntityResolverWrapper;
+import org.codelibs.xerces.util.DOMErrorHandlerWrapper;
+import org.codelibs.xerces.util.DOMUtil;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.util.XMLSymbols;
+import org.codelibs.xerces.xni.Augmentations;
+import org.codelibs.xerces.xni.NamespaceContext;
+import org.codelibs.xerces.xni.QName;
+import org.codelibs.xerces.xni.XMLAttributes;
+import org.codelibs.xerces.xni.XMLDTDContentModelHandler;
+import org.codelibs.xerces.xni.XMLDTDHandler;
+import org.codelibs.xerces.xni.XMLDocumentHandler;
+import org.codelibs.xerces.xni.XMLLocator;
+import org.codelibs.xerces.xni.XMLResourceIdentifier;
+import org.codelibs.xerces.xni.XMLString;
+import org.codelibs.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.grammars.XMLGrammarPool;
+import org.codelibs.xerces.xni.parser.XMLConfigurationException;
+import org.codelibs.xerces.xni.parser.XMLDTDContentModelSource;
+import org.codelibs.xerces.xni.parser.XMLDTDSource;
+import org.codelibs.xerces.xni.parser.XMLDocumentSource;
+import org.codelibs.xerces.xni.parser.XMLEntityResolver;
+import org.codelibs.xerces.xni.parser.XMLInputSource;
+import org.codelibs.xerces.xni.parser.XMLParseException;
+import org.codelibs.xerces.xni.parser.XMLParserConfiguration;
 import org.w3c.dom.DOMConfiguration;
 import org.w3c.dom.DOMError;
 import org.w3c.dom.DOMErrorHandler;
@@ -150,7 +150,7 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser, DOMCon
      * Constructs a DOM Builder using the standard parser configuration.
      */
     public DOMParserImpl(String configuration, String schemaType) {
-        this((XMLParserConfiguration) ObjectFactory.createObject("org.apache.xerces.xni.parser.XMLParserConfiguration", configuration));
+        this((XMLParserConfiguration) ObjectFactory.createObject("org.codelibs.xerces.xni.parser.XMLParserConfiguration", configuration));
         if (schemaType != null) {
             if (schemaType.equals(Constants.NS_DTD)) {
                 //Schema validation is false by default and hence there is no
@@ -228,8 +228,8 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser, DOMCon
      * Constructs a DOM Builder using the specified symbol table.
      */
     public DOMParserImpl(SymbolTable symbolTable) {
-        this((XMLParserConfiguration) ObjectFactory.createObject("org.apache.xerces.xni.parser.XMLParserConfiguration",
-                "org.apache.xerces.parsers.XIncludeAwareParserConfiguration"));
+        this((XMLParserConfiguration) ObjectFactory.createObject("org.codelibs.xerces.xni.parser.XMLParserConfiguration",
+                "org.codelibs.xerces.parsers.XIncludeAwareParserConfiguration"));
         fConfiguration.setProperty(Constants.XERCES_PROPERTY_PREFIX + Constants.SYMBOL_TABLE_PROPERTY, symbolTable);
     } // <init>(SymbolTable)
 
@@ -238,8 +238,8 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser, DOMCon
      * grammar pool.
      */
     public DOMParserImpl(SymbolTable symbolTable, XMLGrammarPool grammarPool) {
-        this((XMLParserConfiguration) ObjectFactory.createObject("org.apache.xerces.xni.parser.XMLParserConfiguration",
-                "org.apache.xerces.parsers.XIncludeAwareParserConfiguration"));
+        this((XMLParserConfiguration) ObjectFactory.createObject("org.codelibs.xerces.xni.parser.XMLParserConfiguration",
+                "org.codelibs.xerces.parsers.XIncludeAwareParserConfiguration"));
         fConfiguration.setProperty(Constants.XERCES_PROPERTY_PREFIX + Constants.SYMBOL_TABLE_PROPERTY, symbolTable);
         fConfiguration.setProperty(Constants.XERCES_PROPERTY_PREFIX + Constants.XMLGRAMMAR_POOL_PROPERTY, grammarPool);
     }
@@ -390,7 +390,7 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser, DOMCon
                 } else if (name.equalsIgnoreCase(Constants.DOM_PSVI)) {
                     //XSModel - turn on PSVI augmentation
                     fConfiguration.setFeature(PSVI_AUGMENT, true);
-                    fConfiguration.setProperty(DOCUMENT_CLASS_NAME, "org.apache.xerces.dom.PSVIDocumentImpl");
+                    fConfiguration.setProperty(DOCUMENT_CLASS_NAME, "org.codelibs.xerces.dom.PSVIDocumentImpl");
                 } else {
                     // Constants.DOM_CHARSET_OVERRIDES_XML_ENCODING feature,
                     // Constants.DOM_SPLIT_CDATA feature,

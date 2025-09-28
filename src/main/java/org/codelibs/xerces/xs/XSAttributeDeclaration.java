@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.xs;
+package org.codelibs.xerces.xs;
 
 /**
  * The interface represents the Attribute Declaration schema component.

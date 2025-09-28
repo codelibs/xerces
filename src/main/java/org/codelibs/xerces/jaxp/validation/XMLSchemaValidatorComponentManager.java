@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.jaxp.validation;
+package org.codelibs.xerces.jaxp.validation;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -24,23 +24,23 @@ import java.util.Map;
 
 import javax.xml.XMLConstants;
 
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.impl.XMLEntityManager;
-import org.apache.xerces.impl.XMLErrorReporter;
-import org.apache.xerces.impl.validation.ValidationManager;
-import org.apache.xerces.impl.xs.XMLSchemaValidator;
-import org.apache.xerces.impl.xs.XSMessageFormatter;
-import org.apache.xerces.util.DOMEntityResolverWrapper;
-import org.apache.xerces.util.ErrorHandlerWrapper;
-import org.apache.xerces.util.NamespaceSupport;
-import org.apache.xerces.util.ParserConfigurationSettings;
-import org.apache.xerces.util.SecurityManager;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.xni.NamespaceContext;
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xni.parser.XMLComponent;
-import org.apache.xerces.xni.parser.XMLComponentManager;
-import org.apache.xerces.xni.parser.XMLConfigurationException;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.impl.XMLEntityManager;
+import org.codelibs.xerces.impl.XMLErrorReporter;
+import org.codelibs.xerces.impl.validation.ValidationManager;
+import org.codelibs.xerces.impl.xs.XMLSchemaValidator;
+import org.codelibs.xerces.impl.xs.XSMessageFormatter;
+import org.codelibs.xerces.util.DOMEntityResolverWrapper;
+import org.codelibs.xerces.util.ErrorHandlerWrapper;
+import org.codelibs.xerces.util.NamespaceSupport;
+import org.codelibs.xerces.util.ParserConfigurationSettings;
+import org.codelibs.xerces.util.SecurityManager;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.xni.NamespaceContext;
+import org.codelibs.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.parser.XMLComponent;
+import org.codelibs.xerces.xni.parser.XMLComponentManager;
+import org.codelibs.xerces.xni.parser.XMLConfigurationException;
 import org.w3c.dom.ls.LSResourceResolver;
 import org.xml.sax.ErrorHandler;
 

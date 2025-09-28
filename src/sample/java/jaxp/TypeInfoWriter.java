@@ -81,8 +81,8 @@ public class TypeInfoWriter
     /** Default schema language (http://www.w3.org/2001/XMLSchema). */
     protected static final String DEFAULT_SCHEMA_LANGUAGE = XMLConstants.W3C_XML_SCHEMA_NS_URI;
     
-    /** Default parser name (org.apache.xerces.parsers.SAXParser). */
-    protected static final String DEFAULT_PARSER_NAME = "org.apache.xerces.parsers.SAXParser";
+    /** Default parser name (org.codelibs.xerces.parsers.SAXParser). */
+    protected static final String DEFAULT_PARSER_NAME = "org.codelibs.xerces.parsers.SAXParser";
     
     /** Default schema full checking support (false). */
     protected static final boolean DEFAULT_SCHEMA_FULL_CHECKING = false;

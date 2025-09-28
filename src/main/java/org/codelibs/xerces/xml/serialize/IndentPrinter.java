@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xml.serialize;
+package org.codelibs.xerces.xml.serialize;
 
 import java.io.IOException;
 import java.io.StringWriter;

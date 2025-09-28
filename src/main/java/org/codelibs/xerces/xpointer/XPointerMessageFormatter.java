@@ -15,13 +15,13 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.xpointer;
+package org.codelibs.xerces.xpointer;
 
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
-import org.apache.xerces.util.MessageFormatter;
+import org.codelibs.xerces.util.MessageFormatter;
 
 /**
  * XPointerMessageFormatter provides error messages for the XPointer Framework
@@ -64,7 +64,7 @@ final class XPointerMessageFormatter implements MessageFormatter {
             locale = Locale.getDefault();
         }
         if (locale != fLocale) {
-            fResourceBundle = ResourceBundle.getBundle("org.apache.xerces.impl.msg.XPointerMessages", locale);
+            fResourceBundle = ResourceBundle.getBundle("org.codelibs.xerces.impl.msg.XPointerMessages", locale);
             // memorize the most-recent locale
             fLocale = locale;
         }
@@ -81,7 +81,7 @@ final class XPointerMessageFormatter implements MessageFormatter {
 
         if (msg == null) {
             msg = fResourceBundle.getString("BadMessageKey");
-            throw new MissingResourceException(msg, "org.apache.xerces.impl.msg.XPointerMessages", key);
+            throw new MissingResourceException(msg, "org.codelibs.xerces.impl.msg.XPointerMessages", key);
         }
 
         return msg;

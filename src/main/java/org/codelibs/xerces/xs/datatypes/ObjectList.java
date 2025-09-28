@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.xerces.xs.datatypes;
+package org.codelibs.xerces.xs.datatypes;
 
 import java.util.List;
 

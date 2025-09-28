@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.html.dom;
+package org.codelibs.xerces.html.dom;
 
 import java.io.File;
 import java.io.FileInputStream;

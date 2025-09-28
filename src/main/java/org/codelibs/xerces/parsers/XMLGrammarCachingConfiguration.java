@@ -15,27 +15,27 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.parsers;
+package org.codelibs.xerces.parsers;
 
 import java.io.IOException;
 
-import org.apache.xerces.impl.Constants;
-import org.apache.xerces.impl.dtd.DTDGrammar;
-import org.apache.xerces.impl.dtd.XMLDTDLoader;
-import org.apache.xerces.impl.xs.SchemaGrammar;
-import org.apache.xerces.impl.xs.XMLSchemaLoader;
-import org.apache.xerces.impl.xs.XSMessageFormatter;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.util.SynchronizedSymbolTable;
-import org.apache.xerces.util.XMLGrammarPoolImpl;
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xni.grammars.Grammar;
-import org.apache.xerces.xni.grammars.XMLGrammarDescription;
-import org.apache.xerces.xni.grammars.XMLGrammarPool;
-import org.apache.xerces.xni.parser.XMLComponentManager;
-import org.apache.xerces.xni.parser.XMLConfigurationException;
-import org.apache.xerces.xni.parser.XMLEntityResolver;
-import org.apache.xerces.xni.parser.XMLInputSource;
+import org.codelibs.xerces.impl.Constants;
+import org.codelibs.xerces.impl.dtd.DTDGrammar;
+import org.codelibs.xerces.impl.dtd.XMLDTDLoader;
+import org.codelibs.xerces.impl.xs.SchemaGrammar;
+import org.codelibs.xerces.impl.xs.XMLSchemaLoader;
+import org.codelibs.xerces.impl.xs.XSMessageFormatter;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.util.SynchronizedSymbolTable;
+import org.codelibs.xerces.util.XMLGrammarPoolImpl;
+import org.codelibs.xerces.xni.XNIException;
+import org.codelibs.xerces.xni.grammars.Grammar;
+import org.codelibs.xerces.xni.grammars.XMLGrammarDescription;
+import org.codelibs.xerces.xni.grammars.XMLGrammarPool;
+import org.codelibs.xerces.xni.parser.XMLComponentManager;
+import org.codelibs.xerces.xni.parser.XMLConfigurationException;
+import org.codelibs.xerces.xni.parser.XMLEntityResolver;
+import org.codelibs.xerces.xni.parser.XMLInputSource;
 
 /**
  * <p> This configuration provides a generic way of using
@@ -44,7 +44,7 @@ import org.apache.xerces.xni.parser.XMLInputSource;
  * according to XML schemas or DTD's.  It also allows the user to
  * preparse a grammar, and to lock the grammar pool
  * implementation such that no more grammars will be added.</p>
- * <p> Using the org.apache.xerces.xni.parser property, an
+ * <p> Using the org.codelibs.xerces.xni.parser property, an
  * application may instantiate a Xerces SAX or DOM parser with
  * this configuration.  When invoked in this manner, the default
  * behaviour will be elicited; to use this configuration's

@@ -15,13 +15,13 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.msg;
+package org.codelibs.xerces.impl.msg;
 
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
-import org.apache.xerces.util.MessageFormatter;
+import org.codelibs.xerces.util.MessageFormatter;
 
 /**
  * XMLMessageFormatter provides error messages for the XML 1.0 Recommendation and for
@@ -69,7 +69,7 @@ public class XMLMessageFormatter implements MessageFormatter {
             locale = Locale.getDefault();
         }
         if (locale != fLocale) {
-            fResourceBundle = ResourceBundle.getBundle("org.apache.xerces.impl.msg.XMLMessages", locale);
+            fResourceBundle = ResourceBundle.getBundle("org.codelibs.xerces.impl.msg.XMLMessages", locale);
             // memorize the most-recent locale
             fLocale = locale;
         }

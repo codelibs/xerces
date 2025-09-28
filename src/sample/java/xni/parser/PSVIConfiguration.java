@@ -17,10 +17,10 @@
 
 package xni.parser;
 
-import org.apache.xerces.parsers.XIncludeAwareParserConfiguration;
-import org.apache.xerces.util.SymbolTable;
-import org.apache.xerces.xni.grammars.XMLGrammarPool;
-import org.apache.xerces.xni.parser.XMLComponentManager;
+import org.codelibs.xerces.parsers.XIncludeAwareParserConfiguration;
+import org.codelibs.xerces.util.SymbolTable;
+import org.codelibs.xerces.xni.grammars.XMLGrammarPool;
+import org.codelibs.xerces.xni.parser.XMLComponentManager;
 
 import xni.PSVIWriter;
 

@@ -14,9 +14,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.html.dom;
+package org.codelibs.xerces.html.dom;
 
-import org.apache.xerces.dom.DOMImplementationImpl;
+import org.codelibs.xerces.dom.DOMImplementationImpl;
 import org.w3c.dom.DOMException;
 import org.w3c.dom.html.HTMLDOMImplementation;
 import org.w3c.dom.html.HTMLDocument;

@@ -15,22 +15,22 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xs.models;
+package org.codelibs.xerces.impl.xs.models;
 
 import java.util.HashMap;
 import java.util.Vector;
 
-import org.apache.xerces.impl.dtd.models.CMNode;
-import org.apache.xerces.impl.dtd.models.CMStateSet;
-import org.apache.xerces.impl.xs.SchemaSymbols;
-import org.apache.xerces.impl.xs.SubstitutionGroupHandler;
-import org.apache.xerces.impl.xs.XMLSchemaException;
-import org.apache.xerces.impl.xs.XSConstraints;
-import org.apache.xerces.impl.xs.XSElementDecl;
-import org.apache.xerces.impl.xs.XSModelGroupImpl;
-import org.apache.xerces.impl.xs.XSParticleDecl;
-import org.apache.xerces.impl.xs.XSWildcardDecl;
-import org.apache.xerces.xni.QName;
+import org.codelibs.xerces.impl.dtd.models.CMNode;
+import org.codelibs.xerces.impl.dtd.models.CMStateSet;
+import org.codelibs.xerces.impl.xs.SchemaSymbols;
+import org.codelibs.xerces.impl.xs.SubstitutionGroupHandler;
+import org.codelibs.xerces.impl.xs.XMLSchemaException;
+import org.codelibs.xerces.impl.xs.XSConstraints;
+import org.codelibs.xerces.impl.xs.XSElementDecl;
+import org.codelibs.xerces.impl.xs.XSModelGroupImpl;
+import org.codelibs.xerces.impl.xs.XSParticleDecl;
+import org.codelibs.xerces.impl.xs.XSWildcardDecl;
+import org.codelibs.xerces.xni.QName;
 
 /**
  * DFAContentModel is the implementation of XSCMValidator that does

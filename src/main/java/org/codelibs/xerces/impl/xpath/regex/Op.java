@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.xerces.impl.xpath.regex;
+package org.codelibs.xerces.impl.xpath.regex;
 
 import java.util.Vector;
 
