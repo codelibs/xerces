@@ -27,7 +27,6 @@ import org.codelibs.xerces.util.MessageFormatter;
  * XMLMessageFormatter provides error messages for the XML 1.0 Recommendation and for
  * the Namespaces Recommendation
  *
- * @xerces.internal
  *
  * @author Eric Ye, IBM
  * @version $Id: XMLMessageFormatter.java 813087 2009-09-09 19:35:27Z mrglavas $
@@ -38,11 +37,20 @@ public class XMLMessageFormatter implements MessageFormatter {
      * The domain of messages concerning the XML 1.0 specification.
      */
     public static final String XML_DOMAIN = "http://www.w3.org/TR/1998/REC-xml-19980210";
+    /**
+     * The domain of messages concerning the Namespaces specification.
+     */
     public static final String XMLNS_DOMAIN = "http://www.w3.org/TR/1999/REC-xml-names-19990114";
 
     // private objects to cache the locale and resource bundle
     private Locale fLocale = null;
     private ResourceBundle fResourceBundle = null;
+
+    /**
+     * Default constructor.
+     */
+    public XMLMessageFormatter() {
+    }
 
     //
     // MessageFormatter methods

@@ -22,14 +22,18 @@ import org.codelibs.xerces.impl.dtd.XMLContentSpec;
 /**
  * Content model Bin-Op node.
  *
- * @xerces.internal
+
  *
  * @version $Id: CMBinOp.java 572057 2007-09-02 18:03:20Z mrglavas $
  */
 public class CMBinOp extends CMNode {
-    // -------------------------------------------------------------------
-    //  Constructors
-    // -------------------------------------------------------------------
+    /**
+     * Constructs a binary operation content model node.
+     *
+     * @param type The type of binary operation
+     * @param leftNode The left child node
+     * @param rightNode The right child node
+     */
     public CMBinOp(int type, CMNode leftNode, CMNode rightNode) {
         super(type);
 

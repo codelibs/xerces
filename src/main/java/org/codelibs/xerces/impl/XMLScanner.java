@@ -50,8 +50,6 @@ import org.codelibs.xerces.xni.parser.XMLConfigurationException;
  *  <li>http://apache.org/xml/properties/internal/entity-manager</li>
  * </ul>
  *
- * @xerces.internal
- *
  * @author Andy Clark, IBM
  * @author Arnaud  Le Hors, IBM
  * @author Eric Ye, IBM
@@ -59,6 +57,12 @@ import org.codelibs.xerces.xni.parser.XMLConfigurationException;
  * @version $Id: XMLScanner.java 1499506 2013-07-03 18:29:43Z mrglavas $
  */
 public abstract class XMLScanner implements XMLComponent {
+
+    /**
+     * Default constructor.
+     */
+    public XMLScanner() {
+    }
 
     //
     // Constants
@@ -75,6 +79,7 @@ public abstract class XMLScanner implements XMLComponent {
     /** Feature identifier: notify character references. */
     protected static final String NOTIFY_CHAR_REFS = Constants.XERCES_FEATURE_PREFIX + Constants.NOTIFY_CHAR_REFS_FEATURE;
 
+    /** Feature identifier: parser settings. */
     protected static final String PARSER_SETTINGS = Constants.XERCES_FEATURE_PREFIX + Constants.PARSER_SETTINGS;
 
     // property identifiers
@@ -188,7 +193,7 @@ public abstract class XMLScanner implements XMLComponent {
     /** String buffer. */
     private final XMLStringBuffer fStringBuffer3 = new XMLStringBuffer();
 
-    // temporary location for Resource identification information.
+    /** Temporary location for Resource identification information. */
     protected final XMLResourceIdentifierImpl fResourceIdentifier = new XMLResourceIdentifierImpl();
 
     //
@@ -200,7 +205,7 @@ public abstract class XMLScanner implements XMLComponent {
      *
      * @param componentManager The component manager.
      *
-     * @throws SAXException Throws exception if required features and
+     * @throws XMLConfigurationException Throws exception if required features and
      *                      properties cannot be found.
      */
     public void reset(XMLComponentManager componentManager) throws XMLConfigurationException {
@@ -246,8 +251,8 @@ public abstract class XMLScanner implements XMLComponent {
     /**
      * Sets the value of a property during parsing.
      *
-     * @param propertyId
-     * @param value
+     * @param propertyId The property identifier
+     * @param value The property value
      */
     public void setProperty(String propertyId, Object value) throws XMLConfigurationException {
 
@@ -280,8 +285,11 @@ public abstract class XMLScanner implements XMLComponent {
         }
     }
 
-    /*
+    /**
      * Gets the state of the feature of the scanner.
+     * @param featureId The feature identifier
+     * @return The state of the feature
+     * @throws XMLConfigurationException if the feature is not recognized
      */
     public boolean getFeature(String featureId) throws XMLConfigurationException {
 
@@ -298,6 +306,9 @@ public abstract class XMLScanner implements XMLComponent {
     //
 
     // anybody calling this had better have set Symtoltable!
+    /**
+     * Resets the scanner to its initial state.
+     */
     protected void reset() {
         init();
 
@@ -311,16 +322,16 @@ public abstract class XMLScanner implements XMLComponent {
 
     /**
      * Scans an XML or text declaration.
-     * <p>
+     *
      * <pre>
-     * [23] XMLDecl ::= '<?xml' VersionInfo EncodingDecl? SDDecl? S? '?>'
+     * [23] XMLDecl ::= '&lt;?xml' VersionInfo EncodingDecl? SDDecl? S? '?&gt;'
      * [24] VersionInfo ::= S 'version' Eq (' VersionNum ' | " VersionNum ")
      * [80] EncodingDecl ::= S 'encoding' Eq ('"' EncName '"' |  "'" EncName "'" )
      * [81] EncName ::= [A-Za-z] ([A-Za-z0-9._] | '-')*
      * [32] SDDecl ::= S 'standalone' Eq (("'" ('yes' | 'no') "'")
      *                 | ('"' ('yes' | 'no') '"'))
      *
-     * [77] TextDecl ::= '<?xml' VersionInfo? EncodingDecl S? '?>'
+     * [77] TextDecl ::= '&lt;?xml' VersionInfo? EncodingDecl S? '?&gt;'
      * </pre>
      *
      * @param scanningTextDecl True if a text declaration is to
@@ -332,6 +343,9 @@ public abstract class XMLScanner implements XMLComponent {
      *
      * <strong>Note:</strong> This method uses fString, anything in it
      * at the time of calling is lost.
+     *
+     * @throws IOException If an I/O error occurs during scanning
+     * @throws XNIException If a parser error occurs
      */
     protected void scanXMLDeclOrTextDecl(boolean scanningTextDecl, String[] pseudoAttributeValues) throws IOException, XNIException {
 
@@ -488,6 +502,9 @@ public abstract class XMLScanner implements XMLComponent {
      *
      * <strong>Note:</strong> This method uses fStringBuffer2, anything in it
      * at the time of calling is lost.
+     *
+     * @throws IOException If an I/O error occurs during scanning
+     * @throws XNIException If a parser error occurs
      */
     public String scanPseudoAttribute(boolean scanningTextDecl, XMLString value) throws IOException, XNIException {
 
@@ -583,13 +600,16 @@ public abstract class XMLScanner implements XMLComponent {
 
     /**
      * Scans a processing instruction.
-     * <p>
+     *
      * <pre>
      * [16] PI ::= '&lt;?' PITarget (S (Char* - (Char* '?>' Char*)))? '?>'
      * [17] PITarget ::= Name - (('X' | 'x') ('M' | 'm') ('L' | 'l'))
      * </pre>
      * <strong>Note:</strong> This method uses fString, anything in it
      * at the time of calling is lost.
+     *
+     * @throws IOException If an I/O error occurs during scanning
+     * @throws XNIException If a parser error occurs
      */
     protected void scanPI() throws IOException, XNIException {
 
@@ -621,6 +641,9 @@ public abstract class XMLScanner implements XMLComponent {
      *
      * @param target The PI target
      * @param data The string to fill in with the data
+     *
+     * @throws IOException If an I/O error occurs during scanning
+     * @throws XNIException If a parser error occurs
      */
     protected void scanPIData(String target, XMLString data) throws IOException, XNIException {
 
@@ -678,16 +701,19 @@ public abstract class XMLScanner implements XMLComponent {
 
     /**
      * Scans a comment.
-     * <p>
+     *
      * <pre>
-     * [15] Comment ::= '&lt!--' ((Char - '-') | ('-' (Char - '-')))* '-->'
+     * [15] Comment ::= '&amp;lt;!--' ((Char - '-') | ('-' (Char - '-')))* '--&gt;'
      * </pre>
      * <p>
-     * <strong>Note:</strong> Called after scanning past '&lt;!--'
+     * <strong>Note:</strong> Called after scanning past '&amp;lt;!--'
      * <strong>Note:</strong> This method uses fString, anything in it
      * at the time of calling is lost.
      *
      * @param text The buffer to fill in with the text.
+     *
+     * @throws IOException If an I/O error occurs during scanning
+     * @throws XNIException If a parser error occurs
      */
     protected void scanComment(XMLStringBuffer text) throws IOException, XNIException {
 
@@ -715,7 +741,7 @@ public abstract class XMLScanner implements XMLComponent {
      * Scans an attribute value and normalizes whitespace converting all
      * whitespace characters to space characters.
      *
-     * [10] AttValue ::= '"' ([^<&"] | Reference)* '"' | "'" ([^<&'] | Reference)* "'"
+     * [10] AttValue ::= '"' ([^&lt;&amp;"] | Reference)* '"' | "'" ([^&lt;&amp;'] | Reference)* "'"
      *
      * @param value The XMLString to fill in with the value.
      * @param nonNormalizedValue The XMLString to fill in with the
@@ -729,6 +755,9 @@ public abstract class XMLScanner implements XMLComponent {
      *
      * <strong>Note:</strong> This method uses fStringBuffer2, anything in it
      * at the time of calling is lost.
+     *
+     * @throws IOException If an I/O error occurs during scanning
+     * @throws XNIException If a parser error occurs
      **/
     protected boolean scanAttributeValue(XMLString value, XMLString nonNormalizedValue, String atName, boolean checkEntities,
             String eleName) throws IOException, XNIException {
@@ -913,6 +942,9 @@ public abstract class XMLScanner implements XMLComponent {
      *
      * <strong>Note:</strong> This method uses fString and fStringBuffer,
      * anything in them at the time of calling is lost.
+     *
+     * @throws IOException If an I/O error occurs during scanning
+     * @throws XNIException If a parser error occurs
      */
     protected void scanExternalID(String[] identifiers, boolean optionalSystemId) throws IOException, XNIException {
 
@@ -993,6 +1025,9 @@ public abstract class XMLScanner implements XMLComponent {
      *
      * <strong>Note:</strong> This method uses fStringBuffer, anything in it at
      * the time of calling is lost.
+     *
+     * @throws IOException If an I/O error occurs during scanning
+     * @throws XNIException If a parser error occurs
      */
     protected boolean scanPubidLiteral(XMLString literal) throws IOException, XNIException {
         int quote = fEntityScanner.scanChar();
@@ -1037,6 +1072,8 @@ public abstract class XMLScanner implements XMLComponent {
     /**
      * Normalize whitespace in an XMLString converting all whitespace
      * characters to space characters.
+     *
+     * @param value The XMLString to normalize
      */
     protected void normalizeWhitespace(XMLString value) {
         int end = value.offset + value.length;
@@ -1057,6 +1094,9 @@ public abstract class XMLScanner implements XMLComponent {
     /**
      * Normalize whitespace in an XMLString converting all whitespace
      * characters to space characters.
+     *
+     * @param value The XMLString to normalize
+     * @param fromIndex The starting index for normalization
      */
     protected void normalizeWhitespace(XMLString value, int fromIndex) {
         int end = value.offset + value.length;
@@ -1077,6 +1117,7 @@ public abstract class XMLScanner implements XMLComponent {
     /**
      * Checks whether this string would be unchanged by normalization.
      *
+     * @param value The XMLString to check
      * @return -1 if the value would be unchanged by normalization,
      * otherwise the index of the first whitespace character which
      * would be transformed.
@@ -1150,9 +1191,8 @@ public abstract class XMLScanner implements XMLComponent {
      * Scans a character reference and append the corresponding chars to the
      * specified buffer.
      *
-     * <p>
      * <pre>
-     * [66] CharRef ::= '&#' [0-9]+ ';' | '&#x' [0-9a-fA-F]+ ';'
+     * [66] CharRef ::= '&amp;#' [0-9]+ ';' | '&amp;#x' [0-9a-fA-F]+ ';'
      * </pre>
      *
      * <strong>Note:</strong> This method uses fStringBuffer, anything in it
@@ -1162,6 +1202,9 @@ public abstract class XMLScanner implements XMLComponent {
      * @param buf2 the character buffer to append non-normalized chars to
      *
      * @return the character value or (-1) on conversion failure
+     *
+     * @throws IOException If an I/O error occurs during scanning
+     * @throws XNIException If a parser error occurs
      */
     protected int scanCharReferenceValue(XMLStringBuffer buf, XMLStringBuffer buf2) throws IOException, XNIException {
 
@@ -1281,56 +1324,88 @@ public abstract class XMLScanner implements XMLComponent {
         return value;
     }
 
-    // returns true if the given character is not
-    // valid with respect to the version of
-    // XML understood by this scanner.
+    /**
+     * Returns true if the given character is not valid with respect to the version of
+     * XML understood by this scanner.
+     *
+     * @param value The character value to check
+     * @return true if the character is invalid, false otherwise
+     */
     protected boolean isInvalid(int value) {
         return (XMLChar.isInvalid(value));
     } // isInvalid(int):  boolean
 
-    // returns true if the given character is not
-    // valid or may not be used outside a character reference
-    // with respect to the version of XML understood by this scanner.
+    /**
+     * Returns true if the given character is not valid or may not be used outside a character reference
+     * with respect to the version of XML understood by this scanner.
+     *
+     * @param value The character value to check
+     * @return true if the character is invalid in literal content, false otherwise
+     */
     protected boolean isInvalidLiteral(int value) {
         return (XMLChar.isInvalid(value));
     } // isInvalidLiteral(int):  boolean
 
-    // returns true if the given character is
-    // a valid nameChar with respect to the version of
-    // XML understood by this scanner.
+    /**
+     * Returns true if the given character is a valid nameChar with respect to the version of
+     * XML understood by this scanner.
+     *
+     * @param value The character value to check
+     * @return true if the character is a valid name character, false otherwise
+     */
     protected boolean isValidNameChar(int value) {
         return (XMLChar.isName(value));
     } // isValidNameChar(int):  boolean
 
-    // returns true if the given character is
-    // a valid nameStartChar with respect to the version of
-    // XML understood by this scanner.
+    /**
+     * Returns true if the given character is a valid nameStartChar with respect to the version of
+     * XML understood by this scanner.
+     *
+     * @param value The character value to check
+     * @return true if the character is a valid name start character, false otherwise
+     */
     protected boolean isValidNameStartChar(int value) {
         return (XMLChar.isNameStart(value));
     } // isValidNameStartChar(int):  boolean
 
-    // returns true if the given character is
-    // a valid NCName character with respect to the version of
-    // XML understood by this scanner.
+    /**
+     * Returns true if the given character is a valid NCName character with respect to the version of
+     * XML understood by this scanner.
+     *
+     * @param value The character value to check
+     * @return true if the character is a valid NCName character, false otherwise
+     */
     protected boolean isValidNCName(int value) {
         return (XMLChar.isNCName(value));
     } // isValidNCName(int):  boolean
 
-    // returns true if the given character is
-    // a valid high surrogate for a nameStartChar
-    // with respect to the version of XML understood
-    // by this scanner.
+    /**
+     * Returns true if the given character is a valid high surrogate for a nameStartChar
+     * with respect to the version of XML understood by this scanner.
+     *
+     * @param value The character value to check
+     * @return true if the character is a valid name start high surrogate, false otherwise
+     */
     protected boolean isValidNameStartHighSurrogate(int value) {
         return false;
     } // isValidNameStartHighSurrogate(int):  boolean
 
+    /**
+     * Checks if the specified XML version is supported by this scanner.
+     *
+     * @param version The XML version string to check
+     * @return true if the version is supported, false otherwise
+     */
     protected boolean versionSupported(String version) {
         return version.equals("1.0");
     } // version Supported
 
-    // returns the error message key for unsupported
-    // versions of XML with respect to the version of
-    // XML understood by this scanner.
+    /**
+     * Returns the error message key for unsupported versions of XML with respect to the version of
+     * XML understood by this scanner.
+     *
+     * @return The error message key for unsupported versions
+     */
     protected String getVersionNotSupportedKey() {
         return "VersionNotSupported";
     } // getVersionNotSupportedKey: String
@@ -1343,6 +1418,9 @@ public abstract class XMLScanner implements XMLComponent {
      *
      * @param buf The StringBuffer to append the read surrogates to.
      * @return True if it succeeded.
+     *
+     * @throws IOException If an I/O error occurs during scanning
+     * @throws XNIException If a parser error occurs
      */
     protected boolean scanSurrogates(XMLStringBuffer buf) throws IOException, XNIException {
 
@@ -1373,6 +1451,10 @@ public abstract class XMLScanner implements XMLComponent {
 
     /**
      * Convenience function used in all XML scanners.
+     *
+     * @param msgId The message identifier for the error
+     * @param args Arguments for the error message
+     * @throws XNIException If an error occurs while reporting the error
      */
     protected void reportFatalError(String msgId, Object[] args) throws XNIException {
         fErrorReporter.reportError(XMLMessageFormatter.XML_DOMAIN, msgId, args, XMLErrorReporter.SEVERITY_FATAL_ERROR);

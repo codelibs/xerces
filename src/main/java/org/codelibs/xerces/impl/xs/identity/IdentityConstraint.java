@@ -29,7 +29,7 @@ import org.codelibs.xerces.xs.XSObjectList;
 /**
  * Base class of Schema identity constraint.
  *
- * @xerces.internal
+
  *
  * @author Andy Clark, IBM
  * @version $Id: IdentityConstraint.java 699892 2008-09-28 21:08:27Z mrglavas $
@@ -61,17 +61,22 @@ public abstract class IdentityConstraint implements XSIDCDefinition {
     /** Fields. */
     protected Field[] fFields;
 
-    // optional annotations
+    /** Optional annotations */
     protected XSAnnotationImpl[] fAnnotations = null;
 
-    // number of annotations in this identity constraint
+    /** Number of annotations in this identity constraint */
     protected int fNumAnnotations;
 
     //
     // Constructors
     //
 
-    /** Default constructor. */
+    /**
+     * Default constructor.
+     * @param namespace the target namespace
+     * @param identityConstraintName the name of the identity constraint
+     * @param elemName the name of the owning element
+     */
     protected IdentityConstraint(String namespace, String identityConstraintName, String elemName) {
         fNamespace = namespace;
         fIdentityConstraintName = identityConstraintName;
@@ -82,22 +87,34 @@ public abstract class IdentityConstraint implements XSIDCDefinition {
     // Public methods
     //
 
-    /** Returns the identity constraint name. */
+    /**
+     * Returns the identity constraint name.
+     * @return the identity constraint name
+     */
     public String getIdentityConstraintName() {
         return fIdentityConstraintName;
     } // getIdentityConstraintName():String
 
-    /** Sets the selector. */
+    /**
+     * Sets the selector.
+     * @param selector the selector to set
+     */
     public void setSelector(Selector selector) {
         fSelector = selector;
     } // setSelector(Selector)
 
-    /** Returns the selector. */
+    /**
+     * Returns the selector.
+     * @return the selector
+     */
     public Selector getSelector() {
         return fSelector;
     } // getSelector():Selector
 
-    /** Adds a field. */
+    /**
+     * Adds a field.
+     * @param field the field to add
+     */
     public void addField(Field field) {
         if (fFields == null)
             fFields = new Field[4];
@@ -106,17 +123,27 @@ public abstract class IdentityConstraint implements XSIDCDefinition {
         fFields[fFieldCount++] = field;
     } // addField(Field)
 
-    /** Returns the field count. */
+    /**
+     * Returns the field count.
+     * @return the field count
+     */
     public int getFieldCount() {
         return fFieldCount;
     } // getFieldCount():int
 
-    /** Returns the field at the specified index. */
+    /**
+     * Returns the field at the specified index.
+     * @param index the index of the field to return
+     * @return the field at the specified index
+     */
     public Field getFieldAt(int index) {
         return fFields[index];
     } // getFieldAt(int):Field
 
-    // get the name of the owning element
+    /**
+     * Get the name of the owning element.
+     * @return the name of the owning element
+     */
     public String getElementName() {
         return fElementName;
     } // getElementName(): String
@@ -139,9 +166,13 @@ public abstract class IdentityConstraint implements XSIDCDefinition {
         return s;
     } // toString():String
 
-    // equals:  returns true if and only if the String
-    // representations of all members of both objects (except for
-    // the elenemtName field) are equal.
+    /**
+     * Returns true if and only if the String
+     * representations of all members of both objects (except for
+     * the elementName field) are equal.
+     * @param id the identity constraint to compare with
+     * @return true if equal, false otherwise
+     */
     public boolean equals(IdentityConstraint id) {
         boolean areEqual = fIdentityConstraintName.equals(id.fIdentityConstraintName);
         if (!areEqual)
@@ -236,6 +267,10 @@ public abstract class IdentityConstraint implements XSIDCDefinition {
         return null;
     }
 
+    /**
+     * Add an annotation to this identity constraint.
+     * @param annotation the annotation to add
+     */
     public void addAnnotation(XSAnnotationImpl annotation) {
         if (annotation == null)
             return;

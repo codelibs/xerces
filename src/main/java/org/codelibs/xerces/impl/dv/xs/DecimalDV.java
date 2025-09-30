@@ -27,7 +27,7 @@ import org.codelibs.xerces.xs.datatypes.XSDecimal;
 /**
  * Represent the schema type "decimal"
  *
- * @xerces.internal
+
  *
  * @author Neeraj Bajaj, Sun Microsystems, inc.
  * @author Sandy Gao, IBM
@@ -35,6 +35,12 @@ import org.codelibs.xerces.xs.datatypes.XSDecimal;
  * @version $Id: DecimalDV.java 446745 2006-09-15 21:43:58Z mrglavas $
  */
 public class DecimalDV extends TypeValidator {
+
+    /**
+     * Default constructor for DecimalDV.
+     */
+    public DecimalDV() {
+    }
 
     public final short getAllowedFacets() {
         return (XSSimpleTypeDecl.FACET_PATTERN | XSSimpleTypeDecl.FACET_WHITESPACE | XSSimpleTypeDecl.FACET_ENUMERATION

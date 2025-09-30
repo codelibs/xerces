@@ -87,12 +87,27 @@ public class XMLResourceIdentifierImpl implements XMLResourceIdentifier {
     // Public methods
     //
 
-    /** Sets the values of the resource identifier. */
+    /**
+     * Sets the values of the resource identifier.
+     *
+     * @param publicId the public identifier
+     * @param literalSystemId the literal system identifier
+     * @param baseSystemId the base system identifier
+     * @param expandedSystemId the expanded system identifier
+     */
     public void setValues(String publicId, String literalSystemId, String baseSystemId, String expandedSystemId) {
         setValues(publicId, literalSystemId, baseSystemId, expandedSystemId, null);
     } // setValues(String,String,String,String)
 
-    /** Sets the values of the resource identifier. */
+    /**
+     * Sets the values of the resource identifier.
+     *
+     * @param publicId the public identifier
+     * @param literalSystemId the literal system identifier
+     * @param baseSystemId the base system identifier
+     * @param expandedSystemId the expanded system identifier
+     * @param namespace the namespace
+     */
     public void setValues(String publicId, String literalSystemId, String baseSystemId, String expandedSystemId, String namespace) {
         fPublicId = publicId;
         fLiteralSystemId = literalSystemId;

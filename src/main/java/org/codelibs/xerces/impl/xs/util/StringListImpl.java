@@ -26,7 +26,7 @@ import org.codelibs.xerces.xs.StringList;
 /**
  * Contains a list of Strings.
  *
- * @xerces.internal
+
  *
  * @author Sandy Gao, IBM
  *
@@ -48,6 +48,11 @@ public final class StringListImpl extends AbstractList implements StringList {
     //          instead of the Vector.
     private final Vector fVector;
 
+    /**
+     * Constructs a StringList implementation from a Vector.
+     *
+     * @param v the vector containing string elements
+     */
     public StringListImpl(Vector v) {
         fVector = v;
         fLength = (v == null) ? 0 : v.size();

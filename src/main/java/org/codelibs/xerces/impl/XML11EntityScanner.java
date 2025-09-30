@@ -31,8 +31,6 @@ import org.codelibs.xerces.xni.XMLString;
  * Implements the entity scanner methods in
  * the context of XML 1.1.
  *
- * @xerces.internal
- *
  * @author Michael Glavassevich, IBM
  * @author Neil Graham, IBM
  * @version $Id: XML11EntityScanner.java 1707341 2015-10-07 17:34:01Z mrglavas $

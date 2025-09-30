@@ -34,7 +34,7 @@ import org.codelibs.xerces.util.XMLChar;
  * <P>The Value space of IDREF is scoped to a specific
  * instance document</P>
  *
- * @xerces.internal
+
  *
  * @author Jeffrey Rodriguez, IBM
  * @author Sandy Gao, IBM
@@ -43,7 +43,9 @@ import org.codelibs.xerces.util.XMLChar;
  */
 public class IDREFDatatypeValidator implements DatatypeValidator {
 
-    // construct an IDREF datatype validator
+    /**
+     * construct an IDREF datatype validator
+     */
     public IDREFDatatypeValidator() {
     }
 
@@ -53,7 +55,7 @@ public class IDREFDatatypeValidator implements DatatypeValidator {
      *
      * @param content       the string value that needs to be validated
      * @param context       the validation context
-     * @throws InvalidDatatypeException if the content is
+     * @throws InvalidDatatypeValueException if the content is
      *         invalid according to the rules for the validators
      * @see InvalidDatatypeValueException
      */

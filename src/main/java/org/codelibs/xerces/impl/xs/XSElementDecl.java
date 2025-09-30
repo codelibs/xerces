@@ -37,7 +37,10 @@ import org.codelibs.xerces.xs.XSValue;
  * The XML representation for an element declaration
  * schema component is an &lt;element&gt; element information item
  *
- * @xerces.internal
+ * <p>This class represents an XML Schema element declaration component.
+ * It implements the XSElementDeclaration interface and provides access
+ * to all properties of an element declaration including type, scope,
+ * constraints, and annotations.</p>
  *
  * @author Elena Litani, IBM
  * @author Sandy Gao, IBM
@@ -45,32 +48,73 @@ import org.codelibs.xerces.xs.XSValue;
  */
 public class XSElementDecl implements XSElementDeclaration {
 
-    // scopes
+    /**
+     * Constant indicating that the element has no scope (absent scope).
+     */
     public final static short SCOPE_ABSENT = 0;
+
+    /**
+     * Constant indicating that the element has global scope.
+     */
     public final static short SCOPE_GLOBAL = 1;
+
+    /**
+     * Constant indicating that the element has local scope.
+     */
     public final static short SCOPE_LOCAL = 2;
 
-    // name of the element
+    /**
+     * The name of the element.
+     */
     public String fName = null;
-    // target namespace of the element
+
+    /**
+     * The target namespace of the element.
+     */
     public String fTargetNamespace = null;
-    // type of the element
+
+    /**
+     * The type definition of the element.
+     */
     public XSTypeDefinition fType = null;
+
+    /**
+     * The unresolved type name of the element (used during schema processing).
+     */
     public QName fUnresolvedTypeName = null;
     // misc flag of the element: nillable/abstract/fixed
     short fMiscFlags = 0;
+
+    /**
+     * The scope of the element declaration (global, local, or absent).
+     */
     public short fScope = XSConstants.SCOPE_ABSENT;
     // enclosing complex type, when the scope is local
     XSComplexTypeDecl fEnclosingCT = null;
-    // block set (disallowed substitutions) of the element
+
+    /**
+     * The block set (disallowed substitutions) of the element.
+     */
     public short fBlock = XSConstants.DERIVATION_NONE;
-    // final set (substitution group exclusions) of the element
+
+    /**
+     * The final set (substitution group exclusions) of the element.
+     */
     public short fFinal = XSConstants.DERIVATION_NONE;
-    // optional annotation
+
+    /**
+     * The optional annotations for this element declaration.
+     */
     public XSObjectList fAnnotations = null;
-    // value constraint value
+
+    /**
+     * The default or fixed value constraint for this element.
+     */
     public ValidatedInfo fDefault = null;
-    // the substitution group affiliation of the element
+
+    /**
+     * The substitution group affiliation of the element.
+     */
     public XSElementDecl fSubGroup = null;
     // identity constraints
     static final int INITIAL_SIZE = 2;
@@ -84,7 +128,19 @@ public class XSElementDecl implements XSElementDeclaration {
     private static final short NILLABLE = 4;
     private static final short ABSTRACT = 8;
 
-    // methods to get/set misc flag
+    /**
+     * Default constructor for XSElementDecl.
+     * Creates a new element declaration with default values.
+     */
+    public XSElementDecl() {
+        // Default constructor - all fields are initialized to default values
+    }
+
+    /**
+     * Sets the constraint type for this element declaration.
+     *
+     * @param constraintType the constraint type to set (default, fixed, or none)
+     */
     public void setConstraintType(short constraintType) {
         // first clear the bits
         fMiscFlags ^= (fMiscFlags & CONSTRAINT_MASK);
@@ -92,23 +148,45 @@ public class XSElementDecl implements XSElementDeclaration {
         fMiscFlags |= (constraintType & CONSTRAINT_MASK);
     }
 
+    /**
+     * Sets this element declaration as nillable.
+     * A nillable element can have the xsi:nil attribute set to true.
+     */
     public void setIsNillable() {
         fMiscFlags |= NILLABLE;
     }
 
+    /**
+     * Sets this element declaration as abstract.
+     * An abstract element cannot be used directly in instance documents.
+     */
     public void setIsAbstract() {
         fMiscFlags |= ABSTRACT;
     }
 
+    /**
+     * Sets this element declaration to have global scope.
+     * Global elements are top-level declarations in the schema.
+     */
     public void setIsGlobal() {
         fScope = SCOPE_GLOBAL;
     }
 
+    /**
+     * Sets this element declaration to have local scope within a complex type.
+     *
+     * @param enclosingCT the complex type that encloses this local element declaration
+     */
     public void setIsLocal(XSComplexTypeDecl enclosingCT) {
         fScope = SCOPE_LOCAL;
         fEnclosingCT = enclosingCT;
     }
 
+    /**
+     * Adds an identity constraint to this element declaration.
+     *
+     * @param idc the identity constraint to add (key, keyref, or unique)
+     */
     public void addIDConstraint(IdentityConstraint idc) {
         if (fIDCPos == fIDConstraints.length) {
             fIDConstraints = resize(fIDConstraints, fIDCPos * 2);
@@ -116,6 +194,11 @@ public class XSElementDecl implements XSElementDeclaration {
         fIDConstraints[fIDCPos++] = idc;
     }
 
+    /**
+     * Returns the identity constraints associated with this element declaration.
+     *
+     * @return an array of identity constraints, or null if none are defined
+     */
     public IdentityConstraint[] getIDConstraints() {
         if (fIDCPos == 0) {
             return null;

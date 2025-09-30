@@ -35,7 +35,7 @@ import org.w3c.dom.Node;
  * This class doesn't directly support mutation events, however, it notifies
  * the document when mutations are performed so that the document class do so.
  *
- * @xerces.internal
+
  *
  * @version $Id: AttributeMap.java 612590 2008-01-16 22:16:09Z mrglavas $
  */
@@ -48,7 +48,10 @@ public class AttributeMap extends NamedNodeMapImpl {
     // Constructors
     //
 
-    /** Constructs a named node map. */
+    /** Constructs a named node map.
+     * @param ownerNode the element that owns this attribute map
+     * @param defaults the default attribute map to clone from
+     */
     protected AttributeMap(ElementImpl ownerNode, NamedNodeMapImpl defaults) {
         super(ownerNode);
         if (defaults != null) {
@@ -216,7 +219,7 @@ public class AttributeMap extends NamedNodeMapImpl {
      *      as well as the corresponding namespace URI, local name,
      *      and prefix when applicable.
      * @return The node removed from the map if a node with such a name exists.
-     * @throws              NOT_FOUND_ERR: Raised if there is no node named
+     * @throws DOMException NOT_FOUND_ERR: Raised if there is no node named
      *                      name in the map.
      */
     /***/
@@ -242,7 +245,7 @@ public class AttributeMap extends NamedNodeMapImpl {
      * @param item       The node to remove
      * @param addDefault true -- magically add default attribute
      * @return Removed node
-     * @exception DOMException
+     * @exception DOMException Thrown when the node cannot be found or the map is read-only
      */
     protected Node removeItem(Node item, boolean addDefault) throws DOMException {
 
@@ -267,6 +270,9 @@ public class AttributeMap extends NamedNodeMapImpl {
     /**
      * Internal removeNamedItem method allowing to specify whether an exception
      * must be thrown if the specified name is not found.
+     * @param name the name of the attribute to remove
+     * @param raiseEx true if an exception should be thrown when the item is not found
+     * @return the removed node, or null if not found and raiseEx is false
      */
     final protected Node internalRemoveNamedItem(String name, boolean raiseEx) {
         if (isReadOnly()) {
@@ -354,7 +360,7 @@ public class AttributeMap extends NamedNodeMapImpl {
      *                      containing the default value.
      * @return Node         The node removed from the map if a node with such
      *                      a local name and namespace URI exists.
-     * @throws              NOT_FOUND_ERR: Raised if there is no node named
+     * @throws DOMException NOT_FOUND_ERR: Raised if there is no node named
      *                      name in the map.
      */
     public Node removeNamedItemNS(String namespaceURI, String name) throws DOMException {
@@ -373,6 +379,10 @@ public class AttributeMap extends NamedNodeMapImpl {
      * Internal removeNamedItemNS method allowing to specify whether an
      * exception must be thrown if the specified local name and namespace URI
      * is not found.
+     * @param namespaceURI the namespace URI of the attribute to remove
+     * @param name the local name of the attribute to remove
+     * @param raiseEx true if an exception should be thrown when the item is not found
+     * @return the removed node, or null if not found and raiseEx is false
      */
     final protected Node internalRemoveNamedItemNS(String namespaceURI, String name, boolean raiseEx) {
 

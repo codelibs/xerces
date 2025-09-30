@@ -37,14 +37,15 @@ public class XIncludeNamespaceSupport extends MultipleScopeNamespaceSupport {
     private boolean[] fValidContext = new boolean[8];
 
     /**
-     *
+     * Constructs an XIncludeNamespaceSupport instance.
      */
     public XIncludeNamespaceSupport() {
         super();
     }
 
     /**
-     * @param context
+     * Constructs an XIncludeNamespaceSupport instance with the given namespace context.
+     * @param context the namespace context
      */
     public XIncludeNamespaceSupport(NamespaceContext context) {
         super(context);

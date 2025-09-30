@@ -53,6 +53,8 @@ public interface XSAnnotation extends XSObject {
 
     /**
      * A text representation of the annotation.
+     *
+     * @return The annotation as a string
      */
     public String getAnnotationString();
 

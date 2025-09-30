@@ -20,7 +20,7 @@ package org.codelibs.xerces.impl.dtd.models;
 /**
  * Content model any node.
  *
- * @xerces.internal
+
  *
  * @version $Id: CMAny.java 572057 2007-09-02 18:03:20Z mrglavas $
  */
@@ -57,7 +57,13 @@ public class CMAny extends CMNode {
     // Constructors
     //
 
-    /** Constructs a content model any. */
+    /**
+     * Constructs a content model any.
+     *
+     * @param type The any content model type
+     * @param uri The URI of the any content model
+     * @param position The position of this node in the content model
+     */
     public CMAny(int type, String uri, int position) {
         super(type);
 
@@ -71,18 +77,38 @@ public class CMAny extends CMNode {
     // Package methods
     //
 
+    /**
+     * Returns the type of this any content model.
+     *
+     * @return The any content model type
+     */
     final int getType() {
         return fType;
     }
 
+    /**
+     * Returns the URI of this any content model.
+     *
+     * @return The URI of the any content model
+     */
     final String getURI() {
         return fURI;
     }
 
+    /**
+     * Returns the position of this node in the content model.
+     *
+     * @return The position of this node
+     */
     final int getPosition() {
         return fPosition;
     }
 
+    /**
+     * Sets the position of this node in the content model.
+     *
+     * @param newPosition The new position for this node
+     */
     final void setPosition(int newPosition) {
         fPosition = newPosition;
     }
@@ -93,11 +119,21 @@ public class CMAny extends CMNode {
 
     // package
 
+    /**
+     * Returns true if this node is nullable (can match zero occurrences).
+     *
+     * @return true if this node is nullable, false otherwise
+     */
     public boolean isNullable() {
         // Leaf nodes are never nullable unless its an epsilon node
         return (fPosition == -1);
     }
 
+    /**
+     * Returns a string representation of this content model node.
+     *
+     * @return A string representation of this node
+     */
     public String toString() {
         StringBuffer strRet = new StringBuffer();
         strRet.append('(');
@@ -112,6 +148,11 @@ public class CMAny extends CMNode {
 
     // protected
 
+    /**
+     * Calculates the first position set for this node.
+     *
+     * @param toSet The state set to populate with first positions
+     */
     protected void calcFirstPos(CMStateSet toSet) {
         // If we are an epsilon node, then the first pos is an empty set
         if (fPosition == -1)
@@ -122,6 +163,11 @@ public class CMAny extends CMNode {
             toSet.setBit(fPosition);
     }
 
+    /**
+     * Calculates the last position set for this node.
+     *
+     * @param toSet The state set to populate with last positions
+     */
     protected void calcLastPos(CMStateSet toSet) {
         // If we are an epsilon node, then the last pos is an empty set
         if (fPosition == -1)

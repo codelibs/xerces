@@ -39,7 +39,7 @@ package org.codelibs.xerces.dom;
  * <P>
  * CDATA does not participate in Element.normalize() processing.
  *
- * @xerces.internal
+
  *
  * @version $Id: DeferredCDATASectionImpl.java 447266 2006-09-18 05:57:49Z mrglavas $
  * @since  PR-DOM-Level-1-19980818.

@@ -19,7 +19,8 @@ package org.codelibs.xerces.wml.dom;
 import org.codelibs.xerces.wml.WMLAElement;
 
 /**
- * @xerces.internal
+ * Implementation of WMLAElement interface for WML anchor elements.
+ *
  * @version $Id: WMLAElementImpl.java 661560 2008-05-30 03:22:25Z mrglavas $
  * @author <a href="mailto:david@topware.com.tw">David Li</a>
  */
@@ -27,6 +28,12 @@ public class WMLAElementImpl extends WMLElementImpl implements WMLAElement {
 
     private static final long serialVersionUID = 2628169803370301255L;
 
+    /**
+     * Constructs a new WML anchor element with the specified owner document and tag name.
+     *
+     * @param owner the owner document
+     * @param tagName the tag name for this element
+     */
     public WMLAElementImpl(WMLDocumentImpl owner, String tagName) {
         super(owner, tagName);
     }

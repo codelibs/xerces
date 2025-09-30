@@ -23,28 +23,59 @@ import org.w3c.dom.events.MutationEvent;
 /**
  * An implementation of the DOM Level 2 <code>MutationEvent</code> interface.
  *
- * @xerces.internal
+
  *
  * @version $Id: MutationEventImpl.java 533531 2007-04-29 17:24:58Z mrglavas $
  */
 public class MutationEventImpl extends EventImpl implements MutationEvent {
+
+    /**
+     * Default constructor for MutationEventImpl.
+     */
+    public MutationEventImpl() {
+        super();
+    }
 
     Node relatedNode = null;
     String prevValue = null;
     String newValue = null;
     String attrName = null;
 
-    // REVISIT: The DOM Level 2 PR has a bug: the init method should let this
-    // attribute be specified. Since it doesn't we have to give write access.
+    /**
+     * Specifies the type of change which triggered the DOMAttrModified event.
+     * REVISIT: The DOM Level 2 PR has a bug: the init method should let this
+     * attribute be specified. Since it doesn't we have to give write access.
+     */
     public short attrChange;
 
     // NON-DOM CONSTANTS: Storage efficiency, avoid risk of typos.
+    /**
+     * Event type constant for DOMSubtreeModified event.
+     */
     public static final String DOM_SUBTREE_MODIFIED = "DOMSubtreeModified";
+    /**
+     * Event type constant for DOMNodeInserted event.
+     */
     public static final String DOM_NODE_INSERTED = "DOMNodeInserted";
+    /**
+     * Event type constant for DOMNodeRemoved event.
+     */
     public static final String DOM_NODE_REMOVED = "DOMNodeRemoved";
+    /**
+     * Event type constant for DOMNodeRemovedFromDocument event.
+     */
     public static final String DOM_NODE_REMOVED_FROM_DOCUMENT = "DOMNodeRemovedFromDocument";
+    /**
+     * Event type constant for DOMNodeInsertedIntoDocument event.
+     */
     public static final String DOM_NODE_INSERTED_INTO_DOCUMENT = "DOMNodeInsertedIntoDocument";
+    /**
+     * Event type constant for DOMAttrModified event.
+     */
     public static final String DOM_ATTR_MODIFIED = "DOMAttrModified";
+    /**
+     * Event type constant for DOMCharacterDataModified event.
+     */
     public static final String DOM_CHARACTER_DATA_MODIFIED = "DOMCharacterDataModified";
 
     /**

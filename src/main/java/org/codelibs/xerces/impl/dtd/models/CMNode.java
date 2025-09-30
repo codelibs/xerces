@@ -20,7 +20,7 @@ package org.codelibs.xerces.impl.dtd.models;
 /**
  * A content model node.
  *
- * @xerces.internal
+
  *
  * @version $Id: CMNode.java 573322 2007-09-06 16:48:47Z peterjm $
  */
@@ -28,6 +28,11 @@ public abstract class CMNode {
     // -------------------------------------------------------------------
     //  Constructors
     // -------------------------------------------------------------------
+    /**
+     * Constructs a content model node.
+     *
+     * @param type The type of this content model node
+     */
     public CMNode(int type) {
         fType = type;
     }
@@ -35,17 +40,32 @@ public abstract class CMNode {
     // -------------------------------------------------------------------
     //  Package, abstract methods
     // -------------------------------------------------------------------
+    /**
+     * Determines whether this node can match an empty sequence.
+     *
+     * @return true if this node is nullable, false otherwise
+     */
     // made this public so it could be implemented and used outside this package -neilg.
     public abstract boolean isNullable();
 
     // -------------------------------------------------------------------
     //  Package final methods
     // -------------------------------------------------------------------
+    /**
+     * Returns the type of this content model node.
+     *
+     * @return The type of this node
+     */
     public final int type() {
         return fType;
     }
 
     // made this public so it could be implemented and used outside this package -neilg.
+    /**
+     * Returns the first position set for this node.
+     *
+     * @return The first position set
+     */
     public final CMStateSet firstPos() {
         if (fFirstPos == null) {
             fFirstPos = new CMStateSet(fMaxStates);
@@ -55,6 +75,11 @@ public abstract class CMNode {
     }
 
     // made this public so it could be implemented and used outside this package -neilg.
+    /**
+     * Returns the last position set for this node.
+     *
+     * @return The last position set
+     */
     public final CMStateSet lastPos() {
         if (fLastPos == null) {
             fLastPos = new CMStateSet(fMaxStates);
@@ -63,18 +88,38 @@ public abstract class CMNode {
         return fLastPos;
     }
 
+    /**
+     * Sets the follow position set for this node.
+     *
+     * @param setToAdopt The follow position set to adopt
+     */
     final void setFollowPos(CMStateSet setToAdopt) {
         fFollowPos = setToAdopt;
     }
 
+    /**
+     * Sets the maximum number of states for this node.
+     *
+     * @param maxStates The maximum number of states
+     */
     public final void setMaxStates(int maxStates) {
         fMaxStates = maxStates;
     }
 
+    /**
+     * Returns whether this node is compacted for UPA (Unique Particle Attribution).
+     *
+     * @return true if compacted for UPA, false otherwise
+     */
     public boolean isCompactedForUPA() {
         return fCompactedForUPA;
     }
 
+    /**
+     * Sets whether this node is compacted for UPA (Unique Particle Attribution).
+     *
+     * @param value true to mark as compacted for UPA, false otherwise
+     */
     public void setIsCompactUPAModel(boolean value) {
         fCompactedForUPA = value;
     }
@@ -82,8 +127,18 @@ public abstract class CMNode {
     // -------------------------------------------------------------------
     //  Protected, abstract methods
     // -------------------------------------------------------------------
+    /**
+     * Calculates the first position set for this node.
+     *
+     * @param toSet The state set to populate with first positions
+     */
     protected abstract void calcFirstPos(CMStateSet toSet);
 
+    /**
+     * Calculates the last position set for this node.
+     *
+     * @param toSet The state set to populate with last positions
+     */
     protected abstract void calcLastPos(CMStateSet toSet);
 
     // -------------------------------------------------------------------

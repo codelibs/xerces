@@ -36,7 +36,7 @@ import org.w3c.dom.Node;
  * and using Element and Attribute information. Nor was the linkage
  * between Entities and Entity References nailed down solidly.
  *
- * @xerces.internal
+
  *
  * @version $Id: DeferredDocumentTypeImpl.java 447266 2006-09-18 05:57:49Z mrglavas $
  * @since  PR-DOM-Level-1-19980818.

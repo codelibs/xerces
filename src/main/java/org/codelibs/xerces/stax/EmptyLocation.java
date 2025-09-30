@@ -20,10 +20,8 @@ package org.codelibs.xerces.stax;
 import javax.xml.stream.Location;
 
 /**
- * <p>Location which always returns <code>-1</code>
- * and <code>null</code> from its methods.</p>
- *
- * @xerces.internal
+ * Location which always returns {@code -1}
+ * and {@code null} from its methods.
  *
  * @version $Id: EmptyLocation.java 730444 2008-12-31 19:11:29Z mrglavas $
  */
@@ -37,7 +35,10 @@ public final class EmptyLocation implements Location {
     private EmptyLocation() {
     }
 
-    /** Returns the one and only instance of this class. */
+    /**
+     * Returns the one and only instance of this class.
+     * @return the singleton EmptyLocation instance
+     */
     public static EmptyLocation getInstance() {
         return EMPTY_LOCATION_INSTANCE;
     }

@@ -32,12 +32,14 @@ public interface XSTypeDefinition extends XSObject {
 
     /**
      * Return whether this type definition is a simple type or complex type.
+     * @return COMPLEX_TYPE or SIMPLE_TYPE
      */
     public short getTypeCategory();
 
     /**
      * {base type definition}: either a simple type definition or a complex
      * type definition.
+     * @return the base type definition
      */
     public XSTypeDefinition getBaseType();
 
@@ -61,12 +63,14 @@ public interface XSTypeDefinition extends XSObject {
      * <code>DERIVATION_RESTRICTION, DERIVATION_EXTENSION, DERIVATION_UNION, DERIVATION_LIST</code>
      * } corresponding to <code>final</code> set of this type or
      * <code>DERIVATION_NONE</code>.
+     * @return the final set as a bit combination
      */
     public short getFinal();
 
     /**
      *  Convenience attribute. A boolean that specifies if the type definition
      * is anonymous.
+     * @return true if the type is anonymous, false otherwise
      */
     public boolean getAnonymous();
 

@@ -34,7 +34,9 @@ import org.w3c.dom.ProcessingInstruction;
 import org.w3c.dom.Text;
 
 /**
- * @xerces.internal
+ * Default DOM Document implementation for XML Schema processing.
+ * This class provides a minimal DOM Document implementation that throws
+ * NOT_SUPPORTED_ERR for most document modification operations.
  *
  * @author Rahul Srivastava, Sun Microsystems Inc.
  *
@@ -44,7 +46,10 @@ public class DefaultDocument extends NodeImpl implements Document {
 
     private String fDocumentURI = null;
 
-    // default constructor
+    /**
+     * Default constructor.
+     * Creates a new default document with node type set to DOCUMENT_NODE.
+     */
     public DefaultDocument() {
         this.nodeType = Node.DOCUMENT_NODE;
     }

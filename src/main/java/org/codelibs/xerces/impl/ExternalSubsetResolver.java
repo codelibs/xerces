@@ -34,8 +34,6 @@ import org.codelibs.xerces.xni.parser.XMLInputSource;
  * registered external subset resolver does not provide an external subset
  * for a given document, it should return <code>null</code>.</p>
  *
- * @xerces.internal
- *
  * @author Michael Glavassevich, IBM
  *
  * @version $Id: ExternalSubsetResolver.java 446761 2006-09-15 21:59:29Z mrglavas $
@@ -52,7 +50,7 @@ public interface ExternalSubsetResolver extends XMLEntityResolver {
      * return <code>null</code>.</p>
      *
      * @param grammarDescription a description of the DTD
-     *
+     * @return an XMLInputSource for the external subset, or null if none is available
      * @throws XNIException Thrown on general error.
      * @throws IOException  Thrown if resolved entity stream cannot be
      *                      opened or some other i/o error occurs.

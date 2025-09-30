@@ -25,7 +25,8 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.events.StartDocument;
 
 /**
- * @xerces.internal
+ * Implementation of {@code StartDocument} event for StAX.
+ * Represents the start of an XML document with its declaration.
  *
  * @author Lucian Holland
  *
@@ -40,7 +41,14 @@ public final class StartDocumentImpl extends XMLEventImpl implements StartDocume
     private final boolean fStandaloneSet;
 
     /**
-     * @param location
+     * Constructs a start document event.
+     *
+     * @param charEncoding The character encoding.
+     * @param encodingSet Whether the encoding was explicitly set.
+     * @param isStandalone Whether the document is standalone.
+     * @param standaloneSet Whether the standalone attribute was explicitly set.
+     * @param version The XML version.
+     * @param location The location information.
      */
     public StartDocumentImpl(final String charEncoding, final boolean encodingSet, final boolean isStandalone, final boolean standaloneSet,
             final String version, final Location location) {

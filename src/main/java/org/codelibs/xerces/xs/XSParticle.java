@@ -23,6 +23,7 @@ package org.codelibs.xerces.xs;
 public interface XSParticle extends XSObject {
     /**
      * [min occurs]: determines the minimum number of terms that can occur.
+     * @return the minimum number of terms that can occur
      */
     public int getMinOccurs();
 
@@ -32,21 +33,25 @@ public interface XSParticle extends XSObject {
      * <code>maxOccursUnbounded</code>. When the value of
      * <code>maxOccursUnbounded</code> is <code>true</code>, the value of
      * <code>maxOccurs</code> is unspecified.
+     * @return the maximum number of terms that can occur
      */
     public int getMaxOccurs();
 
     /**
      * [max occurs]: whether the maxOccurs value is unbounded.
+     * @return true if the maxOccurs value is unbounded, false otherwise
      */
     public boolean getMaxOccursUnbounded();
 
     /**
      * [term]: one of a model group, a wildcard, or an element declaration.
+     * @return the term (model group, wildcard, or element declaration)
      */
     public XSTerm getTerm();
 
     /**
      * A sequence of [annotations] or an empty <code>XSObjectList</code>.
+     * @return a sequence of annotations or an empty XSObjectList
      */
     public XSObjectList getAnnotations();
 }

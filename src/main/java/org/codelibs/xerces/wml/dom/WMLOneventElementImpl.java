@@ -19,7 +19,8 @@ package org.codelibs.xerces.wml.dom;
 import org.codelibs.xerces.wml.WMLOneventElement;
 
 /**
- * @xerces.internal
+ * Implementation of WMLOneventElement interface for WML event handler elements.
+ *
  * @version $Id: WMLOneventElementImpl.java 661560 2008-05-30 03:22:25Z mrglavas $
  * @author <a href="mailto:david@topware.com.tw">David Li</a>
  */
@@ -27,6 +28,12 @@ public class WMLOneventElementImpl extends WMLElementImpl implements WMLOneventE
 
     private static final long serialVersionUID = -4279215241146570871L;
 
+    /**
+     * Constructs a new WMLOneventElementImpl instance.
+     *
+     * @param owner the owning WML document
+     * @param tagName the tag name of the element
+     */
     public WMLOneventElementImpl(WMLDocumentImpl owner, String tagName) {
         super(owner, tagName);
     }

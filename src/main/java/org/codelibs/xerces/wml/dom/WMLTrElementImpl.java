@@ -19,7 +19,10 @@ package org.codelibs.xerces.wml.dom;
 import org.codelibs.xerces.wml.WMLTrElement;
 
 /**
- * @xerces.internal
+ * Implementation of the WML tr (table row) element.
+ * The tr element represents a table row in WML tables.
+ * It contains table cells (td elements) and defines the structure of table data.
+ *
  * @version $Id: WMLTrElementImpl.java 661560 2008-05-30 03:22:25Z mrglavas $
  * @author <a href="mailto:david@topware.com.tw">David Li</a>
  */
@@ -27,6 +30,12 @@ public class WMLTrElementImpl extends WMLElementImpl implements WMLTrElement {
 
     private static final long serialVersionUID = -4304021232051604343L;
 
+    /**
+     * Constructs a new WMLTrElementImpl with the specified owner document and tag name.
+     *
+     * @param owner the owner document
+     * @param tagName the name of the element tag
+     */
     public WMLTrElementImpl(WMLDocumentImpl owner, String tagName) {
         super(owner, tagName);
     }

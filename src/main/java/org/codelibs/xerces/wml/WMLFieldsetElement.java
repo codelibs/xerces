@@ -31,18 +31,34 @@ package org.codelibs.xerces.wml;
 public interface WMLFieldsetElement extends WMLElement {
 
     /**
-     * 'title' specifies a title for this element
+     * Sets the 'title' attribute which specifies a title for this element.
+     *
+     * @param newValue the title value to set
      */
     public void setTitle(String newValue);
 
+    /**
+     * Gets the 'title' attribute which specifies a title for this element.
+     *
+     * @return the title value
+     */
     public String getTitle();
 
     /**
-     * The xml:lang that specifics the natural or formal language in
+     * Sets the 'xml:lang' attribute which specifies the natural or formal language in
      * which the document is written.
      * (Section 8.8, WAP WML Version 16-Jun-1999)
+     *
+     * @param newValue the xml:lang value to set
      */
     public void setXmlLang(String newValue);
 
+    /**
+     * Gets the 'xml:lang' attribute which specifies the natural or formal language in
+     * which the document is written.
+     * (Section 8.8, WAP WML Version 16-Jun-1999)
+     *
+     * @return the xml:lang value
+     */
     public String getXmlLang();
 }

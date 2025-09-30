@@ -24,7 +24,7 @@ import org.codelibs.xerces.xs.datatypes.XSDouble;
 /**
  * Represent the schema type "double"
  *
- * @xerces.internal
+
  *
  * @author Neeraj Bajaj, Sun Microsystems, inc.
  * @author Sandy Gao, IBM
@@ -32,6 +32,12 @@ import org.codelibs.xerces.xs.datatypes.XSDouble;
  * @version $Id: DoubleDV.java 572095 2007-09-02 18:32:43Z mrglavas $
  */
 public class DoubleDV extends TypeValidator {
+
+    /**
+     * Constructs a DoubleDV type validator.
+     */
+    public DoubleDV() {
+    }
 
     public short getAllowedFacets() {
         return (XSSimpleTypeDecl.FACET_PATTERN | XSSimpleTypeDecl.FACET_WHITESPACE | XSSimpleTypeDecl.FACET_ENUMERATION

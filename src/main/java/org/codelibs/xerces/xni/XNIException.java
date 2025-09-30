@@ -81,7 +81,11 @@ public class XNIException extends RuntimeException {
     // Public methods
     //
 
-    /** Returns the wrapped exception. */
+    /**
+     * Returns the wrapped exception.
+     *
+     * @return the wrapped exception, or null if there is no wrapped exception
+     */
     public Exception getException() {
         return fException != this ? fException : null;
     } // getException():Exception

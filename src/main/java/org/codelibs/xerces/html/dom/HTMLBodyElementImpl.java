@@ -19,7 +19,8 @@ package org.codelibs.xerces.html.dom;
 import org.w3c.dom.html.HTMLBodyElement;
 
 /**
- * @xerces.internal
+ * Implementation of HTMLBodyElement interface for HTML body elements.
+ *
  * @version $Revision: 1029415 $ $Date: 2010-10-31 22:32:22 +0530 (Sun, 31 Oct 2010) $
  * @author <a href="mailto:arkin@exoffice.com">Assaf Arkin</a>
  * @see org.w3c.dom.html.HTMLBodyElement
@@ -81,6 +82,7 @@ public class HTMLBodyElementImpl extends HTMLElementImpl implements HTMLBodyElem
     * Constructor requires owner document.
     *
     * @param owner The owner HTML document
+     * @param name The element name
     */
     public HTMLBodyElementImpl(HTMLDocumentImpl owner, String name) {
         super(owner, name);

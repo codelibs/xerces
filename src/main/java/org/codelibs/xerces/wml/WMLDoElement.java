@@ -28,28 +28,77 @@ package org.codelibs.xerces.wml;
 
 public interface WMLDoElement extends WMLElement {
 
+    /**
+     * Sets the optional attribute of the do element.
+     *
+     * @param newValue the optional value to set
+     */
     public void setOptional(String newValue);
 
+    /**
+     * Gets the optional attribute of the do element.
+     *
+     * @return the optional value
+     */
     public String getOptional();
 
+    /**
+     * Sets the label attribute of the do element.
+     *
+     * @param newValue the label value to set
+     */
     public void setLabel(String newValue);
 
+    /**
+     * Gets the label attribute of the do element.
+     *
+     * @return the label value
+     */
     public String getLabel();
 
+    /**
+     * Sets the type attribute of the do element.
+     *
+     * @param newValue the type value to set
+     */
     public void setType(String newValue);
 
+    /**
+     * Gets the type attribute of the do element.
+     *
+     * @return the type value
+     */
     public String getType();
 
+    /**
+     * Sets the name attribute of the do element.
+     *
+     * @param newValue the name value to set
+     */
     public void setName(String newValue);
 
+    /**
+     * Gets the name attribute of the do element.
+     *
+     * @return the name value
+     */
     public String getName();
 
     /**
-     * The xml:lang that specifics the natural or formal language in
+     * Sets the 'xml:lang' attribute which specifies the natural or formal language in
      * which the document is written.
      * (Section 8.8, WAP WML Version 16-Jun-1999)
+     *
+     * @param newValue the xml:lang value to set
      */
     public void setXmlLang(String newValue);
 
+    /**
+     * Gets the 'xml:lang' attribute which specifies the natural or formal language in
+     * which the document is written.
+     * (Section 8.8, WAP WML Version 16-Jun-1999)
+     *
+     * @return the xml:lang value
+     */
     public String getXmlLang();
 }

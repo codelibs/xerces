@@ -66,6 +66,11 @@ public class IndentPrinter extends Printer {
      */
     private int _nextIndent;
 
+    /**
+     * Constructor for IndentPrinter.
+     * @param writer the writer to output to
+     * @param format the output format configuration
+     */
     public IndentPrinter(Writer writer, OutputFormat format) {
         super(writer, format);
         // Initialize everything for a first/second run.

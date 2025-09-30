@@ -24,7 +24,7 @@ import org.codelibs.xerces.util.URI;
 /**
  * Represent the schema type "anyURI"
  *
- * @xerces.internal
+
  *
  * @author Neeraj Bajaj, Sun Microsystems, inc.
  * @author Sandy Gao, IBM
@@ -32,6 +32,12 @@ import org.codelibs.xerces.util.URI;
  * @version $Id: AnyURIDV.java 699892 2008-09-28 21:08:27Z mrglavas $
  */
 public class AnyURIDV extends TypeValidator {
+
+    /**
+     * Default constructor for anyURI datatype validator.
+     */
+    public AnyURIDV() {
+    }
 
     private static final URI BASE_URI;
     static {

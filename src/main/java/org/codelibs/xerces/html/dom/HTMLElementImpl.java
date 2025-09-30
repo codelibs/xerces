@@ -34,7 +34,7 @@ import org.w3c.dom.html.HTMLFormElement;
  * <code>dir</code> and <code>class</code> attributes. Other elements
  * add their own specific attributes.
  *
- * @xerces.internal
+
  *
  * @version $Revision: 1029415 $ $Date: 2010-10-31 22:32:22 +0530 (Sun, 31 Oct 2010) $
  * @author <a href="mailto:arkin@exoffice.com">Assaf Arkin</a>
@@ -233,6 +233,8 @@ public class HTMLElementImpl extends ElementImpl implements HTMLElement {
      * Convenience method returns the form in which this form element is contained.
      * This method is exposed for form elements through the DOM API, but other
      * elements have no access to it through the API.
+     *
+     * @return the containing HTML form element, or null if not contained in a form
      */
     public HTMLFormElement getForm() {
         Node parent = getParentNode();

@@ -24,6 +24,7 @@ public interface XSElementDeclaration extends XSTerm {
     /**
      * [type definition]: either a simple type definition or a complex type
      * definition.
+     * @return the type definition for this element declaration
      */
     public XSTypeDefinition getTypeDefinition();
 
@@ -31,6 +32,7 @@ public interface XSElementDeclaration extends XSTerm {
      * [scope]. One of <code>SCOPE_GLOBAL</code>, <code>SCOPE_LOCAL</code>, or
      * <code>SCOPE_ABSENT</code>. If the scope is local, then the
      * <code>enclosingCTDefinition</code> is present.
+     * @return the scope of this element declaration
      */
     public short getScope();
 
@@ -38,11 +40,13 @@ public interface XSElementDeclaration extends XSTerm {
      * The complex type definition for locally scoped declarations (see
      * <code>scope</code>), otherwise <code>null</code> if no such
      * definition exists.
+     * @return the enclosing complex type definition, or null if not applicable
      */
     public XSComplexTypeDefinition getEnclosingCTDefinition();
 
     /**
      * [Value constraint]: one of <code>VC_NONE, VC_DEFAULT, VC_FIXED</code>.
+     * @return the constraint type for this element declaration
      */
     public short getConstraintType();
 
@@ -50,6 +54,7 @@ public interface XSElementDeclaration extends XSTerm {
      * [Value constraint]: the constraint value with respect to the [type
      * definition], otherwise <code>null</code>.
      *
+     * @return the constraint value, or null if no constraint exists
      * @deprecated Use getValueConstraintValue().getNormalizedValue() instead
      */
     public String getConstraintValue();
@@ -58,6 +63,7 @@ public interface XSElementDeclaration extends XSTerm {
      * Value Constraint: Binding specific actual constraint value or
      * <code>null</code> if the value is in error or there is no value
      * constraint.
+     * @return the actual constraint value, or null if no constraint exists or value is in error
      * @exception XSException
      *   NOT_SUPPORTED_ERR: Raised if the implementation does not support this
      *   method.
@@ -76,6 +82,7 @@ public interface XSElementDeclaration extends XSTerm {
      * constraint value of the list or list of union type definitions use
      * <code>itemValueTypes</code>. If the <code>actualNormalizedValue</code>
      *  is <code>null</code>, this method returns <code>UNAVAILABLE_DT</code>.
+     * @return the actual constraint value datatype constant
      * @exception XSException
      *   NOT_SUPPORTED_ERR: Raised if the implementation does not support this
      *   method.
@@ -93,6 +100,7 @@ public interface XSElementDeclaration extends XSTerm {
      * for each actual constraint value in the list the array contains the
      * corresponding memberType kind. For examples, see
      * <code>ItemPSVI.itemValueTypes</code>.
+     * @return the list of datatype constants for the constraint value items
      * @exception XSException
      *   NOT_SUPPORTED_ERR: Raised if the implementation does not support this
      *   method.
@@ -103,6 +111,7 @@ public interface XSElementDeclaration extends XSTerm {
 
     /**
      * The actual value of the default or fixed value constraint.
+     * @return the value constraint value for this element declaration
      */
     public XSValue getValueConstraintValue();
 
@@ -113,18 +122,21 @@ public interface XSElementDeclaration extends XSTerm {
      * and value <code>true</code> (xsi:nil) even if it has no text or
      * element content despite a <code>content type</code> which would
      * otherwise require content.
+     * @return true if this element is nillable, false otherwise
      */
     public boolean getNillable();
 
     /**
      * identity-constraint definitions: a set of constraint definitions if it
      * exists, otherwise an empty <code>XSNamedMap</code>.
+     * @return the identity constraints for this element declaration
      */
     public XSNamedMap getIdentityConstraints();
 
     /**
      * [substitution group affiliation]: a top-level element definition if it
      * exists, otherwise <code>null</code>.
+     * @return the substitution group affiliation for this element declaration
      */
     public XSElementDeclaration getSubstitutionGroupAffiliation();
 
@@ -144,6 +156,7 @@ public interface XSElementDeclaration extends XSTerm {
      * combination of the subset of {
      * <code>DERIVATION_EXTENSION, DERIVATION_RESTRICTION</code>} or
      * <code>DERIVATION_NONE</code>.
+     * @return the substitution group exclusions for this element declaration
      */
     public short getSubstitutionGroupExclusions();
 
@@ -165,22 +178,26 @@ public interface XSElementDeclaration extends XSTerm {
      * <code>DERIVATION_SUBSTITUTION, DERIVATION_EXTENSION, DERIVATION_RESTRICTION</code>
      * } corresponding to substitutions disallowed by this
      * <code>XSElementDeclaration</code> or <code>DERIVATION_NONE</code>.
+     * @return the disallowed substitutions for this element declaration
      */
     public short getDisallowedSubstitutions();
 
     /**
      * {abstract} A boolean.
+     * @return true if this element declaration is abstract, false otherwise
      */
     public boolean getAbstract();
 
     /**
      * An annotation if it exists, otherwise <code>null</code>. If not null
      * then the first [annotation] from the sequence of annotations.
+     * @return the first annotation for this element declaration, or null if none exists
      */
     public XSAnnotation getAnnotation();
 
     /**
      * A sequence of [annotations] or an empty <code>XSObjectList</code>.
+     * @return the annotations for this element declaration
      */
     public XSObjectList getAnnotations();
 }

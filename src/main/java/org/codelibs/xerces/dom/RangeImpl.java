@@ -31,7 +31,7 @@ import org.w3c.dom.ranges.RangeException;
  *  <p> Please see the API documentation for the interface classes
  *  and use the interfaces in your client programs.
  *
- * @xerces.internal
+
  *
  * @version $Id: RangeImpl.java 515302 2007-03-06 21:07:10Z mrglavas $
  */
@@ -57,9 +57,12 @@ public class RangeImpl implements Range {
     // Was the Node inserted from the Range or the Document
     private boolean fInsertedFromRange = false;
 
-    /** The constructor. Clients must use DocumentRange.createRange(),
-     *  because it registers the Range with the document, so it can
-     *  be fixed-up.
+    /**
+     * The constructor. Clients must use DocumentRange.createRange(),
+     * because it registers the Range with the document, so it can
+     * be fixed-up.
+     *
+     * @param document the document that owns this range
      */
     public RangeImpl(DocumentImpl document) {
         fDocument = document;
@@ -845,9 +848,12 @@ public class RangeImpl implements Range {
         }
     }
 
-    /** This function is called from the DOM.
-     *  This node has already been inserted into the DOM.
-     *  Fix-up any offsets.
+    /**
+     * This function is called from the DOM.
+     * This node has already been inserted into the DOM.
+     * Fix-up any offsets.
+     *
+     * @param node the node that was inserted
      */
     public void insertedNodeFromDOM(Node node) {
         if (node == null)

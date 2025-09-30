@@ -32,7 +32,7 @@ import org.codelibs.xerces.xs.XSValue;
  * Attribute PSV infoset augmentations implementation.
  * The PSVI information for attributes will be available at the startElement call.
  *
- * @xerces.internal
+
  *
  * @author Elena Litani IBM
  * @version $Id: AttributePSVImpl.java 1065753 2011-01-31 20:31:00Z mrglavas $
@@ -67,9 +67,18 @@ public class AttributePSVImpl implements AttributePSVI {
     /** true if this object is immutable **/
     protected boolean fIsConstant;
 
+    /**
+     * Creates a new empty AttributePSVImpl instance.
+     */
     public AttributePSVImpl() {
     }
 
+    /**
+     * Creates a new AttributePSVImpl instance by copying an existing AttributePSVI.
+     *
+     * @param isConstant true if the new instance should be immutable
+     * @param attrPSVI the attribute PSVI to copy from
+     */
     public AttributePSVImpl(boolean isConstant, AttributePSVI attrPSVI) {
         fDeclaration = attrPSVI.getAttributeDeclaration();
         fTypeDecl = attrPSVI.getTypeDefinition();
@@ -122,7 +131,7 @@ public class AttributePSVImpl implements AttributePSVI {
      * [schema default]
      *
      * @return The canonical lexical representation of the declaration's {value constraint} value.
-     * @see <a href="http://www.w3.org/TR/xmlschema-1/#e-schema_default>XML Schema Part 1: Structures [schema default]</a>
+     * @see <a href="http://www.w3.org/TR/xmlschema-1/#e-schema_default">XML Schema Part 1: Structures [schema default]</a>
      */
     public String getSchemaDefault() {
         return fDeclaration == null ? null : fDeclaration.getConstraintValue();
@@ -132,7 +141,7 @@ public class AttributePSVImpl implements AttributePSVI {
      * [schema normalized value]
      *
      *
-     * @see <a href="http://www.w3.org/TR/xmlschema-1/#e-schema_normalized_value>XML Schema Part 1: Structures [schema normalized value]</a>
+     * @see <a href="http://www.w3.org/TR/xmlschema-1/#e-schema_normalized_value">XML Schema Part 1: Structures [schema normalized value]</a>
      * @return the normalized value of this item after validation
      */
     public String getSchemaNormalizedValue() {

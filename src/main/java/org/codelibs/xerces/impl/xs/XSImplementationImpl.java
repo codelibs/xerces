@@ -34,12 +34,19 @@ import org.w3c.dom.ls.LSInput;
  * This interface should be implemented on the same object that implements
  * DOMImplementation.
  *
- * @xerces.internal
+
  *
  * @author Elena Litani, IBM
  * @version $Id: XSImplementationImpl.java 726375 2008-12-14 05:48:29Z mrglavas $
  */
 public class XSImplementationImpl extends PSVIDOMImplementationImpl implements XSImplementation {
+
+    /**
+     * Default constructor for XSImplementationImpl.
+     */
+    public XSImplementationImpl() {
+        super();
+    }
 
     //
     // Data
@@ -54,7 +61,9 @@ public class XSImplementationImpl extends PSVIDOMImplementationImpl implements X
     // Public methods
     //
 
-    /** NON-DOM: Obtain and return the single shared object */
+    /** NON-DOM: Obtain and return the single shared object
+     * @return the single shared DOMImplementation instance
+     */
     public static DOMImplementation getDOMImplementation() {
         return singleton;
     }
@@ -101,11 +110,21 @@ public class XSImplementationImpl extends PSVIDOMImplementationImpl implements X
         return loader;
     }
 
+    /**
+     * Creates an immutable StringList from the given array of Strings.
+     * @param values the array containing the String values that will be placed in the list
+     * @return an immutable StringList from the given array of Strings
+     */
     public StringList createStringList(String[] values) {
         int length = (values != null) ? values.length : 0;
         return (length != 0) ? new StringListImpl((String[]) values.clone(), length) : StringListImpl.EMPTY_LIST;
     }
 
+    /**
+     * Creates an immutable LSInputList from the given array of LSInputs.
+     * @param values the array containing the LSInput values that will be placed in the list
+     * @return an immutable LSInputList from the given array of LSInputs
+     */
     public LSInputList createLSInputList(LSInput[] values) {
         int length = (values != null) ? values.length : 0;
         return (length != 0) ? new LSInputListImpl((LSInput[]) values.clone(), length) : LSInputListImpl.EMPTY_LIST;

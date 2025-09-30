@@ -42,6 +42,7 @@ public class XInclude11TextReader extends XIncludeTextReader {
      * @param source The XMLInputSource to use.
      * @param handler The XIncludeHandler to use.
      * @param bufferSize The size of this text reader's buffer.
+     * @throws IOException if an I/O error occurs
      */
     public XInclude11TextReader(XMLInputSource source, XIncludeHandler handler, int bufferSize) throws IOException {
         super(source, handler, bufferSize);

@@ -28,7 +28,7 @@ import org.codelibs.xerces.impl.dv.ValidationContext;
 /**
  * Validator for &lt;dateTime&gt; datatype (W3C Schema Datatypes)
  *
- * @xerces.internal
+
  *
  * @author Elena Litani
  * @author Gopal Sharma, SUN Microsystem Inc.
@@ -36,6 +36,12 @@ import org.codelibs.xerces.impl.dv.ValidationContext;
  * @version $Id: DateTimeDV.java 937741 2010-04-25 04:25:46Z mrglavas $
  */
 public class DateTimeDV extends AbstractDateTimeDV {
+
+    /**
+     * Default constructor for DateTimeDV.
+     */
+    public DateTimeDV() {
+    }
 
     public Object getActualValue(String content, ValidationContext context) throws InvalidDatatypeValueException {
         try {

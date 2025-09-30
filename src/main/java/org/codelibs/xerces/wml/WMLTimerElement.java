@@ -31,19 +31,36 @@ package org.codelibs.xerces.wml;
 
 public interface WMLTimerElement extends WMLElement {
     /**
-     * 'name' specifies the name of variable ot be set with the value
+     * Sets the name attribute that specifies the name of variable to be set with the value
      * of the timer.
      * (Section 11.6.7, WAP WML Version 16-Jun-1999)
+     *
+     * @param newValue the new name value to set
      */
     public void setName(String newValue);
 
+    /**
+     * Gets the name attribute that specifies the name of variable to be set with the value
+     * of the timer.
+     * (Section 11.6.7, WAP WML Version 16-Jun-1999)
+     *
+     * @return the name value
+     */
     public String getName();
 
     /**
-     * 'value' indicates teh default of the variable 'name'
+     * Sets the value attribute that indicates the default value of the variable 'name'.
      * (Section 11.6.7, WAP WML Version 16-Jun-1999)
+     *
+     * @param newValue the new value to set
      */
     public void setValue(String newValue);
 
+    /**
+     * Gets the value attribute that indicates the default value of the variable 'name'.
+     * (Section 11.6.7, WAP WML Version 16-Jun-1999)
+     *
+     * @return the value
+     */
     public String getValue();
 }

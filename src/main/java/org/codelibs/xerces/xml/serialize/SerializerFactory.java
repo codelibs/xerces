@@ -24,6 +24,9 @@ import java.util.Hashtable;
 import java.util.StringTokenizer;
 
 /**
+ * Abstract factory for creating serializers for different output methods.
+ * This factory provides a registry mechanism for serializer implementations.
+ *
  * @deprecated This class was deprecated in Xerces 2.9.0. It is recommended
  * that new applications use the DOM Level 3 LSSerializer or JAXP's Transformation
  * API for XML (TrAX) for serializing XML and HTML. See the Xerces documentation for more
@@ -34,6 +37,13 @@ import java.util.StringTokenizer;
  */
 public abstract class SerializerFactory {
 
+    /**
+     * Default constructor.
+     */
+    public SerializerFactory() {
+    }
+
+    /** System property name for specifying custom serializer factories. */
     public static final String FactoriesProperty = "org.codelibs.xerces.xml.serialize.factories";
 
     private static Hashtable _factories = new Hashtable();
@@ -71,8 +81,9 @@ public abstract class SerializerFactory {
     }
 
     /**
-     * Register a serializer factory, keyed by the given
-     * method string.
+     * Registers a serializer factory, keyed by the given method string.
+     *
+     * @param factory The serializer factory to register.
      */
     public static void registerSerializerFactory(SerializerFactory factory) {
         String method;
@@ -84,8 +95,10 @@ public abstract class SerializerFactory {
     }
 
     /**
-     * Register a serializer factory, keyed by the given
-     * method string.
+     * Gets a registered serializer factory by method string.
+     *
+     * @param method The method string identifying the factory.
+     * @return The serializer factory for the specified method, or null if not found.
      */
     public static SerializerFactory getSerializerFactory(String method) {
         return (SerializerFactory) _factories.get(method);
@@ -97,31 +110,42 @@ public abstract class SerializerFactory {
      * a properties file by knowing only the class name. This method is
      * protected, it is only required by this class but must be implemented
      * in derived classes.
+     *
+     * @return The method string supported by this factory.
      */
     protected abstract String getSupportedMethod();
 
     /**
-     * Create a new serializer based on the {@link OutputFormat}.
+     * Creates a new serializer based on the {@link OutputFormat}.
      * If this method is used to create the serializer, the {@link
      * Serializer#setOutputByteStream} or {@link Serializer#setOutputCharStream}
      * methods must be called before serializing a document.
+     *
+     * @param format The output format configuration.
+     * @return A new serializer instance.
      */
     public abstract Serializer makeSerializer(OutputFormat format);
 
     /**
-     * Create a new serializer, based on the {@link OutputFormat} and
+     * Creates a new serializer, based on the {@link OutputFormat} and
      * using the writer as the output character stream.  If this
      * method is used, the encoding property will be ignored.
+     *
+     * @param writer The output character stream.
+     * @param format The output format configuration.
+     * @return A new serializer instance.
      */
     public abstract Serializer makeSerializer(Writer writer, OutputFormat format);
 
     /**
-     * Create a new serializer, based on the {@link OutputFormat} and
+     * Creates a new serializer, based on the {@link OutputFormat} and
      * using the output byte stream and the encoding specified in the
      * output format.
      *
-     * @throws UnsupportedEncodingException The specified encoding is
-     *   not supported
+     * @param output The output byte stream.
+     * @param format The output format configuration.
+     * @return A new serializer instance.
+     * @throws UnsupportedEncodingException If the specified encoding is not supported.
      */
     public abstract Serializer makeSerializer(OutputStream output, OutputFormat format) throws UnsupportedEncodingException;
 

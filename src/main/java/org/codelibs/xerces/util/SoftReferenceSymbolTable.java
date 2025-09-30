@@ -43,8 +43,8 @@ import java.lang.ref.SoftReference;
  */
 public class SoftReferenceSymbolTable extends SymbolTable {
 
-    /*
-     * This variable masks the fBuckets variable used by SymbolTable.
+    /**
+     * Buckets for entries using soft references. This variable masks the fBuckets variable used by SymbolTable.
      */
     protected SREntry[] fBuckets = null;
 
@@ -94,7 +94,7 @@ public class SoftReferenceSymbolTable extends SymbolTable {
 
     /**
      * Constructs a new, empty SymbolTable with the specified initial capacity
-     * and default load factor, which is <tt>0.75</tt>.
+     * and default load factor, which is <code>0.75</code>.
      *
      * @param     initialCapacity   the initial capacity of the hashtable.
      * @throws    IllegalArgumentException if the initial capacity is less
@@ -106,7 +106,7 @@ public class SoftReferenceSymbolTable extends SymbolTable {
 
     /**
      * Constructs a new, empty SymbolTable with a default initial capacity (101)
-     * and load factor, which is <tt>0.75</tt>.
+     * and load factor, which is <code>0.75</code>.
      */
     public SoftReferenceSymbolTable() {
         this(TABLE_SIZE, 0.75f);
@@ -407,8 +407,12 @@ public class SoftReferenceSymbolTable extends SymbolTable {
         //
 
         /**
-         * Constructs a new entry from the specified symbol and next entry
-         * reference.
+         * Constructs a new entry from the specified symbol and next entry reference.
+         *
+         * @param internedSymbol The interned symbol string.
+         * @param next The next entry in the bucket chain.
+         * @param bucket The bucket index.
+         * @param q The reference queue for garbage collection notification.
          */
         public SREntry(String internedSymbol, SREntry next, int bucket, ReferenceQueue q) {
             super(new SREntryData(internedSymbol), q);
@@ -416,8 +420,15 @@ public class SoftReferenceSymbolTable extends SymbolTable {
         }
 
         /**
-         * Constructs a new entry from the specified symbol information and
-         * next entry reference.
+         * Constructs a new entry from the specified symbol information and next entry reference.
+         *
+         * @param internedSymbol The interned symbol string.
+         * @param ch The character array containing the symbol.
+         * @param offset The offset into the character array.
+         * @param length The length of the symbol.
+         * @param next The next entry in the bucket chain.
+         * @param bucket The bucket index.
+         * @param q The reference queue for garbage collection notification.
          */
         public SREntry(String internedSymbol, char[] ch, int offset, int length, SREntry next, int bucket, ReferenceQueue q) {
             super(new SREntryData(internedSymbol, ch, offset, length), q);
@@ -434,16 +445,34 @@ public class SoftReferenceSymbolTable extends SymbolTable {
         }
     } // class Entry
 
+    /**
+     * Data holder for soft reference symbol table entries.
+     */
     protected static final class SREntryData {
+        /** The symbol string. */
         public final String symbol;
+        /** The character array representation of the symbol. */
         public final char[] characters;
 
+        /**
+         * Constructs entry data from an interned symbol.
+         *
+         * @param internedSymbol The interned symbol string.
+         */
         public SREntryData(String internedSymbol) {
             this.symbol = internedSymbol;
             characters = new char[symbol.length()];
             symbol.getChars(0, characters.length, characters, 0);
         }
 
+        /**
+         * Constructs entry data from character array information.
+         *
+         * @param internedSymbol The interned symbol string.
+         * @param ch The character array containing the symbol.
+         * @param offset The offset into the character array.
+         * @param length The length of the symbol.
+         */
         public SREntryData(String internedSymbol, char[] ch, int offset, int length) {
             this.symbol = internedSymbol;
             characters = new char[length];

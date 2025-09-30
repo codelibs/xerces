@@ -19,7 +19,8 @@ package org.codelibs.xerces.wml.dom;
 import org.codelibs.xerces.wml.WMLMetaElement;
 
 /**
- * @xerces.internal
+ * Implementation of WMLMetaElement interface for WML meta information elements.
+ *
  * @version $Id: WMLMetaElementImpl.java 661560 2008-05-30 03:22:25Z mrglavas $
  * @author <a href="mailto:david@topware.com.tw">David Li</a>
  */
@@ -27,6 +28,12 @@ public class WMLMetaElementImpl extends WMLElementImpl implements WMLMetaElement
 
     private static final long serialVersionUID = -2791663042188681846L;
 
+    /**
+     * Constructs a new WML meta element with the specified owner document and tag name.
+     *
+     * @param owner the owner document
+     * @param tagName the tag name for this element
+     */
     public WMLMetaElementImpl(WMLDocumentImpl owner, String tagName) {
         super(owner, tagName);
     }

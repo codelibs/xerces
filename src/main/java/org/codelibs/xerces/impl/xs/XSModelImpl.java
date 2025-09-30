@@ -51,7 +51,7 @@ import org.codelibs.xerces.xs.XSTypeDefinition;
  * Implements XSModel:  a read-only interface that represents an XML Schema,
  * which could be components from different namespaces.
  *
- * @xerces.internal
+
  *
  * @author Sandy Gao, IBM
  *
@@ -114,6 +114,13 @@ public final class XSModelImpl extends AbstractList implements XSModel, XSNamesp
         this(grammars, Constants.SCHEMA_VERSION_1_0);
     }
 
+    /**
+     * Construct an XSModelImpl, by storing some grammars and grammars imported
+     * by them to this object.
+     *
+     * @param grammars   the array of schema grammars
+     * @param s4sVersion the version of Schema for Schemas to use
+     */
     public XSModelImpl(SchemaGrammar[] grammars, short s4sVersion) {
         // copy namespaces/grammars from the array to our arrays
         int len = grammars.length;
@@ -619,6 +626,15 @@ public final class XSModelImpl extends AbstractList implements XSModel, XSNamesp
         return (XSNotationDeclaration) sg.fGlobalNotationDecls.get(name);
     }
 
+    /**
+     * Convenience method. Returns a top-level notation declaration.
+     *
+     * @param name The name of the declaration.
+     * @param namespace The namespace of the definition, otherwise null.
+     * @param loc The schema location where the component was defined
+     * @return A top-level notation declaration or null if such declaration
+     *   does not exist.
+     */
     public XSNotationDeclaration getNotationDeclaration(String name, String namespace, String loc) {
         SchemaGrammar sg = (SchemaGrammar) fGrammarMap.get(null2EmptyString(namespace));
         if (sg == null) {
@@ -667,6 +683,8 @@ public final class XSModelImpl extends AbstractList implements XSModel, XSNamesp
      * For now, we only expose whether there are any IDCs.
      * We also need to add these methods to the public
      * XSModel interface.
+     *
+     * @return true if this model contains identity constraints, false otherwise
      */
     public boolean hasIDConstraints() {
         return fHasIDC;

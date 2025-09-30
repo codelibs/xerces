@@ -78,6 +78,7 @@ public class XIncludeTextReader {
      * @param source The XMLInputSource to use.
      * @param handler The XIncludeHandler to use.
      * @param bufferSize The size of this text reader's buffer.
+     * @throws IOException if an I/O error occurs
      */
     public XIncludeTextReader(XMLInputSource source, XIncludeHandler handler, int bufferSize) throws IOException {
         fHandler = handler;
@@ -100,6 +101,8 @@ public class XIncludeTextReader {
      * Return the Reader for given XMLInputSource.
      *
      * @param source The XMLInputSource to use.
+     * @return a Reader for the given XMLInputSource
+     * @throws IOException if an I/O error occurs
      */
     protected Reader getReader(XMLInputSource source) throws IOException {
         if (source.getCharacterStream() != null) {
@@ -270,6 +273,10 @@ public class XIncludeTextReader {
      * readers. Since we're just using generic Java readers for now, we're not caring
      * about endian-ness.  If this changes, even more code needs to be copied from
      * XMLEntity manager. -- PJM
+     *
+     * @param stream the input stream to detect encoding from
+     * @return the detected encoding name, or null if it cannot be determined
+     * @throws IOException if an I/O error occurs
      */
     protected String getEncodingName(InputStream stream) throws IOException {
         final byte[] b4 = new byte[4];
@@ -291,9 +298,10 @@ public class XIncludeTextReader {
      * Removes the byte order mark from the stream, if
      * it exists and returns the encoding name.
      *
-     * @param stream
-     * @param encoding
-     * @throws IOException
+     * @param stream the input stream to process
+     * @param encoding the encoding name
+     * @return the encoding name, potentially adjusted based on the BOM
+     * @throws IOException if an I/O error occurs
      */
     protected String consumeBOM(InputStream stream, String encoding) throws IOException {
 
@@ -409,7 +417,7 @@ public class XIncludeTextReader {
      * using calls to characters().  This will read all of the text it can from the
      * resource.
      *
-     * @throws IOException
+     * @throws IOException if an I/O error occurs
      */
     public void parse() throws IOException {
         fReader = getReader(fSource);
@@ -473,7 +481,7 @@ public class XIncludeTextReader {
      * Closes the stream.  Call this after parse(), or when there is no longer any need
      * for this object.
      *
-     * @throws IOException
+     * @throws IOException if an I/O error occurs
      */
     public void close() throws IOException {
         if (fReader != null) {
@@ -487,6 +495,7 @@ public class XIncludeTextReader {
      * as per the rules of XML 1.0.
      *
      * @param ch The character to check.
+     * @return true if the character is valid, false otherwise
      */
     protected boolean isValid(int ch) {
         return XMLChar.isValid(ch);

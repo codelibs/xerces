@@ -34,14 +34,28 @@ public final class SAXInputSource extends XMLInputSource {
     private XMLReader fXMLReader;
     private InputSource fInputSource;
 
+    /**
+     * Default constructor.
+     */
     public SAXInputSource() {
         this(null);
     }
 
+    /**
+     * Constructs an input source from a SAX InputSource object.
+     *
+     * @param inputSource The SAX InputSource
+     */
     public SAXInputSource(InputSource inputSource) {
         this(null, inputSource);
     }
 
+    /**
+     * Constructs an input source from a SAX InputSource object and XMLReader.
+     *
+     * @param reader The XMLReader
+     * @param inputSource The SAX InputSource
+     */
     public SAXInputSource(XMLReader reader, InputSource inputSource) {
         super(inputSource != null ? inputSource.getPublicId() : null, inputSource != null ? inputSource.getSystemId() : null, null);
         if (inputSource != null) {
@@ -53,14 +67,29 @@ public final class SAXInputSource extends XMLInputSource {
         fXMLReader = reader;
     }
 
+    /**
+     * Sets the XMLReader to be used for parsing.
+     *
+     * @param reader The XMLReader
+     */
     public void setXMLReader(XMLReader reader) {
         fXMLReader = reader;
     }
 
+    /**
+     * Returns the XMLReader to be used for parsing.
+     *
+     * @return The XMLReader
+     */
     public XMLReader getXMLReader() {
         return fXMLReader;
     }
 
+    /**
+     * Sets the SAX InputSource to be used.
+     *
+     * @param inputSource The SAX InputSource
+     */
     public void setInputSource(InputSource inputSource) {
         if (inputSource != null) {
             setPublicId(inputSource.getPublicId());
@@ -78,6 +107,11 @@ public final class SAXInputSource extends XMLInputSource {
         fInputSource = inputSource;
     }
 
+    /**
+     * Returns the SAX InputSource being used.
+     *
+     * @return The SAX InputSource
+     */
     public InputSource getInputSource() {
         return fInputSource;
     }

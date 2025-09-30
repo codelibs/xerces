@@ -19,7 +19,8 @@ package org.codelibs.xerces.wml.dom;
 import org.codelibs.xerces.wml.WMLFieldsetElement;
 
 /**
- * @xerces.internal
+ * Implementation of WMLFieldsetElement interface for WML fieldset elements.
+ *
  * @version $Id: WMLFieldsetElementImpl.java 661560 2008-05-30 03:22:25Z mrglavas $
  * @author <a href="mailto:david@topware.com.tw">David Li</a>
  */
@@ -27,6 +28,12 @@ public class WMLFieldsetElementImpl extends WMLElementImpl implements WMLFieldse
 
     private static final long serialVersionUID = 6941811812235840705L;
 
+    /**
+     * Constructs a new WML fieldset element with the specified owner document and tag name.
+     *
+     * @param owner the owner document
+     * @param tagName the tag name for this element
+     */
     public WMLFieldsetElementImpl(WMLDocumentImpl owner, String tagName) {
         super(owner, tagName);
     }

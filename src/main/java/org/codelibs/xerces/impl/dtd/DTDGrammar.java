@@ -51,7 +51,7 @@ import org.codelibs.xerces.xni.parser.XMLDTDSource;
  * for DTD information so that it can build the appropriate validation
  * structures automatically from the callbacks.
  *
- * @xerces.internal
+
  *
  * @author Eric Ye, IBM
  * @author Jeffrey Rodriguez, IBM
@@ -98,7 +98,10 @@ public class DTDGrammar implements XMLDTDHandler, XMLDTDContentModelHandler, Ent
     // Data
     //
 
+    /** The DTD source for receiving DTD events. */
     protected XMLDTDSource fDTDSource = null;
+
+    /** The DTD content model source for receiving content model events. */
     protected XMLDTDContentModelSource fDTDContentModelSource = null;
 
     /** Current element index. */
@@ -113,7 +116,7 @@ public class DTDGrammar implements XMLDTDHandler, XMLDTDContentModelHandler, Ent
     /** Symbol table. */
     private SymbolTable fSymbolTable;
 
-    // The XMLDTDDescription with which this Grammar is associated
+    /** The XMLDTDDescription with which this Grammar is associated. */
     protected XMLDTDDescription fGrammarDescription = null;
 
     // element declarations
@@ -285,7 +288,12 @@ public class DTDGrammar implements XMLDTDHandler, XMLDTDContentModelHandler, Ent
     // Constructors
     //
 
-    /** Default constructor. */
+    /**
+     * Constructs a DTDGrammar with the specified symbol table and DTD description.
+     *
+     * @param symbolTable the symbol table to use for interning strings
+     * @param desc the DTD description associated with this grammar
+     */
     public DTDGrammar(SymbolTable symbolTable, XMLDTDDescription desc) {
         fSymbolTable = symbolTable;
         fGrammarDescription = desc;
@@ -306,6 +314,7 @@ public class DTDGrammar implements XMLDTDHandler, XMLDTDContentModelHandler, Ent
      * Returns true if the specified element declaration is external.
      *
      * @param elementDeclIndex The element declaration index.
+     * @return true if the element declaration is external, false otherwise
      */
     public boolean getElementDeclIsExternal(int elementDeclIndex) {
 
@@ -323,6 +332,7 @@ public class DTDGrammar implements XMLDTDHandler, XMLDTDContentModelHandler, Ent
      * Returns true if the specified attribute declaration is external.
      *
      * @param attributeDeclIndex Attribute declaration index.
+     * @return true if the attribute declaration is external, false otherwise
      */
     public boolean getAttributeDeclIsExternal(int attributeDeclIndex) {
 
@@ -335,6 +345,13 @@ public class DTDGrammar implements XMLDTDHandler, XMLDTDContentModelHandler, Ent
         return (fAttributeDeclIsExternal[chunk][index] != 0);
     }
 
+    /**
+     * Returns the index of the attribute declaration with the specified name for the given element.
+     *
+     * @param elementDeclIndex the index of the element declaration
+     * @param attributeDeclName the name of the attribute declaration
+     * @return the index of the attribute declaration, or -1 if not found
+     */
     public int getAttributeDeclIndex(int elementDeclIndex, String attributeDeclName) {
         if (elementDeclIndex == -1) {
             return -1;
@@ -1101,12 +1118,20 @@ public class DTDGrammar implements XMLDTDHandler, XMLDTDContentModelHandler, Ent
     // Grammar methods
     //
 
-    /** Returns true if this grammar is namespace aware. */
+    /**
+     * Returns true if this grammar is namespace aware.
+     *
+     * @return true if this grammar is namespace aware, false otherwise
+     */
     public boolean isNamespaceAware() {
         return false;
     } // isNamespaceAware():boolean
 
-    /** Returns the symbol table. */
+    /**
+     * Returns the symbol table.
+     *
+     * @return the symbol table used by this grammar
+     */
     public SymbolTable getSymbolTable() {
         return fSymbolTable;
     } // getSymbolTable():SymbolTable
@@ -1115,6 +1140,7 @@ public class DTDGrammar implements XMLDTDHandler, XMLDTDContentModelHandler, Ent
      * Returns the index of the first element declaration. This index
      * is then used to query more information about the element declaration.
      *
+     * @return the index of the first element declaration, or -1 if none
      * @see #getNextElementDeclIndex
      * @see #getElementDecl
      */
@@ -1127,17 +1153,17 @@ public class DTDGrammar implements XMLDTDHandler, XMLDTDContentModelHandler, Ent
      * specified element declaration.
      *
      * @param elementDeclIndex The element declaration index.
+     * @return the next element declaration index, or -1 if none
      */
     public int getNextElementDeclIndex(int elementDeclIndex) {
         return elementDeclIndex < fElementDeclCount - 1 ? elementDeclIndex + 1 : -1;
     } // getNextElementDeclIndex(int):int
 
     /**
-     * getElementDeclIndex
+     * Returns the element declaration index for the specified element name.
      *
-     * @param elementDeclName
-     *
-     * @return index of the elementDeclName in scope
+     * @param elementDeclName the name of the element declaration
+     * @return the index of the element declaration in scope, or -1 if not found
      */
     public int getElementDeclIndex(String elementDeclName) {
         int mapping = fElementIndexMap.get(elementDeclName);
@@ -1145,17 +1171,23 @@ public class DTDGrammar implements XMLDTDHandler, XMLDTDContentModelHandler, Ent
         return mapping;
     } // getElementDeclIndex(String):int
 
-    /** Returns the element decl index.
-     * @param elementDeclQName qualilfied name of the element
+    /**
+     * Returns the element declaration index for the specified qualified name.
+     *
+     * @param elementDeclQName the qualified name of the element
+     * @return the element declaration index, or -1 if not found
      */
     public int getElementDeclIndex(QName elementDeclQName) {
         return getElementDeclIndex(elementDeclQName.rawname);
     } // getElementDeclIndex(QName):int
 
-    /** make separate function for getting contentSpecType of element.
-    * we can avoid setting of the element values.
-    */
-
+    /**
+     * Returns the content specification type for the specified element.
+     * This method provides a way to get the content type without setting element values.
+     *
+     * @param elementIndex the index of the element
+     * @return the content specification type, or -1 if invalid index
+     */
     public short getContentSpecType(int elementIndex) {
         if (elementIndex < 0 || elementIndex >= fElementDeclCount) {
             return -1;
@@ -1173,12 +1205,11 @@ public class DTDGrammar implements XMLDTDHandler, XMLDTDContentModelHandler, Ent
     }//getContentSpecType
 
     /**
-     * getElementDecl
+     * Retrieves the element declaration at the specified index.
      *
-     * @param elementDeclIndex
-     * @param elementDecl The values of this structure are set by this call.
-     *
-     * @return True if find the element, False otherwise.
+     * @param elementDeclIndex the index of the element declaration
+     * @param elementDecl the element declaration structure whose values are set by this call
+     * @return true if the element was found, false otherwise
      */
     public boolean getElementDecl(int elementDeclIndex, XMLElementDecl elementDecl) {
 
@@ -1224,11 +1255,10 @@ public class DTDGrammar implements XMLDTDHandler, XMLDTDContentModelHandler, Ent
     // REVISIT: Make this getAttributeDeclCount/getAttributeDeclAt. -Ac
 
     /**
-     * getFirstAttributeDeclIndex
+     * Returns the index of the first attribute declaration for the specified element.
      *
-     * @param elementDeclIndex
-     *
-     * @return index of the first attribute for element declaration elementDeclIndex
+     * @param elementDeclIndex the index of the element declaration
+     * @return the index of the first attribute for the element declaration
      */
     public int getFirstAttributeDeclIndex(int elementDeclIndex) {
         int chunk = elementDeclIndex >> CHUNK_SHIFT;
@@ -1238,11 +1268,10 @@ public class DTDGrammar implements XMLDTDHandler, XMLDTDContentModelHandler, Ent
     } // getFirstAttributeDeclIndex
 
     /**
-     * getNextAttributeDeclIndex
+     * Returns the index of the next attribute declaration following the specified attribute.
      *
-     * @param attributeDeclIndex
-     *
-     * @return index of the next attribute of the attribute at attributeDeclIndex
+     * @param attributeDeclIndex the index of the current attribute declaration
+     * @return the index of the next attribute declaration
      */
     public int getNextAttributeDeclIndex(int attributeDeclIndex) {
         int chunk = attributeDeclIndex >> CHUNK_SHIFT;
@@ -1252,12 +1281,11 @@ public class DTDGrammar implements XMLDTDHandler, XMLDTDContentModelHandler, Ent
     } // getNextAttributeDeclIndex
 
     /**
-     * getAttributeDecl
+     * Retrieves the attribute declaration at the specified index.
      *
-     * @param attributeDeclIndex
-     * @param attributeDecl The values of this structure are set by this call.
-     *
-     * @return true if getAttributeDecl was able to fill in the value of attributeDecl
+     * @param attributeDeclIndex the index of the attribute declaration
+     * @param attributeDecl the attribute declaration structure whose values are set by this call
+     * @return true if the attribute declaration was successfully retrieved, false otherwise
      */
     public boolean getAttributeDecl(int attributeDeclIndex, XMLAttributeDecl attributeDecl) {
         if (attributeDeclIndex < 0 || attributeDeclIndex >= fAttributeDeclCount) {
@@ -1304,11 +1332,10 @@ public class DTDGrammar implements XMLDTDHandler, XMLDTDContentModelHandler, Ent
     }
 
     /**
-     * getEntityDeclIndex
+     * Returns the index of the entity declaration with the specified name.
      *
-     * @param entityDeclName
-     *
-     * @return the index of the EntityDecl
+     * @param entityDeclName the name of the entity declaration
+     * @return the index of the entity declaration, or -1 if not found
      */
     public int getEntityDeclIndex(String entityDeclName) {
         if (entityDeclName == null) {
@@ -1319,13 +1346,11 @@ public class DTDGrammar implements XMLDTDHandler, XMLDTDContentModelHandler, Ent
     } // getEntityDeclIndex
 
     /**
-     * getEntityDecl
+     * Retrieves the entity declaration at the specified index.
      *
-     * @param entityDeclIndex
-     * @param entityDecl
-     *
-     * @return true if getEntityDecl was able to fill entityDecl with the contents of the entity
-     * with index entityDeclIndex
+     * @param entityDeclIndex the index of the entity declaration
+     * @param entityDecl the entity declaration structure to be filled with values
+     * @return true if the entity declaration was successfully retrieved, false otherwise
      */
     public boolean getEntityDecl(int entityDeclIndex, XMLEntityDecl entityDecl) {
         if (entityDeclIndex < 0 || entityDeclIndex >= fEntityCount) {
@@ -1342,11 +1367,10 @@ public class DTDGrammar implements XMLDTDHandler, XMLDTDContentModelHandler, Ent
     } // getEntityDecl
 
     /**
-     * getNotationDeclIndex
+     * Returns the index of the notation declaration with the specified name.
      *
-     * @param notationDeclName
-     *
-     * @return the index if found a notation with the name, otherwise -1.
+     * @param notationDeclName the name of the notation declaration
+     * @return the index of the notation declaration, or -1 if not found
      */
     public int getNotationDeclIndex(String notationDeclName) {
         if (notationDeclName == null) {
@@ -1357,13 +1381,11 @@ public class DTDGrammar implements XMLDTDHandler, XMLDTDContentModelHandler, Ent
     } // getNotationDeclIndex
 
     /**
-     * getNotationDecl
+     * Retrieves the notation declaration at the specified index.
      *
-     * @param notationDeclIndex
-     * @param notationDecl
-     *
-     * @return return true of getNotationDecl can fill notationDecl with information about
-     * the notation at notationDeclIndex.
+     * @param notationDeclIndex the index of the notation declaration
+     * @param notationDecl the notation declaration structure to be filled with values
+     * @return true if the notation declaration was successfully retrieved, false otherwise
      */
     public boolean getNotationDecl(int notationDeclIndex, XMLNotationDecl notationDecl) {
         if (notationDeclIndex < 0 || notationDeclIndex >= fNotationCount) {
@@ -1380,12 +1402,11 @@ public class DTDGrammar implements XMLDTDHandler, XMLDTDContentModelHandler, Ent
     } // getNotationDecl
 
     /**
-     * getContentSpec
+     * Retrieves the content specification at the specified index.
      *
-     * @param contentSpecIndex
-     * @param contentSpec
-     *
-     * @return true if find the requested contentSpec node, false otherwise
+     * @param contentSpecIndex the index of the content specification
+     * @param contentSpec the content specification structure to be filled with values
+     * @return true if the content specification was found, false otherwise
      */
     public boolean getContentSpec(int contentSpecIndex, XMLContentSpec contentSpec) {
         if (contentSpecIndex < 0 || contentSpecIndex >= fContentSpecCount)
@@ -1404,6 +1425,9 @@ public class DTDGrammar implements XMLDTDHandler, XMLDTDContentModelHandler, Ent
      * Returns the index to the content spec for the given element
      * declaration, or <code>-1</code> if the element declaration
      * index was invalid.
+     *
+     * @param elementDeclIndex the index of the element declaration
+     * @return the content specification index, or -1 if invalid
      */
     public int getContentSpecIndex(int elementDeclIndex) {
         if (elementDeclIndex < 0 || elementDeclIndex >= fElementDeclCount) {
@@ -1415,11 +1439,10 @@ public class DTDGrammar implements XMLDTDHandler, XMLDTDContentModelHandler, Ent
     }
 
     /**
-     * getContentSpecAsString
+     * Returns the content specification as a string for the specified element declaration.
      *
-     * @param elementDeclIndex
-     *
-     * @return String
+     * @param elementDeclIndex the index of the element declaration
+     * @return the content specification as a string, or null if invalid index
      */
     public String getContentSpecAsString(int elementDeclIndex) {
 
@@ -1567,6 +1590,9 @@ public class DTDGrammar implements XMLDTDHandler, XMLDTDContentModelHandler, Ent
 
     // debugging
 
+    /**
+     * Prints all element declarations for debugging purposes.
+     */
     public void printElements() {
         int elementDeclIndex = 0;
         XMLElementDecl elementDecl = new XMLElementDecl();
@@ -1578,6 +1604,11 @@ public class DTDGrammar implements XMLDTDHandler, XMLDTDContentModelHandler, Ent
         }
     }
 
+    /**
+     * Prints all attributes for the specified element declaration for debugging purposes.
+     *
+     * @param elementDeclIndex the index of the element declaration
+     */
     public void printAttributes(int elementDeclIndex) {
         int attributeDeclIndex = getFirstAttributeDeclIndex(elementDeclIndex);
         System.out.print(elementDeclIndex);
@@ -1599,7 +1630,9 @@ public class DTDGrammar implements XMLDTDHandler, XMLDTDContentModelHandler, Ent
     //
 
     /**
-     * Adds the content spec to the given element declaration.
+     * Adds the content specification to the given element declaration.
+     *
+     * @param elementDecl the element declaration to add content specification to
      */
     protected void addContentSpecToElement(XMLElementDecl elementDecl) {
         if ((fDepth == 0 || (fDepth == 1 && elementDecl.type == XMLElementDecl.TYPE_MIXED)) && fNodeIndexStack != null) {
@@ -1616,11 +1649,10 @@ public class DTDGrammar implements XMLDTDHandler, XMLDTDContentModelHandler, Ent
     }
 
     /**
-     * getElementContentModelValidator
+     * Returns the content model validator for the specified element declaration.
      *
-     * @param elementDeclIndex
-     *
-     * @return its ContentModelValidator if any.
+     * @param elementDeclIndex the index of the element declaration
+     * @return the ContentModelValidator for the element, or null if none
      */
     protected ContentModelValidator getElementContentModelValidator(int elementDeclIndex) {
 
@@ -1679,6 +1711,11 @@ public class DTDGrammar implements XMLDTDHandler, XMLDTDContentModelHandler, Ent
 
     } // getElementContentModelValidator(int):ContentModelValidator
 
+    /**
+     * Creates a new element declaration and returns its index.
+     *
+     * @return the index of the newly created element declaration
+     */
     protected int createElementDecl() {
         int chunk = fElementDeclCount >> CHUNK_SHIFT;
         int index = fElementDeclCount & CHUNK_MASK;
@@ -1691,6 +1728,12 @@ public class DTDGrammar implements XMLDTDHandler, XMLDTDContentModelHandler, Ent
         return fElementDeclCount++;
     }
 
+    /**
+     * Sets the element declaration at the specified index.
+     *
+     * @param elementDeclIndex the index of the element declaration
+     * @param elementDecl the element declaration values to set
+     */
     protected void setElementDecl(int elementDeclIndex, XMLElementDecl elementDecl) {
         if (elementDeclIndex < 0 || elementDeclIndex >= fElementDeclCount) {
             return;
@@ -1710,9 +1753,22 @@ public class DTDGrammar implements XMLDTDHandler, XMLDTDContentModelHandler, Ent
         fElementIndexMap.put(elementDecl.name.rawname, elementDeclIndex);
     }
 
+    /**
+     * Puts a mapping from element name to element declaration index.
+     *
+     * @param name the qualified name of the element
+     * @param scope the scope of the element
+     * @param elementDeclIndex the index of the element declaration
+     */
     protected void putElementNameMapping(QName name, int scope, int elementDeclIndex) {
     }
 
+    /**
+     * Sets the index of the first attribute declaration for the specified element.
+     *
+     * @param elementDeclIndex the index of the element declaration
+     * @param newFirstAttrIndex the new first attribute declaration index
+     */
     protected void setFirstAttributeDeclIndex(int elementDeclIndex, int newFirstAttrIndex) {
 
         if (elementDeclIndex < 0 || elementDeclIndex >= fElementDeclCount) {
@@ -1725,6 +1781,12 @@ public class DTDGrammar implements XMLDTDHandler, XMLDTDContentModelHandler, Ent
         fElementDeclFirstAttributeDeclIndex[chunk][index] = newFirstAttrIndex;
     }
 
+    /**
+     * Sets the content specification index for the specified element declaration.
+     *
+     * @param elementDeclIndex the index of the element declaration
+     * @param contentSpecIndex the content specification index to set
+     */
     protected void setContentSpecIndex(int elementDeclIndex, int contentSpecIndex) {
 
         if (elementDeclIndex < 0 || elementDeclIndex >= fElementDeclCount) {
@@ -1737,6 +1799,11 @@ public class DTDGrammar implements XMLDTDHandler, XMLDTDContentModelHandler, Ent
         fElementDeclContentSpecIndex[chunk][index] = contentSpecIndex;
     }
 
+    /**
+     * Creates a new attribute declaration and returns its index.
+     *
+     * @return the index of the newly created attribute declaration
+     */
     protected int createAttributeDecl() {
         int chunk = fAttributeDeclCount >> CHUNK_SHIFT;
         int index = fAttributeDeclCount & CHUNK_MASK;
@@ -1753,6 +1820,13 @@ public class DTDGrammar implements XMLDTDHandler, XMLDTDContentModelHandler, Ent
         return fAttributeDeclCount++;
     }
 
+    /**
+     * Sets the attribute declaration for a specific element.
+     *
+     * @param elementDeclIndex the index of the element declaration
+     * @param attributeDeclIndex the index of the attribute declaration
+     * @param attributeDecl the attribute declaration values to set
+     */
     protected void setAttributeDecl(int elementDeclIndex, int attributeDeclIndex, XMLAttributeDecl attributeDecl) {
         int attrChunk = attributeDeclIndex >> CHUNK_SHIFT;
         int attrIndex = attributeDeclIndex & CHUNK_MASK;
@@ -1793,6 +1867,11 @@ public class DTDGrammar implements XMLDTDHandler, XMLDTDContentModelHandler, Ent
         }
     }
 
+    /**
+     * Creates a new content specification and returns its index.
+     *
+     * @return the index of the newly created content specification
+     */
     protected int createContentSpec() {
         int chunk = fContentSpecCount >> CHUNK_SHIFT;
         int index = fContentSpecCount & CHUNK_MASK;
@@ -1805,6 +1884,12 @@ public class DTDGrammar implements XMLDTDHandler, XMLDTDContentModelHandler, Ent
         return fContentSpecCount++;
     }
 
+    /**
+     * Sets the content specification at the specified index.
+     *
+     * @param contentSpecIndex the index of the content specification
+     * @param contentSpec the content specification values to set
+     */
     protected void setContentSpec(int contentSpecIndex, XMLContentSpec contentSpec) {
         int chunk = contentSpecIndex >> CHUNK_SHIFT;
         int index = contentSpecIndex & CHUNK_MASK;
@@ -1814,6 +1899,11 @@ public class DTDGrammar implements XMLDTDHandler, XMLDTDContentModelHandler, Ent
         fContentSpecOtherValue[chunk][index] = contentSpec.otherValue;
     }
 
+    /**
+     * Creates a new entity declaration and returns its index.
+     *
+     * @return the index of the newly created entity declaration
+     */
     protected int createEntityDecl() {
         int chunk = fEntityCount >> CHUNK_SHIFT;
         int index = fEntityCount & CHUNK_MASK;
@@ -1825,6 +1915,12 @@ public class DTDGrammar implements XMLDTDHandler, XMLDTDContentModelHandler, Ent
         return fEntityCount++;
     }
 
+    /**
+     * Sets the entity declaration at the specified index.
+     *
+     * @param entityDeclIndex the index of the entity declaration
+     * @param entityDecl the entity declaration values to set
+     */
     protected void setEntityDecl(int entityDeclIndex, XMLEntityDecl entityDecl) {
         int chunk = entityDeclIndex >> CHUNK_SHIFT;
         int index = entityDeclIndex & CHUNK_MASK;
@@ -1841,12 +1937,23 @@ public class DTDGrammar implements XMLDTDHandler, XMLDTDContentModelHandler, Ent
         fEntityIndexMap.put(entityDecl.name, entityDeclIndex);
     }
 
+    /**
+     * Creates a new notation declaration and returns its index.
+     *
+     * @return the index of the newly created notation declaration
+     */
     protected int createNotationDecl() {
         int chunk = fNotationCount >> CHUNK_SHIFT;
         ensureNotationDeclCapacity(chunk);
         return fNotationCount++;
     }
 
+    /**
+     * Sets the notation declaration at the specified index.
+     *
+     * @param notationDeclIndex the index of the notation declaration
+     * @param notationDecl the notation declaration values to set
+     */
     protected void setNotationDecl(int notationDeclIndex, XMLNotationDecl notationDecl) {
         int chunk = notationDeclIndex >> CHUNK_SHIFT;
         int index = notationDeclIndex & CHUNK_MASK;
@@ -2486,7 +2593,7 @@ public class DTDGrammar implements XMLDTDHandler, XMLDTDContentModelHandler, Ent
     /**
      * Children list for <code>contentSpecTree</code> method.
      *
-     * @xerces.internal
+
      *
      * @author Eric Ye, IBM
      */
@@ -2523,10 +2630,10 @@ public class DTDGrammar implements XMLDTDHandler, XMLDTDContentModelHandler, Ent
     //
 
     /**
-     * A simple Hashtable implementation that takes a tuple (String, String)
-     * as the key and a int as value.
-     *
-     * @xerces.internal
+     * A simple Hashtable implementation that takes a String as the key and an int as value.
+     * This hash table is optimized for storing qualified name mappings in DTD grammar processing.
+     * It uses a bucket-based collision resolution strategy with automatic rehashing
+     * when the load factor exceeds 1 or when hash collisions exceed a threshold.
      *
      * @author Eric Ye, IBM
      * @author Andy Clark, IBM
@@ -2534,9 +2641,15 @@ public class DTDGrammar implements XMLDTDHandler, XMLDTDContentModelHandler, Ent
     protected static final class QNameHashtable {
 
         /**
+         * Default constructor for internal instantiation.
+         */
+        protected QNameHashtable() {
+        }
+
+        /**
          * Fills an array with a random sequence of prime numbers.
          *
-         * @xerces.internal
+
          */
         private static final class PrimeNumberSequenceGenerator {
 
@@ -2593,7 +2706,12 @@ public class DTDGrammar implements XMLDTDHandler, XMLDTDContentModelHandler, Ent
         //
         // Public methods
         //
-        /** Associates the given value with the specified key tuple. */
+        /**
+         * Associates the given value with the specified key.
+         *
+         * @param key the key string
+         * @param value the integer value to associate with the key
+         */
         public void put(String key, int value) {
 
             int hash = (hash(key) & 0x7FFFFFFF) % fTableSize;
@@ -2652,6 +2770,12 @@ public class DTDGrammar implements XMLDTDHandler, XMLDTDContentModelHandler, Ent
         } // put(int,String,String,int)
 
         /** Returns the value associated with the specified key tuple. */
+        /**
+         * Returns the value associated with the specified key.
+         *
+         * @param key the key string to look up
+         * @return the integer value associated with the key, or -1 if not found
+         */
         public int get(String key) {
             int hash = (hash(key) & 0x7FFFFFFF) % fTableSize;
             Object[] bucket = fHashTable[hash];
@@ -2672,6 +2796,12 @@ public class DTDGrammar implements XMLDTDHandler, XMLDTDContentModelHandler, Ent
 
         } // get(int,String,String)
 
+        /**
+         * Computes the hash code for the given symbol.
+         *
+         * @param symbol the symbol to hash
+         * @return the hash code
+         */
         public int hash(String symbol) {
             if (fHashMultipliers == null) {
                 return symbol.hashCode();

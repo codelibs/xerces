@@ -19,7 +19,10 @@ package org.codelibs.xerces.wml.dom;
 import org.codelibs.xerces.wml.WMLUElement;
 
 /**
- * @xerces.internal
+ * Implementation of the WML u (underline) element.
+ * The u element is used to render text with underline formatting.
+ * It provides visual formatting for text that should appear underlined.
+ *
  * @version $Id: WMLUElementImpl.java 661560 2008-05-30 03:22:25Z mrglavas $
  * @author <a href="mailto:david@topware.com.tw">David Li</a>
  */
@@ -27,6 +30,12 @@ public class WMLUElementImpl extends WMLElementImpl implements WMLUElement {
 
     private static final long serialVersionUID = 6350194387815102797L;
 
+    /**
+     * Constructs a new WML u element.
+     *
+     * @param owner the owner document
+     * @param tagName the tag name
+     */
     public WMLUElementImpl(WMLDocumentImpl owner, String tagName) {
         super(owner, tagName);
     }

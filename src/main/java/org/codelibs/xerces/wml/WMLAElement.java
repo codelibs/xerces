@@ -28,24 +28,63 @@ package org.codelibs.xerces.wml;
 
 public interface WMLAElement extends WMLElement {
 
+    /**
+     * Sets the href attribute of the anchor element.
+     *
+     * @param newValue the href value to set
+     */
     public void setHref(String newValue);
 
+    /**
+     * Gets the href attribute of the anchor element.
+     *
+     * @return the href value
+     */
     public String getHref();
 
+    /**
+     * Sets the title attribute of the anchor element.
+     *
+     * @param newValue the title value to set
+     */
     public void setTitle(String newValue);
 
+    /**
+     * Gets the title attribute of the anchor element.
+     *
+     * @return the title value
+     */
     public String getTitle();
 
+    /**
+     * Sets the id attribute of the anchor element.
+     *
+     * @param newValue the id value to set
+     */
     public void setId(String newValue);
 
+    /**
+     * Gets the id attribute of the anchor element.
+     *
+     * @return the id value
+     */
     public String getId();
 
     /**
-     * 'xml:lang' specifics the natural or formal language in which
+     * Sets the 'xml:lang' attribute which specifies the natural or formal language in which
      * the document is written.
      * (Section 8.8, WAP WML Version 16-Jun-1999)
+     *
+     * @param newValue the xml:lang value to set
      */
     public void setXmlLang(String newValue);
 
+    /**
+     * Gets the 'xml:lang' attribute which specifies the natural or formal language in which
+     * the document is written.
+     * (Section 8.8, WAP WML Version 16-Jun-1999)
+     *
+     * @return the xml:lang value
+     */
     public String getXmlLang();
 }

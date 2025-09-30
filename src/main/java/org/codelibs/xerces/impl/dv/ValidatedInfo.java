@@ -26,16 +26,23 @@ import org.codelibs.xerces.xs.XSSimpleTypeDefinition;
 import org.codelibs.xerces.xs.XSValue;
 
 /**
- * Class to get the information back after content is validated. This info
- * would be filled by validate().
+ * Class to get the information back after content is validated.
+ * This info would be filled by validate() and provides access to
+ * both the normalized and actual values of the validated content.
  *
- * @xerces.internal
+
  *
  * @author Neeraj Bajaj, Sun Microsystems, inc.
  *
  * @version $Id: ValidatedInfo.java 1026362 2010-10-22 15:15:18Z sandygao $
  */
 public class ValidatedInfo implements XSValue {
+
+    /**
+     * Default constructor.
+     */
+    public ValidatedInfo() {
+    }
 
     /**
      * The normalized value of a string value
@@ -100,6 +107,7 @@ public class ValidatedInfo implements XSValue {
     /**
      * Return a string representation of the value. If there is an actual
      * value, use toString; otherwise, use the normalized value.
+     * @return string representation of the value
      */
     public String stringValue() {
         if (actualValue == null) {
@@ -112,6 +120,9 @@ public class ValidatedInfo implements XSValue {
     /**
      * Returns true if the two ValidatedInfo objects can be compared in the same
      * value space.
+     * @param info1 the first ValidatedInfo object
+     * @param info2 the second ValidatedInfo object
+     * @return true if objects can be compared in same value space
      */
     public static boolean isComparable(ValidatedInfo info1, ValidatedInfo info2) {
         final short primitiveType1 = convertToPrimitiveKind(info1.actualValueType);
@@ -197,6 +208,10 @@ public class ValidatedInfo implements XSValue {
         return memberType;
     }
 
+    /**
+     * Copy values from another XSValue object.
+     * @param o the XSValue object to copy from
+     */
     public void copyFrom(XSValue o) {
         if (o == null) {
             reset();

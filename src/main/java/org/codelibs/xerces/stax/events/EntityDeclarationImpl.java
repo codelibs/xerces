@@ -25,7 +25,8 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.events.EntityDeclaration;
 
 /**
- * @xerces.internal
+ * Implementation of {@code EntityDeclaration} event for StAX.
+ * Represents an entity declaration in a DTD.
  *
  * @author Lucian Holland
  *
@@ -39,9 +40,13 @@ public final class EntityDeclarationImpl extends XMLEventImpl implements EntityD
     private final String fNotationName;
 
     /**
-     * @param eventType
-     * @param location
-     * @param schemaType
+     * Constructs an entity declaration event with the specified properties.
+     *
+     * @param publicId the public ID
+     * @param systemId the system ID
+     * @param name the entity name
+     * @param notationName the notation name
+     * @param location the location
      */
     public EntityDeclarationImpl(final String publicId, final String systemId, final String name, final String notationName,
             final Location location) {

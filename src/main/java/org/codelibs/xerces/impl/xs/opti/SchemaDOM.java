@@ -32,7 +32,9 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 /**
- * @xerces.internal
+ * Schema DOM implementation for optimized XML Schema processing.
+ * This class provides a specialized DOM document implementation
+ * optimized for XML Schema parsing and traversal.
  *
  * @author Rahul Srivastava, Sun Microsystems Inc.
  * @author Sandy Gao, IBM
@@ -55,10 +57,22 @@ public class SchemaDOM extends DefaultDocument {
     // for annotation support:
     private StringBuffer fAnnotationBuffer = null;
 
+    /**
+     * Constructs a new SchemaDOM instance and initializes its state.
+     */
     public SchemaDOM() {
         reset();
     }
 
+    /**
+     * Starts processing an element and creates a new ElementImpl node.
+     * @param element the qualified name of the element
+     * @param attributes the element's attributes
+     * @param line the line number in the source document
+     * @param column the column number in the source document
+     * @param offset the character offset in the source document
+     * @return the created ElementImpl node
+     */
     public ElementImpl startElement(QName element, XMLAttributes attributes, int line, int column, int offset) {
         ElementImpl node = new ElementImpl(line, column, offset);
         processElement(element, attributes, node);
@@ -67,16 +81,41 @@ public class SchemaDOM extends DefaultDocument {
         return node;
     }
 
+    /**
+     * Creates an empty element node with the specified attributes and location information.
+     * @param element the qualified name of the element
+     * @param attributes the element's attributes
+     * @param line the line number in the source document
+     * @param column the column number in the source document
+     * @param offset the character offset in the source document
+     * @return the created ElementImpl node
+     */
     public ElementImpl emptyElement(QName element, XMLAttributes attributes, int line, int column, int offset) {
         ElementImpl node = new ElementImpl(line, column, offset);
         processElement(element, attributes, node);
         return node;
     }
 
+    /**
+     * Starts processing an element with line and column information but no offset.
+     * @param element the qualified name of the element
+     * @param attributes the element's attributes
+     * @param line the line number in the source document
+     * @param column the column number in the source document
+     * @return the created ElementImpl node
+     */
     public ElementImpl startElement(QName element, XMLAttributes attributes, int line, int column) {
         return startElement(element, attributes, line, column, -1);
     }
 
+    /**
+     * Creates an empty element node with line and column information but no offset.
+     * @param element the qualified name of the element
+     * @param attributes the element's attributes
+     * @param line the line number in the source document
+     * @param column the column number in the source document
+     * @return the created ElementImpl node
+     */
     public ElementImpl emptyElement(QName element, XMLAttributes attributes, int line, int column) {
         return emptyElement(element, attributes, line, column, -1);
     }
@@ -130,6 +169,9 @@ public class SchemaDOM extends DefaultDocument {
         node.col = i;
     }
 
+    /**
+     * Ends processing of the current element and sets the parent to the current element's parent.
+     */
     public void endElement() {
         // the parent of current parent node becomes the parent
         // for the next node.
@@ -137,7 +179,11 @@ public class SchemaDOM extends DefaultDocument {
         parent = (ElementImpl) relations[currLoc][0];
     }
 
-    // note that this will only be called within appinfo/documentation
+    /**
+     * Processes a comment within annotation content.
+     * Note: this will only be called within appinfo/documentation.
+     * @param text the comment text
+     */
     void comment(XMLString text) {
         fAnnotationBuffer.append("<!--");
         if (text.length > 0) {
@@ -253,6 +299,9 @@ public class SchemaDOM extends DefaultDocument {
         relations[i] = temp;
     }
 
+    /**
+     * Resets the SchemaDOM to its initial state, clearing all nodes and relationships.
+     */
     public void reset() {
 
         // help out the garbage collector
@@ -272,6 +321,10 @@ public class SchemaDOM extends DefaultDocument {
         relations[currLoc][0] = parent;
     }
 
+    /**
+     * Prints the DOM structure for debugging purposes.
+     * This method is currently disabled but can be used for development.
+     */
     public void printDOM() {
         /*
          for (int i=0; i<relations.length; i++) {
@@ -290,6 +343,12 @@ public class SchemaDOM extends DefaultDocument {
 
     // debug methods
 
+    /**
+     * Traverses and prints the DOM tree for debugging purposes.
+     *
+     * @param node The node to traverse
+     * @param depth The current indentation depth
+     */
     public static void traverse(Node node, int depth) {
         indent(depth);
         System.out.print("<" + node.getNodeName());
@@ -315,6 +374,11 @@ public class SchemaDOM extends DefaultDocument {
         }
     }
 
+    /**
+     * Prints indentation spaces for debugging output.
+     *
+     * @param amount The number of spaces to print
+     */
     public static void indent(int amount) {
         for (int i = 0; i < amount; i++) {
             System.out.print(' ');

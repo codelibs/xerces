@@ -52,6 +52,8 @@ public interface XMLComponent {
      * Returns a list of feature identifiers that are recognized by
      * this component. This method may return null if no features
      * are recognized by this component.
+     *
+     * @return an array of recognized feature identifiers, or null
      */
     public String[] getRecognizedFeatures();
 
@@ -77,6 +79,8 @@ public interface XMLComponent {
      * Returns a list of property identifiers that are recognized by
      * this component. This method may return null if no properties
      * are recognized by this component.
+     *
+     * @return an array of recognized property identifiers, or null
      */
     public String[] getRecognizedProperties();
 
@@ -104,6 +108,7 @@ public interface XMLComponent {
      * feature.
      *
      * @param featureId The feature identifier.
+     * @return the default state for the feature, or null
      *
      * @since Xerces 2.2.0
      */
@@ -115,6 +120,7 @@ public interface XMLComponent {
      * property.
      *
      * @param propertyId The property identifier.
+     * @return the default value for the property, or null
      *
      * @since Xerces 2.2.0
      */

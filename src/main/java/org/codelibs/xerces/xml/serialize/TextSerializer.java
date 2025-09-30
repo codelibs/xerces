@@ -35,7 +35,7 @@ import org.xml.sax.SAXException;
  * serializing. For usage instructions see {@link Serializer}.
  * <p>
  * If an output stream is used, the encoding is taken from the
- * output format (defaults to <tt>UTF-8</tt>). If a writer is
+ * output format (defaults to <code>UTF-8</code>). If a writer is
  * used, make sure the writer uses the same encoding (if applies)
  * as specified in the output format.
  * <p>
@@ -128,6 +128,11 @@ public class TextSerializer extends BaseMarkupSerializer {
         }
     }
 
+    /**
+     * End element processing for I/O operations.
+     * @param tagName the name of the element to end
+     * @throws IOException if an I/O error occurs
+     */
     public void endElementIO(String tagName) throws IOException {
         ElementState state;
 
@@ -165,6 +170,12 @@ public class TextSerializer extends BaseMarkupSerializer {
         }
     }
 
+    /**
+     * Process character data for output.
+     * @param text the character data to process
+     * @param unescaped whether the text should be processed unescaped
+     * @throws IOException if an I/O error occurs
+     */
     protected void characters(String text, boolean unescaped) throws IOException {
         ElementState state;
 
@@ -185,6 +196,8 @@ public class TextSerializer extends BaseMarkupSerializer {
      * pre-root comments and PIs that were accumulated in the document
      * (see {@link #serializePreRoot}). Pre-root will be serialized even if
      * this is not the first root element of the document.
+     * @param rootTagName the name of the root element
+     * @throws IOException if an I/O error occurs
      */
     protected void startDocument(String rootTagName) throws IOException {
         // Required to stop processing the DTD, even though the DTD

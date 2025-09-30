@@ -23,7 +23,7 @@ import org.codelibs.xerces.xni.QName;
 /**
  * Content model leaf node.
  *
- * @xerces.internal
+
  *
  * @version $Id: CMLeaf.java 572057 2007-09-02 18:03:20Z mrglavas $
  */
@@ -47,7 +47,12 @@ public class CMLeaf extends CMNode {
     // Constructors
     //
 
-    /** Constructs a content model leaf. */
+    /**
+     * Constructs a content model leaf.
+     *
+     * @param element The element this leaf represents
+     * @param position The position of this leaf in the content model
+     */
     public CMLeaf(QName element, int position) {
         super(XMLContentSpec.CONTENTSPECNODE_LEAF);
 
@@ -56,7 +61,11 @@ public class CMLeaf extends CMNode {
         fPosition = position;
     }
 
-    /** Constructs a content model leaf. */
+    /**
+     * Constructs a content model leaf with no position.
+     *
+     * @param element The element this leaf represents
+     */
     public CMLeaf(QName element) {
         super(XMLContentSpec.CONTENTSPECNODE_LEAF);
 

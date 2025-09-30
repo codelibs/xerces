@@ -24,7 +24,7 @@ import org.w3c.dom.Node;
 /**
  * Represents an XML (or HTML) comment.
  *
- * @xerces.internal
+
  *
  * @version $Id: CommentImpl.java 447266 2006-09-18 05:57:49Z mrglavas $
  * @since  PR-DOM-Level-1-19980818.
@@ -42,7 +42,12 @@ public class CommentImpl extends CharacterDataImpl implements CharacterData, Com
     // Constructors
     //
 
-    /** Factory constructor. */
+    /**
+     * Factory constructor.
+     *
+     * @param ownerDoc The document that owns this node
+     * @param data The comment data
+     */
     public CommentImpl(CoreDocumentImpl ownerDoc, String data) {
         super(ownerDoc, data);
     }

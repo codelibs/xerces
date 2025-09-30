@@ -48,7 +48,7 @@ import org.xml.sax.SAXException;
  * serializing. For usage instructions see {@link Serializer}.
  * <p>
  * If an output stream is used, the encoding is taken from the
- * output format (defaults to <tt>UTF-8</tt>). If a writer is
+ * output format (defaults to <code>UTF-8</code>). If a writer is
  * used, make sure the writer uses the same encoding (if applies)
  * as specified in the output format.
  * <p>
@@ -86,6 +86,7 @@ public class XML11Serializer extends XMLSerializer {
     // constants
     //
 
+    /** Debug flag for development. */
     protected static final boolean DEBUG = false;
 
     //
@@ -105,10 +106,11 @@ public class XML11Serializer extends XMLSerializer {
     /** symbol table for serialization */
     protected SymbolTable fSymbolTable;
 
-    // is node dom level 1 node?
+    /** Flag to check if node is DOM Level 1 node. */
     protected boolean fDOML1 = false;
-    // counter for new prefix names
+    /** Counter for generating new namespace prefix names. */
     protected int fNamespaceCounter = 1;
+    /** Prefix for generated namespace prefixes. */
     protected final static String PREFIX = "NS";
 
     /**
@@ -134,6 +136,8 @@ public class XML11Serializer extends XMLSerializer {
      * Constructs a new serializer. The serializer cannot be used without
      * calling {@link #setOutputCharStream} or {@link #setOutputByteStream}
      * first.
+     *
+     * @param format The output format to use, null for the default
      */
     public XML11Serializer(OutputFormat format) {
         super(format);
@@ -142,7 +146,7 @@ public class XML11Serializer extends XMLSerializer {
 
     /**
      * Constructs a new serializer that writes to the specified writer
-     * using the specified output format. If <tt>format</tt> is null,
+     * using the specified output format. If <code>format</code> is null,
      * will use a default output format.
      *
      * @param writer The writer to use
@@ -155,7 +159,7 @@ public class XML11Serializer extends XMLSerializer {
 
     /**
      * Constructs a new serializer that writes to the specified output
-     * stream using the specified output format. If <tt>format</tt>
+     * stream using the specified output format. If <code>format</code>
      * is null, will use a default output format.
      *
      * @param output The output stream to use

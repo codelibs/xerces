@@ -42,6 +42,17 @@ import org.xml.sax.SAXParseException;
  */
 public abstract class ErrorHandlerProxy implements ErrorHandler {
 
+    /**
+     * Default constructor for subclass instantiation.
+     */
+    public ErrorHandlerProxy() {
+    }
+
+    /**
+     * Handles a non-fatal error.
+     * @param e the SAX parse exception
+     * @throws SAXException if an error occurs
+     */
     public void error(SAXParseException e) throws SAXException {
         XMLErrorHandler eh = getErrorHandler();
         if (eh instanceof ErrorHandlerWrapper) {
@@ -53,6 +64,11 @@ public abstract class ErrorHandlerProxy implements ErrorHandler {
         // REVISIT: is this OK? or should we try to wrap it into SAXException?
     }
 
+    /**
+     * Handles a fatal error.
+     * @param e the SAX parse exception
+     * @throws SAXException if an error occurs
+     */
     public void fatalError(SAXParseException e) throws SAXException {
         XMLErrorHandler eh = getErrorHandler();
         if (eh instanceof ErrorHandlerWrapper) {
@@ -62,6 +78,11 @@ public abstract class ErrorHandlerProxy implements ErrorHandler {
         }
     }
 
+    /**
+     * Handles a warning.
+     * @param e the SAX parse exception
+     * @throws SAXException if an error occurs
+     */
     public void warning(SAXParseException e) throws SAXException {
         XMLErrorHandler eh = getErrorHandler();
         if (eh instanceof ErrorHandlerWrapper) {
@@ -71,5 +92,9 @@ public abstract class ErrorHandlerProxy implements ErrorHandler {
         }
     }
 
+    /**
+     * Returns the XMLErrorHandler to delegate to.
+     * @return the XMLErrorHandler instance
+     */
     protected abstract XMLErrorHandler getErrorHandler();
 }

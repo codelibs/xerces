@@ -42,7 +42,7 @@ public interface XMLComponentManager {
      * Returns the state of a feature.
      *
      * @param featureId The feature identifier.
-     *
+     * @return The current state of the feature (true or false).
      * @throws XMLConfigurationException Thrown on configuration error.
      */
     public boolean getFeature(String featureId) throws XMLConfigurationException;
@@ -51,8 +51,8 @@ public interface XMLComponentManager {
      * Returns the value of a property.
      *
      * @param propertyId The property identifier.
-     *
-    * @throws XMLConfigurationException Thrown on configuration error.
+     * @return The current value of the property.
+     * @throws XMLConfigurationException Thrown on configuration error.
      */
     public Object getProperty(String propertyId) throws XMLConfigurationException;
 

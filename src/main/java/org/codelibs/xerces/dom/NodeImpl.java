@@ -72,7 +72,7 @@ import org.w3c.dom.events.EventTarget;
  * implements the EventTarget interface and forward all related calls to the
  * document so that the document class do so.
  *
- * @xerces.internal
+
  *
  * @author Arnaud  Le Hors, IBM
  * @author Joe Kesselman, IBM
@@ -121,11 +121,29 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
     public static final short TREE_POSITION_DISCONNECTED = 0x00;
 
     // DocumentPosition
+    /**
+     * The two nodes are disconnected; order between the two cannot be determined.
+     */
     public static final short DOCUMENT_POSITION_DISCONNECTED = 0x01;
+    /**
+     * The second node precedes the reference node.
+     */
     public static final short DOCUMENT_POSITION_PRECEDING = 0x02;
+    /**
+     * The second node follows the reference node.
+     */
     public static final short DOCUMENT_POSITION_FOLLOWING = 0x04;
+    /**
+     * The second node contains the reference node.
+     */
     public static final short DOCUMENT_POSITION_CONTAINS = 0x08;
+    /**
+     * The second node is contained by the reference node.
+     */
     public static final short DOCUMENT_POSITION_IS_CONTAINED = 0x10;
+    /**
+     * The determination is implementation-specific.
+     */
     public static final short DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC = 0x20;
 
     /** Serialization version. */
@@ -142,21 +160,57 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
 
     // links
 
-    protected NodeImpl ownerNode; // typically the parent but not always!
+    /**
+     * The owner node; typically the parent but not always.
+     */
+    protected NodeImpl ownerNode;
 
     // data
 
+    /**
+     * Flags to track the state of this node.
+     */
     protected short flags;
 
+    /**
+     * Flag indicating this node is read-only.
+     */
     protected final static short READONLY = 0x1 << 0;
+    /**
+     * Flag indicating this node's data needs synchronization.
+     */
     protected final static short SYNCDATA = 0x1 << 1;
+    /**
+     * Flag indicating this node's children need synchronization.
+     */
     protected final static short SYNCCHILDREN = 0x1 << 2;
+    /**
+     * Flag indicating this node is owned by another node.
+     */
     protected final static short OWNED = 0x1 << 3;
+    /**
+     * Flag indicating this node is a first child.
+     */
     protected final static short FIRSTCHILD = 0x1 << 4;
+    /**
+     * Flag indicating this attribute node was explicitly specified.
+     */
     protected final static short SPECIFIED = 0x1 << 5;
+    /**
+     * Flag indicating this node contains ignorable whitespace.
+     */
     protected final static short IGNORABLEWS = 0x1 << 6;
+    /**
+     * Flag indicating this node has a string value.
+     */
     protected final static short HASSTRING = 0x1 << 7;
+    /**
+     * Flag indicating this node has been normalized.
+     */
     protected final static short NORMALIZED = 0x1 << 8;
+    /**
+     * Flag indicating this attribute node is an ID.
+     */
     protected final static short ID = 0x1 << 9;
 
     //
@@ -165,9 +219,10 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
 
     /**
      * No public constructor; only subclasses of Node should be
-     * instantiated, and those normally via a Document's factory methods
-     * <p>
+     * instantiated, and those normally via a Document's factory methods.
      * Every Node knows what Document it belongs to.
+     *
+     * @param ownerDocument the owner document for this node
      */
     protected NodeImpl(CoreDocumentImpl ownerDocument) {
         // as long as we do not have any owner, ownerNode is our ownerDocument
@@ -195,7 +250,7 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
 
     /**
      * Returns the node value.
-     * @throws DOMException(DOMSTRING_SIZE_ERR)
+     * @throws DOMException DOMSTRING_SIZE_ERR
      */
     public String getNodeValue() throws DOMException {
         return null; // overridden in some subclasses
@@ -203,7 +258,7 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
 
     /**
      * Sets the node value.
-     * @throws DOMException(NO_MODIFICATION_ALLOWED_ERR)
+     * @throws DOMException NO_MODIFICATION_ALLOWED_ERR
      */
     public void setNodeValue(String x) throws DOMException {
         // Default behavior is to do nothing, overridden in some subclasses
@@ -220,13 +275,11 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
      * @return newChild, in its new state (relocated, or emptied in the case of
      * DocumentNode.)
      *
-     * @throws DOMException(HIERARCHY_REQUEST_ERR) if newChild is of a
+     * @throws DOMException HIERARCHY_REQUEST_ERR if newChild is of a
      * type that shouldn't be a child of this node.
-     *
-     * @throws DOMException(WRONG_DOCUMENT_ERR) if newChild has a
+     * @throws DOMException WRONG_DOCUMENT_ERR if newChild has a
      * different owner document than we do.
-     *
-     * @throws DOMException(NO_MODIFICATION_ALLOWED_ERR) if this node is
+     * @throws DOMException NO_MODIFICATION_ALLOWED_ERR if this node is
      * read-only.
      */
     public Node appendChild(Node newChild) throws DOMException {
@@ -317,6 +370,8 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
     /**
      * NON-DOM
      * set the ownerDocument of this node
+     *
+     * @param doc the new owner document
      */
     protected void setOwnerDocument(CoreDocumentImpl doc) {
         if (needsSyncData()) {
@@ -331,6 +386,8 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
 
     /**
      * Returns the node number
+     *
+     * @return the node number assigned to this node
      */
     protected int getNodeNumber() {
         int nodeNumber;
@@ -456,17 +513,14 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
      * @return newChild, in its new state (relocated, or emptied in the case of
      * DocumentNode.)
      *
-     * @throws DOMException(HIERARCHY_REQUEST_ERR) if newChild is of a
+     * @throws DOMException HIERARCHY_REQUEST_ERR if newChild is of a
      * type that shouldn't be a child of this node, or if newChild is an
      * ancestor of this node.
-     *
-     * @throws DOMException(WRONG_DOCUMENT_ERR) if newChild has a
+     * @throws DOMException WRONG_DOCUMENT_ERR if newChild has a
      * different owner document than we do.
-     *
-     * @throws DOMException(NOT_FOUND_ERR) if refChild is not a child of
+     * @throws DOMException NOT_FOUND_ERR if refChild is not a child of
      * this node.
-     *
-     * @throws DOMException(NO_MODIFICATION_ALLOWED_ERR) if this node is
+     * @throws DOMException NO_MODIFICATION_ALLOWED_ERR if this node is
      * read-only.
      */
     public Node insertBefore(Node newChild, Node refChild) throws DOMException {
@@ -483,10 +537,10 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
      *
      * @return oldChild, in its new state (removed).
      *
-     * @throws DOMException(NOT_FOUND_ERR) if oldChild is not a child of
+     * @throws DOMException NOT_FOUND_ERR if oldChild is not a child of
      * this node.
      *
-     * @throws DOMException(NO_MODIFICATION_ALLOWED_ERR) if this node is
+     * @throws DOMException NO_MODIFICATION_ALLOWED_ERR if this node is
      * read-only.
      */
     public Node removeChild(Node oldChild) throws DOMException {
@@ -505,17 +559,17 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
      *
      * @return oldChild, in its new state (removed).
      *
-     * @throws DOMException(HIERARCHY_REQUEST_ERR) if newChild is of a
+     * @throws DOMException HIERARCHY_REQUEST_ERR if newChild is of a
      * type that shouldn't be a child of this node, or if newChild is
      * one of our ancestors.
      *
-     * @throws DOMException(WRONG_DOCUMENT_ERR) if newChild has a
+     * @throws DOMException WRONG_DOCUMENT_ERR if newChild has a
      * different owner document than we do.
      *
-     * @throws DOMException(NOT_FOUND_ERR) if oldChild is not a child of
+     * @throws DOMException NOT_FOUND_ERR if oldChild is not a child of
      * this node.
      *
-     * @throws DOMException(NO_MODIFICATION_ALLOWED_ERR) if this node is
+     * @throws DOMException NO_MODIFICATION_ALLOWED_ERR if this node is
      * read-only.
      */
     public Node replaceChild(Node newChild, Node oldChild) throws DOMException {
@@ -621,14 +675,14 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
     }
 
     /**
-     * Introduced in DOM Level 2. <p>
+     * Introduced in DOM Level 2.
      *
      * The namespace prefix of this node, or null if it is unspecified. When
      * this node is of any type other than ELEMENT_NODE and ATTRIBUTE_NODE this
-     * is always null and setting it has no effect.<p>
+     * is always null and setting it has no effect.
      *
      * For nodes created with a DOM Level 1 method, such as createElement
-     * from the Document interface, this is null. <p>
+     * from the Document interface, this is null.
      *
      * @since WD-DOM-Level-2-19990923
      * @see AttrNSImpl
@@ -639,20 +693,20 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
     }
 
     /**
-     *  Introduced in DOM Level 2. <p>
+     *  Introduced in DOM Level 2.
      *
      *  The namespace prefix of this node, or null if it is unspecified. When
      *  this node is of any type other than ELEMENT_NODE and ATTRIBUTE_NODE
-     *  this is always null and setting it has no effect.<p>
+     *  this is always null and setting it has no effect.
      *
      *  For nodes created with a DOM Level 1 method, such as createElement from
-     *  the Document interface, this is null.<p>
+     *  the Document interface, this is null.
      *
      *  Note that setting this attribute changes the nodeName attribute, which
      *  holds the qualified name, as well as the tagName and name attributes of
-     *  the Element and Attr interfaces, when applicable.<p>
+     *  the Element and Attr interfaces, when applicable.
      *
-     * @throws INVALID_CHARACTER_ERR Raised if the specified
+     * @throws DOMException INVALID_CHARACTER_ERR Raised if the specified
      *  prefix contains an invalid character.
      *
      * @since WD-DOM-Level-2-19990923
@@ -1176,45 +1230,28 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
      * <br>The string returned is made of the text content of this node
      * depending on its type, as defined below:
      * <table border='1'>
-     * <tr>
-     * <th>Node type</th>
-     * <th>Content</th>
-     * </tr>
-
-    /**
-     * This attribute returns the text content of this node and its
-     * descendants. When it is defined to be null, setting it has no effect.
-     * When set, any possible children this node may have are removed and
-     * replaced by a single <code>Text</code> node containing the string
-     * this attribute is set to. On getting, no serialization is performed,
-     * the returned string does not contain any markup. No whitespace
-     * normalization is performed, the returned string does not contain the
-     * element content whitespaces . Similarly, on setting, no parsing is
-     * performed either, the input string is taken as pure textual content.
-     * <br>The string returned is made of the text content of this node
-     * depending on its type, as defined below:
-     * <table border='1'>
+     * <caption>Node Type Content Mapping</caption>
      * <tr>
      * <th>Node type</th>
      * <th>Content</th>
      * </tr>
      * <tr>
-     * <td valign='top' rowspan='1' colspan='1'>
+     * <td>
      * ELEMENT_NODE, ENTITY_NODE, ENTITY_REFERENCE_NODE,
      * DOCUMENT_FRAGMENT_NODE</td>
-     * <td valign='top' rowspan='1' colspan='1'>concatenation of the <code>textContent</code>
+     * <td>concatenation of the <code>textContent</code>
      * attribute value of every child node, excluding COMMENT_NODE and
      * PROCESSING_INSTRUCTION_NODE nodes</td>
      * </tr>
      * <tr>
-     * <td valign='top' rowspan='1' colspan='1'>ATTRIBUTE_NODE, TEXT_NODE,
+     * <td>ATTRIBUTE_NODE, TEXT_NODE,
      * CDATA_SECTION_NODE, COMMENT_NODE, PROCESSING_INSTRUCTION_NODE</td>
-     * <td valign='top' rowspan='1' colspan='1'>
+     * <td>
      * <code>nodeValue</code></td>
      * </tr>
      * <tr>
-     * <td valign='top' rowspan='1' colspan='1'>DOCUMENT_NODE, DOCUMENT_TYPE_NODE, NOTATION_NODE</td>
-     * <td valign='top' rowspan='1' colspan='1'>
+     * <td>DOCUMENT_NODE, DOCUMENT_TYPE_NODE, NOTATION_NODE</td>
+     * <td>
      * null</td>
      * </tr>
      * </table>
@@ -1251,27 +1288,28 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
      * <br>The string returned is made of the text content of this node
      * depending on its type, as defined below:
      * <table border='1'>
+     * <caption>Node Type Content Mapping</caption>
      * <tr>
      * <th>Node type</th>
      * <th>Content</th>
      * </tr>
      * <tr>
-     * <td valign='top' rowspan='1' colspan='1'>
+     * <td>
      * ELEMENT_NODE, ENTITY_NODE, ENTITY_REFERENCE_NODE,
      * DOCUMENT_FRAGMENT_NODE</td>
-     * <td valign='top' rowspan='1' colspan='1'>concatenation of the <code>textContent</code>
+     * <td>concatenation of the <code>textContent</code>
      * attribute value of every child node, excluding COMMENT_NODE and
      * PROCESSING_INSTRUCTION_NODE nodes</td>
      * </tr>
      * <tr>
-     * <td valign='top' rowspan='1' colspan='1'>ATTRIBUTE_NODE, TEXT_NODE,
+     * <td>ATTRIBUTE_NODE, TEXT_NODE,
      * CDATA_SECTION_NODE, COMMENT_NODE, PROCESSING_INSTRUCTION_NODE</td>
-     * <td valign='top' rowspan='1' colspan='1'>
+     * <td>
      * <code>nodeValue</code></td>
      * </tr>
      * <tr>
-     * <td valign='top' rowspan='1' colspan='1'>DOCUMENT_NODE, DOCUMENT_TYPE_NODE, NOTATION_NODE</td>
-     * <td valign='top' rowspan='1' colspan='1'>
+     * <td>DOCUMENT_NODE, DOCUMENT_TYPE_NODE, NOTATION_NODE</td>
+     * <td>
      * null</td>
      * </tr>
      * </table>
@@ -1382,11 +1420,10 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
     }
 
     /**
-     *
      * DOM Level 3 - Experimental:
      * Look up the prefix associated to the given namespace URI, starting from this node.
      *
-     * @param namespaceURI
+     * @param namespaceURI the namespace URI to look up
      * @return the prefix for the namespace
      */
     public String lookupPrefix(String namespaceURI) {
@@ -1441,7 +1478,7 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
      * Look up the namespace URI associated to the given prefix, starting from this node.
      * Use lookupNamespaceURI(null) to lookup the default namespace
      *
-     * @param specifiedPrefix
+     * @param specifiedPrefix the prefix to look up
      * @return the URI for the namespace
      * @since DOM Level 3
      */
@@ -1709,6 +1746,10 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
         return ownerDocument().getUserData(this, key);
     }
 
+    /**
+     * Retrieves the user data record for this node.
+     * @return the hashtable containing user data records
+     */
     protected Hashtable getUserDataRecord() {
         return ownerDocument().getUserDataRecord(this);
     }
@@ -1747,6 +1788,8 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
     /**
      * NON-DOM: Returns true if this node is read-only. This is a
      * shallow check.
+     *
+     * @return true if this node is read-only, false otherwise
      */
     public boolean getReadOnly() {
 
@@ -1776,6 +1819,8 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
     /**
      * NON-DOM:
      * Returns the user data associated to this node.
+     *
+     * @return the user data or null
      */
     public Object getUserData() {
         return ownerDocument().getUserData(this);
@@ -1797,6 +1842,8 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
 
     /**
      * Returns the number of changes to this node.
+     *
+     * @return the number of changes
      */
     protected int changes() {
         // we do not actually store this information on every node, we only
@@ -1817,6 +1864,8 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
     /**
      * For non-child nodes, the node which "points" to this node.
      * For example, the owning element for an attribute
+     *
+     * @return the container node or null
      */
     protected Node getContainer() {
         return null;
@@ -1846,6 +1895,10 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
         return (flags & SYNCCHILDREN) != 0;
     }
 
+    /**
+     * Sets whether this node's children need synchronization.
+     * @param value true if children need synchronization, false otherwise
+     */
     public final void needsSyncChildren(boolean value) {
         flags = (short) (value ? flags | SYNCCHILDREN : flags & ~SYNCCHILDREN);
     }
@@ -1924,7 +1977,12 @@ public abstract class NodeImpl implements Node, NodeList, EventTarget, Cloneable
     // Serialization methods
     //
 
-    /** Serialize object. */
+    /**
+     * Serialize object.
+     *
+     * @param out the ObjectOutputStream to write to
+     * @throws IOException if an I/O error occurs
+     */
     private void writeObject(ObjectOutputStream out) throws IOException {
 
         // synchronize data

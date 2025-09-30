@@ -38,7 +38,9 @@ import org.codelibs.xerces.xs.XSTypeDefinition;
 /**
  * Constraints shared by traversers and validator
  *
- * @xerces.internal
+ *
+ * XML Schema constraint checking utility class.
+ * Contains methods for validating schema constraints and type derivations.
  *
  * @author Sandy Gao, IBM
  *
@@ -54,8 +56,20 @@ public class XSConstraints {
     static final int OCCURRENCE_UNKNOWN = SchemaSymbols.OCCURRENCE_UNBOUNDED - 1;
     static final XSSimpleType STRING_TYPE = (XSSimpleType) SchemaGrammar.SG_SchemaNS.getGlobalTypeDecl(SchemaSymbols.ATTVAL_STRING);
 
+    /**
+     * Private constructor to prevent instantiation.
+     * This class contains only static utility methods for XML Schema constraint validation.
+     */
+    private XSConstraints() {
+        // Utility class
+    }
+
     private static XSParticleDecl fEmptyParticle = null;
 
+    /**
+     * Gets an empty sequence particle.
+     * @return an empty sequence particle declaration
+     */
     public static XSParticleDecl getEmptySequence() {
         if (fEmptyParticle == null) {
             XSModelGroupImpl group = new XSModelGroupImpl();
@@ -107,6 +121,10 @@ public class XSConstraints {
     /**
      * check whether derived is valid derived from base, given a subset
      * of {restriction, extension}.B
+     * @param derived the derived type definition
+     * @param base the base type definition
+     * @param block the derivation methods to check
+     * @return true if the derivation is valid, false otherwise
      */
     public static boolean checkTypeDerivationOk(XSTypeDefinition derived, XSTypeDefinition base, short block) {
         // if derived is anyType, then it's valid only if base is anyType too
@@ -138,6 +156,10 @@ public class XSConstraints {
     /**
      * check whether simple type derived is valid derived from base,
      * given a subset of {restriction, extension}.
+     * @param derived the derived simple type
+     * @param base the base type definition
+     * @param block the derivation methods to check
+     * @return true if the derivation is valid, false otherwise
      */
     public static boolean checkSimpleDerivationOk(XSSimpleType derived, XSTypeDefinition base, short block) {
         // if derived is anySimpleType, then it's valid only if the base
@@ -161,6 +183,10 @@ public class XSConstraints {
     /**
      * check whether complex type derived is valid derived from base,
      * given a subset of {restriction, extension}.
+     * @param derived the derived complex type
+     * @param base the base type definition
+     * @param block the derivation methods to check
+     * @return true if the derivation is valid, false otherwise
      */
     public static boolean checkComplexDerivationOk(XSComplexTypeDecl derived, XSTypeDefinition base, short block) {
         // if derived is anyType, then it's valid only if base is anyType too
@@ -269,6 +295,11 @@ public class XSConstraints {
      * check whether a value is a valid default for some type
      * returns the compiled form of the value
      * The parameter value could be either a String or a ValidatedInfo object
+     * @param type the type definition to validate against
+     * @param value the default value to validate
+     * @param context the validation context
+     * @param vinfo the validated info object to populate
+     * @return the actual value if valid, null otherwise
      */
     public static Object ElementDefaultValidImmediate(XSTypeDefinition type, String value, ValidationContext context, ValidatedInfo vinfo) {
 
@@ -333,6 +364,10 @@ public class XSConstraints {
      * (should be each model group):
      * Unique Particle Attribution, Particle Derivation (Restriction),
      * Element Declrations Consistent.
+     * @param grammarBucket the grammar bucket containing all grammars
+     * @param SGHandler the substitution group handler
+     * @param cmBuilder the content model builder
+     * @param errorReporter the error reporter for validation errors
      */
     public static void fullSchemaChecking(XSGrammarBucket grammarBucket, SubstitutionGroupHandler SGHandler, CMBuilder cmBuilder,
             XMLErrorReporter errorReporter) {
@@ -483,10 +518,14 @@ public class XSConstraints {
         }
     }
 
-    /*
-       Check that a given particle is a valid restriction of a base particle.
+    /**
+     * Check that a given particle is a valid restriction of a base particle.
+     * @param type the complex type being checked
+     * @param particle the particle to check
+     * @param elemDeclHash hash table of element declarations
+     * @param sgHandler the substitution group handler
+     * @throws XMLSchemaException if element declarations are inconsistent
      */
-
     public static void checkElementDeclsConsistent(XSComplexTypeDecl type, XSParticleDecl particle, SymbolHash elemDeclHash,
             SubstitutionGroupHandler sgHandler) throws XMLSchemaException {
 
@@ -516,6 +555,13 @@ public class XSConstraints {
             checkElementDeclsConsistent(type, group.fParticles[i], elemDeclHash, sgHandler);
     }
 
+    /**
+     * Finds an element declaration in the table and checks for consistency.
+     * @param type the complex type being checked
+     * @param elem the element declaration to find
+     * @param elemDeclHash the element declaration hash table
+     * @throws XMLSchemaException if element declarations are inconsistent
+     */
     public static void findElemInTable(XSComplexTypeDecl type, XSElementDecl elem, SymbolHash elemDeclHash) throws XMLSchemaException {
 
         // How can we avoid this concat?  LM.
@@ -1260,6 +1306,13 @@ public class XSConstraints {
     }
 
     // to check whether two element overlap, as defined in constraint UPA
+    /**
+     * Checks if two element declarations overlap for UPA (Unique Particle Attribution).
+     * @param element1 the first element declaration
+     * @param element2 the second element declaration
+     * @param sgHandler the substitution group handler
+     * @return true if the elements overlap, false otherwise
+     */
     public static boolean overlapUPA(XSElementDecl element1, XSElementDecl element2, SubstitutionGroupHandler sgHandler) {
         // if the two element have the same name and namespace,
         if (element1.fName == element2.fName && element1.fTargetNamespace == element2.fTargetNamespace) {
@@ -1289,6 +1342,13 @@ public class XSConstraints {
 
     // to check whether an element overlaps with a wildcard,
     // as defined in constraint UPA
+    /**
+     * Checks if an element declaration overlaps with a wildcard for UPA.
+     * @param element the element declaration
+     * @param wildcard the wildcard declaration
+     * @param sgHandler the substitution group handler
+     * @return true if they overlap, false otherwise
+     */
     public static boolean overlapUPA(XSElementDecl element, XSWildcardDecl wildcard, SubstitutionGroupHandler sgHandler) {
         // if the wildcard allows the element
         if (wildcard.allowNamespace(element.fTargetNamespace))
@@ -1304,6 +1364,12 @@ public class XSConstraints {
         return false;
     }
 
+    /**
+     * Checks if two wildcards overlap for UPA.
+     * @param wildcard1 the first wildcard declaration
+     * @param wildcard2 the second wildcard declaration
+     * @return true if they overlap, false otherwise
+     */
     public static boolean overlapUPA(XSWildcardDecl wildcard1, XSWildcardDecl wildcard2) {
         // if the intersection of the two wildcard is not empty list
         XSWildcardDecl intersect = wildcard1.performIntersectionWith(wildcard2, wildcard1.fProcessContents);
@@ -1315,6 +1381,13 @@ public class XSConstraints {
     }
 
     // call one of the above methods according to the type of decls
+    /**
+     * Checks if two declarations overlap for UPA.
+     * @param decl1 the first declaration (element or wildcard)
+     * @param decl2 the second declaration (element or wildcard)
+     * @param sgHandler the substitution group handler
+     * @return true if they overlap, false otherwise
+     */
     public static boolean overlapUPA(Object decl1, Object decl2, SubstitutionGroupHandler sgHandler) {
         if (decl1 instanceof XSElementDecl) {
             if (decl2 instanceof XSElementDecl) {

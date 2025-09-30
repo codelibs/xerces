@@ -29,7 +29,7 @@ import org.w3c.dom.Element;
 /**
  * This class contains code that is used to traverse <keyref>s.
  *
- * @xerces.internal
+
  *
  * @author Neil Graham, IBM
  * @version $Id: XSDKeyrefTraverser.java 819653 2009-09-28 17:29:56Z knoaman $

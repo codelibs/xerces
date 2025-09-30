@@ -22,24 +22,32 @@ public interface ASNotationDeclaration extends ASObject {
     /**
      * the URI reference representing the system identifier for the notation
      * declaration, if present, <code>null</code> otherwise.
+     *
+     * @return the system identifier URI or null if not present
      */
     public String getSystemId();
 
     /**
      * the URI reference representing the system identifier for the notation
      * declaration, if present, <code>null</code> otherwise.
+     *
+     * @param systemId the system identifier URI to set, or null
      */
     public void setSystemId(String systemId);
 
     /**
      * The string representing the public identifier for this notation
      * declaration, if present; <code>null</code> otherwise.
+     *
+     * @return the public identifier string or null if not present
      */
     public String getPublicId();
 
     /**
      * The string representing the public identifier for this notation
      * declaration, if present; <code>null</code> otherwise.
+     *
+     * @param publicId the public identifier string to set, or null
      */
     public void setPublicId(String publicId);
 

@@ -24,7 +24,7 @@ import org.codelibs.xerces.xni.parser.XMLComponentManager;
  * This allows the validator to correctlyhandle XML 1.1
  * documents.
  *
- * @xerces.internal
+
  *
  * @author Neil Graham
  * @version $Id: XML11DTDValidator.java 446755 2006-09-15 21:56:27Z mrglavas $
@@ -35,6 +35,7 @@ public class XML11DTDValidator extends XMLDTDValidator {
     // Constants
     //
 
+    /** Property identifier: DTD validator. */
     protected final static String DTD_VALIDATOR_PROPERTY = Constants.XERCES_PROPERTY_PREFIX + Constants.DTD_VALIDATOR_PROPERTY;
 
     //

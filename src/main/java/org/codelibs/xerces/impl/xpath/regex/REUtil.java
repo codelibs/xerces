@@ -20,7 +20,7 @@ package org.codelibs.xerces.impl.xpath.regex;
 import java.text.CharacterIterator;
 
 /**
- * @xerces.internal
+ * Regular expression utility methods.
  *
  * @version $Id: REUtil.java 828015 2009-10-21 13:56:13Z knoaman $
  */
@@ -202,6 +202,8 @@ public final class REUtil {
     /**
      * Sample entry.
      * <div>Usage: <KBD>org.codelibs.xerces.utils.regex.REUtil &lt;regex&gt; &lt;string&gt;</KBD></div>
+     *
+     * @param argv command-line arguments
      */
     public static void main(String[] argv) {
         String pattern = null;
@@ -279,6 +281,10 @@ public final class REUtil {
      * Creates a RegularExpression instance.
      * This method caches created instances.
      *
+     * @param pattern the regular expression pattern
+     * @param options the options string
+     * @return a RegularExpression instance
+     * @throws ParseException if the pattern is not valid
      * @see RegularExpression#RegularExpression(java.lang.String, java.lang.String)
      */
     public static RegularExpression createRegex(String pattern, String options) throws ParseException {
@@ -312,7 +318,12 @@ public final class REUtil {
     }
 
     /**
+     * Tests whether the given target string matches the specified regular expression.
      *
+     * @param regex the regular expression pattern
+     * @param target the target string to test
+     * @return true if the target matches the regex, false otherwise
+     * @throws ParseException if the regex pattern is invalid
      * @see RegularExpression#matches(java.lang.String)
      */
     public static boolean matches(String regex, String target) throws ParseException {
@@ -320,7 +331,13 @@ public final class REUtil {
     }
 
     /**
+     * Tests whether the given target string matches the specified regular expression with options.
      *
+     * @param regex the regular expression pattern
+     * @param options the options string
+     * @param target the target string to test
+     * @return true if the target matches the regex, false otherwise
+     * @throws ParseException if the regex pattern is invalid
      * @see RegularExpression#matches(java.lang.String)
      */
     public static boolean matches(String regex, String options, String target) throws ParseException {
@@ -330,7 +347,10 @@ public final class REUtil {
     // ================================================================
 
     /**
+     * Escapes special characters in the given literal string for use in a regular expression.
      *
+     * @param literal the literal string to escape
+     * @return the escaped string suitable for use as a literal in a regular expression
      */
     public static String quoteMeta(String literal) {
         int len = literal.length();

@@ -29,6 +29,7 @@ public interface DocumentEditAS extends NodeEditAS {
      * will remain <code>false</code>. This attribute is <code>false</code>
      * by default.Add VALIDATION_ERR code to the list of constants in
      * DOMASException.
+     * @return true if continuous validity checking is enabled, false otherwise
      */
     public boolean getContinuousValidityChecking();
 
@@ -41,6 +42,7 @@ public interface DocumentEditAS extends NodeEditAS {
      * will remain <code>false</code>. This attribute is <code>false</code>
      * by default.Add VALIDATION_ERR code to the list of constants in
      * DOMASException.
+     * @param continuousValidityChecking true to enable continuous validity checking, false to disable
      */
     public void setContinuousValidityChecking(boolean continuousValidityChecking);
 

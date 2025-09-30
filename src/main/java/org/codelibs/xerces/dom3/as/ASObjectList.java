@@ -25,6 +25,8 @@ public interface ASObjectList {
     /**
      * The number of <code>ASObjects</code> in the list. The range of valid
      * child node indices is 0 to <code>length-1</code> inclusive.
+     *
+     * @return the number of ASObjects in the list
      */
     public int getLength();
 

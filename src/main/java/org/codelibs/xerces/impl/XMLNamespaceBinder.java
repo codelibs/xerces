@@ -49,8 +49,6 @@ import org.codelibs.xerces.xni.parser.XMLDocumentSource;
  *  <li>http://apache.org/xml/properties/internal/error-reporter</li>
  * </ul>
  *
- * @xerces.internal
- *
  * @author Andy Clark, IBM
  *
  * @version $Id: XMLNamespaceBinder.java 572055 2007-09-02 17:55:43Z mrglavas $
@@ -110,6 +108,7 @@ public class XMLNamespaceBinder implements XMLComponent, XMLDocumentFilter {
     /** Document handler. */
     protected XMLDocumentHandler fDocumentHandler;
 
+    /** Document source. */
     protected XMLDocumentSource fDocumentSource;
 
     // settings
@@ -158,6 +157,8 @@ public class XMLNamespaceBinder implements XMLComponent, XMLDocumentFilter {
      * Returns true if the namespace binder only passes the prefix mapping
      * events to the registered document handler; false if the namespace
      * binder passes all document events.
+     *
+     * @return True if only prefix mapping events are passed, false if all events are passed.
      */
     public boolean getOnlyPassPrefixMappingEvents() {
         return fOnlyPassPrefixMappingEvents;
@@ -174,12 +175,11 @@ public class XMLNamespaceBinder implements XMLComponent, XMLDocumentFilter {
      *
      * @param componentManager The component manager.
      *
-     * @throws SAXException Thrown by component on initialization error.
+     * @throws XMLConfigurationException Thrown by component on initialization error.
      *                      For example, if a feature or property is
      *                      required for the operation of the component, the
      *                      component manager may throw a
-     *                      SAXNotRecognizedException or a
-     *                      SAXNotSupportedException.
+     *                      XMLConfigurationException.
      */
     public void reset(XMLComponentManager componentManager) throws XNIException {
 
@@ -215,10 +215,8 @@ public class XMLNamespaceBinder implements XMLComponent, XMLDocumentFilter {
      * @param featureId The feature identifier.
      * @param state     The state of the feature.
      *
-     * @throws SAXNotRecognizedException The component should not throw
+     * @throws XMLConfigurationException The component should not throw
      *                                   this exception.
-     * @throws SAXNotSupportedException The component should not throw
-     *                                  this exception.
      */
     public void setFeature(String featureId, boolean state) throws XMLConfigurationException {
     } // setFeature(String,boolean)
@@ -235,8 +233,8 @@ public class XMLNamespaceBinder implements XMLComponent, XMLDocumentFilter {
     /**
      * Sets the value of a property during parsing.
      *
-     * @param propertyId
-     * @param value
+     * @param propertyId The property identifier.
+     * @param value The value of the property.
      */
     public void setProperty(String propertyId, Object value) throws XMLConfigurationException {
 
@@ -624,7 +622,16 @@ public class XMLNamespaceBinder implements XMLComponent, XMLDocumentFilter {
     // Protected methods
     //
 
-    /** Handles start element. */
+    /**
+     * Handles start element.
+     *
+     * @param element The element name.
+     * @param attributes The element attributes.
+     * @param augs The augmentations.
+     * @param isEmpty Whether the element is empty.
+     *
+     * @throws XNIException Thrown on XNI error.
+     */
     protected void handleStartElement(QName element, XMLAttributes attributes, Augmentations augs, boolean isEmpty) throws XNIException {
 
         // add new namespace context
@@ -754,7 +761,15 @@ public class XMLNamespaceBinder implements XMLComponent, XMLDocumentFilter {
 
     } // handleStartElement(QName,XMLAttributes,boolean)
 
-    /** Handles end element. */
+    /**
+     * Handles end element.
+     *
+     * @param element The element name.
+     * @param augs The augmentations.
+     * @param isEmpty Whether the element is empty.
+     *
+     * @throws XNIException Thrown on XNI error.
+     */
     protected void handleEndElement(QName element, Augmentations augs, boolean isEmpty) throws XNIException {
 
         // bind element
@@ -776,8 +791,14 @@ public class XMLNamespaceBinder implements XMLComponent, XMLDocumentFilter {
 
     } // handleEndElement(QName,boolean)
 
-    // returns true iff the given prefix is bound to "" *and*
-    // this is disallowed by the version of XML namespaces in use.
+    /**
+     * Returns true if the given prefix is bound to "" and
+     * this is disallowed by the version of XML namespaces in use.
+     *
+     * @param uri The URI to check.
+     * @param localpart The local part of the element or attribute name.
+     * @return True if the prefix is bound to null URI and this is disallowed.
+     */
     protected boolean prefixBoundToNullURI(String uri, String localpart) {
         return (uri == XMLSymbols.EMPTY_STRING && localpart != XMLSymbols.PREFIX_XMLNS);
     } // prefixBoundToNullURI(String, String):  boolean

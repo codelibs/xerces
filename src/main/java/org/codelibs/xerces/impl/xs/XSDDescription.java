@@ -26,7 +26,9 @@ import org.codelibs.xerces.xni.grammars.XMLSchemaDescription;
 /**
  * All information specific to XML Schema grammars.
  *
- * @xerces.internal
+
+ * XML Schema Description implementation for locating schema documents.
+ * This class describes the location and context of XML Schema documents.
  *
  * @author Neil Graham, IBM
  * @author Neeraj Bajaj, SUN Microsystems.
@@ -40,17 +42,17 @@ public class XSDDescription extends XMLResourceIdentifierImpl implements XMLSche
      */
     public final static short CONTEXT_INITIALIZE = -1;
     /**
-     * Indicate that the current schema document is <include>d by another
+     * Indicate that the current schema document is &lt;include&gt;d by another
      * schema document.
      */
     public final static short CONTEXT_INCLUDE = 0;
     /**
-     * Indicate that the current schema document is <redefine>d by another
+     * Indicate that the current schema document is &lt;redefine&gt;d by another
      * schema document.
      */
     public final static short CONTEXT_REDEFINE = 1;
     /**
-     * Indicate that the current schema document is <import>ed by another
+     * Indicate that the current schema document is &lt;import&gt;ed by another
      * schema document.
      */
     public final static short CONTEXT_IMPORT = 2;
@@ -90,12 +92,24 @@ public class XSDDescription extends XMLResourceIdentifierImpl implements XMLSche
      */
     public final static short CONTEXT_XSITYPE = 7;
 
-    // REVISIT: write description of these fields
+    /** The context type for this schema description */
     protected short fContextType;
+    /** Array of location hints for locating the schema document */
     protected String[] fLocationHints;
+    /** The component that triggered the schema loading */
     protected QName fTriggeringComponent;
+    /** The element name that encloses the triggering component */
     protected QName fEnclosedElementName;
+    /** The attributes associated with this schema description */
     protected XMLAttributes fAttributes;
+
+    /**
+     * Constructs a new XSDDescription instance.
+     * This represents a description of an XML Schema document used for locating and loading schemas.
+     */
+    public XSDDescription() {
+        // Default constructor
+    }
 
     /**
      * the type of the grammar (e.g., DTD or XSD);
@@ -170,6 +184,11 @@ public class XSDDescription extends XMLResourceIdentifierImpl implements XMLSche
         return fAttributes;
     }
 
+    /**
+     * Checks if this description was triggered from an instance document.
+     *
+     * @return true if triggered from instance, false otherwise
+     */
     public boolean fromInstance() {
         return fContextType == CONTEXT_ATTRIBUTE || fContextType == CONTEXT_ELEMENT || fContextType == CONTEXT_INSTANCE
                 || fContextType == CONTEXT_XSITYPE;
@@ -201,14 +220,29 @@ public class XSDDescription extends XMLResourceIdentifierImpl implements XMLSche
         return (fNamespace == null) ? 0 : fNamespace.hashCode();
     }
 
+    /**
+     * Sets the context type for this schema description.
+     *
+     * @param contextType the context type to set
+     */
     public void setContextType(short contextType) {
         fContextType = contextType;
     }
 
+    /**
+     * Sets the target namespace for this schema description.
+     *
+     * @param targetNamespace the target namespace to set
+     */
     public void setTargetNamespace(String targetNamespace) {
         fNamespace = targetNamespace;
     }
 
+    /**
+     * Sets the location hints for locating the schema document.
+     *
+     * @param locationHints array of location hints
+     */
     public void setLocationHints(String[] locationHints) {
         int length = locationHints.length;
         fLocationHints = new String[length];
@@ -216,14 +250,29 @@ public class XSDDescription extends XMLResourceIdentifierImpl implements XMLSche
         //fLocationHints = locationHints ;
     }
 
+    /**
+     * Sets the component that triggered the schema loading.
+     *
+     * @param triggeringComponent the triggering component
+     */
     public void setTriggeringComponent(QName triggeringComponent) {
         fTriggeringComponent = triggeringComponent;
     }
 
+    /**
+     * Sets the element name that encloses the triggering component.
+     *
+     * @param enclosedElementName the enclosing element name
+     */
     public void setEnclosingElementName(QName enclosedElementName) {
         fEnclosedElementName = enclosedElementName;
     }
 
+    /**
+     * Sets the attributes associated with this schema description.
+     *
+     * @param attributes the attributes to set
+     */
     public void setAttributes(XMLAttributes attributes) {
         fAttributes = attributes;
     }
@@ -240,6 +289,11 @@ public class XSDDescription extends XMLResourceIdentifierImpl implements XMLSche
         fAttributes = null;
     }
 
+    /**
+     * Creates a clone of this XSDDescription.
+     *
+     * @return a clone of this description
+     */
     public XSDDescription makeClone() {
         XSDDescription desc = new XSDDescription();
         desc.fAttributes = this.fAttributes;

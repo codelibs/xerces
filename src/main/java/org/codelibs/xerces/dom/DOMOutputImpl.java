@@ -45,7 +45,7 @@ import org.w3c.dom.ls.LSOutput;
  * never modify them (though it may make copies and modify the copies,
  * if necessary).
  *
- * @xerces.internal
+
  *
  * @author Arun Yadav, Sun Microsytems
  * @author Gopal Sharma, Sun Microsystems
@@ -53,9 +53,16 @@ import org.w3c.dom.ls.LSOutput;
 
 public class DOMOutputImpl implements LSOutput {
 
+    /** Character stream for output. */
     protected Writer fCharStream = null;
+
+    /** Byte stream for output. */
     protected OutputStream fByteStream = null;
+
+    /** System identifier for the output destination. */
     protected String fSystemId = null;
+
+    /** Character encoding for the output. */
     protected String fEncoding = null;
 
     /**

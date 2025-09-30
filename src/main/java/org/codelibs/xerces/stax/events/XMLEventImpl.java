@@ -31,7 +31,7 @@ import org.codelibs.xerces.stax.EmptyLocation;
 import org.codelibs.xerces.stax.ImmutableLocation;
 
 /**
- * @xerces.internal
+
  *
  * @author Lucian Holland
  *

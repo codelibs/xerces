@@ -20,7 +20,7 @@ package org.codelibs.xerces.impl.xs;
 /**
  * This exception might be thrown by any constraint checking method.
  *
- * @xerces.internal
+
  *
  * @author Elena Litani, IBM
  *
@@ -31,20 +31,40 @@ public class XMLSchemaException extends Exception {
     /** Serialization version. */
     static final long serialVersionUID = -9096984648537046218L;
 
-    // store a datatype error: error code plus the arguments
+    /**
+     * The error message key.
+     */
     String key;
+    /**
+     * Arguments to be substituted in the error message.
+     */
     Object[] args;
 
-    // report an error
+    /**
+     * Constructs a schema exception with a specified error key and arguments.
+     *
+     * @param key The error message key
+     * @param args Arguments to be substituted in the error message
+     */
     public XMLSchemaException(String key, Object[] args) {
         this.key = key;
         this.args = args;
     }
 
+    /**
+     * Returns the error message key.
+     *
+     * @return The error message key
+     */
     public String getKey() {
         return key;
     }
 
+    /**
+     * Returns the arguments for the error message.
+     *
+     * @return The arguments array for error message substitution
+     */
     public Object[] getArgs() {
         return args;
     }

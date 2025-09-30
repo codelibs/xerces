@@ -32,21 +32,36 @@ package org.codelibs.xerces.wml;
 public interface WMLAccessElement extends WMLElement {
 
     /**
-     * A deck's domain and path attributes specify which deck may
-     * access it.
+     * Sets the domain attribute. A deck's domain and path attributes specify which deck may
+     * access it. Domain attribute is suffix-matched against the domain name
+     * portion of the referring URI.
      *
-     * domain attribute is suffix-matched against the domain name
-     * portion of the referring URI
+     * @param newValue the domain value to set
      */
     public void setDomain(String newValue);
 
+    /**
+     * Gets the domain attribute. A deck's domain and path attributes specify which deck may
+     * access it. Domain attribute is suffix-matched against the domain name
+     * portion of the referring URI.
+     *
+     * @return the domain value
+     */
     public String getDomain();
 
     /**
-     * path attribute is prefix-matched against the path portion of
-     * the referring URI
+     * Sets the path attribute. Path attribute is prefix-matched against the path portion of
+     * the referring URI.
+     *
+     * @param newValue the path value to set
      */
     public void setPath(String newValue);
 
+    /**
+     * Gets the path attribute. Path attribute is prefix-matched against the path portion of
+     * the referring URI.
+     *
+     * @return the path value
+     */
     public String getPath();
 }

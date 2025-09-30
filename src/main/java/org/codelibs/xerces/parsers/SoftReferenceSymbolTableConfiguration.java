@@ -54,7 +54,6 @@ public class SoftReferenceSymbolTableConfiguration extends XIncludeAwareParserCo
     /**
      * Constructs a parser configuration using the specified symbol table and
      * grammar pool.
-     * <p>
      *
      * @param symbolTable The symbol table to use.
      * @param grammarPool The grammar pool to use.
@@ -66,7 +65,6 @@ public class SoftReferenceSymbolTableConfiguration extends XIncludeAwareParserCo
     /**
      * Constructs a parser configuration using the specified symbol table,
      * grammar pool, and parent settings.
-     * <p>
      *
      * @param symbolTable    The symbol table to use.
      * @param grammarPool    The grammar pool to use.

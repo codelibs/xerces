@@ -30,7 +30,7 @@ import org.w3c.dom.DOMLocator;
  *
  * <p>See also the <a href='http://www.w3.org/TR/2001/WD-DOM-Level-3-Core-20010913'>Document Object Model (DOM) Level 3 Core Specification</a>.
  *
- * @xerces.internal
+
  *
  * @author Gopal Sharma, SUN Microsystems Inc.
  * @author Elena Litani, IBM
@@ -48,11 +48,17 @@ public class DOMErrorImpl implements DOMError {
     // Data
     //
 
+    /** The severity of the error. */
     public short fSeverity = DOMError.SEVERITY_WARNING;
+    /** The error message. */
     public String fMessage = null;
+    /** The error location. */
     public DOMLocatorImpl fLocator = new DOMLocatorImpl();
+    /** The related exception. */
     public Exception fException = null;
+    /** The error type. */
     public String fType;
+    /** Related application data. */
     public Object fRelatedData;
 
     //
@@ -63,7 +69,12 @@ public class DOMErrorImpl implements DOMError {
     public DOMErrorImpl() {
     }
 
-    /** Exctracts information from XMLParserException) */
+    /**
+     * Extracts information from XMLParseException.
+     *
+     * @param severity The error severity
+     * @param exception The parse exception
+     */
     public DOMErrorImpl(short severity, XMLParseException exception) {
         fSeverity = severity;
         fException = exception;
@@ -111,6 +122,9 @@ public class DOMErrorImpl implements DOMError {
         return fException;
     }
 
+    /**
+     * Resets the error to its default state.
+     */
     public void reset() {
         fSeverity = DOMError.SEVERITY_WARNING;
         fException = null;

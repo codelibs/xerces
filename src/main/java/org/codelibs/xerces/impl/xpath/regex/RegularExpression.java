@@ -27,8 +27,8 @@ import org.codelibs.xerces.util.IntStack;
  * A regular expression matching engine using Non-deterministic Finite Automaton (NFA).
  * This engine does not conform to the POSIX regular expression.
  *
- * <hr width="50%">
- * <h3>How to use</h3>
+ * <hr>
+ * <h2>How to use</h2>
  *
  * <dl>
  *   <dt>A. Standard way
@@ -50,37 +50,37 @@ import org.codelibs.xerces.util.IntStack;
  *
  * </dl>
  *
- * <h4>Case-insensitive matching</h4>
+ * <h3>Case-insensitive matching</h3>
  * <pre>
  * RegularExpression re = new RegularExpression(<var>regex</var>, "i");
  * if (re.matches(text) >= 0) { ...}
  * </pre>
  *
- * <h4>Options</h4>
- * <p>You can specify options to <a href="#RegularExpression(java.lang.String, java.lang.String)"><code>RegularExpression(</code><var>regex</var><code>, </code><var>options</var><code>)</code></a>
- *    or <a href="#setPattern(java.lang.String, java.lang.String)"><code>setPattern(</code><var>regex</var><code>, </code><var>options</var><code>)</code></a>.
+ * <h3>Options</h3>
+ * <p>You can specify options to {@link #RegularExpression(String, String)} constructor
+ *    or {@link #setPattern(String, String)} method.
  *    This <var>options</var> parameter consists of the following characters.
  * </p>
  * <dl>
- *   <dt><a name="I_OPTION"><code>"i"</code></a>
+ *   <dt><a id="I_OPTION"><code>"i"</code></a>
  *   <dd>This option indicates case-insensitive matching.
- *   <dt><a name="M_OPTION"><code>"m"</code></a>
+ *   <dt><a id="M_OPTION"><code>"m"</code></a>
  *   <dd class="REGEX"><kbd>^</kbd> and <kbd>$</kbd> consider the EOL characters within the text.
- *   <dt><a name="S_OPTION"><code>"s"</code></a>
+ *   <dt><a id="S_OPTION"><code>"s"</code></a>
  *   <dd class="REGEX"><kbd>.</kbd> matches any one character.
- *   <dt><a name="U_OPTION"><code>"u"</code></a>
+ *   <dt><a id="U_OPTION"><code>"u"</code></a>
  *   <dd class="REGEX">Redefines <Kbd>\d \D \w \W \s \S \b \B \&lt; \></kbd> as becoming to Unicode.
- *   <dt><a name="W_OPTION"><code>"w"</code></a>
+ *   <dt><a id="W_OPTION"><code>"w"</code></a>
  *   <dd class="REGEX">By this option, <kbd>\b \B \&lt; \></kbd> are processed with the method of
  *      'Unicode Regular Expression Guidelines' Revision 4.
  *      When "w" and "u" are specified at the same time,
  *      <kbd>\b \B \&lt; \></kbd> are processed for the "w" option.
- *   <dt><a name="COMMA_OPTION"><code>","</code></a>
+ *   <dt><a id="COMMA_OPTION"><code>","</code></a>
  *   <dd>The parser treats a comma in a character class as a range separator.
  *      <kbd class="REGEX">[a,b]</kbd> matches <kbd>a</kbd> or <kbd>,</kbd> or <kbd>b</kbd> without this option.
  *      <kbd class="REGEX">[a,b]</kbd> matches <kbd>a</kbd> or <kbd>b</kbd> with this option.
  *
- *   <dt><a name="X_OPTION"><code>"X"</code></a>
+ *   <dt><a id="X_OPTION"><code>"X"</code></a>
  *   <dd class="REGEX">
  *       By this option, the engine confoms to <a href="http://www.w3.org/TR/2000/WD-xmlschema-2-20000407/#regexs">XML Schema: Regular Expression</a>.
  *       The <code>match()</code> method does not do subsring matching
@@ -88,20 +88,21 @@ import org.codelibs.xerces.util.IntStack;
  *
  * </dl>
  *
- * <hr width="50%">
- * <h3>Syntax</h3>
- * <table border="1" bgcolor="#ddeeff">
+ * <hr>
+ * <h2>Syntax</h2>
+ * <table border="1" style="background-color: #ddeeff;">
+ *   <caption>Regular Expression Syntax Reference</caption>
  *   <tr>
  *    <td>
- *     <h4>Differences from the Perl 5 regular expression</h4>
+ *     <h3>Differences from the Perl 5 regular expression</h3>
  *     <ul>
  *      <li>There is 6-digit hexadecimal character representation  (<kbd>\u005cv</kbd><var>HHHHHH</var>.)
  *      <li>Supports subtraction, union, and intersection operations for character classes.
  *      <li>Not supported: <kbd>\</kbd><var>ooo</var> (Octal character representations),
- *          <Kbd>\G</kbd>, <kbd>\C</kbd>, <kbd>\l</kbd><var>c</var>,
+ *          <kbd>\G</kbd>, <kbd>\C</kbd>, <kbd>\l</kbd><var>c</var>,
  *          <kbd>\u005c u</kbd><var>c</var>, <kbd>\L</kbd>, <kbd>\U</kbd>,
  *          <kbd>\E</kbd>, <kbd>\Q</kbd>, <kbd>\N{</kbd><var>name</var><kbd>}</kbd>,
- *          <Kbd>(?{<kbd><var>code</var><kbd>})</kbd>, <Kbd>(??{<kbd><var>code</var><kbd>})</kbd>
+ *          <kbd>(?{</kbd><var>code</var><kbd>})</kbd>, <kbd>(??{</kbd><var>code</var><kbd>})</kbd>
  *     </ul>
  *    </td>
  *   </tr>
@@ -163,17 +164,17 @@ import org.codelibs.xerces.util.IntStack;
  *
  *   <li>Character class
  *     <dl>
-+ *       <dt class="REGEX"><kbd>[</kbd><var>R<sub>1</sub></var><var>R<sub>2</sub></var><var>...</var><var>R<sub>n</sub></var><kbd>]</kbd> (without <a href="#COMMA_OPTION">"," option</a>)
-+ *       <dt class="REGEX"><kbd>[</kbd><var>R<sub>1</sub></var><kbd>,</kbd><var>R<sub>2</sub></var><kbd>,</kbd><var>...</var><kbd>,</kbd><var>R<sub>n</sub></var><kbd>]</kbd> (with <a href="#COMMA_OPTION">"," option</a>)
- *       <dd>Positive character class.  It matches a character in ranges.
- *       <dd><var>R<sub>n</sub></var>:
+ *       <dt class="REGEX"><kbd>[</kbd><var>R<sub>1</sub></var><var>R<sub>2</sub></var><var>...</var><var>R<sub>n</sub></var><kbd>]</kbd> (without <a href="#COMMA_OPTION">"," option</a>)</dt>
+ *       <dt class="REGEX"><kbd>[</kbd><var>R<sub>1</sub></var><kbd>,</kbd><var>R<sub>2</sub></var><kbd>,</kbd><var>...</var><kbd>,</kbd><var>R<sub>n</sub></var><kbd>]</kbd> (with <a href="#COMMA_OPTION">"," option</a>)</dt>
+ *       <dd><p>Positive character class.  It matches a character in ranges.</p>
+ *       <p><var>R<sub>n</sub></var>:</p>
  *       <ul>
  *         <li class="REGEX">A character (including <Kbd>\e \f \n \r \t</kbd> <kbd>\u005cx</kbd><var>HH</var> <kbd>\u005cx{</kbd><var>HHHH</var><kbd>}</kbd> <!--kbd>\u005c u</kbd><var>HHHH</var--> <kbd>\u005cv</kbd><var>HHHHHH</var>)
  *             <p>This range matches the character.
  *         <li class="REGEX"><var>C<sub>1</sub></var><kbd>-</kbd><var>C<sub>2</sub></var>
  *             <p>This range matches a character which has a code point that is >= <var>C<sub>1</sub></var>'s code point and &lt;= <var>C<sub>2</sub></var>'s code point.
-+ *         <li class="REGEX">A POSIX character class: <Kbd>[:alpha:] [:alnum:] [:ascii:] [:cntrl:] [:digit:] [:graph:] [:lower:] [:print:] [:punct:] [:space:] [:upper:] [:xdigit:]</kbd>,
-+ *             and negative POSIX character classes in Perl like <kbd>[:^alpha:]</kbd>
+ *         <li class="REGEX">A POSIX character class: <Kbd>[:alpha:] [:alnum:] [:ascii:] [:cntrl:] [:digit:] [:graph:] [:lower:] [:print:] [:punct:] [:space:] [:upper:] [:xdigit:]</kbd>,
+ *             and negative POSIX character classes in Perl like <kbd>[:^alpha:]</kbd>
  *             <p>...
  *         <li class="REGEX"><kbd>\d \D \s \S \w \W \p{</kbd><var>name</var><kbd>} \P{</kbd><var>name</var><kbd>}</kbd>
  *             <p>These expressions specifies the same ranges as the following expressions.
@@ -185,10 +186,10 @@ import org.codelibs.xerces.util.IntStack;
  *       <dt class="REGEX"><kbd>[^</kbd><var>R<sub>1</sub></var><kbd>,</kbd><var>R<sub>2</sub></var><kbd>,</kbd><var>...</var><kbd>,</kbd><var>R<sub>n</sub></var><kbd>]</kbd> (with a <a href="#COMMA_OPTION">"," option</a>)
  *       <dd>Negative character class.  It matches a character not in ranges.
  *
- *       <dt class="REGEX"><kbd>(?[</kbd><var>ranges</var><kbd>]</kbd><var>op</var><kbd>[</kbd><var>ranges</var><kbd>]</kbd><var>op</var><kbd>[</kbd><var>ranges</var><kbd>]</kbd> ... <Kbd>)</kbd>
- *       (<var>op</var> is <kbd>-</kbd> or <kbd>+</kbd> or <kbd>&</kbd>.)
+ *       <dt class="REGEX"><kbd>(?[</kbd><var>ranges</var><kbd>]</kbd><var>op</var><kbd>[</kbd><var>ranges</var><kbd>]</kbd><var>op</var><kbd>[</kbd><var>ranges</var><kbd>]</kbd> ... <kbd>)</kbd>
+ *       (<var>op</var> is <kbd>-</kbd> or <kbd>+</kbd> or <kbd>&amp;</kbd>.)
  *       <dd>Subtraction or union or intersection for character classes.
- *       <dd class="REGEX">For exmaple, <kbd>(?[A-Z]-[CF])</kbd> is equivalent to <kbd>[A-BD-EG-Z]</kbd>, and <kbd>(?[0x00-0x7f]-[K]&[\p{Lu}])</kbd> is equivalent to <kbd>[A-JL-Z]</kbd>.
+ *       <dd class="REGEX">For exmaple, <kbd>(?[A-Z]-[CF])</kbd> is equivalent to <kbd>[A-BD-EG-Z]</kbd>, and <kbd>(?[0x00-0x7f]-[K]&amp;[\p{Lu}])</kbd> is equivalent to <kbd>[A-JL-Z]</kbd>.
  *       <dd>The result of this operations is a <u>positive character class</u>
  *           even if an expression includes any negative character classes.
  *           You have to take care on this in case-insensitive matching.
@@ -233,7 +234,7 @@ import org.codelibs.xerces.util.IntStack;
  *           <span class="REGEX"><kbd>[^\p{Lu}\p{Ll}\p{Lo}\p{Nd}_]</kbd></span>.
  *
  *       <dt class="REGEX"><kbd>\p{</kbd><var>name</var><kbd>}</kbd>
- *       <dd>Matches one character in the specified General Category (the second field in <a href="ftp://ftp.unicode.org/Public/UNIDATA/UnicodeData.txt"><kbd>UnicodeData.txt</kbd></a>) or the specified <a href="ftp://ftp.unicode.org/Public/UNIDATA/Blocks.txt">Block</a>.
+ *       <dd>Matches one character in the specified General Category (the second field in <a href="https://www.unicode.org/Public/UNIDATA/UnicodeData.txt"><kbd>UnicodeData.txt</kbd></a>) or the specified <a href="https://www.unicode.org/Public/UNIDATA/Blocks.txt">Block</a>.
  *       The following names are available:
  *       <dl>
  *         <dt>Unicode General Categories:
@@ -317,23 +318,23 @@ import org.codelibs.xerces.util.IntStack;
  *       <dd>Grouping with capturing.
  * It make a group and applications can know
  * where in target text a group matched with methods of a <code>Match</code> instance
- * after <code><a href="#matches(java.lang.String, org.codelibs.xerces.utils.regex.Match)">matches(String,Match)</a></code>.
+ * after {@link #matches(String, Match)} method.
  * The 0th group means whole of this regular expression.
  * The <VAR>N</VAR>th gorup is the inside of the <VAR>N</VAR>th left parenthesis.
  *
  *   <p>For instance, a regular expression is
- *   "<FONT color=blue><KBD> *([^&lt;:]*) +&lt;([^&gt;]*)&gt; *</KBD></FONT>"
+ *   "<KBD> *([^&lt;:]*) +&lt;([^&gt;]*)&gt; *</KBD>"
  *   and target text is
- *   "<FONT color=red><KBD>From: TAMURA Kent &lt;kent@trl.ibm.co.jp&gt;</KBD></FONT>":
+ *   "<KBD>From: TAMURA Kent &lt;kent@trl.ibm.co.jp&gt;</KBD>":
  *   <ul>
  *     <li><code>Match.getCapturedText(0)</code>:
- *     "<FONT color=red><KBD> TAMURA Kent &lt;kent@trl.ibm.co.jp&gt;</KBD></FONT>"
- *     <li><code>Match.getCapturedText(1)</code>: "<FONT color=red><KBD>TAMURA Kent</KBD></FONT>"
- *     <li><code>Match.getCapturedText(2)</code>: "<FONT color=red><KBD>kent@trl.ibm.co.jp</KBD></FONT>"
+ *     "<KBD> TAMURA Kent &lt;kent@trl.ibm.co.jp&gt;</KBD>"
+ *     <li><code>Match.getCapturedText(1)</code>: "<KBD>TAMURA Kent</KBD>"
+ *     <li><code>Match.getCapturedText(2)</code>: "<KBD>kent@trl.ibm.co.jp</KBD>"
  *   </ul>
  *
  *       <dt class="REGEX"><kbd>\1 \2 \3 \4 \5 \6 \7 \8 \9</kbd>
- *       <dd>
+ *       <dd>Back-reference to captured groups.
  *
  *       <dt class="REGEX"><kbd>(?></kbd><var>X</var><kbd>)</kbd>
  *       <dd>Independent expression group. ................
@@ -423,7 +424,7 @@ import org.codelibs.xerces.util.IntStack;
  * </ul>
  *
  *
- * <hr width="50%">
+ * <hr>
  * <h3>BNF for the regular expression</h3>
  * <pre>
  * regex ::= ('(?' options ')')? term ('|' term)*
@@ -454,7 +455,7 @@ import org.codelibs.xerces.util.IntStack;
  * character-1 ::= (any character except meta-characters)
  *
  * char-class ::= '[' ranges ']'
- *                | '(?[' ranges ']' ([-+&] '[' ranges ']')? ')'
+ *                | '(?[' ranges ']' ([-+&amp;] '[' ranges ']')? ')'
  * ranges ::= '^'? (range <a href="#COMMA_OPTION">','?</a>)+
  * range ::= '\d' | '\w' | '\s' | '\D' | '\W' | '\S' | category-block
  *           | range-char | range-char '-' range-char
@@ -467,7 +468,7 @@ import org.codelibs.xerces.util.IntStack;
  * character-2 ::= (any character except \[]-,)
  * </pre>
  *
- * <hr width="50%">
+ * <hr>
  * <h3>TODO</h3>
  * <ul>
  *   <li><a href="http://www.unicode.org/unicode/reports/tr18/">Unicode Regular Expression Guidelines</a>
@@ -478,9 +479,8 @@ import org.codelibs.xerces.util.IntStack;
  *   <li>Parsing performance
  * </ul>
  *
- * <hr width="50%">
+ * <hr>
  *
- * @xerces.internal
  *
  * @author TAMURA Kent &lt;kent@trl.ibm.co.jp&gt;
  * @version $Id: RegularExpression.java 961928 2010-07-08 20:43:46Z knoaman $
@@ -660,6 +660,7 @@ public class RegularExpression implements java.io.Serializable {
     /**
      * Checks whether the <var>target</var> text <strong>contains</strong> this pattern or not.
      *
+     * @param target The target character array to match against
      * @return true if the target is matched to this regular expression.
      */
     public boolean matches(char[] target) {
@@ -670,6 +671,7 @@ public class RegularExpression implements java.io.Serializable {
      * Checks whether the <var>target</var> text <strong>contains</strong> this pattern
      * in specified range or not.
      *
+     * @param target The target character array to match against
      * @param start Start offset of the range.
      * @param end  End offset +1 of the range.
      * @return true if the target is matched to this regular expression.
@@ -681,6 +683,7 @@ public class RegularExpression implements java.io.Serializable {
     /**
      * Checks whether the <var>target</var> text <strong>contains</strong> this pattern or not.
      *
+     * @param target The target character array to match against
      * @param match A Match instance for storing matching result.
      * @return Offset of the start position in <VAR>target</VAR>; or -1 if not match.
      */
@@ -692,6 +695,7 @@ public class RegularExpression implements java.io.Serializable {
      * Checks whether the <var>target</var> text <strong>contains</strong> this pattern
      * in specified range or not.
      *
+     * @param target The target character array to match against
      * @param start Start offset of the range.
      * @param end  End offset +1 of the range.
      * @param match A Match instance for storing matching result.
@@ -842,6 +846,7 @@ public class RegularExpression implements java.io.Serializable {
     /**
      * Checks whether the <var>target</var> text <strong>contains</strong> this pattern or not.
      *
+     * @param target The target string to match against
      * @return true if the target is matched to this regular expression.
      */
     public boolean matches(String target) {
@@ -852,6 +857,7 @@ public class RegularExpression implements java.io.Serializable {
      * Checks whether the <var>target</var> text <strong>contains</strong> this pattern
      * in specified range or not.
      *
+     * @param target The target string to match against
      * @param start Start offset of the range.
      * @param end  End offset +1 of the range.
      * @return true if the target is matched to this regular expression.
@@ -863,6 +869,7 @@ public class RegularExpression implements java.io.Serializable {
     /**
      * Checks whether the <var>target</var> text <strong>contains</strong> this pattern or not.
      *
+     * @param target The target string to match against
      * @param match A Match instance for storing matching result.
      * @return Offset of the start position in <VAR>target</VAR>; or -1 if not match.
      */
@@ -874,6 +881,7 @@ public class RegularExpression implements java.io.Serializable {
      * Checks whether the <var>target</var> text <strong>contains</strong> this pattern
      * in specified range or not.
      *
+     * @param target The target string to match against
      * @param start Start offset of the range.
      * @param end  End offset +1 of the range.
      * @param match A Match instance for storing matching result.
@@ -1501,6 +1509,7 @@ public class RegularExpression implements java.io.Serializable {
     /**
      * Checks whether the <var>target</var> text <strong>contains</strong> this pattern or not.
      *
+     * @param target The target CharacterIterator to match against
      * @return true if the target is matched to this regular expression.
      */
     public boolean matches(CharacterIterator target) {
@@ -1510,6 +1519,7 @@ public class RegularExpression implements java.io.Serializable {
     /**
      * Checks whether the <var>target</var> text <strong>contains</strong> this pattern or not.
      *
+     * @param target The target CharacterIterator to match against
      * @param match A Match instance for storing matching result.
      * @return Offset of the start position in <VAR>target</VAR>; or -1 if not match.
      */
@@ -1665,6 +1675,7 @@ public class RegularExpression implements java.io.Serializable {
      */
     String regex;
     /**
+     * The options used for this regular expression.
      * @serial
      */
     int options;
@@ -1680,6 +1691,9 @@ public class RegularExpression implements java.io.Serializable {
      */
     Token tokentree;
 
+    /**
+     * Flag indicating whether this regular expression has back references.
+     */
     boolean hasBackReferences = false;
 
     transient int minlength;
@@ -2169,7 +2183,7 @@ public class RegularExpression implements java.io.Serializable {
      * Creates a new RegularExpression instance.
      *
      * @param regex A regular expression
-     * @exception org.codelibs.xerces.utils.regex.ParseException <VAR>regex</VAR> is not conforming to the syntax.
+     * @exception org.codelibs.xerces.impl.xpath.regex.ParseException <VAR>regex</VAR> is not conforming to the syntax.
      */
     public RegularExpression(String regex) throws ParseException {
         this(regex, null);
@@ -2180,7 +2194,7 @@ public class RegularExpression implements java.io.Serializable {
      *
      * @param regex A regular expression
      * @param options A String consisted of "i" "m" "s" "u" "w" "," "X"
-     * @exception org.codelibs.xerces.utils.regex.ParseException <VAR>regex</VAR> is not conforming to the syntax.
+     * @exception org.codelibs.xerces.impl.xpath.regex.ParseException <VAR>regex</VAR> is not conforming to the syntax.
      */
     public RegularExpression(String regex, String options) throws ParseException {
         this.setPattern(regex, options);
@@ -2191,7 +2205,8 @@ public class RegularExpression implements java.io.Serializable {
      *
      * @param regex A regular expression
      * @param options A String consisted of "i" "m" "s" "u" "w" "," "X"
-     * @exception org.codelibs.xerces.utils.regex.ParseException <VAR>regex</VAR> is not conforming to the syntax.
+     * @param locale The locale for parsing the regular expression
+     * @exception org.codelibs.xerces.impl.xpath.regex.ParseException <VAR>regex</VAR> is not conforming to the syntax.
      */
     public RegularExpression(String regex, String options, Locale locale) throws ParseException {
         this.setPattern(regex, options, locale);
@@ -2206,12 +2221,22 @@ public class RegularExpression implements java.io.Serializable {
     }
 
     /**
+     * Sets a new pattern for this regular expression using the default locale.
      *
+     * @param newPattern The new regular expression pattern
+     * @throws ParseException if the pattern is not valid
      */
     public void setPattern(String newPattern) throws ParseException {
         this.setPattern(newPattern, Locale.getDefault());
     }
 
+    /**
+     * Sets a new pattern with the specified locale.
+     *
+     * @param newPattern the new regular expression pattern
+     * @param locale the locale to use for parsing
+     * @throws ParseException if the pattern is not valid
+     */
     public void setPattern(String newPattern, Locale locale) throws ParseException {
         this.setPattern(newPattern, this.options, locale);
     }
@@ -2230,18 +2255,32 @@ public class RegularExpression implements java.io.Serializable {
     }
 
     /**
+     * Sets a new pattern and options for this regular expression using the default locale.
      *
+     * @param newPattern The new regular expression pattern
+     * @param options A String consisted of "i" "m" "s" "u" "w" "," "X"
+     * @throws ParseException if the pattern is not valid
      */
     public void setPattern(String newPattern, String options) throws ParseException {
         this.setPattern(newPattern, options, Locale.getDefault());
     }
 
+    /**
+     * Sets a new pattern and options with the specified locale.
+     *
+     * @param newPattern the new regular expression pattern
+     * @param options a String consisted of "i" "m" "s" "u" "w" "," "X"
+     * @param locale the locale to use for parsing
+     * @throws ParseException if the pattern is not valid
+     */
     public void setPattern(String newPattern, String options, Locale locale) throws ParseException {
         this.setPattern(newPattern, REUtil.parseOptions(options), locale);
     }
 
     /**
+     * Returns the pattern string of this regular expression.
      *
+     * @return the regular expression pattern
      */
     public String getPattern() {
         return this.regex;
@@ -2259,6 +2298,7 @@ public class RegularExpression implements java.io.Serializable {
      * The order of letters in it may be different from a string specified
      * in a constructor or <code>setPattern()</code>.
      *
+     * @return the option string
      * @see #RegularExpression(java.lang.String,java.lang.String)
      * @see #setPattern(java.lang.String,java.lang.String)
      */
@@ -2293,6 +2333,7 @@ public class RegularExpression implements java.io.Serializable {
      * Return the number of regular expression groups.
      * This method returns 1 when the regular expression has no capturing-parenthesis.
      *
+     * @return the number of groups in this regular expression
      */
     public int getNumberOfGroups() {
         return this.nofparen;

@@ -26,6 +26,8 @@ package org.codelibs.xerces.xs.datatypes;
 public interface XSFloat {
 
     /**
+     * Returns the float value of this datatype.
+     *
      * @return a float value
      */
     public float getValue();

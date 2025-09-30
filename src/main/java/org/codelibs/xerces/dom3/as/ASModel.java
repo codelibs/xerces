@@ -42,6 +42,8 @@ public interface ASModel extends ASObject {
      * structure in terms of namespaces and local names ; <code>false</code>
      * if the document structure is defined only in terms of
      * <code>QNames</code>.
+     *
+     * @return true if this model is namespace aware, false otherwise
      */
     public boolean getIsNamespaceAware();
 
@@ -49,26 +51,36 @@ public interface ASModel extends ASObject {
      *  0 if used internally, 1 if used externally, 2 if not all. An exception
      * will be raised if it is incompatibly shared or in use as an internal
      * subset.
+     *
+     * @return the usage location code
      */
     public short getUsageLocation();
 
     /**
      *  The URI reference.
+     *
+     * @return the URI reference for this model
      */
     public String getAsLocation();
 
     /**
      *  The URI reference.
+     *
+     * @param asLocation the URI reference to set
      */
     public void setAsLocation(String asLocation);
 
     /**
      *  The hint to locating an ASModel.
+     *
+     * @return the hint string for locating this model
      */
     public String getAsHint();
 
     /**
      *  The hint to locating an ASModel.
+     *
+     * @param asHint the hint string to set
      */
     public void setAsHint(String asHint);
 
@@ -78,6 +90,8 @@ public interface ASModel extends ASObject {
      * element declarations. If one attempts to add, set, or remove a node
      * type other than the intended one, a hierarchy exception (or
      * equivalent is thrown).
+     *
+     * @return the map of element declarations
      */
     public ASNamedObjectMap getElementDeclarations();
 
@@ -87,6 +101,8 @@ public interface ASModel extends ASObject {
      * attribute declarations. If one attempts to add, set, or remove a node
      * type other than the intended one, a hierarchy exception (or
      * equivalent is thrown).
+     *
+     * @return the map of attribute declarations
      */
     public ASNamedObjectMap getAttributeDeclarations();
 
@@ -96,6 +112,8 @@ public interface ASModel extends ASObject {
      * notation declarations. If one attempts to add, set, or remove a node
      * type other than the intended one, a hierarchy exception (or
      * equivalent is thrown).
+     *
+     * @return the map of notation declarations
      */
     public ASNamedObjectMap getNotationDeclarations();
 
@@ -105,6 +123,8 @@ public interface ASModel extends ASObject {
      * entity declarations. If one attempts to add, set, or remove a node
      * type other than the intended one, a hierarchy exception (or
      * equivalent is thrown).
+     *
+     * @return the map of entity declarations
      */
     public ASNamedObjectMap getEntityDeclarations();
 
@@ -114,6 +134,8 @@ public interface ASModel extends ASObject {
      * content model declarations. If one attempts to add, set, or remove a
      * node type other than the intended one, a hierarchy exception (or
      * equivalent is thrown).
+     *
+     * @return the map of content model declarations
      */
     public ASNamedObjectMap getContentModelDeclarations();
 

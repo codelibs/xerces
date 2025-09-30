@@ -22,7 +22,7 @@ package org.codelibs.xerces.impl.validation;
  * by components that store information about entity declarations, as well as by
  * entity validator that will need to validate attributes of type entity.
  *
- * @xerces.internal
+
  *
  * @author Elena Litani, IBM
  * @version $Id: EntityState.java 446719 2006-09-15 20:32:39Z mrglavas $
@@ -31,7 +31,7 @@ public interface EntityState {
     /**
      * Query method to check if entity with this name was declared.
      *
-     * @param name
+     * @param name The entity name to check.
      * @return true if name is a declared entity
      */
     public boolean isEntityDeclared(String name);
@@ -39,7 +39,7 @@ public interface EntityState {
     /**
      * Query method to check if entity is unparsed.
      *
-     * @param name
+     * @param name The entity name to check.
      * @return true if name is an unparsed entity
      */
     public boolean isEntityUnparsed(String name);

@@ -25,7 +25,8 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.events.Comment;
 
 /**
- * @xerces.internal
+ * Implementation of {@code Comment} event for StAX.
+ * Represents an XML comment in an XML document.
  *
  * @author Lucian Holland
  *
@@ -40,7 +41,10 @@ public final class CommentImpl extends XMLEventImpl implements Comment {
     private final String fText;
 
     /**
-     * @param location
+     * Constructs a comment event.
+     *
+     * @param text The comment text
+     * @param location The location of this event
      */
     public CommentImpl(final String text, final Location location) {
         super(COMMENT, location);

@@ -29,7 +29,7 @@ import org.codelibs.xerces.xs.XSTypeDefinition;
 /**
  * Schema identity constraint selector.
  *
- * @xerces.internal
+
  *
  * @author Andy Clark, IBM
  * @version $Id: Selector.java 572110 2007-09-02 19:04:44Z mrglavas $
@@ -46,15 +46,19 @@ public class Selector {
     /** Identity constraint. */
     protected final IdentityConstraint fIdentityConstraint;
 
-    // the Identity constraint we're the matcher for.  Only
-    // used for selectors!
+    /** The identity constraint for this selector. */
     protected IdentityConstraint fIDConstraint;
 
     //
     // Constructors
     //
 
-    /** Constructs a selector. */
+    /**
+     * Constructs a selector.
+     *
+     * @param xpath The XPath expression for this selector.
+     * @param identityConstraint The identity constraint associated with this selector.
+     */
     public Selector(Selector.XPath xpath, IdentityConstraint identityConstraint) {
         fXPath = xpath;
         fIdentityConstraint = identityConstraint;
@@ -64,22 +68,33 @@ public class Selector {
     // Public methods
     //
 
-    /** Returns the selector XPath. */
+    /**
+     * Returns the selector XPath.
+     *
+     * @return The XPath expression for this selector.
+     */
     public org.codelibs.xerces.impl.xpath.XPath getXPath() {
         return fXPath;
     } // getXPath():org.codelibs.xerces.v1.schema.identity.XPath
 
-    /** Returns the identity constraint. */
+    /**
+     * Returns the identity constraint.
+     *
+     * @return The identity constraint associated with this selector.
+     */
     public IdentityConstraint getIDConstraint() {
         return fIdentityConstraint;
     } // getIDConstraint():IdentityConstraint
 
     // factory method
 
-    /** Creates a selector matcher.
-     * @param activator     The activator for this selector's fields.
-     * @param initialDepth  The depth in the document at which this matcher began its life;
-     *                          used in correctly handling recursive elements.
+    /**
+     * Creates a selector matcher.
+     *
+     * @param activator The activator for this selector's fields.
+     * @param initialDepth The depth in the document at which this matcher began its life;
+     *                     used in correctly handling recursive elements.
+     * @return A new XPathMatcher for this selector.
      */
     public XPathMatcher createMatcher(FieldActivator activator, int initialDepth) {
         return new Selector.Matcher(fXPath, activator, initialDepth);
@@ -110,7 +125,14 @@ public class Selector {
         // Constructors
         //
 
-        /** Constructs a selector XPath expression. */
+        /**
+         * Constructs a selector XPath expression.
+         *
+         * @param xpath The XPath expression string.
+         * @param symbolTable The symbol table for String internalization.
+         * @param context The namespace context for resolving prefixes.
+         * @throws XPathException If the XPath expression is invalid.
+         */
         public XPath(String xpath, SymbolTable symbolTable, NamespaceContext context) throws XPathException {
             super(normalize(xpath), symbolTable, context);
             // verify that an attribute is not selected
@@ -177,7 +199,13 @@ public class Selector {
         // Constructors
         //
 
-        /** Constructs a selector matcher. */
+        /**
+         * Constructs a selector matcher.
+         *
+         * @param xpath The XPath expression for this matcher.
+         * @param activator The field activator for activating fields.
+         * @param initialDepth The initial depth in the document.
+         */
         public Matcher(Selector.XPath xpath, FieldActivator activator, int initialDepth) {
             super(xpath);
             fFieldActivator = activator;
@@ -233,12 +261,20 @@ public class Selector {
             }
         }
 
-        /** Returns the identity constraint. */
+        /**
+         * Returns the identity constraint.
+         *
+         * @return The identity constraint for this matcher.
+         */
         public IdentityConstraint getIdentityConstraint() {
             return fIdentityConstraint;
         } // getIdentityConstraint():IdentityConstraint
 
-        /** get the initial depth at which this selector matched. */
+        /**
+         * Gets the initial depth at which this selector matched.
+         *
+         * @return The initial depth value.
+         */
         public int getInitialDepth() {
             return fInitialDepth;
         } // getInitialDepth():  int

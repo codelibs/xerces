@@ -21,11 +21,20 @@ import org.codelibs.xerces.impl.dtd.models.ContentModelValidator;
 import org.codelibs.xerces.xni.QName;
 
 /**
- * @xerces.internal
+ * XML element declaration representation for DTD processing.
+ * This class holds the declaration information for XML elements
+ * including content type, content model, and validation constraints.
  *
  * @version $Id: XMLElementDecl.java 699892 2008-09-28 21:08:27Z mrglavas $
  */
 public class XMLElementDecl {
+
+    /**
+     * Default constructor. Creates an empty element declaration.
+     */
+    public XMLElementDecl() {
+        // Empty constructor
+    }
 
     //
     // Constants
@@ -70,13 +79,13 @@ public class XMLElementDecl {
     //
 
     /**
-     * setValues
+     * Sets the values for this element declaration.
      *
-     * @param name
-     * @param scope
-     * @param type
-     * @param contentModelValidator
-     * @param simpleType
+     * @param name the qualified name of the element
+     * @param scope the scope of the element declaration
+     * @param type the content type (TYPE_ANY, TYPE_EMPTY, TYPE_MIXED, TYPE_CHILDREN, or TYPE_SIMPLE)
+     * @param contentModelValidator the content model validator for this element
+     * @param simpleType the simple type information for this element
      */
     public void setValues(QName name, int scope, short type, ContentModelValidator contentModelValidator, XMLSimpleType simpleType) {
         this.name.setValues(name);

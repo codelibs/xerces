@@ -33,6 +33,7 @@ public interface DocumentAS {
      * <code>ownerElements</code> is not defined in the newly active
      * external ASModel, the <code>ownerElements</code> will be an empty
      * node list.
+     * @return the active external ASModel
      */
     public ASModel getActiveASModel();
 
@@ -47,6 +48,7 @@ public interface DocumentAS {
      * <code>ownerElements</code> is not defined in the newly active
      * external ASModel, the <code>ownerElements</code> will be an empty
      * node list.
+     * @param activeASModel the active external ASModel to set
      */
     public void setActiveASModel(ASModel activeASModel);
 
@@ -54,6 +56,7 @@ public interface DocumentAS {
      *  A list of <code>ASObject</code>s of type <code>AS_MODEL</code>s
      * associated with a document. The <code>addAS</code> method associates
      * a <code>ASModel</code> with a document.
+     * @return the list of bound ASModels
      */
     public ASObjectList getBoundASModels();
 
@@ -61,6 +64,7 @@ public interface DocumentAS {
      *  A list of <code>ASObject</code>s of type <code>AS_MODEL</code>s
      * associated with a document. The <code>addAS</code> method associates
      * a <code>ASModel</code> with a document.
+     * @param boundASModels the list of bound ASModels to set
      */
     public void setBoundASModels(ASObjectList boundASModels);
 
@@ -101,15 +105,13 @@ public interface DocumentAS {
      * be changed and others added.
      * @return ASElementDeclaration object if the implementation supports "
      *   <code>AS-EDIT</code>" feature. Otherwise <code>null</code>.
-     * @exception DOMException
-     *   NOT_FOUND_ERR: Raised if no <code>ASModel</code> is present.
+     * @exception DOMException NOT_FOUND_ERR: Raised if no <code>ASModel</code> is present.
      */
     public ASElementDeclaration getElementDeclaration() throws DOMException;
 
     /**
      * Validates the document against the <code>ASModel</code>.
-     * @exception DOMASException
-     *
+     * @exception DOMASException if validation fails
      */
     public void validate() throws DOMASException;
 

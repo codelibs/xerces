@@ -24,23 +24,27 @@ public interface ElementPSVI extends ItemPSVI {
     /**
      * [element declaration]: an item isomorphic to the element declaration
      * used to validate this element.
+     * @return the element declaration used for validation
      */
     public XSElementDeclaration getElementDeclaration();
 
     /**
      *  [notation]: the notation declaration.
+     *  @return the notation declaration, or null if not applicable
      */
     public XSNotationDeclaration getNotation();
 
     /**
      * [nil]: true if clause 3.2 of Element Locally Valid (Element) (3.3.4) is
      * satisfied, otherwise false.
+     * @return true if the element is nil, false otherwise
      */
     public boolean getNil();
 
     /**
      * schema information: the schema information property if it is the
      * validation root, <code>null</code> otherwise.
+     * @return the schema model, or null if not the validation root
      */
     public XSModel getSchemaInformation();
 

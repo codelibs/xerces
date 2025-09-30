@@ -26,8 +26,7 @@ import org.codelibs.xerces.xni.parser.XMLComponentManager;
 import org.codelibs.xerces.xni.parser.XMLConfigurationException;
 
 /**
- *
- * @xerces.internal
+ * Factory for creating content model nodes.
  *
  * @author  Neeraj Bajaj
  *
@@ -66,6 +65,11 @@ public class CMNodeFactory {
     public CMNodeFactory() {
     }
 
+    /**
+     * Resets the node factory with the specified component manager.
+     *
+     * @param componentManager The component manager to retrieve properties from
+     */
     public void reset(XMLComponentManager componentManager) {
         fErrorReporter = (XMLErrorReporter) componentManager.getProperty(ERROR_REPORTER);
         try {
@@ -77,6 +81,9 @@ public class CMNodeFactory {
 
     }//reset()
 
+    /**
+     * Resets the node factory, recalculating node limits from the security manager.
+     */
     public void reset() {
         // we are setting the limit of number of nodes to 3 times the maxOccurs value.
         if (fSecurityManager != null) {
@@ -84,26 +91,64 @@ public class CMNodeFactory {
         }
     }
 
+    /**
+     * Creates a content model leaf node.
+     *
+     * @param type The type of the leaf node
+     * @param leaf The leaf value (element or wildcard)
+     * @param id The particle identifier
+     * @param position The position in the content model
+     * @return The created leaf node
+     */
     public CMNode getCMLeafNode(int type, Object leaf, int id, int position) {
         nodeCountCheck();
         return new XSCMLeaf(type, leaf, id, position);
     }
 
+    /**
+     * Creates a repeating content model leaf node.
+     *
+     * @param type The type of the leaf node
+     * @param leaf The leaf value (element or wildcard)
+     * @param minOccurs The minimum occurrences
+     * @param maxOccurs The maximum occurrences
+     * @param id The particle identifier
+     * @param position The position in the content model
+     * @return The created repeating leaf node
+     */
     public CMNode getCMRepeatingLeafNode(int type, Object leaf, int minOccurs, int maxOccurs, int id, int position) {
         nodeCountCheck();
         return new XSCMRepeatingLeaf(type, leaf, minOccurs, maxOccurs, id, position);
     }
 
+    /**
+     * Creates a unary operation content model node.
+     *
+     * @param type The type of unary operation (?, *, +)
+     * @param childNode The child node
+     * @return The created unary operation node
+     */
     public CMNode getCMUniOpNode(int type, CMNode childNode) {
         nodeCountCheck();
         return new XSCMUniOp(type, childNode);
     }
 
+    /**
+     * Creates a binary operation content model node.
+     *
+     * @param type The type of binary operation (choice or sequence)
+     * @param leftNode The left child node
+     * @param rightNode The right child node
+     * @return The created binary operation node
+     */
     public CMNode getCMBinOpNode(int type, CMNode leftNode, CMNode rightNode) {
         nodeCountCheck();
         return new XSCMBinOp(type, leftNode, rightNode);
     }
 
+    /**
+     * Checks if the node count exceeds the maximum limit and reports an error if so.
+     */
     public void nodeCountCheck() {
         if (fSecurityManager != null && nodeCount++ > maxNodeLimit) {
             if (DEBUG) {
@@ -119,7 +164,9 @@ public class CMNodeFactory {
 
     }//nodeCountCheck()
 
-    //reset the node count
+    /**
+     * Resets the node count to zero.
+     */
     public void resetNodeCount() {
         nodeCount = 0;
     }
@@ -134,10 +181,8 @@ public class CMNodeFactory {
     * @param propertyId The property identifier.
     * @param value      The value of the property.
     *
-    * @throws SAXNotRecognizedException The component should not throw
-    *                                   this exception.
-    * @throws SAXNotSupportedException The component should not throw
-    *                                  this exception.
+    * @throws XMLConfigurationException if the property identifier is not
+    *                                   recognized or the value is not supported.
     */
     public void setProperty(String propertyId, Object value) throws XMLConfigurationException {
 

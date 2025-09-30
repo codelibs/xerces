@@ -27,7 +27,7 @@ import org.codelibs.xerces.impl.dv.xs.XSSimpleTypeDecl;
  * declarations to the pool.
  * Note: The cashing mechanism is not implemented yet.
  *
- * @xerces.internal
+
  *
  * @author Elena Litani, IBM
  * @version $Id: XSDeclarationPool.java 805582 2009-08-18 21:13:20Z sandygao $
@@ -75,10 +75,27 @@ public final class XSDeclarationPool {
 
     private SchemaDVFactoryImpl dvFactory;
 
+    /**
+     * Constructs a new XSDeclarationPool instance.
+     * This pool manages and reuses XML Schema declaration objects for performance optimization.
+     */
+    public XSDeclarationPool() {
+        // Default constructor
+    }
+
+    /**
+     * Sets the datatype validator factory for creating simple type declarations.
+     * @param dvFactory the schema datatype validator factory implementation
+     */
     public void setDVFactory(SchemaDVFactoryImpl dvFactory) {
         this.dvFactory = dvFactory;
     }
 
+    /**
+     * Gets an element declaration from the pool, creating a new one if necessary
+     * or reusing an existing one after resetting it.
+     * @return a reusable XSElementDecl instance
+     */
     public final XSElementDecl getElementDecl() {
         int chunk = fElementDeclIndex >> CHUNK_SHIFT;
         int index = fElementDeclIndex & CHUNK_MASK;
@@ -92,6 +109,11 @@ public final class XSDeclarationPool {
         return fElementDecl[chunk][index];
     }
 
+    /**
+     * Gets an attribute declaration from the pool, creating a new one if necessary
+     * or reusing an existing one after resetting it.
+     * @return a reusable XSAttributeDecl instance
+     */
     public final XSAttributeDecl getAttributeDecl() {
         int chunk = fAttrDeclIndex >> CHUNK_SHIFT;
         int index = fAttrDeclIndex & CHUNK_MASK;
@@ -106,6 +128,11 @@ public final class XSDeclarationPool {
 
     }
 
+    /**
+     * Gets an attribute use implementation from the pool, creating a new one if necessary
+     * or reusing an existing one after resetting it.
+     * @return a reusable XSAttributeUseImpl instance
+     */
     public final XSAttributeUseImpl getAttributeUse() {
         int chunk = fAttributeUseIndex >> CHUNK_SHIFT;
         int index = fAttributeUseIndex & CHUNK_MASK;
@@ -120,6 +147,11 @@ public final class XSDeclarationPool {
 
     }
 
+    /**
+     * Gets a complex type declaration from the pool, creating a new one if necessary
+     * or reusing an existing one after resetting it.
+     * @return a reusable XSComplexTypeDecl instance
+     */
     public final XSComplexTypeDecl getComplexTypeDecl() {
         int chunk = fCTDeclIndex >> CHUNK_SHIFT;
         int index = fCTDeclIndex & CHUNK_MASK;
@@ -134,6 +166,11 @@ public final class XSDeclarationPool {
         return fCTDecl[chunk][index];
     }
 
+    /**
+     * Gets a simple type declaration from the pool, creating a new one if necessary
+     * or reusing an existing one after resetting it.
+     * @return a reusable XSSimpleTypeDecl instance
+     */
     public final XSSimpleTypeDecl getSimpleTypeDecl() {
         int chunk = fSTDeclIndex >> CHUNK_SHIFT;
         int index = fSTDeclIndex & CHUNK_MASK;
@@ -148,6 +185,11 @@ public final class XSDeclarationPool {
 
     }
 
+    /**
+     * Gets a particle declaration from the pool, creating a new one if necessary
+     * or reusing an existing one after resetting it.
+     * @return a reusable XSParticleDecl instance
+     */
     public final XSParticleDecl getParticleDecl() {
         int chunk = fParticleDeclIndex >> CHUNK_SHIFT;
         int index = fParticleDeclIndex & CHUNK_MASK;
@@ -161,6 +203,11 @@ public final class XSDeclarationPool {
         return fParticleDecl[chunk][index];
     }
 
+    /**
+     * Gets a model group implementation from the pool, creating a new one if necessary
+     * or reusing an existing one after resetting it.
+     * @return a reusable XSModelGroupImpl instance
+     */
     public final XSModelGroupImpl getModelGroup() {
         int chunk = fModelGroupIndex >> CHUNK_SHIFT;
         int index = fModelGroupIndex & CHUNK_MASK;
@@ -300,6 +347,10 @@ public final class XSDeclarationPool {
         return newarray;
     }
 
+    /**
+     * Resets all pool indices to zero, effectively making all cached declarations
+     * available for reuse in subsequent operations.
+     */
     public void reset() {
         fElementDeclIndex = 0;
         fParticleDeclIndex = 0;

@@ -22,9 +22,7 @@ import org.codelibs.xerces.impl.dv.ValidationContext;
 import org.codelibs.xerces.xs.datatypes.XSFloat;
 
 /**
- * Represent the schema type "float"
- *
- * @xerces.internal
+ * Represent the schema type "float".
  *
  * @author Neeraj Bajaj, Sun Microsystems, inc.
  * @author Sandy Gao, IBM
@@ -32,6 +30,12 @@ import org.codelibs.xerces.xs.datatypes.XSFloat;
  * @version $Id: FloatDV.java 572095 2007-09-02 18:32:43Z mrglavas $
  */
 public class FloatDV extends TypeValidator {
+
+    /**
+     * Default constructor for internal instantiation.
+     */
+    public FloatDV() {
+    }
 
     public short getAllowedFacets() {
         return (XSSimpleTypeDecl.FACET_PATTERN | XSSimpleTypeDecl.FACET_WHITESPACE | XSSimpleTypeDecl.FACET_ENUMERATION

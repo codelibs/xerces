@@ -52,6 +52,8 @@ public interface ASContentModel extends ASObject {
      * example, if the list operator is <code>AS_CHOICE</code> and the
      * components in subModels are a, b and c then the abstract schema for
      * the element being declared is <code>(a|b|c)</code>.
+     *
+     * @return the list operator
      */
     public short getListOperator();
 
@@ -62,18 +64,24 @@ public interface ASContentModel extends ASObject {
      * example, if the list operator is <code>AS_CHOICE</code> and the
      * components in subModels are a, b and c then the abstract schema for
      * the element being declared is <code>(a|b|c)</code>.
+     *
+     * @param listOperator the list operator to set
      */
     public void setListOperator(short listOperator);
 
     /**
      * min occurrence for this content particle. Its value may be 0 or a
      * positive integer.
+     *
+     * @return the minimum occurrence
      */
     public int getMinOccurs();
 
     /**
      * min occurrence for this content particle. Its value may be 0 or a
      * positive integer.
+     *
+     * @param minOccurs the minimum occurrence to set
      */
     public void setMinOccurs(int minOccurs);
 
@@ -81,6 +89,8 @@ public interface ASContentModel extends ASObject {
      *  maximum occurrence for this content particle. Its value may be
      * <code>0</code>, a positive integer, or <code>AS_UNBOUNDED</code> to
      * indicate that no upper limit has been set.
+     *
+     * @return the maximum occurrence
      */
     public int getMaxOccurs();
 
@@ -88,6 +98,8 @@ public interface ASContentModel extends ASObject {
      *  maximum occurrence for this content particle. Its value may be
      * <code>0</code>, a positive integer, or <code>AS_UNBOUNDED</code> to
      * indicate that no upper limit has been set.
+     *
+     * @param maxOccurs the maximum occurrence to set
      */
     public void setMaxOccurs(int maxOccurs);
 
@@ -95,6 +107,8 @@ public interface ASContentModel extends ASObject {
      * Pointers to <code>ASObject</code>s such as
      * <code> ASElementDeclaration</code>s and further
      * <code>ASContentModel</code>s.
+     *
+     * @return the list of sub-models
      */
     public ASObjectList getSubModels();
 
@@ -102,6 +116,8 @@ public interface ASContentModel extends ASObject {
      * Pointers to <code>ASObject</code>s such as
      * <code> ASElementDeclaration</code>s and further
      * <code>ASContentModel</code>s.
+     *
+     * @param subModels the list of sub-models to set
      */
     public void setSubModels(ASObjectList subModels);
 

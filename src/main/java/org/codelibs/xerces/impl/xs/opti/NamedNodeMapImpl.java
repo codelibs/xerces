@@ -23,7 +23,9 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 /**
- * @xerces.internal
+ * NamedNodeMap implementation for XML Schema processing.
+ * This class provides a lightweight NamedNodeMap implementation
+ * for attribute collections in schema DOM elements.
  *
  * @author Rahul Srivastava, Sun Microsystems Inc.
  *
@@ -33,6 +35,10 @@ public class NamedNodeMapImpl implements NamedNodeMap {
 
     Attr[] attrs;
 
+    /**
+     * Constructs a NamedNodeMapImpl with the specified attributes.
+     * @param attrs the array of attributes to store in this map
+     */
     public NamedNodeMapImpl(Attr[] attrs) {
         this.attrs = attrs;
     }

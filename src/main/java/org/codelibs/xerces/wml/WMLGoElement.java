@@ -28,20 +28,60 @@ package org.codelibs.xerces.wml;
 
 public interface WMLGoElement extends WMLElement {
 
+    /**
+     * Sets the 'sendreferer' attribute which indicates whether to send the referrer information.
+     *
+     * @param newValue the new value for the sendreferer attribute
+     */
     public void setSendreferer(String newValue);
 
+    /**
+     * Gets the 'sendreferer' attribute which indicates whether to send the referrer information.
+     *
+     * @return the value of the sendreferer attribute
+     */
     public String getSendreferer();
 
+    /**
+     * Sets the 'accept-charset' attribute which specifies accepted character encodings.
+     *
+     * @param newValue the new value for the accept-charset attribute
+     */
     public void setAcceptCharset(String newValue);
 
+    /**
+     * Gets the 'accept-charset' attribute which specifies accepted character encodings.
+     *
+     * @return the value of the accept-charset attribute
+     */
     public String getAcceptCharset();
 
+    /**
+     * Sets the 'href' attribute which specifies the destination URL.
+     *
+     * @param newValue the new value for the href attribute
+     */
     public void setHref(String newValue);
 
+    /**
+     * Gets the 'href' attribute which specifies the destination URL.
+     *
+     * @return the value of the href attribute
+     */
     public String getHref();
 
+    /**
+     * Sets the 'method' attribute which specifies the HTTP method (GET or POST).
+     *
+     * @param newValue the new value for the method attribute
+     */
     public void setMethod(String newValue);
 
+    /**
+     * Gets the 'method' attribute which specifies the HTTP method (GET or POST).
+     *
+     * @return the value of the method attribute
+     */
     public String getMethod();
 
 }

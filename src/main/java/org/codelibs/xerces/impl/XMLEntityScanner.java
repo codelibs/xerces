@@ -33,8 +33,6 @@ import org.codelibs.xerces.xni.XMLString;
 /**
  * Implements the entity scanner methods.
  *
- * @xerces.internal
- *
  * @author Andy Clark, IBM
  * @author Neil Graham, IBM
  * @version $Id: XMLEntityScanner.java 1707346 2015-10-07 17:46:10Z mrglavas $
@@ -61,10 +59,13 @@ public class XMLEntityScanner implements XMLLocator {
     //
 
     private XMLEntityManager fEntityManager = null;
+    /** Current entity being scanned. */
     protected XMLEntityManager.ScannedEntity fCurrentEntity = null;
 
+    /** Symbol table for string interning. */
     protected SymbolTable fSymbolTable = null;
 
+    /** Buffer size for reading entities. */
     protected int fBufferSize = XMLEntityManager.DEFAULT_BUFFER_SIZE;
 
     /**
@@ -178,7 +179,11 @@ public class XMLEntityScanner implements XMLLocator {
         fCurrentEntity.xmlVersion = xmlVersion;
     } // setXMLVersion(String)
 
-    /** Returns true if the current entity being scanned is external. */
+    /**
+     * Returns true if the current entity being scanned is external.
+     *
+     * @return True if the current entity is external, false otherwise.
+     */
     public final boolean isExternal() {
         return fCurrentEntity.isExternal();
     } // isExternal():boolean
@@ -187,6 +192,8 @@ public class XMLEntityScanner implements XMLLocator {
      * Returns the next character on the input.
      * <p>
      * <strong>Note:</strong> The character is <em>not</em> consumed.
+     *
+     * @return The next character on the input.
      *
      * @throws IOException  Thrown if i/o error occurs.
      * @throws EOFException Thrown on end of file.
@@ -228,6 +235,8 @@ public class XMLEntityScanner implements XMLLocator {
      * Returns the next character on the input.
      * <p>
      * <strong>Note:</strong> The character is consumed.
+     *
+     * @return The next character on the input.
      *
      * @throws IOException  Thrown if i/o error occurs.
      * @throws EOFException Thrown on end of file.
@@ -281,6 +290,8 @@ public class XMLEntityScanner implements XMLLocator {
      * <p>
      * <strong>Note:</strong> The string returned must be a symbol. The
      * SymbolTable can be used for this purpose.
+     *
+     * @return The NMTOKEN string.
      *
      * @throws IOException  Thrown if i/o error occurs.
      * @throws EOFException Thrown on end of file.
@@ -342,6 +353,8 @@ public class XMLEntityScanner implements XMLLocator {
      * <p>
      * <strong>Note:</strong> The string returned must be a symbol. The
      * SymbolTable can be used for this purpose.
+     *
+     * @return The Name string.
      *
      * @throws IOException  Thrown if i/o error occurs.
      * @throws EOFException Thrown on end of file.
@@ -420,6 +433,8 @@ public class XMLEntityScanner implements XMLLocator {
      * <p>
      * <strong>Note:</strong> The string returned must be a symbol. The
      * SymbolTable can be used for this purpose.
+     *
+     * @return The NCName string.
      *
      * @throws IOException  Thrown if i/o error occurs.
      * @throws EOFException Thrown on end of file.
@@ -1470,11 +1485,10 @@ public class XMLEntityScanner implements XMLLocator {
 
     /**
      * Return the literal system identifier for the current document event.
-     * <p>
      * The return value is the literal system identifier of the document
      * entity or of the external parsed entity in which the markup
      * triggering the event appears.
-     * <p>
+     *
      * @return A string containing the literal system identifier, or null
      *         if none is available.
      */
@@ -1501,7 +1515,6 @@ public class XMLEntityScanner implements XMLLocator {
      * The return value is an approximation of the line number
      * in the document entity or external parsed entity where the
      * markup triggering the event appears.
-     * <p>
      * If possible, the line position of the first character after the
      * text associated with the document event should be provided.
      * The first line in the document is line 1.
@@ -1626,11 +1639,21 @@ public class XMLEntityScanner implements XMLLocator {
     } // getXMLVersion():String
 
     // allow entity manager to tell us what the current entityis:
+    /**
+     * Sets the current entity.
+     *
+     * @param ent The entity to set as current
+     */
     public final void setCurrentEntity(XMLEntityManager.ScannedEntity ent) {
         fCurrentEntity = ent;
     }
 
     // set buffer size:
+    /**
+     * Sets the buffer size.
+     *
+     * @param size The buffer size
+     */
     public final void setBufferSize(int size) {
         // REVISIT: Buffer size passed to entity scanner
         // was not being kept in synch with the actual size
@@ -1646,6 +1669,13 @@ public class XMLEntityScanner implements XMLLocator {
     }
 
     // reset what little state we have...
+    /**
+     * Resets the scanner.
+     *
+     * @param symbolTable The symbol table
+     * @param entityManager The entity manager
+     * @param reporter The error reporter
+     */
     public final void reset(SymbolTable symbolTable, XMLEntityManager entityManager, XMLErrorReporter reporter) {
         fCurrentEntity = null;
         fSymbolTable = symbolTable;

@@ -19,7 +19,8 @@ package org.codelibs.xerces.wml.dom;
 import org.codelibs.xerces.wml.WMLAccessElement;
 
 /**
- * @xerces.internal
+ * Implementation of WMLAccessElement interface for WML access elements.
+ *
  * @version $Id: WMLAccessElementImpl.java 661560 2008-05-30 03:22:25Z mrglavas $
  * @author <a href="mailto:david@topware.com.tw">David Li</a>
  */
@@ -27,6 +28,12 @@ public class WMLAccessElementImpl extends WMLElementImpl implements WMLAccessEle
 
     private static final long serialVersionUID = -235627181817012806L;
 
+    /**
+     * Constructs a new WML access element with the specified owner document and tag name.
+     *
+     * @param owner the owner document
+     * @param tagName the tag name for this element
+     */
     public WMLAccessElementImpl(WMLDocumentImpl owner, String tagName) {
         super(owner, tagName);
     }

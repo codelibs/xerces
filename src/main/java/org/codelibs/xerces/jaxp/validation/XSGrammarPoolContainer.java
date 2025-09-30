@@ -49,6 +49,9 @@ public interface XSGrammarPoolContainer {
      * Returns the initial value of a feature for validators created
      * using this grammar pool container or null if the validators
      * should use the default value.
+     *
+     * @param featureId the feature identifier
+     * @return the initial value of the feature, or null for default value
      */
     public Boolean getFeature(String featureId);
 

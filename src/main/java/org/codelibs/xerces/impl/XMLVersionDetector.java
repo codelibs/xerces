@@ -34,13 +34,17 @@ import org.codelibs.xerces.xni.parser.XMLInputSource;
  * which scanner to use: XML 1.1 or XML 1.0.
  * The version is scanned using XML 1.1. scanner.
  *
- * @xerces.internal
- *
  * @author Neil Graham, IBM
  * @author Elena Litani, IBM
  * @version $Id: XMLVersionDetector.java 699892 2008-09-28 21:08:27Z mrglavas $
  */
 public class XMLVersionDetector {
+
+    /**
+     * Default constructor.
+     */
+    public XMLVersionDetector() {
+    }
 
     //
     // Constants
@@ -66,7 +70,7 @@ public class XMLVersionDetector {
     /** Symbol: "version". */
     protected static final String fVersionSymbol = "version".intern();
 
-    // symbol:  [xml]:
+    /** Symbol: "[xml]" */
     protected static final String fXMLSymbol = "[xml]".intern();
 
     /** Symbol table. */
@@ -78,17 +82,17 @@ public class XMLVersionDetector {
     /** Entity manager. */
     protected XMLEntityManager fEntityManager;
 
+    /** The encoding of the document being parsed. */
     protected String fEncoding = null;
 
     private final char[] fExpectedVersionString =
             { '<', '?', 'x', 'm', 'l', ' ', 'v', 'e', 'r', 's', 'i', 'o', 'n', '=', ' ', ' ', ' ', ' ', ' ' };
 
     /**
-     *
+     * Resets this component with the given component manager.
      *
      * @param componentManager The component manager.
-     *
-     * @throws XNIException Throws exception if required features and
+     * @throws XMLConfigurationException Throws exception if required features and
      *                      properties cannot be found.
      */
     public void reset(XMLComponentManager componentManager) throws XMLConfigurationException {
@@ -129,10 +133,10 @@ public class XMLVersionDetector {
      * This methods scans the XML declaration to find out the version
      * (and provisional encoding)  of the document.
      * The scanning is doing using XML 1.1 scanner.
-     * @param inputSource
+     * @param inputSource The input source for the document
      * @return short - Constants.XML_VERSION_1_1 if document version 1.1,
      *                  otherwise Constants.XML_VERSION_1_0
-     * @throws IOException
+     * @throws IOException If an I/O error occurs while reading the input
      */
     public short determineDocVersion(XMLInputSource inputSource) throws IOException {
         fEncoding = fEntityManager.setupCurrentEntity(fXMLSymbol, inputSource, false, true);

@@ -28,7 +28,7 @@ import org.codelibs.xerces.xni.parser.XMLInputSource;
 /**
  * All information specific to DTD grammars.
  *
- * @xerces.internal
+
  *
  * @author Neil Graham, IBM
  * @version $Id: XMLDTDDescription.java 699892 2008-09-28 21:08:27Z mrglavas $
@@ -39,25 +39,47 @@ public class XMLDTDDescription extends XMLResourceIdentifierImpl implements org.
 
     // pieces of information needed to make this usable as a Grammar key
     // if we know the root of this grammar, here's its name:
+    /** The root element name for this DTD grammar. */
     protected String fRootName = null;
 
     // if we don't know the root name, this stores all elements that
     // could serve; fPossibleRoots and fRootName cannot both be non-null
+    /** List of possible root element names when the exact root is unknown. */
     protected ArrayList fPossibleRoots = null;
 
     // Constructors:
+    /**
+     * Constructs a DTD description from an XMLResourceIdentifier and root name.
+     *
+     * @param id the resource identifier
+     * @param rootName the root element name
+     */
     public XMLDTDDescription(XMLResourceIdentifier id, String rootName) {
         this.setValues(id.getPublicId(), id.getLiteralSystemId(), id.getBaseSystemId(), id.getExpandedSystemId());
         this.fRootName = rootName;
         this.fPossibleRoots = null;
     } // init(XMLResourceIdentifier, String)
 
+    /**
+     * Constructs a DTD description from individual identifiers and root name.
+     *
+     * @param publicId the public identifier
+     * @param literalId the literal system identifier
+     * @param baseId the base system identifier
+     * @param expandedId the expanded system identifier
+     * @param rootName the root element name
+     */
     public XMLDTDDescription(String publicId, String literalId, String baseId, String expandedId, String rootName) {
         this.setValues(publicId, literalId, baseId, expandedId);
         this.fRootName = rootName;
         this.fPossibleRoots = null;
     } // init(String, String, String, String, String)
 
+    /**
+     * Constructs a DTD description from an XMLInputSource.
+     *
+     * @param source the input source for this DTD
+     */
     public XMLDTDDescription(XMLInputSource source) {
         this.setValues(source.getPublicId(), null, source.getBaseSystemId(), source.getSystemId());
         this.fRootName = null;
@@ -77,18 +99,30 @@ public class XMLDTDDescription extends XMLResourceIdentifierImpl implements org.
         return fRootName;
     } // getRootName():  String
 
-    /** Set the root name **/
+    /**
+     * Set the root element name.
+     *
+     * @param rootName the root element name
+     */
     public void setRootName(String rootName) {
         fRootName = rootName;
         fPossibleRoots = null;
     }
 
-    /** Set possible roots **/
+    /**
+     * Set possible root element names.
+     *
+     * @param possibleRoots the list of possible root element names
+     */
     public void setPossibleRoots(ArrayList possibleRoots) {
         fPossibleRoots = possibleRoots;
     }
 
-    /** Set possible roots **/
+    /**
+     * Set possible root element names from a Vector.
+     *
+     * @param possibleRoots the vector of possible root element names
+     */
     public void setPossibleRoots(Vector possibleRoots) {
         fPossibleRoots = (possibleRoots != null) ? new ArrayList(possibleRoots) : null;
     }

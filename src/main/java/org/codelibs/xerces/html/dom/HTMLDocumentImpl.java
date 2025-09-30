@@ -53,7 +53,7 @@ import org.w3c.dom.html.HTMLTitleElement;
  * are direct document writing ({@link #open}, {@link #write}) and HTTP attribute
  * methods ({@link #getURL}, {@link #getCookie}).
  *
- * @xerces.internal
+
  *
  * @version $Revision: 1029415 $ $Date: 2010-10-31 22:32:22 +0530 (Sun, 31 Oct 2010) $
  * @author <a href="mailto:arkin@exoffice.com">Assaf Arkin</a>
@@ -120,6 +120,7 @@ public class HTMLDocumentImpl extends DocumentImpl implements HTMLDocument {
     private static final Class[] _elemClassSigHTML = new Class[] { HTMLDocumentImpl.class, String.class };
 
     /**
+     * Creates a new HTML document.
      */
     public HTMLDocumentImpl() {
         super();
@@ -441,7 +442,7 @@ public class HTMLDocumentImpl extends DocumentImpl implements HTMLDocument {
      *
      * @param name The name of the attribute
      * @return An attribute whose name is all lower case
-     * @throws DOMException(INVALID_NAME_ERR) if the attribute name
+     * @throws DOMException INVALID_NAME_ERR if the attribute name
      *   is not acceptable
      */
     public Attr createAttribute(String name) throws DOMException {

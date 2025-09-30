@@ -25,7 +25,7 @@ import org.codelibs.xerces.xs.datatypes.ByteList;
 /**
  * Implementation of <code>org.codelibs.xerces.xs.datatypes.ByteList</code>.
  *
- * @xerces.internal
+
  *
  * @author Ankit Pasricha, IBM
  *
@@ -33,12 +33,21 @@ import org.codelibs.xerces.xs.datatypes.ByteList;
  */
 public class ByteListImpl extends AbstractList implements ByteList {
 
-    // actually data stored in a byte array
+    /**
+     * The actual data stored in a byte array.
+     */
     protected final byte[] data;
 
-    // canonical representation of the data
+    /**
+     * The canonical representation of the data.
+     */
     protected String canonical;
 
+    /**
+     * Constructs a ByteListImpl with the given byte array.
+     *
+     * @param data the byte array to be wrapped by this list
+     */
     public ByteListImpl(byte[] data) {
         this.data = data;
     }

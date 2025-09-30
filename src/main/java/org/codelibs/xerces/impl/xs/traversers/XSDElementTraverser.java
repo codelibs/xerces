@@ -62,7 +62,7 @@ import org.w3c.dom.Element;
  *   Content: (annotation?, ((simpleType | complexType)?, (unique | key | keyref)*))
  * </element>
  *
- * @xerces.internal
+
  *
  * @author Sandy Gao, IBM
  *

@@ -50,24 +50,27 @@ package org.codelibs.xerces.util;
  * is allowed to get before its capacity is automatically increased.
  * When the number of entries in the SymbolTable exceeds the product of the load
  * factor and the current capacity, the capacity is increased by calling the
- * <code>rehash</code> method.<p>
- *
+ * <code>rehash</code> method.
+ * <p>
  * Generally, the default load factor (.75) offers a good tradeoff between
  * time and space costs.  Higher values decrease the space overhead but
  * increase the time cost to look up an entry (which is reflected in most
- * <tt>SymbolTable</tt> operations, including <tt>addSymbol</tt> and <tt>containsSymbol</tt>).<p>
- *
+ * <code>SymbolTable</code> operations, including <code>addSymbol</code> and <code>containsSymbol</code>).
+ * </p>
+ * <p>
  * The initial capacity controls a tradeoff between wasted space and the
  * need for <code>rehash</code> operations, which are time-consuming.
  * No <code>rehash</code> operations will <i>ever</i> occur if the initial
  * capacity is greater than the maximum number of entries the
- * <tt>Hashtable</tt> will contain divided by its load factor.  However,
- * setting the initial capacity too high can waste space.<p>
- *
+ * <code>Hashtable</code> will contain divided by its load factor.  However,
+ * setting the initial capacity too high can waste space.
+ * </p>
+ * <p>
  * If many entries are to be made into a <code>SymbolTable</code>,
  * creating it with a sufficiently large capacity may allow the
  * entries to be inserted more efficiently than letting it perform
- * automatic rehashing as needed to grow the table. <p>
+ * automatic rehashing as needed to grow the table.
+ * </p>
 
  * @see SymbolHash
  *
@@ -88,7 +91,9 @@ public class SymbolTable {
     /** Maximum hash collisions per bucket for a table with load factor == 1. */
     protected static final int MAX_HASH_COLLISIONS = 40;
 
+    /** Size of the multipliers array used for hash functions. */
     protected static final int MULTIPLIERS_SIZE = 1 << 5;
+    /** Mask for accessing multipliers array indices. */
     protected static final int MULTIPLIERS_MASK = MULTIPLIERS_SIZE - 1;
 
     //
@@ -160,7 +165,7 @@ public class SymbolTable {
 
     /**
      * Constructs a new, empty SymbolTable with the specified initial capacity
-     * and default load factor, which is <tt>0.75</tt>.
+     * and default load factor, which is <code>0.75</code>.
      *
      * @param     initialCapacity   the initial capacity of the hashtable.
      * @throws    IllegalArgumentException if the initial capacity is less
@@ -172,7 +177,7 @@ public class SymbolTable {
 
     /**
      * Constructs a new, empty SymbolTable with a default initial capacity (101)
-     * and load factor, which is <tt>0.75</tt>.
+     * and load factor, which is <code>0.75</code>.
      */
     public SymbolTable() {
         this(TABLE_SIZE, 0.75f);
@@ -189,6 +194,7 @@ public class SymbolTable {
      * guarantee that symbol references remain unique.
      *
      * @param symbol The new symbol.
+     * @return The unique symbol reference.
      */
     public String addSymbol(String symbol) {
 
@@ -235,6 +241,7 @@ public class SymbolTable {
      * @param buffer The buffer containing the new symbol.
      * @param offset The offset into the buffer of the new symbol.
      * @param length The length of the new symbol in the buffer.
+     * @return The unique symbol reference.
      */
     public String addSymbol(char[] buffer, int offset, int length) {
 
@@ -285,6 +292,7 @@ public class SymbolTable {
      * with the character array that comprises the symbol string.
      *
      * @param symbol The symbol to hash.
+     * @return The hashcode value for the symbol.
      */
     public int hash(String symbol) {
         if (fHashMultipliers == null) {
@@ -313,6 +321,7 @@ public class SymbolTable {
      * @param offset The offset into the character buffer of the start
      *               of the symbol.
      * @param length The length of the symbol.
+     * @return The hashcode value for the symbol.
      */
     public int hash(char[] buffer, int offset, int length) {
         if (fHashMultipliers == null) {
@@ -388,6 +397,7 @@ public class SymbolTable {
      * symbol.
      *
      * @param symbol The symbol to look for.
+     * @return True if the symbol is in the table, false otherwise.
      */
     public boolean containsSymbol(String symbol) {
 
@@ -416,6 +426,7 @@ public class SymbolTable {
      * @param buffer The buffer containing the symbol to look for.
      * @param offset The offset into the buffer.
      * @param length The length of the symbol in the buffer.
+     * @return True if the symbol is in the table, false otherwise.
      */
     public boolean containsSymbol(char[] buffer, int offset, int length) {
 
@@ -469,6 +480,8 @@ public class SymbolTable {
         /**
          * Constructs a new entry from the specified symbol and next entry
          * reference.
+         * @param symbol the symbol string
+         * @param next the next entry in the chain
          */
         public Entry(String symbol, Entry next) {
             this.symbol = symbol.intern();
@@ -480,6 +493,10 @@ public class SymbolTable {
         /**
          * Constructs a new entry from the specified symbol information and
          * next entry reference.
+         * @param ch the character array containing the symbol
+         * @param offset the starting offset in the character array
+         * @param length the length of the symbol
+         * @param next the next entry in the chain
          */
         public Entry(char[] ch, int offset, int length, Entry next) {
             characters = new char[length];

@@ -22,7 +22,7 @@ import org.codelibs.xerces.xs.XSIDCDefinition;
 /**
  * Schema key reference identity constraint.
  *
- * @xerces.internal
+
  *
  * @author Andy Clark, IBM
  * @version $Id: KeyRef.java 572110 2007-09-02 19:04:44Z mrglavas $
@@ -40,7 +40,13 @@ public class KeyRef extends IdentityConstraint {
     // Constructors
     //
 
-    /** Constructs a keyref with the specified name. */
+    /**
+     * Constructs a keyref with the specified name.
+     * @param namespace the target namespace
+     * @param identityConstraintName the name of the identity constraint
+     * @param elemName the name of the owning element
+     * @param key the key or unique constraint being referenced
+     */
     public KeyRef(String namespace, String identityConstraintName, String elemName, UniqueOrKey key) {
         super(namespace, identityConstraintName, elemName);
         fKey = key;
@@ -51,7 +57,10 @@ public class KeyRef extends IdentityConstraint {
     // Public methods
     //
 
-    /** Returns the key being referred to.  */
+    /**
+     * Returns the key being referred to.
+     * @return the unique or key constraint being referenced
+     */
     public UniqueOrKey getKey() {
         return fKey;
     } // getKey(): int

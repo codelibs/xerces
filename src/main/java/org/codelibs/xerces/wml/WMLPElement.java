@@ -35,26 +35,47 @@ public interface WMLPElement extends WMLElement {
      * 'mode' specifies the wrapping mode of the paragraph.
      * The legal values are 'wrap' and 'nowrap'
      * (Section 11.8.3, WAP WML Version 16-Jun-1999)
+     *
+     * @param newValue the new value for the mode attribute
      */
     public void setMode(String newValue);
 
+    /**
+     * Gets the 'mode' attribute which specifies the wrapping mode.
+     *
+     * @return the value of the mode attribute
+     */
     public String getMode();
 
     /**
      * 'align' specifies the align of teh paragraph
      * The legal values are 'left,' 'center,' and 'right'
      * (Section 11.8.3, WAP WML Version 16-Jun-1999)
+     *
+     * @param newValue the new value for the align attribute
      */
     public void setAlign(String newValue);
 
+    /**
+     * Gets the 'align' attribute which specifies the paragraph alignment.
+     *
+     * @return the value of the align attribute
+     */
     public String getAlign();
 
     /**
      * The xml:lang that specifics the natural or formal language in
      * which the document is written.
      * (Section 8.8, WAP WML Version 16-Jun-1999)
+     *
+     * @param newValue the new value for the xml:lang attribute
      */
     public void setXmlLang(String newValue);
 
+    /**
+     * Gets the xml:lang attribute which specifies the document language.
+     *
+     * @return the value of the xml:lang attribute
+     */
     public String getXmlLang();
 }

@@ -33,11 +33,20 @@ import org.codelibs.xerces.util.MessageFormatter;
  */
 public class XIncludeMessageFormatter implements MessageFormatter {
 
+    /** The XInclude domain identifier. */
     public static final String XINCLUDE_DOMAIN = "http://www.w3.org/TR/xinclude";
 
     // private objects to cache the locale and resource bundle
     private Locale fLocale = null;
     private ResourceBundle fResourceBundle = null;
+
+    /**
+     * Default constructor for XIncludeMessageFormatter.
+     * Initializes the formatter for providing XInclude error messages.
+     */
+    public XIncludeMessageFormatter() {
+        // Default constructor
+    }
 
     /**
      * Formats a message with the specified arguments using the given

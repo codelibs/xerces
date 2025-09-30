@@ -26,7 +26,7 @@ import org.w3c.dom.traversal.TreeWalker;
 /**
  * This class implements the TreeWalker interface.
  *
- * @xerces.internal
+
  *
  * @version $Id: TreeWalkerImpl.java 536630 2007-05-09 19:37:05Z mrglavas $
  */
@@ -59,7 +59,13 @@ public class TreeWalkerImpl implements TreeWalker {
     // Constructor
     //
 
-    /** Public constructor */
+    /**
+     * Public constructor
+     * @param root the root node for tree walking
+     * @param whatToShow mask specifying which node types to show
+     * @param nodeFilter the node filter to apply
+     * @param entityReferenceExpansion whether to expand entity references
+     */
     public TreeWalkerImpl(Node root, int whatToShow, NodeFilter nodeFilter, boolean entityReferenceExpansion) {
         fCurrentNode = root;
         fRoot = root;
@@ -78,6 +84,10 @@ public class TreeWalkerImpl implements TreeWalker {
         return fWhatToShow;
     }
 
+    /**
+     * Set the whatToShow mask.
+     * @param whatToShow mask specifying which node types to show
+     */
     public void setWhatShow(int whatToShow) {
         fWhatToShow = whatToShow;
     }

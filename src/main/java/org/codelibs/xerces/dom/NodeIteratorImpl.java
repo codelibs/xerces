@@ -32,7 +32,7 @@ import org.w3c.dom.traversal.NodeIterator;
  *  right before the actual DOM transformation. If not called by the DOM,
  *  the client could call it before doing the removal.
  *
- * @xerces.internal
+
  *
  * @version $Id: NodeIteratorImpl.java 447266 2006-09-18 05:57:49Z mrglavas $
  */
@@ -84,7 +84,14 @@ public class NodeIteratorImpl implements NodeIterator {
     // Constructor
     //
 
-    /** Public constructor */
+    /**
+     * Constructs a NodeIteratorImpl with the specified parameters.
+     * @param document the document that owns this iterator
+     * @param root the root node from which to begin iteration
+     * @param whatToShow bit mask specifying which node types to show
+     * @param nodeFilter the NodeFilter to use for filtering, or null
+     * @param entityReferenceExpansion if true, expand entity reference nodes
+     */
     public NodeIteratorImpl(DocumentImpl document, Node root, int whatToShow, NodeFilter nodeFilter, boolean entityReferenceExpansion) {
         fDocument = document;
         fRoot = root;
@@ -323,8 +330,10 @@ public class NodeIteratorImpl implements NodeIterator {
         return result;
     }
 
-    /** Fix-up the iterator on a remove. Called by DOM or otherwise,
-     *  before an actual DOM remove.
+    /**
+     * Fix-up the iterator on a remove. Called by DOM or otherwise,
+     * before an actual DOM remove.
+     * @param node the node being removed
      */
     public void removeNode(Node node) {
 

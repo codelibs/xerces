@@ -18,7 +18,7 @@
 package org.codelibs.xerces.impl.xpath.regex;
 
 /**
- * @xerces.internal
+
  *
  * @version $Id: CaseInsensitiveMap.java 834653 2009-11-10 20:32:39Z mrglavas $
  */

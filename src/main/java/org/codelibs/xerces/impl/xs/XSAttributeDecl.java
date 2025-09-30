@@ -35,7 +35,10 @@ import org.codelibs.xerces.xs.XSValue;
  * The XML representation for an attribute declaration
  * schema component is an &lt;attribute&gt; element information item
  *
- * @xerces.internal
+
+ *
+ * XML Schema attribute declaration implementation.
+ * This class represents an attribute declaration as defined in the XML Schema specification.
  *
  * @author Elena Litani, IBM
  * @author Sandy Gao, IBM
@@ -43,9 +46,11 @@ import org.codelibs.xerces.xs.XSValue;
  */
 public class XSAttributeDecl implements XSAttributeDeclaration {
 
-    // scopes
+    /** Scope constant for absent scope */
     public final static short SCOPE_ABSENT = 0;
+    /** Scope constant for global scope */
     public final static short SCOPE_GLOBAL = 1;
+    /** Scope constant for local scope */
     public final static short SCOPE_LOCAL = 2;
 
     // the name of the attribute
@@ -54,6 +59,7 @@ public class XSAttributeDecl implements XSAttributeDeclaration {
     String fTargetNamespace = null;
     // the simple type of the attribute
     XSSimpleType fType = null;
+    /** The unresolved type name before type resolution */
     public QName fUnresolvedTypeName = null;
     // value constraint type: default, fixed or !specified
     short fConstraintType = XSConstants.VC_NONE;
@@ -63,12 +69,33 @@ public class XSAttributeDecl implements XSAttributeDeclaration {
     XSComplexTypeDecl fEnclosingCT = null;
     // optional annotations
     XSObjectList fAnnotations = null;
+
+    /**
+     * Constructs a new XSAttributeDecl instance.
+     * This represents an XML Schema attribute declaration.
+     */
+    public XSAttributeDecl() {
+        // Default constructor
+    }
+
     // value constraint value
     ValidatedInfo fDefault = null;
     // The namespace schema information item corresponding to the target namespace
     // of the attribute declaration, if it is globally declared; or null otherwise.
     private XSNamespaceItem fNamespaceItem = null;
 
+    /**
+     * Sets the values for this attribute declaration.
+     *
+     * @param name the attribute name
+     * @param targetNamespace the target namespace
+     * @param simpleType the simple type definition
+     * @param constraintType the constraint type (none, default, or fixed)
+     * @param scope the attribute scope
+     * @param valInfo the value constraint information
+     * @param enclosingCT the enclosing complex type for local attributes
+     * @param annotations the list of annotations
+     */
     public void setValues(String name, String targetNamespace, XSSimpleType simpleType, short constraintType, short scope,
             ValidatedInfo valInfo, XSComplexTypeDecl enclosingCT, XSObjectList annotations) {
         fName = name;
@@ -81,6 +108,9 @@ public class XSAttributeDecl implements XSAttributeDeclaration {
         fAnnotations = annotations;
     }
 
+    /**
+     * Resets this attribute declaration to its initial state.
+     */
     public void reset() {
         fName = null;
         fTargetNamespace = null;
@@ -173,6 +203,11 @@ public class XSAttributeDecl implements XSAttributeDeclaration {
         return (fAnnotations != null) ? fAnnotations : XSObjectListImpl.EMPTY_LIST;
     }
 
+    /**
+     * Gets the validation information for this attribute's default or fixed value.
+     *
+     * @return the validated information or null if there is no value constraint
+     */
     public ValidatedInfo getValInfo() {
         return fDefault;
     }

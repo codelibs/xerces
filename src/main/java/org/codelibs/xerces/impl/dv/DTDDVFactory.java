@@ -24,7 +24,7 @@ import java.util.Hashtable;
  * store the created datatypes in static data, so that they can be shared by
  * multiple parser instance, and multiple threads.
  *
- * @xerces.internal
+
  *
  * @author Sandy Gao, IBM
  *
@@ -62,7 +62,10 @@ public abstract class DTDDVFactory {
         }
     }
 
-    // can't create a new object of this class
+    /**
+     * Protected constructor to prevent direct instantiation.
+     * Subclasses should be obtained via factory methods.
+     */
     protected DTDDVFactory() {
     }
 

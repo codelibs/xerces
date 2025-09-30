@@ -49,9 +49,6 @@ import org.w3c.dom.Node;
  * must be stored in an array; that's only an access method. Note too
  * that these indices are "live"; if someone changes the map's
  * contents, the indices associated with nodes may change.
- * <P>
- *
- * @xerces.internal
  *
  * @version $Id: NamedNodeMapImpl.java 1829683 2018-04-21 03:09:46Z mukulg $
  * @since  PR-DOM-Level-1-19980818.
@@ -69,22 +66,39 @@ public class NamedNodeMapImpl implements NamedNodeMap, Serializable {
     // Data
     //
 
+    /**
+     * Flags to track the state of this named node map.
+     */
     protected short flags;
 
+    /**
+     * Flag indicating this map is read-only.
+     */
     protected final static short READONLY = 0x1 << 0;
+    /**
+     * Flag indicating this map has been modified.
+     */
     protected final static short CHANGED = 0x1 << 1;
+    /**
+     * Flag indicating this map contains default attributes.
+     */
     protected final static short HASDEFAULTS = 0x1 << 2;
 
     /** Nodes. */
     protected List nodes;
 
-    protected NodeImpl ownerNode; // the node this map belongs to
+    /**
+     * The node that owns this named node map.
+     */
+    protected NodeImpl ownerNode;
 
     //
     // Constructors
     //
 
-    /** Constructs a named node map. */
+    /** Constructs a named node map.
+     * @param ownerNode the node that owns this named node map
+     */
     protected NamedNodeMapImpl(NodeImpl ownerNode) {
         this.ownerNode = ownerNode;
     }
@@ -285,7 +299,7 @@ public class NamedNodeMapImpl implements NamedNodeMap, Serializable {
      * @param name          The local name of the node to remove.
      * @return Node         The node removed from the map if a node with such
      *                      a local name and namespace URI exists.
-     * @throws              NOT_FOUND_ERR: Raised if there is no node named
+     * @throws DOMException NOT_FOUND_ERR: Raised if there is no node named
      *                      name in the map.
 
      */
@@ -317,12 +331,21 @@ public class NamedNodeMapImpl implements NamedNodeMap, Serializable {
      * all the nodes contained in the map.
      */
 
+    /**
+     * Creates a clone of this NamedNodeMap.
+     * @param ownerNode the owner node for the cloned map
+     * @return a new NamedNodeMapImpl that is a clone of this map
+     */
     public NamedNodeMapImpl cloneMap(NodeImpl ownerNode) {
         NamedNodeMapImpl newmap = new NamedNodeMapImpl(ownerNode);
         newmap.cloneContent(this);
         return newmap;
     }
 
+    /**
+     * Clones the content from the source map into this map.
+     * @param srcmap the source map to clone content from
+     */
     protected void cloneContent(NamedNodeMapImpl srcmap) {
         List srcnodes = srcmap.nodes;
         if (srcnodes != null) {
@@ -382,6 +405,7 @@ public class NamedNodeMapImpl implements NamedNodeMap, Serializable {
     /**
      * NON-DOM
      * set the ownerDocument of this node, and the attributes it contains
+     * @param doc the document to set as owner
      */
     protected void setOwnerDocument(CoreDocumentImpl doc) {
         if (nodes != null) {
@@ -425,6 +449,7 @@ public class NamedNodeMapImpl implements NamedNodeMap, Serializable {
      * should be added.
      *
      * @param name Name of a node to look up.
+     * @param start starting index for the search
      *
      * @return If positive or zero, the index of the found item.
      * If negative, index of the appropriate point at which to insert
@@ -462,6 +487,9 @@ public class NamedNodeMapImpl implements NamedNodeMap, Serializable {
     } // findNamePoint(String):int
 
     /** This findNamePoint is for DOM Level 2 Namespaces.
+     * @param namespaceURI the namespace URI to search for
+     * @param name the local name to search for
+     * @return the index of the found item, or -1 if not found
      */
     protected int findNamePoint(String namespaceURI, String name) {
 
@@ -493,8 +521,12 @@ public class NamedNodeMapImpl implements NamedNodeMap, Serializable {
         return -1;
     }
 
-    // compare 2 nodes in the map.  If a precedes b, return true, otherwise
-    // return false
+    /**
+     * Compares two nodes in the map to determine their relative order.
+     * @param a the first node to compare
+     * @param b the second node to compare
+     * @return true if node a precedes node b in this map, false otherwise
+     */
     protected boolean precedes(Node a, Node b) {
 
         if (nodes != null) {
@@ -512,6 +544,7 @@ public class NamedNodeMapImpl implements NamedNodeMap, Serializable {
 
     /**
       * NON-DOM: Remove attribute at specified index
+      * @param index the index of the item to remove
       */
     protected void removeItem(int index) {
         if (nodes != null && index < nodes.size()) {
@@ -519,6 +552,11 @@ public class NamedNodeMapImpl implements NamedNodeMap, Serializable {
         }
     }
 
+    /**
+     * Gets the item at the specified index in this map.
+     * @param index the index of the item to retrieve
+     * @return the item at the specified index, or null if nodes is null
+     */
     protected Object getItem(int index) {
         if (nodes != null) {
             return nodes.get(index);
@@ -526,6 +564,11 @@ public class NamedNodeMapImpl implements NamedNodeMap, Serializable {
         return null;
     }
 
+    /**
+     * Adds an item to this named node map.
+     * @param arg the node to add
+     * @return the index where the item was added
+     */
     protected int addItem(Node arg) {
         int i = findNamePoint(arg.getNamespaceURI(), arg.getLocalName());
         if (i >= 0) {
@@ -567,6 +610,12 @@ public class NamedNodeMapImpl implements NamedNodeMap, Serializable {
         return list;
     }
 
+    /**
+     * Gets the index of a named item by namespace URI and local name.
+     * @param namespaceURI the namespace URI of the node to find
+     * @param localName the local name of the node to find
+     * @return the index of the named item, or -1 if not found
+     */
     protected int getNamedItemIndex(String namespaceURI, String localName) {
         return findNamePoint(namespaceURI, localName);
     }
@@ -580,6 +629,13 @@ public class NamedNodeMapImpl implements NamedNodeMap, Serializable {
         }
     }
 
+    /**
+     * Deserializes the object from an input stream.
+     *
+     * @param in the ObjectInputStream to read from
+     * @throws IOException if an I/O error occurs
+     * @throws ClassNotFoundException if the class cannot be found
+     */
     private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         in.defaultReadObject();
         if (nodes != null) {
@@ -588,6 +644,12 @@ public class NamedNodeMapImpl implements NamedNodeMap, Serializable {
         }
     }
 
+    /**
+     * Serializes the object to an output stream.
+     *
+     * @param out the ObjectOutputStream to write to
+     * @throws IOException if an I/O error occurs
+     */
     private void writeObject(ObjectOutputStream out) throws IOException {
         List oldNodes = this.nodes;
         try {

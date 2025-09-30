@@ -159,7 +159,11 @@ public class XMLInputSource {
         fPublicId = publicId;
     } // setPublicId(String)
 
-    /** Returns the public identifier. */
+    /**
+     * Returns the public identifier.
+     *
+     * @return The public identifier
+     */
     public String getPublicId() {
         return fPublicId;
     } // getPublicId():String
@@ -173,7 +177,11 @@ public class XMLInputSource {
         fSystemId = systemId;
     } // setSystemId(String)
 
-    /** Returns the system identifier. */
+    /**
+     * Returns the system identifier.
+     *
+     * @return The system identifier
+     */
     public String getSystemId() {
         return fSystemId;
     } // getSystemId():String
@@ -187,7 +195,11 @@ public class XMLInputSource {
         fBaseSystemId = baseSystemId;
     } // setBaseSystemId(String)
 
-    /** Returns the base system identifier. */
+    /**
+     * Returns the base system identifier.
+     *
+     * @return The base system identifier
+     */
     public String getBaseSystemId() {
         return fBaseSystemId;
     } // getBaseSystemId():String
@@ -205,7 +217,11 @@ public class XMLInputSource {
         fByteStream = byteStream;
     } // setByteStream(InputSource)
 
-    /** Returns the byte stream. */
+    /**
+     * Returns the byte stream.
+     *
+     * @return The byte stream
+     */
     public InputStream getByteStream() {
         return fByteStream;
     } // getByteStream():InputStream
@@ -225,7 +241,11 @@ public class XMLInputSource {
         fCharStream = charStream;
     } // setCharacterStream(Reader)
 
-    /** Returns the character stream. */
+    /**
+     * Returns the character stream.
+     *
+     * @return The character stream
+     */
     public Reader getCharacterStream() {
         return fCharStream;
     } // getCharacterStream():Reader
@@ -239,7 +259,11 @@ public class XMLInputSource {
         fEncoding = encoding;
     } // setEncoding(String)
 
-    /** Returns the encoding of the stream, or null if not known. */
+    /**
+     * Returns the encoding of the stream, or null if not known.
+     *
+     * @return The encoding
+     */
     public String getEncoding() {
         return fEncoding;
     } // getEncoding():String

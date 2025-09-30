@@ -40,17 +40,25 @@ public final class SynchronizedSymbolTable extends SymbolTable {
     // Constructors
     //
 
-    /** Constructs a synchronized symbol table. */
+    /**
+     * Constructs a synchronized symbol table.
+     * @param symbolTable the symbol table to synchronize
+     */
     public SynchronizedSymbolTable(SymbolTable symbolTable) {
         fSymbolTable = symbolTable;
     } // <init>(SymbolTable)
 
-    // construct synchronized symbol table of default size
+    /**
+     * Construct synchronized symbol table of default size.
+     */
     public SynchronizedSymbolTable() {
         fSymbolTable = new SymbolTable();
     } // init()
 
-    // construct synchronized symbol table of given size
+    /**
+     * Construct synchronized symbol table of given size.
+     * @param size the initial size of the symbol table
+     */
     public SynchronizedSymbolTable(int size) {
         fSymbolTable = new SymbolTable(size);
     } // init(int)

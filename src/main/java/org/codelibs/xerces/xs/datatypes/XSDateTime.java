@@ -24,9 +24,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * table shows the methods defined for various XML Schema 1.0 built-in types. 'X'
  * marks whether a particular method is defined for a particular type. Accessing undefined
  * methods may return unexpected values.
- *
+ * </p>
  * <table border="1">
- * <br/>
+ * <caption>Date-Time Type Methods</caption>
  * <tr>
  * <td> XML Schema Datatype </td>
  * <td> getYears() </td>
@@ -198,7 +198,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * <td>X</td>
  * </tr>
  * </table>
- * </p>
  *
  * @author Ankit Pasricha, IBM
  *
@@ -207,36 +206,38 @@ import javax.xml.datatype.XMLGregorianCalendar;
 public interface XSDateTime {
 
     /**
-     * @return years - can be negative for date-time related types;
-     *
+     * Gets the years component.
+     * @return years - can be negative for date-time related types
      */
     public int getYears();
 
     /**
+     * Gets the months component.
      * @return months - can be negative only for duration types;
      *                  For duration types, it returns years*12 + months
      */
     public int getMonths();
 
     /**
-     * @return days - cannot be negative;
-     *
+     * Gets the days component.
+     * @return days - cannot be negative
      */
     public int getDays();
 
     /**
-     * @return hours - cannot be negative;
-     *
+     * Gets the hours component.
+     * @return hours - cannot be negative
      */
     public int getHours();
 
     /**
-     * @return minutes - cannot be negative;
-     *
+     * Gets the minutes component.
+     * @return minutes - cannot be negative
      */
     public int getMinutes();
 
     /**
+     * Gets the seconds component.
      * @return seconds - can be negative only for durations;
      *                   For duration types, it returns days*24*3600 + hours*3600
      *                                                  + minutes*60 + seconds
@@ -244,47 +245,51 @@ public interface XSDateTime {
     public double getSeconds();
 
     /**
+     * Checks if timezone is specified.
      * @return boolean (true when timezone is specified in the original lexical value)
-     *
      */
     public boolean hasTimeZone();
 
     /**
-     * @return timezone hours (for GMT-xx:xx this will be negative),
-     *
+     * Gets the timezone hours.
+     * @return timezone hours (for GMT-xx:xx this will be negative)
      */
     public int getTimeZoneHours();
 
     /**
-     * @return timezone minutes (for GMT-xx:xx this will be negative),
-     *
+     * Gets the timezone minutes.
+     * @return timezone minutes (for GMT-xx:xx this will be negative)
      */
     public int getTimeZoneMinutes();
 
     /**
+     * Gets the original lexical value.
      * @return the original lexical value
      */
     public String getLexicalValue();
 
     /**
+     * Normalizes the date-time value.
      * @return a new date-time related object with normalized values
-     *         (has no effect on objects already
-     *          normalized)
+     *         (has no effect on objects already normalized)
      */
     public XSDateTime normalize();
 
     /**
+     * Checks if the date-time value is normalized.
      * @return whether a date-time related object is normalized or not
      *         (value is not useful for types where timezone is not specified)
      */
     public boolean isNormalized();
 
     /**
+     * Gets the XMLGregorianCalendar representation.
      * @return an un-normalized XMLGregorianCalendar (if applicable otherwise null)
      */
     public XMLGregorianCalendar getXMLGregorianCalendar();
 
     /**
+     * Gets the Duration representation.
      * @return a Duration (if applicable otherwise null)
      */
     public Duration getDuration();

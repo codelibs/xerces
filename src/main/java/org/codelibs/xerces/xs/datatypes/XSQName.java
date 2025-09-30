@@ -25,12 +25,16 @@ package org.codelibs.xerces.xs.datatypes;
 public interface XSQName {
 
     /**
-     * @return org.codelibs.xerces.xni.QName class instance
+     * Gets the XNI QName representation of this qualified name.
+     *
+     * @return the XNI QName instance representing this qualified name
      */
     public org.codelibs.xerces.xni.QName getXNIQName();
 
     /**
-     * @return javax.xml.namespace.QName class instance
+     * Gets the JAXP QName representation of this qualified name.
+     *
+     * @return the JAXP QName instance representing this qualified name
      */
     public javax.xml.namespace.QName getJAXPQName();
 }

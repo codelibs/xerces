@@ -18,6 +18,8 @@
 package org.codelibs.xerces.xml.serialize;
 
 /**
+ * Defines constants for various output methods used in serialization.
+ * This class only contains static constants and cannot be instantiated.
  * @deprecated This class was deprecated in Xerces 2.9.0. It is recommended
  * that new applications use the DOM Level 3 LSSerializer or JAXP's Transformation
  * API for XML (TrAX) for serializing XML. See the Xerces documentation for more
@@ -27,6 +29,12 @@ package org.codelibs.xerces.xml.serialize;
  * @see OutputFormat
  */
 public final class Method {
+
+    /**
+     * Private constructor to prevent instantiation of this utility class.
+     */
+    private Method() {
+    }
 
     /**
      * The output method for XML documents.

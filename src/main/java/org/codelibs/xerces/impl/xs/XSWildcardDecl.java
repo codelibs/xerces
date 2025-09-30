@@ -27,10 +27,11 @@ import org.codelibs.xerces.xs.XSObjectList;
 import org.codelibs.xerces.xs.XSWildcard;
 
 /**
- * The XML representation for a wildcard declaration
- * schema component is an &lt;any&gt; or &lt;anyAttribute&gt; element information item
- *
- * @xerces.internal
+ * The XML representation for a wildcard declaration.
+ * This class represents a wildcard schema component which corresponds to
+ * an &lt;any&gt; or &lt;anyAttribute&gt; element information item in XML Schema.
+ * Wildcards provide a mechanism for allowing elements and attributes from
+ * specified namespaces to appear in a content model.
  *
  * @author Sandy Gao, IBM
  * @author Rahul Srivastava, Sun Microsystems Inc.
@@ -39,18 +40,38 @@ import org.codelibs.xerces.xs.XSWildcard;
  */
 public class XSWildcardDecl implements XSWildcard {
 
+    /**
+     * Default constructor. Creates a new wildcard declaration with default settings.
+     */
+    public XSWildcardDecl() {
+        // Default constructor
+    }
+
+    /**
+     * Constant representing an absent namespace constraint.
+     */
     public static final String ABSENT = null;
 
-    // the type of wildcard: any, other, or list
+    /**
+     * The type of wildcard constraint: any, other, or list.
+     */
     public short fType = NSCONSTRAINT_ANY;
-    // the type of process contents: strict, lax, or skip
+
+    /**
+     * The type of process contents: strict, lax, or skip.
+     */
     public short fProcessContents = PC_STRICT;
-    // the namespace list:
-    // for NSCONSTRAINT_LIST, it means one of the namespaces in the list
-    // for NSCONSTRAINT_NOT, it means not any of the namespaces in the list
+
+    /**
+     * The namespace list for this wildcard.
+     * For NSCONSTRAINT_LIST, it means one of the namespaces in the list.
+     * For NSCONSTRAINT_NOT, it means not any of the namespaces in the list.
+     */
     public String[] fNamespaceList;
 
-    // optional annotation
+    /**
+     * Optional annotations associated with this wildcard.
+     */
     public XSObjectList fAnnotations = null;
 
     // I'm trying to implement the following constraint exactly as what the
@@ -72,6 +93,9 @@ public class XSWildcardDecl implements XSWildcard {
 
     /**
      * Validation Rule: Wildcard allows Namespace Name
+     *
+     * @param namespace the namespace to test for validity against this wildcard constraint
+     * @return true if the namespace is allowed by this wildcard constraint, false otherwise
      */
     public boolean allowNamespace(String namespace) {
         // For a value which is either a namespace name or absent to be valid with respect to a wildcard constraint (the value of a {namespace constraint}) one of the following must be true:
@@ -113,6 +137,9 @@ public class XSWildcardDecl implements XSWildcard {
 
     /**
      *  Schema Component Constraint: Wildcard Subset
+     *
+     * @param superWildcard the wildcard to test if this wildcard is a subset of
+     * @return true if this wildcard is an intensional subset of the superWildcard, false otherwise
      */
     public boolean isSubsetOf(XSWildcardDecl superWildcard) {
         // if the super is null (not expressible), return false
@@ -166,6 +193,9 @@ public class XSWildcardDecl implements XSWildcard {
 
     /**
      * Check whether this wildcard has a weaker process contents than the super.
+     *
+     * @param superWildcard the wildcard to compare process contents against
+     * @return true if this wildcard has weaker process contents than the superWildcard, false otherwise
      */
     public boolean weakerProcessContents(XSWildcardDecl superWildcard) {
         return fProcessContents == XSWildcardDecl.PC_LAX && superWildcard.fProcessContents == XSWildcardDecl.PC_STRICT
@@ -174,6 +204,11 @@ public class XSWildcardDecl implements XSWildcard {
 
     /**
      * Schema Component Constraint: Attribute Wildcard Union
+     *
+     * @param wildcard the wildcard to perform union with
+     * @param processContents the process contents value for the resulting union wildcard
+     * @return a new XSWildcardDecl representing the union of this wildcard and the specified wildcard,
+     *         or null if the union is not expressible
      */
     public XSWildcardDecl performUnionWith(XSWildcardDecl wildcard, short processContents) {
         // if the other wildcard is not expressible, the result is still not expressible
@@ -286,6 +321,11 @@ public class XSWildcardDecl implements XSWildcard {
 
     /**
      * Schema Component Constraint: Attribute Wildcard Intersection
+     *
+     * @param wildcard the wildcard to perform intersection with
+     * @param processContents the process contents value for the resulting intersection wildcard
+     * @return a new XSWildcardDecl representing the intersection of this wildcard and the specified wildcard,
+     *         or null if the intersection is not expressible
      */
     public XSWildcardDecl performIntersectionWith(XSWildcardDecl wildcard, short processContents) {
         // if the other wildcard is not expressible, the result is still not expressible
@@ -554,6 +594,8 @@ public class XSWildcardDecl implements XSWildcard {
 
     /**
      * String valid of {process contents}. One of "skip", "lax" or "strict".
+     *
+     * @return the string representation of the process contents value: "skip", "lax", "strict", or "invalid value"
      */
     public String getProcessContentsAsString() {
         switch (fProcessContents) {

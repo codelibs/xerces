@@ -84,7 +84,7 @@ import org.xml.sax.ext.LexicalHandler;
  * be used concurrently by two threads.
  * <p>
  * If an output stream is used, the encoding is taken from the
- * output format (defaults to <tt>UTF-8</tt>). If a writer is
+ * output format (defaults to <code>UTF-8</code>). If a writer is
  * used, make sure the writer uses the same encoding (if applies)
  * as specified in the output format.
  * <p>
@@ -125,11 +125,16 @@ public abstract class BaseMarkupSerializer
         implements ContentHandler, DocumentHandler, LexicalHandler, DTDHandler, DeclHandler, DOMSerializer, Serializer {
 
     // DOM L3 implementation
+    /** Feature flags for DOM Level 3 serialization options. */
     protected short features = 0xFFFFFFFF;
+    /** DOM error handler for reporting serialization errors. */
     protected DOMErrorHandler fDOMErrorHandler;
+    /** DOM error implementation for creating error reports. */
     protected final DOMErrorImpl fDOMError = new DOMErrorImpl();
+    /** DOM serialization filter for controlling output. */
     protected LSSerializerFilter fDOMFilter;
 
+    /** Encoding information for the output stream. */
     protected EncodingInfo _encodingInfo;
 
     /**
@@ -226,6 +231,7 @@ public abstract class BaseMarkupSerializer
      * Must initialize the serializer before serializing any document,
      * by calling {@link #setOutputCharStream} or {@link #setOutputByteStream}
     	 * first
+     * @param format The output format to use for serialization
      */
     protected BaseMarkupSerializer(OutputFormat format) {
         int i;
@@ -283,6 +289,12 @@ public abstract class BaseMarkupSerializer
         reset();
     }
 
+    /**
+     * Resets the serializer state. This method can only be called when not in the middle of serializing.
+     *
+     * @return true if the reset was successful
+     * @throws IllegalStateException if called in the middle of serialization
+     */
     public boolean reset() {
         if (_elementStateCount > 1) {
             String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.SERIALIZER_DOMAIN, "ResetInMiddle", null);
@@ -294,10 +306,17 @@ public abstract class BaseMarkupSerializer
         return true;
     }
 
+    /**
+     * Cleans up internal state after serialization is complete.
+     */
     protected void cleanup() {
         fCurrentNode = null;
     }
 
+    /**
+     * Prepares the serializer for output by initializing the output stream and writer.
+     * @throws IOException if an I/O error occurs during preparation
+     */
     protected void prepare() throws IOException {
         if (_prepared)
             return;
@@ -519,6 +538,12 @@ public abstract class BaseMarkupSerializer
         }
     }
 
+    /**
+     * Serializes a processing instruction.
+     * @param target The processing instruction target
+     * @param code The processing instruction data
+     * @throws IOException if an I/O error occurs during serialization
+     */
     public void processingInstructionIO(String target, String code) throws IOException {
         int index;
         ElementState state;
@@ -567,6 +592,11 @@ public abstract class BaseMarkupSerializer
         }
     }
 
+    /**
+     * Serializes a comment node.
+     * @param text The comment text
+     * @throws IOException if an I/O error occurs during serialization
+     */
     public void comment(String text) throws IOException {
         int index;
         ElementState state;
@@ -621,6 +651,9 @@ public abstract class BaseMarkupSerializer
         state.doCData = false;
     }
 
+    /**
+     * Starts a non-escaping section where special characters are not escaped.
+     */
     public void startNonEscaping() {
         ElementState state;
 
@@ -628,6 +661,9 @@ public abstract class BaseMarkupSerializer
         state.unescaped = true;
     }
 
+    /**
+     * Ends a non-escaping section and resumes normal character escaping.
+     */
     public void endNonEscaping() {
         ElementState state;
 
@@ -635,6 +671,9 @@ public abstract class BaseMarkupSerializer
         state.unescaped = false;
     }
 
+    /**
+     * Starts preserving whitespace in the output.
+     */
     public void startPreserving() {
         ElementState state;
 
@@ -642,6 +681,9 @@ public abstract class BaseMarkupSerializer
         state.preserveSpace = true;
     }
 
+    /**
+     * Ends preserving whitespace and resumes normal whitespace handling.
+     */
     public void endPreserving() {
         ElementState state;
 
@@ -1095,7 +1137,7 @@ public abstract class BaseMarkupSerializer
      * Must be called by a method about to print any type of content.
      * If the element was just opened, the opening tag is closed and
      * will be matched to a closing tag. Returns the current element
-     * state with <tt>empty</tt> and <tt>afterElement</tt> set to false.
+     * state with <code>empty</code> and <code>afterElement</code> set to false.
      *
      * @return The current element state
      * @throws IOException An I/O exception occurred while
@@ -1183,8 +1225,8 @@ public abstract class BaseMarkupSerializer
 
     /**
      * Returns the suitable entity reference for this character value,
-     * or null if no such entity exists. Calling this method with <tt>'&amp;'</tt>
-     * will return <tt>"&amp;amp;"</tt>.
+     * or null if no such entity exists. Calling this method with <code>'&amp;'</code>
+     * will return <code>"&amp;amp;"</code>.
      *
      * @param ch Character value
      * @return Character entity name, or null
@@ -1229,6 +1271,11 @@ public abstract class BaseMarkupSerializer
     // Text pretty printing and formatting methods //
     //---------------------------------------------//
 
+    /**
+     * Prints CDATA text content, escaping the CDATA end marker if found.
+     * @param text The CDATA text to print
+     * @throws IOException if an I/O error occurs during output
+     */
     protected void printCDATAText(String text) throws IOException {
         int length = text.length();
         char ch;
@@ -1286,6 +1333,13 @@ public abstract class BaseMarkupSerializer
         }
     }
 
+    /**
+     * Handles Unicode surrogate pairs for proper character encoding.
+     * @param high The high surrogate character
+     * @param low The low surrogate character
+     * @param inContent Whether the surrogates are in element content
+     * @throws IOException if an I/O error occurs during output
+     */
     protected void surrogates(int high, int low, boolean inContent) throws IOException {
         if (XMLChar.isHighSurrogate(high)) {
             if (!XMLChar.isLowSurrogate(low)) {
@@ -1326,6 +1380,7 @@ public abstract class BaseMarkupSerializer
      * @param length The number of characters
      * @param preserveSpace Space preserving flag
      * @param unescaped Print unescaped
+     * @throws IOException if an I/O error occurs during output
      */
     protected void printText(char[] chars, int start, int length, boolean preserveSpace, boolean unescaped) throws IOException {
 
@@ -1363,6 +1418,13 @@ public abstract class BaseMarkupSerializer
         }
     }
 
+    /**
+     * Prints text content with whitespace and escaping control.
+     * @param text The text to print
+     * @param preserveSpace Whether to preserve whitespace
+     * @param unescaped Whether to print without escaping special characters
+     * @throws IOException if an I/O error occurs during output
+     */
     protected void printText(String text, boolean preserveSpace, boolean unescaped) throws IOException {
         int index;
         char ch;
@@ -1404,6 +1466,7 @@ public abstract class BaseMarkupSerializer
      * characters and print it equivalent to {@link #printText}.
      *
      * @param url The document type url to print
+     * @throws IOException if an I/O error occurs during output
      */
     protected void printDoctypeURL(String url) throws IOException {
         int i;
@@ -1419,6 +1482,11 @@ public abstract class BaseMarkupSerializer
         _printer.printText('"');
     }
 
+    /**
+     * Prints a single character with proper escaping.
+     * @param ch The character to escape and print
+     * @throws IOException if an I/O error occurs during output
+     */
     protected void printEscaped(int ch) throws IOException {
         String charRef;
         // If there is a suitable entity reference for this
@@ -1458,9 +1526,10 @@ public abstract class BaseMarkupSerializer
      * Escapes a string so it may be printed as text content or attribute
      * value. Non printable characters are escaped using character references.
      * Where the format specifies a deault entity reference, that reference
-     * is used (e.g. <tt>&amp;lt;</tt>).
+     * is used (e.g. <code>&amp;lt;</code>).
      *
      * @param source The string to escape
+     * @throws IOException if an I/O error occurs during output
      */
     protected void printEscaped(String source) throws IOException {
         for (int i = 0; i < source.length(); ++i) {
@@ -1494,6 +1563,10 @@ public abstract class BaseMarkupSerializer
      * Tag name and space preserving is specified, element
      * state is initially empty.
      *
+     * @param namespaceURI The namespace URI of the element
+     * @param localName The local name of the element
+     * @param rawName The raw name of the element
+     * @param preserveSpace Whether to preserve whitespace in this element
      * @return Current element state, or null
      */
     protected ElementState enterElementState(String namespaceURI, String localName, String rawName, boolean preserveSpace) {
@@ -1596,9 +1669,10 @@ public abstract class BaseMarkupSerializer
     /**
      * The method modifies global DOM error object
      *
-     * @param message
-     * @param severity
-     * @param type
+     * @param message The error message
+     * @param severity The error severity level
+     * @param type The error type
+     * @param node The DOM node associated with the error
      * @return a DOMError
      */
     protected DOMError modifyDOMError(String message, short severity, String type, Node node) {
@@ -1611,6 +1685,11 @@ public abstract class BaseMarkupSerializer
 
     }
 
+    /**
+     * Reports a fatal error during serialization.
+     * @param message The error message
+     * @throws IOException if an I/O error occurs or if the error cannot be handled
+     */
     protected void fatalError(String message) throws IOException {
         if (fDOMErrorHandler != null) {
             modifyDOMError(message, DOMError.SEVERITY_FATAL_ERROR, null, fCurrentNode);
@@ -1625,6 +1704,7 @@ public abstract class BaseMarkupSerializer
      * Check a node to determine if it contains unbound namespace prefixes.
      *
      * @param node The node to check for unbound namespace prefices
+     * @throws IOException if an I/O error occurs during checking
      */
     protected void checkUnboundNamespacePrefixedNode(Node node) throws IOException {
 

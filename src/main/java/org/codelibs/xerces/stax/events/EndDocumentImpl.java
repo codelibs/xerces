@@ -24,7 +24,8 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.events.EndDocument;
 
 /**
- * @xerces.internal
+ * Implementation of {@code EndDocument} event for StAX.
+ * Represents the end of an XML document.
  *
  * @author Lucian Holland
  *

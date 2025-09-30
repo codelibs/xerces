@@ -89,6 +89,12 @@ public class Printer {
      */
     private int _pos = 0;
 
+    /**
+     * Constructs a new printer with the specified writer and output format.
+     *
+     * @param writer the writer to output to
+     * @param format the output formatting options
+     */
     public Printer(Writer writer, OutputFormat format) {
         _writer = writer;
         _format = format;
@@ -98,6 +104,11 @@ public class Printer {
         _pos = 0;
     }
 
+    /**
+     * Returns any IOException that occurred during output.
+     *
+     * @return the exception that occurred, or null if no exception occurred
+     */
     public IOException getException() {
         return _exception;
     }
@@ -109,6 +120,7 @@ public class Printer {
      * This method may be called any number of time but will only
      * have affect the first time it's called. To exist DTD state
      * and get the accumulated DTD, call {@link #leaveDTD}.
+     * @throws IOException if an I/O error occurs during DTD mode entry
      */
     public void enterDTD() throws IOException {
         // Can only enter DTD state once. Once we're out of DTD
@@ -126,6 +138,8 @@ public class Printer {
      * Called by the root element to leave DTD mode and if any
      * DTD parts were printer, will return a string with their
      * textual content.
+     * @return The DTD content as a string, or null if no DTD content
+     * @throws IOException if an I/O error occurs during DTD mode exit
      */
     public String leaveDTD() throws IOException {
         // Only works if we're going out of DTD mode.
@@ -138,6 +152,11 @@ public class Printer {
         return null;
     }
 
+    /**
+     * Prints the specified text.
+     * @param text the text to print
+     * @throws IOException if an I/O error occurs
+     */
     public void printText(String text) throws IOException {
         try {
             int length = text.length();
@@ -158,6 +177,11 @@ public class Printer {
         }
     }
 
+    /**
+     * Prints the specified StringBuffer text.
+     * @param text the text to print
+     * @throws IOException if an I/O error occurs
+     */
     public void printText(StringBuffer text) throws IOException {
         try {
             int length = text.length();
@@ -178,6 +202,13 @@ public class Printer {
         }
     }
 
+    /**
+     * Prints text from a character array.
+     * @param chars the character array
+     * @param start the start index
+     * @param length the number of characters to print
+     * @throws IOException if an I/O error occurs
+     */
     public void printText(char[] chars, int start, int length) throws IOException {
         try {
             while (length-- > 0) {
@@ -198,6 +229,11 @@ public class Printer {
         }
     }
 
+    /**
+     * Prints a single character.
+     * @param ch the character to print
+     * @throws IOException if an I/O error occurs
+     */
     public void printText(char ch) throws IOException {
         try {
             if (_pos == BufferSize) {
@@ -215,6 +251,10 @@ public class Printer {
         }
     }
 
+    /**
+     * Prints a space character.
+     * @throws IOException if an I/O error occurs
+     */
     public void printSpace() throws IOException {
         try {
             if (_pos == BufferSize) {
@@ -232,6 +272,10 @@ public class Printer {
         }
     }
 
+    /**
+     * Breaks the current line.
+     * @throws IOException if an I/O error occurs
+     */
     public void breakLine() throws IOException {
         try {
             if (_pos == BufferSize) {
@@ -249,10 +293,20 @@ public class Printer {
         }
     }
 
+    /**
+     * Breaks the current line with option to preserve space.
+     * @param preserveSpace whether to preserve whitespace
+     * @throws IOException if an I/O error occurs
+     */
     public void breakLine(boolean preserveSpace) throws IOException {
         breakLine();
     }
 
+    /**
+     * Flushes the current line.
+     * @param preserveSpace whether to preserve whitespace
+     * @throws IOException if an I/O error occurs
+     */
     public void flushLine(boolean preserveSpace) throws IOException {
         // Write anything left in the buffer into the writer.
         try {
@@ -269,6 +323,7 @@ public class Printer {
     /**
      * Flush the output stream. Must be called when done printing
      * the document, otherwise some text might be buffered.
+     * @throws IOException if an I/O error occurs during flushing
      */
     public void flush() throws IOException {
         try {
@@ -284,21 +339,39 @@ public class Printer {
         _pos = 0;
     }
 
+    /**
+     * Increases the indentation level (no-op in base Printer).
+     */
     public void indent() {
         // NOOP
     }
 
+    /**
+     * Decreases the indentation level (no-op in base Printer).
+     */
     public void unindent() {
         // NOOP
     }
 
+    /**
+     * Returns the next indentation level.
+     * @return the next indentation level
+     */
     public int getNextIndent() {
         return 0;
     }
 
+    /**
+     * Sets the next indentation level.
+     * @param indent the indentation level to set
+     */
     public void setNextIndent(int indent) {
     }
 
+    /**
+     * Sets the current indentation level.
+     * @param indent the indentation level to set
+     */
     public void setThisIndent(int indent) {
     }
 

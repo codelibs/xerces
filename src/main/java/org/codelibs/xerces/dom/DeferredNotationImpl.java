@@ -35,7 +35,7 @@ package org.codelibs.xerces.dom;
  * <P>
  * Level 1 of the DOM does not support editing Notation contents.
  *
- * @xerces.internal
+
  *
  * @version $Id: DeferredNotationImpl.java 447266 2006-09-18 05:57:49Z mrglavas $
  * @since  PR-DOM-Level-1-19980818.

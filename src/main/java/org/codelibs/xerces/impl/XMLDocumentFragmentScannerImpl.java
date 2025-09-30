@@ -57,8 +57,6 @@ import org.codelibs.xerces.xni.parser.XMLInputSource;
  *  <li>http://apache.org/xml/properties/internal/entity-manager</li>
  * </ul>
  *
- * @xerces.internal
- *
  * @author Glenn Marcy, IBM
  * @author Andy Clark, IBM
  * @author Arnaud  Le Hors, IBM
@@ -317,12 +315,11 @@ public class XMLDocumentFragmentScannerImpl extends XMLScanner implements XMLDoc
      *
      * @param componentManager The component manager.
      *
-     * @throws SAXException Thrown by component on initialization error.
+     * @throws XMLConfigurationException Thrown by component on initialization error.
      *                      For example, if a feature or property is
      *                      required for the operation of the component, the
      *                      component manager may throw a
-     *                      SAXNotRecognizedException or a
-     *                      SAXNotSupportedException.
+     *                      XMLConfigurationException.
      */
     public void reset(XMLComponentManager componentManager) throws XMLConfigurationException {
 
@@ -387,10 +384,8 @@ public class XMLDocumentFragmentScannerImpl extends XMLScanner implements XMLDoc
      * @param featureId The feature identifier.
      * @param state     The state of the feature.
      *
-     * @throws SAXNotRecognizedException The component should not throw
+     * @throws XMLConfigurationException The component should not throw
      *                                   this exception.
-     * @throws SAXNotSupportedException The component should not throw
-     *                                  this exception.
      */
     public void setFeature(String featureId, boolean state) throws XMLConfigurationException {
 
@@ -426,10 +421,8 @@ public class XMLDocumentFragmentScannerImpl extends XMLScanner implements XMLDoc
      * @param propertyId The property identifier.
      * @param value      The value of the property.
      *
-     * @throws SAXNotRecognizedException The component should not throw
+     * @throws XMLConfigurationException The component should not throw
      *                                   this exception.
-     * @throws SAXNotSupportedException The component should not throw
-     *                                  this exception.
      */
     public void setProperty(String propertyId, Object value) throws XMLConfigurationException {
 
@@ -491,9 +484,9 @@ public class XMLDocumentFragmentScannerImpl extends XMLScanner implements XMLDoc
     //
 
     /**
-     * setDocumentHandler
+     * Sets the document handler.
      *
-     * @param documentHandler
+     * @param documentHandler the document handler to set
      */
     public void setDocumentHandler(XMLDocumentHandler documentHandler) {
         fDocumentHandler = documentHandler;
@@ -590,7 +583,11 @@ public class XMLDocumentFragmentScannerImpl extends XMLScanner implements XMLDoc
 
     // dispatcher factory methods
 
-    /** Creates a content dispatcher. */
+    /**
+     * Creates a content dispatcher.
+     *
+     * @return a new content dispatcher instance
+     */
     protected Dispatcher createContentDispatcher() {
         return new FragmentContentDispatcher();
     } // createContentDispatcher():Dispatcher
@@ -599,21 +596,23 @@ public class XMLDocumentFragmentScannerImpl extends XMLScanner implements XMLDoc
 
     /**
      * Scans an XML or text declaration.
-     * <p>
+     *
      * <pre>
-     * [23] XMLDecl ::= '&lt;?xml' VersionInfo EncodingDecl? SDDecl? S? '?>'
+     * [23] XMLDecl ::= '&amp;lt;?xml' VersionInfo EncodingDecl? SDDecl? S? '?>'
      * [24] VersionInfo ::= S 'version' Eq (' VersionNum ' | " VersionNum ")
      * [80] EncodingDecl ::= S 'encoding' Eq ('"' EncName '"' |  "'" EncName "'" )
      * [81] EncName ::= [A-Za-z] ([A-Za-z0-9._] | '-')*
      * [32] SDDecl ::= S 'standalone' Eq (("'" ('yes' | 'no') "'")
      *                 | ('"' ('yes' | 'no') '"'))
      *
-     * [77] TextDecl ::= '&lt;?xml' VersionInfo? EncodingDecl S? '?>'
+     * [77] TextDecl ::= '&amp;lt;?xml' VersionInfo? EncodingDecl S? '?>'
      * </pre>
      *
      * @param scanningTextDecl True if a text declaration is to
      *                         be scanned instead of an XML
      *                         declaration.
+     * @throws IOException if an I/O error occurs
+     * @throws XNIException if a parser error occurs
      */
     protected void scanXMLDeclOrTextDecl(boolean scanningTextDecl) throws IOException, XNIException {
 
@@ -671,12 +670,15 @@ public class XMLDocumentFragmentScannerImpl extends XMLScanner implements XMLDoc
 
     /**
      * Scans a comment.
-     * <p>
+     *
      * <pre>
-     * [15] Comment ::= '&lt!--' ((Char - '-') | ('-' (Char - '-')))* '-->'
+     * [15] Comment ::= '&amp;lt;!--' ((Char - '-') | ('-' (Char - '-')))* '-->'
      * </pre>
-     * <p>
+     *
      * <strong>Note:</strong> Called after scanning past '&lt;!--'
+     *
+     * @throws IOException if an I/O error occurs
+     * @throws XNIException if a parser error occurs
      */
     protected void scanComment() throws IOException, XNIException {
 
@@ -694,15 +696,15 @@ public class XMLDocumentFragmentScannerImpl extends XMLScanner implements XMLDoc
      * Scans a start element. This method will handle the binding of
      * namespace information and notifying the handler of the start
      * of the element.
-     * <p>
+     *
      * <pre>
      * [44] EmptyElemTag ::= '&lt;' Name (S Attribute)* S? '/>'
      * [40] STag ::= '&lt;' Name (S Attribute)* S? '>'
      * </pre>
-     * <p>
+     *
      * <strong>Note:</strong> This method assumes that the leading
      * '&lt;' character has been consumed.
-     * <p>
+     *
      * <strong>Note:</strong> This method uses the fElementQName and
      * fAttributes variables. The contents of these variables will be
      * destroyed. The caller should copy important information out of
@@ -710,6 +712,8 @@ public class XMLDocumentFragmentScannerImpl extends XMLScanner implements XMLDoc
      *
      * @return True if element is empty. (i.e. It matches
      *          production [44].
+     * @throws IOException if an I/O error occurs
+     * @throws XNIException if a parser error occurs
      */
     protected boolean scanStartElement() throws IOException, XNIException {
         if (DEBUG_CONTENT_SCANNING)
@@ -789,6 +793,9 @@ public class XMLDocumentFragmentScannerImpl extends XMLScanner implements XMLDoc
      * Scans the name of an element in a start or empty tag.
      *
      * @see #scanStartElement()
+     *
+     * @throws IOException Thrown on i/o error.
+     * @throws XNIException Thrown on XNI error.
      */
     protected void scanStartElementName() throws IOException, XNIException {
         // name
@@ -808,6 +815,9 @@ public class XMLDocumentFragmentScannerImpl extends XMLScanner implements XMLDoc
      *
      * @see #scanStartElement
      * @return True if element is empty.
+     *
+     * @throws IOException Thrown on i/o error.
+     * @throws XNIException Thrown on XNI error.
      */
     protected boolean scanStartElementAfterName() throws IOException, XNIException {
         String rawname = fElementQName.rawname;
@@ -875,20 +885,22 @@ public class XMLDocumentFragmentScannerImpl extends XMLScanner implements XMLDoc
 
     /**
      * Scans an attribute.
-     * <p>
+     *
      * <pre>
      * [41] Attribute ::= Name Eq AttValue
      * </pre>
-     * <p>
+     *
      * <strong>Note:</strong> This method assumes that the next
      * character on the stream is the first character of the attribute
      * name.
-     * <p>
+     *
      * <strong>Note:</strong> This method uses the fAttributeQName and
      * fQName variables. The contents of these variables will be
      * destroyed.
      *
      * @param attributes The attributes list for the scanned attribute.
+     * @throws IOException if an I/O error occurs
+     * @throws XNIException if a parser error occurs
      */
     protected void scanAttribute(XMLAttributes attributes) throws IOException, XNIException {
         if (DEBUG_CONTENT_SCANNING)
@@ -937,6 +949,9 @@ public class XMLDocumentFragmentScannerImpl extends XMLScanner implements XMLDoc
      * Scans element content.
      *
      * @return Returns the next character on the stream.
+     *
+     * @throws IOException Thrown on i/o error.
+     * @throws XNIException Thrown on XNI error.
      */
     protected int scanContent() throws IOException, XNIException {
 
@@ -987,7 +1002,7 @@ public class XMLDocumentFragmentScannerImpl extends XMLScanner implements XMLDoc
 
     /**
      * Scans a CDATA section.
-     * <p>
+     *
      * <strong>Note:</strong> This method uses the fTempString and
      * fStringBuffer variables.
      *
@@ -995,6 +1010,8 @@ public class XMLDocumentFragmentScannerImpl extends XMLScanner implements XMLDoc
      *                 completely.
      *
      * @return True if CDATA is completely scanned.
+     * @throws IOException if an I/O error occurs
+     * @throws XNIException if a parser error occurs
      */
     protected boolean scanCDATASection(boolean complete) throws IOException, XNIException {
 
@@ -1076,17 +1093,19 @@ public class XMLDocumentFragmentScannerImpl extends XMLScanner implements XMLDoc
 
     /**
      * Scans an end element.
-     * <p>
+     *
      * <pre>
      * [42] ETag ::= '&lt;/' Name S? '>'
      * </pre>
-     * <p>
+     *
      * <strong>Note:</strong> This method uses the fElementQName variable.
      * The contents of this variable will be destroyed. The caller should
      * copy the needed information out of this variable before calling
      * this method.
      *
      * @return The element depth.
+     * @throws IOException if an I/O error occurs
+     * @throws XNIException if a parser error occurs
      */
     protected int scanEndElement() throws IOException, XNIException {
         if (DEBUG_CONTENT_SCANNING)
@@ -1133,10 +1152,13 @@ public class XMLDocumentFragmentScannerImpl extends XMLScanner implements XMLDoc
 
     /**
      * Scans a character reference.
-     * <p>
+     *
      * <pre>
-     * [66] CharRef ::= '&#' [0-9]+ ';' | '&#x' [0-9a-fA-F]+ ';'
+     * [66] CharRef ::= '&amp;#' [0-9]+ ';' | '&amp;#x' [0-9a-fA-F]+ ';'
      * </pre>
+     *
+     * @throws IOException if an I/O error occurs
+     * @throws XNIException if a parser error occurs
      */
     protected void scanCharReference() throws IOException, XNIException {
 
@@ -1255,6 +1277,7 @@ public class XMLDocumentFragmentScannerImpl extends XMLScanner implements XMLDoc
      * The contents of this variable will be destroyed.
      *
      * @param element The element.
+     * @param isEmpty true if the element is empty
      *
      * @return The element depth.
      *
@@ -1328,7 +1351,12 @@ public class XMLDocumentFragmentScannerImpl extends XMLScanner implements XMLDoc
     // Private methods
     //
 
-    /** Returns the scanner state name. */
+    /**
+     * Returns the scanner state name.
+     *
+     * @param state the scanner state
+     * @return the scanner state name
+     */
     protected String getScannerStateName(int state) {
 
         switch (state) {
@@ -1360,7 +1388,12 @@ public class XMLDocumentFragmentScannerImpl extends XMLScanner implements XMLDoc
 
     } // getScannerStateName(int):String
 
-    /** Returns the dispatcher name. */
+    /**
+     * Returns the dispatcher name.
+     *
+     * @param dispatcher the dispatcher
+     * @return the dispatcher name
+     */
     public String getDispatcherName(Dispatcher dispatcher) {
 
         if (DEBUG_DISPATCHER) {
@@ -1453,6 +1486,8 @@ public class XMLDocumentFragmentScannerImpl extends XMLScanner implements XMLDoc
          * <strong>Note:</strong> The object returned is <em>not</em>
          * orphaned to the caller. Therefore, the caller should consider
          * the object to be read-only.
+         *
+         * @param element The QName object to fill with the popped element information
          */
         public void popElement(QName element) {
             element.setValues(fElements[--fSize]);
@@ -1469,8 +1504,6 @@ public class XMLDocumentFragmentScannerImpl extends XMLScanner implements XMLDoc
      * This interface defines an XML "event" dispatching model. Classes
      * that implement this interface are responsible for scanning parts
      * of the XML document and dispatching callbacks.
-     *
-     * @xerces.internal
      *
      * @author Glenn Marcy, IBM
      */
@@ -1503,6 +1536,13 @@ public class XMLDocumentFragmentScannerImpl extends XMLScanner implements XMLDoc
      * @author Eric Ye, IBM
      */
     protected class FragmentContentDispatcher implements Dispatcher {
+
+        /**
+         * Default constructor. Creates a fragment content dispatcher.
+         */
+        protected FragmentContentDispatcher() {
+            // Empty constructor
+        }
 
         //
         // Dispatcher methods
@@ -1707,10 +1747,12 @@ public class XMLDocumentFragmentScannerImpl extends XMLScanner implements XMLDoc
         /**
          * Scan for DOCTYPE hook. This method is a hook for subclasses
          * to add code to handle scanning for a the "DOCTYPE" string
-         * after the string "<!" has been scanned.
+         * after the string "&lt;!" has been scanned.
          *
          * @return True if the "DOCTYPE" was scanned; false if "DOCTYPE"
          *          was not scanned.
+         * @throws IOException if an I/O error occurs
+         * @throws XNIException if a XNI error occurs
          */
         protected boolean scanForDoctypeHook() throws IOException, XNIException {
             return false;
@@ -1728,6 +1770,8 @@ public class XMLDocumentFragmentScannerImpl extends XMLScanner implements XMLDoc
          *          allows the scanner to switch to a new scanning
          *          dispatcher. A return value of false indicates that
          *          the content dispatcher should continue as normal.
+         * @throws IOException if an I/O error occurs
+         * @throws XNIException if a XNI error occurs
          */
         protected boolean elementDepthIsZeroHook() throws IOException, XNIException {
             return false;
@@ -1744,6 +1788,8 @@ public class XMLDocumentFragmentScannerImpl extends XMLScanner implements XMLDoc
          *          allows the scanner to switch to a new scanning
          *          dispatcher. A return value of false indicates that
          *          the content dispatcher should continue as normal.
+         * @throws IOException if an I/O error occurs
+         * @throws XNIException if a XNI error occurs
          */
         protected boolean scanRootElementHook() throws IOException, XNIException {
             return false;
@@ -1755,6 +1801,10 @@ public class XMLDocumentFragmentScannerImpl extends XMLScanner implements XMLDoc
          * a document fragment is OK if the markup depth is zero.
          * However, when scanning a full XML document, an end of file
          * is always premature.
+         *
+         * @param e The end of file exception
+         * @throws IOException if an I/O error occurs
+         * @throws XNIException if a XNI error occurs
          */
         protected void endOfFileHook(EOFException e) throws IOException, XNIException {
 

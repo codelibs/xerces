@@ -113,11 +113,11 @@ import org.xml.sax.helpers.XMLReaderFactory;
  * The purpose of this class is to co-ordinate the construction of a
  * grammar object corresponding to a schema.  To do this, it must be
  * prepared to parse several schema documents (for instance if the
- * schema document originally referred to contains <include> or
- * <redefined> information items).  If any of the schemas imports a
+ * schema document originally referred to contains {@code <include>} or
+ * {@code <redefined>} information items).  If any of the schemas imports a
  * schema, other grammars may be constructed as a side-effect.
  *
- * @xerces.internal
+
  *
  * @author Neil Graham, IBM
  * @author Pavani Mukthipudi, Sun Microsystems
@@ -195,6 +195,7 @@ public class XSDHandler {
     /** Property identifier: locale. */
     protected static final String LOCALE = Constants.XERCES_PROPERTY_PREFIX + Constants.LOCALE_PROPERTY;
 
+    /** Debug flag for node pool operations */
     protected static final boolean DEBUG_NODE_POOL = false;
 
     // Data
@@ -211,13 +212,16 @@ public class XSDHandler {
 
     // this string gets appended to redefined names; it's purpose is to be
     // as unlikely as possible to cause collisions.
+    /** Identifier string appended to redefined names to avoid collisions */
     public final static String REDEF_IDENTIFIER = "_fn3dktizrknc9pi";
 
     //
     //protected data that can be accessable by any traverser
     // stores <notation> decl
+    /** Registry for notation declarations */
     protected Hashtable fNotationRegistry = new Hashtable();
 
+    /** Pool for reusing declaration objects */
     protected XSDeclarationPool fDeclPool = null;
 
     // These tables correspond to the symbol spaces defined in the
@@ -435,14 +439,19 @@ public class XSDHandler {
     SymbolHash fGlobalTypeDecls = new SymbolHash(25);
 
     // Constructors
+    /**
+     * Constructs a new XSDHandler instance with default configuration.
+     */
     public XSDHandler() {
         fHiddenNodes = new Hashtable();
         fSchemaParser = new SchemaDOMParser(new SchemaParsingConfig());
     }
 
-    // it should be possible to use the same XSDHandler to parse
-    // multiple schema documents; this will allow one to be
-    // constructed.
+    /**
+     * Constructs a new XSDHandler instance with an existing grammar bucket.
+     * This allows the same handler to parse multiple schema documents.
+     * @param gBucket the existing grammar bucket to use
+     */
     public XSDHandler(XSGrammarBucket gBucket) {
         this();
         fGrammarBucket = gBucket;
@@ -458,11 +467,11 @@ public class XSDHandler {
      * called from the Validator and it will make the
      * resulting grammar available; it returns a reference to this object just
      * in case.  A reset(XMLComponentManager) must be called before this methods is called.
-     * @param is
-     * @param desc
-     * @param locationPairs
+     * @param is the XMLInputSource containing the schema to parse
+     * @param desc the XSDDescription of the schema being parsed
+     * @param locationPairs a map of schema location hints
      * @return the SchemaGrammar
-     * @throws IOException
+     * @throws IOException if an I/O error occurs during parsing
      */
     public SchemaGrammar parseSchema(XMLInputSource is, XSDDescription desc, Hashtable locationPairs) throws IOException {
         fLocationPairs = locationPairs;
@@ -691,6 +700,9 @@ public class XSDHandler {
      * First try to find a grammar in the bucket, if failed, consult the
      * grammar pool. If a grammar is found in the pool, then add it (and all
      * imported ones) into the bucket.
+     * @param desc the XML Schema description containing target namespace information
+     * @param ignoreConflict whether to ignore conflicts when putting grammar in bucket
+     * @return the schema grammar if found, null otherwise
      */
     protected SchemaGrammar findGrammar(XSDDescription desc, boolean ignoreConflict) {
         SchemaGrammar sg = fGrammarBucket.getGrammar(desc.getTargetNamespace());
@@ -727,12 +739,18 @@ public class XSDHandler {
     // It constructs an instance of an XSDocumentInfo object using the
     // schemaRoot node.  Then, for each <include>,
     // <redefine>, and <import> children, it attempts to resolve the
-    // requested schema document, initiates a DOM parse, and calls
-    // itself recursively on that document's root.  It also records in
-    // the DependencyMap object what XSDocumentInfo objects its XSDocumentInfo
-    // depends on.
-    // It also makes sure the targetNamespace of the schema it was
-    // called to parse is correct.
+    /**
+     * Constructs document tree for the requested schema document, initiates a DOM parse, and calls
+     * itself recursively on that document's root. It also records in
+     * the DependencyMap object what XSDocumentInfo objects its XSDocumentInfo
+     * depends on and makes sure the targetNamespace of the schema it was
+     * called to parse is correct.
+     * @param schemaRoot the root element of the schema document
+     * @param locationHint the location hint for the schema document
+     * @param desc the XML Schema description
+     * @param nsCollision whether there is a namespace collision
+     * @return the XSDocumentInfo for the constructed schema tree, or null if construction failed
+     */
     protected XSDocumentInfo constructTrees(Element schemaRoot, String locationHint, XSDDescription desc, boolean nsCollision) {
         if (schemaRoot == null)
             return null;
@@ -1135,11 +1153,13 @@ public class XSDHandler {
         }
     }
 
-    // This method builds registries for all globally-referenceable
-    // names.  A registry will be built for each symbol space defined
-    // by the spec.  It is also this method's job to rename redefined
-    // components, and to record which components redefine others (so
-    // that implicit redefinitions of groups and attributeGroups can be handled).
+    /**
+     * Builds registries for all globally-referenceable names.
+     * A registry will be built for each symbol space defined by the spec.
+     * It is also this method's job to rename redefined components, and to record
+     * which components redefine others (so that implicit redefinitions of groups
+     * and attributeGroups can be handled).
+     */
     protected void buildGlobalNameRegistries() {
 
         // Starting with fRoot, we examine each child of the schema
@@ -1264,17 +1284,17 @@ public class XSDHandler {
 
     } // end buildGlobalNameRegistries
 
-    // Beginning at the first schema processing was requested for
-    // (fRoot), this method
-    // examines each child (global schema information item) of each
-    // schema document (and of each <redefine> element)
-    // corresponding to an XSDocumentInfo object.  If the
-    // readOnly field on that node has not been set, it calls an
-    // appropriate traverser to traverse it.  Once all global decls in
-    // an XSDocumentInfo object have been traversed, it marks that object
-    // as traversed (or hidden) in order to avoid infinite loops.  It completes
-    // when it has visited all XSDocumentInfo objects in the
-    // DependencyMap and marked them as traversed.
+    /**
+     * Beginning at the first schema processing was requested for (fRoot), this method
+     * examines each child (global schema information item) of each schema document
+     * (and of each redefine element) corresponding to an XSDocumentInfo object.
+     * If the readOnly field on that node has not been set, it calls an appropriate
+     * traverser to traverse it. Once all global decls in an XSDocumentInfo object
+     * have been traversed, it marks that object as traversed (or hidden) in order
+     * to avoid infinite loops. It completes when it has visited all XSDocumentInfo
+     * objects in the DependencyMap and marked them as traversed.
+     * @param annotationInfo list to collect annotation information
+     */
     protected void traverseSchemas(ArrayList annotationInfo) {
         // the process here is very similar to that in
         // buildGlobalRegistries, except we can't set our schemas as
@@ -1523,6 +1543,15 @@ public class XSDHandler {
     // XSDocumentInfo object.
     // This method returns whatever the traverser it called returned.
     // This will be an Object of some kind that lives in the Grammar.
+    /**
+     * Get a global declaration from the schema.
+     *
+     * @param currSchema the current schema document information
+     * @param declType the type of declaration to retrieve
+     * @param declToTraverse the qualified name of the declaration to traverse
+     * @param elmNode the element node containing the declaration
+     * @return the global declaration object
+     */
     protected Object getGlobalDecl(XSDocumentInfo currSchema, int declType, QName declToTraverse, Element elmNode) {
 
         if (DEBUG_NODE_POOL) {
@@ -1660,8 +1689,14 @@ public class XSDHandler {
         return traverseGlobalDecl(declType, decl, schemaWithDecl, sGrammar);
     } // getGlobalDecl(XSDocumentInfo, int, QName):  Object
 
-    // If we are tolerating duplicate declarations and allowing namespace growth
-    // use the declaration from the current schema load (if it exists)
+    /**
+     * If we are tolerating duplicate declarations and allowing namespace growth
+     * use the declaration from the current schema load (if it exists).
+     *
+     * @param declKey the declaration key composed of namespace and local name
+     * @param declType the type of declaration (ATTRIBUTE_TYPE, ELEMENT_TYPE, etc.)
+     * @return the global declaration object, or null if not found
+     */
     protected Object getGlobalDecl(String declKey, int declType) {
         Object retObj = null;
 
@@ -1692,6 +1727,14 @@ public class XSDHandler {
         return retObj;
     }
 
+    /**
+     * Retrieves a global declaration from the specified schema grammar.
+     *
+     * @param sGrammar the schema grammar to search in
+     * @param declType the type of declaration to retrieve
+     * @param localpart the local name of the declaration
+     * @return the global declaration object, or null if not found
+     */
     protected Object getGlobalDeclFromGrammar(SchemaGrammar sGrammar, int declType, String localpart) {
         Object retObj = null;
 
@@ -1722,6 +1765,15 @@ public class XSDHandler {
         return retObj;
     }
 
+    /**
+     * Retrieves a global declaration from the specified schema grammar with schema location.
+     *
+     * @param sGrammar the schema grammar to search in
+     * @param declType the type of declaration to retrieve
+     * @param localpart the local name of the declaration
+     * @param schemaLoc the schema location hint
+     * @return the global declaration object, or null if not found
+     */
     protected Object getGlobalDeclFromGrammar(SchemaGrammar sGrammar, int declType, String localpart, String schemaLoc) {
         Object retObj = null;
 
@@ -1752,6 +1804,15 @@ public class XSDHandler {
         return retObj;
     }
 
+    /**
+     * Traverses and processes a global declaration element.
+     *
+     * @param declType the type of declaration to traverse
+     * @param decl the DOM element representing the declaration
+     * @param schemaDoc the schema document information
+     * @param grammar the schema grammar to add the declaration to
+     * @return the processed declaration object
+     */
     protected Object traverseGlobalDecl(int declType, Element decl, XSDocumentInfo schemaDoc, SchemaGrammar grammar) {
         Object retObj = null;
 
@@ -1802,6 +1863,11 @@ public class XSDHandler {
         return retObj;
     }
 
+    /**
+     * Retrieves the system ID associated with a schema document.
+     * @param schemaDoc the schema document information
+     * @return the system ID string for the schema document
+     */
     public String schemaDocument2SystemId(XSDocumentInfo schemaDoc) {
         return (String) fDoc2SystemId.get(schemaDoc.fSchemaElement);
     }
@@ -1848,15 +1914,18 @@ public class XSDHandler {
         return retObj;
     } // getGrpOrAttrGrpRedefinedByRestriction(int, QName, XSDocumentInfo):  Object
 
-    // Since ID constraints can occur in local elements, unless we
-    // wish to completely traverse all our DOM trees looking for ID
-    // constraints while we're building our global name registries,
-    // which seems terribly inefficient, we need to resolve keyrefs
-    // after all parsing is complete.  This we can simply do by running through
-    // fIdentityConstraintRegistry and calling traverseKeyRef on all
-    // of the KeyRef nodes.  This unfortunately removes this knowledge
-    // from the elementTraverser class (which must ignore keyrefs),
-    // but there seems to be no efficient way around this...
+    /**
+     * Resolves all keyref identity constraints after parsing is complete.
+     * Since ID constraints can occur in local elements, unless we
+     * wish to completely traverse all our DOM trees looking for ID
+     * constraints while we're building our global name registries,
+     * which seems terribly inefficient, we need to resolve keyrefs
+     * after all parsing is complete. This we can simply do by running through
+     * fIdentityConstraintRegistry and calling traverseKeyRef on all
+     * of the KeyRef nodes. This unfortunately removes this knowledge
+     * from the elementTraverser class (which must ignore keyrefs),
+     * but there seems to be no efficient way around this.
+     */
     protected void resolveKeyRefs() {
         for (int i = 0; i < fKeyrefStackPos; i++) {
             XSDocumentInfo keyrefSchemaDoc = fKeyrefsMapXSDocumentInfo[i];
@@ -1870,19 +1939,34 @@ public class XSDHandler {
         }
     } // end resolveKeyRefs
 
-    // an accessor method.  Just makes sure callers
-    // who want the Identity constraint registry vaguely know what they're about.
+    /**
+     * An accessor method for the identity constraint registry.
+     * Just makes sure callers who want the Identity constraint registry vaguely know what they're about.
+     *
+     * @return the unparsed identity constraint registry hashtable
+     */
     protected Hashtable getIDRegistry() {
         return fUnparsedIdentityConstraintRegistry;
     }
 
-    // an accessor method.
+    /**
+     * An accessor method for the secondary identity constraint registry.
+     *
+     * @return the unparsed identity constraint registry sub hashtable
+     */
     protected Hashtable getIDRegistry_sub() {
         return fUnparsedIdentityConstraintRegistrySub;
     }
 
-    // This method squirrels away <keyref> declarations--along with the element
-    // decls and namespace bindings they might find handy.
+    /**
+     * Stores keyref declarations along with the element declarations and namespace bindings they might find handy.
+     * This method squirrels away &lt;keyref&gt; declarations--along with the element
+     * decls and namespace bindings they might find handy.
+     *
+     * @param keyrefToStore the keyref element to store
+     * @param schemaDoc the schema document information
+     * @param currElemDecl the current element declaration
+     */
     protected void storeKeyRef(Element keyrefToStore, XSDocumentInfo schemaDoc, XSElementDecl currElemDecl) {
         String keyrefName = DOMUtil.getAttrValue(keyrefToStore, SchemaSymbols.ATT_NAME);
         if (keyrefName.length() != 0) {
@@ -3316,14 +3400,31 @@ public class XSDHandler {
         fGlobalTypeDecls.clear();
     }
 
+    /**
+     * Sets the declaration pool for this XSD handler.
+     *
+     * @param declPool the XS declaration pool to use
+     */
     public void setDeclPool(XSDeclarationPool declPool) {
         fDeclPool = declPool;
     }
 
+    /**
+     * Sets the schema datatype validator factory for this XSD handler.
+     *
+     * @param dvFactory the schema datatype validator factory to use
+     */
     public void setDVFactory(SchemaDVFactory dvFactory) {
         fDVFactory = dvFactory;
     }
 
+    /**
+     * Resets the XSD handler with configuration from the provided component manager.
+     * This method initializes all the necessary components including symbol table,
+     * entity resolver, error reporter, and various parsing features.
+     *
+     * @param componentManager the XML component manager providing configuration
+     */
     public void reset(XMLComponentManager componentManager) {
 
         // set symbol table
@@ -3856,6 +3957,9 @@ public class XSDHandler {
      * Extract location information from an Element node, and create a
      * new SimpleLocator object from such information. Returning null means
      * no information can be retrieved from the element.
+     *
+     * @param e the element from which to extract location information
+     * @return a SimpleLocator object with location information, or null if no information can be retrieved
      */
     public SimpleLocator element2Locator(Element e) {
         if (!(e instanceof ElementImpl))
@@ -3869,6 +3973,10 @@ public class XSDHandler {
      * Extract location information from an Element node, store such
      * information in the passed-in SimpleLocator object, then return
      * true. Returning false means can't extract or store such information.
+     *
+     * @param e the element from which to extract location information
+     * @param l the SimpleLocator object to store the location information
+     * @return true if location information was successfully extracted and stored, false otherwise
      */
     public boolean element2Locator(Element e, SimpleLocator l) {
         if (l == null)
@@ -4079,7 +4187,9 @@ public class XSDHandler {
     }
 
     /**
-     * @param state
+     * Sets whether synthetic annotations should be generated during schema processing.
+     *
+     * @param state true to enable generation of synthetic annotations, false to disable
      */
     public void setGenerateSyntheticAnnotations(boolean state) {
         fSchemaParser.setFeature(GENERATE_SYNTHETIC_ANNOTATIONS, state);

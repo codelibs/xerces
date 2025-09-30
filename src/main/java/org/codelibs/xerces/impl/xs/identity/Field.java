@@ -30,7 +30,7 @@ import org.codelibs.xerces.xs.XSTypeDefinition;
 /**
  * Schema identity constraint field.
  *
- * @xerces.internal
+
  *
  * @author Andy Clark, IBM
  * @version $Id: Field.java 572110 2007-09-02 19:04:44Z mrglavas $
@@ -51,7 +51,12 @@ public class Field {
     // Constructors
     //
 
-    /** Constructs a field. */
+    /**
+     * Constructs a field.
+     *
+     * @param xpath the XPath expression for this field
+     * @param identityConstraint the identity constraint this field belongs to
+     */
     public Field(Field.XPath xpath, IdentityConstraint identityConstraint) {
         fXPath = xpath;
         fIdentityConstraint = identityConstraint;
@@ -61,19 +66,32 @@ public class Field {
     // Public methods
     //
 
-    /** Returns the field XPath. */
+    /**
+     * Returns the field XPath.
+     *
+     * @return the XPath expression for this field
+     */
     public org.codelibs.xerces.impl.xpath.XPath getXPath() {
         return fXPath;
     } // getXPath():org.codelibs.xerces.impl.v1.schema.identity.XPath
 
-    /** Returns the identity constraint. */
+    /**
+     * Returns the identity constraint.
+     *
+     * @return the identity constraint this field belongs to
+     */
     public IdentityConstraint getIdentityConstraint() {
         return fIdentityConstraint;
     } // getIdentityConstraint():IdentityConstraint
 
     // factory method
 
-    /** Creates a field matcher. */
+    /**
+     * Creates a field matcher.
+     *
+     * @param store the value store for this field
+     * @return a new XPath matcher for this field
+     */
     public XPathMatcher createMatcher(ValueStore store) {
         return new Field.Matcher(fXPath, store);
     } // createMatcher(ValueStore):XPathMatcher
@@ -102,7 +120,14 @@ public class Field {
         // Constructors
         //
 
-        /** Constructs a field XPath expression. */
+        /**
+         * Constructs a field XPath expression.
+         *
+         * @param xpath the XPath expression string
+         * @param symbolTable the symbol table for interning strings
+         * @param context the namespace context for resolving prefixes
+         * @throws XPathException if the XPath expression is invalid
+         */
         public XPath(String xpath, SymbolTable symbolTable, NamespaceContext context) throws XPathException {
             super(fixupXPath(xpath), symbolTable, context);
 
@@ -203,7 +228,12 @@ public class Field {
         // Constructors
         //
 
-        /** Constructs a field matcher. */
+        /**
+         * Constructs a field matcher.
+         *
+         * @param xpath the XPath expression for this field matcher
+         * @param store the value store for collecting field values
+         */
         public Matcher(Field.XPath xpath, ValueStore store) {
             super(xpath);
             fStore = store;

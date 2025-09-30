@@ -33,7 +33,10 @@ import org.codelibs.xerces.xni.parser.XMLDTDSource;
 import org.codelibs.xerces.xni.parser.XMLDocumentSource;
 
 /**
- * @xerces.internal
+ * Default XML document handler implementation for XML Schema processing.
+ * This class provides a default implementation of XMLDocumentHandler,
+ * XMLDTDHandler, and XMLDTDContentModelHandler that can be extended
+ * for specific processing needs.
  *
  * @author Rahul Srivastava, Sun Microsystems Inc.
  * @author Sandy Gao, IBM

@@ -19,7 +19,8 @@ package org.codelibs.xerces.wml.dom;
 import org.codelibs.xerces.wml.WMLCardElement;
 
 /**
- * @xerces.internal
+ * Implementation of WMLCardElement interface for WML card elements.
+ *
  * @version $Id: WMLCardElementImpl.java 661560 2008-05-30 03:22:25Z mrglavas $
  * @author <a href="mailto:david@topware.com.tw">David Li</a>
  */
@@ -27,6 +28,12 @@ public class WMLCardElementImpl extends WMLElementImpl implements WMLCardElement
 
     private static final long serialVersionUID = -3571126568344328924L;
 
+    /**
+     * Constructs a new WML card element with the specified owner document and tag name.
+     *
+     * @param owner the owner document
+     * @param tagName the tag name for this element
+     */
     public WMLCardElementImpl(WMLDocumentImpl owner, String tagName) {
         super(owner, tagName);
     }

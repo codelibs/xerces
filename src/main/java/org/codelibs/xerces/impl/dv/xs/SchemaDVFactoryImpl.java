@@ -21,9 +21,14 @@ import org.codelibs.xerces.impl.dv.XSSimpleType;
 import org.codelibs.xerces.util.SymbolHash;
 
 /**
- * the factory to create/return built-in schema 1.0 DVs and create user-defined DVs
+ * Schema datatype validator factory implementation for XML Schema 1.0.
+ * This factory creates and manages built-in schema datatype validators
+ * and provides functionality to create user-defined simple types.
  *
- * @xerces.internal
+ * <p>This implementation extends the base factory to provide full support
+ * for XML Schema 1.0 built-in types and derivation mechanisms.</p>
+ *
+
  *
  * @author Neeraj Bajaj, Sun Microsystems, inc.
  * @author Sandy Gao, IBM
@@ -33,6 +38,15 @@ import org.codelibs.xerces.util.SymbolHash;
  */
 public class SchemaDVFactoryImpl extends BaseSchemaDVFactory {
 
+    /**
+     * Default constructor.
+     * Creates a new instance of the schema datatype validator factory.
+     */
+    public SchemaDVFactoryImpl() {
+        super();
+    }
+
+    /** Hash table containing all built-in datatype validators. */
     static final SymbolHash fBuiltInTypes = new SymbolHash();
 
     static {

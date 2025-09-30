@@ -19,7 +19,8 @@ package org.codelibs.xerces.dom;
 import org.w3c.dom.ranges.RangeException;
 
 /**
- * @xerces.internal
+ * Implementation of the DOM Range exception.
+ * This exception is thrown when an operation would result in an incorrect Range.
  *
  * @version $Id: RangeExceptionImpl.java 447266 2006-09-18 05:57:49Z mrglavas $
  */
@@ -29,6 +30,12 @@ public class RangeExceptionImpl extends RangeException {
     /** Serialization version. */
     static final long serialVersionUID = -9058052627467240856L;
 
+    /**
+     * Constructs a Range exception with the specified code and message.
+     *
+     * @param code the exception code
+     * @param message the exception message
+     */
     public RangeExceptionImpl(short code, String message) {
         super(code, message);
     }

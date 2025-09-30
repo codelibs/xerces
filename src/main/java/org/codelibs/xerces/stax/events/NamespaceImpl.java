@@ -23,7 +23,8 @@ import javax.xml.stream.Location;
 import javax.xml.stream.events.Namespace;
 
 /**
- * @xerces.internal
+ * Implementation of {@code Namespace} event for StAX.
+ * Represents a namespace declaration in an XML document.
  *
  * @author Lucian Holland
  *
@@ -35,8 +36,10 @@ public final class NamespaceImpl extends AttributeImpl implements Namespace {
     private final String fNamespaceURI;
 
     /**
-     * @param location
-     * @param schemaType
+     * Constructs a Namespace event with the specified prefix, namespace URI, and location.
+     * @param prefix the namespace prefix
+     * @param namespaceURI the namespace URI
+     * @param location the location of this event in the source document
      */
     public NamespaceImpl(final String prefix, final String namespaceURI, final Location location) {
         super(NAMESPACE, makeAttributeQName(prefix), namespaceURI, null, true, location);

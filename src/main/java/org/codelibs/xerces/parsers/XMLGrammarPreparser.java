@@ -83,11 +83,16 @@ public class XMLGrammarPreparser {
     private static final String[] RECOGNIZED_PROPERTIES = { SYMBOL_TABLE, ERROR_REPORTER, ERROR_HANDLER, ENTITY_RESOLVER, GRAMMAR_POOL, };
 
     // Data
+    /** Symbol table for parser internals. */
     protected final SymbolTable fSymbolTable;
+    /** Error reporter for handling parsing errors. */
     protected final XMLErrorReporter fErrorReporter;
+    /** Entity resolver for resolving external entities. */
     protected XMLEntityResolver fEntityResolver;
+    /** Grammar pool for caching and reusing grammars. */
     protected XMLGrammarPool fGrammarPool;
 
+    /** The locale to use for error messages. */
     protected Locale fLocale;
 
     // Hashtable holding our loaders
@@ -124,17 +129,17 @@ public class XMLGrammarPreparser {
     // Public methods
     //
 
-    /*
-    * Register a type of grammar to make it preparsable.   If
-    * the second parameter is null, the parser will use its  built-in
-    * facilities for that grammar type.
-    * This should be called by the application immediately
-    * after creating this object and before initializing any properties/features.
-    * @param type   URI identifying the type of the grammar
-    * @param loader an object capable of preparsing that type; null if the ppreparser should use built-in knowledge.
-    * @return true if successful; false if no built-in knowledge of
-    *       the type or if unable to instantiate the string we know about
-    */
+    /**
+     * Register a type of grammar to make it preparsable. If
+     * the second parameter is null, the parser will use its built-in
+     * facilities for that grammar type.
+     * This should be called by the application immediately
+     * after creating this object and before initializing any properties/features.
+     * @param grammarType URI identifying the type of the grammar
+     * @param loader an object capable of preparsing that type; null if the preparser should use built-in knowledge
+     * @return true if successful; false if no built-in knowledge of
+     *         the type or if unable to instantiate the string we know about
+     */
     public boolean registerPreparser(String grammarType, XMLGrammarLoader loader) {
         if (loader == null) { // none specified!
             if (KNOWN_LOADERS.containsKey(grammarType)) {
@@ -209,7 +214,10 @@ public class XMLGrammarPreparser {
         fErrorReporter.setLocale(locale);
     } // setLocale(Locale)
 
-    /** Return the Locale the XMLGrammarLoader is using. */
+    /**
+     * Return the Locale the XMLGrammarLoader is using.
+     * @return the current locale
+     */
     public Locale getLocale() {
         return fLocale;
     } // getLocale():  Locale
@@ -223,7 +231,10 @@ public class XMLGrammarPreparser {
         fErrorReporter.setProperty(ERROR_HANDLER, errorHandler);
     } // setErrorHandler(XMLErrorHandler)
 
-    /** Returns the registered error handler.  */
+    /**
+     * Returns the registered error handler.
+     * @return the current error handler
+     */
     public XMLErrorHandler getErrorHandler() {
         return fErrorReporter.getErrorHandler();
     } // getErrorHandler():  XMLErrorHandler
@@ -244,7 +255,10 @@ public class XMLGrammarPreparser {
         }
     } // setEntityResolver(XMLEntityResolver)
 
-    /** Returns the registered entity resolver.  */
+    /**
+     * Returns the registered entity resolver.
+     * @return the current entity resolver
+     */
     public XMLEntityResolver getEntityResolver() {
         return fEntityResolver;
     } // getEntityResolver():  XMLEntityResolver
@@ -265,23 +279,34 @@ public class XMLGrammarPreparser {
         }
     } // setGrammarPool(XMLGrammarPool)
 
-    /** Returns the registered grammar pool.  */
+    /**
+     * Returns the registered grammar pool.
+     * @return the current grammar pool
+     */
     public XMLGrammarPool getGrammarPool() {
         return fGrammarPool;
     } // getGrammarPool():  XMLGrammarPool
 
-    // it's possible the application may want access to a certain loader to do
-    // some custom work.
+    /**
+     * Returns the grammar loader registered for the specified grammar type.
+     * Applications may want access to a certain loader to do custom work.
+     * @param type the grammar type identifier
+     * @return the XMLGrammarLoader for the specified type, or null if none registered
+     */
     public XMLGrammarLoader getLoader(String type) {
         XMLGrammarLoaderContainer xglc = (XMLGrammarLoaderContainer) fLoaders.get(type);
         return (xglc != null) ? xglc.loader : null;
     } // getLoader(String):  XMLGrammarLoader
 
-    // set a feature.  This method tries to set it on all
-    // registered loaders; it eats any resulting exceptions.  If
-    // an app needs to know if a particular feature is supported
-    // by a grammar loader of a particular type, it will have
-    // to retrieve that loader and use the loader's setFeature method.
+    /**
+     * Sets a feature on all registered grammar loaders.
+     * This method tries to set the feature on all registered loaders and
+     * silently ignores any resulting exceptions. Applications that need to
+     * know if a particular feature is supported by a specific grammar loader
+     * should retrieve that loader and use its setFeature method directly.
+     * @param featureId the feature identifier
+     * @param value the feature value
+     */
     public void setFeature(String featureId, boolean value) {
         Enumeration loaders = fLoaders.elements();
         while (loaders.hasMoreElements()) {
@@ -299,13 +324,17 @@ public class XMLGrammarPreparser {
         }
     } //setFeature(String, boolean)
 
-    // set a property.  This method tries to set it on all
-    // registered loaders; it eats any resulting exceptions.  If
-    // an app needs to know if a particular property is supported
-    // by a grammar loader of a particular type, it will have
-    // to retrieve that loader and use the loader's setProperty method.
-    // <p> <strong>An application should use the explicit method
-    // in this class to set "standard" properties like error handler etc.</strong>
+    /**
+     * Sets a property on all registered grammar loaders.
+     * This method tries to set the property on all registered loaders and
+     * silently ignores any resulting exceptions. Applications that need to
+     * know if a particular property is supported by a specific grammar loader
+     * should retrieve that loader and use its setProperty method directly.
+     * <p><strong>Note:</strong> Applications should use the explicit methods
+     * in this class to set "standard" properties like error handler, entity resolver, etc.</p>
+     * @param propId the property identifier
+     * @param value the property value
+     */
     public void setProperty(String propId, Object value) {
         Enumeration loaders = fLoaders.elements();
         while (loaders.hasMoreElements()) {
@@ -318,25 +347,29 @@ public class XMLGrammarPreparser {
         }
     } //setProperty(String, Object)
 
-    // get status of feature in a particular loader.  This
-    // catches no exceptions--including NPE's--so the application had
-    // better make sure the loader exists and knows about this feature.
-    // @param type type of grammar to look for the feature in.
-    // @param featureId the feature string to query.
-    // @return the value of the feature.
+    /**
+     * Returns the value of a feature from a specific grammar loader.
+     * This method catches no exceptions (including NPE) so the application
+     * must ensure the loader exists and supports this feature.
+     * @param type type of grammar to look for the feature in
+     * @param featureId the feature identifier to query
+     * @return the value of the feature
+     */
     public boolean getFeature(String type, String featureId) {
         XMLGrammarLoader gl = ((XMLGrammarLoaderContainer) fLoaders.get(type)).loader;
         return gl.getFeature(featureId);
     } // getFeature (String, String):  boolean
 
-    // get status of property in a particular loader.  This
-    // catches no exceptions--including NPE's--so the application had
-    // better make sure the loader exists and knows about this property.
-    // <strong>For standard properties--that will be supported
-    // by all loaders--the specific methods should be queried!</strong>
-    // @param type type of grammar to look for the property in.
-    // @param propertyId the property string to query.
-    // @return the value of the property.
+    /**
+     * Returns the value of a property from a specific grammar loader.
+     * This method catches no exceptions (including NPE) so the application
+     * must ensure the loader exists and supports this property.
+     * <p><strong>Note:</strong> For standard properties that are supported
+     * by all loaders, the specific getter methods should be used instead.</p>
+     * @param type type of grammar to look for the property in
+     * @param propertyId the property identifier to query
+     * @return the value of the property
+     */
     public Object getProperty(String type, String propertyId) {
         XMLGrammarLoader gl = ((XMLGrammarLoaderContainer) fLoaders.get(type)).loader;
         return gl.getProperty(propertyId);

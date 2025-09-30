@@ -35,7 +35,7 @@ import org.w3c.dom.Element;
  * namespace bindings and other settings on the <schema/> element
  * affect the contents of that schema document alone.
  *
- * @xerces.internal
+
  *
  * @author Neil Graham, IBM
  * @version $Id: XSDocumentInfo.java 705370 2008-10-16 21:43:38Z mrglavas $

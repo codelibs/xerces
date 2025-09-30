@@ -46,6 +46,8 @@ public interface ASElementDeclaration extends ASObject {
      * example XML Schema defined mixed content types the order is important
      * and needs to be respected whether for DTD based AS the order and
      * number of child elements are not important.
+     *
+     * @return true if strict mixed content is enforced, false otherwise
      */
     public boolean getStrictMixedContent();
 
@@ -55,16 +57,22 @@ public interface ASElementDeclaration extends ASObject {
      * example XML Schema defined mixed content types the order is important
      * and needs to be respected whether for DTD based AS the order and
      * number of child elements are not important.
+     *
+     * @param strictMixedContent true if strict mixed content should be enforced, false otherwise
      */
     public void setStrictMixedContent(boolean strictMixedContent);
 
     /**
      * Datatype of the element.
+     *
+     * @return the datatype of the element
      */
     public ASDataType getElementType();
 
     /**
      * Datatype of the element.
+     *
+     * @param elementType the datatype to set for the element
      */
     public void setElementType(ASDataType elementType);
 
@@ -73,6 +81,8 @@ public interface ASElementDeclaration extends ASObject {
      * PCDATA or PCDATA only for mixed element types. <code>true</code> if
      * the element is of type PCDATA only. Relevant only for mixed content
      * type elements.
+     *
+     * @return true if the element is of type PCDATA only, false otherwise
      */
     public boolean getIsPCDataOnly();
 
@@ -81,6 +91,8 @@ public interface ASElementDeclaration extends ASObject {
      * PCDATA or PCDATA only for mixed element types. <code>true</code> if
      * the element is of type PCDATA only. Relevant only for mixed content
      * type elements.
+     *
+     * @param isPCDataOnly true if the element is of type PCDATA only, false otherwise
      */
     public void setIsPCDataOnly(boolean isPCDataOnly);
 
@@ -88,6 +100,8 @@ public interface ASElementDeclaration extends ASObject {
      * The content type of the element. One of <code>EMPTY_CONTENTTYPE</code>,
      * <code>ANY_CONTENTTYPE</code>, <code>MIXED_CONTENTTYPE</code>,
      * <code>ELEMENTS_CONTENTTYPE</code>.
+     *
+     * @return the content type of the element
      */
     public short getContentType();
 
@@ -95,28 +109,38 @@ public interface ASElementDeclaration extends ASObject {
      * The content type of the element. One of <code>EMPTY_CONTENTTYPE</code>,
      * <code>ANY_CONTENTTYPE</code>, <code>MIXED_CONTENTTYPE</code>,
      * <code>ELEMENTS_CONTENTTYPE</code>.
+     *
+     * @param contentType the content type to set for the element
      */
     public void setContentType(short contentType);
 
     /**
      * the URI reference representing the system identifier for the notation
      * declaration, if present, <code>null</code> otherwise.
+     *
+     * @return the system identifier URI or null if not present
      */
     public String getSystemId();
 
     /**
      * the URI reference representing the system identifier for the notation
      * declaration, if present, <code>null</code> otherwise.
+     *
+     * @param systemId the system identifier URI to set, or null
      */
     public void setSystemId(String systemId);
 
     /**
      * The content model of element.
+     *
+     * @return the content model of the element
      */
     public ASContentModel getAsCM();
 
     /**
      * The content model of element.
+     *
+     * @param asCM the content model to set for the element
      */
     public void setAsCM(ASContentModel asCM);
 
@@ -124,6 +148,8 @@ public interface ASElementDeclaration extends ASObject {
      * The<code>ASNamedObjectMap</code> containing
      * <code>ASAttributeDeclarations</code> for all the attributes that can
      * appear on this type of element.
+     *
+     * @return the map of attribute declarations for this element
      */
     public ASNamedObjectMap getASAttributeDecls();
 
@@ -131,6 +157,8 @@ public interface ASElementDeclaration extends ASObject {
      * The<code>ASNamedObjectMap</code> containing
      * <code>ASAttributeDeclarations</code> for all the attributes that can
      * appear on this type of element.
+     *
+     * @param ASAttributeDecls the map of attribute declarations to set for this element
      */
     public void setASAttributeDecls(ASNamedObjectMap ASAttributeDecls);
 

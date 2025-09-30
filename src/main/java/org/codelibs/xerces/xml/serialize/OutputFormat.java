@@ -60,12 +60,20 @@ import org.w3c.dom.html.HTMLDocument;
  */
 public class OutputFormat {
     /**
+     * Constants for document type identifiers.
+     *
      * @deprecated This class was deprecated in Xerces 2.9.0. It is recommended
      * that new applications use the DOM Level 3 LSSerializer or JAXP's Transformation
      * API for XML (TrAX) for serializing XML and HTML. See the Xerces documentation for
      * more information.
      */
     public static class DTD {
+
+        /**
+         * Default constructor.
+         */
+        public DTD() {
+        }
 
         /**
          * Public identifier for HTML 4.01 (Strict) document type.
@@ -90,12 +98,20 @@ public class OutputFormat {
     }
 
     /**
+     * Default values for output formatting options.
+     *
      * @deprecated This class was deprecated in Xerces 2.9.0. It is recommended
      * that new applications use the DOM Level 3 LSSerializer or JAXP's Transformation
      * API for XML (TrAX) for serializing XML and HTML. See the Xerces documentation for
      * more information.
      */
     public static class Defaults {
+
+        /**
+         * Default constructor.
+         */
+        public Defaults() {
+        }
 
         /**
          * If indentation is turned on, the default identation
@@ -227,7 +243,7 @@ public class OutputFormat {
 
     /**
      * Constructs a new output format with the default values for
-     * the specified method and encoding. If <tt>indent</tt>
+     * the specified method and encoding. If <code>indent</code>
      * is true, the document will be pretty printed with the default
      * indentation level and default line wrapping.
      *
@@ -261,7 +277,7 @@ public class OutputFormat {
     /**
      * Constructs a new output format with the proper method,
      * document type identifiers and media type for the specified
-     * document, and with the specified encoding. If <tt>indent</tt>
+     * document, and with the specified encoding. If <code>indent</code>
      * is true, the document will be pretty printed with the default
      * indentation level and default line wrapping.
      *
@@ -280,8 +296,8 @@ public class OutputFormat {
 
     /**
      * Returns the method specified for this output format.
-     * Typically the method will be <tt>xml</tt>, <tt>html</tt>
-     * or <tt>text</tt>, but it might be other values.
+     * Typically the method will be <code>xml</code>, <code>html</code>
+     * or <code>text</code>, but it might be other values.
      * If no method was specified, null will be returned
      * and the most suitable method will be determined for
      * the document by calling {@link #whichMethod}.
@@ -341,6 +357,8 @@ public class OutputFormat {
 
     /**
      * Returns true if indentation was specified.
+     *
+     * @return true if indentation is enabled, false otherwise
      */
     public boolean getIndenting() {
         return (_indent > 0);
@@ -407,6 +425,8 @@ public class OutputFormat {
     /**
      * Sets the encoding for this output method with an <code>EncodingInfo</code>
      * instance.
+     *
+     * @param encInfo the encoding information instance
      */
     public void setEncoding(EncodingInfo encInfo) {
         _encoding = encInfo.getIANAName();
@@ -416,6 +436,8 @@ public class OutputFormat {
     /**
      * Returns an <code>EncodingInfo</code> instance for the encoding.
      *
+     * @return the encoding information instance
+     * @throws UnsupportedEncodingException if the encoding is not supported
      * @see #setEncoding
      */
     public EncodingInfo getEncodingInfo() throws UnsupportedEncodingException {
@@ -426,6 +448,8 @@ public class OutputFormat {
 
     /**
      * Sets whether java encoding names are permitted
+     *
+     * @param allow true to allow Java encoding names, false otherwise
      */
     public void setAllowJavaNames(boolean allow) {
         _allowJavaNames = allow;
@@ -433,6 +457,8 @@ public class OutputFormat {
 
     /**
      * Returns whether java encoding names are permitted
+     *
+     * @return true if Java encoding names are allowed, false otherwise
      */
     public boolean setAllowJavaNames() {
         return _allowJavaNames;
@@ -478,6 +504,8 @@ public class OutputFormat {
     /**
      * Returns the specified document type public identifier,
      * or null.
+     *
+     * @return the document type public identifier, or null if not set
      */
     public String getDoctypePublic() {
         return _doctypePublic;
@@ -486,6 +514,8 @@ public class OutputFormat {
     /**
      * Returns the specified document type system identifier,
      * or null.
+     *
+     * @return the document type system identifier, or null if not set
      */
     public String getDoctypeSystem() {
         return _doctypeSystem;
@@ -494,6 +524,8 @@ public class OutputFormat {
     /**
      * Returns true if comments should be ommited.
      * The default is false.
+     *
+     * @return true if comments should be omitted, false otherwise
      */
     public boolean getOmitComments() {
         return _omitComments;
@@ -511,6 +543,8 @@ public class OutputFormat {
     /**
      * Returns true if the DOCTYPE declaration should
      * be ommited. The default is false.
+     *
+     * @return true if the DOCTYPE declaration should be omitted, false otherwise
      */
     public boolean getOmitDocumentType() {
         return _omitDoctype;
@@ -528,6 +562,8 @@ public class OutputFormat {
     /**
      * Returns true if the XML document declaration should
      * be ommited. The default is false.
+     *
+     * @return true if the XML declaration should be omitted, false otherwise
      */
     public boolean getOmitXMLDeclaration() {
         return _omitXmlDeclaration;
@@ -545,6 +581,8 @@ public class OutputFormat {
     /**
      * Returns true if the document type is standalone.
      * The default is false.
+     *
+     * @return true if the document is standalone, false otherwise
      */
     public boolean getStandalone() {
         return _standalone;
@@ -565,6 +603,8 @@ public class OutputFormat {
      * Returns a list of all the elements whose text node children
      * should be output as CDATA, or null if no such elements were
      * specified.
+     *
+     * @return array of CDATA element tag names, or null
      */
     public String[] getCDataElements() {
         return _cdataElements;
@@ -602,6 +642,8 @@ public class OutputFormat {
      * Returns a list of all the elements whose text node children
      * should be output unescaped (no character references), or null
      * if no such elements were specified.
+     *
+     * @return array of non-escaping element tag names, or null
      */
     public String[] getNonEscapingElements() {
         return _nonEscapingElements;
@@ -638,7 +680,7 @@ public class OutputFormat {
 
     /**
      * Returns a specific line separator to use. The default is the
-     * Web line separator (<tt>\n</tt>). A string is returned to
+     * Web line separator (<code>\n</code>). A string is returned to
      * support double codes (CR + LF).
      *
      * @return The specified line separator
@@ -649,8 +691,8 @@ public class OutputFormat {
 
     /**
      * Sets the line separator. The default is the Web line separator
-     * (<tt>\n</tt>). The machine's line separator can be obtained
-     * from the system property <tt>line.separator</tt>, but is only
+     * (<code>\n</code>). The machine's line separator can be obtained
+     * from the system property <code>line.separator</code>, but is only
      * useful if the document is edited on machines of the same type.
      * For general documents, use the Web line separator.
      *
@@ -669,6 +711,8 @@ public class OutputFormat {
      * or specify the default behavior will be formatted based on
      * this rule. All elements that specify space preserving will
      * always preserve space.
+     *
+     * @return true if spaces should be preserved, false otherwise
      */
     public boolean getPreserveSpace() {
         return _preserve;
@@ -690,6 +734,8 @@ public class OutputFormat {
      * When indenting, and only when indenting, long lines will be
      * broken at space boundaries based on this line width.
      * No line wrapping occurs if this value is zero.
+     *
+     * @return the line width for wrapping, or zero for no wrapping
      */
     public int getLineWidth() {
         return _lineWidth;
@@ -735,6 +781,8 @@ public class OutputFormat {
      * Returns the last printable character based on the selected
      * encoding. Control characters and non-printable characters
      * are always printed as character references.
+     *
+     * @return the last printable character code
      */
     public char getLastPrintable() {
         if (getEncoding() != null && (getEncoding().equalsIgnoreCase("ASCII"))) {
@@ -746,10 +794,10 @@ public class OutputFormat {
     /**
      * Determine the output method for the specified document.
      * If the document is an instance of {@link org.w3c.dom.html.HTMLDocument}
-     * then the method is said to be <tt>html</tt>. If the root
+     * then the method is said to be <code>html</code>. If the root
      * element is 'html' and all text nodes preceding the root
      * element are all whitespace, then the method is said to be
-     * <tt>html</tt>. Otherwise the method is <tt>xml</tt>.
+     * <code>html</code>. Otherwise the method is <code>xml</code>.
      *
      * @param doc The document to check
      * @return The suitable method
@@ -799,6 +847,9 @@ public class OutputFormat {
     /**
      * Returns the document type public identifier
      * specified for this document, or null.
+     *
+     * @param doc the document
+     * @return the document type public identifier, or null
      */
     public static String whichDoctypePublic(Document doc) {
         DocumentType doctype;
@@ -821,6 +872,9 @@ public class OutputFormat {
     /**
      * Returns the document type system identifier
      * specified for this document, or null.
+     *
+     * @param doc the document
+     * @return the document type system identifier, or null
      */
     public static String whichDoctypeSystem(Document doc) {
         DocumentType doctype;
@@ -843,6 +897,9 @@ public class OutputFormat {
     /**
      * Returns the suitable media format for a document
      * output with the specified method.
+     *
+     * @param method the output method
+     * @return the media type for the specified method, or null
      */
     public static String whichMediaType(String method) {
         if (method.equalsIgnoreCase(Method.XML))

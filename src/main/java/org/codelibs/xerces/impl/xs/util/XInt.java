@@ -18,7 +18,7 @@
 package org.codelibs.xerces.impl.xs.util;
 
 /**
- * @xerces.internal
+ * Integer wrapper for XML Schema processing.
  *
  * @author Henry Zongaro, IBM
  * @version $Id: XInt.java 660074 2008-05-26 02:08:01Z mrglavas $
@@ -32,14 +32,27 @@ public final class XInt {
         fValue = value;
     }
 
+    /**
+     * Returns the integer value.
+     * @return the integer value
+     */
     public final int intValue() {
         return fValue;
     }
 
+    /**
+     * Returns the short value.
+     * @return the value cast to a short
+     */
     public final short shortValue() {
         return (short) fValue;
     }
 
+    /**
+     * Checks if this XInt equals another XInt.
+     * @param compareVal the XInt to compare with
+     * @return true if the values are equal, false otherwise
+     */
     public final boolean equals(XInt compareVal) {
         return (this.fValue == compareVal.fValue);
     }

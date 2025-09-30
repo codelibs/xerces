@@ -33,11 +33,20 @@ import org.xml.sax.SAXNotRecognizedException;
 import org.xml.sax.SAXNotSupportedException;
 
 /**
+ * JAXP DocumentBuilderFactory implementation. This factory creates DocumentBuilder instances
+ * that use Xerces DOM parser functionality with full Schema and DTD validation support.
+ *
  * @author Rajiv Mordani
  * @author Edwin Goei
  * @version $Id: DocumentBuilderFactoryImpl.java 447237 2006-09-18 05:03:10Z mrglavas $
  */
 public class DocumentBuilderFactoryImpl extends DocumentBuilderFactory {
+
+    /**
+     * Constructs a new DocumentBuilderFactoryImpl instance.
+     */
+    public DocumentBuilderFactoryImpl() {
+    }
 
     /** Feature identifier: namespaces. */
     private static final String NAMESPACES_FEATURE = Constants.SAX_FEATURE_PREFIX + Constants.NAMESPACES_FEATURE;

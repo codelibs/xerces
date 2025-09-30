@@ -20,7 +20,7 @@ package org.codelibs.xerces.dom;
 /**
  * Represents an XML (or HTML) comment.
  *
- * @xerces.internal
+
  *
  * @version $Id: DeferredCommentImpl.java 447266 2006-09-18 05:57:49Z mrglavas $
  * @since  PR-DOM-Level-1-19980818.

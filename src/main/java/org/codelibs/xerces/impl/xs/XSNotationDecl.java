@@ -28,23 +28,33 @@ import org.codelibs.xerces.xs.XSObjectList;
  * The XML representation for a NOTATION declaration
  * schema component is a global &lt;notation&gt; element information item
  *
- * @xerces.internal
+
  *
  * @author Rahul Srivastava, Sun Microsystems Inc.
  * @version $Id: XSNotationDecl.java 658446 2008-05-20 21:37:22Z mrglavas $
  */
 public class XSNotationDecl implements XSNotationDeclaration {
 
-    // name of the group
+    /**
+     * Default constructor for XSNotationDecl.
+     */
+    public XSNotationDecl() {
+        // Default constructor
+    }
+
+    /** The name of the notation declaration. */
     public String fName = null;
-    // target namespace of the group
+
+    /** The target namespace of the notation declaration. */
     public String fTargetNamespace = null;
-    // public id of the notation
+
+    /** The public identifier of the notation. */
     public String fPublicId = null;
-    // system id of the notation
+
+    /** The system identifier of the notation. */
     public String fSystemId = null;
 
-    // optional annotation
+    /** Optional annotations associated with this notation declaration. */
     public XSObjectList fAnnotations = null;
 
     // The namespace schema information item corresponding to the target namespace

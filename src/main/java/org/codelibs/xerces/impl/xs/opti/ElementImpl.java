@@ -23,7 +23,9 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 /**
- * @xerces.internal
+ * Element implementation for XML Schema processing.
+ * This class provides a specialized Element implementation that
+ * integrates with the SchemaDOM structure for efficient schema traversal.
  *
  * @author Rahul Srivastava, Sun Microsystems Inc.
  * @author Sandy Gao, IBM
@@ -44,6 +46,12 @@ public class ElementImpl extends DefaultElement {
     String fAnnotation;
     String fSyntheticAnnotation;
 
+    /**
+     * Constructs an element with line, column, and character offset information.
+     * @param line the line number where this element appears
+     * @param column the column number where this element appears
+     * @param offset the character offset in the document
+     */
     public ElementImpl(int line, int column, int offset) {
         row = -1;
         col = -1;
@@ -55,10 +63,25 @@ public class ElementImpl extends DefaultElement {
         charOffset = offset;
     }
 
+    /**
+     * Constructs an element with line and column information.
+     * @param line the line number where this element appears
+     * @param column the column number where this element appears
+     */
     public ElementImpl(int line, int column) {
         this(line, column, -1);
     }
 
+    /**
+     * Constructs a namespace-aware element with location information.
+     * @param prefix the namespace prefix
+     * @param localpart the local name
+     * @param rawname the qualified name
+     * @param uri the namespace URI
+     * @param line the line number
+     * @param column the column number
+     * @param offset the character offset
+     */
     public ElementImpl(String prefix, String localpart, String rawname, String uri, int line, int column, int offset) {
         super(prefix, localpart, rawname, uri, Node.ELEMENT_NODE);
         row = -1;
@@ -70,6 +93,15 @@ public class ElementImpl extends DefaultElement {
         charOffset = offset;
     }
 
+    /**
+     * Constructs a namespace-aware element with line and column information.
+     * @param prefix the namespace prefix
+     * @param localpart the local name
+     * @param rawname the qualified name
+     * @param uri the namespace URI
+     * @param line the line number
+     * @param column the column number
+     */
     public ElementImpl(String prefix, String localpart, String rawname, String uri, int line, int column) {
         this(prefix, localpart, rawname, uri, line, column, -1);
     }
@@ -211,25 +243,42 @@ public class ElementImpl extends DefaultElement {
         }
     }
 
-    /** Returns the line number. */
+    /**
+     * Returns the line number where this element appears in the source document.
+     * @return the line number
+     */
     public int getLineNumber() {
         return line;
     }
 
-    /** Returns the column number. */
+    /**
+     * Returns the column number where this element appears in the source document.
+     * @return the column number
+     */
     public int getColumnNumber() {
         return column;
     }
 
-    /** Returns the character offset. */
+    /**
+     * Returns the character offset where this element appears in the source document.
+     * @return the character offset
+     */
     public int getCharacterOffset() {
         return charOffset;
     }
 
+    /**
+     * Returns the annotation associated with this element.
+     * @return the annotation string, or null if no annotation is present
+     */
     public String getAnnotation() {
         return fAnnotation;
     }
 
+    /**
+     * Returns the synthetic annotation for this element.
+     * @return the synthetic annotation string, or null if no synthetic annotation exists
+     */
     public String getSyntheticAnnotation() {
         return fSyntheticAnnotation;
     }

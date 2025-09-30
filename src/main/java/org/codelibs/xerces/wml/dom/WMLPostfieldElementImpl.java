@@ -19,7 +19,9 @@ package org.codelibs.xerces.wml.dom;
 import org.codelibs.xerces.wml.WMLPostfieldElement;
 
 /**
- * @xerces.internal
+ * Implementation of the WML postfield element.
+ * Provides access to postfield element attributes for WML form submission.
+ *
  * @version $Id: WMLPostfieldElementImpl.java 661560 2008-05-30 03:22:25Z mrglavas $
  * @author <a href="mailto:david@topware.com.tw">David Li</a>
  */
@@ -27,6 +29,12 @@ public class WMLPostfieldElementImpl extends WMLElementImpl implements WMLPostfi
 
     private static final long serialVersionUID = -1169432003991642980L;
 
+    /**
+     * Constructs a new WMLPostfieldElementImpl instance.
+     *
+     * @param owner the owning WML document
+     * @param tagName the tag name of the element
+     */
     public WMLPostfieldElementImpl(WMLDocumentImpl owner, String tagName) {
         super(owner, tagName);
     }

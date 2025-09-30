@@ -81,7 +81,7 @@ import org.w3c.dom.Text;
  * present in the tree. The PSVI information is not exposed, normalized data (including element
  * default content is not available).
  *
- * @xerces.experimental
+ * @deprecated This is an experimental feature.
  *
  * @author Elena Litani, IBM
  * @author Neeraj Bajaj, Sun Microsystems, inc.
@@ -105,9 +105,16 @@ public class DOMNormalizer implements XMLDocumentHandler {
     //
     // Data
     //
+    /** The DOM configuration for the normalization process. */
     protected DOMConfigurationImpl fConfiguration = null;
+
+    /** The document being normalized. */
     protected CoreDocumentImpl fDocument = null;
+
+    /** Proxy for accessing and manipulating element attributes during normalization. */
     protected final XMLAttributesProxy fAttrProxy = new XMLAttributesProxy();
+
+    /** Reusable QName object for element and attribute processing. */
     protected final QName fQName = new QName();
 
     /** Validation handler represents validator instance. */
@@ -124,10 +131,10 @@ public class DOMNormalizer implements XMLDocumentHandler {
      */
     private final DOMErrorImpl fError = new DOMErrorImpl();
 
-    // Validation against namespace aware grammar
+    /** Flag indicating validation against namespace aware grammar. */
     protected boolean fNamespaceValidation = false;
 
-    // Update PSVI information in the tree
+    /** Flag indicating whether to update PSVI (Post Schema Validation Infoset) information in the tree. */
     protected boolean fPSVI = false;
 
     /** The namespace context of this document: stores namespaces in scope */
@@ -169,12 +176,17 @@ public class DOMNormalizer implements XMLDocumentHandler {
     // Constructor
     //
 
+    /**
+     * Constructs a new DOMNormalizer instance.
+     */
     public DOMNormalizer() {
     }
 
     /**
      * Normalizes document.
      * Note: reset() must be called before this method.
+     * @param document the document to normalize
+     * @param config the configuration to use for normalization
      */
     protected void normalizeDocument(CoreDocumentImpl document, DOMConfigurationImpl config) {
 
@@ -707,6 +719,11 @@ public class DOMNormalizer implements XMLDocumentHandler {
         }
     } // processDTD(String, String)
 
+    /**
+     * Expands an entity reference by copying its children to the parent node.
+     * @param parent the parent node where expanded children will be inserted
+     * @param reference the entity reference node to expand
+     */
     protected final void expandEntityRef(Node parent, Node reference) {
         Node kid, next;
         for (kid = reference.getFirstChild(); kid != null; kid = next) {
@@ -715,11 +732,12 @@ public class DOMNormalizer implements XMLDocumentHandler {
         }
     }
 
-    // fix namespaces
-    // normalize attribute values
-    // remove default attributes
-    // check attribute names if the version of the document changed.
-
+    /**
+     * Fixes namespaces, normalizes attribute values, removes default attributes,
+     * and checks attribute names if the version of the document changed.
+     * @param element the element to process for namespace fixup
+     * @param attributes the attribute map of the element
+     */
     protected final void namespaceFixUp(ElementImpl element, AttributeMap attributes) {
         if (DEBUG) {
             System.out.println("[ns-fixup] element:" + element.getNodeName() + " uri: " + element.getNamespaceURI());
@@ -1001,11 +1019,10 @@ public class DOMNormalizer implements XMLDocumentHandler {
      * attribute with the given prefix and value for URI.
      * In case prefix is empty will add/update default namespace declaration.
      *
-     * @param prefix
-     * @param uri
-     * @exception IOException
+     * @param prefix the namespace prefix to declare
+     * @param uri the namespace URI to bind
+     * @param element the element to add the namespace declaration to
      */
-
     protected final void addNamespaceDecl(String prefix, String uri, ElementImpl element) {
         if (DEBUG) {
             System.out.println("[ns-fixup] addNamespaceDecl [" + prefix + "]");
@@ -1029,8 +1046,11 @@ public class DOMNormalizer implements XMLDocumentHandler {
 
     /**
      * Check if CDATA section is well-formed
-     * @param datavalue
-     * @param isXML11Version = true if XML 1.1
+     * @param errorHandler the DOM error handler for reporting errors
+     * @param error the DOM error object to use for error reporting
+     * @param locator the DOM locator for error location information
+     * @param datavalue the CDATA content to check
+     * @param isXML11Version true if checking against XML 1.1 rules, false for XML 1.0
      */
     public static final void isCDataWF(DOMErrorHandler errorHandler, DOMErrorImpl error, DOMLocatorImpl locator, String datavalue,
             boolean isXML11Version) {
@@ -1114,8 +1134,11 @@ public class DOMNormalizer implements XMLDocumentHandler {
 
     /**
      * NON-DOM: check for valid XML characters as per the XML version
-     * @param datavalue
-     * @param isXML11Version = true if XML 1.1
+     * @param errorHandler the DOM error handler for reporting errors
+     * @param error the DOM error object to use for error reporting
+     * @param locator the DOM locator for error location information
+     * @param datavalue the character data to check
+     * @param isXML11Version true if checking against XML 1.1 rules, false for XML 1.0
      */
     public static final void isXMLCharWF(DOMErrorHandler errorHandler, DOMErrorImpl error, DOMLocatorImpl locator, String datavalue,
             boolean isXML11Version) {
@@ -1170,8 +1193,11 @@ public class DOMNormalizer implements XMLDocumentHandler {
 
     /**
      * NON-DOM: check if value of the comment is well-formed
-     * @param datavalue
-     * @param isXML11Version = true if XML 1.1
+     * @param errorHandler the DOM error handler for reporting errors
+     * @param error the DOM error object to use for error reporting
+     * @param locator the DOM locator for error location information
+     * @param datavalue the comment text to check
+     * @param isXML11Version true if checking against XML 1.1 rules, false for XML 1.0
      */
     public static final void isCommentWF(DOMErrorHandler errorHandler, DOMErrorImpl error, DOMLocatorImpl locator, String datavalue,
             boolean isXML11Version) {
@@ -1233,10 +1259,15 @@ public class DOMNormalizer implements XMLDocumentHandler {
 
     } // isCommentWF
 
-    /** NON-DOM: check if attribute value is well-formed
-     * @param attributes
-     * @param a
-     * @param value
+    /**
+     * NON-DOM: check if attribute value is well-formed
+     * @param errorHandler the DOM error handler for reporting errors
+     * @param error the DOM error object to use for error reporting
+     * @param locator the DOM locator for error location information
+     * @param attributes the attribute map containing the attribute
+     * @param a the attribute to check
+     * @param value the attribute value to validate
+     * @param xml11Version true if checking against XML 1.1 rules, false for XML 1.0
      */
     public static final void isAttrValueWF(DOMErrorHandler errorHandler, DOMErrorImpl error, DOMLocatorImpl locator,
             NamedNodeMap attributes, Attr a, String value, boolean xml11Version) {
@@ -1276,8 +1307,13 @@ public class DOMNormalizer implements XMLDocumentHandler {
 
     /**
      * Reports a DOM error to the user handler.
-     *
      * If the error is fatal, the processing will be always aborted.
+     * @param errorHandler the DOM error handler to report to
+     * @param error the DOM error object to populate and report
+     * @param locator the DOM locator providing error location information
+     * @param message the error message text
+     * @param severity the error severity level
+     * @param type the error type identifier
      */
     public static final void reportDOMError(DOMErrorHandler errorHandler, DOMErrorImpl error, DOMLocatorImpl locator, String message,
             short severity, String type) {
@@ -1296,6 +1332,11 @@ public class DOMNormalizer implements XMLDocumentHandler {
             throw abort;
     }
 
+    /**
+     * Updates a QName object with the namespace information from a DOM node.
+     * @param node the DOM node to extract QName information from
+     * @param qname the QName object to update
+     */
     protected final void updateQName(Node node, QName qname) {
 
         String prefix = node.getPrefix();
@@ -1362,14 +1403,41 @@ public class DOMNormalizer implements XMLDocumentHandler {
         return value;
     }
 
+    /**
+     * Proxy class that provides XMLAttributes interface access to DOM AttributeMap.
+     * This allows DOM attributes to be accessed through the Xerces Native Interface.
+     * This class acts as an adapter between DOM's AttributeMap and XNI's XMLAttributes,
+     * enabling validation and normalization operations on DOM attributes.
+     */
     protected final class XMLAttributesProxy implements XMLAttributes {
+
+        /**
+         * Default constructor for internal instantiation.
+         */
+        protected XMLAttributesProxy() {
+        }
+
+        /** The DOM attribute map being proxied. */
         protected AttributeMap fAttributes;
+
+        /** The document containing the attributes. */
         protected CoreDocumentImpl fDocument;
+
+        /** The element owning the attributes. */
         protected ElementImpl fElement;
 
+        /** Vector storing DTD type information for each attribute. */
         protected final Vector fDTDTypes = new Vector(5);
+
+        /** Vector storing augmentation information for each attribute. */
         protected final Vector fAugmentations = new Vector(5);
 
+        /**
+         * Sets the attribute map, document, and element for this proxy.
+         * @param attributes the attribute map to proxy
+         * @param doc the document containing the attributes
+         * @param elem the element owning the attributes
+         */
         public void setAttributes(AttributeMap attributes, CoreDocumentImpl doc, ElementImpl elem) {
             fDocument = doc;
             fAttributes = attributes;

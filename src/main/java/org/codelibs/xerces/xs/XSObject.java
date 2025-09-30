@@ -25,6 +25,7 @@ public interface XSObject {
     /**
      *  The <code>type</code> of this object, i.e.
      * <code>ELEMENT_DECLARATION</code>.
+     * @return the type of this object
      */
     public short getType();
 
@@ -36,12 +37,14 @@ public interface XSObject {
      * the processor must construct and expose an anonymous type name that
      * is distinct from the name of every named type and the name of every
      * other anonymous type.
+     * @return the name of this object or null if it doesn't have a name
      */
     public String getName();
 
     /**
      *  The [target namespace] of this object, or <code>null</code> if it is
      * unspecified.
+     * @return the target namespace of this object or null if unspecified
      */
     public String getNamespace();
 
@@ -49,6 +52,7 @@ public interface XSObject {
      * A namespace schema information item corresponding to the target
      * namespace of the component, if it is globally declared; or
      * <code>null</code> otherwise.
+     * @return the namespace schema information item or null
      */
     public XSNamespaceItem getNamespaceItem();
 

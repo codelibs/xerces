@@ -22,8 +22,11 @@ and Save Specification</a>.
  */
 public interface CharacterDataEditAS extends NodeEditAS {
     /**
+     * Determines if character data content is whitespace.
      * <code>true</code> if content only whitespace; <code>false</code> for
      * non-whitespace.
+     *
+     * @return true if content only whitespace, false for non-whitespace
      */
     public boolean getIsWhitespaceOnly();
 

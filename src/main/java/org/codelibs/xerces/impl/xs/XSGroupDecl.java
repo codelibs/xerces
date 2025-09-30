@@ -29,20 +29,27 @@ import org.codelibs.xerces.xs.XSObjectList;
  * The XML representation for a group declaration
  * schema component is a global &lt;group&gt; element information item
  *
- * @xerces.internal
+
  *
  * @author Sandy Gao, IBM
  * @version $Id: XSGroupDecl.java 699892 2008-09-28 21:08:27Z mrglavas $
  */
 public class XSGroupDecl implements XSModelGroupDefinition {
 
-    // name of the group
+    /**
+     * Default constructor for XSGroupDecl.
+     */
+    public XSGroupDecl() {
+        // Default constructor
+    }
+
+    /** The name of the group declaration. */
     public String fName = null;
-    // target namespace of the group
+    /** The target namespace of the group declaration. */
     public String fTargetNamespace = null;
-    // model group of the group
+    /** The model group definition of this group declaration. */
     public XSModelGroupImpl fModelGroup = null;
-    // optional annotations
+    /** Optional annotations associated with this group declaration. */
     public XSObjectList fAnnotations = null;
     // The namespace schema information item corresponding to the target namespace
     // of the model group definition, if it is globally declared; or null otherwise.

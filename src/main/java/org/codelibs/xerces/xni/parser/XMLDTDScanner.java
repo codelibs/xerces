@@ -72,6 +72,9 @@ public interface XMLDTDScanner extends XMLDTDSource, XMLDTDContentModelSource {
      *                          absence of an external subset.
      *
      * @return True if there is more to scan, false otherwise.
+     *
+     * @throws IOException Thrown on i/o error.
+     * @throws XNIException Thrown on XNI error.
      */
     public boolean scanDTDInternalSubset(boolean complete, boolean standalone, boolean hasExternalSubset) throws IOException, XNIException;
 
@@ -87,6 +90,9 @@ public interface XMLDTDScanner extends XMLDTDSource, XMLDTDContentModelSource {
      *                 not support this "pull" scanning model.
      *
      * @return True if there is more to scan, false otherwise.
+     *
+     * @throws IOException Thrown on i/o error.
+     * @throws XNIException Thrown on XNI error.
      */
     public boolean scanDTDExternalSubset(boolean complete) throws IOException, XNIException;
 

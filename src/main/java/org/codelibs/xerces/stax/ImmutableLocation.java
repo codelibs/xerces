@@ -20,9 +20,7 @@ package org.codelibs.xerces.stax;
 import javax.xml.stream.Location;
 
 /**
- * <p>An immutable StAX <code>Location</code>.</p>
- *
- * @xerces.internal
+ * An immutable StAX {@code Location}.
  *
  * @author Michael Glavassevich, IBM
  *
@@ -36,11 +34,23 @@ public class ImmutableLocation implements Location {
     private final String fPublicId;
     private final String fSystemId;
 
+    /**
+     * Constructor from an existing Location.
+     * @param location the location to copy
+     */
     public ImmutableLocation(Location location) {
         this(location.getCharacterOffset(), location.getColumnNumber(), location.getLineNumber(), location.getPublicId(),
                 location.getSystemId());
     }
 
+    /**
+     * Constructor with explicit location parameters.
+     * @param characterOffset the character offset
+     * @param columnNumber the column number
+     * @param lineNumber the line number
+     * @param publicId the public ID
+     * @param systemId the system ID
+     */
     public ImmutableLocation(int characterOffset, int columnNumber, int lineNumber, String publicId, String systemId) {
         fCharacterOffset = characterOffset;
         fColumnNumber = columnNumber;

@@ -28,7 +28,7 @@ import java.io.InputStream;
  *
  * Updated for Java 17: Removed AccessController usage as it has been removed in Java 17.
  *
- * @xerces.internal
+
  *
  * @version $Id: SecuritySupport.java 950361 2010-06-02 04:12:35Z mrglavas $
  */

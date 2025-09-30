@@ -22,7 +22,7 @@ package org.codelibs.xerces.impl.xs.identity;
  * for activating fields within a specific scope; the caller merely
  * requests the fields to be activated.
  *
- * @xerces.internal
+
  *
  * @author Andy Clark, IBM
  *
@@ -50,6 +50,7 @@ public interface FieldActivator {
      *
      * @param field The field to activate.
      * @param initialDepth the 0-indexed depth in the instance document at which the Selector began to match.
+     * @return the XPath matcher for the activated field
      */
     public XPathMatcher activateField(Field field, int initialDepth);
 

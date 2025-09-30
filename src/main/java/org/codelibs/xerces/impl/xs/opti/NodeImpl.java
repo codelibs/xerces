@@ -18,7 +18,8 @@
 package org.codelibs.xerces.impl.xs.opti;
 
 /**
- * @xerces.internal
+ * Node implementation for XML Schema processing with namespace support.
+ * This class extends DefaultNode and adds namespace-aware functionality.
  *
  * @author Rahul Srivastava, Sun Microsystems Inc.
  *
@@ -33,9 +34,20 @@ public class NodeImpl extends DefaultNode {
     short nodeType;
     boolean hidden;
 
+    /**
+     * Default constructor for NodeImpl.
+     */
     public NodeImpl() {
     }
 
+    /**
+     * Constructs a NodeImpl with the specified properties.
+     * @param prefix the namespace prefix
+     * @param localpart the local name
+     * @param rawname the raw qualified name
+     * @param uri the namespace URI
+     * @param nodeType the node type
+     */
     public NodeImpl(String prefix, String localpart, String rawname, String uri, short nodeType) {
         this.prefix = prefix;
         this.localpart = localpart;
@@ -66,10 +78,19 @@ public class NodeImpl extends DefaultNode {
 
     // other methods
 
+    /**
+     * Sets the read-only state of this node.
+     * @param hide true to make this node read-only, false otherwise
+     * @param deep if true, applies recursively to descendants
+     */
     public void setReadOnly(boolean hide, boolean deep) {
         hidden = hide;
     }
 
+    /**
+     * Gets the read-only state of this node.
+     * @return true if this node is read-only, false otherwise
+     */
     public boolean getReadOnly() {
         return hidden;
     }

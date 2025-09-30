@@ -22,7 +22,7 @@ import java.util.Random;
 /**
  * Fills an array with a random sequence of prime numbers.
  *
- * @xerces.internal
+
  *
  * @version $Id: PrimeNumberSequenceGenerator.java 1357390 2012-07-04 20:20:20Z mrglavas $
  */

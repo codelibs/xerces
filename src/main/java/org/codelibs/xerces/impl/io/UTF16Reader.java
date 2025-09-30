@@ -28,7 +28,6 @@ import org.codelibs.xerces.util.MessageFormatter;
 /**
  * <p>A UTF-16 reader. Can also be used for UCS-2 (i.e. ISO-10646-UCS-2).</p>
  *
- * @xerces.internal
  *
  * @author Michael Glavassevich, IBM
  *
@@ -83,6 +82,8 @@ public final class UTF16Reader extends Reader {
      *
      * @param inputStream The input stream.
      * @param isBigEndian The byte order.
+     * @param messageFormatter The message formatter for error messages.
+     * @param locale The locale for formatting messages.
      */
     public UTF16Reader(InputStream inputStream, boolean isBigEndian, MessageFormatter messageFormatter, Locale locale) {
         this(inputStream, DEFAULT_BUFFER_SIZE, isBigEndian, messageFormatter, locale);
@@ -132,7 +133,7 @@ public final class UTF16Reader extends Reader {
      * should override this method.
      *
      * @return     The character read, as an integer in the range 0 to 65535
-     *             (<tt>0x00-0xffff</tt>), or -1 if the end of the stream has
+     *             (<code>0x00-0xffff</code>), or -1 if the end of the stream has
      *             been reached
      *
      * @exception  IOException  If an I/O error occurs

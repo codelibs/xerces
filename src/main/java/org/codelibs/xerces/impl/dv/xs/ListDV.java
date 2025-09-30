@@ -24,9 +24,7 @@ import org.codelibs.xerces.impl.dv.ValidationContext;
 import org.codelibs.xerces.xs.datatypes.ObjectList;
 
 /**
- * Represent the schema list types
- *
- * @xerces.internal
+ * Represents schema list types and provides validation for list-based simple types.
  *
  * @author Neeraj Bajaj, Sun Microsystems, inc.
  * @author Sandy Gao, IBM
@@ -34,6 +32,12 @@ import org.codelibs.xerces.xs.datatypes.ObjectList;
  * @version $Id: ListDV.java 725840 2008-12-11 22:19:06Z mrglavas $
  */
 public class ListDV extends TypeValidator {
+
+    /**
+     * Constructs a ListDV validator for XML Schema list types.
+     */
+    public ListDV() {
+    }
 
     public short getAllowedFacets() {
         return (XSSimpleTypeDecl.FACET_LENGTH | XSSimpleTypeDecl.FACET_MINLENGTH | XSSimpleTypeDecl.FACET_MAXLENGTH

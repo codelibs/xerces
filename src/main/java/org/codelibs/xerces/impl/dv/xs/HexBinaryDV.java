@@ -23,9 +23,7 @@ import org.codelibs.xerces.impl.dv.util.ByteListImpl;
 import org.codelibs.xerces.impl.dv.util.HexBin;
 
 /**
- * Represent the schema type "hexBinary"
- *
- * @xerces.internal
+ * Represent the schema type "hexBinary".
  *
  * @author Neeraj Bajaj, Sun Microsystems, inc.
  * @author Sandy Gao, IBM
@@ -33,6 +31,12 @@ import org.codelibs.xerces.impl.dv.util.HexBin;
  * @version $Id: HexBinaryDV.java 446745 2006-09-15 21:43:58Z mrglavas $
  */
 public class HexBinaryDV extends TypeValidator {
+
+    /**
+     * Default constructor for internal instantiation.
+     */
+    public HexBinaryDV() {
+    }
 
     public short getAllowedFacets() {
         return (XSSimpleTypeDecl.FACET_LENGTH | XSSimpleTypeDecl.FACET_MINLENGTH | XSSimpleTypeDecl.FACET_MAXLENGTH

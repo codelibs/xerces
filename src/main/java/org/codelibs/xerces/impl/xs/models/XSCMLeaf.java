@@ -23,7 +23,7 @@ import org.codelibs.xerces.impl.dtd.models.CMStateSet;
 /**
  * Content model leaf node.
  *
- * @xerces.internal
+
  *
  * @author Neil Graham, IBM
  * @version $Id: XSCMLeaf.java 572112 2007-09-02 19:11:51Z mrglavas $
@@ -53,7 +53,13 @@ public class XSCMLeaf extends CMNode {
     // Constructors
     //
 
-    /** Constructs a content model leaf. */
+    /**
+     * Constructs a content model leaf.
+     * @param type the type of the leaf node
+     * @param leaf the leaf object (element or wildcard)
+     * @param id the particle identifier
+     * @param position the position in the content model
+     */
     public XSCMLeaf(int type, Object leaf, int id, int position) {
         super(type);
 

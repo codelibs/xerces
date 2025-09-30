@@ -60,7 +60,7 @@ import org.w3c.dom.UserDataHandler;
  * <p><b>WARNING</b>: Some of the code here is partially duplicated in
  * AttrImpl, be careful to keep these two classes in sync!
  *
- * @xerces.internal
+
  *
  * @author Arnaud  Le Hors, IBM
  * @author Joe Kesselman, IBM
@@ -90,6 +90,8 @@ public abstract class ParentNode extends ChildNode {
     /**
      * No public constructor; only subclasses of ParentNode should be
      * instantiated, and those normally via a Document's factory methods
+     *
+     * @param ownerDocument The document that owns this node
      */
     protected ParentNode(CoreDocumentImpl ownerDocument) {
         super(ownerDocument);
@@ -261,17 +263,17 @@ public abstract class ParentNode extends ChildNode {
      * @return newChild, in its new state (relocated, or emptied in the case of
      * DocumentNode.)
      *
-     * @throws DOMException(HIERARCHY_REQUEST_ERR) if newChild is of a
+     * @throws DOMException HIERARCHY_REQUEST_ERR if newChild is of a
      * type that shouldn't be a child of this node, or if newChild is an
      * ancestor of this node.
      *
-     * @throws DOMException(WRONG_DOCUMENT_ERR) if newChild has a
+     * @throws DOMException WRONG_DOCUMENT_ERR if newChild has a
      * different owner document than we do.
      *
-     * @throws DOMException(NOT_FOUND_ERR) if refChild is not a child of
+     * @throws DOMException NOT_FOUND_ERR if refChild is not a child of
      * this node.
      *
-     * @throws DOMException(NO_MODIFICATION_ALLOWED_ERR) if this node is
+     * @throws DOMException NO_MODIFICATION_ALLOWED_ERR if this node is
      * read-only.
      */
     public Node insertBefore(Node newChild, Node refChild) throws DOMException {
@@ -454,10 +456,10 @@ public abstract class ParentNode extends ChildNode {
      *
      * @return oldChild, in its new state (removed).
      *
-     * @throws DOMException(NOT_FOUND_ERR) if oldChild is not a child of
+     * @throws DOMException NOT_FOUND_ERR if oldChild is not a child of
      * this node.
      *
-     * @throws DOMException(NO_MODIFICATION_ALLOWED_ERR) if this node is
+     * @throws DOMException NO_MODIFICATION_ALLOWED_ERR if this node is
      * read-only.
      */
     public Node removeChild(Node oldChild) throws DOMException {
@@ -558,17 +560,17 @@ public abstract class ParentNode extends ChildNode {
      *
      * @return oldChild, in its new state (removed).
      *
-     * @throws DOMException(HIERARCHY_REQUEST_ERR) if newChild is of a
+     * @throws DOMException HIERARCHY_REQUEST_ERR if newChild is of a
      * type that shouldn't be a child of this node, or if newChild is
      * one of our ancestors.
      *
-     * @throws DOMException(WRONG_DOCUMENT_ERR) if newChild has a
+     * @throws DOMException WRONG_DOCUMENT_ERR if newChild has a
      * different owner document than we do.
      *
-     * @throws DOMException(NOT_FOUND_ERR) if oldChild is not a child of
+     * @throws DOMException NOT_FOUND_ERR if oldChild is not a child of
      * this node.
      *
-     * @throws DOMException(NO_MODIFICATION_ALLOWED_ERR) if this node is
+     * @throws DOMException NO_MODIFICATION_ALLOWED_ERR if this node is
      * read-only.
      */
     public Node replaceChild(Node newChild, Node oldChild) throws DOMException {
@@ -783,6 +785,8 @@ public abstract class ParentNode extends ChildNode {
      * have it call this method.  The resulting NodeList instance maybe
      * shared and cached in a transient field, but the cached value must be
      * cleared if the node is cloned.
+     *
+     * @return an unoptimized NodeList of child nodes
      */
     protected final NodeList getChildNodesUnoptimized() {
         if (needsSyncChildren()) {
@@ -962,7 +966,12 @@ public abstract class ParentNode extends ChildNode {
     // Serialization methods
     //
 
-    /** Serialize object. */
+    /**
+     * Serialize object.
+     *
+     * @param out the ObjectOutputStream to write to
+     * @throws IOException if an I/O error occurs
+     */
     private void writeObject(ObjectOutputStream out) throws IOException {
 
         // synchronize children
@@ -974,7 +983,13 @@ public abstract class ParentNode extends ChildNode {
 
     } // writeObject(ObjectOutputStream)
 
-    /** Deserialize object. */
+    /**
+     * Deserialize object.
+     *
+     * @param ois the ObjectInputStream to read from
+     * @throws ClassNotFoundException if the class cannot be found
+     * @throws IOException if an I/O error occurs
+     */
     private void readObject(ObjectInputStream ois) throws ClassNotFoundException, IOException {
 
         // perform default deseralization

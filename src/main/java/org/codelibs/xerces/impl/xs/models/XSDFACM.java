@@ -38,7 +38,7 @@ import org.codelibs.xerces.xni.QName;
  * the conversion from the regular expression to the DFA that
  * it then uses in its validation algorithm.
  *
- * @xerces.internal
+
  *
  * @author Neil Graham, IBM
  * @version $Id: XSDFACM.java 806363 2009-08-20 21:18:48Z mrglavas $

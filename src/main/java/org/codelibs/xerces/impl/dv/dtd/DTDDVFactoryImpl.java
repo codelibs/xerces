@@ -25,13 +25,19 @@ import org.codelibs.xerces.impl.dv.DatatypeValidator;
 /**
  * the factory to create/return built-in schema DVs and create user-defined DVs
  *
- * @xerces.internal
+
  *
  * @author Sandy Gao, IBM
  *
  * @version $Id: DTDDVFactoryImpl.java 699892 2008-09-28 21:08:27Z mrglavas $
  */
 public class DTDDVFactoryImpl extends DTDDVFactory {
+
+    /**
+     * Constructs a DTDDVFactoryImpl.
+     */
+    public DTDDVFactoryImpl() {
+    }
 
     static final Hashtable fBuiltInTypes = new Hashtable();
     static {

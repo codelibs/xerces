@@ -21,7 +21,8 @@ import org.w3c.dom.Text;
 import org.w3c.dom.html.HTMLScriptElement;
 
 /**
- * @xerces.internal
+ * Implementation of HTMLScriptElement interface for HTML script elements.
+ *
  * @version $Revision: 1029415 $ $Date: 2010-10-31 22:32:22 +0530 (Sun, 31 Oct 2010) $
  * @author <a href="mailto:arkin@exoffice.com">Assaf Arkin</a>
  * @see org.w3c.dom.html.HTMLScriptElement
@@ -114,6 +115,7 @@ public class HTMLScriptElementImpl extends HTMLElementImpl implements HTMLScript
     * Constructor requires owner document.
     *
     * @param owner The owner HTML document
+     * @param name The element name
     */
     public HTMLScriptElementImpl(HTMLDocumentImpl owner, String name) {
         super(owner, name);

@@ -344,10 +344,17 @@ public class SAXParserImpl extends javax.xml.parsers.SAXParser implements JAXPCo
         private final HashMap fInitProperties = new HashMap();
         private final SAXParserImpl fSAXParser;
 
+        /**
+         * Constructs a JAXP SAX parser with default configuration.
+         */
         public JAXPSAXParser() {
             this(null);
         }
 
+        /**
+         * Constructs a JAXP SAX parser with the specified parent SAX parser implementation.
+         * @param saxParser the parent SAX parser implementation
+         */
         JAXPSAXParser(SAXParserImpl saxParser) {
             super();
             fSAXParser = saxParser;

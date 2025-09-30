@@ -67,7 +67,7 @@ import org.xml.sax.SAXException;
  * useful to distinguish grammar objects from other kinds of object
  * when they exist in pools or caches.
  *
- * @xerces.internal
+
  *
  * @author Sandy Gao, IBM
  * @author Elena Litani, IBM
@@ -126,17 +126,18 @@ public class SchemaGrammar implements XSGrammar, XSNamespaceItem {
     // Constructors
     //
 
-    // needed to make BuiltinSchemaGrammar work.
+    /**
+     * Default constructor for internal use.
+     * Needed to make BuiltinSchemaGrammar work.
+     */
     protected SchemaGrammar() {
     }
 
     /**
-     * Default constructor.
-     *
-     * @param targetNamespace
-     * @param grammarDesc the XMLGrammarDescription corresponding to this objec
-     * 		at the least a systemId should always be known.
-     * @param symbolTable   needed for annotation support
+     * Constructs a new SchemaGrammar with the specified target namespace and description.
+     * @param targetNamespace the target namespace for this schema grammar
+     * @param grammarDesc the grammar description containing metadata, at least a systemId should always be known
+     * @param symbolTable the symbol table for string management needed for annotation support
      */
     public SchemaGrammar(String targetNamespace, XSDDescription grammarDesc, SymbolTable symbolTable) {
         fTargetNamespace = targetNamespace;
@@ -177,7 +178,10 @@ public class SchemaGrammar implements XSGrammar, XSNamespaceItem {
         }
     } // <init>(String, XSDDescription)
 
-    // Clone an existing schema grammar
+    /**
+     * Copy constructor that creates a clone of an existing schema grammar.
+     * @param grammar the existing schema grammar to clone
+     */
     public SchemaGrammar(SchemaGrammar grammar) {
         fTargetNamespace = grammar.fTargetNamespace;
         fGrammarDescription = grammar.fGrammarDescription.makeClone();
@@ -261,16 +265,20 @@ public class SchemaGrammar implements XSGrammar, XSNamespaceItem {
     private static final int GRAMMAR_XS = 1;
     private static final int GRAMMAR_XSI = 2;
 
-    // this class makes sure the static, built-in schema grammars
-    // are immutable.
+    /**
+     * A specialized schema grammar implementation for built-in XML Schema namespaces.
+     * This class ensures that static, built-in schema grammars are immutable
+     * and cannot be modified after creation.
+     */
     public static class BuiltinSchemaGrammar extends SchemaGrammar {
 
         private static final String EXTENDED_SCHEMA_FACTORY_CLASS = "org.codelibs.xerces.impl.dv.xs.ExtendedSchemaDVFactoryImpl";
 
         /**
-         * Special constructor to create the grammars for the schema namespaces
+         * Special constructor to create the grammars for the schema namespaces.
          *
-         * @param grammar
+         * @param grammar the grammar type identifier (GRAMMAR_XS or GRAMMAR_XSI)
+         * @param schemaVersion the XML Schema version to use
          */
         public BuiltinSchemaGrammar(int grammar, short schemaVersion) {
             SchemaDVFactory schemaFactory;
@@ -497,7 +505,7 @@ public class SchemaGrammar implements XSGrammar, XSNamespaceItem {
     /**
      * <p>A partial schema for schemas for validating annotations.</p>
      *
-     * @xerces.internal
+
      *
      * @author Michael Glavassevich, IBM
      */
@@ -687,6 +695,11 @@ public class SchemaGrammar implements XSGrammar, XSNamespaceItem {
             // ignore
         }
 
+        /**
+         * Ignored for immutable builtin grammars.
+         * @param decl ignored
+         * @param location ignored
+         */
         public void addGlobalAttributeDecl(XSAttributeGroupDecl decl, String location) {
             // ignore
         }
@@ -839,35 +852,54 @@ public class SchemaGrammar implements XSGrammar, XSNamespaceItem {
     } // getGrammarDescription():  XMLGrammarDescription
 
     // DTDGrammar methods
+    /**
+     * Checks whether this grammar is namespace aware.
+     * @return true since schema grammars are always namespace aware
+     */
     public boolean isNamespaceAware() {
         return true;
     } // isNamespaceAware():boolean
 
     Vector fImported = null;
 
+    /**
+     * Sets the list of imported grammars for this schema.
+     * @param importedGrammars vector of imported SchemaGrammar objects
+     */
     public void setImportedGrammars(Vector importedGrammars) {
         fImported = importedGrammars;
     }
 
+    /**
+     * Returns the list of imported grammars.
+     * @return vector of imported SchemaGrammar objects
+     */
     public Vector getImportedGrammars() {
         return fImported;
     }
 
     /**
      * Returns this grammar's target namespace.
+     * @return the target namespace URI for this schema grammar
      */
     public final String getTargetNamespace() {
         return fTargetNamespace;
     } // getTargetNamespace():String
 
     /**
-     * register one global attribute
+     * Registers one global attribute declaration.
+     * @param decl the attribute declaration to register
      */
     public void addGlobalAttributeDecl(XSAttributeDecl decl) {
         fGlobalAttrDecls.put(decl.fName, decl);
         decl.setNamespaceItem(this);
     }
 
+    /**
+     * Registers a global attribute declaration with location information.
+     * @param decl the attribute declaration to register
+     * @param location the schema location where this declaration is defined
+     */
     public void addGlobalAttributeDecl(XSAttributeDecl decl, String location) {
         fGlobalAttrDeclsExt.put(((location != null) ? location : "") + "," + decl.fName, decl);
         if (decl.getNamespaceItem() == null) {
@@ -876,13 +908,19 @@ public class SchemaGrammar implements XSGrammar, XSNamespaceItem {
     }
 
     /**
-     * register one global attribute group
+     * Registers one global attribute group declaration.
+     * @param decl the attribute group declaration to register
      */
     public void addGlobalAttributeGroupDecl(XSAttributeGroupDecl decl) {
         fGlobalAttrGrpDecls.put(decl.fName, decl);
         decl.setNamespaceItem(this);
     }
 
+    /**
+     * Registers a global attribute group declaration with location information.
+     * @param decl the attribute group declaration to register
+     * @param location the schema location where this declaration is defined
+     */
     public void addGlobalAttributeGroupDecl(XSAttributeGroupDecl decl, String location) {
         fGlobalAttrGrpDeclsExt.put(((location != null) ? location : "") + "," + decl.fName, decl);
         if (decl.getNamespaceItem() == null) {
@@ -891,7 +929,8 @@ public class SchemaGrammar implements XSGrammar, XSNamespaceItem {
     }
 
     /**
-     * register one global element
+     * Registers one global element declaration in the all-global-elements table.
+     * @param decl the element declaration to register
      */
     public void addGlobalElementDeclAll(XSElementDecl decl) {
         if (fAllGlobalElemDecls.get(decl) == null) {
@@ -906,11 +945,20 @@ public class SchemaGrammar implements XSGrammar, XSNamespaceItem {
         }
     }
 
+    /**
+     * Registers a global element declaration.
+     * @param decl the element declaration to register
+     */
     public void addGlobalElementDecl(XSElementDecl decl) {
         fGlobalElemDecls.put(decl.fName, decl);
         decl.setNamespaceItem(this);
     }
 
+    /**
+     * Registers a global element declaration with location information.
+     * @param decl the element declaration to register
+     * @param location the schema location where this declaration is defined
+     */
     public void addGlobalElementDecl(XSElementDecl decl, String location) {
         fGlobalElemDeclsExt.put(((location != null) ? location : "") + "," + decl.fName, decl);
         if (decl.getNamespaceItem() == null) {
@@ -919,13 +967,19 @@ public class SchemaGrammar implements XSGrammar, XSNamespaceItem {
     }
 
     /**
-     * register one global group
+     * Registers one global model group declaration.
+     * @param decl the model group declaration to register
      */
     public void addGlobalGroupDecl(XSGroupDecl decl) {
         fGlobalGroupDecls.put(decl.fName, decl);
         decl.setNamespaceItem(this);
     }
 
+    /**
+     * Registers a global model group declaration with location information.
+     * @param decl the model group declaration to register
+     * @param location the schema location where this declaration is defined
+     */
     public void addGlobalGroupDecl(XSGroupDecl decl, String location) {
         fGlobalGroupDeclsExt.put(((location != null) ? location : "") + "," + decl.fName, decl);
         if (decl.getNamespaceItem() == null) {
@@ -934,13 +988,19 @@ public class SchemaGrammar implements XSGrammar, XSNamespaceItem {
     }
 
     /**
-     * register one global notation
+     * Registers one global notation declaration.
+     * @param decl the notation declaration to register
      */
     public void addGlobalNotationDecl(XSNotationDecl decl) {
         fGlobalNotationDecls.put(decl.fName, decl);
         decl.setNamespaceItem(this);
     }
 
+    /**
+     * Registers a global notation declaration with location information.
+     * @param decl the notation declaration to register
+     * @param location the schema location where this declaration is defined
+     */
     public void addGlobalNotationDecl(XSNotationDecl decl, String location) {
         fGlobalNotationDeclsExt.put(((location != null) ? location : "") + "," + decl.fName, decl);
         if (decl.getNamespaceItem() == null) {
@@ -949,7 +1009,8 @@ public class SchemaGrammar implements XSGrammar, XSNamespaceItem {
     }
 
     /**
-     * register one global type
+     * Registers one global type definition.
+     * @param decl the type definition to register
      */
     public void addGlobalTypeDecl(XSTypeDefinition decl) {
         fGlobalTypeDecls.put(decl.getName(), decl);
@@ -960,6 +1021,11 @@ public class SchemaGrammar implements XSGrammar, XSNamespaceItem {
         }
     }
 
+    /**
+     * Registers a global type definition with location information.
+     * @param decl the type definition to register
+     * @param location the schema location where this declaration is defined
+     */
     public void addGlobalTypeDecl(XSTypeDefinition decl, String location) {
         fGlobalTypeDeclsExt.put(((location != null) ? location : "") + "," + decl.getName(), decl);
         if (decl.getNamespaceItem() == null) {
@@ -972,13 +1038,19 @@ public class SchemaGrammar implements XSGrammar, XSNamespaceItem {
     }
 
     /**
-     * register one global complex type
+     * Registers one global complex type declaration.
+     * @param decl the complex type declaration to register
      */
     public void addGlobalComplexTypeDecl(XSComplexTypeDecl decl) {
         fGlobalTypeDecls.put(decl.getName(), decl);
         decl.setNamespaceItem(this);
     }
 
+    /**
+     * Registers a global complex type declaration with location information.
+     * @param decl the complex type declaration to register
+     * @param location the schema location where this declaration is defined
+     */
     public void addGlobalComplexTypeDecl(XSComplexTypeDecl decl, String location) {
         fGlobalTypeDeclsExt.put(((location != null) ? location : "") + "," + decl.getName(), decl);
         if (decl.getNamespaceItem() == null) {
@@ -987,7 +1059,8 @@ public class SchemaGrammar implements XSGrammar, XSNamespaceItem {
     }
 
     /**
-     * register one global simple type
+     * Registers one global simple type declaration.
+     * @param decl the simple type declaration to register
      */
     public void addGlobalSimpleTypeDecl(XSSimpleType decl) {
         fGlobalTypeDecls.put(decl.getName(), decl);
@@ -996,6 +1069,11 @@ public class SchemaGrammar implements XSGrammar, XSNamespaceItem {
         }
     }
 
+    /**
+     * Registers a global simple type declaration with location information.
+     * @param decl the simple type declaration to register
+     * @param location the schema location where this declaration is defined
+     */
     public void addGlobalSimpleTypeDecl(XSSimpleType decl, String location) {
         fGlobalTypeDeclsExt.put(((location != null) ? location : "") + "," + decl.getName(), decl);
         if (decl.getNamespaceItem() == null && decl instanceof XSSimpleTypeDecl) {
@@ -1004,96 +1082,161 @@ public class SchemaGrammar implements XSGrammar, XSNamespaceItem {
     }
 
     /**
-     * register one identity constraint
+     * Registers one identity constraint declaration.
+     * @param elmDecl the element declaration containing the identity constraint
+     * @param decl the identity constraint declaration to register
      */
     public final void addIDConstraintDecl(XSElementDecl elmDecl, IdentityConstraint decl) {
         elmDecl.addIDConstraint(decl);
         fGlobalIDConstraintDecls.put(decl.getIdentityConstraintName(), decl);
     }
 
+    /**
+     * Registers an identity constraint declaration with location information.
+     * @param elmDecl the element declaration containing the identity constraint
+     * @param decl the identity constraint declaration to register
+     * @param location the schema location where this declaration is defined
+     */
     public final void addIDConstraintDecl(XSElementDecl elmDecl, IdentityConstraint decl, String location) {
         fGlobalIDConstraintDeclsExt.put(((location != null) ? location : "") + "," + decl.getIdentityConstraintName(), decl);
     }
 
     /**
-     * get one global attribute
+     * Retrieves a global attribute declaration by name.
+     * @param declName the name of the attribute declaration to retrieve
+     * @return the attribute declaration, or null if not found
      */
     public final XSAttributeDecl getGlobalAttributeDecl(String declName) {
         return (XSAttributeDecl) fGlobalAttrDecls.get(declName);
     }
 
+    /**
+     * Retrieves a global attribute declaration by name and location.
+     * @param declName the name of the attribute declaration to retrieve
+     * @param location the schema location where this declaration is defined
+     * @return the attribute declaration, or null if not found
+     */
     public final XSAttributeDecl getGlobalAttributeDecl(String declName, String location) {
         return (XSAttributeDecl) fGlobalAttrDeclsExt.get(((location != null) ? location : "") + "," + declName);
     }
 
     /**
-     * get one global attribute group
+     * Retrieves a global attribute group declaration by name.
+     * @param declName the name of the attribute group declaration to retrieve
+     * @return the attribute group declaration, or null if not found
      */
     public final XSAttributeGroupDecl getGlobalAttributeGroupDecl(String declName) {
         return (XSAttributeGroupDecl) fGlobalAttrGrpDecls.get(declName);
     }
 
+    /**
+     * Retrieves a global attribute group declaration by name and location.
+     * @param declName the name of the attribute group declaration to retrieve
+     * @param location the schema location where this declaration is defined
+     * @return the attribute group declaration, or null if not found
+     */
     public final XSAttributeGroupDecl getGlobalAttributeGroupDecl(String declName, String location) {
         return (XSAttributeGroupDecl) fGlobalAttrGrpDeclsExt.get(((location != null) ? location : "") + "," + declName);
     }
 
     /**
-     * get one global element
+     * Retrieves a global element declaration by name.
+     * @param declName the name of the element declaration to retrieve
+     * @return the element declaration, or null if not found
      */
     public final XSElementDecl getGlobalElementDecl(String declName) {
         return (XSElementDecl) fGlobalElemDecls.get(declName);
     }
 
+    /**
+     * Retrieves a global element declaration by name and location.
+     * @param declName the name of the element declaration to retrieve
+     * @param location the schema location where this declaration is defined
+     * @return the element declaration, or null if not found
+     */
     public final XSElementDecl getGlobalElementDecl(String declName, String location) {
         return (XSElementDecl) fGlobalElemDeclsExt.get(((location != null) ? location : "") + "," + declName);
     }
 
     /**
-     * get one global group
+     * Retrieves a global model group declaration by name.
+     * @param declName the name of the model group declaration to retrieve
+     * @return the model group declaration, or null if not found
      */
     public final XSGroupDecl getGlobalGroupDecl(String declName) {
         return (XSGroupDecl) fGlobalGroupDecls.get(declName);
     }
 
+    /**
+     * Retrieves a global model group declaration by name and location.
+     * @param declName the name of the model group declaration to retrieve
+     * @param location the schema location where this declaration is defined
+     * @return the model group declaration, or null if not found
+     */
     public final XSGroupDecl getGlobalGroupDecl(String declName, String location) {
         return (XSGroupDecl) fGlobalGroupDeclsExt.get(((location != null) ? location : "") + "," + declName);
     }
 
     /**
-     * get one global notation
+     * Retrieves a global notation declaration by name.
+     * @param declName the name of the notation declaration to retrieve
+     * @return the notation declaration, or null if not found
      */
     public final XSNotationDecl getGlobalNotationDecl(String declName) {
         return (XSNotationDecl) fGlobalNotationDecls.get(declName);
     }
 
+    /**
+     * Retrieves a global notation declaration by name and location.
+     * @param declName the name of the notation declaration to retrieve
+     * @param location the schema location where this declaration is defined
+     * @return the notation declaration, or null if not found
+     */
     public final XSNotationDecl getGlobalNotationDecl(String declName, String location) {
         return (XSNotationDecl) fGlobalNotationDeclsExt.get(((location != null) ? location : "") + "," + declName);
     }
 
     /**
-     * get one global type
+     * Retrieves a global type definition by name.
+     * @param declName the name of the type definition to retrieve
+     * @return the type definition, or null if not found
      */
     public final XSTypeDefinition getGlobalTypeDecl(String declName) {
         return (XSTypeDefinition) fGlobalTypeDecls.get(declName);
     }
 
+    /**
+     * Retrieves a global type definition by name and location.
+     * @param declName the name of the type definition to retrieve
+     * @param location the schema location where this declaration is defined
+     * @return the type definition, or null if not found
+     */
     public final XSTypeDefinition getGlobalTypeDecl(String declName, String location) {
         return (XSTypeDefinition) fGlobalTypeDeclsExt.get(((location != null) ? location : "") + "," + declName);
     }
 
     /**
-     * get one identity constraint
+     * Retrieves an identity constraint declaration by name.
+     * @param declName the name of the identity constraint declaration to retrieve
+     * @return the identity constraint declaration, or null if not found
      */
     public final IdentityConstraint getIDConstraintDecl(String declName) {
         return (IdentityConstraint) fGlobalIDConstraintDecls.get(declName);
     }
 
+    /**
+     * Retrieves an identity constraint declaration by name and location.
+     * @param declName the name of the identity constraint declaration to retrieve
+     * @param location the schema location where this declaration is defined
+     * @return the identity constraint declaration, or null if not found
+     */
     public final IdentityConstraint getIDConstraintDecl(String declName, String location) {
         return (IdentityConstraint) fGlobalIDConstraintDeclsExt.get(((location != null) ? location : "") + "," + declName);
     }
 
     /**
-     * get one identity constraint
+     * Checks whether this grammar has any identity constraint declarations.
+     * @return true if there are identity constraint declarations, false otherwise
      */
     public final boolean hasIDConstraints() {
         return fGlobalIDConstraintDecls.getLength() > 0;
@@ -1119,7 +1262,9 @@ public class SchemaGrammar implements XSGrammar, XSNamespaceItem {
     boolean fFullChecked = false;
 
     /**
-     * add one complex type decl: for later constraint checking
+     * Adds a complex type declaration for later constraint checking.
+     * @param decl the complex type declaration to add
+     * @param locator the source locator for error reporting
      */
     public void addComplexTypeDecl(XSComplexTypeDecl decl, SimpleLocator locator) {
         if (fCTCount == fComplexTypeDecls.length) {
@@ -1131,7 +1276,10 @@ public class SchemaGrammar implements XSGrammar, XSNamespaceItem {
     }
 
     /**
-     * add a group redefined by restriction: for later constraint checking
+     * Adds a group redefined by restriction for later constraint checking.
+     * @param derived the derived group declaration
+     * @param base the base group declaration
+     * @param locator the source locator for error reporting
      */
     public void addRedefinedGroupDecl(XSGroupDecl derived, XSGroupDecl base, SimpleLocator locator) {
         if (fRGCount == fRedefinedGroupDecls.length) {
@@ -1212,8 +1360,10 @@ public class SchemaGrammar implements XSGrammar, XSNamespaceItem {
         return fSubGroups;
     }
 
-    // anyType and anySimpleType: because there are so many places where
-    // we need direct access to these two types
+    /**
+     * The built-in anyType complex type definition.
+     * Provides direct access to this frequently-used type.
+     */
     public final static XSComplexTypeDecl fAnyType = new XSAnyType();
 
     private static class XSAnyType extends XSComplexTypeDecl {
@@ -1324,16 +1474,31 @@ public class SchemaGrammar implements XSGrammar, XSNamespaceItem {
 
     } // class BuiltinAttrDecl
 
-    // the grammars to hold components of the schema namespace
+    /**
+     * Built-in schema grammar for the XML Schema namespace (http://www.w3.org/2001/XMLSchema).
+     * This grammar contains all built-in type definitions and schema components.
+     */
     public final static BuiltinSchemaGrammar SG_SchemaNS = new BuiltinSchemaGrammar(GRAMMAR_XS, Constants.SCHEMA_VERSION_1_0);
     private final static BuiltinSchemaGrammar SG_SchemaNSExtended =
             new BuiltinSchemaGrammar(GRAMMAR_XS, Constants.SCHEMA_VERSION_1_0_EXTENDED);
 
+    /**
+     * The built-in anySimpleType simple type definition.
+     * This is the base type for all simple type definitions.
+     */
     public final static XSSimpleType fAnySimpleType = (XSSimpleType) SG_SchemaNS.getGlobalTypeDecl(SchemaSymbols.ATTVAL_ANYSIMPLETYPE);
 
-    // the grammars to hold components of the schema-instance namespace
+    /**
+     * Built-in schema grammar for the XML Schema Instance namespace (http://www.w3.org/2001/XMLSchema-instance).
+     * This grammar contains schema-instance attribute declarations like xsi:type and xsi:nil.
+     */
     public final static BuiltinSchemaGrammar SG_XSI = new BuiltinSchemaGrammar(GRAMMAR_XSI, Constants.SCHEMA_VERSION_1_0);
 
+    /**
+     * Returns the appropriate schema-for-schemas grammar for the specified schema version.
+     * @param schemaVersion the XML Schema version
+     * @return the built-in schema grammar for the specified version
+     */
     public static SchemaGrammar getS4SGrammar(short schemaVersion) {
         if (schemaVersion == Constants.SCHEMA_VERSION_1_0) {
             return SG_SchemaNS;
@@ -1398,6 +1563,11 @@ public class SchemaGrammar implements XSGrammar, XSNamespaceItem {
     private Vector fDocuments = null;
     private Vector fLocations = null;
 
+    /**
+     * Adds a document reference and its location to this grammar.
+     * @param document the document object
+     * @param location the schema location URI
+     */
     public synchronized void addDocument(Object document, String location) {
         if (fDocuments == null) {
             fDocuments = new Vector();
@@ -1407,6 +1577,10 @@ public class SchemaGrammar implements XSGrammar, XSNamespaceItem {
         fLocations.addElement(location);
     }
 
+    /**
+     * Removes a document reference at the specified index.
+     * @param index the index of the document to remove
+     */
     public synchronized void removeDocument(int index) {
         if (fDocuments != null && index >= 0 && index < fDocuments.size()) {
             fDocuments.removeElementAt(index);
@@ -1530,6 +1704,11 @@ public class SchemaGrammar implements XSGrammar, XSNamespaceItem {
         return fComponents[objectType];
     }
 
+    /**
+     * Returns an extended list of schema components of the specified type.
+     * @param objectType the type of schema component
+     * @return an ObjectList containing the components, or empty list if none exist
+     */
     public synchronized ObjectList getComponentsExt(short objectType) {
         if (objectType <= 0 || objectType > MAX_COMP_IDX || !GLOBAL_COMP[objectType]) {
             return ObjectListImpl.EMPTY_LIST;
@@ -1574,6 +1753,9 @@ public class SchemaGrammar implements XSGrammar, XSNamespaceItem {
         return fComponentsExt[objectType];
     }
 
+    /**
+     * Resets the cached component maps, forcing them to be regenerated on next access.
+     */
     public synchronized void resetComponents() {
         fComponents = null;
         fComponentsExt = null;
@@ -1696,6 +1878,10 @@ public class SchemaGrammar implements XSGrammar, XSNamespaceItem {
         return new XSObjectListImpl(fAnnotations, fNumAnnotations);
     }
 
+    /**
+     * Adds an annotation to this grammar.
+     * @param annotation the annotation to add
+     */
     public void addAnnotation(XSAnnotationImpl annotation) {
         if (annotation == null) {
             return;
@@ -1710,10 +1896,18 @@ public class SchemaGrammar implements XSGrammar, XSNamespaceItem {
         fAnnotations[fNumAnnotations++] = annotation;
     }
 
+    /**
+     * Sets whether this grammar is immutable.
+     * @param isImmutable true to make the grammar immutable, false otherwise
+     */
     public void setImmutable(boolean isImmutable) {
         fIsImmutable = isImmutable;
     }
 
+    /**
+     * Checks whether this grammar is immutable.
+     * @return true if the grammar is immutable, false otherwise
+     */
     public boolean isImmutable() {
         return fIsImmutable;
     }

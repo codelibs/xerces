@@ -21,9 +21,8 @@ import org.codelibs.xerces.impl.dv.InvalidDatatypeValueException;
 import org.codelibs.xerces.impl.dv.ValidationContext;
 
 /**
- * Represent the schema type "boolean"
- *
- * @xerces.internal
+ * Represents the schema type "boolean".
+ * Validates and converts boolean values according to XML Schema specification.
  *
  * @author Neeraj Bajaj, Sun Microsystems, inc.
  * @author Sandy Gao, IBM
@@ -31,6 +30,12 @@ import org.codelibs.xerces.impl.dv.ValidationContext;
  * @version $Id: BooleanDV.java 469063 2006-10-30 04:44:22Z mrglavas $
  */
 public class BooleanDV extends TypeValidator {
+
+    /**
+     * Default constructor for BooleanDV.
+     */
+    public BooleanDV() {
+    }
 
     public short getAllowedFacets() {
         return (XSSimpleTypeDecl.FACET_PATTERN | XSSimpleTypeDecl.FACET_WHITESPACE);

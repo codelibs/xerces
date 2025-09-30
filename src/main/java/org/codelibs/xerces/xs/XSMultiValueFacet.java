@@ -26,21 +26,25 @@ public interface XSMultiValueFacet extends XSObject {
     /**
      * The name of the facet, i.e. <code>FACET_ENUMERATION</code> and
      * <code>FACET_PATTERN</code> (see <code>XSSimpleTypeDefinition</code>).
+     * @return the kind of facet (enumeration or pattern)
      */
     public short getFacetKind();
 
     /**
      * Values of this facet.
+     * @return a list of lexical values for this facet
      */
     public StringList getLexicalFacetValues();
 
     /**
      * A list of XSValue objects. The actual enumeration values.
+     * @return a list of actual enumeration values
      */
     public ObjectList getEnumerationValues();
 
     /**
      * A sequence of [annotations] or an empty <code>XSObjectList</code>.
+     * @return a sequence of annotations or an empty XSObjectList
      */
     public XSObjectList getAnnotations();
 

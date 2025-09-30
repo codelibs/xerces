@@ -114,7 +114,7 @@ public class XMLString {
      * <strong>Note:</strong> This does not copy the character array;
      * only the reference to the array is copied.
      *
-     * @param s
+     * @param s The XMLString to copy values from
      */
     public void setValues(XMLString s) {
         setValues(s.ch, s.offset, s.length);
@@ -134,6 +134,7 @@ public class XMLString {
      * @param ch     The character array.
      * @param offset The offset into the character array.
      * @param length The length of characters from the offset.
+     * @return true if the contents are equal, false otherwise
      */
     public boolean equals(char[] ch, int offset, int length) {
         if (ch == null) {
@@ -156,6 +157,7 @@ public class XMLString {
      * the specified string are equal.
      *
      * @param s The string to compare.
+     * @return true if the contents are equal, false otherwise
      */
     public boolean equals(String s) {
         if (s == null) {

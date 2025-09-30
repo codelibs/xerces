@@ -340,10 +340,18 @@ public interface XMLDTDHandler {
      */
     public void endDTD(Augmentations augmentations) throws XNIException;
 
-    // set the source of this handler
+    /**
+     * Sets the DTD source from which this handler receives its events.
+     *
+     * @param source The DTD source
+     */
     public void setDTDSource(XMLDTDSource source);
 
-    // return the source from which this handler derives its events
+    /**
+     * Returns the DTD source from which this handler derives its events.
+     *
+     * @return The DTD source
+     */
     public XMLDTDSource getDTDSource();
 
 } // interface XMLDTDHandler

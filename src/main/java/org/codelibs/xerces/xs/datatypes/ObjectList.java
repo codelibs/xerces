@@ -31,6 +31,8 @@ public interface ObjectList extends List {
     /**
      * The number of <code>Object</code>s in the list. The range of
      * valid child object indices is 0 to <code>length-1</code> inclusive.
+     *
+     * @return the number of objects in the list
      */
     public int getLength();
 

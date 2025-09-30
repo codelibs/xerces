@@ -40,7 +40,7 @@ import org.codelibs.xerces.xni.QName;
  * in a simple way without a DFA and without the overhead of setting up a
  * DFA for such a simple check.
  *
- * @xerces.internal
+
  *
  * @version $Id: SimpleContentModel.java 699892 2008-09-28 21:08:27Z mrglavas $
  */

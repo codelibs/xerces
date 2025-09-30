@@ -19,7 +19,8 @@ package org.codelibs.xerces.wml.dom;
 import org.codelibs.xerces.wml.WMLHeadElement;
 
 /**
- * @xerces.internal
+ * Implementation of WMLHeadElement interface for WML head elements.
+ *
  * @version $Id: WMLHeadElementImpl.java 661560 2008-05-30 03:22:25Z mrglavas $
  * @author <a href="mailto:david@topware.com.tw">David Li</a>
  */
@@ -27,6 +28,12 @@ public class WMLHeadElementImpl extends WMLElementImpl implements WMLHeadElement
 
     private static final long serialVersionUID = 3311307374813188908L;
 
+    /**
+     * Constructs a new WML head element with the specified owner document and tag name.
+     *
+     * @param owner the owner document
+     * @param tagName the tag name for this element
+     */
     public WMLHeadElementImpl(WMLDocumentImpl owner, String tagName) {
         super(owner, tagName);
     }

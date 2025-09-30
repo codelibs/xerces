@@ -32,40 +32,75 @@ public interface WMLMetaElement extends WMLElement {
 
     /**
      * 'name' attribute specific the property name
+     *
+     * @param newValue the new value for the name attribute
      */
     public void setName(String newValue);
 
+    /**
+     * Gets the 'name' attribute which specifies the property name.
+     *
+     * @return the value of the name attribute
+     */
     public String getName();
 
     /**
      * 'http-equiv' attribute indicates the property should be
      * interpret as HTTP header.
+     *
+     * @param newValue the new value for the http-equiv attribute
      */
     public void setHttpEquiv(String newValue);
 
+    /**
+     * Gets the 'http-equiv' attribute.
+     *
+     * @return the value of the http-equiv attribute
+     */
     public String getHttpEquiv();
 
     /**
      * 'forua' attribute specifies whether a intermediate agent should
      * remove this meta element. A value of false means the
      * intermediate agent must remove the element.
+     *
+     * @param newValue the new value for the forua attribute
      */
     public void setForua(boolean newValue);
 
+    /**
+     * Gets the 'forua' attribute.
+     *
+     * @return the value of the forua attribute
+     */
     public boolean getForua();
 
     /**
      * 'scheme' attribute specifies a form that may be used to
      * interpret the property value
+     *
+     * @param newValue the new value for the scheme attribute
      */
     public void setScheme(String newValue);
 
+    /**
+     * Gets the 'scheme' attribute.
+     *
+     * @return the value of the scheme attribute
+     */
     public String getScheme();
 
     /**
      * 'content' attribute specifies the property value
+     *
+     * @param newValue the new value for the content attribute
      */
     public void setContent(String newValue);
 
+    /**
+     * Gets the 'content' attribute which specifies the property value.
+     *
+     * @return the value of the content attribute
+     */
     public String getContent();
 }

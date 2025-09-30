@@ -20,8 +20,6 @@ package org.codelibs.xerces.impl.xpath;
 /**
  * XPath exception.
  *
- * @xerces.internal
- *
  * @author Andy Clark, IBM
  *
  * @version $Id: XPathException.java 572107 2007-09-02 18:40:40Z mrglavas $
@@ -33,7 +31,9 @@ public class XPathException extends Exception {
 
     // Data
 
-    // hold the value of the key this Exception refers to.
+    /**
+     * The key that identifies the specific error that occurred.
+     */
     private final String fKey;
     //
     // Constructors
@@ -45,12 +45,21 @@ public class XPathException extends Exception {
         fKey = "c-general-xpath";
     } // <init>()
 
-    /** Constructs an exception with the specified key. */
+    /**
+     * Constructs an exception with the specified key.
+     *
+     * @param key The error key for this exception
+     */
     public XPathException(String key) {
         super();
         fKey = key;
     } // <init>(String)
 
+    /**
+     * Returns the error key for this exception.
+     *
+     * @return The error key
+     */
     public String getKey() {
         return fKey;
     } // getKey():  String

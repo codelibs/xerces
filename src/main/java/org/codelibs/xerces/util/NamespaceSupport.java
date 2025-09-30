@@ -68,6 +68,9 @@ public class NamespaceSupport implements NamespaceContext {
     /** The current context. */
     protected int fCurrentContext;
 
+    /**
+     * Array storing namespace prefixes.
+     */
     protected String[] fPrefixes = new String[16];
 
     //
@@ -81,6 +84,8 @@ public class NamespaceSupport implements NamespaceContext {
     /**
      * Constructs a namespace context object and initializes it with
      * the prefixes declared in the specified context.
+     *
+     * @param context the namespace context to copy prefixes from
      */
     public NamespaceSupport(NamespaceContext context) {
         pushContext();
@@ -281,13 +286,18 @@ public class NamespaceSupport implements NamespaceContext {
         return false;
     }
 
+    /**
+     * Helper class to enumerate namespace prefixes in the current context.
+     */
     protected final class Prefixes implements Enumeration {
         private String[] prefixes;
         private int counter = 0;
         private int size = 0;
 
         /**
-         * Constructor for Prefixes.
+         * Constructor for Prefixes enumeration.
+         * @param prefixes the array of prefix strings to enumerate
+         * @param size the number of valid prefixes in the array
          */
         public Prefixes(String[] prefixes, int size) {
             this.prefixes = prefixes;

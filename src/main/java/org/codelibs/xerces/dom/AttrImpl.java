@@ -99,7 +99,7 @@ import org.w3c.dom.TypeInfo;
  * <p><b>WARNING</b>: Some of the code here is partially duplicated in
  * ParentNode, be careful to keep these two classes in sync!
  *
- * @xerces.internal
+
  *
  * @see AttrNSImpl
  *
@@ -143,6 +143,9 @@ public class AttrImpl extends NodeImpl implements Attr, TypeInfo {
     /**
      * Attribute has no public constructor. Please use the factory
      * method in the Document class.
+     *
+     * @param ownerDocument the document that owns this attribute
+     * @param name the name of the attribute
      */
     protected AttrImpl(CoreDocumentImpl ownerDocument, String name) {
         super(ownerDocument);
@@ -152,7 +155,9 @@ public class AttrImpl extends NodeImpl implements Attr, TypeInfo {
         hasStringValue(true);
     }
 
-    // for AttrNSImpl
+    /**
+     * Default constructor for use by AttrNSImpl subclass.
+     */
     protected AttrImpl() {
     }
 
@@ -167,7 +172,10 @@ public class AttrImpl extends NodeImpl implements Attr, TypeInfo {
         this.name = name;
     }
 
-    // create a real text node as child if we don't have one yet
+    /**
+     * Create a real text node as child if we don't have one yet.
+     * This method converts the string value to a text node.
+     */
     protected void makeChildNode() {
         if (hasStringValue()) {
             if (value != null) {
@@ -201,7 +209,7 @@ public class AttrImpl extends NodeImpl implements Attr, TypeInfo {
     /**
      * NON-DOM: set the type of this attribute to be ID type.
      *
-     * @param id
+     * @param id true if this attribute should be treated as an ID attribute
      */
     public void setIdAttribute(boolean id) {
         if (needsSyncData()) {
@@ -502,8 +510,9 @@ public class AttrImpl extends NodeImpl implements Attr, TypeInfo {
      *
      * @see #getOwnerElement
      *
+     * @return the element that owns this attribute, or null if not owned
      * @deprecated Previous working draft of DOM Level 2. New method
-     *             is <tt>getOwnerElement()</tt>.
+     *             is <code>getOwnerElement()</code>.
      */
     public Element getElement() {
         // if we have an owner, ownerNode is our ownerElement, otherwise it's
@@ -562,7 +571,11 @@ public class AttrImpl extends NodeImpl implements Attr, TypeInfo {
     // Public methods
     //
 
-    /** NON-DOM, for use by parser */
+    /**
+     * NON-DOM, for use by parser
+     *
+     * @param arg true if this attribute was explicitly specified in the source document
+     */
     public void setSpecified(boolean arg) {
 
         if (needsSyncData()) {
@@ -573,8 +586,9 @@ public class AttrImpl extends NodeImpl implements Attr, TypeInfo {
     } // setSpecified(boolean)
 
     /**
-     * NON-DOM: used by the parser
-     * @param type
+     * NON-DOM: used by the parser to set the type of this attribute.
+     *
+     * @param type the type information for this attribute
      */
     public void setType(Object type) {
         this.type = type;
@@ -672,17 +686,17 @@ public class AttrImpl extends NodeImpl implements Attr, TypeInfo {
      * @return newChild, in its new state (relocated, or emptied in the case of
      * DocumentNode.)
      *
-     * @throws DOMException(HIERARCHY_REQUEST_ERR) if newChild is of a
+     * @throws DOMException HIERARCHY_REQUEST_ERR if newChild is of a
      * type that shouldn't be a child of this node, or if newChild is an
      * ancestor of this node.
      *
-     * @throws DOMException(WRONG_DOCUMENT_ERR) if newChild has a
+     * @throws DOMException WRONG_DOCUMENT_ERR if newChild has a
      * different owner document than we do.
      *
-     * @throws DOMException(NOT_FOUND_ERR) if refChild is not a child of
+     * @throws DOMException NOT_FOUND_ERR if refChild is not a child of
      * this node.
      *
-     * @throws DOMException(NO_MODIFICATION_ALLOWED_ERR) if this node is
+     * @throws DOMException NO_MODIFICATION_ALLOWED_ERR if this node is
      * read-only.
      */
     public Node insertBefore(Node newChild, Node refChild) throws DOMException {
@@ -852,10 +866,10 @@ public class AttrImpl extends NodeImpl implements Attr, TypeInfo {
      *
      * @return oldChild, in its new state (removed).
      *
-     * @throws DOMException(NOT_FOUND_ERR) if oldChild is not a child of
+     * @throws DOMException NOT_FOUND_ERR if oldChild is not a child of
      * this node.
      *
-     * @throws DOMException(NO_MODIFICATION_ALLOWED_ERR) if this node is
+     * @throws DOMException NO_MODIFICATION_ALLOWED_ERR if this node is
      * read-only.
      */
     public Node removeChild(Node oldChild) throws DOMException {
@@ -946,17 +960,17 @@ public class AttrImpl extends NodeImpl implements Attr, TypeInfo {
      *
      * @return oldChild, in its new state (removed).
      *
-     * @throws DOMException(HIERARCHY_REQUEST_ERR) if newChild is of a
+     * @throws DOMException HIERARCHY_REQUEST_ERR if newChild is of a
      * type that shouldn't be a child of this node, or if newChild is
      * one of our ancestors.
      *
-     * @throws DOMException(WRONG_DOCUMENT_ERR) if newChild has a
+     * @throws DOMException WRONG_DOCUMENT_ERR if newChild has a
      * different owner document than we do.
      *
-     * @throws DOMException(NOT_FOUND_ERR) if oldChild is not a child of
+     * @throws DOMException NOT_FOUND_ERR if oldChild is not a child of
      * this node.
      *
-     * @throws DOMException(NO_MODIFICATION_ALLOWED_ERR) if this node is
+     * @throws DOMException NO_MODIFICATION_ALLOWED_ERR if this node is
      * read-only.
      */
     public Node replaceChild(Node newChild, Node oldChild) throws DOMException {
@@ -1176,7 +1190,12 @@ public class AttrImpl extends NodeImpl implements Attr, TypeInfo {
     // Serialization methods
     //
 
-    /** Serialize object. */
+    /**
+     * Serialize object.
+     *
+     * @param out the ObjectOutputStream to write to
+     * @throws IOException if an I/O error occurs
+     */
     private void writeObject(ObjectOutputStream out) throws IOException {
 
         // synchronize chilren
@@ -1188,7 +1207,13 @@ public class AttrImpl extends NodeImpl implements Attr, TypeInfo {
 
     } // writeObject(ObjectOutputStream)
 
-    /** Deserialize object. */
+    /**
+     * Deserialize object.
+     *
+     * @param ois the ObjectInputStream to read from
+     * @throws ClassNotFoundException if the class cannot be found
+     * @throws IOException if an I/O error occurs
+     */
     private void readObject(ObjectInputStream ois) throws ClassNotFoundException, IOException {
 
         // perform default deseralization

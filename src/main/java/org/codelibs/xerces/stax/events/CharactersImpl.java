@@ -27,7 +27,8 @@ import javax.xml.stream.events.Characters;
 import org.codelibs.xerces.util.XMLChar;
 
 /**
- * @xerces.internal
+ * Implementation of {@code Characters} event for StAX.
+ * Represents character data content in an XML document.
  *
  * @author Lucian Holland
  *
@@ -39,9 +40,9 @@ public final class CharactersImpl extends XMLEventImpl implements Characters {
 
     /**
      * Standard constructor.
-     * @param eventType
-     * @param location
-     * @param schemaType
+     * @param data the character data
+     * @param eventType the event type
+     * @param location the location information
      */
     public CharactersImpl(final String data, final int eventType, final Location location) {
         super(eventType, location);

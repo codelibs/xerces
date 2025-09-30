@@ -31,7 +31,6 @@ import org.codelibs.xerces.xni.Augmentations;
  * be passed along the document pipeline. The information can contain extra
  * arguments or infoset augmentations, for example PSVI. This additional
  * information is identified by a String key.
- * <p>
  *
  * @author Elena Litani, IBM
  * @version $Id: AugmentationsImpl.java 606488 2007-12-22 20:40:16Z mrglavas $
@@ -39,6 +38,12 @@ import org.codelibs.xerces.xni.Augmentations;
 public class AugmentationsImpl implements Augmentations {
 
     private AugmentationsItemsContainer fAugmentationsContainer = new SmallContainer();
+
+    /**
+     * Default constructor for AugmentationsImpl.
+     */
+    public AugmentationsImpl() {
+    }
 
     /**
      * Add additional information identified by a key to the Augmentations structure.

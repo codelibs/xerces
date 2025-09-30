@@ -25,7 +25,6 @@ import java.io.Reader;
  * Reader for UCS-2 and UCS-4 encodings.
  * (i.e., encodings from ISO-10646-UCS-(2|4)).
  *
- * @xerces.internal
  *
  * @author Neil Graham, IBM
  *
@@ -44,9 +43,13 @@ public final class UCSReader extends Reader {
      */
     public static final int DEFAULT_BUFFER_SIZE = 8192;
 
+    /** UCS-2 little-endian encoding constant. */
     public static final short UCS2LE = 1;
+    /** UCS-2 big-endian encoding constant. */
     public static final short UCS2BE = 2;
+    /** UCS-4 little-endian encoding constant. */
     public static final short UCS4LE = 4;
+    /** UCS-4 big-endian encoding constant. */
     public static final short UCS4BE = 8;
 
     //
@@ -59,7 +62,7 @@ public final class UCSReader extends Reader {
     /** Byte buffer. */
     protected final byte[] fBuffer;
 
-    // what kind of data we're dealing with
+    /** What kind of data we're dealing with. */
     protected final short fEncoding;
 
     //
@@ -118,7 +121,7 @@ public final class UCSReader extends Reader {
      * should override this method.
      *
      * @return     The character read, as an integer in the range 0 to 127
-     *             (<tt>0x00-0x7f</tt>), or -1 if the end of the stream has
+     *             (<code>0x00-0x7f</code>), or -1 if the end of the stream has
      *             been reached
      *
      * @exception  IOException  If an I/O error occurs

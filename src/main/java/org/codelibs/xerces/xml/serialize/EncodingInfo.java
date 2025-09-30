@@ -60,6 +60,9 @@ public class EncodingInfo {
 
     /**
      * Creates new <code>EncodingInfo</code> instance.
+     * @param ianaName the IANA name of the encoding
+     * @param javaName the Java name of the encoding
+     * @param lastPrintable the last printable character code
      */
     public EncodingInfo(String ianaName, String javaName, int lastPrintable) {
         this.ianaName = ianaName;
@@ -69,6 +72,7 @@ public class EncodingInfo {
 
     /**
      * Returns a MIME charset name of this encoding.
+     * @return the IANA name of this encoding
      */
     public String getIANAName() {
         return this.ianaName;
@@ -78,6 +82,7 @@ public class EncodingInfo {
      * Returns a writer for this encoding based on
      * an output stream.
      *
+     * @param output the output stream to wrap
      * @return A suitable writer
      * @exception UnsupportedEncodingException There is no convertor
      *  to support this encoding
@@ -97,6 +102,7 @@ public class EncodingInfo {
      * Checks whether the specified character is printable or not in this encoding.
      *
      * @param ch a code point (0-0x10ffff)
+     * @return true if the character is printable in this encoding, false otherwise
      */
     public boolean isPrintable(char ch) {
         if (ch <= this.lastPrintable) {
@@ -180,8 +186,12 @@ public class EncodingInfo {
         }
     }
 
-    // is this an encoding name recognized by this JDK?
-    // if not, will throw UnsupportedEncodingException
+    /**
+     * Tests whether an encoding name is recognized by this JDK.
+     * If not, will throw UnsupportedEncodingException.
+     * @param name the encoding name to test
+     * @throws UnsupportedEncodingException if the encoding is not supported
+     */
     public static void testJavaEncodingName(String name) throws UnsupportedEncodingException {
         final byte[] bTest = { (byte) 'v', (byte) 'a', (byte) 'l', (byte) 'i', (byte) 'd' };
         String s = new String(bTest, name);

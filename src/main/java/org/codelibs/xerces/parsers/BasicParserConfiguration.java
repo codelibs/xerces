@@ -430,8 +430,8 @@ public abstract class BasicParserConfiguration extends ParserConfigurationSettin
     /**
      * setProperty
      *
-     * @param propertyId
-     * @param value
+     * @param propertyId The unique identifier (URI) of the property.
+     * @param value The requested value for the property.
      */
     public void setProperty(String propertyId, Object value) throws XMLConfigurationException {
 

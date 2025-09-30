@@ -24,7 +24,7 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 /**
- * EntityReference models the XML &entityname; syntax, when used for
+ * EntityReference models the XML &amp;entityname; syntax, when used for
  * entities defined by the DOM. Entities hardcoded into XML, such as
  * character entities, should instead have been translated into text
  * by the code which generated the DOM tree.
@@ -71,7 +71,7 @@ import org.w3c.dom.Node;
  * structure-change-monitoring code I implemented to support
  * DeepNodeList.
  *
- * @xerces.internal
+
  *
  * @author Arnaud  Le Hors, IBM
  * @author Joe Kesselman, IBM
@@ -108,7 +108,11 @@ public class EntityReferenceImpl extends ParentNode implements EntityReference {
     // Constructors
     //
 
-    /** Factory constructor. */
+    /**
+     * Factory constructor.
+     * @param ownerDoc the document that owns this entity reference
+     * @param name the name of the entity reference
+     */
     public EntityReferenceImpl(CoreDocumentImpl ownerDoc, String name) {
         super(ownerDoc);
         this.name = name;
@@ -179,7 +183,10 @@ public class EntityReferenceImpl extends ParentNode implements EntityReference {
         return baseURI;
     }
 
-    /** NON-DOM: set base uri*/
+    /**
+     * NON-DOM: set base uri.
+     * @param uri the base URI
+     */
     public void setBaseURI(String uri) {
         if (needsSyncData()) {
             synchronizeData();

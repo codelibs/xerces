@@ -54,7 +54,8 @@ import org.codelibs.xerces.xs.datatypes.ObjectList;
 import org.w3c.dom.TypeInfo;
 
 /**
- * @xerces.internal
+ * Implementation of XML Schema simple type declarations. This class provides the core
+ * functionality for validating and processing simple type values according to Schema specifications.
  *
  * @author Sandy Gao, IBM
  * @author Neeraj Bajaj, Sun Microsystems, inc.
@@ -63,36 +64,66 @@ import org.w3c.dom.TypeInfo;
  */
 public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
 
+    /** Data validator constant for string primitive type. */
     protected static final short DV_STRING = PRIMITIVE_STRING;
+    /** Data validator constant for boolean primitive type. */
     protected static final short DV_BOOLEAN = PRIMITIVE_BOOLEAN;
+    /** Data validator constant for decimal primitive type. */
     protected static final short DV_DECIMAL = PRIMITIVE_DECIMAL;
+    /** Data validator constant for float primitive type. */
     protected static final short DV_FLOAT = PRIMITIVE_FLOAT;
+    /** Data validator constant for double primitive type. */
     protected static final short DV_DOUBLE = PRIMITIVE_DOUBLE;
+    /** Data validator constant for duration primitive type. */
     protected static final short DV_DURATION = PRIMITIVE_DURATION;
+    /** Data validator constant for dateTime primitive type. */
     protected static final short DV_DATETIME = PRIMITIVE_DATETIME;
+    /** Data validator constant for time primitive type. */
     protected static final short DV_TIME = PRIMITIVE_TIME;
+    /** Data validator constant for date primitive type. */
     protected static final short DV_DATE = PRIMITIVE_DATE;
+    /** Data validator constant for gYearMonth primitive type. */
     protected static final short DV_GYEARMONTH = PRIMITIVE_GYEARMONTH;
+    /** Data validator constant for gYear primitive type. */
     protected static final short DV_GYEAR = PRIMITIVE_GYEAR;
+    /** Data validator constant for gMonthDay primitive type. */
     protected static final short DV_GMONTHDAY = PRIMITIVE_GMONTHDAY;
+    /** Data validator constant for gDay primitive type. */
     protected static final short DV_GDAY = PRIMITIVE_GDAY;
+    /** Data validator constant for gMonth primitive type. */
     protected static final short DV_GMONTH = PRIMITIVE_GMONTH;
+    /** Data validator constant for hexBinary primitive type. */
     protected static final short DV_HEXBINARY = PRIMITIVE_HEXBINARY;
+    /** Data validator constant for base64Binary primitive type. */
     protected static final short DV_BASE64BINARY = PRIMITIVE_BASE64BINARY;
+    /** Data validator constant for anyURI primitive type. */
     protected static final short DV_ANYURI = PRIMITIVE_ANYURI;
+    /** Data validator constant for QName primitive type. */
     protected static final short DV_QNAME = PRIMITIVE_QNAME;
+    /** Data validator constant for precisionDecimal primitive type (XML Schema 1.1). */
     protected static final short DV_PRECISIONDECIMAL = PRIMITIVE_PRECISIONDECIMAL;
+    /** Data validator constant for NOTATION primitive type. */
     protected static final short DV_NOTATION = PRIMITIVE_NOTATION;
 
+    /** Data validator constant for anySimpleType. */
     protected static final short DV_ANYSIMPLETYPE = 0;
+    /** Data validator constant for ID derived type. */
     protected static final short DV_ID = DV_NOTATION + 1;
+    /** Data validator constant for IDREF derived type. */
     protected static final short DV_IDREF = DV_NOTATION + 2;
+    /** Data validator constant for ENTITY derived type. */
     protected static final short DV_ENTITY = DV_NOTATION + 3;
+    /** Data validator constant for integer derived type. */
     protected static final short DV_INTEGER = DV_NOTATION + 4;
+    /** Data validator constant for list types. */
     protected static final short DV_LIST = DV_NOTATION + 5;
+    /** Data validator constant for union types. */
     protected static final short DV_UNION = DV_NOTATION + 6;
+    /** Data validator constant for yearMonthDuration derived type (XML Schema 1.1). */
     protected static final short DV_YEARMONTHDURATION = DV_NOTATION + 7;
+    /** Data validator constant for dayTimeDuration derived type (XML Schema 1.1). */
     protected static final short DV_DAYTIMEDURATION = DV_NOTATION + 8;
+    /** Data validator constant for anyAtomicType derived type (XML Schema 1.1). */
     protected static final short DV_ANYATOMICTYPE = DV_NOTATION + 9;
 
     private static final TypeValidator[] gDVs =
@@ -153,9 +184,13 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
     static final String ANY_TYPE = "anyType";
 
     // XML Schema 1.1 type constants
+    /** Built-in kind constant for yearMonthDuration type (XML Schema 1.1). */
     public static final short YEARMONTHDURATION_DT = 46;
+    /** Built-in kind constant for dayTimeDuration type (XML Schema 1.1). */
     public static final short DAYTIMEDURATION_DT = 47;
+    /** Built-in kind constant for precisionDecimal type (XML Schema 1.1). */
     public static final short PRECISIONDECIMAL_DT = 48;
+    /** Built-in kind constant for anyAtomicType type (XML Schema 1.1). */
     public static final short ANYATOMICTYPE_DT = 49;
 
     // DOM Level 3 TypeInfo Derivation Method constants
@@ -213,12 +248,22 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         }
     };
 
+    /**
+     * Returns a cloned copy of the global datatype validators array.
+     *
+     * @return a clone of the global datatype validators array
+     */
     protected static TypeValidator[] getGDVs() {
         return (TypeValidator[]) gDVs.clone();
     }
 
     private TypeValidator[] fDVs = gDVs;
 
+    /**
+     * Sets the datatype validators array for this simple type.
+     *
+     * @param dvs the datatype validators array to set
+     */
     protected void setDVs(TypeValidator[] dvs) {
         fDVs = dvs;
     }
@@ -265,17 +310,29 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
     private Object fMinInclusive;
 
     // annotations for constraining facets
+    /** Annotation for the length facet. */
     public XSAnnotation lengthAnnotation;
+    /** Annotation for the minLength facet. */
     public XSAnnotation minLengthAnnotation;
+    /** Annotation for the maxLength facet. */
     public XSAnnotation maxLengthAnnotation;
+    /** Annotation for the whiteSpace facet. */
     public XSAnnotation whiteSpaceAnnotation;
+    /** Annotation for the totalDigits facet. */
     public XSAnnotation totalDigitsAnnotation;
+    /** Annotation for the fractionDigits facet. */
     public XSAnnotation fractionDigitsAnnotation;
+    /** List of annotations for pattern facets. */
     public XSObjectListImpl patternAnnotations;
+    /** List of annotations for enumeration facets. */
     public XSObjectList enumerationAnnotations;
+    /** Annotation for the maxInclusive facet. */
     public XSAnnotation maxInclusiveAnnotation;
+    /** Annotation for the maxExclusive facet. */
     public XSAnnotation maxExclusiveAnnotation;
+    /** Annotation for the minInclusive facet. */
     public XSAnnotation minInclusiveAnnotation;
+    /** Annotation for the minExclusive facet. */
     public XSAnnotation minExclusiveAnnotation;
 
     // facets as objects
@@ -299,11 +356,25 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
     // of the simple type definition, if it is globally declared; or null otherwise.
     private XSNamespaceItem fNamespaceItem = null;
 
-    // default constructor
+    /**
+     * Default constructor for XSSimpleTypeDecl.
+     */
     public XSSimpleTypeDecl() {
     }
 
-    //Create a new built-in primitive types (and id/idref/entity/integer/yearMonthDuration)
+    /**
+     * Create a new built-in primitive types (and id/idref/entity/integer/yearMonthDuration).
+     *
+     * @param base the base type definition
+     * @param name the type name
+     * @param validateDV the validation data validator constant
+     * @param ordered the ordered facet value
+     * @param bounded whether the type is bounded
+     * @param finite whether the type is finite
+     * @param numeric whether the type is numeric
+     * @param isImmutable whether the type is immutable
+     * @param builtInKind the built-in kind constant
+     */
     protected XSSimpleTypeDecl(XSSimpleTypeDecl base, String name, short validateDV, short ordered, boolean bounded, boolean finite,
             boolean numeric, boolean isImmutable, short builtInKind) {
         fIsImmutable = isImmutable;
@@ -330,7 +401,17 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         fBuiltInKind = builtInKind;
     }
 
-    //Create a new simple type for restriction for built-in types
+    /**
+     * Create a new simple type for restriction for built-in types.
+     *
+     * @param base the base type definition
+     * @param name the type name
+     * @param uri the target namespace URI
+     * @param finalSet the final set of derivation methods
+     * @param isImmutable whether the type is immutable
+     * @param annotations the annotations for this type
+     * @param builtInKind the built-in kind constant
+     */
     protected XSSimpleTypeDecl(XSSimpleTypeDecl base, String name, String uri, short finalSet, boolean isImmutable,
             XSObjectList annotations, short builtInKind) {
         this(base, name, uri, finalSet, isImmutable, annotations);
@@ -338,7 +419,16 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         fBuiltInKind = builtInKind;
     }
 
-    //Create a new simple type for restriction.
+    /**
+     * Create a new simple type for restriction.
+     *
+     * @param base the base type definition
+     * @param name the type name
+     * @param uri the target namespace URI
+     * @param finalSet the final set of derivation methods
+     * @param isImmutable whether the type is immutable
+     * @param annotations the annotations for this type
+     */
     protected XSSimpleTypeDecl(XSSimpleTypeDecl base, String name, String uri, short finalSet, boolean isImmutable,
             XSObjectList annotations) {
         fBase = base;
@@ -402,7 +492,16 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         fBuiltInKind = base.fBuiltInKind;
     }
 
-    //Create a new simple type for list.
+    /**
+     * Create a new simple type for list.
+     *
+     * @param name the type name
+     * @param uri the target namespace URI
+     * @param finalSet the final set of derivation methods
+     * @param itemType the item type for the list
+     * @param isImmutable whether the type is immutable
+     * @param annotations the annotations for this type
+     */
     protected XSSimpleTypeDecl(String name, String uri, short finalSet, XSSimpleTypeDecl itemType, boolean isImmutable,
             XSObjectList annotations) {
         fBase = fAnySimpleType;
@@ -426,7 +525,15 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         fBuiltInKind = XSConstants.LIST_DT;
     }
 
-    //Create a new simple type for union.
+    /**
+     * Create a new simple type for union.
+     *
+     * @param name the type name
+     * @param uri the target namespace URI
+     * @param finalSet the final set of derivation methods
+     * @param memberTypes the member types for the union
+     * @param annotations the annotations for this type
+     */
     protected XSSimpleTypeDecl(String name, String uri, short finalSet, XSSimpleTypeDecl[] memberTypes, XSObjectList annotations) {
         fBase = fAnySimpleType;
         fTypeName = name;
@@ -454,7 +561,16 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         fBuiltInKind = XSConstants.UNAVAILABLE_DT;
     }
 
-    //set values for restriction.
+    /**
+     * Set values for restriction.
+     *
+     * @param base the base type definition
+     * @param name the type name
+     * @param uri the target namespace URI
+     * @param finalSet the final set of derivation methods
+     * @param annotations the annotations for this type
+     * @return this XSSimpleTypeDecl instance, or null if the object is immutable
+     */
     protected XSSimpleTypeDecl setRestrictionValues(XSSimpleTypeDecl base, String name, String uri, short finalSet,
             XSObjectList annotations) {
         //decline to do anything if the object is immutable.
@@ -509,7 +625,16 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         return this;
     }
 
-    //set values for list.
+    /**
+     * Set values for list.
+     *
+     * @param name the type name
+     * @param uri the target namespace URI
+     * @param finalSet the final set of derivation methods
+     * @param itemType the item type for the list
+     * @param annotations the annotations for this type
+     * @return this XSSimpleTypeDecl instance, or null if the object is immutable
+     */
     protected XSSimpleTypeDecl setListValues(String name, String uri, short finalSet, XSSimpleTypeDecl itemType, XSObjectList annotations) {
         //decline to do anything if the object is immutable.
         if (fIsImmutable)
@@ -537,7 +662,16 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         return this;
     }
 
-    //set values for union.
+    /**
+     * Set values for union.
+     *
+     * @param name the type name
+     * @param uri the target namespace URI
+     * @param finalSet the final set of derivation methods
+     * @param memberTypes the member types for the union
+     * @param annotations the annotations for this type
+     * @return this XSSimpleTypeDecl instance, or null if the object is immutable
+     */
     protected XSSimpleTypeDecl setUnionValues(String name, String uri, short finalSet, XSSimpleTypeDecl[] memberTypes,
             XSObjectList annotations) {
         //decline to do anything if the object is immutable.
@@ -704,7 +838,7 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
     }
 
     /**
-     * If <restriction> is chosen
+     * If &lt;restriction&gt; is chosen
      */
     public void applyFacets(XSFacets facets, short presentFacet, short fixedFacet, ValidationContext context)
             throws InvalidDatatypeFacetException {
@@ -745,7 +879,7 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
     }
 
     /**
-     * If <restriction> is chosen, or built-in derived types by restriction
+     * If &lt;restriction&gt; is chosen, or built-in derived types by restriction
      */
     void applyFacets(XSFacets facets, short presentFacet, short fixedFacet, short patternType, ValidationContext context)
             throws InvalidDatatypeFacetException {
@@ -1536,6 +1670,15 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
 
     }
 
+    /**
+     * Gets the actual enumeration value by validating the lexical string against the base type.
+     *
+     * @param lexical the lexical representation to validate
+     * @param ctx the validation context
+     * @param info the ValidatedInfo object to populate
+     * @return the populated ValidatedInfo object
+     * @throws InvalidDatatypeValueException if the value is invalid
+     */
     protected ValidatedInfo getActualEnumValue(String lexical, ValidationContext ctx, ValidatedInfo info)
             throws InvalidDatatypeValueException {
         return fBase.validateWithInfo(lexical, ctx, info);
@@ -1543,6 +1686,11 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
 
     /**
      * validate a value, and return the compiled form
+     * @param content the lexical representation to validate
+     * @param context the validation context
+     * @param validatedInfo the object to store validation information, or null to create a new one
+     * @return the validated and compiled form of the value
+     * @throws InvalidDatatypeValueException if the value is invalid
      */
     public ValidatedInfo validateWithInfo(String content, ValidationContext context, ValidatedInfo validatedInfo)
             throws InvalidDatatypeValueException {
@@ -1928,7 +2076,13 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         return value1.equals(value2);
     }//isEqual()
 
-    // determine whether the two values are identical
+    /**
+     * Determines whether the two values are identical according to this simple type.
+     *
+     * @param value1 the first value to compare
+     * @param value2 the second value to compare
+     * @return true if the values are identical, false otherwise
+     */
     public boolean isIdentical(Object value1, Object value2) {
         if (value1 == null) {
             return false;
@@ -1936,7 +2090,13 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         return fDVs[fValidationDV].isIdentical(value1, value2);
     }//isIdentical()
 
-    // normalize the string according to the whiteSpace facet
+    /**
+     * Normalizes the string according to the whiteSpace facet.
+     *
+     * @param content the string content to normalize
+     * @param ws the whitespace normalization type (WS_PRESERVE, WS_REPLACE, or WS_COLLAPSE)
+     * @return the normalized string
+     */
     public static String normalize(String content, short ws) {
         int len = content == null ? 0 : content.length();
         if (len == 0 || ws == WS_PRESERVE)
@@ -1981,7 +2141,13 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         return sb.toString();
     }
 
-    // normalize the string according to the whiteSpace facet
+    /**
+     * Normalizes the object's string representation according to the whiteSpace facet.
+     *
+     * @param content the content object to normalize
+     * @param ws the whitespace normalization type (WS_PRESERVE, WS_REPLACE, or WS_COLLAPSE)
+     * @return the normalized string representation
+     */
     protected String normalize(Object content, short ws) {
         if (content == null)
             return null;
@@ -2209,6 +2375,8 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
     /**
      * A list of actual enumeration values if it exists, otherwise an empty
      * <code>ObjectList</code>.
+     *
+     * @return ObjectList containing the actual enumeration values, or an empty list if no enumeration exists
      */
     public ObjectList getActualEnumeration() {
         if (fActualEnumeration == null) {
@@ -2243,6 +2411,8 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
     /**
      * A list of enumeration type values (as a list of ShortList objects) if it exists, otherwise returns
      * null
+     *
+     * @return ObjectList containing ShortList objects representing enumeration item types, or null if no enumeration exists
      */
     public ObjectList getEnumerationItemTypeList() {
         if (fEnumerationItemTypeList == null) {
@@ -2274,6 +2444,11 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         return fEnumerationItemTypeList;
     }
 
+    /**
+     * Gets a list of enumeration type values as a ShortList.
+     *
+     * @return ShortList containing the enumeration types, or an empty list if no enumeration exists
+     */
     public ShortList getEnumerationTypeList() {
         if (fEnumerationTypeList == null) {
             if (fEnumeration == null) {
@@ -2891,6 +3066,10 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         }
     }
 
+    /**
+     * Resets this simple type declaration to its initial state.
+     * This method clears all facets and type information if the type is not immutable.
+     */
     public void reset() {
 
         // if it's immutable, can't be reset:
@@ -2955,6 +3134,11 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         return fNamespaceItem;
     }
 
+    /**
+     * Sets the namespace item for this simple type.
+     *
+     * @param namespaceItem the namespace item to set
+     */
     public void setNamespaceItem(XSNamespaceItem namespaceItem) {
         fNamespaceItem = namespaceItem;
     }
@@ -3080,22 +3264,47 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         return (fMultiValueFacets != null) ? fMultiValueFacets : XSObjectListImpl.EMPTY_LIST;
     }
 
+    /**
+     * Returns the actual value of the minInclusive facet.
+     *
+     * @return the minInclusive value, or null if not defined
+     */
     public Object getMinInclusiveValue() {
         return fMinInclusive;
     }
 
+    /**
+     * Returns the actual value of the minExclusive facet.
+     *
+     * @return the minExclusive value, or null if not defined
+     */
     public Object getMinExclusiveValue() {
         return fMinExclusive;
     }
 
+    /**
+     * Returns the actual value of the maxInclusive facet.
+     *
+     * @return the maxInclusive value, or null if not defined
+     */
     public Object getMaxInclusiveValue() {
         return fMaxInclusive;
     }
 
+    /**
+     * Returns the actual value of the maxExclusive facet.
+     *
+     * @return the maxExclusive value, or null if not defined
+     */
     public Object getMaxExclusiveValue() {
         return fMaxExclusive;
     }
 
+    /**
+     * Sets whether this simple type is anonymous.
+     *
+     * @param anon true if the type is anonymous, false otherwise
+     */
     public void setAnonymous(boolean anon) {
         fAnonymous = anon;
     }

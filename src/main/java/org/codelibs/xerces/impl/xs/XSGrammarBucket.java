@@ -24,12 +24,17 @@ import java.util.Vector;
 /**
  * A class used to hold the internal schema grammar set for the current instance
  *
- * @xerces.internal
- *
  * @author Sandy Gao, IBM
  * @version $Id: XSGrammarBucket.java 779298 2009-05-27 20:26:13Z knoaman $
  */
 public class XSGrammarBucket {
+
+    /**
+     * Creates a new instance of XSGrammarBucket.
+     */
+    public XSGrammarBucket() {
+        // Default constructor
+    }
 
     // Data
 
@@ -42,7 +47,7 @@ public class XSGrammarBucket {
     /**
      * Get the schema grammar for the specified namespace
      *
-     * @param namespace
+     * @param namespace the target namespace to retrieve grammar for
      * @return SchemaGrammar associated with the namespace
      */
     public SchemaGrammar getGrammar(String namespace) {

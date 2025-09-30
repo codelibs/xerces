@@ -22,39 +22,65 @@ import org.codelibs.xerces.xni.parser.XMLInputSource;
 import org.codelibs.xerces.xs.XSObject;
 
 /**
- * @xerces.internal
+ * XML Schema input source implementation.
  *
  * @version $Id: XSInputSource.java 789785 2009-06-30 15:10:26Z knoaman $
  */
 public final class XSInputSource extends XMLInputSource {
 
+    /** Array of schema grammars associated with this input source. */
     private SchemaGrammar[] fGrammars;
+    /** Array of XS components associated with this input source. */
     private XSObject[] fComponents;
 
+    /**
+     * Constructs an XSInputSource with the specified schema grammars.
+     * @param grammars the array of schema grammars to associate with this input source
+     */
     public XSInputSource(SchemaGrammar[] grammars) {
         super(null, null, null);
         fGrammars = grammars;
         fComponents = null;
     }
 
+    /**
+     * Constructs an XSInputSource with the specified XS components.
+     * @param component the array of XS components to associate with this input source
+     */
     public XSInputSource(XSObject[] component) {
         super(null, null, null);
         fGrammars = null;
         fComponents = component;
     }
 
+    /**
+     * Returns the array of schema grammars associated with this input source.
+     * @return the array of schema grammars, or null if none are set
+     */
     public SchemaGrammar[] getGrammars() {
         return fGrammars;
     }
 
+    /**
+     * Sets the array of schema grammars for this input source.
+     * @param grammars the array of schema grammars to set
+     */
     public void setGrammars(SchemaGrammar[] grammars) {
         fGrammars = grammars;
     }
 
+    /**
+     * Returns the array of XS components associated with this input source.
+     * @return the array of XS components, or null if none are set
+     */
     public XSObject[] getComponents() {
         return fComponents;
     }
 
+    /**
+     * Sets the array of XS components for this input source.
+     * @param components the array of XS components to set
+     */
     public void setComponents(XSObject[] components) {
         fComponents = components;
     }

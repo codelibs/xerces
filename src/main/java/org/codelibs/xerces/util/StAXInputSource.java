@@ -34,10 +34,21 @@ public final class StAXInputSource extends XMLInputSource {
     private final XMLEventReader fEventReader;
     private final boolean fConsumeRemainingContent;
 
+    /**
+     * Constructs a StAX input source from an XMLStreamReader.
+     *
+     * @param source the XMLStreamReader source
+     */
     public StAXInputSource(XMLStreamReader source) {
         this(source, false);
     }
 
+    /**
+     * Constructs a StAX input source from an XMLStreamReader.
+     *
+     * @param source the XMLStreamReader source
+     * @param consumeRemainingContent whether to consume remaining content
+     */
     public StAXInputSource(XMLStreamReader source, boolean consumeRemainingContent) {
         super(null, getStreamReaderSystemId(source), null);
         if (source == null) {
@@ -48,10 +59,21 @@ public final class StAXInputSource extends XMLInputSource {
         fConsumeRemainingContent = consumeRemainingContent;
     }
 
+    /**
+     * Constructs a StAX input source from an XMLEventReader.
+     *
+     * @param source the XMLEventReader source
+     */
     public StAXInputSource(XMLEventReader source) {
         this(source, false);
     }
 
+    /**
+     * Constructs a StAX input source from an XMLEventReader.
+     *
+     * @param source the XMLEventReader source
+     * @param consumeRemainingContent whether to consume remaining content
+     */
     public StAXInputSource(XMLEventReader source, boolean consumeRemainingContent) {
         super(null, getEventReaderSystemId(source), null);
         if (source == null) {
@@ -62,14 +84,29 @@ public final class StAXInputSource extends XMLInputSource {
         fConsumeRemainingContent = consumeRemainingContent;
     }
 
+    /**
+     * Returns the XMLStreamReader associated with this input source.
+     *
+     * @return the XMLStreamReader, or null if this source was created from an XMLEventReader
+     */
     public XMLStreamReader getXMLStreamReader() {
         return fStreamReader;
     }
 
+    /**
+     * Returns the XMLEventReader associated with this input source.
+     *
+     * @return the XMLEventReader, or null if this source was created from an XMLStreamReader
+     */
     public XMLEventReader getXMLEventReader() {
         return fEventReader;
     }
 
+    /**
+     * Returns whether the parser should consume remaining content after parsing.
+     *
+     * @return true if remaining content should be consumed, false otherwise
+     */
     public boolean shouldConsumeRemainingContent() {
         return fConsumeRemainingContent;
     }

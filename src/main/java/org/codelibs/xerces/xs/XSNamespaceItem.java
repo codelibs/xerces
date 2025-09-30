@@ -25,6 +25,7 @@ package org.codelibs.xerces.xs;
 public interface XSNamespaceItem {
     /**
      * [schema namespace]: A namespace name or <code>null</code> if absent.
+     * @return the schema namespace or null if absent
      */
     public String getSchemaNamespace();
 
@@ -48,6 +49,7 @@ public interface XSNamespaceItem {
     /**
      *  [annotations]: a set of annotations if it exists, otherwise an empty
      * <code>XSObjectList</code>.
+     * @return a set of annotations or an empty XSObjectList
      */
     public XSObjectList getAnnotations();
 
@@ -111,6 +113,7 @@ public interface XSNamespaceItem {
     /**
      * [document location] - a list of location URIs for the documents that
      * contributed to the <code>XSModel</code>.
+     * @return a list of document location URIs
      */
     public StringList getDocumentLocations();
 

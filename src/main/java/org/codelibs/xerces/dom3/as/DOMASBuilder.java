@@ -30,6 +30,7 @@ public interface DOMASBuilder extends LSParser {
      * <code>validate-if-schema</code>" and "
      * <code>datatype-normalization</code>" options during the load of a new
      * <code>Document</code>.
+     * @return the abstract schema model
      */
     public ASModel getAbstractSchema();
 
@@ -39,6 +40,7 @@ public interface DOMASBuilder extends LSParser {
      * <code>validate-if-schema</code>" and "
      * <code>datatype-normalization</code>" options during the load of a new
      * <code>Document</code>.
+     * @param abstractSchema the abstract schema model to set
      */
     public void setAbstractSchema(ASModel abstractSchema);
 
@@ -56,13 +58,14 @@ public interface DOMASBuilder extends LSParser {
      *   <br> WRONG_MIME_TYPE_ERR: Raised when <code>mimeTypeCheck</code> is
      *   <code>true</code> and the input source has an incorrect MIME Type.
      *   See the attribute <code>mimeTypeCheck</code>.
-     * @exception DOMSystemException
+     * @exception DOMASException
      *   Exceptions raised by <code>parseURI()</code> originate with the
      *   installed ErrorHandler, and thus depend on the implementation of
      *   the <code>DOMErrorHandler</code> interfaces. The default error
      *   handlers will raise a DOMSystemException if any form I/O or other
      *   system error occurs during the parse, but application defined error
      *   handlers are not required to do so.
+     * @throws Exception if an I/O or system error occurs during parsing
      */
     public ASModel parseASURI(String uri) throws DOMASException, Exception;
 
@@ -82,13 +85,14 @@ public interface DOMASBuilder extends LSParser {
      *   <br> Raise a WRONG_MIME_TYPE_ERR when <code>mimeTypeCheck</code> is
      *   <code>true</code> and the inputsource has an incorrect MIME Type.
      *   See attribute <code>mimeTypeCheck</code>.
-     * @exception DOMSystemException
+     * @exception DOMASException
      *   Exceptions raised by <code>parseURI()</code> originate with the
      *   installed ErrorHandler, and thus depend on the implementation of
      *   the <code>DOMErrorHandler</code> interfaces. The default error
      *   handlers will raise a DOMSystemException if any form I/O or other
      *   system error occurs during the parse, but application defined error
      *   handlers are not required to do so.
+     * @throws Exception if an I/O or system error occurs during parsing
      */
     public ASModel parseASInputSource(LSInput is) throws DOMASException, Exception;
 

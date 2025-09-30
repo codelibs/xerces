@@ -111,6 +111,9 @@ public final class XMLSchemaFactory extends SchemaFactory {
     /** Whether or not to allow new schemas to be added to the grammar pool */
     private boolean fUseGrammarPoolOnly;
 
+    /**
+     * Default constructor.
+     */
     public XMLSchemaFactory() {
         fErrorHandlerWrapper = new ErrorHandlerWrapper(DraconianErrorHandler.getInstance());
         fDOMEntityResolverWrapper = new DOMEntityResolverWrapper();
@@ -269,6 +272,13 @@ public final class XMLSchemaFactory extends SchemaFactory {
         return schema;
     }
 
+    /**
+     * Creates a new Schema from the given XMLGrammarPool.
+     *
+     * @param pool The XMLGrammarPool to create the schema from
+     * @return A new Schema object
+     * @throws SAXException If there is an error creating the schema
+     */
     public Schema newSchema(XMLGrammarPool pool) throws SAXException {
         // If the "use-grammar-pool-only" feature is set to true
         // prevent the application's grammar pool from being mutated

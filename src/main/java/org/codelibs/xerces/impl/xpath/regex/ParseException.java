@@ -18,7 +18,7 @@
 package org.codelibs.xerces.impl.xpath.regex;
 
 /**
- * @xerces.internal
+ * Regular expression parse exception.
  *
  * @author TAMURA Kent &lt;kent@trl.ibm.co.jp&gt;
  * @version $Id: ParseException.java 572108 2007-09-02 18:48:31Z mrglavas $
@@ -28,6 +28,9 @@ public class ParseException extends RuntimeException {
     /** Serialization version. */
     static final long serialVersionUID = -7012400318097691370L;
 
+    /**
+     * The location where the parse error occurred.
+     */
     final int location;
 
     /*
@@ -36,7 +39,9 @@ public class ParseException extends RuntimeException {
     }
     */
     /**
-     *
+     * Constructs a ParseException with the specified message and location.
+     * @param mes the error message
+     * @param location the location in the regular expression where the error occurred
      */
     public ParseException(String mes, int location) {
         super(mes);
@@ -44,8 +49,8 @@ public class ParseException extends RuntimeException {
     }
 
     /**
-     *
-     * @return -1 if location information is not available.
+     * Gets the location where the parse error occurred.
+     * @return the location, or -1 if location information is not available
      */
     public int getLocation() {
         return this.location;

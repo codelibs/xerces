@@ -97,6 +97,8 @@ public class XMLConfigurationException extends XNIException {
     /**
      * Returns the exception type.
      *
+     * @return the exception type (NOT_RECOGNIZED or NOT_SUPPORTED)
+     *
      * @see #NOT_RECOGNIZED
      * @see #NOT_SUPPORTED
      */
@@ -104,7 +106,11 @@ public class XMLConfigurationException extends XNIException {
         return fType;
     } // getType():short
 
-    /** Returns the feature or property identifier. */
+    /**
+     * Returns the feature or property identifier.
+     *
+     * @return the feature or property identifier
+     */
     public String getIdentifier() {
         return fIdentifier;
     } // getIdentifier():String

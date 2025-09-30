@@ -38,10 +38,18 @@ public interface XMLDocumentSource {
     // XMLDocumentSource methods
     //
 
-    /** Sets the document handler. */
+    /**
+     * Sets the document handler.
+     *
+     * @param handler the document handler to receive document events
+     */
     public void setDocumentHandler(XMLDocumentHandler handler);
 
-    /** Returns the document handler */
+    /**
+     * Returns the document handler
+     *
+     * @return the current document handler
+     */
     public XMLDocumentHandler getDocumentHandler();
 
 } // interface XMLDocumentSource

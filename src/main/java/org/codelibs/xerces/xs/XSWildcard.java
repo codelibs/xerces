@@ -55,6 +55,7 @@ public interface XSWildcard extends XSTerm {
 
     /**
      * Namespace constraint: A constraint type: any, not, list.
+     * @return the constraint type: NSCONSTRAINT_ANY, NSCONSTRAINT_NOT, or NSCONSTRAINT_LIST
      */
     public short getConstraintType();
 
@@ -64,6 +65,7 @@ public interface XSWildcard extends XSTerm {
      * For <code>constraintType</code> <code>NSCONSTRAINT_NOT</code>, the
      * list contains disallowed namespaces. For <code>constraintType</code>
      * <code>NSCONSTRAINT_ANY</code>, the <code>StringList</code> is empty.
+     * @return the list of namespace constraints according to the constraint type
      */
     public StringList getNsConstraintList();
 
@@ -71,17 +73,20 @@ public interface XSWildcard extends XSTerm {
      * [process contents]: one of skip, lax or strict. Valid constants values
      * are: <code>PC_LAX</code>, <code>PC_SKIP</code> and
      * <code>PC_STRICT</code>.
+     * @return the process contents value: PC_STRICT, PC_SKIP, or PC_LAX
      */
     public short getProcessContents();
 
     /**
      * An annotation if it exists, otherwise <code>null</code>. If not null
      * then the first [annotation] from the sequence of annotations.
+     * @return the first annotation or null if none exists
      */
     public XSAnnotation getAnnotation();
 
     /**
      * A sequence of [annotations] or an empty <code>XSObjectList</code>.
+     * @return a list of annotations, never null but possibly empty
      */
     public XSObjectList getAnnotations();
 }

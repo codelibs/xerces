@@ -29,18 +29,23 @@ import org.w3c.dom.DOMImplementation;
  * The DOMImplementation class is description of a particular
  * implementation of the Document Object Model. As such its data is
  * static, shared by all instances of this implementation.
- * <P>
  * The DOM API requires that it be a real object rather than static
  * methods. However, there's nothing that says it can't be a singleton,
  * so that's how I've implemented it.
- * <P>
  * This particular class, along with DocumentImpl, supports the DOM
  * Core, DOM Level 2 optional mofules, and Abstract Schemas (Experimental).
- * @deprecated
+ *
+ * @deprecated This class is deprecated as Abstract Schemas are experimental
  * @version $Id: ASDOMImplementationImpl.java 699892 2008-09-28 21:08:27Z mrglavas $
  * @since PR-DOM-Level-1-19980818.
  */
 public class ASDOMImplementationImpl extends DOMImplementationImpl implements DOMImplementationAS {
+
+    /**
+     * Creates a new ASDOMImplementationImpl instance.
+     */
+    ASDOMImplementationImpl() {
+    }
 
     // static
 
@@ -51,7 +56,9 @@ public class ASDOMImplementationImpl extends DOMImplementationImpl implements DO
     // Public methods
     //
 
-    /** NON-DOM: Obtain and return the single shared object */
+    /** NON-DOM: Obtain and return the single shared object
+     * @return the singleton DOM implementation instance
+     */
     public static DOMImplementation getDOMImplementation() {
         return singleton;
     }

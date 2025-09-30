@@ -34,7 +34,7 @@ import org.codelibs.xerces.xni.QName;
  * are very constrained in form and easily handled via a special case.
  * This also makes implementation of this class much easier.
  *
- * @xerces.internal
+
  *
  * @version $Id: DFAContentModel.java 572057 2007-09-02 18:03:20Z mrglavas $
  */
@@ -188,7 +188,7 @@ public class DFAContentModel implements ContentModelValidator {
      *
      * @param syntaxTree    The syntax tree of the content model.
      * @param leafCount     The number of leaves.
-     * @param mixed
+     * @param mixed         True if this is a mixed content model, false otherwise.
      *
      */
     public DFAContentModel(CMNode syntaxTree, int leafCount, boolean mixed) {

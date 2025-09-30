@@ -24,15 +24,20 @@ import java.util.ResourceBundle;
 /**
  * Used to format DOM error messages, using the system locale.
  *
- * @xerces.internal
+
  *
  * @author Sandy Gao, IBM
  * @version $Id: DOMMessageFormatter.java 813087 2009-09-09 19:35:27Z mrglavas $
  */
 public class DOMMessageFormatter {
 
+    /** DOM specification error domain identifier. */
     public static final String DOM_DOMAIN = "http://www.w3.org/dom/DOMTR";
+
+    /** XML specification error domain identifier. */
     public static final String XML_DOMAIN = "http://www.w3.org/TR/1998/REC-xml-19980210";
+
+    /** Serializer error domain identifier. */
     public static final String SERIALIZER_DOMAIN = "http://apache.org/xml/serializer";
 
     private static ResourceBundle domResourceBundle = null;
@@ -129,7 +134,8 @@ public class DOMMessageFormatter {
 
     /**
      * Set Locale to be used by the formatter.
-     * @param dlocale
+     *
+     * @param dlocale The locale to use for message formatting
      */
     public static void setLocale(Locale dlocale) {
         locale = dlocale;

@@ -19,7 +19,8 @@ package org.codelibs.xerces.wml.dom;
 import org.codelibs.xerces.wml.WMLGoElement;
 
 /**
- * @xerces.internal
+ * Implementation of WMLGoElement interface for WML go navigation elements.
+ *
  * @version $Id: WMLGoElementImpl.java 661560 2008-05-30 03:22:25Z mrglavas $
  * @author <a href="mailto:david@topware.com.tw">David Li</a>
  */
@@ -27,6 +28,12 @@ public class WMLGoElementImpl extends WMLElementImpl implements WMLGoElement {
 
     private static final long serialVersionUID = -2052250142899797905L;
 
+    /**
+     * Constructs a new WML go element with the specified owner document and tag name.
+     *
+     * @param owner the owner document
+     * @param tagName the tag name for this element
+     */
     public WMLGoElementImpl(WMLDocumentImpl owner, String tagName) {
         super(owner, tagName);
     }

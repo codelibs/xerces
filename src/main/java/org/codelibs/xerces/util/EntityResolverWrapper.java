@@ -55,7 +55,10 @@ public class EntityResolverWrapper implements XMLEntityResolver {
     public EntityResolverWrapper() {
     }
 
-    /** Wraps the specified SAX entity resolver. */
+    /**
+     * Wraps the specified SAX entity resolver.
+     * @param entityResolver the SAX entity resolver to wrap
+     */
     public EntityResolverWrapper(EntityResolver entityResolver) {
         setEntityResolver(entityResolver);
     } // <init>(EntityResolver)
@@ -64,12 +67,18 @@ public class EntityResolverWrapper implements XMLEntityResolver {
     // Public methods
     //
 
-    /** Sets the SAX entity resolver. */
+    /**
+     * Sets the SAX entity resolver.
+     * @param entityResolver the SAX entity resolver to set
+     */
     public void setEntityResolver(EntityResolver entityResolver) {
         fEntityResolver = entityResolver;
     } // setEntityResolver(EntityResolver)
 
-    /** Returns the SAX entity resolver. */
+    /**
+     * Returns the SAX entity resolver.
+     * @return the SAX entity resolver, or null if none is set
+     */
     public EntityResolver getEntityResolver() {
         return fEntityResolver;
     } // getEntityResolver():EntityResolver
@@ -83,7 +92,7 @@ public class EntityResolverWrapper implements XMLEntityResolver {
      * resolved, this method should return null.
      *
      * @param resourceIdentifier	contains the physical co-ordinates of the resource to be resolved
-     *
+     * @return an XMLInputSource for the resolved entity, or null if the entity cannot be resolved
      * @throws XNIException Thrown on general error.
      * @throws IOException  Thrown if resolved entity stream cannot be
      *                      opened or some other i/o error occurs.

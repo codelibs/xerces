@@ -48,6 +48,12 @@ import org.codelibs.xerces.dom.DOMMessageFormatter;
 public final class HTMLdtd {
 
     /**
+     * Default constructor for internal instantiation.
+     */
+    public HTMLdtd() {
+    }
+
+    /**
      * Public identifier for HTML 4.01 (Strict) document type.
      */
     public static final String HTMLPublicId = "-//W3C//DTD HTML 4.01//EN";
@@ -185,7 +191,7 @@ public final class HTMLdtd {
     /**
      * Returns true if element's closing tag is optional and need not
      * exist. An error will not be reported for such elements if they
-     * are not closed. For example, <tt>LI</tt> is most often not closed.
+     * are not closed. For example, <code>LI</code> is most often not closed.
      *
      * @param tagName The element tag name (upper case)
      * @return True if closing tag implied
@@ -196,7 +202,7 @@ public final class HTMLdtd {
 
     /**
      * Returns true if element's closing tag is generally not printed.
-     * For example, <tt>LI</tt> should not print the closing tag.
+     * For example, <code>LI</code> should not print the closing tag.
      *
      * @param tagName The element tag name (upper case)
      * @return True if only opening tag should be printed
@@ -206,10 +212,10 @@ public final class HTMLdtd {
     }
 
     /**
-     * Returns true if the opening of one element (<tt>tagName</tt>) implies
-     * the closing of another open element (<tt>openTag</tt>). For example,
-     * every opening <tt>LI</tt> will close the previously open <tt>LI</tt>,
-     * and every opening <tt>BODY</tt> will close the previously open <tt>HEAD</tt>.
+     * Returns true if the opening of one element (<code>tagName</code>) implies
+     * the closing of another open element (<code>openTag</code>). For example,
+     * every opening <code>LI</code> will close the previously open <code>LI</code>,
+     * and every opening <code>BODY</code> will close the previously open <code>HEAD</code>.
      *
      * @param tagName The newly opened element
      * @param openTag The already opened element
@@ -245,6 +251,7 @@ public final class HTMLdtd {
      *
      * @param tagName The element's tag name
      * @param attrName The attribute's name
+     * @return true if the attribute is a URI, false otherwise
      */
     public static boolean isURI(String tagName, String attrName) {
         // Stupid checks.
@@ -258,6 +265,7 @@ public final class HTMLdtd {
      *
      * @param tagName The element's tag name
      * @param attrName The attribute's name
+     * @return true if the attribute is boolean, false otherwise
      */
     public static boolean isBoolean(String tagName, String attrName) {
         String[] attrNames;

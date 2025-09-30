@@ -38,7 +38,7 @@ import org.codelibs.xerces.xs.datatypes.XSDateTime;
  *          decl object can be used to validate two strings at the same time.
  *          -SG
  *
- * @xerces.internal
+
  *
  * @author Elena Litani
  * @author Len Berman
@@ -48,28 +48,58 @@ import org.codelibs.xerces.xs.datatypes.XSDateTime;
  */
 public abstract class AbstractDateTimeDV extends TypeValidator {
 
+    /**
+     * Default constructor for abstract date/time datatype validator.
+     */
+    public AbstractDateTimeDV() {
+    }
+
     //debugging
     private static final boolean DEBUG = false;
 
     //define shared variables for date/time
 
-    //define constants to be used in assigning default values for
-    //all date/time excluding duration
+    /**
+     * Default year value for date/time calculations
+     */
     protected final static int YEAR = 2000;
+
+    /**
+     * Default month value for date/time calculations
+     */
     protected final static int MONTH = 01;
+
+    /**
+     * Default day value for date/time calculations
+     */
     protected final static int DAY = 01;
 
+    /**
+     * Factory for creating JAXP datatype instances
+     */
     protected static final DatatypeFactory datatypeFactory = new DatatypeFactoryImpl();
 
+    /**
+     * Returns the allowed facets for date/time data types.
+     *
+     * @return The allowed facets as a bitmask including pattern, whitespace, enumeration,
+     *         max/min inclusive, and max/min exclusive facets.
+     */
     public short getAllowedFacets() {
         return (XSSimpleTypeDecl.FACET_PATTERN | XSSimpleTypeDecl.FACET_WHITESPACE | XSSimpleTypeDecl.FACET_ENUMERATION
                 | XSSimpleTypeDecl.FACET_MAXINCLUSIVE | XSSimpleTypeDecl.FACET_MININCLUSIVE | XSSimpleTypeDecl.FACET_MAXEXCLUSIVE
                 | XSSimpleTypeDecl.FACET_MINEXCLUSIVE);
     }//getAllowedFacets()
 
-    // distinguishes between identity and equality for date/time values
-    // ie: two values representing the same "moment in time" but with different
-    // remembered timezones are now equal but not identical.
+    /**
+     * Distinguishes between identity and equality for date/time values.
+     * Two values representing the same "moment in time" but with different
+     * remembered timezones are equal but not identical.
+     *
+     * @param value1 The first date/time value to compare
+     * @param value2 The second date/time value to compare
+     * @return true if the values are identical (same value and timezone), false otherwise
+     */
     public boolean isIdentical(Object value1, Object value2) {
         if (!(value1 instanceof DateTimeData) || !(value2 instanceof DateTimeData)) {
             return false;
@@ -87,7 +117,13 @@ public abstract class AbstractDateTimeDV extends TypeValidator {
         return false;
     }//isIdentical()
 
-    // the parameters are in compiled form (from getActualValue)
+    /**
+     * Compares two date/time values. The parameters are in compiled form (from getActualValue).
+     *
+     * @param value1 The first date/time value to compare
+     * @param value2 The second date/time value to compare
+     * @return 0 if equal, negative if value1 is less than value2, positive if value1 is greater than value2
+     */
     public int compare(Object value1, Object value2) {
         return compareDates(((DateTimeData) value1), ((DateTimeData) value2), true);
     }//compare()
@@ -98,7 +134,7 @@ public abstract class AbstractDateTimeDV extends TypeValidator {
      *
      * @param date1  normalized date representation of the first value
      * @param date2  normalized date representation of the second value
-     * @param strict
+     * @param strict flag indicating whether to use strict comparison
      * @return less, greater, less_equal, greater_equal, equal
      */
     protected short compareDates(DateTimeData date1, DateTimeData date2, boolean strict) {
@@ -221,10 +257,11 @@ public abstract class AbstractDateTimeDV extends TypeValidator {
     /**
      * Parses time hh:mm:ss.sss and time zone if any
      *
-     * @param start
-     * @param end
-     * @param data
-     * @exception RuntimeException
+     * @param buffer the string buffer to parse
+     * @param start starting position in the buffer
+     * @param end ending position in the buffer
+     * @param data the DateTimeData object to populate
+     * @exception RuntimeException if parsing fails
      */
     protected void getTime(String buffer, int start, int end, DateTimeData data) throws RuntimeException {
 
@@ -264,11 +301,12 @@ public abstract class AbstractDateTimeDV extends TypeValidator {
     /**
      * Parses date CCYY-MM-DD
      *
-     * @param buffer
-     * @param start start position
-     * @param end end position
-     * @param date
-     * @exception RuntimeException
+     * @param buffer the string buffer to parse
+     * @param start start position in the buffer
+     * @param end end position in the buffer
+     * @param date the DateTimeData object to populate
+     * @return the position after the date in the buffer
+     * @exception RuntimeException if parsing fails
      */
     protected int getDate(String buffer, int start, int end, DateTimeData date) throws RuntimeException {
 
@@ -285,11 +323,12 @@ public abstract class AbstractDateTimeDV extends TypeValidator {
     /**
      * Parses date CCYY-MM
      *
-     * @param buffer
-     * @param start start position
-     * @param end end position
-     * @param date
-     * @exception RuntimeException
+     * @param buffer the string buffer to parse
+     * @param start start position in the buffer
+     * @param end end position in the buffer
+     * @param date the DateTimeData object to populate
+     * @return the position after the year-month in the buffer
+     * @exception RuntimeException if parsing fails
      */
     protected int getYearMonth(String buffer, int start, int end, DateTimeData date) throws RuntimeException {
 
@@ -323,9 +362,11 @@ public abstract class AbstractDateTimeDV extends TypeValidator {
      * Shared code from Date and YearMonth datatypes.
      * Finds if time zone sign is present
      *
-     * @param end
-     * @param date
-     * @exception RuntimeException
+     * @param buffer the string buffer to parse
+     * @param start start position in the buffer
+     * @param end end position in the buffer
+     * @param date the DateTimeData object to populate with timezone information
+     * @exception RuntimeException if parsing fails
      */
     protected void parseTimeZone(String buffer, int start, int end, DateTimeData date) throws RuntimeException {
 
@@ -343,9 +384,11 @@ public abstract class AbstractDateTimeDV extends TypeValidator {
     /**
      * Parses time zone: 'Z' or {+,-} followed by  hh:mm
      *
-     * @param data
-     * @param sign
-     * @exception RuntimeException
+     * @param buffer the string buffer to parse
+     * @param data the DateTimeData object to populate with timezone information
+     * @param sign the position of the timezone sign character
+     * @param end end position in the buffer
+     * @exception RuntimeException if parsing fails
      */
     protected void getTimeZone(String buffer, DateTimeData data, int sign, int end) throws RuntimeException {
         data.utc = buffer.charAt(sign);
@@ -385,10 +428,11 @@ public abstract class AbstractDateTimeDV extends TypeValidator {
     /**
      * Computes index of given char within StringBuffer
      *
-     * @param start
-     * @param end
-     * @param ch     character to look for in StringBuffer
-     * @return index of ch within StringBuffer
+     * @param buffer the string buffer to search
+     * @param start start position in the buffer
+     * @param end end position in the buffer
+     * @param ch character to look for in the buffer
+     * @return index of ch within the buffer, or -1 if not found
      */
     protected int indexOf(String buffer, int start, int end, char ch) {
         for (int i = start; i < end; i++) {
@@ -400,10 +444,10 @@ public abstract class AbstractDateTimeDV extends TypeValidator {
     }
 
     /**
-     * Validates given date/time object accoring to W3C PR Schema
+     * Validates given date/time object according to W3C PR Schema
      * [D.1 ISO 8601 Conventions]
      *
-     * @param data
+     * @param data the DateTimeData object to validate
      */
     protected void validateDateTime(DateTimeData data) {
 
@@ -474,9 +518,10 @@ public abstract class AbstractDateTimeDV extends TypeValidator {
     /**
      * Return index of UTC char: 'Z', '+', '-'
      *
-     * @param start
-     * @param end
-     * @return index of the UTC character that was found
+     * @param buffer the string buffer to search
+     * @param start start position in the buffer
+     * @param end end position in the buffer
+     * @return index of the UTC character that was found, or -1 if not found
      */
     protected int findUTCSign(String buffer, int start, int end) {
         int c;
@@ -492,6 +537,11 @@ public abstract class AbstractDateTimeDV extends TypeValidator {
 
     /**
      * Returns <code>true</code> if the character at start is 'Z', '+' or '-'.
+     *
+     * @param buffer the string buffer to check
+     * @param start position to check in the buffer
+     * @param end end position in the buffer
+     * @return true if the character at start is a UTC sign character
      */
     protected final boolean isNextCharUTCSign(String buffer, int start, int end) {
         if (start < end) {
@@ -532,7 +582,14 @@ public abstract class AbstractDateTimeDV extends TypeValidator {
         return -result;
     }
 
-    // parse Year differently to support negative value.
+    /**
+     * Parses year value from buffer, supporting negative values for years before era.
+     *
+     * @param buffer the string buffer to parse
+     * @param end end position in the buffer
+     * @return the parsed year value
+     * @throws NumberFormatException if the buffer contains an invalid year format
+     */
     protected int parseIntYear(String buffer, int end) {
         int radix = 10;
         int result = 0;
@@ -631,7 +688,9 @@ public abstract class AbstractDateTimeDV extends TypeValidator {
     }
 
     /**
-     * @param date
+     * Saves the unnormalized date/time values for later reference.
+     *
+     * @param date the DateTimeData object containing values to save
      */
     protected void saveUnnormalized(DateTimeData date) {
         date.unNormYear = date.year;
@@ -663,9 +722,9 @@ public abstract class AbstractDateTimeDV extends TypeValidator {
      * Given {year,month} computes maximum
      * number of days for given month
      *
-     * @param year
-     * @param month
-     * @return integer containg the number of days in a given month
+     * @param year the year value
+     * @param month the month value (1-12)
+     * @return integer containing the number of days in the given month
      */
     protected int maxDayInMonthFor(int year, int month) {
         //validate days
@@ -688,42 +747,65 @@ public abstract class AbstractDateTimeDV extends TypeValidator {
         return ((year % 4 == 0) && ((year % 100 != 0) || (year % 400 == 0)));
     }
 
-    //
-    // help function described in W3C PR Schema [E Adding durations to dateTimes]
-    //
+    /**
+     * Helper function described in W3C PR Schema [E Adding durations to dateTimes].
+     * Computes modulo(a, b) = a - fQuotient(a,b)*b
+     *
+     * @param a the dividend
+     * @param b the divisor
+     * @param quotient the quotient from fQuotient(a,b)
+     * @return the modulo result
+     */
     protected int mod(int a, int b, int quotient) {
-        //modulo(a, b) = a - fQuotient(a,b)*b
         return (a - quotient * b);
     }
 
-    //
-    // help function described in W3C PR Schema [E Adding durations to dateTimes]
-    //
+    /**
+     * Helper function described in W3C PR Schema [E Adding durations to dateTimes].
+     * Computes fQuotient(a, b) = the greatest integer less than or equal to a/b
+     *
+     * @param a the dividend
+     * @param b the divisor
+     * @return the quotient result
+     */
     protected int fQuotient(int a, int b) {
-
-        //fQuotient(a, b) = the greatest integer less than or equal to a/b
         return (int) Math.floor((float) a / b);
     }
 
-    //
-    // help function described in W3C PR Schema [E Adding durations to dateTimes]
-    //
+    /**
+     * Helper function described in W3C PR Schema [E Adding durations to dateTimes].
+     * Computes modulo(a - low, high - low) + low
+     *
+     * @param temp the value to compute modulo for
+     * @param low the lower bound
+     * @param high the upper bound
+     * @return the modulo result within the specified range
+     */
     protected int modulo(int temp, int low, int high) {
-        //modulo(a - low, high - low) + low
         int a = temp - low;
         int b = high - low;
         return (mod(a, b, fQuotient(a, b)) + low);
     }
 
-    //
-    // help function described in W3C PR Schema [E Adding durations to dateTimes]
-    //
+    /**
+     * Helper function described in W3C PR Schema [E Adding durations to dateTimes].
+     * Computes fQuotient(a - low, high - low)
+     *
+     * @param temp the value
+     * @param low the lower bound
+     * @param high the upper bound
+     * @return the quotient result
+     */
     protected int fQuotient(int temp, int low, int high) {
-        //fQuotient(a - low, high - low)
-
         return fQuotient(temp - low, high - low);
     }
 
+    /**
+     * Converts date/time data to string representation.
+     *
+     * @param date the DateTimeData object to convert
+     * @return string representation of the date/time
+     */
     protected String dateToString(DateTimeData date) {
         StringBuffer message = new StringBuffer(25);
         append(message, date.year, 4);
@@ -741,6 +823,13 @@ public abstract class AbstractDateTimeDV extends TypeValidator {
         return message.toString();
     }
 
+    /**
+     * Appends an integer value to a string buffer with specified number of digits.
+     *
+     * @param message the string buffer to append to
+     * @param value the integer value to append
+     * @param nch the number of characters/digits to format
+     */
     protected final void append(StringBuffer message, int value, int nch) {
         if (value == Integer.MIN_VALUE) {
             message.append(value);
@@ -768,6 +857,12 @@ public abstract class AbstractDateTimeDV extends TypeValidator {
         }
     }
 
+    /**
+     * Appends a double value to a string buffer with appropriate formatting.
+     *
+     * @param message the string buffer to append to
+     * @param value the double value to append
+     */
     protected final void append(StringBuffer message, double value) {
         if (value < 0) {
             message.append('-');
@@ -779,6 +874,12 @@ public abstract class AbstractDateTimeDV extends TypeValidator {
         append2(message, value);
     }
 
+    /**
+     * Appends a double value to a string buffer without leading zeros.
+     *
+     * @param message the string buffer to append to
+     * @param value the double value to append
+     */
     protected final void append2(StringBuffer message, double value) {
         final int intValue = (int) value;
         if (value == intValue) {
@@ -857,6 +958,15 @@ public abstract class AbstractDateTimeDV extends TypeValidator {
         }
     }
 
+    /**
+     * Parses a seconds value from the buffer, including fractional seconds.
+     *
+     * @param buffer the string buffer to parse
+     * @param start start position in the buffer
+     * @param end end position in the buffer
+     * @return the parsed seconds value as a double
+     * @throws NumberFormatException if the buffer contains an invalid seconds format
+     */
     protected double parseSecond(String buffer, int start, int end) throws NumberFormatException {
         int dot = -1;
         for (int i = start; i < end; i++) {
@@ -1082,14 +1192,34 @@ public abstract class AbstractDateTimeDV extends TypeValidator {
         }
     }
 
+    /**
+     * Converts DateTimeData to an XMLGregorianCalendar instance.
+     * Subclasses should override this method to provide specific conversion logic.
+     *
+     * @param data the DateTimeData to convert
+     * @return the XMLGregorianCalendar representation, or null if not applicable
+     */
     protected XMLGregorianCalendar getXMLGregorianCalendar(DateTimeData data) {
         return null;
     }
 
+    /**
+     * Converts DateTimeData to a Duration instance.
+     * Subclasses should override this method to provide specific conversion logic.
+     *
+     * @param data the DateTimeData to convert
+     * @return the Duration representation, or null if not applicable
+     */
     protected Duration getDuration(DateTimeData data) {
         return null;
     }
 
+    /**
+     * Extracts the fractional seconds portion as a BigDecimal.
+     *
+     * @param data the DateTimeData containing seconds information
+     * @return the fractional seconds as BigDecimal, or null if there are no fractional seconds
+     */
     protected final BigDecimal getFractionalSecondsAsBigDecimal(DateTimeData data) {
         final StringBuffer buf = new StringBuffer();
         append3(buf, data.unNormSecond);

@@ -28,8 +28,11 @@ package org.codelibs.xerces.jaxp;
  * @version $Id: JAXPConstants.java 447237 2006-09-18 05:03:10Z mrglavas $
  */
 public interface JAXPConstants {
+    /** JAXP schema language property name */
     static final String JAXP_SCHEMA_LANGUAGE = "http://java.sun.com/xml/jaxp/properties/schemaLanguage";
+    /** W3C XML Schema namespace URI */
     static final String W3C_XML_SCHEMA = "http://www.w3.org/2001/XMLSchema";
 
+    /** JAXP schema source property name */
     static final String JAXP_SCHEMA_SOURCE = "http://java.sun.com/xml/jaxp/properties/schemaSource";
 }

@@ -27,7 +27,7 @@ import org.w3c.dom.ProcessingInstruction;
  *
  * This class inherits from CharacterDataImpl to reuse its setNodeValue method.
  *
- * @xerces.internal
+
  *
  * @version $Id: ProcessingInstructionImpl.java 890194 2009-12-14 06:33:17Z mrglavas $
  * @since  PR-DOM-Level-1-19980818.
@@ -45,13 +45,21 @@ public class ProcessingInstructionImpl extends CharacterDataImpl implements Proc
     // Data
     //
 
+    /**
+     * The target of this processing instruction.
+     */
     protected String target;
 
     //
     // Constructors
     //
 
-    /** Factory constructor. */
+    /**
+     * Factory constructor.
+     * @param ownerDoc the document that owns this processing instruction
+     * @param target the target of the processing instruction
+     * @param data the data for the processing instruction
+     */
     public ProcessingInstructionImpl(CoreDocumentImpl ownerDoc, String target, String data) {
         super(ownerDoc, data);
         this.target = target;
@@ -88,7 +96,7 @@ public class ProcessingInstructionImpl extends CharacterDataImpl implements Proc
      * should be directed to. It is defined differently in HTML and XML.
      * <p>
      * In XML, a PI's "target" is the first (whitespace-delimited) token
-     * following the "<?" token that begins the PI.
+     * following the "&lt;?" token that begins the PI.
      * <p>
      * In HTML, target is always null.
      * <p>

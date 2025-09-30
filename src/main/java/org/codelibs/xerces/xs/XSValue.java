@@ -24,23 +24,27 @@ public interface XSValue {
 
     /**
      * The schema normalized value.
+     * @return the normalized value as a string
      */
     public String getNormalizedValue();
 
     /**
      * The actual value. <code>null</code> if the value is in error.
+     * @return the actual value object
      */
     public Object getActualValue();
 
     /**
      * The declared simple type definition used to validate this value.
      * It can be a union type.
+     * @return the type definition
      */
     public XSSimpleTypeDefinition getTypeDefinition();
 
     /**
      * If the declared simple type definition is a union, return the member
      * type actually used to validate the value. Otherwise null.
+     * @return the member type definition or null
      */
     public XSSimpleTypeDefinition getMemberTypeDefinition();
 
@@ -49,6 +53,7 @@ public interface XSValue {
      * is a union type, then this method returns a list with the same length
      * as the value list, for simple types that actually validated
      * the corresponding item in the value.
+     * @return the member type definitions list
      */
     public XSObjectList getMemberTypeDefinitions();
 
@@ -61,6 +66,7 @@ public interface XSValue {
      * method returns <code>LISTOFUNION_DT</code>. To query the actual value
      * of the list or list of union type definitions use
      * <code>itemValueTypes()</code>.
+     * @return the actual value type
      */
     public short getActualValueType();
 
@@ -91,6 +97,7 @@ public interface XSValue {
      * <code>actualNormalizedValueType</code> is <code>LISTOFUNION_DT</code>
      * , and the <code>itemValueTypes</code> is an array of size 3 with the
      * following values: <code>INTEGER_DT, INTEGER_DT, STRING_DT</code>.
+     * @return the list of value types
      */
     public ShortList getListValueTypes();
 

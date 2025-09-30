@@ -75,7 +75,7 @@ import org.codelibs.xerces.xni.parser.XMLDocumentSource;
  *  <li>http://apache.org/xml/properties/internal/datatype-validator-factory</li>
  * </ul>
  *
- * @xerces.internal
+
  *
  * @author Eric Ye, IBM
  * @author Andy Clark, IBM
@@ -112,6 +112,7 @@ public class XMLDTDValidator implements XMLComponent, XMLDocumentFilter, XMLDTDV
     /** Feature identifier: warn on duplicate attdef */
     protected static final String WARN_ON_DUPLICATE_ATTDEF = Constants.XERCES_FEATURE_PREFIX + Constants.WARN_ON_DUPLICATE_ATTDEF_FEATURE;
 
+    /** Feature identifier: parser settings. */
     protected static final String PARSER_SETTINGS = Constants.XERCES_FEATURE_PREFIX + Constants.PARSER_SETTINGS;
 
     // property identifiers
@@ -130,6 +131,7 @@ public class XMLDTDValidator implements XMLComponent, XMLDocumentFilter, XMLDTDV
             Constants.XERCES_PROPERTY_PREFIX + Constants.DATATYPE_VALIDATOR_FACTORY_PROPERTY;
 
     // property identifier:  ValidationManager
+    /** Property identifier: validation manager. */
     protected static final String VALIDATION_MANAGER = Constants.XERCES_PROPERTY_PREFIX + Constants.VALIDATION_MANAGER_PROPERTY;
 
     // recognized features and properties
@@ -160,9 +162,11 @@ public class XMLDTDValidator implements XMLComponent, XMLDocumentFilter, XMLDTDV
     //
 
     // updated during reset
+    /** Validation manager for this validator. */
     protected ValidationManager fValidationManager = null;
 
     // validation state
+    /** Validation state for this validator. */
     protected final ValidationState fValidationState = new ValidationState();
 
     // features
@@ -197,12 +201,14 @@ public class XMLDTDValidator implements XMLComponent, XMLDocumentFilter, XMLDTDV
     protected XMLErrorReporter fErrorReporter;
 
     // the grammar pool
+    /** The grammar pool for caching grammars. */
     protected XMLGrammarPool fGrammarPool;
 
     /** Grammar bucket. */
     protected DTDGrammarBucket fGrammarBucket;
 
     /* location of the document as passed in from startDocument call */
+    /** Location of the document as passed in from startDocument call. */
     protected XMLLocator fDocLocation;
 
     /** Namespace support. */
@@ -216,6 +222,7 @@ public class XMLDTDValidator implements XMLComponent, XMLDocumentFilter, XMLDTDV
     /** Document handler. */
     protected XMLDocumentHandler fDocumentHandler;
 
+    /** Document source for this validator. */
     protected XMLDocumentSource fDocumentSource;
     // grammars
 
@@ -497,10 +504,8 @@ public class XMLDTDValidator implements XMLComponent, XMLDocumentFilter, XMLDTDV
      * @param featureId The feature identifier.
      * @param state     The state of the feature.
      *
-     * @throws SAXNotRecognizedException The component should not throw
+     * @throws XMLConfigurationException The component should not throw
      *                                   this exception.
-     * @throws SAXNotSupportedException The component should not throw
-     *                                  this exception.
      */
     public void setFeature(String featureId, boolean state) throws XMLConfigurationException {
     } // setFeature(String,boolean)
@@ -524,10 +529,8 @@ public class XMLDTDValidator implements XMLComponent, XMLDocumentFilter, XMLDTDV
      * @param propertyId The property identifier.
      * @param value      The value of the property.
      *
-     * @throws SAXNotRecognizedException The component should not throw
+     * @throws XMLConfigurationException The component should not throw
      *                                   this exception.
-     * @throws SAXNotSupportedException The component should not throw
-     *                                  this exception.
      */
     public void setProperty(String propertyId, Object value) throws XMLConfigurationException {
     } // setProperty(String,Object)
@@ -1071,7 +1074,15 @@ public class XMLDTDValidator implements XMLComponent, XMLDocumentFilter, XMLDTDV
 
     //REVISIT:we can convert into functions.. adding default attribute values.. and one validating.
 
-    /** Add default attributes and validate. */
+    /**
+     * Add default attributes and validate.
+     *
+     * @param elementName The qualified name of the element.
+     * @param elementIndex The element index.
+     * @param attributes The attributes to process.
+     *
+     * @throws XNIException Thrown on XNI error.
+     */
     protected void addDTDDefaultAttrsAndValidate(QName elementName, int elementIndex, XMLAttributes attributes) throws XNIException {
 
         // is there anything to do?
@@ -1257,7 +1268,12 @@ public class XMLDTDValidator implements XMLComponent, XMLDocumentFilter, XMLDTDV
 
     } // addDTDDefaultAttrsAndValidate(int,XMLAttrList)
 
-    /** Checks entities in attribute values for standalone VC. */
+    /**
+     * Checks entities in attribute values for standalone VC.
+     *
+     * @param nonNormalizedValue The non-normalized attribute value to check.
+     * @return The name of the external entity reference, or null if none found.
+     */
     protected String getExternalEntityRefInAttrValue(String nonNormalizedValue) {
         int valLength = nonNormalizedValue.length();
         int ampIndex = nonNormalizedValue.indexOf('&');
@@ -1281,6 +1297,12 @@ public class XMLDTDValidator implements XMLComponent, XMLDocumentFilter, XMLDTDV
 
     /**
      * Validate attributes in DTD fashion.
+     *
+     * @param element The qualified name of the element.
+     * @param attValue The attribute value to validate.
+     * @param attributeDecl The attribute declaration.
+     *
+     * @throws XNIException Thrown on XNI error.
      */
     protected void validateDTDattribute(QName element, String attValue, XMLAttributeDecl attributeDecl) throws XNIException {
 
@@ -1383,7 +1405,13 @@ public class XMLDTDValidator implements XMLComponent, XMLDocumentFilter, XMLDTDV
 
     } // validateDTDattribute(QName,String,XMLAttributeDecl)
 
-    /** Returns true if invalid standalone attribute definition. */
+    /**
+     * Returns true if invalid standalone attribute definition.
+     *
+     * @param element The qualified name of the element.
+     * @param attribute The qualified name of the attribute.
+     * @return True if invalid standalone attribute definition.
+     */
     protected boolean invalidStandaloneAttDef(QName element, QName attribute) {
         // REVISIT: This obviously needs to be fixed! -Ac
         boolean state = true;
@@ -1732,8 +1760,15 @@ public class XMLDTDValidator implements XMLComponent, XMLDocumentFilter, XMLDTDV
     // Protected methods
     //
 
-    /** Handle element
+    /**
+     * Handle element
+     *
+     * @param element The qualified name of the element.
+     * @param attributes The element attributes.
+     * @param augs The augmentations.
      * @return true if validator is removed from the pipeline
+     *
+     * @throws XNIException Thrown on XNI error.
      */
     protected boolean handleStartElement(QName element, XMLAttributes attributes, Augmentations augs) throws XNIException {
 
@@ -1846,10 +1881,26 @@ public class XMLDTDValidator implements XMLComponent, XMLDocumentFilter, XMLDTDV
 
     } // handleStartElement(QName,XMLAttributes)
 
+    /**
+     * Start namespace scope. This method is called when namespace processing begins
+     * for an element.
+     *
+     * @param element The element name
+     * @param attributes The element attributes
+     * @param augs Additional information that may include infoset augmentations
+     */
     protected void startNamespaceScope(QName element, XMLAttributes attributes, Augmentations augs) {
     }
 
-    /** Handle end element. */
+    /**
+     * Handle end element.
+     *
+     * @param element The qualified name of the element.
+     * @param augs The augmentations.
+     * @param isEmpty Whether the element is empty.
+     *
+     * @throws XNIException Thrown on XNI error.
+     */
     protected void handleEndElement(QName element, Augmentations augs, boolean isEmpty) throws XNIException {
 
         // decrease element depth
@@ -1919,6 +1970,14 @@ public class XMLDTDValidator implements XMLComponent, XMLDocumentFilter, XMLDTDV
 
     } // handleEndElement(QName,boolean)
 
+    /**
+     * End namespace scope. This method is called when namespace processing ends
+     * for an element.
+     *
+     * @param element The element name
+     * @param augs Additional information that may include infoset augmentations
+     * @param isEmpty True if this is an empty element
+     */
     protected void endNamespaceScope(QName element, Augmentations augs, boolean isEmpty) {
 
         // call handlers
@@ -1935,6 +1994,12 @@ public class XMLDTDValidator implements XMLComponent, XMLDocumentFilter, XMLDTDV
 
     // returns whether a character is space according to the
     // version of XML this validator supports.
+    /**
+     * Returns whether a character is a space character according to XML.
+     *
+     * @param c the character to test
+     * @return true if the character is a space, false otherwise
+     */
     protected boolean isSpace(int c) {
         return XMLChar.isSpace(c);
     } // isSpace(int):  boolean

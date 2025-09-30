@@ -19,7 +19,8 @@ package org.codelibs.xerces.wml.dom;
 import org.codelibs.xerces.wml.WMLInputElement;
 
 /**
- * @xerces.internal
+ * Implementation of WMLInputElement interface for WML input form elements.
+ *
  * @version $Id: WMLInputElementImpl.java 661560 2008-05-30 03:22:25Z mrglavas $
  * @author <a href="mailto:david@topware.com.tw">David Li</a>
  */
@@ -27,6 +28,12 @@ public class WMLInputElementImpl extends WMLElementImpl implements WMLInputEleme
 
     private static final long serialVersionUID = 2897319793637966619L;
 
+    /**
+     * Constructs a new WML input element with the specified owner document and tag name.
+     *
+     * @param owner the owner document
+     * @param tagName the tag name for this element
+     */
     public WMLInputElementImpl(WMLDocumentImpl owner, String tagName) {
         super(owner, tagName);
     }

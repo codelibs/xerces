@@ -48,12 +48,18 @@ import org.w3c.dom.ls.LSSerializer;
  * Core and Load/Save (Experimental). Optional modules are supported by
  * the more complete DOMImplementation class along with DocumentImpl.
  *
- * @xerces.internal
+
  *
  * @version $Id: CoreDOMImplementationImpl.java 1175661 2011-09-26 04:24:01Z mrglavas $
  * @since PR-DOM-Level-1-19980818.
  */
 public class CoreDOMImplementationImpl implements DOMImplementation, DOMImplementationLS {
+
+    /**
+     * Default constructor for CoreDOMImplementationImpl.
+     */
+    public CoreDOMImplementationImpl() {
+    }
 
     //
     // Data
@@ -95,7 +101,9 @@ public class CoreDOMImplementationImpl implements DOMImplementation, DOMImplemen
     //
     // Public methods
     //
-    /** NON-DOM: Obtain and return the single shared object */
+    /** NON-DOM: Obtain and return the single shared object
+     * @return the singleton DOM implementation instance
+     */
     public static DOMImplementation getDOMImplementation() {
         return singleton;
     }
@@ -251,6 +259,12 @@ public class CoreDOMImplementationImpl implements DOMImplementation, DOMImplemen
         return doc;
     }
 
+    /**
+     * Creates a new CoreDocumentImpl with the specified document type.
+     *
+     * @param doctype the document type for the new document
+     * @return a new CoreDocumentImpl instance
+     */
     protected CoreDocumentImpl createDocument(DocumentType doctype) {
         return new CoreDocumentImpl(doctype);
     }
@@ -581,12 +595,16 @@ public class CoreDOMImplementationImpl implements DOMImplementation, DOMImplemen
         }
     }
 
-    /** NON-DOM:  increment document/doctype counter */
+    /** NON-DOM:  increment document/doctype counter
+     * @return the next document number
+     */
     protected synchronized int assignDocumentNumber() {
         return ++docAndDoctypeCounter;
     }
 
-    /** NON-DOM:  increment document/doctype counter */
+    /** NON-DOM:  increment document/doctype counter
+     * @return the next document type number
+     */
     protected synchronized int assignDocTypeNumber() {
         return ++docAndDoctypeCounter;
     }

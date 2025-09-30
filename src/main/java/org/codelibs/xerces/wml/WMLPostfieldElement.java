@@ -28,12 +28,32 @@ package org.codelibs.xerces.wml;
 
 public interface WMLPostfieldElement extends WMLElement {
 
+    /**
+     * Sets the 'value' attribute which specifies the field value to be posted.
+     *
+     * @param newValue the new value for the value attribute
+     */
     public void setValue(String newValue);
 
+    /**
+     * Gets the 'value' attribute which specifies the field value.
+     *
+     * @return the value of the value attribute
+     */
     public String getValue();
 
+    /**
+     * Sets the 'name' attribute which specifies the field name.
+     *
+     * @param newValue the new value for the name attribute
+     */
     public void setName(String newValue);
 
+    /**
+     * Gets the 'name' attribute which specifies the field name.
+     *
+     * @return the value of the name attribute
+     */
     public String getName();
 
 }

@@ -23,17 +23,23 @@ package org.codelibs.xerces.xs;
 public interface XSModelGroupDefinition extends XSObject {
     /**
      * A model group.
+     *
+     * @return the model group
      */
     public XSModelGroup getModelGroup();
 
     /**
      * An annotation if it exists, otherwise <code>null</code>. If not null
      * then the first [annotation] from the sequence of annotations.
+     *
+     * @return an annotation if it exists, otherwise <code>null</code>
      */
     public XSAnnotation getAnnotation();
 
     /**
      * A sequence of [annotations] or an empty <code>XSObjectList</code>.
+     *
+     * @return a sequence of annotations
      */
     public XSObjectList getAnnotations();
 }

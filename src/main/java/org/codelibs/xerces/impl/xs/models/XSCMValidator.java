@@ -26,7 +26,7 @@ import org.codelibs.xerces.xni.QName;
 /**
  * Note: State of the content model is stored in the validator
  *
- * @xerces.internal
+
  *
  * @author Sandy Gao, IBM
  * @author Elena Litani, IBM
@@ -34,11 +34,15 @@ import org.codelibs.xerces.xni.QName;
  */
 public interface XSCMValidator {
 
+    /**
+     * Error code returned for the first validation error encountered.
+     */
     public static final short FIRST_ERROR = -1;
 
-    // on subsequent errors the validator should not report
-    // an error
-    //
+    /**
+     * Error code returned for subsequent validation errors.
+     * On subsequent errors the validator should not report an error.
+     */
     public static final short SUBSEQUENT_ERROR = -2;
 
     /**
@@ -52,8 +56,9 @@ public interface XSCMValidator {
     /**
      * The method corresponds to one transaction in the content model.
      *
-     * @param elementName
+     * @param elementName The element name
      * @param state  Current state
+     * @param subGroupHandler The substitution group handler
      * @return element decl or wildcard decl that
      *         corresponds to the element from the Schema grammar
      */
@@ -72,6 +77,7 @@ public interface XSCMValidator {
      *
      * @param subGroupHandler the substitution group handler
      * @return true if this content model contains other or list wildcard
+     * @throws XMLSchemaException if validation fails
      */
     public boolean checkUniqueParticleAttribution(SubstitutionGroupHandler subGroupHandler) throws XMLSchemaException;
 
@@ -87,18 +93,18 @@ public interface XSCMValidator {
     public Vector whatCanGoHere(int[] state);
 
     /**
-     * <p>Returns an array containing information about the current repeating term
+     * Returns an array containing information about the current repeating term
      * or <code>null</code> if no occurrence counting was being performed at the
-     * current state.</p>
-     *
-     * <p>If an array is returned it will have a length == 4 and will contain:
+     * current state.
+     * <p>
+     * If an array is returned it will have a length == 4 and will contain:
+     * </p>
      *  <ul>
      *   <li>a[0] :: min occurs</li>
      *   <li>a[1] :: max occurs</li>
      *   <li>a[2] :: current value of the counter</li>
      *   <li>a[3] :: identifier for the repeating term</li>
      *  </ul>
-     * </p>
      *
      * @param state the current state
      * @return an array containing information about the current repeating term

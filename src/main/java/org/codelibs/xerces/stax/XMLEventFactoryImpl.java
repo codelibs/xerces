@@ -51,9 +51,7 @@ import org.codelibs.xerces.stax.events.StartDocumentImpl;
 import org.codelibs.xerces.stax.events.StartElementImpl;
 
 /**
- * <p>Implementation of XMLEventFactory.</p>
- *
- * @xerces.internal
+ * Implementation of XMLEventFactory.
  *
  * @version $Id: XMLEventFactoryImpl.java 730796 2009-01-02 17:36:23Z mrglavas $
  */
@@ -61,6 +59,9 @@ public final class XMLEventFactoryImpl extends XMLEventFactory {
 
     private Location fLocation;
 
+    /**
+     * Default constructor for XMLEventFactoryImpl.
+     */
     public XMLEventFactoryImpl() {
     }
 

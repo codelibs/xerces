@@ -26,7 +26,8 @@ import org.w3c.dom.html.HTMLTableRowElement;
 import org.w3c.dom.html.HTMLTableSectionElement;
 
 /**
- * @xerces.internal
+ * Implementation of HTMLTableRowElement interface for HTML table row elements.
+ *
  * @version $Revision: 1029415 $ $Date: 2010-10-31 22:32:22 +0530 (Sun, 31 Oct 2010) $
  * @author <a href="mailto:arkin@exoffice.com">Assaf Arkin</a>
  * @see org.w3c.dom.html.HTMLTableRowElement
@@ -49,6 +50,13 @@ public class HTMLTableRowElementImpl extends HTMLElementImpl implements HTMLTabl
         return -1;
     }
 
+    /**
+     * Sets the index of this row within the parent table.
+     * This method will move the row to the specified position within
+     * the table's row collection.
+     *
+     * @param rowIndex the new index position for this row
+     */
     public void setRowIndex(int rowIndex) {
         Node parent;
 
@@ -71,6 +79,13 @@ public class HTMLTableRowElementImpl extends HTMLElementImpl implements HTMLTabl
         return -1;
     }
 
+    /**
+     * Sets the index of this row within its parent table section.
+     * This method will move the row to the specified position within
+     * the section's row collection.
+     *
+     * @param sectionRowIndex the new index position for this row within its section
+     */
     public void setSectionRowIndex(int sectionRowIndex) {
         Node parent;
 
@@ -103,6 +118,13 @@ public class HTMLTableRowElementImpl extends HTMLElementImpl implements HTMLTabl
         return _cells;
     }
 
+    /**
+     * Sets the collection of cells for this table row.
+     * This method replaces all existing cells with the cells from
+     * the specified collection.
+     *
+     * @param cells the collection of cells to set for this row
+     */
     public void setCells(HTMLCollection cells) {
         Node child;
         int i;
@@ -222,11 +244,15 @@ public class HTMLTableRowElementImpl extends HTMLElementImpl implements HTMLTabl
      * Constructor requires owner document.
      *
      * @param owner The owner HTML document
+     * @param name The element name
      */
     public HTMLTableRowElementImpl(HTMLDocumentImpl owner, String name) {
         super(owner, name);
     }
 
+    /**
+     * Collection of cells in this table row.
+     */
     HTMLCollection _cells;
 
 }

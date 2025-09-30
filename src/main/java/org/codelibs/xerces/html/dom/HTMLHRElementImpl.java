@@ -19,7 +19,8 @@ package org.codelibs.xerces.html.dom;
 import org.w3c.dom.html.HTMLHRElement;
 
 /**
- * @xerces.internal
+ * Implementation of HTML HR element.
+ *
  * @version $Revision: 1029415 $ $Date: 2010-10-31 22:32:22 +0530 (Sun, 31 Oct 2010) $
  * @author <a href="mailto:arkin@exoffice.com">Assaf Arkin</a>
  * @see org.w3c.dom.html.HTMLHRElement
@@ -65,6 +66,7 @@ public class HTMLHRElementImpl extends HTMLElementImpl implements HTMLHRElement 
      * Constructor requires owner document.
      *
      * @param owner The owner HTML document
+     * @param name The element name
      */
     public HTMLHRElementImpl(HTMLDocumentImpl owner, String name) {
         super(owner, name);

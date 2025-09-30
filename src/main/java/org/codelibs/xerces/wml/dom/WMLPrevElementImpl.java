@@ -19,7 +19,10 @@ package org.codelibs.xerces.wml.dom;
 import org.codelibs.xerces.wml.WMLPrevElement;
 
 /**
- * @xerces.internal
+ * Implementation of the WML prev element.
+ * The prev element is used to navigate to the previous card in the browsing history.
+ * It provides navigation functionality in WML applications.
+ *
  * @version $Id: WMLPrevElementImpl.java 661560 2008-05-30 03:22:25Z mrglavas $
  * @author <a href="mailto:david@topware.com.tw">David Li</a>
  */
@@ -27,6 +30,12 @@ public class WMLPrevElementImpl extends WMLElementImpl implements WMLPrevElement
 
     private static final long serialVersionUID = -1545713716925433554L;
 
+    /**
+     * Constructs a new WMLPrevElementImpl instance.
+     *
+     * @param owner the owning WML document
+     * @param tagName the tag name of the element
+     */
     public WMLPrevElementImpl(WMLDocumentImpl owner, String tagName) {
         super(owner, tagName);
     }

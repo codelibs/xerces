@@ -29,7 +29,6 @@ import org.codelibs.xerces.util.MessageFormatter;
  * A simple ASCII byte reader. This is an optimized reader for reading
  * byte streams that only contain 7-bit ASCII characters.
  *
- * @xerces.internal
  *
  * @author Andy Clark, IBM
  *
@@ -117,7 +116,7 @@ public final class ASCIIReader extends Reader {
      * should override this method.
      *
      * @return     The character read, as an integer in the range 0 to 127
-     *             (<tt>0x00-0x7f</tt>), or -1 if the end of the stream has
+     *             (<code>0x00-0x7f</code>), or -1 if the end of the stream has
      *             been reached
      *
      * @exception  IOException  If an I/O error occurs

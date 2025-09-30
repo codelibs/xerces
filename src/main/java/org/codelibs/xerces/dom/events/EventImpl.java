@@ -28,19 +28,44 @@ import org.w3c.dom.events.EventTarget;
  * I believe that is the DOM's intent but I don't see an explicit statement
  * to this effect.
  *
- * @xerces.internal
- *
  * @version $Id: EventImpl.java 533533 2007-04-29 17:30:08Z mrglavas $
  */
 public class EventImpl implements Event {
 
-    public String type = null;
-    public EventTarget target;
-    public EventTarget currentTarget;
-    public short eventPhase;
-    public boolean initialized = false, bubbles = true, cancelable = false;
-    public boolean stopPropagation = false, preventDefault = false;
+    /**
+     * Default constructor for creating new event instances.
+     */
+    public EventImpl() {
+    }
 
+    /** The type of this event. */
+    public String type = null;
+
+    /** The target element for this event. */
+    public EventTarget target;
+
+    /** The current target element being processed during event flow. */
+    public EventTarget currentTarget;
+
+    /** The current event phase (capturing, at target, or bubbling). */
+    public short eventPhase;
+
+    /** Flag indicating whether the event has been initialized. */
+    public boolean initialized = false;
+
+    /** Flag indicating whether the event bubbles up through the DOM. */
+    public boolean bubbles = true;
+
+    /** Flag indicating whether the event's default action can be prevented. */
+    public boolean cancelable = false;
+
+    /** Flag indicating whether event propagation has been stopped. */
+    public boolean stopPropagation = false;
+
+    /** Flag indicating whether the default action has been prevented. */
+    public boolean preventDefault = false;
+
+    /** The timestamp when this event was created. */
     protected long timeStamp = System.currentTimeMillis();
 
     /**

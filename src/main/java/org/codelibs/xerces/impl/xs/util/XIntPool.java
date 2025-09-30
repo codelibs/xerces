@@ -18,7 +18,7 @@
 package org.codelibs.xerces.impl.xs.util;
 
 /**
- * @xerces.internal
+ * Pool for reusing XInt objects.
  *
  * @author Henry Zongaro, IBM
  * @version $Id: XIntPool.java 446723 2006-09-15 20:37:45Z mrglavas $
@@ -27,11 +27,24 @@ public final class XIntPool {
     private static final short POOL_SIZE = 10;
     private static final XInt[] fXIntPool = new XInt[POOL_SIZE];
 
+    /**
+     * Default constructor for XIntPool.
+     * Instances are not needed as all methods are static.
+     */
+    public XIntPool() {
+        // Default constructor
+    }
+
     static {
         for (int i = 0; i < POOL_SIZE; i++)
             fXIntPool[i] = new XInt(i);
     }
 
+    /**
+     * Gets an XInt object for the given value, reusing pooled instances when possible.
+     * @param value the integer value
+     * @return an XInt object with the specified value
+     */
     public final XInt getXInt(int value) {
         if (value >= 0 && value < fXIntPool.length)
             return fXIntPool[value];

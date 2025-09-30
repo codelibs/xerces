@@ -27,7 +27,7 @@ import org.w3c.dom.html.HTMLDocument;
  * unconstructable, the only way to obtain an instance of a DOM implementation
  * is by calling the static method {@link #getDOMImplementation}.
  *
- * @xerces.internal
+
  *
  * @version $Revision: 645327 $ $Date: 2008-04-07 04:47:54 +0530 (Mon, 07 Apr 2008) $
  * @author <a href="mailto:arkin@exoffice.com">Assaf Arkin</a>
@@ -50,7 +50,7 @@ public class HTMLDOMImplementationImpl extends DOMImplementationImpl implements 
     }
 
     /**
-     * Create a new HTML document of the specified <TT>TITLE</TT> text.
+     * Create a new HTML document of the specified <code>TITLE</code> text.
      *
      * @param title The document title text
      * @return New HTML document

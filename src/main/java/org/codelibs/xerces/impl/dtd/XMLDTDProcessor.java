@@ -65,7 +65,7 @@ import org.codelibs.xerces.xni.parser.XMLDTDSource;
  *  <li>http://apache.org/xml/properties/internal/datatype-validator-factory</li>
  * </ul>
  *
- * @xerces.internal
+
  *
  * @author Neil Graham, IBM
  *
@@ -95,6 +95,7 @@ public class XMLDTDProcessor implements XMLComponent, XMLDTDFilter, XMLDTDConten
     protected static final String WARN_ON_UNDECLARED_ELEMDEF =
             Constants.XERCES_FEATURE_PREFIX + Constants.WARN_ON_UNDECLARED_ELEMDEF_FEATURE;
 
+    /** Feature identifier: parser settings. */
     protected static final String PARSER_SETTINGS = Constants.XERCES_FEATURE_PREFIX + Constants.PARSER_SETTINGS;
 
     // property identifiers
@@ -160,12 +161,15 @@ public class XMLDTDProcessor implements XMLComponent, XMLDTDFilter, XMLDTDConten
     // the validator to which we look for our grammar bucket (the
     // validator needs to hold the bucket so that it can initialize
     // the grammar with details like whether it's for a standalone document...
+    /** The DTD validator that holds the grammar bucket. */
     protected XMLDTDValidator fValidator;
 
     // the grammar pool we'll try to add the grammar to:
+    /** The grammar pool to which we add the grammar. */
     protected XMLGrammarPool fGrammarPool;
 
     // what's our Locale?
+    /** The locale for error messages. */
     protected Locale fLocale;
 
     // handlers
@@ -327,6 +331,9 @@ public class XMLDTDProcessor implements XMLComponent, XMLDTDFilter, XMLDTDConten
 
     } // reset(XMLComponentManager)
 
+    /**
+     * Resets the DTD processor to its initial state.
+     */
     protected void reset() {
         // clear grammars
         fDTDGrammar = null;
@@ -368,10 +375,8 @@ public class XMLDTDProcessor implements XMLComponent, XMLDTDFilter, XMLDTDConten
      * @param featureId The feature identifier.
      * @param state     The state of the feature.
      *
-     * @throws SAXNotRecognizedException The component should not throw
+     * @throws XMLConfigurationException The component may throw
      *                                   this exception.
-     * @throws SAXNotSupportedException The component should not throw
-     *                                  this exception.
      */
     public void setFeature(String featureId, boolean state) throws XMLConfigurationException {
     } // setFeature(String,boolean)
@@ -395,10 +400,8 @@ public class XMLDTDProcessor implements XMLComponent, XMLDTDFilter, XMLDTDConten
      * @param propertyId The property identifier.
      * @param value      The value of the property.
      *
-     * @throws SAXNotRecognizedException The component should not throw
+     * @throws XMLConfigurationException The component may throw
      *                                   this exception.
-     * @throws SAXNotSupportedException The component should not throw
-     *                                  this exception.
      */
     public void setProperty(String propertyId, Object value) throws XMLConfigurationException {
     } // setProperty(String,Object)
@@ -523,8 +526,8 @@ public class XMLDTDProcessor implements XMLComponent, XMLDTDFilter, XMLDTDConten
      * Check standalone entity reference.
      * Made static to make common between the validator and loader.
      *
-     * @param name
-     *@param grammar    grammar to which entity belongs
+     * @param name the name of the entity to check
+     * @param grammar    grammar to which entity belongs
      * @param tempEntityDecl    empty entity declaration to put results in
      * @param errorReporter     error reporter to send errors to
      *
@@ -1561,10 +1564,22 @@ public class XMLDTDProcessor implements XMLComponent, XMLDTDFilter, XMLDTDConten
         return false;
     }
 
+    /**
+     * Checks if the given string is a valid NMTOKEN.
+     *
+     * @param nmtoken The string to check.
+     * @return True if the string is a valid NMTOKEN, false otherwise.
+     */
     protected boolean isValidNmtoken(String nmtoken) {
         return XMLChar.isValidNmtoken(nmtoken);
     } // isValidNmtoken(String):  boolean
 
+    /**
+     * Checks if the given string is a valid XML name.
+     *
+     * @param name The string to check.
+     * @return True if the string is a valid XML name, false otherwise.
+     */
     protected boolean isValidName(String name) {
         return XMLChar.isValidName(name);
     } // isValidName(String):  boolean

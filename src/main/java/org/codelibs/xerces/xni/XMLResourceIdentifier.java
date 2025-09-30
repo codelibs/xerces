@@ -27,36 +27,74 @@ package org.codelibs.xerces.xni;
 
 public interface XMLResourceIdentifier {
 
-    /** Sets the public identifier. */
+    /**
+     * Sets the public identifier.
+     *
+     * @param publicId The public identifier.
+     */
     public void setPublicId(String publicId);
 
-    /** Returns the public identifier. */
+    /**
+     * Returns the public identifier.
+     *
+     * @return The public identifier.
+     */
     public String getPublicId();
 
-    /** Sets the expanded system identifier. */
+    /**
+     * Sets the expanded system identifier.
+     *
+     * @param systemId The expanded system identifier.
+     */
     public void setExpandedSystemId(String systemId);
 
-    /** Returns the expanded system identifier. */
+    /**
+     * Returns the expanded system identifier.
+     *
+     * @return The expanded system identifier.
+     */
     public String getExpandedSystemId();
 
-    /** Sets the literal system identifier. */
+    /**
+     * Sets the literal system identifier.
+     *
+     * @param systemId The literal system identifier.
+     */
     public void setLiteralSystemId(String systemId);
 
-    /** Returns the literal system identifier. */
+    /**
+     * Returns the literal system identifier.
+     *
+     * @return The literal system identifier.
+     */
     public String getLiteralSystemId();
 
-    /** Sets the base URI against which the literal SystemId is to be
-        resolved.*/
+    /**
+     * Sets the base URI against which the literal SystemId is to be resolved.
+     *
+     * @param systemId The base system identifier.
+     */
     public void setBaseSystemId(String systemId);
 
-    /** <p> Returns the base URI against which the literal SystemId is to be
-        resolved. </p> */
+    /**
+     * Returns the base URI against which the literal SystemId is to be resolved.
+     *
+     * @return The base system identifier.
+     */
     public String getBaseSystemId();
 
-    /** Sets the namespace of the resource. */
+    /**
+     * Sets the namespace of the resource.
+     *
+     * @param namespace The namespace.
+     */
     public void setNamespace(String namespace);
 
-    /** Returns the namespace of the resource. */
+    /**
+     * Returns the namespace of the resource.
+     *
+     * @return The namespace.
+     */
     public String getNamespace();
 
 } // XMLResourceIdentifier

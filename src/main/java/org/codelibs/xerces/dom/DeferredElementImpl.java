@@ -42,7 +42,7 @@ import org.w3c.dom.NamedNodeMap;
  * Namespaces. DeferredElementNSImpl, which inherits from ElementNSImpl, does.
  * @see DeferredElementNSImpl
  *
- * @xerces.internal
+
  *
  * @version $Id: DeferredElementImpl.java 447266 2006-09-18 05:57:49Z mrglavas $
  * @since  PR-DOM-Level-1-19980818.

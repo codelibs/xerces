@@ -32,35 +32,68 @@ package org.codelibs.xerces.wml;
 public interface WMLTableElement extends WMLElement {
 
     /**
-     * 'title' specifies a title for the table
+     * Sets the title attribute that specifies a title for the table.
      * (Section 11.8.5, WAP WML Version 16-Jun-1999)
+     *
+     * @param newValue the new title value to set
      */
     public void setTitle(String newValue);
 
+    /**
+     * Gets the title attribute that specifies a title for the table.
+     * (Section 11.8.5, WAP WML Version 16-Jun-1999)
+     *
+     * @return the title value
+     */
     public String getTitle();
 
     /**
-     * 'align' set the align of the table
+     * Sets the align attribute that specifies the alignment of the table.
      * (Section 11.8.5, WAP WML Version 16-Jun-1999)
+     *
+     * @param newValue the new align value to set
      */
     public void setAlign(String newValue);
 
+    /**
+     * Gets the align attribute that specifies the alignment of the table.
+     * (Section 11.8.5, WAP WML Version 16-Jun-1999)
+     *
+     * @return the align value
+     */
     public String getAlign();
 
     /**
-     * 'columns' specifies the number of columns
+     * Sets the columns attribute that specifies the number of columns in the table.
      * (Section 11.8.5, WAP WML Version 16-Jun-1999)
+     *
+     * @param newValue the new columns value to set
      */
     public void setColumns(int newValue);
 
+    /**
+     * Gets the columns attribute that specifies the number of columns in the table.
+     * (Section 11.8.5, WAP WML Version 16-Jun-1999)
+     *
+     * @return the number of columns
+     */
     public int getColumns();
 
     /**
-     * The xml:lang that specifics the natural or formal language in
+     * Sets the xml:lang attribute that specifies the natural or formal language in
      * which the document is written.
      * (Section 8.8, WAP WML Version 16-Jun-1999)
+     *
+     * @param newValue the new xml:lang value to set
      */
     public void setXmlLang(String newValue);
 
+    /**
+     * Gets the xml:lang attribute that specifies the natural or formal language in
+     * which the document is written.
+     * (Section 8.8, WAP WML Version 16-Jun-1999)
+     *
+     * @return the xml:lang value
+     */
     public String getXmlLang();
 }

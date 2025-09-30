@@ -54,6 +54,8 @@ public class DefaultErrorHandler implements XMLErrorHandler {
     /**
      * Constructs an error handler that prints error messages to the
      * specified <code>PrintWriter</code>.
+     *
+     * @param out The PrintWriter to write error messages to
      */
     public DefaultErrorHandler(PrintWriter out) {
         fOut = out;

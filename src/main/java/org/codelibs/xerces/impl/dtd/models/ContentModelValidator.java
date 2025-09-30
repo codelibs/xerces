@@ -20,7 +20,8 @@ package org.codelibs.xerces.impl.dtd.models;
 import org.codelibs.xerces.xni.QName;
 
 /**
- * @xerces.internal
+ * Interface for DTD content model validators. Content model validators are responsible
+ * for validating that element content conforms to the DTD content model rules.
  *
  * @version $Id: ContentModelValidator.java 446752 2006-09-15 21:55:19Z mrglavas $
  */
@@ -31,11 +32,11 @@ public interface ContentModelValidator {
     //
 
     /**
-     * validate
+     * Validates that the given children conform to this content model.
      *
-     * @param children
-     * @param offset
-     * @param length
+     * @param children The array of child element names
+     * @param offset The starting offset in the children array
+     * @param length The number of children to validate
      *
      * @return The value -1 if fully valid, else the 0 based index of the child
      *         that first failed. If the value returned is equal to the number

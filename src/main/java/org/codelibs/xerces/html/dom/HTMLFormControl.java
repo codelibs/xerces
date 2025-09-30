@@ -20,7 +20,7 @@ package org.codelibs.xerces.html.dom;
  * Identifies control in a form, so they may be collected in a form elements
  * collection. All form control elements implement this empty interface.
  *
- * @xerces.internal
+
  * @version $Revision: 1029415 $ $Date: 2010-10-31 22:32:22 +0530 (Sun, 31 Oct 2010) $
  * @author <a href="mailto:arkin@exoffice.com">Assaf Arkin</a>
  */

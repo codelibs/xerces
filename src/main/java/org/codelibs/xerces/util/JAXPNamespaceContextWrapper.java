@@ -44,30 +44,58 @@ public final class JAXPNamespaceContextWrapper implements NamespaceContext {
     private int[] fContext = new int[8];
     private int fCurrentContext;
 
+    /**
+     * Constructor.
+     * @param symbolTable the symbol table to use
+     */
     public JAXPNamespaceContextWrapper(SymbolTable symbolTable) {
         setSymbolTable(symbolTable);
     }
 
+    /**
+     * Sets the JAXP NamespaceContext.
+     * @param context the namespace context to set
+     */
     public void setNamespaceContext(javax.xml.namespace.NamespaceContext context) {
         fNamespaceContext = context;
     }
 
+    /**
+     * Gets the JAXP NamespaceContext.
+     * @return the namespace context
+     */
     public javax.xml.namespace.NamespaceContext getNamespaceContext() {
         return fNamespaceContext;
     }
 
+    /**
+     * Sets the symbol table.
+     * @param symbolTable the symbol table to set
+     */
     public void setSymbolTable(SymbolTable symbolTable) {
         fSymbolTable = symbolTable;
     }
 
+    /**
+     * Gets the symbol table.
+     * @return the symbol table
+     */
     public SymbolTable getSymbolTable() {
         return fSymbolTable;
     }
 
+    /**
+     * Sets the declared prefixes.
+     * @param prefixes the list of declared prefixes
+     */
     public void setDeclaredPrefixes(List prefixes) {
         fPrefixes = prefixes;
     }
 
+    /**
+     * Gets the declared prefixes.
+     * @return the list of declared prefixes
+     */
     public List getDeclaredPrefixes() {
         return fPrefixes;
     }

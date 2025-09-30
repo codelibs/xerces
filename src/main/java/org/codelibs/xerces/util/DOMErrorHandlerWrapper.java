@@ -49,34 +49,40 @@ import org.w3c.dom.Node;
 
 public class DOMErrorHandlerWrapper implements XMLErrorHandler, DOMErrorHandler {
 
-    // It keeps the reference of DOMErrorHandler of application
+    /** Reference to the application's DOMErrorHandler. */
     protected DOMErrorHandler fDomErrorHandler;
 
     // Error Status
     boolean eStatus = true;
 
-    // Print writer
+    /** Print writer for error output. */
     protected PrintWriter fOut;
 
-    // some components may set error node
-    // @see DOMNormalizer.
+    /** Current node being processed. Some components may set this. */
     public Node fCurrentNode;
 
     /** Error code for comparisons. **/
     protected final XMLErrorCode fErrorCode = new XMLErrorCode(null, null);
 
+    /** The DOM error implementation. */
     protected final DOMErrorImpl fDOMError = new DOMErrorImpl();
 
     //
     // Constructors
     //
 
-    // Default constructor /
-
+    /**
+     * Default constructor.
+     */
     public DOMErrorHandlerWrapper() {
         fOut = new PrintWriter(System.err);
     }
 
+    /**
+     * Constructs a wrapper with the specified DOM error handler.
+     *
+     * @param domErrorHandler The DOM error handler
+     */
     public DOMErrorHandlerWrapper(DOMErrorHandler domErrorHandler) {
         fDomErrorHandler = domErrorHandler;
     } // DOMErrorHandlerWrapper(DOMErrorHandler domErrorHandler)
@@ -85,11 +91,20 @@ public class DOMErrorHandlerWrapper implements XMLErrorHandler, DOMErrorHandler 
     // Public methods
     //
 
-    /** Sets the DOM error handler. */
+    /**
+     * Sets the DOM error handler.
+     *
+     * @param errorHandler The error handler
+     */
     public void setErrorHandler(DOMErrorHandler errorHandler) {
         fDomErrorHandler = errorHandler;
     } // setErrorHandler(ErrorHandler)
 
+    /**
+     * Returns the DOM error handler.
+     *
+     * @return The error handler
+     */
     public DOMErrorHandler getErrorHandler() {
         return fDomErrorHandler;
     } //getErrorHandler()

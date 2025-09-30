@@ -37,7 +37,7 @@ import org.codelibs.xerces.xs.XSValue;
 /**
  * Attribute namespace implementation; stores PSVI attribute items.
  *
- * @xerces.internal
+
  *
  * @author Sandy Gao, IBM
  *
@@ -50,6 +50,11 @@ public class PSVIAttrNSImpl extends AttrNSImpl implements AttributePSVI {
 
     /**
      * Construct an attribute node.
+     *
+     * @param ownerDocument the document that owns this attribute
+     * @param namespaceURI the namespace URI of the attribute
+     * @param qualifiedName the qualified name of the attribute
+     * @param localName the local name of the attribute
      */
     public PSVIAttrNSImpl(CoreDocumentImpl ownerDocument, String namespaceURI, String qualifiedName, String localName) {
         super(ownerDocument, namespaceURI, qualifiedName, localName);
@@ -57,6 +62,10 @@ public class PSVIAttrNSImpl extends AttrNSImpl implements AttributePSVI {
 
     /**
      * Construct an attribute node.
+     *
+     * @param ownerDocument the document that owns this attribute
+     * @param namespaceURI the namespace URI of the attribute
+     * @param qualifiedName the qualified name of the attribute
      */
     public PSVIAttrNSImpl(CoreDocumentImpl ownerDocument, String namespaceURI, String qualifiedName) {
         super(ownerDocument, namespaceURI, qualifiedName);
@@ -112,7 +121,7 @@ public class PSVIAttrNSImpl extends AttrNSImpl implements AttributePSVI {
      * [schema default]
      *
      * @return The canonical lexical representation of the declaration's {value constraint} value.
-     * @see <a href="http://www.w3.org/TR/xmlschema-1/#e-schema_default>XML Schema Part 1: Structures [schema default]</a>
+     * @see <a href="http://www.w3.org/TR/xmlschema-1/#e-schema_default">XML Schema Part 1: Structures [schema default]</a>
      */
     public String getSchemaDefault() {
         return fDeclaration == null ? null : fDeclaration.getConstraintValue();
@@ -122,7 +131,7 @@ public class PSVIAttrNSImpl extends AttrNSImpl implements AttributePSVI {
      * [schema normalized value]
      *
      *
-     * @see <a href="http://www.w3.org/TR/xmlschema-1/#e-schema_normalized_value>XML Schema Part 1: Structures [schema normalized value]</a>
+     * @see <a href="http://www.w3.org/TR/xmlschema-1/#e-schema_normalized_value">XML Schema Part 1: Structures [schema normalized value]</a>
      * @return the normalized value of this item after validation
      */
     public String getSchemaNormalizedValue() {
@@ -270,10 +279,23 @@ public class PSVIAttrNSImpl extends AttrNSImpl implements AttributePSVI {
     // REVISIT: Forbid serialization of PSVI DOM until
     // we support object serialization of grammars -- mrglavas
 
+    /**
+     * Serialization is not supported for PSVI attributes.
+     *
+     * @param out the ObjectOutputStream to write to
+     * @throws IOException always, as serialization is not supported
+     */
     private void writeObject(ObjectOutputStream out) throws IOException {
         throw new NotSerializableException(getClass().getName());
     }
 
+    /**
+     * Deserialization is not supported for PSVI attributes.
+     *
+     * @param in the ObjectInputStream to read from
+     * @throws IOException always, as deserialization is not supported
+     * @throws ClassNotFoundException never thrown, but declared for interface compliance
+     */
     private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         throw new NotSerializableException(getClass().getName());
     }

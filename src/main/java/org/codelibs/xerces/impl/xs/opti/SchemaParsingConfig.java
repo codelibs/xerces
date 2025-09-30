@@ -47,7 +47,9 @@ import org.codelibs.xerces.xni.parser.XMLInputSource;
 import org.codelibs.xerces.xni.parser.XMLPullParserConfiguration;
 
 /**
- * @xerces.internal
+ * Parser configuration optimized for XML Schema parsing.
+ * This configuration provides a specialized parser setup that
+ * optimizes performance for XML Schema document processing.
  *
  * @author Rahul Srivastava, Sun Microsystems Inc.
  *
@@ -59,6 +61,7 @@ public class SchemaParsingConfig extends BasicParserConfiguration implements XML
     // Constants
     //
 
+    /** Property identifier: XML 1.1 datatype validator factory class name. */
     protected final static String XML11_DATATYPE_VALIDATOR_FACTORY = "org.codelibs.xerces.impl.dv.dtd.XML11DTDDVFactoryImpl";
 
     // feature identifiers
@@ -126,6 +129,7 @@ public class SchemaParsingConfig extends BasicParserConfiguration implements XML
     protected static final String DATATYPE_VALIDATOR_FACTORY =
             Constants.XERCES_PROPERTY_PREFIX + Constants.DATATYPE_VALIDATOR_FACTORY_PROPERTY;
 
+    /** Property identifier: validation manager. */
     protected static final String VALIDATION_MANAGER = Constants.XERCES_PROPERTY_PREFIX + Constants.VALIDATION_MANAGER_PROPERTY;
 
     /** Property identifier: XML Schema validator. */
@@ -197,6 +201,7 @@ public class SchemaParsingConfig extends BasicParserConfiguration implements XML
     /** Input Source */
     protected XMLInputSource fInputSource;
 
+    /** Validation manager for coordinating validation across components. */
     protected final ValidationManager fValidationManager;
     // state
 
@@ -425,10 +430,11 @@ public class SchemaParsingConfig extends BasicParserConfiguration implements XML
     }
 
     /**
-     * setProperty
+     * Sets a property value for the configuration.
      *
-     * @param propertyId
-     * @param value
+     * @param propertyId the identifier of the property to set
+     * @param value the new value for the property
+     * @throws XMLConfigurationException if the property is not recognized or cannot be set
      */
     public void setProperty(String propertyId, Object value) throws XMLConfigurationException {
 
@@ -936,7 +942,10 @@ public class SchemaParsingConfig extends BasicParserConfiguration implements XML
     // other methods
     //
 
-    /** */
+    /**
+     * Resets the node pool for DTM node reuse.
+     * This method is currently not implemented but reserved for future optimization.
+     */
     public void resetNodePool() {
         // REVISIT: to implement: introduce a node pool to reuse DTM nodes.
         //          reset this pool here.

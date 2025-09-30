@@ -22,15 +22,19 @@ import org.codelibs.xerces.util.SymbolHash;
 
 /**
  * A special factory to create/return built-in schema DVs and create user-defined DVs
- * that includes anyAtomicType, yearMonthDuration and dayTimeDuration
- *
- * @xerces.internal
+ * that includes anyAtomicType, yearMonthDuration and dayTimeDuration.
  *
  * @author Khaled Noaman, IBM
  *
  * @version $Id: ExtendedSchemaDVFactoryImpl.java 710089 2008-11-03 16:01:16Z knoaman $
  */
 public class ExtendedSchemaDVFactoryImpl extends BaseSchemaDVFactory {
+
+    /**
+     * Default constructor for internal instantiation.
+     */
+    public ExtendedSchemaDVFactoryImpl() {
+    }
 
     static SymbolHash fBuiltInTypes = new SymbolHash();
     static {

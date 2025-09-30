@@ -25,23 +25,26 @@ public interface XSAttributeUse extends XSObject {
      * [required]: determines whether this use of an attribute declaration
      * requires an appropriate attribute information item to be present, or
      * merely allows it.
+     * @return true if the attribute is required, false if optional
      */
     public boolean getRequired();
 
     /**
      * [attribute declaration]: provides the attribute declaration itself,
      * which will in turn determine the simple type definition used.
+     * @return the attribute declaration
      */
     public XSAttributeDeclaration getAttrDeclaration();
 
     /**
      * Value Constraint: one of default, fixed, or none.
+     * @return the constraint type (VC_NONE, VC_DEFAULT, or VC_FIXED)
      */
     public short getConstraintType();
 
     /**
      * Value Constraint: The constraint value, otherwise <code>null</code>.
-     *
+     * @return the constraint value as a string, or null if none
      * @deprecated Use getValueConstraintValue().getNormalizedValue() instead
      */
     public String getConstraintValue();
@@ -50,6 +53,7 @@ public interface XSAttributeUse extends XSObject {
      * Value Constraint: Binding specific actual constraint value or
      * <code>null</code> if the value is in error or there is no value
      * constraint.
+     * @return the actual constraint value
      * @exception XSException
      *   NOT_SUPPORTED_ERR: Raised if the implementation does not support this
      *   method.
@@ -68,6 +72,7 @@ public interface XSAttributeUse extends XSObject {
      * constraint value of the list or list of union type definitions use
      * <code>itemValueTypes</code>. If the <code>actualNormalizedValue</code>
      *  is <code>null</code>, this method returns <code>UNAVAILABLE_DT</code>.
+     * @return the actual value constraint type
      * @exception XSException
      *   NOT_SUPPORTED_ERR: Raised if the implementation does not support this
      *   method.
@@ -85,6 +90,7 @@ public interface XSAttributeUse extends XSObject {
      * for each actual constraint value in the list the array contains the
      * corresponding memberType kind. For examples, see
      * <code>ItemPSVI.itemValueTypes</code>.
+     * @return the item value types for list values
      * @exception XSException
      *   NOT_SUPPORTED_ERR: Raised if the implementation does not support this
      *   method.
@@ -95,11 +101,13 @@ public interface XSAttributeUse extends XSObject {
 
     /**
      * The actual value of the default or fixed value constraint.
+     * @return the value constraint, or null if none
      */
     public XSValue getValueConstraintValue();
 
     /**
      * A sequence of [annotations] or an empty <code>XSObjectList</code>.
+     * @return the annotations associated with this attribute use
      */
     public XSObjectList getAnnotations();
 }

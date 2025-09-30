@@ -61,7 +61,8 @@ public interface XMLDTDContentModelHandler {
      * A sequence separator for children content models. This separator
      * is used to specify that the allowed children must follow in the
      * specified sequence.
-     * <p>
+     *
+     * <p>Example:</p>
      * <pre>
      * &lt;!ELEMENT elem (foo,bar)&gt;
      * &lt;!ELEMENT elem (foo,bar*)&gt;
@@ -258,10 +259,18 @@ public interface XMLDTDContentModelHandler {
      */
     public void endContentModel(Augmentations augmentations) throws XNIException;
 
-    // set content model source
+    /**
+     * Sets the DTD content model source.
+     *
+     * @param source The DTD content model source
+     */
     public void setDTDContentModelSource(XMLDTDContentModelSource source);
 
-    // get content model source
+    /**
+     * Returns the DTD content model source.
+     *
+     * @return The DTD content model source
+     */
     public XMLDTDContentModelSource getDTDContentModelSource();
 
 } // interface XMLDTDContentModelHandler

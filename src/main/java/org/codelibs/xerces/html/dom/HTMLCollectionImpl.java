@@ -54,7 +54,7 @@ import org.w3c.dom.html.HTMLTableSectionElement;
  * document being changed as results are fetched; in all likelihood, the results
  * might be out dated, but not erroneous.
  *
- * @xerces.internal
+
  *
  * @version $Revision: 1035042 $ $Date: 2010-11-15 00:11:49 +0530 (Mon, 15 Nov 2010) $
  * @author <a href="mailto:arkin@exoffice.com">Assaf Arkin</a>
@@ -420,7 +420,7 @@ class HTMLCollectionImpl implements HTMLCollection, Serializable {
  * by reference. It encompasses all the operations that need be performed on
  * the index, although direct access is possible.
  *
- * @xerces.internal
+
  *
  * @see CollectionImpl#item
  */

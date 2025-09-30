@@ -20,7 +20,9 @@ import org.codelibs.xerces.wml.WMLElement;
 import org.codelibs.xerces.dom.ElementImpl;
 
 /**
- * @xerces.internal
+ * Base implementation for WML elements. This class provides common functionality
+ * for all Wireless Markup Language (WML) element implementations.
+ *
  * @version $Id: WMLElementImpl.java 661560 2008-05-30 03:22:25Z mrglavas $
  * @author <a href="mailto:david@topware.com.tw">David Li</a>
  */
@@ -28,22 +30,48 @@ public class WMLElementImpl extends ElementImpl implements WMLElement {
 
     private static final long serialVersionUID = 3440984702956371604L;
 
+    /**
+     * Constructs a new WML element with the specified owner document and tag name.
+     *
+     * @param owner the owner document
+     * @param tagName the tag name for this element
+     */
     public WMLElementImpl(WMLDocumentImpl owner, String tagName) {
         super(owner, tagName);
     }
 
+    /**
+     * Sets the 'class' attribute of this WML element.
+     *
+     * @param newValue the class name value to set
+     */
     public void setClassName(String newValue) {
         setAttribute("class", newValue);
     }
 
+    /**
+     * Gets the 'class' attribute of this WML element.
+     *
+     * @return the class name value
+     */
     public String getClassName() {
         return getAttribute("class");
     }
 
+    /**
+     * Sets the 'xml:lang' attribute of this WML element.
+     *
+     * @param newValue the xml:lang value to set
+     */
     public void setXmlLang(String newValue) {
         setAttribute("xml:lang", newValue);
     }
 
+    /**
+     * Gets the 'xml:lang' attribute of this WML element.
+     *
+     * @return the xml:lang value
+     */
     public String getXmlLang() {
         return getAttribute("xml:lang");
     }

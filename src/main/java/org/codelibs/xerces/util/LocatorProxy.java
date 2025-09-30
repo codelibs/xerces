@@ -42,7 +42,10 @@ public class LocatorProxy implements Locator2 {
     // Constructors
     //
 
-    /** Constructs an XML locator proxy. */
+    /**
+     * Constructs an XML locator proxy.
+     * @param locator the XMLLocator to wrap
+     */
     public LocatorProxy(XMLLocator locator) {
         fLocator = locator;
     }

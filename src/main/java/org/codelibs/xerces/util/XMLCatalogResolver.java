@@ -388,6 +388,8 @@ public class XMLCatalogResolver implements XMLEntityResolver, EntityResolver2, L
      *
      * @param resourceIdentifier the identifier to resolve
      *
+     * @return the resolved system identifier, or null if the identifier cannot be resolved
+     *
      * @throws XNIException thrown on general error
      * @throws IOException thrown if some i/o error occurs
      */

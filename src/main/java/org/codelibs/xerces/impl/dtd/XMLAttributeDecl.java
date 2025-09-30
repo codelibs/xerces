@@ -20,11 +20,20 @@ package org.codelibs.xerces.impl.dtd;
 import org.codelibs.xerces.xni.QName;
 
 /**
- * @xerces.internal
+ * XML attribute declaration representation for DTD processing.
+ * This class holds the declaration information for XML attributes
+ * including name, simple type, default value, and optional status.
  *
  * @version $Id: XMLAttributeDecl.java 446755 2006-09-15 21:56:27Z mrglavas $
  */
 public class XMLAttributeDecl {
+
+    /**
+     * Default constructor. Creates an empty attribute declaration.
+     */
+    public XMLAttributeDecl() {
+        // Empty constructor
+    }
 
     //
     // Data
@@ -44,11 +53,11 @@ public class XMLAttributeDecl {
     //
 
     /**
-     * setValues
+     * Sets the values for this attribute declaration.
      *
-     * @param name
-     * @param simpleType
-     * @param optional
+     * @param name the qualified name of the attribute
+     * @param simpleType the simple type information for the attribute
+     * @param optional true if the attribute is optional, false if required
      */
     public void setValues(QName name, XMLSimpleType simpleType, boolean optional) {
         this.name.setValues(name);

@@ -30,13 +30,24 @@ public final class XMLLocatorWrapper implements XMLLocator {
 
     private XMLLocator fLocator = null;
 
+    /**
+     * Default constructor.
+     */
     public XMLLocatorWrapper() {
     }
 
+    /**
+     * Sets the wrapped XMLLocator.
+     * @param locator the XMLLocator to wrap
+     */
     public void setLocator(XMLLocator locator) {
         fLocator = locator;
     }
 
+    /**
+     * Returns the wrapped XMLLocator.
+     * @return the wrapped XMLLocator
+     */
     public XMLLocator getLocator() {
         return fLocator;
     }
