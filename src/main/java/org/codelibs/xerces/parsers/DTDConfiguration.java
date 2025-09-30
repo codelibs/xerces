@@ -147,6 +147,7 @@ public class DTDConfiguration extends BasicParserConfiguration implements XMLPul
     protected static final String DATATYPE_VALIDATOR_FACTORY =
             Constants.XERCES_PROPERTY_PREFIX + Constants.DATATYPE_VALIDATOR_FACTORY_PROPERTY;
 
+    /** Property identifier: validation manager. */
     protected static final String VALIDATION_MANAGER = Constants.XERCES_PROPERTY_PREFIX + Constants.VALIDATION_MANAGER_PROPERTY;
 
     /** Property identifier: JAXP schema language / DOM schema-type. */
@@ -201,7 +202,9 @@ public class DTDConfiguration extends BasicParserConfiguration implements XMLPul
     /** Namespace binder. */
     protected XMLNamespaceBinder fNamespaceBinder;
 
+    /** Validation manager. */
     protected ValidationManager fValidationManager;
+
     // state
 
     /** Locator */
@@ -603,6 +606,10 @@ public class DTDConfiguration extends BasicParserConfiguration implements XMLPul
         configureDTDPipeline();
     } // configurePipeline()
 
+    /**
+     * Configures the DTD processing pipeline by setting up the DTD scanner,
+     * processor, and their relationships.
+     */
     protected void configureDTDPipeline() {
 
         // setup dtd pipeline
@@ -755,46 +762,83 @@ public class DTDConfiguration extends BasicParserConfiguration implements XMLPul
 
     // factory methods
 
-    /** Creates an entity manager. */
+    /**
+     * Creates an entity manager.
+     *
+     * @return A new XMLEntityManager instance.
+     */
     protected XMLEntityManager createEntityManager() {
         return new XMLEntityManager();
     } // createEntityManager():XMLEntityManager
 
-    /** Creates an error reporter. */
+    /**
+     * Creates an error reporter.
+     *
+     * @return A new XMLErrorReporter instance.
+     */
     protected XMLErrorReporter createErrorReporter() {
         return new XMLErrorReporter();
     } // createErrorReporter():XMLErrorReporter
 
-    /** Create a document scanner. */
+    /**
+     * Creates a document scanner.
+     *
+     * @return A new XMLDocumentScanner instance.
+     */
     protected XMLDocumentScanner createDocumentScanner() {
         return new XMLDocumentScannerImpl();
     } // createDocumentScanner():XMLDocumentScanner
 
-    /** Create a DTD scanner. */
+    /**
+     * Creates a DTD scanner.
+     *
+     * @return A new XMLDTDScanner instance.
+     */
     protected XMLDTDScanner createDTDScanner() {
         return new XMLDTDScannerImpl();
     } // createDTDScanner():XMLDTDScanner
 
-    /** Create a DTD loader . */
+    /**
+     * Creates a DTD processor.
+     *
+     * @return A new XMLDTDProcessor instance.
+     */
     protected XMLDTDProcessor createDTDProcessor() {
         return new XMLDTDProcessor();
     } // createDTDProcessor():XMLDTDProcessor
 
-    /** Create a DTD validator. */
+    /**
+     * Creates a DTD validator.
+     *
+     * @return A new XMLDTDValidator instance.
+     */
     protected XMLDTDValidator createDTDValidator() {
         return new XMLDTDValidator();
     } // createDTDValidator():XMLDTDValidator
 
-    /** Create a namespace binder. */
+    /**
+     * Creates a namespace binder.
+     *
+     * @return A new XMLNamespaceBinder instance.
+     */
     protected XMLNamespaceBinder createNamespaceBinder() {
         return new XMLNamespaceBinder();
     } // createNamespaceBinder():XMLNamespaceBinder
 
-    /** Create a datatype validator factory. */
+    /**
+     * Creates a datatype validator factory.
+     *
+     * @return A new DTDDVFactory instance.
+     */
     protected DTDDVFactory createDatatypeValidatorFactory() {
         return DTDDVFactory.getInstance();
     } // createDatatypeValidatorFactory():DatatypeValidatorFactory
 
+    /**
+     * Creates a validation manager.
+     *
+     * @return A new ValidationManager instance.
+     */
     protected ValidationManager createValidationManager() {
         return new ValidationManager();
     }

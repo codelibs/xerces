@@ -27,7 +27,8 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.events.EndElement;
 
 /**
- * @xerces.internal
+ * Implementation of {@code EndElement} event for StAX.
+ * Represents the end of an XML element.
  *
  * @author Lucian Holland
  *
@@ -36,7 +37,10 @@ import javax.xml.stream.events.EndElement;
 public final class EndElementImpl extends ElementImpl implements EndElement {
 
     /**
-     * @param location The location object for this event.
+     * Constructor for creating an EndElement event.
+     * @param name the qualified name of the element
+     * @param namespaces an iterator over namespace declarations
+     * @param location the location object for this event
      */
     public EndElementImpl(final QName name, final Iterator namespaces, final Location location) {
         super(name, false, namespaces, location);

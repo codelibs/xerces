@@ -35,7 +35,7 @@ import org.w3c.dom.Text;
  * valid, since they're really just two different ways of quoting
  * characters when they're written out as part of an XML stream.
  *
- * @xerces.internal
+
  *
  * @version $Id: TextImpl.java 447266 2006-09-18 05:57:49Z mrglavas $
  * @since  PR-DOM-Level-1-19980818.
@@ -61,7 +61,12 @@ public class TextImpl extends CharacterDataImpl implements CharacterData, Text {
     public TextImpl() {
     }
 
-    /** Factory constructor. */
+    /**
+     * Factory constructor.
+     *
+     * @param ownerDoc The document that owns this node
+     * @param data The text data for this node
+     */
     public TextImpl(CoreDocumentImpl ownerDoc, String data) {
         super(ownerDoc, data);
     }
@@ -69,8 +74,8 @@ public class TextImpl extends CharacterDataImpl implements CharacterData, Text {
     /**
      * NON-DOM: resets node and sets specified values for the current node
      *
-     * @param ownerDoc
-     * @param data
+     * @param ownerDoc The document that owns this node
+     * @param data The text data for this node
      */
     public void setValues(CoreDocumentImpl ownerDoc, String data) {
 
@@ -99,6 +104,8 @@ public class TextImpl extends CharacterDataImpl implements CharacterData, Text {
 
     /**
      * NON-DOM: Set whether this Text is ignorable whitespace.
+     *
+     * @param ignore True if this text should be treated as ignorable whitespace
      */
     public void setIgnorableWhitespace(boolean ignore) {
 
@@ -113,7 +120,7 @@ public class TextImpl extends CharacterDataImpl implements CharacterData, Text {
      * DOM L3 Core CR - Experimental
      *
      * Returns whether this text node contains
-     * element content whitespace</a>, often abusively called "ignorable whitespace".
+     * element content whitespace, often abusively called "ignorable whitespace".
      * The text node is determined to contain whitespace in element content
      * during the load of the document or if validation occurs while using
      * <code>Document.normalizeDocument()</code>.
@@ -162,7 +169,7 @@ public class TextImpl extends CharacterDataImpl implements CharacterData, Text {
      * internal method taking a StringBuffer in parameter and inserts the
      * text content at the start of the buffer
      *
-     * @param buf
+     * @param buf The StringBuffer to insert text content into
      */
     protected void insertTextContent(StringBuffer buf) throws DOMException {
         String content = getNodeValue();
@@ -547,6 +554,8 @@ public class TextImpl extends CharacterDataImpl implements CharacterData, Text {
 
     /**
      * NON-DOM: Returns whether this Text is ignorable whitespace.
+     *
+     * @return true if this text node contains ignorable whitespace, false otherwise
      */
     public boolean isIgnorableWhitespace() {
 
@@ -573,10 +582,10 @@ public class TextImpl extends CharacterDataImpl implements CharacterData, Text {
      * @return A reference to the new node (containing data after the offset
      *         point). The original node will contain data up to that point.
      *
-     * @throws DOMException(INDEX_SIZE_ERR)
-     *             if offset is <0 or >length.
+     * @throws DOMException INDEX_SIZE_ERR
+     *             if offset is &lt;0 or &gt;length.
      *
-     * @throws DOMException(NO_MODIFICATION_ALLOWED_ERR)
+     * @throws DOMException NO_MODIFICATION_ALLOWED_ERR
      *             if node is read-only.
      */
     public Text splitText(int offset) throws DOMException {
@@ -610,6 +619,8 @@ public class TextImpl extends CharacterDataImpl implements CharacterData, Text {
 
     /**
      * NON-DOM (used by DOMParser): Reset data for the node.
+     *
+     * @param value The new data value to set for this node
      */
     public void replaceData(String value) {
         data = value;
@@ -618,6 +629,8 @@ public class TextImpl extends CharacterDataImpl implements CharacterData, Text {
     /**
      * NON-DOM (used by DOMParser: Sets data to empty string.
      *  Returns the value the data was set to.
+     *
+     * @return The previous data value before it was cleared
      */
     public String removeData() {
         String olddata = data;

@@ -24,7 +24,7 @@ import org.codelibs.xerces.xs.StringList;
 /**
  * StringList implementation for schema error codes and error messages.
  *
- * @xerces.internal
+
  *
  * @author Michael Glavassevich, IBM
  *

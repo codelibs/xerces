@@ -56,7 +56,7 @@ import org.w3c.dom.Element;
  *            ((attribute | attributeGroup)*, anyAttribute?))))
  * </complexType>
  *
- * @xerces.internal
+
  *
  * @version $Id: XSDComplexTypeTraverser.java 1867108 2019-09-18 09:31:04Z mukulg $
  */

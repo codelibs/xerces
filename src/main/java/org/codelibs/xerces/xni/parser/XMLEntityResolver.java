@@ -48,6 +48,7 @@ public interface XMLEntityResolver {
      *
      * @param resourceIdentifier location of the XML resource to resolve
      *
+     * @return The resolved input source, or null if the entity should be opened normally
      * @throws XNIException Thrown on general error.
      * @throws IOException  Thrown if resolved entity stream cannot be
      *                      opened or some other i/o error occurs.

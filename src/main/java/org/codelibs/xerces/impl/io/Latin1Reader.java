@@ -24,7 +24,6 @@ import java.io.Reader;
 /**
  * <p>Reader for the ISO-8859-1 encoding.</p>
  *
- * @xerces.internal
  *
  * @author Michael Glavassevich, IBM
  *
@@ -97,7 +96,7 @@ public final class Latin1Reader extends Reader {
      * should override this method.
      *
      * @return     The character read, as an integer in the range 0 to 255
-     *             (<tt>0x00-0xff</tt>), or -1 if the end of the stream has
+     *             (<code>0x00-0xff</code>), or -1 if the end of the stream has
      *             been reached
      *
      * @exception  IOException  If an I/O error occurs

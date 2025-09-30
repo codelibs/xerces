@@ -40,7 +40,7 @@ import org.codelibs.xerces.xs.XSValue;
 /**
  * Element namespace implementation; stores PSVI element items.
  *
- * @xerces.internal
+
  *
  * @author Sandy Gao, IBM
  *
@@ -53,6 +53,11 @@ public class PSVIElementNSImpl extends ElementNSImpl implements ElementPSVI {
 
     /**
      * Construct an element node.
+     *
+     * @param ownerDocument the document that owns this element
+     * @param namespaceURI the namespace URI of the element
+     * @param qualifiedName the qualified name of the element
+     * @param localName the local name of the element
      */
     public PSVIElementNSImpl(CoreDocumentImpl ownerDocument, String namespaceURI, String qualifiedName, String localName) {
         super(ownerDocument, namespaceURI, qualifiedName, localName);
@@ -60,6 +65,10 @@ public class PSVIElementNSImpl extends ElementNSImpl implements ElementPSVI {
 
     /**
      * Construct an element node.
+     *
+     * @param ownerDocument the document that owns this element
+     * @param namespaceURI the namespace URI of the element
+     * @param qualifiedName the qualified name of the element
      */
     public PSVIElementNSImpl(CoreDocumentImpl ownerDocument, String namespaceURI, String qualifiedName) {
         super(ownerDocument, namespaceURI, qualifiedName);
@@ -126,7 +135,7 @@ public class PSVIElementNSImpl extends ElementNSImpl implements ElementPSVI {
      * [schema default]
      *
      * @return The canonical lexical representation of the declaration's {value constraint} value.
-     * @see <a href="http://www.w3.org/TR/xmlschema-1/#e-schema_default>XML Schema Part 1: Structures [schema default]</a>
+     * @see <a href="http://www.w3.org/TR/xmlschema-1/#e-schema_default">XML Schema Part 1: Structures [schema default]</a>
      */
     public String getSchemaDefault() {
         return fDeclaration == null ? null : fDeclaration.getConstraintValue();
@@ -136,7 +145,7 @@ public class PSVIElementNSImpl extends ElementNSImpl implements ElementPSVI {
      * [schema normalized value]
      *
      *
-     * @see <a href="http://www.w3.org/TR/xmlschema-1/#e-schema_normalized_value>XML Schema Part 1: Structures [schema normalized value]</a>
+     * @see <a href="http://www.w3.org/TR/xmlschema-1/#e-schema_normalized_value">XML Schema Part 1: Structures [schema normalized value]</a>
      * @return the normalized value of this item after validation
      */
     public String getSchemaNormalizedValue() {
@@ -206,7 +215,7 @@ public class PSVIElementNSImpl extends ElementNSImpl implements ElementPSVI {
 
     /**
      * [nil]
-     * @see <a href="http://www.w3.org/TR/xmlschema-1/#e-nil>XML Schema Part 1: Structures [nil]</a>
+     * @see <a href="http://www.w3.org/TR/xmlschema-1/#e-nil">XML Schema Part 1: Structures [nil]</a>
      * @return true if clause 3.2 of Element Locally Valid (Element) (3.3.4) above is satisfied, otherwise false
      */
     public boolean getNil() {
@@ -215,7 +224,7 @@ public class PSVIElementNSImpl extends ElementNSImpl implements ElementPSVI {
 
     /**
      * [notation]
-     * @see <a href="http://www.w3.org/TR/xmlschema-1/#e-notation>XML Schema Part 1: Structures [notation]</a>
+     * @see <a href="http://www.w3.org/TR/xmlschema-1/#e-notation">XML Schema Part 1: Structures [notation]</a>
      * @return The notation declaration.
      */
     public XSNotationDeclaration getNotation() {
@@ -320,10 +329,23 @@ public class PSVIElementNSImpl extends ElementNSImpl implements ElementPSVI {
     // REVISIT: Forbid serialization of PSVI DOM until
     // we support object serialization of grammars -- mrglavas
 
+    /**
+     * Serialization is not supported for PSVI elements.
+     *
+     * @param out the ObjectOutputStream to write to
+     * @throws IOException always, as serialization is not supported
+     */
     private void writeObject(ObjectOutputStream out) throws IOException {
         throw new NotSerializableException(getClass().getName());
     }
 
+    /**
+     * Deserialization is not supported for PSVI elements.
+     *
+     * @param in the ObjectInputStream to read from
+     * @throws IOException always, as deserialization is not supported
+     * @throws ClassNotFoundException never thrown, but declared for interface compliance
+     */
     private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         throw new NotSerializableException(getClass().getName());
     }

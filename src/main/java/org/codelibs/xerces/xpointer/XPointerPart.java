@@ -29,19 +29,19 @@ import org.codelibs.xerces.xni.XNIException;
  * expressions.
  * </p>
  *
- * @xerces.internal
+
  *
  * @version $Id: XPointerPart.java 603808 2007-12-13 03:44:48Z mrglavas $
  */
 public interface XPointerPart {
 
-    // The start element event
+    /** Constant representing the start element event. */
     public static final int EVENT_ELEMENT_START = 0;
 
-    // The end element event
+    /** Constant representing the end element event. */
     public static final int EVENT_ELEMENT_END = 1;
 
-    // The empty element event
+    /** Constant representing the empty element event. */
     public static final int EVENT_ELEMENT_EMPTY = 2;
 
     /**
@@ -67,6 +67,7 @@ public interface XPointerPart {
      *                0 - The start of an element
      *                1 - The end of an element
      *                2 - An empty element call
+     * @return true if the XPointer expression matches the element
      * @throws XNIException Thrown to signal an error
      *
      */

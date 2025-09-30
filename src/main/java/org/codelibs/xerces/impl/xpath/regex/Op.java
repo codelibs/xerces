@@ -20,7 +20,7 @@ package org.codelibs.xerces.impl.xpath.regex;
 import java.util.Vector;
 
 /**
- * @xerces.internal
+
  *
  * @version $Id: Op.java 572108 2007-09-02 18:48:31Z mrglavas $
  */

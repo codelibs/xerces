@@ -70,8 +70,9 @@ public abstract class AbstractXMLDocumentParser extends XMLParser implements XML
     //
 
     /**
-     * Constructs a document parser using the default symbol table
-     * and grammar pool.
+     * Constructs a document parser using the specified configuration.
+     *
+     * @param config the parser configuration to use
      */
     protected AbstractXMLDocumentParser(XMLParserConfiguration config) {
         super(config);

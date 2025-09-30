@@ -34,6 +34,8 @@ public interface ASNamedObjectMap {
      * The number of <code>ASObjects</code> in the <code>ASObjectList</code>.
      * The range of valid child node indices is 0 to <code>length-1</code>
      * inclusive.
+     *
+     * @return the number of ASObjects in the map
      */
     public int getLength();
 

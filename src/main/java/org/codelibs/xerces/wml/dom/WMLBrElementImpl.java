@@ -19,7 +19,8 @@ package org.codelibs.xerces.wml.dom;
 import org.codelibs.xerces.wml.WMLBrElement;
 
 /**
- * @xerces.internal
+ * Implementation of WMLBrElement interface for WML line break elements.
+ *
  * @version $Id: WMLBrElementImpl.java 661560 2008-05-30 03:22:25Z mrglavas $
  * @author <a href="mailto:david@topware.com.tw">David Li</a>
  */
@@ -27,6 +28,12 @@ public class WMLBrElementImpl extends WMLElementImpl implements WMLBrElement {
 
     private static final long serialVersionUID = -5047802409550691268L;
 
+    /**
+     * Constructs a new WML line break element with the specified owner document and tag name.
+     *
+     * @param owner the owner document
+     * @param tagName the tag name for this element
+     */
     public WMLBrElementImpl(WMLDocumentImpl owner, String tagName) {
         super(owner, tagName);
     }

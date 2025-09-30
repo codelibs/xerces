@@ -42,7 +42,7 @@ import org.w3c.dom.UserDataHandler;
  * and using Element and Attribute information. Nor was the linkage
  * between Entities and Entity References nailed down solidly.
  *
- * @xerces.internal
+
  *
  * @author Arnaud  Le Hors, IBM
  * @author Joe Kesselman, IBM
@@ -78,12 +78,15 @@ public class DocumentTypeImpl extends ParentNode implements DocumentType {
     protected NamedNodeMapImpl elements;
 
     // DOM2: support public ID.
+    /** The public identifier of the external subset. */
     protected String publicID;
 
     // DOM2: support system ID.
+    /** The system identifier of the external subset. */
     protected String systemID;
 
     // DOM2: support internal subset.
+    /** The internal subset as a string. */
     protected String internalSubset;
 
     /** The following are required for compareDocumentPosition
@@ -94,10 +97,16 @@ public class DocumentTypeImpl extends ParentNode implements DocumentType {
 
     //
     // Constructors
-    //
+    /**
+     * Hashtable for storing user data associated with this document type.
+     */
     private Hashtable userData = null;
 
-    /** Factory method for creating a document type node. */
+    /**
+     * Factory method for creating a document type node.
+     * @param ownerDocument the document that owns this node
+     * @param name the name of the document type
+     */
     public DocumentTypeImpl(CoreDocumentImpl ownerDocument, String name) {
         super(ownerDocument);
 
@@ -111,7 +120,13 @@ public class DocumentTypeImpl extends ParentNode implements DocumentType {
 
     } // <init>(CoreDocumentImpl,String)
 
-    /** Factory method for creating a document type node. */
+    /**
+     * Factory method for creating a document type node.
+     * @param ownerDocument the document that owns this node
+     * @param qualifiedName the qualified name of the document type
+     * @param publicID the public identifier of the external subset
+     * @param systemID the system identifier of the external subset
+     */
     public DocumentTypeImpl(CoreDocumentImpl ownerDocument, String qualifiedName, String publicID, String systemID) {
         this(ownerDocument, qualifiedName);
         this.publicID = publicID;
@@ -150,9 +165,10 @@ public class DocumentTypeImpl extends ParentNode implements DocumentType {
     }
 
     /**
-     * NON-DOM. <p>
+     * NON-DOM.
      *
      * Set the internalSubset given as a string.
+     * @param internalSubset the internal subset as a string
      */
     public void setInternalSubset(String internalSubset) {
         if (needsSyncData()) {
@@ -358,7 +374,7 @@ public class DocumentTypeImpl extends ParentNode implements DocumentType {
     /**
      * Access the collection of general Entities, both external and
      * internal, defined in the DTD. For example, in:
-     * <p>
+     *
      * <pre>
      *   &lt;!doctype example SYSTEM "ex.dtd" [
      *     &lt;!ENTITY foo "foo"&gt;
@@ -366,7 +382,6 @@ public class DocumentTypeImpl extends ParentNode implements DocumentType {
      *     &lt;!ENTITY % baz "baz"&gt;
      *     ]&gt;
      * </pre>
-     * <p>
      * The Entities map includes foo and bar, but not baz. It is promised that
      * only Nodes which are Entities will exist in this NamedNodeMap.
      * <p>
@@ -421,6 +436,7 @@ public class DocumentTypeImpl extends ParentNode implements DocumentType {
 
     /**
      * NON-DOM: Access the collection of ElementDefinitions.
+     * @return the named node map containing element definitions
      * @see ElementDefinitionImpl
      */
     public NamedNodeMap getElements() {

@@ -26,7 +26,7 @@ import org.codelibs.xerces.impl.dv.ValidationContext;
 /**
  * For list types: ENTITIES, IDREFS, NMTOKENS.
  *
- * @xerces.internal
+
  *
  * @author Jeffrey Rodriguez, IBM
  * @author Sandy Gao, IBM
@@ -38,7 +38,10 @@ public class ListDatatypeValidator implements DatatypeValidator {
     // the type of items in the list
     final DatatypeValidator fItemValidator;
 
-    // construct a list datatype validator
+    /**
+     * Constructs a list datatype validator.
+     * @param itemDV the datatype validator for list items
+     */
     public ListDatatypeValidator(DatatypeValidator itemDV) {
         fItemValidator = itemDV;
     }
@@ -49,7 +52,7 @@ public class ListDatatypeValidator implements DatatypeValidator {
      *
      * @param content       the string value that needs to be validated
      * @param context       the validation context
-     * @throws InvalidDatatypeException if the content is
+     * @throws InvalidDatatypeValueException if the content is
      *         invalid according to the rules for the validators
      * @see InvalidDatatypeValueException
      */

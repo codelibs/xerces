@@ -38,7 +38,7 @@ import org.w3c.dom.ls.LSInput;
 /**
  * <p>An implementation of XSLoader which wraps XMLSchemaLoader.</p>
  *
- * @xerces.internal
+
  *
  * @author Michael Glavassevich, IBM
  *

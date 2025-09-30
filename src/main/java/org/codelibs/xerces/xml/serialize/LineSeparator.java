@@ -18,6 +18,8 @@
 package org.codelibs.xerces.xml.serialize;
 
 /**
+ * Defines constants for various line separator strings used across different platforms.
+ * This class only contains static constants and cannot be instantiated.
  * @deprecated This class was deprecated in Xerces 2.9.0. It is recommended
  * that new applications use the DOM Level 3 LSSerializer or JAXP's Transformation
  * API for XML (TrAX) for serializing XML. See the Xerces documentation for more
@@ -29,22 +31,28 @@ package org.codelibs.xerces.xml.serialize;
 public final class LineSeparator {
 
     /**
-     * Line separator for Unix systems (<tt>\n</tt>).
+     * Private constructor to prevent instantiation of this utility class.
+     */
+    private LineSeparator() {
+    }
+
+    /**
+     * Line separator for Unix systems (<code>\n</code>).
      */
     public static final String Unix = "\n";
 
     /**
-     * Line separator for Windows systems (<tt>\r\n</tt>).
+     * Line separator for Windows systems (<code>\r\n</code>).
      */
     public static final String Windows = "\r\n";
 
     /**
-     * Line separator for Macintosh systems (<tt>\r</tt>).
+     * Line separator for Macintosh systems (<code>\r</code>).
      */
     public static final String Macintosh = "\r";
 
     /**
-     * Line separator for the Web (<tt>\n</tt>).
+     * Line separator for the Web (<code>\n</code>).
      */
     public static final String Web = "\n";
 

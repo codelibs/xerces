@@ -22,19 +22,24 @@ import org.w3c.dom.Node;
 /**
  * An interface for deferred node object.
  *
- * @xerces.internal
+
  *
  * @version $Id: DeferredNode.java 447266 2006-09-18 05:57:49Z mrglavas $
  */
 public interface DeferredNode extends Node {
 
+    /** Node type constant for deferred nodes. */
     public static final short TYPE_NODE = 20;
 
     //
     // DeferredNode methods
     //
 
-    /** Returns the node index. */
+    /**
+     * Returns the node index.
+     *
+     * @return The index of this deferred node
+     */
     public int getNodeIndex();
 
 } // interface DeferredNode

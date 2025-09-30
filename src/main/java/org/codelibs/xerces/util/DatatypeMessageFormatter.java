@@ -32,6 +32,13 @@ public class DatatypeMessageFormatter {
     private static final String BASE_NAME = "org.codelibs.xerces.impl.msg.DatatypeMessages";
 
     /**
+     * Private constructor to prevent instantiation of this utility class.
+     */
+    private DatatypeMessageFormatter() {
+        // Utility class - no instances allowed
+    }
+
+    /**
      * Formats a message with the specified arguments using the given
      * locale information.
      *

@@ -22,6 +22,8 @@ and Save Specification</a>.
 public interface ASDataType {
     /**
      * One of the enumerated codes representing the data type.
+     *
+     * @return the data type code
      */
     public short getDataType();
 

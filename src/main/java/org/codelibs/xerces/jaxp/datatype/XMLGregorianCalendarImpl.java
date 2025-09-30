@@ -56,12 +56,13 @@ import org.codelibs.xerces.util.DatatypeMessageFormatter;
  * <a href="http://www.w3.org/TR/xmlschema-2/#isoformats">W3C XML Schema 1.0 Part 2, Appendix D,
  * <i>ISO 8601 Date and Time Formats</i></a>.</p>
  *
- * <a name="datetimefieldsmapping"/>
- * <table border="2" rules="all" cellpadding="2">
+ * <a id="datetimefieldsmapping"></a>
+ * <table border="1">
+ *   <caption>Date/time datatype field mapping between XML Schema 1.0 and Java representation</caption>
  *   <thead>
  *     <tr>
- *       <th align="center" colspan="3">
- *         Date/time datatype field mapping between XML Schema 1.0 and Java representation
+ *       <th colspan="3">
+ *         Field Mappings
  *       </th>
  *     </tr>
  *   </thead>
@@ -73,8 +74,7 @@ import org.codelibs.xerces.util.DatatypeMessageFormatter;
  *       <th>Related<br/>XMLGregorianCalendar<br/>Accessor(s)</th>
  *       <th>Value Range</th>
  *     </tr>
- *     <a name="datetimefield-year"/>
- *     <tr>
+ *     <tr id="datetimefield-year">
  *       <td> year </td>
  *       <td> {@link #getYear()} + {@link #getEon()} or<br/>
  *            {@link #getEonAndYear}
@@ -83,7 +83,7 @@ import org.codelibs.xerces.util.DatatypeMessageFormatter;
  *            or {@link DatatypeConstants#FIELD_UNDEFINED}.<br/>
  *            {@link #getEon()} is high order year value in billion of years.<br/>
  *            <code>getEon()</code> has values greater than or equal to (10^9) or less than or equal to -(10^9).
- *            A value of null indicates field is undefined.</br>
+ *            A value of null indicates field is undefined.<br/>
  *            Given that <a href="http://www.w3.org/2001/05/xmlschema-errata#e2-63">XML Schema 1.0 errata</a> states that the year zero
  *            will be a valid lexical value in a future version of XML Schema,
  *            this class allows the year field to be set to zero. Otherwise,
@@ -92,14 +92,12 @@ import org.codelibs.xerces.util.DatatypeMessageFormatter;
  *            validation does not allow for the year field to have a value of zero.
  *            </td>
  *     </tr>
- *     <a name="datetimefield-month"/>
- *     <tr>
+ *     <tr id="datetimefield-month">
  *       <td> month </td>
  *       <td> {@link #getMonth()} </td>
  *       <td> 1 to 12 or {@link DatatypeConstants#FIELD_UNDEFINED} </td>
  *     </tr>
- *     <a name="datetimefield-day"/>
- *     <tr>
+ *     <tr id="datetimefield-day">
  *       <td> day </td>
  *       <td> {@link #getDay()} </td>
  *       <td> Independent of month, max range is 1 to 31 or {@link DatatypeConstants#FIELD_UNDEFINED}.<br/>
@@ -107,8 +105,7 @@ import org.codelibs.xerces.util.DatatypeMessageFormatter;
  *            field's value is in <a href="http://www.w3.org/TR/xmlschema-2/#isoformats">W3C XML Schema 1.0 Part 2, Appendix D</a>.
  *       </td>
  *     </tr>
- *     <a name="datetimefield-hour"/>
- *     <tr>
+ *     <tr id="datetimefield-hour">
  *       <td> hour </td>
  *       <td> {@link #getHour()} </td>
  *       <td>
@@ -116,14 +113,12 @@ import org.codelibs.xerces.util.DatatypeMessageFormatter;
  *         <a href="http://www.w3.org/2001/05/xmlschema-errata#e2-45">For a value of 24, the minute and second field must be zero.</a>
  *       </td>
  *     </tr>
- *     <a name="datetimefield-minute"/>
- *     <tr>
+ *     <tr id="datetimefield-minute">
  *       <td> minute </td>
  *       <td> {@link #getMinute()} </td>
  *       <td> 0 to 59 or {@link DatatypeConstants#FIELD_UNDEFINED} </td>
  *     </tr>
- *     <a name="datetimefield-second"/>
- *     <tr>
+ *     <tr id="datetimefield-second">
  *       <td>second</td>
  *       <td>
  *         {@link #getSecond()} + {@link #getMillisecond()}/1000 or<br/>
@@ -170,7 +165,6 @@ import org.codelibs.xerces.util.DatatypeMessageFormatter;
  * instance as defined in <a href="http://www.w3.org/TR/xmlschema-2/#adding-durations-to-dateTimes">
  * W3C XML Schema 1.0 Part 2, Appendix E, <i>Adding durations to dateTimes</i></a>.</li>
  * </ul>
- * </p>
  *
  * @author <a href="mailto:Kohsuke.Kawaguchi@Sun.com">Kohsuke Kawaguchi</a>
  * @author <a href="mailto:Joseph.Fialli@Sun.com">Joseph Fialli</a>

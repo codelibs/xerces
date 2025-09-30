@@ -26,7 +26,7 @@ import org.codelibs.xerces.xs.XSSimpleTypeDefinition;
  * Any simple type (atomic, list or union) will implement this interface.
  * It inherits from <code>XSTypeDecl</code>.
  *
- * @xerces.internal
+
  *
  * @author Sandy Gao, IBM
  *
@@ -110,6 +110,7 @@ public interface XSSimpleType extends XSSimpleTypeDefinition {
      * @param validatedInfo used to store validation result
      *
      * @return              the actual value (QName, Boolean) of the string value
+     * @throws InvalidDatatypeValueException if the content is not valid for this data type
      */
     public Object validate(String content, ValidationContext context, ValidatedInfo validatedInfo) throws InvalidDatatypeValueException;
 
@@ -123,6 +124,7 @@ public interface XSSimpleType extends XSSimpleTypeDefinition {
      * @param validatedInfo used to store validation result
      *
      * @return              the actual value (QName, Boolean) of the string value
+     * @throws InvalidDatatypeValueException if the content is not valid for this data type
      */
     public Object validate(Object content, ValidationContext context, ValidatedInfo validatedInfo) throws InvalidDatatypeValueException;
 

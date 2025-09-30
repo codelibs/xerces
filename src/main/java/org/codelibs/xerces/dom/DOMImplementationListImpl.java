@@ -26,7 +26,7 @@ import org.w3c.dom.DOMImplementationList;
 /**
  * <p>This class implements the DOM Level 3 Core interface DOMImplementationList.</p>
  *
- * @xerces.internal
+
  *
  * @author Neil Delima, IBM
  * @since DOM Level 3 Core
@@ -44,14 +44,18 @@ public class DOMImplementationListImpl implements DOMImplementationList {
     }
 
     /**
-     * Construct a list of DOMImplementations from an ArrayList
+     * Construct a list of DOMImplementations from an ArrayList.
+     *
+     * @param params The ArrayList containing DOMImplementation objects
      */
     public DOMImplementationListImpl(ArrayList params) {
         fImplementations = params;
     }
 
     /**
-     * Construct a list of DOMImplementations from a Vector
+     * Construct a list of DOMImplementations from a Vector.
+     *
+     * @param params The Vector containing DOMImplementation objects
      */
     public DOMImplementationListImpl(Vector params) {
         fImplementations = new ArrayList(params);

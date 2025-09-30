@@ -26,13 +26,18 @@ import org.codelibs.xerces.xs.XSObjectList;
 /**
  * The class used to pass all facets to {@link XSSimpleType#applyFacets}.
  *
- * @xerces.internal
- *
  * @author Sandy Gao, IBM
  *
  * @version $Id: XSFacets.java 699892 2008-09-28 21:08:27Z mrglavas $
  */
 public class XSFacets {
+
+    /**
+     * Creates a new instance of XSFacets.
+     */
+    public XSFacets() {
+        // Default constructor
+    }
 
     /**
      * value of length facet.
@@ -102,19 +107,69 @@ public class XSFacets {
      */
     public String minExclusive;
 
+    /**
+     * annotation for length facet.
+     */
     public XSAnnotation lengthAnnotation;
+
+    /**
+     * annotation for minLength facet.
+     */
     public XSAnnotation minLengthAnnotation;
+
+    /**
+     * annotation for maxLength facet.
+     */
     public XSAnnotation maxLengthAnnotation;
+
+    /**
+     * annotation for whiteSpace facet.
+     */
     public XSAnnotation whiteSpaceAnnotation;
+
+    /**
+     * annotation for totalDigits facet.
+     */
     public XSAnnotation totalDigitsAnnotation;
+
+    /**
+     * annotation for fractionDigits facet.
+     */
     public XSAnnotation fractionDigitsAnnotation;
+
+    /**
+     * annotations for pattern facets.
+     */
     public XSObjectListImpl patternAnnotations;
+
+    /**
+     * annotations for enumeration facets.
+     */
     public XSObjectList enumAnnotations;
+
+    /**
+     * annotation for maxInclusive facet.
+     */
     public XSAnnotation maxInclusiveAnnotation;
+
+    /**
+     * annotation for maxExclusive facet.
+     */
     public XSAnnotation maxExclusiveAnnotation;
+
+    /**
+     * annotation for minInclusive facet.
+     */
     public XSAnnotation minInclusiveAnnotation;
+
+    /**
+     * annotation for minExclusive facet.
+     */
     public XSAnnotation minExclusiveAnnotation;
 
+    /**
+     * Reset all annotation fields to null.
+     */
     public void reset() {
         lengthAnnotation = null;
         minLengthAnnotation = null;

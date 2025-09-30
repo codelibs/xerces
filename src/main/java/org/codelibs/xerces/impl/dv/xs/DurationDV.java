@@ -27,9 +27,10 @@ import org.codelibs.xerces.impl.dv.InvalidDatatypeValueException;
 import org.codelibs.xerces.impl.dv.ValidationContext;
 
 /**
- * Validator for &lt;duration&gt; datatype (W3C Schema Datatypes)
- *
- * @xerces.internal
+ * Validator for &lt;duration&gt; datatype (W3C Schema Datatypes).
+ * Handles validation and comparison of duration values including xs:duration,
+ * xs:yearMonthDuration, and xs:dayTimeDuration types according to
+ * XML Schema Part 2: Datatypes specification.
  *
  * @author Elena Litani
  * @author Gopal Sharma, SUN Microsystem Inc.
@@ -37,8 +38,19 @@ import org.codelibs.xerces.impl.dv.ValidationContext;
  */
 public class DurationDV extends AbstractDateTimeDV {
 
+    /**
+     * Default constructor for internal instantiation within the datatype validation framework.
+     */
+    public DurationDV() {
+    }
+
+    /** Duration type constant for xs:duration. */
     public static final int DURATION_TYPE = 0;
+
+    /** Duration type constant for xs:yearMonthDuration. */
     public static final int YEARMONTHDURATION_TYPE = 1;
+
+    /** Duration type constant for xs:dayTimeDuration. */
     public static final int DAYTIMEDURATION_TYPE = 2;
     // order-relation on duration is a partial order. The dates below are used to
     // for comparison of 2 durations, based on the fact that
@@ -59,12 +71,12 @@ public class DurationDV extends AbstractDateTimeDV {
     }
 
     /**
-     * Parses, validates and computes normalized version of duration object
+     * Parses, validates and computes normalized version of duration object.
      *
-     * @param str    The lexical representation of duration object PnYn MnDTnH nMnS
-     * @param durationType
+     * @param str the lexical representation of duration object in format PnYnMnDTnHnMnS
+     * @param durationType the type of duration (DURATION_TYPE, YEARMONTHDURATION_TYPE, or DAYTIMEDURATION_TYPE)
      * @return normalized date representation
-     * @exception SchemaDateTimeException Invalid lexical representation
+     * @throws SchemaDateTimeException if the lexical representation is invalid
      */
     protected DateTimeData parse(String str, int durationType) throws SchemaDateTimeException {
         int len = str.length();

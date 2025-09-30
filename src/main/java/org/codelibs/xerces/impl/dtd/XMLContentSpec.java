@@ -67,7 +67,7 @@ package org.codelibs.xerces.impl.dtd;
  * string pool index, as the "#PCDATA" leaf is not used in the declarations
  * for element content models.
  *
- * @xerces.internal
+
  *
  * @version $Id: XMLContentSpec.java 446755 2006-09-15 21:56:27Z mrglavas $
  */
@@ -125,16 +125,20 @@ public class XMLContentSpec {
     /** prcessContent is 'lax' **/
     public static final short CONTENTSPECNODE_ANY_LAX = 22;
 
+    /** Content spec node for any other elements with 'lax' processing. */
     public static final short CONTENTSPECNODE_ANY_OTHER_LAX = 23;
 
+    /** Content spec node for any local elements with 'lax' processing. */
     public static final short CONTENTSPECNODE_ANY_LOCAL_LAX = 24;
 
     /** processContent is 'skip' **/
 
     public static final short CONTENTSPECNODE_ANY_SKIP = 38;
 
+    /** Content spec node for any other elements with 'skip' processing. */
     public static final short CONTENTSPECNODE_ANY_OTHER_SKIP = 39;
 
+    /** Content spec node for any local elements with 'skip' processing. */
     public static final short CONTENTSPECNODE_ANY_LOCAL_SKIP = 40;
     //
     // Data
@@ -173,13 +177,21 @@ public class XMLContentSpec {
         clear();
     }
 
-    /** Constructs a content spec with the specified values. */
+    /**
+     * Constructs a content spec with the specified values.
+     *
+     * @param type the content spec node type
+     * @param value the value object for this content spec node
+     * @param otherValue the other value object for this content spec node
+     */
     public XMLContentSpec(short type, Object value, Object otherValue) {
         setValues(type, value, otherValue);
     }
 
     /**
      * Constructs a content spec from the values in the specified content spec.
+     *
+     * @param contentSpec the content spec to copy values from
      */
     public XMLContentSpec(XMLContentSpec contentSpec) {
         setValues(contentSpec);
@@ -188,6 +200,9 @@ public class XMLContentSpec {
     /**
      * Constructs a content spec from the values specified by the given
      * content spec provider and identifier.
+     *
+     * @param provider the content spec provider
+     * @param contentSpecIndex the index of the content spec in the provider
      */
     public XMLContentSpec(XMLContentSpec.Provider provider, int contentSpecIndex) {
         setValues(provider, contentSpecIndex);
@@ -204,14 +219,24 @@ public class XMLContentSpec {
         otherValue = null;
     }
 
-    /** Sets the values. */
+    /**
+     * Sets the values.
+     *
+     * @param type the content spec node type
+     * @param value the value object for this content spec node
+     * @param otherValue the other value object for this content spec node
+     */
     public void setValues(short type, Object value, Object otherValue) {
         this.type = type;
         this.value = value;
         this.otherValue = otherValue;
     }
 
-    /** Sets the values of the specified content spec. */
+    /**
+     * Sets the values of the specified content spec.
+     *
+     * @param contentSpec the content spec to copy values from
+     */
     public void setValues(XMLContentSpec contentSpec) {
         type = contentSpec.type;
         value = contentSpec.value;
@@ -222,6 +247,9 @@ public class XMLContentSpec {
      * Sets the values from the values specified by the given content spec
      * provider and identifier. If the specified content spec cannot be
      * provided, the values of this content spec are cleared.
+     *
+     * @param provider the content spec provider
+     * @param contentSpecIndex the index of the content spec in the provider
      */
     public void setValues(XMLContentSpec.Provider provider, int contentSpecIndex) {
         if (!provider.getContentSpec(contentSpecIndex, this)) {
@@ -259,7 +287,7 @@ public class XMLContentSpec {
      * then the user can call back into the provider to get the
      * next content spec node in the structure.
      *
-     * @xerces.internal
+
      */
     public interface Provider {
 

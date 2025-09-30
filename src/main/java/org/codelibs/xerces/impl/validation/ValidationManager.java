@@ -26,24 +26,36 @@ import java.util.ArrayList;
  * other validators present in the pipeline, but should understand
  * that there are others and that some coordination is required.
  *
- * @xerces.internal
+
  *
  * @author Elena Litani, IBM
  * @version $Id: ValidationManager.java 606491 2007-12-22 21:00:53Z mrglavas $
  */
 public class ValidationManager {
 
+    /**
+     * Default constructor.
+     */
+    public ValidationManager() {
+    }
+
+    /** List of validation states. */
     protected final ArrayList fVSs = new ArrayList();
+    /** Flag indicating whether a grammar has been found. */
     protected boolean fGrammarFound = false;
 
-    // used by the DTD validator to tell other components that it has a
-    // cached DTD in hand so there's no reason to
-    // scan external subset or entity decls.
+    /**
+     * Flag indicating whether a cached DTD is available.
+     * Used by the DTD validator to tell other components that it has a
+     * cached DTD in hand so there's no reason to
+     * scan external subset or entity decls.
+     */
     protected boolean fCachedDTD = false;
 
     /**
      * Each validator should call this method to add its ValidationState into
      * the validation manager.
+     * @param vs the validation state to add
      */
     public final void addValidationState(ValidationState vs) {
         fVSs.add(vs);
@@ -51,6 +63,7 @@ public class ValidationManager {
 
     /**
      * Set the information required to validate entity values.
+     * @param state the entity state to set
      */
     public final void setEntityState(EntityState state) {
         for (int i = fVSs.size() - 1; i >= 0; i--) {
@@ -58,22 +71,41 @@ public class ValidationManager {
         }
     }
 
+    /**
+     * Sets whether a grammar has been found.
+     * @param grammar true if a grammar has been found, false otherwise
+     */
     public final void setGrammarFound(boolean grammar) {
         fGrammarFound = grammar;
     }
 
+    /**
+     * Checks whether a grammar has been found.
+     * @return true if a grammar has been found, false otherwise
+     */
     public final boolean isGrammarFound() {
         return fGrammarFound;
     }
 
+    /**
+     * Sets whether a cached DTD is available.
+     * @param cachedDTD true if a cached DTD is available, false otherwise
+     */
     public final void setCachedDTD(boolean cachedDTD) {
         fCachedDTD = cachedDTD;
     } // setCachedDTD(boolean)
 
+    /**
+     * Checks whether a cached DTD is available.
+     * @return true if a cached DTD is available, false otherwise
+     */
     public final boolean isCachedDTD() {
         return fCachedDTD;
     } // isCachedDTD():  boolean
 
+    /**
+     * Resets the validation manager to its initial state.
+     */
     public final void reset() {
         fVSs.clear();
         fGrammarFound = false;

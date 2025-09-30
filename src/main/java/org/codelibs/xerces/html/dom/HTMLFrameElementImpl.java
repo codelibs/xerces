@@ -20,7 +20,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.html.HTMLFrameElement;
 
 /**
- * @xerces.internal
+ * Implementation of the HTML Frame element.
+ *
  * @version $Revision: 1866821 $ $Date: 2019-09-12 09:55:36 +0530 (Thu, 12 Sep 2019) $
  * @author <a href="mailto:arkin@exoffice.com">Assaf Arkin</a>
  * @see org.w3c.dom.html.HTMLFrameElement
@@ -103,6 +104,7 @@ public class HTMLFrameElementImpl extends HTMLElementImpl implements HTMLFrameEl
      * Constructor requires owner document.
      *
      * @param owner The owner HTML document
+     * @param name The element name
      */
     public HTMLFrameElementImpl(HTMLDocumentImpl owner, String name) {
         super(owner, name);

@@ -42,8 +42,6 @@ import org.codelibs.xerces.xni.XNIException;
  *  <li>http://apache.org/xml/properties/internal/entity-manager</li>
  * </ul>
  *
- * @xerces.internal
- *
  * @author Arnaud  Le Hors, IBM
  * @author Andy Clark, IBM
  * @author Glenn Marcy, IBM
@@ -65,7 +63,13 @@ public class XML11DTDScannerImpl extends XMLDTDScannerImpl {
         super();
     } // <init>()
 
-    /** Constructor for he use of non-XMLComponentManagers. */
+    /**
+     * Constructor for he use of non-XMLComponentManagers.
+     *
+     * @param symbolTable The symbol table to use.
+     * @param errorReporter The error reporter to use.
+     * @param entityManager The entity manager to use.
+     */
     public XML11DTDScannerImpl(SymbolTable symbolTable, XMLErrorReporter errorReporter, XMLEntityManager entityManager) {
         super(symbolTable, errorReporter, entityManager);
     }

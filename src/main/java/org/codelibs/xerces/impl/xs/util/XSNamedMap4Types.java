@@ -24,7 +24,7 @@ import org.codelibs.xerces.xs.XSTypeDefinition;
 /**
  * Contains the map between qnames and XSObject's.
  *
- * @xerces.internal
+
  *
  * @author Sandy Gao, IBM
  *

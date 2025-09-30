@@ -25,8 +25,6 @@ import org.codelibs.xerces.xni.XNIException;
  * The entity handler interface defines methods to report information
  * about the start and end of entities.
  *
- * @xerces.internal
- *
  * @see org.codelibs.xerces.impl.XMLEntityScanner
  *
  * @author Andy Clark, IBM

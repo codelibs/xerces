@@ -106,11 +106,17 @@ public final class SecureProcessingConfiguration extends XIncludeAwareParserConf
     private static final int MAX_PARAMETER_ENTITY_SIZE_LIMIT_DEFAULT_VALUE = Integer.MAX_VALUE;
     private static final boolean RESOLVE_EXTERNAL_ENTITIES_DEFAULT_VALUE = true;
 
+    /** System property value for entity expansion limit. */
     protected final int ENTITY_EXPANSION_LIMIT_SYSTEM_VALUE;
+    /** System property value for maximum occurrence limit. */
     protected final int MAX_OCCUR_LIMIT_SYSTEM_VALUE;
+    /** System property value for total entity size limit. */
     protected final int TOTAL_ENTITY_SIZE_LIMIT_SYSTEM_VALUE;
+    /** System property value for maximum general entity size limit. */
     protected final int MAX_GENERAL_ENTITY_SIZE_LIMIT_SYSTEM_VALUE;
+    /** System property value for maximum parameter entity size limit. */
     protected final int MAX_PARAMETER_ENTITY_SIZE_LIMIT_SYSTEM_VALUE;
+    /** System property value for resolving external entities. */
     protected final boolean RESOLVE_EXTERNAL_ENTITIES_SYSTEM_VALUE;
 
     //
@@ -141,7 +147,6 @@ public final class SecureProcessingConfiguration extends XIncludeAwareParserConf
     /**
      * Constructs a parser configuration using the specified symbol table and
      * grammar pool.
-     * <p>
      *
      * @param symbolTable The symbol table to use.
      * @param grammarPool The grammar pool to use.
@@ -153,7 +158,6 @@ public final class SecureProcessingConfiguration extends XIncludeAwareParserConf
     /**
      * Constructs a parser configuration using the specified symbol table,
      * grammar pool, and parent settings.
-     * <p>
      *
      * @param symbolTable    The symbol table to use.
      * @param grammarPool    The grammar pool to use.
@@ -187,6 +191,13 @@ public final class SecureProcessingConfiguration extends XIncludeAwareParserConf
         super.setProperty(ENTITY_RESOLVER_PROPERTY, fExternalEntityMonitor);
     }
 
+    /**
+     * Checks entity size limits for the current entity.
+     *
+     * @param sizeOfEntity The size of the current entity.
+     * @param delta The amount to add to the total entity size.
+     * @param isPE True if this is a parameter entity, false if it is a general entity.
+     */
     protected void checkEntitySizeLimits(int sizeOfEntity, int delta, boolean isPE) {
         fTotalEntitySize += delta;
         if (fTotalEntitySize > TOTAL_ENTITY_SIZE_LIMIT_SYSTEM_VALUE) {
@@ -226,10 +237,10 @@ public final class SecureProcessingConfiguration extends XIncludeAwareParserConf
     }
 
     /**
-     * setProperty
+     * Sets the value of a property.
      *
-     * @param propertyId
-     * @param value
+     * @param propertyId The unique identifier of the property being set.
+     * @param value The new value of the property.
      */
     public void setProperty(String propertyId, Object value) throws XMLConfigurationException {
         if (SECURITY_MANAGER_PROPERTY.equals(propertyId)) {

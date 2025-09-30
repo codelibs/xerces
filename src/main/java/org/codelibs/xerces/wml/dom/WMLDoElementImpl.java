@@ -19,7 +19,8 @@ package org.codelibs.xerces.wml.dom;
 import org.codelibs.xerces.wml.WMLDoElement;
 
 /**
- * @xerces.internal
+ * Implementation of WMLDoElement interface for WML do action elements.
+ *
  * @version $Id: WMLDoElementImpl.java 661560 2008-05-30 03:22:25Z mrglavas $
  * @author <a href="mailto:david@topware.com.tw">David Li</a>
  */
@@ -27,6 +28,12 @@ public class WMLDoElementImpl extends WMLElementImpl implements WMLDoElement {
 
     private static final long serialVersionUID = 7755861458464251322L;
 
+    /**
+     * Constructs a new WML do element with the specified owner document and tag name.
+     *
+     * @param owner the owner document
+     * @param tagName the tag name for this element
+     */
     public WMLDoElementImpl(WMLDocumentImpl owner, String tagName) {
         super(owner, tagName);
     }

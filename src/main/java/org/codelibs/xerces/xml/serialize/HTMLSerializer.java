@@ -53,7 +53,7 @@ import org.xml.sax.SAXException;
  * constructor.  For usage instructions see {@link Serializer}.
  * <p>
  * If an output stream is used, the encoding is taken from the
- * output format (defaults to <tt>UTF-8</tt>). If a writer is
+ * output format (defaults to <code>UTF-8</code>). If a writer is
  * used, make sure the writer uses the same encoding (if applies)
  * as specified in the output format.
  * <p>
@@ -95,6 +95,9 @@ public class HTMLSerializer extends BaseMarkupSerializer {
      */
     private boolean _xhtml;
 
+    /**
+     * The XHTML namespace URI constant.
+     */
     public static final String XHTMLNamespace = "http://www.w3.org/1999/xhtml";
 
     // for users to override XHTMLNamespace if need be.
@@ -102,10 +105,11 @@ public class HTMLSerializer extends BaseMarkupSerializer {
 
     /**
      * Constructs a new HTML/XHTML serializer depending on the value of
-     * <tt>xhtml</tt>. The serializer cannot be used without calling
+     * <code>xhtml</code>. The serializer cannot be used without calling
      * {@link #setOutputCharStream} or {@link #setOutputByteStream} first.
      *
      * @param xhtml True if XHTML serializing
+     * @param format The output format to use
      */
     protected HTMLSerializer(boolean xhtml, OutputFormat format) {
         super(format);
@@ -125,6 +129,8 @@ public class HTMLSerializer extends BaseMarkupSerializer {
      * Constructs a new serializer. The serializer cannot be used without
      * calling {@link #setOutputCharStream} or {@link #setOutputByteStream}
      * first.
+     *
+     * @param format The output format to use
      */
     public HTMLSerializer(OutputFormat format) {
         this(false, format != null ? format : new OutputFormat(Method.HTML, "ISO-8859-1", false));
@@ -132,7 +138,7 @@ public class HTMLSerializer extends BaseMarkupSerializer {
 
     /**
      * Constructs a new serializer that writes to the specified writer
-     * using the specified output format. If <tt>format</tt> is null,
+     * using the specified output format. If <code>format</code> is null,
      * will use a default output format.
      *
      * @param writer The writer to use
@@ -145,7 +151,7 @@ public class HTMLSerializer extends BaseMarkupSerializer {
 
     /**
      * Constructs a new serializer that writes to the specified output
-     * stream using the specified output format. If <tt>format</tt>
+     * stream using the specified output format. If <code>format</code>
      * is null, will use a default output format.
      *
      * @param output The output stream to use
@@ -160,7 +166,11 @@ public class HTMLSerializer extends BaseMarkupSerializer {
         super.setOutputFormat(format != null ? format : new OutputFormat(Method.HTML, "ISO-8859-1", false));
     }
 
-    // Set  value for alternate XHTML namespace.
+    /**
+     * Sets an alternate XHTML namespace URI to use instead of the default.
+     *
+     * @param newNamespace the new XHTML namespace URI to use
+     */
     public void setXHTMLNamespace(String newNamespace) {
         fUserXHTMLNamespace = newNamespace;
     } // setXHTMLNamespace(String)
@@ -346,6 +356,14 @@ public class HTMLSerializer extends BaseMarkupSerializer {
         }
     }
 
+    /**
+     * Ends serialization of an element with proper I/O handling.
+     *
+     * @param namespaceURI the namespace URI of the element
+     * @param localName the local name of the element
+     * @param rawName the raw name of the element
+     * @throws IOException if an I/O error occurs during serialization
+     */
     public void endElementIO(String namespaceURI, String localName, String rawName) throws IOException {
         ElementState state;
         String htmlName;
@@ -564,6 +582,9 @@ public class HTMLSerializer extends BaseMarkupSerializer {
      * pre-root comments and PIs that were accumulated in the document
      * (see {@link #serializePreRoot}). Pre-root will be serialized even if
      * this is not the first root element of the document.
+     *
+     * @param rootTagName the name of the root element tag
+     * @throws IOException if an I/O error occurs during serialization
      */
     protected void startDocument(String rootTagName) throws IOException {
         // Not supported in HTML/XHTML, but we still have to switch
@@ -784,6 +805,13 @@ public class HTMLSerializer extends BaseMarkupSerializer {
         return HTMLdtd.fromChar(ch);
     }
 
+    /**
+     * Escapes a URI for safe inclusion in HTML/XHTML output.
+     * Currently removes any quotes from the URI to avoid issues with certain browsers.
+     *
+     * @param uri the URI to escape
+     * @return the escaped URI
+     */
     protected String escapeURI(String uri) {
         int index;
 

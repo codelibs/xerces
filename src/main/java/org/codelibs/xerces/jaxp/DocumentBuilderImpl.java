@@ -49,6 +49,10 @@ import org.xml.sax.SAXNotRecognizedException;
 import org.xml.sax.SAXNotSupportedException;
 
 /**
+ * JAXP DocumentBuilder implementation. This class provides DOM document creation
+ * and parsing functionality using the Xerces DOM parser with support for validation,
+ * Schema processing, and various XML features.
+ *
  * @author Rajiv Mordani
  * @author Edwin Goei
  * @version $Id: DocumentBuilderImpl.java 704573 2008-10-14 16:11:22Z mrglavas $

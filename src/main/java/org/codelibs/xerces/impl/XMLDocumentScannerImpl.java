@@ -57,8 +57,6 @@ import org.codelibs.xerces.xni.parser.XMLInputSource;
  *  <li>http://apache.org/xml/properties/internal/dtd-scanner</li>
  * </ul>
  *
- * @xerces.internal
- *
  * @author Glenn Marcy, IBM
  * @author Andy Clark, IBM
  * @author Arnaud  Le Hors, IBM
@@ -235,12 +233,11 @@ public class XMLDocumentScannerImpl extends XMLDocumentFragmentScannerImpl {
      *
      * @param componentManager The component manager.
      *
-     * @throws SAXException Thrown by component on initialization error.
+     * @throws XMLConfigurationException Thrown by component on initialization error.
      *                      For example, if a feature or property is
      *                      required for the operation of the component, the
      *                      component manager may throw a
-     *                      SAXNotRecognizedException or a
-     *                      SAXNotSupportedException.
+     *                      XMLConfigurationException.
      */
     public void reset(XMLComponentManager componentManager) throws XMLConfigurationException {
 
@@ -323,10 +320,8 @@ public class XMLDocumentScannerImpl extends XMLDocumentFragmentScannerImpl {
      * @param featureId The feature identifier.
      * @param state     The state of the feature.
      *
-     * @throws SAXNotRecognizedException The component should not throw
+     * @throws XMLConfigurationException The component should not throw
      *                                   this exception.
-     * @throws SAXNotSupportedException The component should not throw
-     *                                  this exception.
      */
     public void setFeature(String featureId, boolean state) throws XMLConfigurationException {
 
@@ -374,10 +369,8 @@ public class XMLDocumentScannerImpl extends XMLDocumentFragmentScannerImpl {
      * @param propertyId The property identifier.
      * @param value      The value of the property.
      *
-     * @throws SAXNotRecognizedException The component should not throw
+     * @throws XMLConfigurationException The component should not throw
      *                                   this exception.
-     * @throws SAXNotSupportedException The component should not throw
-     *                                  this exception.
      */
     public void setProperty(String propertyId, Object value) throws XMLConfigurationException {
 
@@ -507,7 +500,13 @@ public class XMLDocumentScannerImpl extends XMLDocumentFragmentScannerImpl {
 
     // scanning methods
 
-    /** Scans a doctype declaration. */
+    /**
+     * Scans a doctype declaration.
+     *
+     * @return true if the doctype declaration was scanned successfully
+     * @throws IOException if an I/O error occurs
+     * @throws XNIException if a parser error occurs
+     */
     protected boolean scanDoctypeDecl() throws IOException, XNIException {
 
         // spaces
@@ -604,6 +603,13 @@ public class XMLDocumentScannerImpl extends XMLDocumentFragmentScannerImpl {
      */
     protected final class XMLDeclDispatcher implements Dispatcher {
 
+        /**
+         * Default constructor for XMLDeclDispatcher.
+         */
+        protected XMLDeclDispatcher() {
+            // Empty constructor
+        }
+
         //
         // Dispatcher methods
         //
@@ -685,6 +691,13 @@ public class XMLDocumentScannerImpl extends XMLDocumentFragmentScannerImpl {
      * @author Andy Clark, IBM
      */
     protected final class PrologDispatcher implements Dispatcher {
+
+        /**
+         * Default constructor for PrologDispatcher.
+         */
+        protected PrologDispatcher() {
+            // Empty constructor
+        }
 
         //
         // Dispatcher methods
@@ -859,6 +872,13 @@ public class XMLDocumentScannerImpl extends XMLDocumentFragmentScannerImpl {
      */
     protected final class DTDDispatcher implements Dispatcher {
 
+        /**
+         * Default constructor for DTDDispatcher.
+         */
+        protected DTDDispatcher() {
+            // Empty constructor
+        }
+
         //
         // Dispatcher methods
         //
@@ -996,6 +1016,13 @@ public class XMLDocumentScannerImpl extends XMLDocumentFragmentScannerImpl {
      */
     protected class ContentDispatcher extends FragmentContentDispatcher {
 
+        /**
+         * Default constructor for ContentDispatcher.
+         */
+        protected ContentDispatcher() {
+            // Empty constructor
+        }
+
         //
         // Protected methods
         //
@@ -1008,7 +1035,7 @@ public class XMLDocumentScannerImpl extends XMLDocumentFragmentScannerImpl {
         /**
          * Scan for DOCTYPE hook. This method is a hook for subclasses
          * to add code to handle scanning for a the "DOCTYPE" string
-         * after the string "<!" has been scanned.
+         * after the string "&lt;!" has been scanned.
          *
          * @return True if the "DOCTYPE" was scanned; false if "DOCTYPE"
          *          was not scanned.
@@ -1093,6 +1120,9 @@ public class XMLDocumentScannerImpl extends XMLDocumentFragmentScannerImpl {
         /**
          * <p>Attempt to locate an external subset for a document that does not otherwise
          * have one. If an external subset is located, then it is scanned.</p>
+         *
+         * @throws IOException if an I/O error occurs
+         * @throws XNIException if a XNI error occurs
          */
         protected void resolveExternalSubsetAndRead() throws IOException, XNIException {
 
@@ -1134,6 +1164,13 @@ public class XMLDocumentScannerImpl extends XMLDocumentFragmentScannerImpl {
      * @author Eric Ye, IBM
      */
     protected final class TrailingMiscDispatcher implements Dispatcher {
+
+        /**
+         * Default constructor for TrailingMiscDispatcher.
+         */
+        protected TrailingMiscDispatcher() {
+            // Empty constructor
+        }
 
         //
         // Dispatcher methods

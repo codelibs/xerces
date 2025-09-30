@@ -27,7 +27,7 @@ import org.codelibs.xerces.xs.XSTerm;
 /**
  * Store schema particle declaration.
  *
- * @xerces.internal
+
  *
  * @author Sandy Gao, IBM
  *
@@ -35,32 +35,61 @@ import org.codelibs.xerces.xs.XSTerm;
  */
 public class XSParticleDecl implements XSParticle {
 
+    /**
+     * Default constructor for XSParticleDecl.
+     */
+    public XSParticleDecl() {
+        // Default constructor
+    }
+
     // types of particles
+
+    /** Particle type representing an empty particle. */
     public static final short PARTICLE_EMPTY = 0;
+
+    /** Particle type representing an element declaration. */
     public static final short PARTICLE_ELEMENT = 1;
+
+    /** Particle type representing a wildcard. */
     public static final short PARTICLE_WILDCARD = 2;
+
+    /** Particle type representing a model group. */
     public static final short PARTICLE_MODELGROUP = 3;
+
+    /** Particle occurrence type indicating zero or more occurrences. */
     public static final short PARTICLE_ZERO_OR_MORE = 4;
+
+    /** Particle occurrence type indicating zero or one occurrence. */
     public static final short PARTICLE_ZERO_OR_ONE = 5;
+
+    /** Particle occurrence type indicating one or more occurrences. */
     public static final short PARTICLE_ONE_OR_MORE = 6;
 
-    // type of the particle
+    /** The type of the particle (empty, element, wildcard, or model group). */
     public short fType = PARTICLE_EMPTY;
 
-    // term of the particle
-    // for PARTICLE_ELEMENT : the element decl
-    // for PARTICLE_WILDCARD: the wildcard decl
-    // for PARTICLE_MODELGROUP: the model group
+    /**
+     * The term of the particle.
+     * For PARTICLE_ELEMENT: the element declaration
+     * For PARTICLE_WILDCARD: the wildcard declaration
+     * For PARTICLE_MODELGROUP: the model group
+     */
     public XSTerm fValue = null;
 
-    // minimum occurrence of this particle
+    /** The minimum number of occurrences of this particle. */
     public int fMinOccurs = 1;
-    // maximum occurrence of this particle
+
+    /** The maximum number of occurrences of this particle. */
     public int fMaxOccurs = 1;
-    // optional annotation
+
+    /** Optional annotations associated with this particle. */
     public XSObjectList fAnnotations = null;
 
-    // clone this decl
+    /**
+     * Creates a clone of this particle declaration.
+     *
+     * @return a new XSParticleDecl instance that is a copy of this one
+     */
     public XSParticleDecl makeClone() {
         XSParticleDecl particle = new XSParticleDecl();
         particle.fType = fType;
@@ -74,13 +103,19 @@ public class XSParticleDecl implements XSParticle {
 
     /**
      * 3.9.6 Schema Component Constraint: Particle Emptiable
-     * whether this particle is emptible
+     * Determines whether this particle is emptiable (can match zero items).
+     *
+     * @return true if this particle is emptiable, false otherwise
      */
     public boolean emptiable() {
         return minEffectiveTotalRange() == 0;
     }
 
-    // whether this particle contains nothing
+    /**
+     * Determines whether this particle contains nothing (is empty).
+     *
+     * @return true if this particle is empty, false otherwise
+     */
     public boolean isEmpty() {
         if (fType == PARTICLE_EMPTY)
             return true;
@@ -96,6 +131,8 @@ public class XSParticleDecl implements XSParticle {
      * The following methods are used to return min/max range for a particle.
      * They are not exactly the same as it's described in the spec, but all the
      * values from the spec are retrievable by these methods.
+     *
+     * @return the minimum effective total range for this particle
      */
     public int minEffectiveTotalRange() {
         if (fType == XSParticleDecl.PARTICLE_EMPTY) {
@@ -107,6 +144,12 @@ public class XSParticleDecl implements XSParticle {
         return fMinOccurs;
     }
 
+    /**
+     * Calculates the maximum effective total range for this particle.
+     *
+     * @return the maximum effective total range for this particle,
+     *         or SchemaSymbols.OCCURRENCE_UNBOUNDED if unbounded
+     */
     public int maxEffectiveTotalRange() {
         if (fType == XSParticleDecl.PARTICLE_EMPTY) {
             return 0;
@@ -167,6 +210,10 @@ public class XSParticleDecl implements XSParticle {
         }
     }
 
+    /**
+     * Resets this particle declaration to its initial state, clearing all
+     * fields and setting the type to PARTICLE_EMPTY.
+     */
     public void reset() {
         fType = PARTICLE_EMPTY;
         fValue = null;

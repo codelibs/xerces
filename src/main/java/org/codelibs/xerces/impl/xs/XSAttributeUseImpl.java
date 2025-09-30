@@ -31,24 +31,37 @@ import org.codelibs.xerces.xs.XSValue;
  * The XML representation for an attribute use
  * schema component is a local &lt;attribute&gt; element information item
  *
- * @xerces.internal
+
+ * Implementation of XSAttributeUse interface.
+ * Represents an attribute use component in XML Schema.
  *
  * @author Sandy Gao, IBM
  * @version $Id: XSAttributeUseImpl.java 1024038 2010-10-18 22:06:35Z sandygao $
  */
 public class XSAttributeUseImpl implements XSAttributeUse {
 
-    // the referred attribute decl
+    /** The referred attribute declaration */
     public XSAttributeDecl fAttrDecl = null;
-    // use information: SchemaSymbols.USE_OPTIONAL, REQUIRED, PROHIBITED
+    /** Use information: SchemaSymbols.USE_OPTIONAL, REQUIRED, PROHIBITED */
     public short fUse = SchemaSymbols.USE_OPTIONAL;
-    // value constraint type: default, fixed or !specified
+    /** Value constraint type: default, fixed or not specified */
     public short fConstraintType = XSConstants.VC_NONE;
-    // value constraint value
+    /** Value constraint value */
     public ValidatedInfo fDefault = null;
-    // optional annotation
+    /** Optional annotations */
     public XSObjectList fAnnotations = null;
 
+    /**
+     * Constructs a new XSAttributeUseImpl instance.
+     * This represents an XML Schema attribute use.
+     */
+    public XSAttributeUseImpl() {
+        // Default constructor
+    }
+
+    /**
+     * Reset this attribute use to its initial state.
+     */
     public void reset() {
         fDefault = null;
         fAttrDecl = null;

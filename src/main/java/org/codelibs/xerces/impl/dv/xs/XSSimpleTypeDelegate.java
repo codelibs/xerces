@@ -34,14 +34,20 @@ import org.codelibs.xerces.xs.XSTypeDefinition;
 /**
  * Base class for XSSimpleType wrapper implementations.
  *
- * @xerces.internal
+
  *
  * @version $Id: XSSimpleTypeDelegate.java 1024038 2010-10-18 22:06:35Z sandygao $
  */
 public class XSSimpleTypeDelegate implements XSSimpleType {
 
+    /** The wrapped XSSimpleType instance. */
     protected final XSSimpleType type;
 
+    /**
+     * Constructs a new XSSimpleTypeDelegate wrapper.
+     * @param type the XSSimpleType instance to wrap, must not be null
+     * @throws NullPointerException if type is null
+     */
     public XSSimpleTypeDelegate(XSSimpleType type) {
         if (type == null) {
             throw new NullPointerException();
@@ -49,6 +55,10 @@ public class XSSimpleTypeDelegate implements XSSimpleType {
         this.type = type;
     }
 
+    /**
+     * Gets the wrapped XSSimpleType instance.
+     * @return the wrapped XSSimpleType instance
+     */
     public XSSimpleType getWrappedXSSimpleType() {
         return type;
     }

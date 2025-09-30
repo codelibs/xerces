@@ -23,7 +23,6 @@ import org.codelibs.xerces.xni.parser.XMLDocumentFilter;
 /**
  * DOM Revalidation handler adds additional functionality to XMLDocumentHandler
  *
- * @xerces.internal
  * @author Elena Litani, IBM
  * @version $Id: RevalidationHandler.java 446761 2006-09-15 21:59:29Z mrglavas $
  */

@@ -20,7 +20,7 @@ package org.codelibs.xerces.impl.dv;
 /**
  * Datatype exception for invalid values.
  *
- * @xerces.internal
+
  *
  * @author Sandy Gao, IBM
  *

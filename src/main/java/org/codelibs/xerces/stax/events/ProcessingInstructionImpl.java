@@ -25,7 +25,8 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.events.ProcessingInstruction;
 
 /**
- * @xerces.internal
+ * Implementation of {@code ProcessingInstruction} event for StAX.
+ * Represents a processing instruction in an XML document.
  *
  * @author Lucian Holland
  *
@@ -37,7 +38,11 @@ public final class ProcessingInstructionImpl extends XMLEventImpl implements Pro
     private final String fData;
 
     /**
-     * @param location
+     * Constructs a processing instruction event.
+     *
+     * @param target the target of the processing instruction
+     * @param data the data content of the processing instruction
+     * @param location the location of this event in the source document
      */
     public ProcessingInstructionImpl(final String target, final String data, final Location location) {
         super(PROCESSING_INSTRUCTION, location);

@@ -75,7 +75,7 @@ import org.w3c.dom.traversal.TreeWalker;
  * <b>Note:</b> When any node in the document is serialized, the
  * entire document is serialized along with it.
  *
- * @xerces.internal
+
  *
  * @author Arnaud  Le Hors, IBM
  * @author Joe Kesselman, IBM
@@ -127,7 +127,11 @@ public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal,
         super();
     }
 
-    /** Constructor. */
+    /**
+     * Constructor.
+     *
+     * @param grammarAccess Whether grammar access is allowed
+     */
     public DocumentImpl(boolean grammarAccess) {
         super(grammarAccess);
     }
@@ -135,12 +139,19 @@ public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal,
     /**
      * For DOM2 support.
      * The createDocument factory method is in DOMImplementation.
+     *
+     * @param doctype The document type to associate with this document
      */
     public DocumentImpl(DocumentType doctype) {
         super(doctype);
     }
 
-    /** For DOM2 support. */
+    /**
+     * For DOM2 support.
+     *
+     * @param doctype The document type to associate with this document
+     * @param grammarAccess Flag indicating if grammar access is enabled
+     */
     public DocumentImpl(DocumentType doctype, boolean grammarAccess) {
         super(doctype, grammarAccess);
     }
@@ -196,6 +207,7 @@ public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal,
      * @param root The root of the iterator.
      * @param whatToShow The whatToShow mask.
      * @param filter The NodeFilter installed. Null means no filter.
+     * @return A newly created NodeIterator
      */
     public NodeIterator createNodeIterator(Node root, short whatToShow, NodeFilter filter) {
         return createNodeIterator(root, whatToShow, filter, true);
@@ -239,6 +251,7 @@ public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal,
      * @param root The root of the iterator.
      * @param whatToShow The whatToShow mask.
      * @param filter The NodeFilter installed. Null means no filter.
+     * @return A newly created TreeWalker
      */
     public TreeWalker createTreeWalker(Node root, short whatToShow, NodeFilter filter) {
         return createTreeWalker(root, whatToShow, filter, true);
@@ -542,6 +555,9 @@ public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal,
      * This is another place where we could use weak references! Indeed, the
      * node here won't be GC'ed as long as some listener is registered on it,
      * since the eventsListeners table will have a reference to the node.
+     *
+     * @param n The node to store listeners for
+     * @param listeners The vector of listeners to store, or null to remove
      */
     protected void setEventListeners(NodeImpl n, Vector listeners) {
         if (eventListeners == null) {
@@ -562,6 +578,9 @@ public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal,
 
     /**
      * Retreive event listener registered on a given node
+     *
+     * @param n The node to retrieve listeners for
+     * @return The vector of event listeners, or null if none exist
      */
     protected Vector getEventListeners(NodeImpl n) {
         if (eventListeners == null) {
@@ -963,6 +982,9 @@ public class DocumentImpl extends CoreDocumentImpl implements DocumentTraversal,
         String oldvalue;
     }
 
+    /**
+     * Saved enclosing attribute context for aggregate events.
+     */
     EnclosingAttr savedEnclosingAttr;
 
     /**

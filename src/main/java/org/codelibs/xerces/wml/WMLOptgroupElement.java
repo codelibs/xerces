@@ -34,17 +34,31 @@ public interface WMLOptgroupElement extends WMLElement {
     /**
      * 'title' specifies the title of this element
      * (Section 11.6.2.3, WAP WML Version 16-Jun-1999)
+     *
+     * @param newValue the new value for the title attribute
      */
     public void setTitle(String newValue);
 
+    /**
+     * Gets the 'title' attribute which specifies the element title.
+     *
+     * @return the value of the title attribute
+     */
     public String getTitle();
 
     /**
      * 'xml:lang' specifics the natural or formal language in which
      * the document is written.
      * (Section 8.8, WAP WML Version 16-Jun-1999)
+     *
+     * @param newValue the new value for the xml:lang attribute
      */
     public void setXmlLang(String newValue);
 
+    /**
+     * Gets the xml:lang attribute which specifies the document language.
+     *
+     * @return the value of the xml:lang attribute
+     */
     public String getXmlLang();
 }

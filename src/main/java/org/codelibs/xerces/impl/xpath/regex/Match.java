@@ -22,7 +22,6 @@ import java.text.CharacterIterator;
 /**
  * An instance of this class has ranges captured in matching.
  *
- * @xerces.internal
  *
  * @see RegularExpression#matches(char[], int, int, Match)
  * @see RegularExpression#matches(char[], Match)
@@ -67,7 +66,8 @@ public class Match implements Cloneable {
     }
 
     /**
-     *
+     * Sets the number of groups for this match result.
+     * @param n the number of groups
      */
     protected void setNumberOfGroups(int n) {
         int oldn = this.nofgroups;
@@ -83,7 +83,8 @@ public class Match implements Cloneable {
     }
 
     /**
-     *
+     * Sets the source text as a CharacterIterator.
+     * @param ci the CharacterIterator source
      */
     protected void setSource(CharacterIterator ci) {
         this.ciSource = ci;
@@ -92,7 +93,8 @@ public class Match implements Cloneable {
     }
 
     /**
-     *
+     * Sets the source text as a String.
+     * @param str the String source
      */
     protected void setSource(String str) {
         this.ciSource = null;
@@ -101,7 +103,8 @@ public class Match implements Cloneable {
     }
 
     /**
-     *
+     * Sets the source text as a character array.
+     * @param chars the character array source
      */
     protected void setSource(char[] chars) {
         this.ciSource = null;
@@ -110,14 +113,18 @@ public class Match implements Cloneable {
     }
 
     /**
-     *
+     * Sets the beginning position for a group.
+     * @param index the group index
+     * @param v the beginning position
      */
     protected void setBeginning(int index, int v) {
         this.beginpos[index] = v;
     }
 
     /**
-     *
+     * Sets the end position for a group.
+     * @param index the group index
+     * @param v the end position
      */
     protected void setEnd(int index, int v) {
         this.endpos[index] = v;
@@ -126,6 +133,7 @@ public class Match implements Cloneable {
     /**
      * Return the number of regular expression groups.
      * This method returns 1 when the regular expression has no capturing-parenthesis.
+     * @return the number of groups
      */
     public int getNumberOfGroups() {
         if (this.nofgroups <= 0)
@@ -137,6 +145,7 @@ public class Match implements Cloneable {
      * Return a start position in the target text matched to specified regular expression group.
      *
      * @param index Less than <code>getNumberOfGroups()</code>.
+     * @return the start position for the specified group
      */
     public int getBeginning(int index) {
         if (this.beginpos == null)
@@ -150,6 +159,7 @@ public class Match implements Cloneable {
      * Return an end position in the target text matched to specified regular expression group.
      *
      * @param index Less than <code>getNumberOfGroups()</code>.
+     * @return the end position for the specified group
      */
     public int getEnd(int index) {
         if (this.endpos == null)
@@ -163,6 +173,7 @@ public class Match implements Cloneable {
      * Return an substring of the target text matched to specified regular expression group.
      *
      * @param index Less than <code>getNumberOfGroups()</code>.
+     * @return the captured text for the specified group, or null if not matched
      */
     public String getCapturedText(int index) {
         if (this.beginpos == null)

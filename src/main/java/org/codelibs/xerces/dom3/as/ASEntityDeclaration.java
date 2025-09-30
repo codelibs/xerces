@@ -34,11 +34,15 @@ public interface ASEntityDeclaration extends ASObject {
 
     /**
      * The type of the entity as defined above.
+     *
+     * @return the type of the entity
      */
     public short getEntityType();
 
     /**
      * The type of the entity as defined above.
+     *
+     * @param entityType the type of the entity to set
      */
     public void setEntityType(short entityType);
 
@@ -46,6 +50,8 @@ public interface ASEntityDeclaration extends ASObject {
      * The replacement text for the internal entity. The entity references
      * within the replacement text are kept intact. For an entity of type
      * <code>EXTERNAL_ENTITY</code>, this is <code>null</code>.
+     *
+     * @return the replacement text for the internal entity or null
      */
     public String getEntityValue();
 
@@ -53,30 +59,40 @@ public interface ASEntityDeclaration extends ASObject {
      * The replacement text for the internal entity. The entity references
      * within the replacement text are kept intact. For an entity of type
      * <code>EXTERNAL_ENTITY</code>, this is <code>null</code>.
+     *
+     * @param entityValue the replacement text to set for the internal entity
      */
     public void setEntityValue(String entityValue);
 
     /**
      * the URI reference representing the system identifier for the notation
      * declaration, if present, <code>null</code> otherwise.
+     *
+     * @return the system identifier URI or null if not present
      */
     public String getSystemId();
 
     /**
      * the URI reference representing the system identifier for the notation
      * declaration, if present, <code>null</code> otherwise.
+     *
+     * @param systemId the system identifier URI to set, or null
      */
     public void setSystemId(String systemId);
 
     /**
      * The string representing the public identifier for this notation
      * declaration, if present; <code>null</code> otherwise.
+     *
+     * @return the public identifier string or null if not present
      */
     public String getPublicId();
 
     /**
      * The string representing the public identifier for this notation
      * declaration, if present; <code>null</code> otherwise.
+     *
+     * @param publicId the public identifier string to set, or null
      */
     public void setPublicId(String publicId);
 

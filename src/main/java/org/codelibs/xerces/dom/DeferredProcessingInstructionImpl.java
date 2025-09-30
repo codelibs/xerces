@@ -22,7 +22,7 @@ package org.codelibs.xerces.dom;
  * processor-specific information alongside their actual content. PIs
  * are most common in XML, but they are supported in HTML as well.
  *
- * @xerces.internal
+
  *
  * @version $Id: DeferredProcessingInstructionImpl.java 447266 2006-09-18 05:57:49Z mrglavas $
  * @since  PR-DOM-Level-1-19980818.

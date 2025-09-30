@@ -20,7 +20,7 @@ package org.codelibs.xerces.impl.xs.models;
 /**
  * A compound content model leaf node which carries occurence information.
  *
- * @xerces.internal
+
  *
  * @author Michael Glavassevich, IBM
  * @version $Id: XSCMRepeatingLeaf.java 575864 2007-09-15 03:12:34Z mrglavas $
@@ -30,6 +30,15 @@ public final class XSCMRepeatingLeaf extends XSCMLeaf {
     private final int fMinOccurs;
     private final int fMaxOccurs;
 
+    /**
+     * Constructs a repeating leaf node for content model.
+     * @param type the type of the leaf
+     * @param leaf the leaf object (element or wildcard)
+     * @param minOccurs minimum occurrences
+     * @param maxOccurs maximum occurrences
+     * @param id the particle identifier
+     * @param position the position in the content model
+     */
     public XSCMRepeatingLeaf(int type, Object leaf, int minOccurs, int maxOccurs, int id, int position) {
         super(type, leaf, id, position);
         fMinOccurs = minOccurs;

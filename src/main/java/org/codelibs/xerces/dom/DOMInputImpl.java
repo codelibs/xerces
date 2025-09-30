@@ -47,7 +47,7 @@ import org.w3c.dom.ls.LSInput;
  * <p>See also the <a href='http://www.w3.org/TR/2001/WD-DOM-Level-3-ASLS-20011025'>Document Object Model (DOM) Level 3 Abstract Schemas and Load
 and Save Specification</a>.
  *
- * @xerces.internal
+
  *
  * @author Gopal Sharma, SUN Microsystems Inc.
  * @version $Id: DOMInputImpl.java 699892 2008-09-28 21:08:27Z mrglavas $
@@ -64,16 +64,24 @@ public class DOMInputImpl implements LSInput {
     // Data
     //
 
+    /** Public identifier. */
     protected String fPublicId = null;
+    /** System identifier. */
     protected String fSystemId = null;
+    /** Base system identifier. */
     protected String fBaseSystemId = null;
 
+    /** Byte stream. */
     protected InputStream fByteStream = null;
+    /** Character stream. */
     protected Reader fCharStream = null;
+    /** String data. */
     protected String fData = null;
 
+    /** Encoding. */
     protected String fEncoding = null;
 
+    /** Certified text flag. */
     protected boolean fCertifiedText = false;
 
     /**

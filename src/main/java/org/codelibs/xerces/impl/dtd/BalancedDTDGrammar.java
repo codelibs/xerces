@@ -25,7 +25,7 @@ import org.codelibs.xerces.xni.XNIException;
 /**
  * <p>A DTD grammar that produces balanced syntax trees.</p>
  *
- * @xerces.internal
+
  *
  * @author Michael Glavassevich, IBM
  * @version $Id: BalancedDTDGrammar.java 965320 2010-07-18 23:25:54Z mrglavas $

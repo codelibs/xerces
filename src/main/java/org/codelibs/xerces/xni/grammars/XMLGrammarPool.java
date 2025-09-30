@@ -36,7 +36,7 @@ package org.codelibs.xerces.xni.grammars;
  * instance, the validator should make any new grammars it has compiled
  * available to this object using the <code>cacheGrammars</code>
  * method; for ease of implementation it may make other Grammars it holds references to as well (i.e.,
- * it may return some grammars that were retrieved from the GrammarPool in earlier operations). </li> </ul> </p>
+ * it may return some grammars that were retrieved from the GrammarPool in earlier operations). </li> </ul>
  *
  * @author Neil Graham, IBM
  * @version $Id: XMLGrammarPool.java 447245 2006-09-18 05:22:10Z mrglavas $

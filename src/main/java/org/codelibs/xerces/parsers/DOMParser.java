@@ -93,6 +93,8 @@ public class DOMParser extends AbstractDOMParser {
 
     /**
      * Constructs a DOM parser using the specified parser configuration.
+     *
+     * @param config The parser configuration to use.
      */
     public DOMParser(XMLParserConfiguration config) {
         super(config);
@@ -107,6 +109,8 @@ public class DOMParser extends AbstractDOMParser {
 
     /**
      * Constructs a DOM parser using the specified symbol table.
+     *
+     * @param symbolTable The symbol table to use.
      */
     public DOMParser(SymbolTable symbolTable) {
         this(symbolTable, null);
@@ -115,6 +119,9 @@ public class DOMParser extends AbstractDOMParser {
     /**
      * Constructs a DOM parser using the specified symbol table and
      * grammar pool.
+     *
+     * @param symbolTable The symbol table to use.
+     * @param grammarPool The grammar pool to use.
      */
     public DOMParser(SymbolTable symbolTable, XMLGrammarPool grammarPool) {
         super((XMLParserConfiguration) ObjectFactory.createObject("org.codelibs.xerces.xni.parser.XMLParserConfiguration",
@@ -196,12 +203,12 @@ public class DOMParser extends AbstractDOMParser {
     } // parse(String)
 
     /**
-     * parse
+     * Parses the input source and constructs a DOM Document.
      *
-     * @param inputSource
+     * @param inputSource The input source to parse.
      *
-     * @exception org.xml.sax.SAXException
-     * @exception java.io.IOException
+     * @exception org.xml.sax.SAXException If a SAX error occurs during parsing.
+     * @exception java.io.IOException If an I/O error occurs during parsing.
      */
     public void parse(InputSource inputSource) throws SAXException, IOException {
 
@@ -538,6 +545,8 @@ public class DOMParser extends AbstractDOMParser {
 
     /**
      * Returns this parser's XMLParserConfiguration.
+     *
+     * @return The XMLParserConfiguration used by this parser.
      */
     public XMLParserConfiguration getXMLParserConfiguration() {
         return fConfiguration;

@@ -28,12 +28,18 @@ import org.w3c.dom.DOMImplementationList;
  * and PSVI implementation.
  * <p>See also the <a href='http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#DOMImplementationSource'>Document Object Model (DOM) Level 3 Core Specification</a>.
  *
- * @xerces.internal
+
  *
  * @author Elena Litani, IBM
  * @version $Id: DOMXSImplementationSourceImpl.java 603686 2007-12-12 17:51:23Z mrglavas $
  */
 public class DOMXSImplementationSourceImpl extends DOMImplementationSourceImpl {
+
+    /**
+     * Constructs a DOMXSImplementationSourceImpl.
+     */
+    public DOMXSImplementationSourceImpl() {
+    }
 
     /**
      * A method to request a DOM implementation.

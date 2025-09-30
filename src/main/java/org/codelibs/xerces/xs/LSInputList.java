@@ -30,6 +30,7 @@ public interface LSInputList extends List {
     /**
      *  The number of <code>LSInput</code>s in the list. The range of valid
      * child object indices is 0 to <code>length-1</code> inclusive.
+     * @return the number of LSInputs in the list
      */
     public int getLength();
 

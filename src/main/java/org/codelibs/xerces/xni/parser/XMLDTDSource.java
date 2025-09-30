@@ -38,10 +38,18 @@ public interface XMLDTDSource {
     // XMLDTDSource methods
     //
 
-    /** Sets the DTD handler. */
+    /**
+     * Sets the DTD handler.
+     *
+     * @param handler the DTD handler
+     */
     public void setDTDHandler(XMLDTDHandler handler);
 
-    /** Returns the DTD handler. */
+    /**
+     * Returns the DTD handler.
+     *
+     * @return the DTD handler
+     */
     public XMLDTDHandler getDTDHandler();
 
 } // interface XMLDTDSource

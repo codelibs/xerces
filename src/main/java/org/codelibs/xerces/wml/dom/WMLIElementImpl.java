@@ -19,7 +19,8 @@ package org.codelibs.xerces.wml.dom;
 import org.codelibs.xerces.wml.WMLIElement;
 
 /**
- * @xerces.internal
+ * Implementation of WMLIElement interface for WML italic text elements.
+ *
  * @version $Id: WMLIElementImpl.java 661560 2008-05-30 03:22:25Z mrglavas $
  * @author <a href="mailto:david@topware.com.tw">David Li</a>
  */
@@ -27,6 +28,12 @@ public class WMLIElementImpl extends WMLElementImpl implements WMLIElement {
 
     private static final long serialVersionUID = 5008873415065802109L;
 
+    /**
+     * Constructs a new WML italic element with the specified owner document and tag name.
+     *
+     * @param owner the owner document
+     * @param tagName the tag name for this element
+     */
     public WMLIElementImpl(WMLDocumentImpl owner, String tagName) {
         super(owner, tagName);
     }

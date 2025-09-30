@@ -23,19 +23,25 @@ package org.codelibs.xerces.impl.dv.util;
  * RFC 2045: Multipurpose Internet Mail Extensions (MIME)
  * Part One: Format of Internet Message Bodies. Reference
  * 1996 Available at: http://www.ietf.org/rfc/rfc2045.txt
- * This class is used by XML Schema binary format validation
+ * This class is used by XML Schema binary format validation.
  *
  * This implementation does not encode/decode streaming
  * data. You need the data that you will encode/decode
- * already on a byte arrray.
+ * already on a byte array.
  *
- * @xerces.internal
+ * This class cannot be instantiated and provides only static utility methods.
  *
  * @author Jeffrey Rodriguez
  * @author Sandy Gao
  * @version $Id: Base64.java 446747 2006-09-15 21:46:20Z mrglavas $
  */
 public final class Base64 {
+
+    /**
+     * Private constructor to prevent instantiation of this utility class.
+     */
+    private Base64() {
+    }
 
     static private final int BASELENGTH = 128;
     static private final int LOOKUPLENGTH = 64;
@@ -82,18 +88,42 @@ public final class Base64 {
 
     }
 
+    /**
+     * Checks if the given character is a whitespace character.
+     *
+     * @param octect the character to check
+     * @return true if the character is a whitespace character
+     */
     protected static boolean isWhiteSpace(char octect) {
         return (octect == 0x20 || octect == 0xd || octect == 0xa || octect == 0x9);
     }
 
+    /**
+     * Checks if the given character is a pad character.
+     *
+     * @param octect the character to check
+     * @return true if the character is a pad character
+     */
     protected static boolean isPad(char octect) {
         return (octect == PAD);
     }
 
+    /**
+     * Checks if the given character is a valid Base64 data character.
+     *
+     * @param octect the character to check
+     * @return true if the character is a valid Base64 data character
+     */
     protected static boolean isData(char octect) {
         return (octect < BASELENGTH && base64Alphabet[octect] != -1);
     }
 
+    /**
+     * Checks if the given character is a valid Base64 character (data, pad, or whitespace).
+     *
+     * @param octect the character to check
+     * @return true if the character is a valid Base64 character
+     */
     protected static boolean isBase64(char octect) {
         return (isWhiteSpace(octect) || isPad(octect) || isData(octect));
     }

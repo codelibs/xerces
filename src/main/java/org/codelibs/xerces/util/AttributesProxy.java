@@ -44,6 +44,11 @@ public final class AttributesProxy implements AttributeList, Attributes2 {
     // Constructors
     //
 
+    /**
+     * Creates a new AttributesProxy wrapping the given XMLAttributes.
+     *
+     * @param attributes the XMLAttributes to wrap
+     */
     public AttributesProxy(XMLAttributes attributes) {
         fAttributes = attributes;
     }
@@ -52,11 +57,20 @@ public final class AttributesProxy implements AttributeList, Attributes2 {
     // Public methods
     //
 
-    /** Sets the XML attributes to be wrapped. */
+    /**
+     * Sets the XML attributes to be wrapped.
+     *
+     * @param attributes the XMLAttributes to wrap
+     */
     public void setAttributes(XMLAttributes attributes) {
         fAttributes = attributes;
     } // setAttributes(XMLAttributes)
 
+    /**
+     * Returns the wrapped XMLAttributes object.
+     *
+     * @return the wrapped XMLAttributes
+     */
     public XMLAttributes getAttributes() {
         return fAttributes;
     }

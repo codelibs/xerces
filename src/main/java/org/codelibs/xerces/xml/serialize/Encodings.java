@@ -39,6 +39,12 @@ import org.codelibs.xerces.util.EncodingMap;
 public class Encodings {
 
     /**
+     * Default constructor for internal instantiation.
+     */
+    public Encodings() {
+    }
+
+    /**
      * The last printable character for unknown encodings.
      */
     static final int DEFAULT_LAST_PRINTABLE = 0x7F;

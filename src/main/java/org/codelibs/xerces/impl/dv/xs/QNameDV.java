@@ -26,7 +26,7 @@ import org.codelibs.xerces.xs.datatypes.XSQName;
 /**
  * Represent the schema type "QName" and "NOTATION"
  *
- * @xerces.internal
+
  *
  * @author Neeraj Bajaj, Sun Microsystems, inc.
  * @author Sandy Gao, IBM
@@ -34,6 +34,12 @@ import org.codelibs.xerces.xs.datatypes.XSQName;
  * @version $Id: QNameDV.java 701915 2008-10-06 02:39:42Z mrglavas $
  */
 public class QNameDV extends TypeValidator {
+
+    /**
+     * Constructs a QName datatype validator.
+     */
+    public QNameDV() {
+    }
 
     private static final String EMPTY_STRING = "".intern();
 

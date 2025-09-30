@@ -92,17 +92,29 @@ public class DOMSerializerImpl implements LSSerializer, DOMConfiguration {
      */
     protected short features = 0;
 
+    /** Feature flag: namespaces */
     protected final static short NAMESPACES = 0x1 << 0;
+    /** Feature flag: well-formed */
     protected final static short WELLFORMED = 0x1 << 1;
+    /** Feature flag: entities */
     protected final static short ENTITIES = 0x1 << 2;
+    /** Feature flag: CDATA sections */
     protected final static short CDATA = 0x1 << 3;
+    /** Feature flag: split CDATA sections */
     protected final static short SPLITCDATA = 0x1 << 4;
+    /** Feature flag: comments */
     protected final static short COMMENTS = 0x1 << 5;
+    /** Feature flag: discard default content */
     protected final static short DISCARDDEFAULT = 0x1 << 6;
+    /** Feature flag: infoset */
     protected final static short INFOSET = 0x1 << 7;
+    /** Feature flag: XML declaration */
     protected final static short XMLDECL = 0x1 << 8;
+    /** Feature flag: namespace declarations */
     protected final static short NSDECL = 0x1 << 9;
+    /** Feature flag: element content whitespace */
     protected final static short DOM_ELEMENT_CONTENT_WHITESPACE = 0x1 << 10;
+    /** Feature flag: pretty print */
     protected final static short PRETTY_PRINT = 0x1 << 11;
 
     // well-formness checking

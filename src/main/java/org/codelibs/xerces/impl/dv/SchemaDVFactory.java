@@ -32,7 +32,7 @@ import org.codelibs.xerces.xs.XSObjectList;
  * The implementation should store the built-in datatypes in static data, so
  * that they can be shared by multiple parser instance, and multiple threads.
  *
- * @xerces.internal
+
  *
  * @author Sandy Gao, IBM
  *
@@ -70,7 +70,10 @@ public abstract class SchemaDVFactory {
         }
     }
 
-    // can't create a new object of this class
+    /**
+     * Protected constructor to prevent direct instantiation.
+     * Use getInstance() methods to obtain factory instances.
+     */
     protected SchemaDVFactory() {
     }
 

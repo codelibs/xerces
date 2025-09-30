@@ -23,8 +23,6 @@ import java.util.NoSuchElementException;
 /**
  * Commonly used constants.
  *
- * @xerces.internal
- *
  * @author Andy Clark, IBM
  *
  * @version $Id: Constants.java 1400688 2012-10-21 17:59:34Z mrglavas $
@@ -35,10 +33,13 @@ public final class Constants {
     // Constants
     //
     // Schema Types:
+    /** XML Schema namespace URI. */
     public static final String NS_XMLSCHEMA = "http://www.w3.org/2001/XMLSchema".intern();
+    /** DTD namespace URI. */
     public static final String NS_DTD = "http://www.w3.org/TR/REC-xml".intern();
 
     // Schema Versions:
+    /** XML Schema 1.0 URI constant. */
     public static final String W3C_XML_SCHEMA10_NS_URI = "http://www.w3.org/XML/XMLSchema/v1.0".intern();
 
     // sax features
@@ -144,46 +145,75 @@ public final class Constants {
     // Constants: DOM Level 3 feature ids
     //
 
+    /** DOM Level 3 canonical form feature. */
     public static final String DOM_CANONICAL_FORM = "canonical-form";
+    /** DOM Level 3 cdata-sections feature. */
     public static final String DOM_CDATA_SECTIONS = "cdata-sections";
+    /** DOM Level 3 comments feature. */
     public static final String DOM_COMMENTS = "comments";
 
+    /** DOM Level 3 charset-overrides-xml-encoding feature. */
     // REVISIT: this feature seems to have no effect for Xerces
     public static final String DOM_CHARSET_OVERRIDES_XML_ENCODING = "charset-overrides-xml-encoding";
 
+    /** DOM Level 3 datatype-normalization feature. */
     public static final String DOM_DATATYPE_NORMALIZATION = "datatype-normalization";
+    /** DOM Level 3 entities feature. */
     public static final String DOM_ENTITIES = "entities";
+    /** DOM Level 3 infoset feature. */
     public static final String DOM_INFOSET = "infoset";
+    /** DOM Level 3 namespaces feature. */
     public static final String DOM_NAMESPACES = "namespaces";
+    /** DOM Level 3 namespace-declarations feature. */
     public static final String DOM_NAMESPACE_DECLARATIONS = "namespace-declarations";
+    /** DOM Level 3 supported-media-types-only feature. */
     public static final String DOM_SUPPORTED_MEDIATYPES_ONLY = "supported-media-types-only";
 
+    /** DOM Level 3 validate-if-schema feature. */
     public static final String DOM_VALIDATE_IF_SCHEMA = "validate-if-schema";
+    /** DOM Level 3 validate feature. */
     public static final String DOM_VALIDATE = "validate";
+    /** DOM Level 3 element-content-whitespace feature. */
     public static final String DOM_ELEMENT_CONTENT_WHITESPACE = "element-content-whitespace";
 
     // DOM Level 3 features defined in Core:
+    /** DOM Level 3 discard-default-content feature. */
     public static final String DOM_DISCARD_DEFAULT_CONTENT = "discard-default-content";
+    /** DOM Level 3 normalize-characters feature. */
     public static final String DOM_NORMALIZE_CHARACTERS = "normalize-characters";
+    /** DOM Level 3 check-character-normalization feature. */
     public static final String DOM_CHECK_CHAR_NORMALIZATION = "check-character-normalization";
+    /** DOM Level 3 well-formed feature. */
     public static final String DOM_WELLFORMED = "well-formed";
+    /** DOM Level 3 split-cdata-sections feature. */
     public static final String DOM_SPLIT_CDATA = "split-cdata-sections";
 
     // Load and Save
+    /** DOM Level 3 format-pretty-print feature. */
     public static final String DOM_FORMAT_PRETTY_PRINT = "format-pretty-print";
+    /** DOM Level 3 xml-declaration feature. */
     public static final String DOM_XMLDECL = "xml-declaration";
+    /** DOM Level 3 unknown-characters feature. */
     public static final String DOM_UNKNOWNCHARS = "unknown-characters";
+    /** DOM Level 3 certified feature. */
     public static final String DOM_CERTIFIED = "certified";
+    /** DOM Level 3 disallow-doctype feature. */
     public static final String DOM_DISALLOW_DOCTYPE = "disallow-doctype";
+    /** DOM Level 3 ignore-unknown-character-denormalizations feature. */
     public static final String DOM_IGNORE_UNKNOWN_CHARACTER_DENORMALIZATIONS = "ignore-unknown-character-denormalizations";
 
     // DOM Properties
+    /** DOM Level 3 resource-resolver property. */
     public static final String DOM_RESOURCE_RESOLVER = "resource-resolver";
+    /** DOM Level 3 error-handler property. */
     public static final String DOM_ERROR_HANDLER = "error-handler";
+    /** DOM Level 3 schema-type property. */
     public static final String DOM_SCHEMA_TYPE = "schema-type";
+    /** DOM Level 3 schema-location property. */
     public static final String DOM_SCHEMA_LOCATION = "schema-location";
 
     // XSModel
+    /** DOM Level 3 PSVI property. */
     public static final String DOM_PSVI = "psvi";
 
     // xerces features
@@ -451,7 +481,7 @@ public final class Constants {
 
     /**
      * Boolean indicating whether a character is a probable white space
-     * character (ch <= 0x20) that was the replacement text of a character
+     * character (ch &lt;= 0x20) that was the replacement text of a character
      * reference is stored in augmentations using the string "CHAR_REF_PROBABLE_WS".
      * The absence of this augmentation indicates that the character is not
      * probable white space and/or was not included from a character reference.
@@ -459,13 +489,19 @@ public final class Constants {
     public final static String CHAR_REF_PROBABLE_WS = "CHAR_REF_PROBABLE_WS";
 
     // XML version constants
+    /** Error code for XML version detection failure. */
     public final static short XML_VERSION_ERROR = -1;
+    /** Constant for XML 1.0. */
     public final static short XML_VERSION_1_0 = 1;
+    /** Constant for XML 1.1. */
     public final static short XML_VERSION_1_1 = 2;
 
     // Constant to enable Schema 1.1 support
+    /** Flag indicating whether Schema 1.1 support is available. */
     public final static boolean SCHEMA_1_1_SUPPORT = false;
+    /** Constant for XML Schema 1.0. */
     public final static short SCHEMA_VERSION_1_0 = 1;
+    /** Constant for XML Schema 1.0 with extensions. */
     public final static short SCHEMA_VERSION_1_0_EXTENDED = 2;
 
     // private
@@ -516,24 +552,40 @@ public final class Constants {
 
     // sax
 
-    /** Returns an enumeration of the SAX features. */
+    /**
+     * Returns an enumeration of the SAX features.
+     *
+     * @return An enumeration of SAX feature identifiers
+     */
     public static Enumeration getSAXFeatures() {
         return fgSAXFeatures.length > 0 ? new ArrayEnumeration(fgSAXFeatures) : fgEmptyEnumeration;
     } // getSAXFeatures():Enumeration
 
-    /** Returns an enumeration of the SAX properties. */
+    /**
+     * Returns an enumeration of the SAX properties.
+     *
+     * @return An enumeration of SAX property identifiers
+     */
     public static Enumeration getSAXProperties() {
         return fgSAXProperties.length > 0 ? new ArrayEnumeration(fgSAXProperties) : fgEmptyEnumeration;
     } // getSAXProperties():Enumeration
 
     // xerces
 
-    /** Returns an enumeration of the Xerces features. */
+    /**
+     * Returns an enumeration of the Xerces features.
+     *
+     * @return An enumeration of Xerces feature identifiers
+     */
     public static Enumeration getXercesFeatures() {
         return fgXercesFeatures.length > 0 ? new ArrayEnumeration(fgXercesFeatures) : fgEmptyEnumeration;
     } // getXercesFeatures():Enumeration
 
-    /** Returns an enumeration of the Xerces properties. */
+    /**
+     * Returns an enumeration of the Xerces properties.
+     *
+     * @return An enumeration of Xerces property identifiers
+     */
     public static Enumeration getXercesProperties() {
         return fgXercesProperties.length > 0 ? new ArrayEnumeration(fgXercesProperties) : fgEmptyEnumeration;
     } // getXercesProperties():Enumeration
@@ -603,7 +655,11 @@ public final class Constants {
     // MAIN
     //
 
-    /** Prints all of the constants to standard output. */
+    /**
+     * Prints all of the constants to standard output.
+     *
+     * @param argv Command line arguments (unused)
+     */
     public static void main(String[] argv) {
 
         print("SAX features:", SAX_FEATURE_PREFIX, fgSAXFeatures);

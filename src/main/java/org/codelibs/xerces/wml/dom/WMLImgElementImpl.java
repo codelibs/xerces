@@ -19,7 +19,8 @@ package org.codelibs.xerces.wml.dom;
 import org.codelibs.xerces.wml.WMLImgElement;
 
 /**
- * @xerces.internal
+ * Implementation of WMLImgElement interface for WML image elements.
+ *
  * @version $Id: WMLImgElementImpl.java 661560 2008-05-30 03:22:25Z mrglavas $
  * @author <a href="mailto:david@topware.com.tw">David Li</a>
  */
@@ -27,6 +28,12 @@ public class WMLImgElementImpl extends WMLElementImpl implements WMLImgElement {
 
     private static final long serialVersionUID = -500092034867051550L;
 
+    /**
+     * Constructs a new WML image element with the specified owner document and tag name.
+     *
+     * @param owner the owner document
+     * @param tagName the tag name for this element
+     */
     public WMLImgElementImpl(WMLDocumentImpl owner, String tagName) {
         super(owner, tagName);
     }

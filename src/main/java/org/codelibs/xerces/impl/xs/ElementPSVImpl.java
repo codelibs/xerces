@@ -39,7 +39,7 @@ import org.codelibs.xerces.xs.XSValue;
  * nil, specified, normalized value, member type, validity, error codes,
  * default
  *
- * @xerces.internal
+
  *
  * @author Elena Litani IBM
  * @version $Id: ElementPSVImpl.java 1065753 2011-01-31 20:31:00Z mrglavas $
@@ -88,9 +88,18 @@ public class ElementPSVImpl implements ElementPSVI {
     /** true if this object is immutable **/
     protected boolean fIsConstant;
 
+    /**
+     * Default constructor for ElementPSVImpl.
+     * Creates an empty PSVI element implementation.
+     */
     public ElementPSVImpl() {
     }
 
+    /**
+     * Creates an ElementPSVImpl by copying data from an existing ElementPSVI.
+     * @param isConstant whether the created object should be immutable
+     * @param elementPSVI the source PSVI element to copy from
+     */
     public ElementPSVImpl(boolean isConstant, ElementPSVI elementPSVI) {
         fDeclaration = elementPSVI.getElementDeclaration();
         fTypeDecl = elementPSVI.getTypeDefinition();
@@ -147,7 +156,7 @@ public class ElementPSVImpl implements ElementPSVI {
      * [schema default]
      *
      * @return The canonical lexical representation of the declaration's {value constraint} value.
-     * @see <a href="http://www.w3.org/TR/xmlschema-1/#e-schema_default>XML Schema Part 1: Structures [schema default]</a>
+     * @see <a href="http://www.w3.org/TR/xmlschema-1/#e-schema_default">XML Schema Part 1: Structures [schema default]</a>
      */
     public String getSchemaDefault() {
         return fDeclaration == null ? null : fDeclaration.getConstraintValue();
@@ -157,7 +166,7 @@ public class ElementPSVImpl implements ElementPSVI {
      * [schema normalized value]
      *
      *
-     * @see <a href="http://www.w3.org/TR/xmlschema-1/#e-schema_normalized_value>XML Schema Part 1: Structures [schema normalized value]</a>
+     * @see <a href="http://www.w3.org/TR/xmlschema-1/#e-schema_normalized_value">XML Schema Part 1: Structures [schema normalized value]</a>
      * @return the normalized value of this item after validation
      */
     public String getSchemaNormalizedValue() {
@@ -227,7 +236,7 @@ public class ElementPSVImpl implements ElementPSVI {
 
     /**
      * [nil]
-     * @see <a href="http://www.w3.org/TR/xmlschema-1/#e-nil>XML Schema Part 1: Structures [nil]</a>
+     * @see <a href="http://www.w3.org/TR/xmlschema-1/#e-nil">XML Schema Part 1: Structures [nil]</a>
      * @return true if clause 3.2 of Element Locally Valid (Element) (3.3.4) above is satisfied, otherwise false
      */
     public boolean getNil() {
@@ -236,7 +245,7 @@ public class ElementPSVImpl implements ElementPSVI {
 
     /**
      * [notation]
-     * @see <a href="http://www.w3.org/TR/xmlschema-1/#e-notation>XML Schema Part 1: Structures [notation]</a>
+     * @see <a href="http://www.w3.org/TR/xmlschema-1/#e-notation">XML Schema Part 1: Structures [notation]</a>
      * @return The notation declaration.
      */
     public XSNotationDeclaration getNotation() {
@@ -332,6 +341,10 @@ public class ElementPSVImpl implements ElementPSVI {
         fValue.reset();
     }
 
+    /**
+     * Copies schema information from this ElementPSVImpl to another.
+     * @param target the target ElementPSVImpl to receive the schema information
+     */
     public void copySchemaInformationTo(ElementPSVImpl target) {
         target.fGrammars = fGrammars;
         target.fSchemaInformation = fSchemaInformation;

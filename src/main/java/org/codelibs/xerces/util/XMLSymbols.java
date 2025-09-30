@@ -25,7 +25,9 @@ package org.codelibs.xerces.util;
  */
 public class XMLSymbols {
 
-    // public constructor.
+    /**
+     * Default constructor for XMLSymbols. This class contains only static constants.
+     */
     public XMLSymbols() {
     }
 

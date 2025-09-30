@@ -72,7 +72,9 @@ public abstract class XMLParser {
     //
 
     /**
-     * Default Constructor.
+     * Creates an XML parser with the specified configuration.
+     *
+     * @param config the parser configuration to use
      */
     protected XMLParser(XMLParserConfiguration config) {
 
@@ -89,12 +91,12 @@ public abstract class XMLParser {
     //
 
     /**
-     * parse
+     * Parses the specified input source.
      *
-     * @param inputSource
+     * @param inputSource the input source to parse
      *
-     * @exception XNIException
-     * @exception java.io.IOException
+     * @exception XNIException if an XNI error occurs during parsing
+     * @exception java.io.IOException if an I/O error occurs during parsing
      */
     public void parse(XMLInputSource inputSource) throws XNIException, IOException {
 

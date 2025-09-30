@@ -28,8 +28,18 @@ package org.codelibs.xerces.wml;
 
 public interface WMLOneventElement extends WMLElement {
 
+    /**
+     * Sets the 'type' attribute which specifies the event type.
+     *
+     * @param newValue the new value for the type attribute
+     */
     public void setType(String newValue);
 
+    /**
+     * Gets the 'type' attribute which specifies the event type.
+     *
+     * @return the value of the type attribute
+     */
     public String getType();
 
 }

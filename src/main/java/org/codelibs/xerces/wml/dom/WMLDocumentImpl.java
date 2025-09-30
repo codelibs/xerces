@@ -27,7 +27,9 @@ import org.w3c.dom.DocumentType;
 import org.w3c.dom.Element;
 
 /**
- * @xerces.internal
+ * Implementation of WML Document. This class provides DOM document functionality
+ * specifically tailored for Wireless Markup Language (WML) documents.
+ *
  * @version $Id: WMLDocumentImpl.java 890457 2009-12-14 19:47:46Z mrglavas $
  * @author <a href="mailto:david@topware.com.tw">David Li</a>
  */
@@ -112,6 +114,11 @@ public class WMLDocumentImpl extends DocumentImpl implements WMLDocument {
     }
 
     /* DOM level 2 */
+    /**
+     * Constructs a new WML document implementation with the specified document type.
+     *
+     * @param doctype the document type definition for this WML document
+     */
     public WMLDocumentImpl(DocumentType doctype) {
         super(doctype, false);
     }

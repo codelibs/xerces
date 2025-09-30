@@ -24,6 +24,12 @@ package org.codelibs.xerces.impl;
  */
 public class Version {
 
+    /**
+     * Default constructor.
+     */
+    public Version() {
+    }
+
     //
     // Data
     //
@@ -36,8 +42,9 @@ public class Version {
 
     // public methods
 
-    /* Print out the version information.
-     * @return the version of the parser.
+    /**
+     * Returns the version information.
+     * @return the version of the parser
      */
     public static String getVersion() {
         return fImmutableVersion;
@@ -50,6 +57,7 @@ public class Version {
     /**
      * Prints out the version number to System.out. This is needed
      * for the build system.
+     * @param argv command line arguments (not used)
      */
     public static void main(String argv[]) {
         System.out.println(fVersion);

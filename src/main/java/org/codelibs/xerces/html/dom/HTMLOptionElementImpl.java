@@ -24,7 +24,8 @@ import org.w3c.dom.html.HTMLOptionElement;
 import org.w3c.dom.html.HTMLSelectElement;
 
 /**
- * @xerces.internal
+ * Implementation of the HTML Option element.
+ *
  * @version $Revision: 1029415 $ $Date: 2010-10-31 22:32:22 +0530 (Sun, 31 Oct 2010) $
  * @author <a href="mailto:arkin@openxml.org">Assaf Arkin</a>
  * @see org.w3c.dom.html.HTMLOptionElement
@@ -60,6 +61,12 @@ public class HTMLOptionElementImpl extends HTMLElementImpl implements HTMLOption
         return text.toString();
     }
 
+    /**
+     * Sets the text content of this option element by replacing all child nodes
+     * with a single text node containing the specified text.
+     *
+     * @param text the text content to set
+     */
     public void setText(String text) {
         Node child;
         Node next;
@@ -98,6 +105,13 @@ public class HTMLOptionElementImpl extends HTMLElementImpl implements HTMLOption
         return -1;
     }
 
+    /**
+     * Sets the index of this option in the parent SELECT element.
+     * This method will move the option to the specified position within
+     * the parent SELECT's option list.
+     *
+     * @param index the new index position for this option
+     */
     public void setIndex(int index) {
         Node parent;
         NodeList options;
@@ -162,6 +176,7 @@ public class HTMLOptionElementImpl extends HTMLElementImpl implements HTMLOption
      * Constructor requires owner document.
      *
      * @param owner The owner HTML document
+     * @param name The element name
      */
     public HTMLOptionElementImpl(HTMLDocumentImpl owner, String name) {
         super(owner, name);

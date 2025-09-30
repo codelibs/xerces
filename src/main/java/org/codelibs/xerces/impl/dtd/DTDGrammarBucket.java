@@ -30,7 +30,7 @@ import org.codelibs.xerces.xni.grammars.XMLGrammarDescription;
  * document, and, if a new DTD grammar is parsed, the new set will be
  * offered back to the GrammarPool for possible inclusion.
  *
- * @xerces.internal
+
  *
  * @author Neil Graham, IBM
  *
@@ -47,11 +47,14 @@ public class DTDGrammarBucket {
     /** Grammars associated with element root name. */
     protected final Hashtable fGrammars;
 
-    // the unique grammar from fGrammars (or that we're
-    // building) that is used in validation.
+    /**
+     * The unique grammar from fGrammars (or that we're building) that is used in validation.
+     */
     protected DTDGrammar fActiveGrammar;
 
-    // is the "active" grammar standalone?
+    /**
+     * Indicates whether the active grammar is standalone.
+     */
     protected boolean fIsStandalone;
 
     //
@@ -78,11 +81,19 @@ public class DTDGrammarBucket {
         fGrammars.put(desc, grammar);
     } // putGrammar(DTDGrammar)
 
-    // retrieve a DTDGrammar given an XMLDTDDescription
+    /**
+     * Retrieves a DTD grammar given an XML DTD description.
+     *
+     * @param desc the XML DTD description
+     * @return the DTD grammar associated with the description, or null if not found
+     */
     public DTDGrammar getGrammar(XMLGrammarDescription desc) {
         return (DTDGrammar) (fGrammars.get((XMLDTDDescription) desc));
     } // putGrammar(DTDGrammar)
 
+    /**
+     * Clears all grammars from the bucket and resets the active grammar state.
+     */
     public void clear() {
         fGrammars.clear();
         fActiveGrammar = null;

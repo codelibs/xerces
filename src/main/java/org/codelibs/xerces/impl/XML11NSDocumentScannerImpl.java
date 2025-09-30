@@ -57,14 +57,19 @@ import org.codelibs.xerces.xni.parser.XMLDocumentSource;
  *  <li>http://apache.org/xml/properties/internal/dtd-scanner</li>
  * </ul>
  *
- * @xerces.internal
- *
  * @author Elena Litani, IBM
  * @author Michael Glavassevich, IBM
  *
  * @version $Id: XML11NSDocumentScannerImpl.java 495747 2007-01-12 21:48:00Z mrglavas $
  */
 public class XML11NSDocumentScannerImpl extends XML11DocumentScannerImpl {
+
+    /**
+     * Default constructor. Creates an XML 1.1 namespace-aware document scanner.
+     */
+    public XML11NSDocumentScannerImpl() {
+        super();
+    }
 
     /**
      * If is true, the dtd validator is no longer in the pipeline
@@ -107,12 +112,10 @@ public class XML11NSDocumentScannerImpl extends XML11DocumentScannerImpl {
      * Scans a start element. This method will handle the binding of
      * namespace information and notifying the handler of the start
      * of the element.
-     * <p>
      * <pre>
      * [44] EmptyElemTag ::= '&lt;' Name (S Attribute)* S? '/>'
      * [40] STag ::= '&lt;' Name (S Attribute)* S? '>'
      * </pre>
-     * <p>
      * <strong>Note:</strong> This method assumes that the leading
      * '&lt;' character has been consumed.
      * <p>
@@ -440,11 +443,9 @@ public class XML11NSDocumentScannerImpl extends XML11DocumentScannerImpl {
 
     /**
      * Scans an attribute.
-     * <p>
      * <pre>
      * [41] Attribute ::= Name Eq AttValue
      * </pre>
-     * <p>
      * <strong>Note:</strong> This method assumes that the next
      * character on the stream is the first character of the attribute
      * name.
@@ -454,6 +455,8 @@ public class XML11NSDocumentScannerImpl extends XML11DocumentScannerImpl {
      * destroyed.
      *
      * @param attributes The attributes list for the scanned attribute.
+     * @throws IOException if an I/O error occurs
+     * @throws XNIException if a XNI error occurs
      */
     protected void scanAttribute(XMLAttributesImpl attributes) throws IOException, XNIException {
         if (DEBUG_CONTENT_SCANNING)
@@ -559,11 +562,9 @@ public class XML11NSDocumentScannerImpl extends XML11DocumentScannerImpl {
 
     /**
      * Scans an end element.
-     * <p>
      * <pre>
      * [42] ETag ::= '&lt;/' Name S? '>'
      * </pre>
-     * <p>
      * <strong>Note:</strong> This method uses the fElementQName variable.
      * The contents of this variable will be destroyed. The caller should
      * copy the needed information out of this variable before calling
@@ -635,7 +636,19 @@ public class XML11NSDocumentScannerImpl extends XML11DocumentScannerImpl {
     /**
      * Dispatcher to handle content scanning.
      */
+    /**
+     * Namespace-aware content dispatcher for XML 1.1 documents.
+     * This inner class handles the namespace-aware content scanning for XML 1.1.
+     */
     protected final class NS11ContentDispatcher extends ContentDispatcher {
+
+        /**
+         * Default constructor for NS11ContentDispatcher.
+         */
+        protected NS11ContentDispatcher() {
+            super();
+        }
+
         /**
          * Scan for root element hook. This method is a hook for
          * subclasses to add code that handles scanning for the root

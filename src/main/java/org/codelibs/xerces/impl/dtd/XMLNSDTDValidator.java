@@ -50,13 +50,20 @@ import org.codelibs.xerces.xni.XNIException;
  *  <li>http://apache.org/xml/properties/internal/datatype-validator-factory</li>
  * </ul>
  *
- * @xerces.internal
+
  *
  * @author Elena Litani, IBM
  *
  * @version $Id: XMLNSDTDValidator.java 572055 2007-09-02 17:55:43Z mrglavas $
  */
 public class XMLNSDTDValidator extends XMLDTDValidator {
+
+    /**
+     * Default constructor.
+     */
+    public XMLNSDTDValidator() {
+        super();
+    }
 
     /** Attribute QName. */
     private final QName fAttributeQName = new QName();

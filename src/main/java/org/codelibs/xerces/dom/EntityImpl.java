@@ -50,7 +50,7 @@ import org.w3c.dom.Node;
  * _any_ answer will involve a non-DOM operation, and this is the
  * simplest solution.
  *
- * @xerces.internal
+
  *
  * @author Elena Litani, IBM
  * @version $Id: EntityImpl.java 447266 2006-09-18 05:57:49Z mrglavas $
@@ -97,7 +97,11 @@ public class EntityImpl extends ParentNode implements Entity {
     // Constructors
     //
 
-    /** Factory constructor. */
+    /**
+     * Factory constructor.
+     * @param ownerDoc the document that owns this entity
+     * @param name the name of the entity
+     */
     public EntityImpl(CoreDocumentImpl ownerDoc, String name) {
         super(ownerDoc);
         this.name = name;
@@ -211,7 +215,9 @@ public class EntityImpl extends ParentNode implements Entity {
 
     /**
      * DOM Level 2: The public identifier associated with the entity. If not specified,
-     * this will be null. */
+     * this will be null.
+     * @param id the public identifier
+     */
     public void setPublicId(String id) {
 
         if (needsSyncData()) {
@@ -225,8 +231,8 @@ public class EntityImpl extends ParentNode implements Entity {
      * NON-DOM
      * encoding - An attribute specifying, as part of the text declaration,
      * the encoding of this entity, when it is an external parsed entity.
-     * This is null otherwise
-     *
+     * This is null otherwise.
+     * @param value the encoding value
      */
     public void setXmlEncoding(String value) {
         if (needsSyncData()) {
@@ -251,6 +257,7 @@ public class EntityImpl extends ParentNode implements Entity {
 
     /**
      * NON-DOM, used to set the input encoding.
+     * @param inputEncoding the input encoding
      */
     public void setInputEncoding(String inputEncoding) {
         if (needsSyncData()) {
@@ -263,7 +270,8 @@ public class EntityImpl extends ParentNode implements Entity {
       * NON-DOM
       * version - An attribute specifying, as part of the text declaration,
       * the version number of this entity, when it is an external parsed entity.
-      * This is null otherwise
+      * This is null otherwise.
+      * @param value the XML version
       */
     public void setXmlVersion(String value) {
         if (needsSyncData()) {
@@ -275,6 +283,7 @@ public class EntityImpl extends ParentNode implements Entity {
     /**
      * DOM Level 2: The system identifier associated with the entity. If not
      * specified, this will be null.
+     * @param id the system identifier
      */
     public void setSystemId(String id) {
         if (needsSyncData()) {
@@ -289,6 +298,7 @@ public class EntityImpl extends ParentNode implements Entity {
      * "notation name" which tells applications how to deal with them.
      * Parsed entities, which <em>are</em> in XML format, don't need this and
      * set it to null.
+     * @param name the notation name
      */
     public void setNotationName(String name) {
         if (needsSyncData()) {
@@ -314,7 +324,10 @@ public class EntityImpl extends ParentNode implements Entity {
         return (baseURI != null) ? baseURI : ((CoreDocumentImpl) getOwnerDocument()).getBaseURI();
     }
 
-    /** NON-DOM: set base uri*/
+    /**
+     * NON-DOM: set base uri.
+     * @param uri the base URI
+     */
     public void setBaseURI(String uri) {
         if (needsSyncData()) {
             synchronizeData();

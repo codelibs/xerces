@@ -113,8 +113,10 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser, DOMCon
     protected static final String TOLERATE_DUPLICATES = Constants.XERCES_FEATURE_PREFIX + Constants.TOLERATE_DUPLICATES_FEATURE;
 
     // internal properties
+    /** Property identifier: symbol table */
     protected static final String SYMBOL_TABLE = Constants.XERCES_PROPERTY_PREFIX + Constants.SYMBOL_TABLE_PROPERTY;
 
+    /** Feature identifier: PSVI augment */
     protected static final String PSVI_AUGMENT = Constants.XERCES_FEATURE_PREFIX + Constants.SCHEMA_AUGMENT_PSVI;
 
     //
@@ -126,14 +128,17 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser, DOMCon
 
     // REVISIT: this value should be null by default and should be set during creation of
     //          LSParser
+    /** The schema type being used (e.g., XML Schema, DTD). */
     protected String fSchemaType = null;
 
+    /** Flag indicating whether the parser is currently busy parsing. */
     protected boolean fBusy = false;
 
     private boolean abortNow = false;
 
     private Thread currentThread;
 
+    /** Debug flag for enabling debug output. */
     protected final static boolean DEBUG = false;
 
     private String fSchemaLocation = null;
@@ -148,6 +153,9 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser, DOMCon
 
     /**
      * Constructs a DOM Builder using the standard parser configuration.
+     *
+     * @param configuration The parser configuration class name
+     * @param schemaType The schema type (DTD or XMLSchema)
      */
     public DOMParserImpl(String configuration, String schemaType) {
         this((XMLParserConfiguration) ObjectFactory.createObject("org.codelibs.xerces.xni.parser.XMLParserConfiguration", configuration));
@@ -170,6 +178,8 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser, DOMCon
 
     /**
      * Constructs a DOM Builder using the specified parser configuration.
+     *
+     * @param config The parser configuration to use
      */
     public DOMParserImpl(XMLParserConfiguration config) {
         super(config);
@@ -226,6 +236,8 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser, DOMCon
 
     /**
      * Constructs a DOM Builder using the specified symbol table.
+     *
+     * @param symbolTable The symbol table to use
      */
     public DOMParserImpl(SymbolTable symbolTable) {
         this((XMLParserConfiguration) ObjectFactory.createObject("org.codelibs.xerces.xni.parser.XMLParserConfiguration",
@@ -236,6 +248,9 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser, DOMCon
     /**
      * Constructs a DOM Builder using the specified symbol table and
      * grammar pool.
+     *
+     * @param symbolTable The symbol table to use
+     * @param grammarPool The grammar pool to use
      */
     public DOMParserImpl(SymbolTable symbolTable, XMLGrammarPool grammarPool) {
         this((XMLParserConfiguration) ObjectFactory.createObject("org.codelibs.xerces.xni.parser.XMLParserConfiguration",
@@ -246,8 +261,6 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser, DOMCon
 
     /**
      * Resets the parser state.
-     *
-     * @throws SAXException Thrown on initialization error.
      */
     public void reset() {
         super.reset();

@@ -42,13 +42,19 @@ import org.w3c.dom.Text;
  *
  * This is an empty implementation.
  *
- * @xerces.internal
+
  *
  * @author Neil Graham, IBM
  *
  * @version $Id: DefaultText.java 699892 2008-09-28 21:08:27Z mrglavas $
  */
 public class DefaultText extends NodeImpl implements Text {
+
+    /**
+     * Default constructor for DefaultText.
+     */
+    public DefaultText() {
+    }
 
     // CharacterData methods
 

@@ -27,7 +27,7 @@ import org.codelibs.xerces.xs.XSObjectList;
 /**
  * Store schema model group declaration.
  *
- * @xerces.internal
+
  *
  * @author Sandy Gao, IBM
  *
@@ -35,25 +35,44 @@ import org.codelibs.xerces.xs.XSObjectList;
  */
 public class XSModelGroupImpl implements XSModelGroup {
 
+    /**
+     * Default constructor for XSModelGroupImpl.
+     */
+    public XSModelGroupImpl() {
+        // Default constructor
+    }
+
     // types of model groups
     // REVISIT: can't use same constants as those for particles, because
     // there are place where the constants are used together. For example,
     // to check whether the content is an element or a sequence.
+
+    /** Model group type representing a choice construct. */
     public static final short MODELGROUP_CHOICE = 101;
+
+    /** Model group type representing a sequence construct. */
     public static final short MODELGROUP_SEQUENCE = 102;
+
+    /** Model group type representing an all construct. */
     public static final short MODELGROUP_ALL = 103;
 
-    // compositor of the model group
+    /** The compositor of the model group (choice, sequence, or all). */
     public short fCompositor;
 
-    // particles
+    /** Array of particles contained in this model group. */
     public XSParticleDecl[] fParticles = null;
+
+    /** The number of particles in this model group. */
     public int fParticleCount = 0;
 
-    // this particle's optional annotations
+    /** Optional annotations associated with this model group. */
     public XSObjectList fAnnotations = null;
 
-    // whether this model group contains nothing
+    /**
+     * Determines whether this model group contains nothing (i.e., all particles are empty).
+     *
+     * @return true if this model group is empty, false otherwise
+     */
     public boolean isEmpty() {
         for (int i = 0; i < fParticleCount; i++) {
             if (!fParticles[i].isEmpty())
@@ -68,6 +87,13 @@ public class XSModelGroupImpl implements XSModelGroup {
      * The following methods are used to return min/max range for a particle.
      * They are not exactly the same as it's described in the spec, but all the
      * values from the spec are retrievable by these methods.
+     */
+    /**
+     * Calculates the minimum effective total range for this model group.
+     * For choice groups, returns the minimum of all particle ranges.
+     * For sequence and all groups, returns the sum of all particle ranges.
+     *
+     * @return the minimum effective total range
      */
     public int minEffectiveTotalRange() {
         if (fCompositor == MODELGROUP_CHOICE)
@@ -99,6 +125,14 @@ public class XSModelGroupImpl implements XSModelGroup {
         return min;
     }
 
+    /**
+     * Calculates the maximum effective total range for this model group.
+     * For choice groups, returns the maximum of all particle ranges.
+     * For sequence and all groups, returns the sum of all particle ranges,
+     * or unbounded if any particle is unbounded.
+     *
+     * @return the maximum effective total range, or SchemaSymbols.OCCURRENCE_UNBOUNDED if unbounded
+     */
     public int maxEffectiveTotalRange() {
         if (fCompositor == MODELGROUP_CHOICE)
             return maxEffectiveTotalRangeChoice();
@@ -168,6 +202,10 @@ public class XSModelGroupImpl implements XSModelGroup {
         return fDescription;
     }
 
+    /**
+     * Resets this model group to its initial state, clearing all particles,
+     * annotations, and setting the compositor to sequence.
+     */
     public void reset() {
         fCompositor = MODELGROUP_SEQUENCE;
         fParticles = null;

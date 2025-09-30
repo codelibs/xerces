@@ -27,7 +27,7 @@ import org.codelibs.xerces.util.MessageFormatter;
  * XPointerMessageFormatter provides error messages for the XPointer Framework
  * and element() Scheme Recommendations.
  *
- * @xerces.internal
+
  *
  * @version $Id: XPointerMessageFormatter.java 813087 2009-09-09 19:35:27Z mrglavas $
  */

@@ -66,7 +66,7 @@ import org.w3c.dom.NodeList;
  * NOTE: Level 2 of the DOM will probably _not_ use NodeList for its
  * extended search mechanisms, partly for the reasons just discussed.
  *
- * @xerces.internal
+
  *
  * @version $Id: DeepNodeListImpl.java 778245 2009-05-24 22:27:32Z mrglavas $
  * @since  PR-DOM-Level-1-19980818.
@@ -77,26 +77,43 @@ public class DeepNodeListImpl implements NodeList {
     // Data
     //
 
-    protected NodeImpl rootNode; // Where the search started
-    protected String tagName; // Or "*" to mean all-tags-acceptable
+    /** The root node where the search started. */
+    protected NodeImpl rootNode;
+    /** The tag name to match, or "*" to mean all tags are acceptable. */
+    protected String tagName;
+    /** Counter for tracking document changes. */
     protected int changes = 0;
+    /** Cached list of matching nodes. */
     protected ArrayList nodes;
 
+    /** The namespace name to match. */
     protected String nsName;
+    /** Flag indicating whether namespace support is enabled. */
     protected boolean enableNS = false;
 
     //
     // Constructors
     //
 
-    /** Constructor. */
+    /**
+     * Constructor for deep node list implementation.
+     *
+     * @param rootNode The root node to search from
+     * @param tagName The tag name to search for
+     */
     public DeepNodeListImpl(NodeImpl rootNode, String tagName) {
         this.rootNode = rootNode;
         this.tagName = tagName;
         nodes = new ArrayList();
     }
 
-    /** Constructor for Namespace support. */
+    /**
+     * Constructor for Namespace support.
+     *
+     * @param rootNode The root node to search from
+     * @param nsName The namespace name to search for
+     * @param tagName The tag name to search for
+     */
     public DeepNodeListImpl(NodeImpl rootNode, String nsName, String tagName) {
         this(rootNode, tagName);
         this.nsName = (nsName != null && nsName.length() != 0) ? nsName : null;
@@ -161,6 +178,9 @@ public class DeepNodeListImpl implements NodeList {
      * Iterative tree-walker. When you have a Parent link, there's often no
      * need to resort to recursion. NOTE THAT only Element nodes are matched
      * since we're specifically supporting getElementsByTagName().
+     *
+     * @param current The current node from which to continue searching
+     * @return The next matching element node, or null if no more matches
      */
     protected Node nextMatchingElementAfter(Node current) {
 

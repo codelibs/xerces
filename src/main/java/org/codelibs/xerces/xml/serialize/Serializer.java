@@ -67,6 +67,8 @@ public interface Serializer {
      * Specifies an output stream to which the document should be
      * serialized. This method should not be called while the
      * serializer is in the process of serializing a document.
+     *
+     * @param output the output stream to write to
      */
     public void setOutputByteStream(OutputStream output);
 
@@ -74,6 +76,8 @@ public interface Serializer {
      * Specifies a writer to which the document should be serialized.
      * This method should not be called while the serializer is in
      * the process of serializing a document.
+     *
+     * @param output the writer to write to
      */
     public void setOutputCharStream(Writer output);
 
@@ -92,6 +96,9 @@ public interface Serializer {
      * Return a {@link DocumentHandler} interface into this serializer.
      * If the serializer does not support the {@link DocumentHandler}
      * interface, it should return null.
+     *
+     * @return a DocumentHandler interface, or null if not supported
+     * @throws IOException if an I/O error occurs
      */
     public DocumentHandler asDocumentHandler() throws IOException;
 
@@ -99,6 +106,9 @@ public interface Serializer {
      * Return a {@link ContentHandler} interface into this serializer.
      * If the serializer does not support the {@link ContentHandler}
      * interface, it should return null.
+     *
+     * @return a ContentHandler interface, or null if not supported
+     * @throws IOException if an I/O error occurs
      */
     public ContentHandler asContentHandler() throws IOException;
 
@@ -106,6 +116,9 @@ public interface Serializer {
      * Return a {@link DOMSerializer} interface into this serializer.
      * If the serializer does not support the {@link DOMSerializer}
      * interface, it should return null.
+     *
+     * @return a DOMSerializer interface, or null if not supported
+     * @throws IOException if an I/O error occurs
      */
     public DOMSerializer asDOMSerializer() throws IOException;
 

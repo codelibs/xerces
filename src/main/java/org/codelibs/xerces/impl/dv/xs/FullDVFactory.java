@@ -23,9 +23,7 @@ import org.codelibs.xerces.util.SymbolHash;
 import org.codelibs.xerces.xs.XSConstants;
 
 /**
- * the factory to create/return built-in schema DVs and create user-defined DVs
- *
- * @xerces.internal
+ * the factory to create/return built-in schema DVs and create user-defined DVs.
  *
  * @author Neeraj Bajaj, Sun Microsystems, inc.
  * @author Sandy Gao, IBM
@@ -33,6 +31,12 @@ import org.codelibs.xerces.xs.XSConstants;
  * @version $Id: FullDVFactory.java 699892 2008-09-28 21:08:27Z mrglavas $
  */
 public class FullDVFactory extends BaseDVFactory {
+
+    /**
+     * Default constructor for internal instantiation.
+     */
+    public FullDVFactory() {
+    }
 
     static final String URI_SCHEMAFORSCHEMA = "http://www.w3.org/2001/XMLSchema";
 

@@ -26,7 +26,8 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.events.Attribute;
 
 /**
- * @xerces.internal
+ * Implementation of {@code Attribute} event for StAX.
+ * Represents an attribute in an XML element.
  *
  * @author Lucian Holland
  *
@@ -41,11 +42,27 @@ public class AttributeImpl extends XMLEventImpl implements Attribute {
 
     /**
      * Constructor.
+     *
+     * @param name the qualified name of the attribute
+     * @param value the value of the attribute
+     * @param dtdType the DTD type of the attribute
+     * @param isSpecified whether the attribute was explicitly specified
+     * @param location the location of the attribute in the source
      */
     public AttributeImpl(final QName name, final String value, final String dtdType, final boolean isSpecified, final Location location) {
         this(ATTRIBUTE, name, value, dtdType, isSpecified, location);
     }
 
+    /**
+     * Protected constructor for subclasses.
+     *
+     * @param type the event type
+     * @param name the qualified name of the attribute
+     * @param value the value of the attribute
+     * @param dtdType the DTD type of the attribute
+     * @param isSpecified whether the attribute was explicitly specified
+     * @param location the location of the attribute in the source
+     */
     protected AttributeImpl(final int type, final QName name, final String value, final String dtdType, final boolean isSpecified,
             final Location location) {
         super(type, location);

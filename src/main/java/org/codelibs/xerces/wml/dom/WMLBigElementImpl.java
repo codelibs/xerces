@@ -19,7 +19,8 @@ package org.codelibs.xerces.wml.dom;
 import org.codelibs.xerces.wml.WMLBigElement;
 
 /**
- * @xerces.internal
+ * Implementation of WMLBigElement interface for WML big text elements.
+ *
  * @version $Id: WMLBigElementImpl.java 661560 2008-05-30 03:22:25Z mrglavas $
  * @author <a href="mailto:david@topware.com.tw">David Li</a>
  */
@@ -27,6 +28,12 @@ public class WMLBigElementImpl extends WMLElementImpl implements WMLBigElement {
 
     private static final long serialVersionUID = -8826061369691668904L;
 
+    /**
+     * Constructs a new WML big element with the specified owner document and tag name.
+     *
+     * @param owner the owner document
+     * @param tagName the tag name for this element
+     */
     public WMLBigElementImpl(WMLDocumentImpl owner, String tagName) {
         super(owner, tagName);
     }

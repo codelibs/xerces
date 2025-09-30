@@ -49,6 +49,7 @@ public class SecurityConfiguration extends XIncludeAwareParserConfiguration {
     // Constants
     //
 
+    /** Property identifier for the security manager. */
     protected static final String SECURITY_MANAGER_PROPERTY = Constants.XERCES_PROPERTY_PREFIX + Constants.SECURITY_MANAGER_PROPERTY;
 
     //

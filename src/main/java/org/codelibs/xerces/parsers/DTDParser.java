@@ -29,6 +29,9 @@ import org.codelibs.xerces.xni.XNIException;
 import org.codelibs.xerces.xni.parser.XMLDTDScanner;
 
 /**
+ * Abstract parser for DTD grammars. This parser provides the foundation for parsing
+ * Document Type Definition (DTD) documents and building grammar representations.
+ *
  * @version $Id: DTDParser.java 699892 2008-09-28 21:08:27Z mrglavas $
  */
 public abstract class DTDParser extends XMLGrammarParser implements XMLDTDHandler, XMLDTDContentModelHandler {
@@ -45,9 +48,9 @@ public abstract class DTDParser extends XMLGrammarParser implements XMLDTDHandle
     //
 
     /**
+     * Constructs a DTD parser with the specified symbol table.
      *
-     *
-     * @param symbolTable
+     * @param symbolTable the symbol table to use for string interning
      */
     public DTDParser(SymbolTable symbolTable) {
         super(symbolTable);
@@ -322,7 +325,7 @@ public abstract class DTDParser extends XMLGrammarParser implements XMLDTDHandle
      * the endDTD method.
      *
      * @param name The name of the entity.
-     *
+     * @param augmentations Additional information that may include infoset augmentations
      * @throws XNIException Thrown by handler to signal an error.
      */
     public void endEntity(String name, Augmentations augmentations) throws XNIException {

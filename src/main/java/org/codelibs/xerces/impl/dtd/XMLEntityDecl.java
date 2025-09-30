@@ -18,11 +18,20 @@
 package org.codelibs.xerces.impl.dtd;
 
 /**
- * @xerces.internal
+ * XML entity declaration representation for DTD processing.
+ * This class holds the declaration information for XML entities
+ * including name, public ID, system ID, and other entity properties.
  *
  * @version $Id: XMLEntityDecl.java 446755 2006-09-15 21:56:27Z mrglavas $
  */
 public class XMLEntityDecl {
+
+    /**
+     * Default constructor. Creates an empty entity declaration.
+     */
+    public XMLEntityDecl() {
+        // Empty constructor
+    }
 
     //
     // Data
@@ -58,15 +67,15 @@ public class XMLEntityDecl {
     //
 
     /**
-     * setValues
+     * Sets the values for this entity declaration.
      *
-     * @param name
-     * @param publicId
-     * @param systemId
-     * @param baseSystemId
-     * @param notation
-     * @param isPE
-     * @param inExternal
+     * @param name the name of the entity
+     * @param publicId the public identifier of the entity
+     * @param systemId the system identifier of the entity
+     * @param baseSystemId the base system identifier
+     * @param notation the notation name for unparsed entities
+     * @param isPE true if this is a parameter entity, false otherwise
+     * @param inExternal true if this entity is declared in an external subset
      */
     public void setValues(String name, String publicId, String systemId, String baseSystemId, String notation, boolean isPE,
             boolean inExternal) {
@@ -74,16 +83,16 @@ public class XMLEntityDecl {
     }
 
     /**
-     * setValues
+     * Sets the values for this entity declaration including the entity value.
      *
-     * @param name
-     * @param publicId
-     * @param systemId
-     * @param baseSystemId
-     * @param value
-     * @param notation
-     * @param isPE
-     * @param inExternal
+     * @param name the name of the entity
+     * @param publicId the public identifier of the entity
+     * @param systemId the system identifier of the entity
+     * @param baseSystemId the base system identifier
+     * @param notation the notation name for unparsed entities
+     * @param value the internal value for internal entities
+     * @param isPE true if this is a parameter entity, false otherwise
+     * @param inExternal true if this entity is declared in an external subset
      */
     public void setValues(String name, String publicId, String systemId, String baseSystemId, String notation, String value, boolean isPE,
             boolean inExternal) {

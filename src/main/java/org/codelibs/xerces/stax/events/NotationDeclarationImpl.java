@@ -25,7 +25,8 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.events.NotationDeclaration;
 
 /**
- * @xerces.internal
+ * Implementation of {@code NotationDeclaration} event for StAX.
+ * Represents a notation declaration in a DTD.
  *
  * @author Lucian Holland
  *
@@ -38,9 +39,11 @@ public final class NotationDeclarationImpl extends XMLEventImpl implements Notat
     private final String fName;
 
     /**
-     * @param eventType
-     * @param location
-     * @param schemaType
+     * Constructs a NotationDeclaration event with the specified properties.
+     * @param name the notation name
+     * @param publicId the public identifier
+     * @param systemId the system identifier
+     * @param location the location of this event in the source document
      */
     public NotationDeclarationImpl(final String name, final String publicId, final String systemId, final Location location) {
         super(NOTATION_DECLARATION, location);

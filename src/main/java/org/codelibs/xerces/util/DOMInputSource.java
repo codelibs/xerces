@@ -29,24 +29,48 @@ public final class DOMInputSource extends XMLInputSource {
 
     private Node fNode;
 
+    /**
+     * Constructs a DOMInputSource with no DOM node.
+     */
     public DOMInputSource() {
         this(null);
     }
 
+    /**
+     * Constructs a DOMInputSource from a DOM node.
+     *
+     * @param node The DOM node
+     */
     public DOMInputSource(Node node) {
         super(null, getSystemIdFromNode(node), null);
         fNode = node;
     }
 
+    /**
+     * Constructs a DOMInputSource from a DOM node and system ID.
+     *
+     * @param node The DOM node
+     * @param systemId The system identifier
+     */
     public DOMInputSource(Node node, String systemId) {
         super(null, systemId, null);
         fNode = node;
     }
 
+    /**
+     * Returns the DOM node.
+     *
+     * @return The DOM node
+     */
     public Node getNode() {
         return fNode;
     }
 
+    /**
+     * Sets the DOM node.
+     *
+     * @param node The DOM node
+     */
     public void setNode(Node node) {
         fNode = node;
     }

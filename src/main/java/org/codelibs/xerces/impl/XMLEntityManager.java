@@ -81,8 +81,6 @@ import org.codelibs.xerces.xni.parser.XMLInputSource;
  *  <li>http://apache.org/xml/properties/internal/entity-resolver</li>
  * </ul>
  *
- * @xerces.internal
- *
  * @author Andy Clark, IBM
  * @author Arnaud  Le Hors, IBM
  *
@@ -125,6 +123,7 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
     /** Feature identifier: standard uri conformant */
     protected static final String STANDARD_URI_CONFORMANT = Constants.XERCES_FEATURE_PREFIX + Constants.STANDARD_URI_CONFORMANT_FEATURE;
 
+    /** Feature identifier: parser settings. */
     protected static final String PARSER_SETTINGS = Constants.XERCES_FEATURE_PREFIX + Constants.PARSER_SETTINGS;
 
     // property identifiers
@@ -139,6 +138,7 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
     protected static final String ENTITY_RESOLVER = Constants.XERCES_PROPERTY_PREFIX + Constants.ENTITY_RESOLVER_PROPERTY;
 
     // property identifier:  ValidationManager
+    /** Property identifier: validation manager. */
     protected static final String VALIDATION_MANAGER = Constants.XERCES_PROPERTY_PREFIX + Constants.VALIDATION_MANAGER_PROPERTY;
 
     /** property identifier: buffer size. */
@@ -262,6 +262,7 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
 
     // stores defaults for entity expansion limit if it has
     // been set on the configuration.
+    /** Security manager for preventing entity expansion attacks. */
     protected SecurityManager fSecurityManager = null;
 
     /**
@@ -277,6 +278,7 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
 
     // are the entities being parsed in the external subset?
     // NOTE:  this *is not* the same as whether they're external entities!
+    /** Flag indicating whether we are in an external subset. */
     protected boolean fInExternalSubset = false;
 
     // handlers
@@ -297,8 +299,10 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
 
     // entity expansion limit (contains useful data if and only if
     // fSecurityManager is non-null)
+    /** Entity expansion limit for security. */
     protected int fEntityExpansionLimit = 0;
     // entity currently being expanded:
+    /** Current count of entity expansions. */
     protected int fEntityExpansionCount = 0;
 
     // entities
@@ -353,6 +357,8 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
      * <strong>REVISIT:</strong> We might want to think about the "right"
      * way to expose the list of declared entities. For now, the knowledge
      * how to access the entity declarations is implicit.
+     *
+     * @param entityManager The entity manager whose entity declarations will be shared
      */
     public XMLEntityManager(XMLEntityManager entityManager) {
 
@@ -375,7 +381,11 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
         fStandalone = standalone;
     } // setStandalone(boolean)
 
-    /** Returns true if the document entity is standalone. */
+    /**
+     * Returns true if the document entity is standalone.
+     *
+     * @return true if the document entity is standalone, false otherwise
+     */
     public boolean isStandalone() {
         return fStandalone;
     } // isStandalone():boolean
@@ -410,6 +420,11 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
     // carefully manage the entity manager's behaviour, so that
     // this doesn't returning meaningless or misleading data.
     // @return  a reference to the current fResourceIdentifier object
+    /**
+     * Returns the current resource identifier.
+     *
+     * @return The current resource identifier
+     */
     public XMLResourceIdentifier getCurrentResourceIdentifier() {
         return fResourceIdentifier;
     }
@@ -419,6 +434,11 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
     // carefully manage the entity manager's behaviour, so that
     // this doesn't returning meaningless or misleading data.
     // @return  a reference to the current fCurrentEntity object
+    /**
+     * Returns the current entity being scanned.
+     *
+     * @return The current entity
+     */
     public ScannedEntity getCurrentEntity() {
         return fCurrentEntity;
     }
@@ -507,6 +527,8 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
      *                     When null the system identifier of the first
      *                     external entity on the stack is used instead.
      *
+     * @throws IOException if an I/O error occurs while processing the entity
+     *
      * @see SymbolTable
      */
     public void addExternalEntity(String name, String publicId, String literalSystemId, String baseSystemId) throws IOException {
@@ -582,6 +604,7 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
      * @param name     The name of the entity.
      * @param publicId The public identifier of the entity.
      * @param systemId The system identifier of the entity.
+     * @param baseSystemId The base system identifier of the entity.
      * @param notation The name of the notation.
      *
      * @see SymbolTable
@@ -848,10 +871,16 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
 
     // indicate start of external subset so that
     // location of entity decls can be tracked
+    /**
+     * Starts processing of external subset.
+     */
     public void startExternalSubset() {
         fInExternalSubset = true;
     }
 
+    /**
+     * Ends processing of external subset.
+     */
     public void endExternalSubset() {
         fInExternalSubset = false;
     }
@@ -1159,6 +1188,11 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
     } //setupCurrentEntity(String, XMLInputSource, boolean, boolean):  String
 
     // set version of scanner to use
+    /**
+     * Sets the scanner version.
+     *
+     * @param version The scanner version
+     */
     public void setScannerVersion(short version) {
         if (version == Constants.XML_VERSION_1_0) {
             if (fXML10EntityScanner == null) {
@@ -1177,7 +1211,11 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
         }
     } // setScannerVersion(short)
 
-    /** Returns the entity scanner. */
+    /**
+     * Returns the entity scanner.
+     *
+     * @return the entity scanner
+     */
     public XMLEntityScanner getEntityScanner() {
         if (fEntityScanner == null) {
             // default to 1.0
@@ -1191,6 +1229,7 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
     } // getEntityScanner():XMLEntityScanner
 
     // A stack containing all the open readers
+    /** Stack of readers for entity processing. */
     protected Stack fReaderStack = new Stack();
 
     /**
@@ -1218,12 +1257,11 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
      *
      * @param componentManager The component manager.
      *
-     * @throws SAXException Thrown by component on initialization error.
+     * @throws XMLConfigurationException Thrown by component on initialization error.
      *                      For example, if a feature or property is
      *                      required for the operation of the component, the
      *                      component manager may throw a
-     *                      SAXNotRecognizedException or a
-     *                      SAXNotSupportedException.
+     *                      XMLConfigurationException.
      */
     public void reset(XMLComponentManager componentManager) throws XMLConfigurationException {
 
@@ -1303,6 +1341,9 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
     // reset general state.  Should not be called other than by
     // a class acting as a component manager but not
     // implementing that interface for whatever reason.
+    /**
+     * Resets the entity manager to its initial state.
+     */
     public void reset() {
         fEntityExpansionLimit = (fSecurityManager != null) ? fSecurityManager.getEntityExpansionLimit() : 0;
 
@@ -1376,10 +1417,8 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
      * @param featureId The feature identifier.
      * @param state     The state of the feature.
      *
-     * @throws SAXNotRecognizedException The component should not throw
+     * @throws XMLConfigurationException The component should not throw
      *                                   this exception.
-     * @throws SAXNotSupportedException The component should not throw
-     *                                  this exception.
      */
     public void setFeature(String featureId, boolean state) throws XMLConfigurationException {
 
@@ -1413,10 +1452,8 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
      * @param propertyId The property identifier.
      * @param value      The value of the property.
      *
-     * @throws SAXNotRecognizedException The component should not throw
+     * @throws XMLConfigurationException The component should not throw
      *                                   this exception.
-     * @throws SAXNotSupportedException The component should not throw
-     *                                  this exception.
      */
     public void setProperty(String propertyId, Object value) throws XMLConfigurationException {
 
@@ -1639,6 +1676,7 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
      * the URI is already absolute, this is a no-op.
      *
      * @param uri the URI to absolutize
+     * @throws URI.MalformedURIException if the URI is malformed
      */
     public static void absolutizeAgainstUserDir(URI uri) throws URI.MalformedURIException {
         uri.absolutize(getUserDir());
@@ -1651,11 +1689,14 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
      * indicates a failure to expand the id.
      *
      * @param systemId The systemId to be expanded.
+     * @param baseSystemId The base system identifier.
+     * @param strict Whether to perform strict URI expansion.
      *
      * @return Returns the URI string representing the expanded system
      *         identifier. A null value indicates that the given
      *         system identifier is already expanded.
      *
+     * @throws URI.MalformedURIException if the URI is malformed
      */
     public static String expandSystemId(String systemId, String baseSystemId, boolean strict) throws URI.MalformedURIException {
 
@@ -1793,6 +1834,13 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
 
     } // expandSystemIdStrictOff(String,String):String
 
+    /**
+     * Creates an output stream for the given URI.
+     *
+     * @param uri The URI to create an output stream for
+     * @return The output stream for the URI
+     * @throws IOException if an I/O error occurs
+     */
     public static OutputStream createOutputStream(String uri) throws IOException {
         // URI was specified. Handle relative URIs.
         final String expanded = XMLEntityManager.expandSystemId(uri, null, true);
@@ -2008,6 +2056,7 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
      *                      unknown or not relevant.
      *
      * @return Returns a reader.
+     * @throws IOException if an I/O error occurs
      */
     protected Reader createReader(InputStream inputStream, String encoding, Boolean isBigEndian) throws IOException {
 
@@ -2302,8 +2351,6 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
     /**
      * Entity information.
      *
-     * @xerces.internal
-     *
      * @author Andy Clark, IBM
      */
     public static abstract class Entity {
@@ -2317,6 +2364,7 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
 
         // whether this entity's declaration was found in the internal
         // or external subset
+        /** Whether this entity's declaration was found in the external subset. */
         public boolean inExternalSubset;
 
         //
@@ -2328,7 +2376,12 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
             clear();
         } // <init>()
 
-        /** Constructs an entity. */
+        /**
+         * Constructs an entity.
+         *
+         * @param name The entity name
+         * @param inExternalSubset Whether the entity is in the external subset
+         */
         public Entity(String name, boolean inExternalSubset) {
             this.name = name;
             this.inExternalSubset = inExternalSubset;
@@ -2338,15 +2391,27 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
         // Public methods
         //
 
-        /** Returns true if this entity was declared in the external subset. */
+        /**
+         * Returns true if this entity was declared in the external subset.
+         *
+         * @return true if the entity is declared in the external subset
+         */
         public boolean isEntityDeclInExternalSubset() {
             return inExternalSubset;
         }
 
-        /** Returns true if this is an external entity. */
+        /**
+         * Returns true if this is an external entity.
+         *
+         * @return true if the entity is external
+         */
         public abstract boolean isExternal();
 
-        /** Returns true if this is an unparsed entity. */
+        /**
+         * Returns true if this is an unparsed entity.
+         *
+         * @return true if the entity is unparsed
+         */
         public abstract boolean isUnparsed();
 
         /** Clears the entity. */
@@ -2355,7 +2420,11 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
             inExternalSubset = false;
         } // clear()
 
-        /** Sets the values of the entity. */
+        /**
+         * Sets the values of the entity.
+         *
+         * @param entity The entity to copy values from
+         */
         public void setValues(Entity entity) {
             name = entity.name;
             inExternalSubset = entity.inExternalSubset;
@@ -2365,8 +2434,6 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
 
     /**
      * Internal entity.
-     *
-     * @xerces.internal
      *
      * @author Andy Clark, IBM
      */
@@ -2391,13 +2458,26 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
             clear();
         } // <init>()
 
-        /** Constructs an internal entity. */
+        /**
+         * Constructs an internal entity.
+         *
+         * @param name The entity name
+         * @param text The entity text value
+         * @param inExternalSubset Whether the entity is in the external subset
+         */
         public InternalEntity(String name, String text, boolean inExternalSubset) {
             super(name, inExternalSubset);
             this.text = text;
         } // <init>(String,String)
 
-        /** Constructs an internal entity. */
+        /**
+         * Constructs an internal entity.
+         *
+         * @param name The entity name
+         * @param text The entity text value
+         * @param inExternalSubset Whether the entity is in the external subset
+         * @param paramEntityRefs The parameter entity reference count
+         */
         public InternalEntity(String name, String text, boolean inExternalSubset, int paramEntityRefs) {
             this(name, text, inExternalSubset);
             this.paramEntityRefs = paramEntityRefs;
@@ -2429,7 +2509,11 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
             text = null;
         } // setValues(Entity)
 
-        /** Sets the values of the entity. */
+        /**
+         * Sets the values of the entity.
+         *
+         * @param entity The internal entity to copy values from
+         */
         public void setValues(InternalEntity entity) {
             super.setValues(entity);
             text = entity.text;
@@ -2439,8 +2523,6 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
 
     /**
      * External entity.
-     *
-     * @xerces.internal
      *
      * @author Andy Clark, IBM
      */
@@ -2465,7 +2547,14 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
             clear();
         } // <init>()
 
-        /** Constructs an internal entity. */
+        /**
+         * Constructs an external entity.
+         *
+         * @param name The entity name
+         * @param entityLocation The entity location information
+         * @param notation The notation name (for unparsed entities)
+         * @param inExternalSubset Whether the entity is in the external subset
+         */
         public ExternalEntity(String name, XMLResourceIdentifier entityLocation, String notation, boolean inExternalSubset) {
             super(name, inExternalSubset);
             this.entityLocation = entityLocation;
@@ -2500,7 +2589,11 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
             notation = null;
         } // setValues(Entity)
 
-        /** Sets the values of the entity. */
+        /**
+         * Sets the values of the entity.
+         *
+         * @param entity The external entity to copy values from
+         */
         public void setValues(ExternalEntity entity) {
             super.setValues(entity);
             entityLocation = entity.entityLocation;
@@ -2511,8 +2604,6 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
 
     /**
      * Entity state.
-     *
-     * @xerces.internal
      *
      * @author Andy Clark, IBM
      */
@@ -2563,6 +2654,7 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
         public boolean literal;
 
         // whether this is an external or internal scanned entity
+        /** Whether this is an external entity. */
         public boolean isExternal;
 
         // buffer
@@ -2583,6 +2675,7 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
         public int count;
 
         // to allow the reader/inputStream to behave efficiently:
+        /** Whether this scanner may read data in chunks. */
         public boolean mayReadChunks;
 
         /** Character buffer container. */
@@ -2595,7 +2688,19 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
         // Constructors
         //
 
-        /** Constructs a scanned entity. */
+        /**
+         * Constructs a scanned entity.
+         *
+         * @param name The entity name
+         * @param entityLocation The entity location information
+         * @param stream The input stream
+         * @param reader The reader
+         * @param byteBuffer The byte buffer
+         * @param encoding The encoding
+         * @param literal Whether this is a literal
+         * @param mayReadChunks Whether this scanner may read data in chunks
+         * @param isExternal Whether this is an external entity
+         */
         public ScannedEntity(String name, XMLResourceIdentifier entityLocation, InputStream stream, Reader reader, byte[] byteBuffer,
                 String encoding, boolean literal, boolean mayReadChunks, boolean isExternal) {
             super(name, XMLEntityManager.this.fInExternalSubset);
@@ -2625,6 +2730,14 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
             return false;
         } // isUnparsed():boolean
 
+        /**
+         * Sets the reader for this scanned entity.
+         *
+         * @param stream The input stream
+         * @param encoding The encoding name
+         * @param isBigEndian Whether the encoding is big endian (for encodings like UTF-16)
+         * @throws IOException if an I/O error occurs
+         */
         public void setReader(InputStream stream, String encoding, Boolean isBigEndian) throws IOException {
             fTempByteBuffer = fByteBuffer;
             reader = createReader(stream, encoding, isBigEndian);
@@ -2634,6 +2747,11 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
         // return the expanded system ID of the
         // first external entity on the stack, null
         // otherwise.
+        /**
+         * Returns the expanded system ID.
+         *
+         * @return The expanded system ID or null if none exists
+         */
         public String getExpandedSystemId() {
 
             // search for the first external entity on the stack
@@ -2650,6 +2768,11 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
 
         // return literal systemId of
         // nearest external entity
+        /**
+         * Returns the literal system ID.
+         *
+         * @return The literal system ID or null if none exists
+         */
         public String getLiteralSystemId() {
             // search for the first external entity on the stack
             int size = fEntityStack.size();
@@ -2665,6 +2788,11 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
 
         // return line number of position in most
         // recent external entity
+        /**
+         * Returns the current line number.
+         *
+         * @return The current line number
+         */
         public int getLineNumber() {
             // search for the first external entity on the stack
             int size = fEntityStack.size();
@@ -2679,6 +2807,11 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
 
         // return column number of position in most
         // recent external entity
+        /**
+         * Returns the current column number.
+         *
+         * @return The current column number
+         */
         public int getColumnNumber() {
             // search for the first external entity on the stack
             int size = fEntityStack.size();
@@ -2693,6 +2826,11 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
 
         // return character offset of position in most
         // recent external entity
+        /**
+         * Returns the character offset.
+         *
+         * @return The character offset
+         */
         public int getCharacterOffset() {
             // search for the first external entity on the stack
             int size = fEntityStack.size();
@@ -2706,6 +2844,11 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
         }
 
         // return encoding of most recent external entity
+        /**
+         * Returns the encoding.
+         *
+         * @return The encoding or null if none exists
+         */
         public String getEncoding() {
             // search for the first external entity on the stack
             int size = fEntityStack.size();
@@ -2719,6 +2862,11 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
         }
 
         // return xml version of most recent external entity
+        /**
+         * Returns the XML version.
+         *
+         * @return The XML version or null if none exists
+         */
         public String getXMLVersion() {
             // search for the first external entity on the stack
             int size = fEntityStack.size();
@@ -2731,12 +2879,20 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
             return null;
         }
 
-        /** Returns whether the encoding of this entity was externally specified. **/
+        /**
+         * Returns whether the encoding of this entity was externally specified.
+         *
+         * @return true if the encoding was externally specified
+         */
         public boolean isEncodingExternallySpecified() {
             return externallySpecifiedEncoding;
         }
 
-        /** Sets whether the encoding of this entity was externally specified. **/
+        /**
+         * Sets whether the encoding of this entity was externally specified.
+         *
+         * @param value true if the encoding was externally specified
+         */
         public void setEncodingExternallySpecified(boolean value) {
             externallySpecifiedEncoding = value;
         }
@@ -2764,8 +2920,6 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
 
     /**
      * Information about auto-detectable encodings.
-     *
-     * @xerces.internal
      *
      * @author Michael Glavassevich, IBM
      */
@@ -2822,8 +2976,6 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
     /**
      * Pool of byte buffers for the java.io.Readers.
      *
-     * @xerces.internal
-     *
      * @author Michael Glavassevich, IBM
      */
     private static final class ByteBufferPool {
@@ -2870,8 +3022,6 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
      * Buffer used in entity manager to reuse character arrays instead
      * of creating new ones every time.
      *
-     * @xerces.internal
-     *
      * @author Ankit Pasricha, IBM
      */
     private static final class CharacterBuffer {
@@ -2891,8 +3041,6 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
     /**
      * Stores a number of character buffers and provides it to the entity
      * manager to use when an entity is seen.
-     *
-     * @xerces.internal
      *
      * @author Ankit Pasricha, IBM
      */
@@ -2982,8 +3130,6 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
      * underlying InputStream's read(char[], offset length) method--it
      * won't buffer data read this way!</strong>
      *
-     * @xerces.internal
-     *
      * @author Neil Graham, IBM
      * @author Glenn Marcy, IBM
      */
@@ -2997,6 +3143,11 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
         private int fLength;
         private int fMark;
 
+        /**
+         * Creates a new rewindable input stream.
+         *
+         * @param is The input stream to wrap
+         */
         public RewindableInputStream(InputStream is) {
             fData = new byte[DEFAULT_XMLDECL_BUFFER_SIZE];
             fInputStream = is;
@@ -3007,14 +3158,28 @@ public class XMLEntityManager implements XMLComponent, XMLEntityResolver {
             fMark = 0;
         }
 
+        /**
+         * Sets the starting offset for reading.
+         *
+         * @param offset The starting offset
+         */
         public void setStartOffset(int offset) {
             fStartOffset = offset;
         }
 
+        /**
+         * Rewinds the stream to the starting offset.
+         */
         public void rewind() {
             fOffset = fStartOffset;
         }
 
+        /**
+         * Reads a byte and buffers it.
+         *
+         * @return The byte read or -1 if end of stream
+         * @throws IOException if an I/O error occurs
+         */
         public int readAndBuffer() throws IOException {
             if (fOffset == fData.length) {
                 byte[] newData = new byte[fOffset << 1];

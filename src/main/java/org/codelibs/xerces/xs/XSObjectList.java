@@ -28,6 +28,7 @@ public interface XSObjectList extends List {
     /**
      *  The number of <code>XSObjects</code> in the list. The range of valid
      * child object indices is 0 to <code>length-1</code> inclusive.
+     * @return the number of XSObjects in this list
      */
     public int getLength();
 

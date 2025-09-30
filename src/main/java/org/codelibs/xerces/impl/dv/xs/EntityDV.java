@@ -22,9 +22,9 @@ import org.codelibs.xerces.impl.dv.ValidationContext;
 import org.codelibs.xerces.util.XMLChar;
 
 /**
- * Represent the schema type "entity"
- *
- * @xerces.internal
+ * Datatype validator for the XML Schema "entity" type.
+ * Validates that a value represents a valid unparsed entity name
+ * that has been declared in the document type definition.
  *
  * @author Neeraj Bajaj, Sun Microsystems, inc.
  * @author Sandy Gao, IBM
@@ -32,6 +32,12 @@ import org.codelibs.xerces.util.XMLChar;
  * @version $Id: EntityDV.java 446745 2006-09-15 21:43:58Z mrglavas $
  */
 public class EntityDV extends TypeValidator {
+
+    /**
+     * Default constructor for internal instantiation within the datatype validation framework.
+     */
+    public EntityDV() {
+    }
 
     public short getAllowedFacets() {
         return (XSSimpleTypeDecl.FACET_LENGTH | XSSimpleTypeDecl.FACET_MINLENGTH | XSSimpleTypeDecl.FACET_MAXLENGTH

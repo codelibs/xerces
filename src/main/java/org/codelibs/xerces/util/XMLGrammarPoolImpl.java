@@ -54,9 +54,11 @@ public class XMLGrammarPoolImpl implements XMLGrammarPool {
     protected Entry[] fGrammars = null;
 
     // whether this pool is locked
+    /** Whether this pool is locked. */
     protected boolean fPoolIsLocked;
 
     // the number of grammars in the pool
+    /** The number of grammars in the pool. */
     protected int fGrammarCount = 0;
 
     private static final boolean DEBUG = false;
@@ -71,7 +73,11 @@ public class XMLGrammarPoolImpl implements XMLGrammarPool {
         fPoolIsLocked = false;
     } // <init>()
 
-    /** Constructs a grammar pool with a specified number of buckets. */
+    /**
+     * Constructs a grammar pool with a specified number of buckets.
+     *
+     * @param initialCapacity The initial capacity of the grammar pool
+     */
     public XMLGrammarPoolImpl(int initialCapacity) {
         fGrammars = new Entry[initialCapacity];
         fPoolIsLocked = false;
@@ -191,6 +197,7 @@ public class XMLGrammarPoolImpl implements XMLGrammarPool {
      * and the target namespace  is used as the key for Schema grammars.
      *
      * @param desc The Grammar Description.
+     * @return The grammar associated with the given description, or null if not found
      */
     public Grammar getGrammar(XMLGrammarDescription desc) {
         synchronized (fGrammars) {
@@ -242,6 +249,7 @@ public class XMLGrammarPoolImpl implements XMLGrammarPool {
      * as the key for Schema grammars.
      *
      * @param desc The Grammar Description.
+     * @return true if the grammar pool contains the specified grammar, false otherwise
      */
     public boolean containsGrammar(XMLGrammarDescription desc) {
         synchronized (fGrammars) {
@@ -313,11 +321,23 @@ public class XMLGrammarPoolImpl implements XMLGrammarPool {
      * in a linked list.
      */
     protected static final class Entry {
+        /** Hash code for this entry. */
         public int hash;
+        /** Grammar description. */
         public XMLGrammarDescription desc;
+        /** Grammar object. */
         public Grammar grammar;
+        /** Next entry in the hash chain. */
         public Entry next;
 
+        /**
+         * Constructs a new entry.
+         *
+         * @param hash The hash code for this entry
+         * @param desc The grammar description
+         * @param grammar The grammar object
+         * @param next The next entry in the hash chain
+         */
         protected Entry(int hash, XMLGrammarDescription desc, Grammar grammar, Entry next) {
             this.hash = hash;
             this.desc = desc;
@@ -327,6 +347,9 @@ public class XMLGrammarPoolImpl implements XMLGrammarPool {
 
         // clear this entry; useful to promote garbage collection
         // since reduces reference count of objects to be destroyed
+        /**
+         * Clears this entry to promote garbage collection.
+         */
         protected void clear() {
             desc = null;
             grammar = null;

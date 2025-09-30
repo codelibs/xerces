@@ -47,7 +47,7 @@ package org.codelibs.xerces.dom;
  * _any_ answer will involve a non-DOM operation, and this is the
  * simplest solution.
  *
- * @xerces.internal
+
  *
  * @version $Id: DeferredEntityImpl.java 447266 2006-09-18 05:57:49Z mrglavas $
  * @since  PR-DOM-Level-1-19980818.

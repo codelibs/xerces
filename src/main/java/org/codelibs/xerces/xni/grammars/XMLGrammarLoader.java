@@ -43,6 +43,8 @@ public interface XMLGrammarLoader {
      * Returns a list of feature identifiers that are recognized by
      * this XMLGrammarLoader.  This method may return null if no features
      * are recognized.
+     *
+     * @return array of recognized feature identifiers or null
      */
     public String[] getRecognizedFeatures();
 
@@ -50,7 +52,7 @@ public interface XMLGrammarLoader {
      * Returns the state of a feature.
      *
      * @param featureId The feature identifier.
-     *
+     * @return the state of the feature
      * @throws XMLConfigurationException Thrown on configuration error.
      */
     public boolean getFeature(String featureId) throws XMLConfigurationException;
@@ -70,6 +72,8 @@ public interface XMLGrammarLoader {
      * Returns a list of property identifiers that are recognized by
      * this XMLGrammarLoader.  This method may return null if no properties
      * are recognized.
+     *
+     * @return array of recognized property identifiers or null
      */
     public String[] getRecognizedProperties();
 
@@ -77,7 +81,7 @@ public interface XMLGrammarLoader {
      * Returns the state of a property.
      *
      * @param propertyId The property identifier.
-     *
+     * @return the value of the property
      * @throws XMLConfigurationException Thrown on configuration error.
      */
     public Object getProperty(String propertyId) throws XMLConfigurationException;
@@ -103,7 +107,11 @@ public interface XMLGrammarLoader {
      */
     public void setLocale(Locale locale);
 
-    /** Return the Locale the XMLGrammarLoader is using. */
+    /**
+     * Return the Locale the XMLGrammarLoader is using.
+     *
+     * @return the current locale
+     */
     public Locale getLocale();
 
     /**
@@ -113,7 +121,11 @@ public interface XMLGrammarLoader {
      */
     public void setErrorHandler(XMLErrorHandler errorHandler);
 
-    /** Returns the registered error handler.  */
+    /**
+     * Returns the registered error handler.
+     *
+     * @return the error handler
+     */
     public XMLErrorHandler getErrorHandler();
 
     /**
@@ -123,7 +135,11 @@ public interface XMLGrammarLoader {
      */
     public void setEntityResolver(XMLEntityResolver entityResolver);
 
-    /** Returns the registered entity resolver.  */
+    /**
+     * Returns the registered entity resolver.
+     *
+     * @return the entity resolver
+     */
     public XMLEntityResolver getEntityResolver();
 
     /**
@@ -132,6 +148,7 @@ public interface XMLGrammarLoader {
      *
      * @param source        the location of the entity which forms
      *                          the starting point of the grammar to be constructed.
+     * @return the loaded grammar object
      * @throws IOException      When a problem is encountered reading the entity
      *          XNIException    When a condition arises (such as a FatalError) that requires parsing
      *                              of the entity be terminated.

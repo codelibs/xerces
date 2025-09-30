@@ -31,7 +31,7 @@ package org.codelibs.xerces.impl.dtd.models;
  * Note that the code that uses this class will never perform operations
  * on sets of different sizes, so that check does not have to be made here.
  *
- * @xerces.internal
+
  *
  * @version $Id: CMStateSet.java 446752 2006-09-15 21:55:19Z mrglavas $
  */
@@ -41,6 +41,12 @@ public class CMStateSet {
     // -------------------------------------------------------------------
     //  Constructors
     // -------------------------------------------------------------------
+    /**
+     * Constructs a new CMStateSet with the specified bit count.
+     *
+     * @param bitCount the number of bits this state set should support
+     * @throws RuntimeException if bitCount is negative
+     */
     public CMStateSet(int bitCount) {
         // Store the required bit count and insure its legal
         fBitCount = bitCount;
@@ -90,6 +96,12 @@ public class CMStateSet {
     //  Package final methods
     // -------------------------------------------------------------------
     // the XS content models from the schema package -neilg.
+    /**
+     * Performs a bitwise AND operation between this state set and the provided set.
+     * This modifies the current state set to contain only bits that are set in both sets.
+     *
+     * @param setToAnd the state set to AND with this one
+     */
     public final void intersection(CMStateSet setToAnd) {
         if (fBitCount < 65) {
             fBits1 &= setToAnd.fBits1;
@@ -100,6 +112,13 @@ public class CMStateSet {
         }
     }
 
+    /**
+     * Gets the value of the specified bit.
+     *
+     * @param bitToGet the index of the bit to retrieve
+     * @return true if the bit is set, false otherwise
+     * @throws RuntimeException if bitToGet is greater than or equal to the bit count
+     */
     public final boolean getBit(int bitToGet) {
         if (bitToGet >= fBitCount)
             throw new RuntimeException("ImplementationMessages.VAL_CMSI");
@@ -120,6 +139,11 @@ public class CMStateSet {
         }
     }
 
+    /**
+     * Checks if this state set is empty (no bits are set).
+     *
+     * @return true if no bits are set in this state set, false otherwise
+     */
     public final boolean isEmpty() {
         if (fBitCount < 65) {
             return ((fBits1 == 0) && (fBits2 == 0));
@@ -148,6 +172,12 @@ public class CMStateSet {
     }
 
     // the XS content models from the schema package -neilg.
+    /**
+     * Performs a bitwise OR operation between this state set and the provided set.
+     * This modifies the current state set to include all bits that are set in either set.
+     *
+     * @param setToOr the state set to OR with this one
+     */
     public final void union(CMStateSet setToOr) {
         if (fBitCount < 65) {
             fBits1 |= setToOr.fBits1;
@@ -158,6 +188,12 @@ public class CMStateSet {
         }
     }
 
+    /**
+     * Sets the specified bit to true.
+     *
+     * @param bitToSet the index of the bit to set
+     * @throws RuntimeException if bitToSet is greater than or equal to the bit count
+     */
     public final void setBit(int bitToSet) {
         if (bitToSet >= fBitCount)
             throw new RuntimeException("ImplementationMessages.VAL_CMSI");
@@ -183,6 +219,13 @@ public class CMStateSet {
     }
 
     // the XS content models from the schema package -neilg.
+    /**
+     * Copies all bits from the source state set to this state set.
+     * Both state sets must have the same bit count.
+     *
+     * @param srcSet the source state set to copy from
+     * @throws RuntimeException if the bit counts don't match
+     */
     public final void setTo(CMStateSet srcSet) {
         // They have to be the same size
         if (fBitCount != srcSet.fBitCount)
@@ -199,6 +242,9 @@ public class CMStateSet {
 
     // had to make this method public so it could be accessed from
     // schema package - neilg.
+    /**
+     * Sets all bits in this state set to zero (clears all bits).
+     */
     public final void zeroBits() {
         if (fBitCount < 65) {
             fBits1 = 0;

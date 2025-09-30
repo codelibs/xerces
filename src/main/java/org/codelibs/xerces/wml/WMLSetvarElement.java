@@ -28,12 +28,32 @@ package org.codelibs.xerces.wml;
 
 public interface WMLSetvarElement extends WMLElement {
 
+    /**
+     * Sets the value attribute.
+     *
+     * @param newValue the new value
+     */
     public void setValue(String newValue);
 
+    /**
+     * Returns the value attribute.
+     *
+     * @return the value attribute
+     */
     public String getValue();
 
+    /**
+     * Sets the name attribute.
+     *
+     * @param newValue the new name
+     */
     public void setName(String newValue);
 
+    /**
+     * Returns the name attribute.
+     *
+     * @return the name attribute
+     */
     public String getName();
 
 }

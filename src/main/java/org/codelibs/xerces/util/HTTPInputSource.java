@@ -130,6 +130,8 @@ public final class HTTPInputSource extends XMLInputSource {
     /**
      * Returns the preference whether HTTP redirects should
      * be followed. By default HTTP redirects will be followed.
+     *
+     * @return true if HTTP redirects should be followed, false otherwise
      */
     public boolean getFollowHTTPRedirects() {
         return fFollowRedirects;
@@ -138,6 +140,8 @@ public final class HTTPInputSource extends XMLInputSource {
     /**
      * Sets the preference whether HTTP redirects should
      * be followed. By default HTTP redirects will be followed.
+     *
+     * @param followRedirects true if HTTP redirects should be followed, false otherwise
      */
     public void setFollowHTTPRedirects(boolean followRedirects) {
         fFollowRedirects = followRedirects;

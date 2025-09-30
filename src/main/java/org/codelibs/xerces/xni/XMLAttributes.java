@@ -91,6 +91,7 @@ public interface XMLAttributes {
      * Once you know the number of attributes, you can iterate
      * through the list.
      *
+     * @return The number of attributes in the list.
      * @see #getURI(int)
      * @see #getLocalName(int)
      * @see #getQName(int)
@@ -142,6 +143,7 @@ public interface XMLAttributes {
      * Returns the prefix of the attribute at the specified index.
      *
      * @param index The index of the attribute.
+     * @return The prefix of the attribute, or null if the index is out of range.
      */
     public String getPrefix(int index);
 
@@ -325,6 +327,7 @@ public interface XMLAttributes {
      * the same value as the <code>getValue(int)</code> method.
      *
      * @param attrIndex The attribute index.
+     * @return The non-normalized value of the attribute.
      */
     public String getNonNormalizedValue(int attrIndex);
 
@@ -342,6 +345,7 @@ public interface XMLAttributes {
      * Returns true if the attribute is specified in the instance document.
      *
      * @param attrIndex The attribute index.
+     * @return True if the attribute is specified in the instance document.
      */
     public boolean isSpecified(int attrIndex);
 
@@ -358,14 +362,13 @@ public interface XMLAttributes {
      *
      * @param uri       The Namespace URI, or the empty string if
      *                  the name has no Namespace URI.
-     * @param localPart
+     * @param localPart The local name of the attribute.
      * @return Augmentations
      */
     public Augmentations getAugmentations(String uri, String localPart);
 
     /**
      * Look up an augmentation by XML 1.0 qualified name.
-     * <p>
      *
      * @param qName The XML 1.0 qualified name.
      *

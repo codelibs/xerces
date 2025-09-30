@@ -50,14 +50,25 @@ import org.codelibs.xerces.xni.XNIException;
  *  <li>http://apache.org/xml/properties/internal/datatype-validator-factory</li>
  * </ul>
  *
- * @xerces.internal
+
  *
  * @author Elena Litani, IBM
  * @author Michael Glavassevich, IBM
  *
  * @version $Id: XML11NSDTDValidator.java 572055 2007-09-02 17:55:43Z mrglavas $
  */
+/**
+ * The DTD validator for namespace-aware XML 1.1 documents. This validator extends
+ * the XML11DTDValidator to add namespace binding functionality.
+ */
 public class XML11NSDTDValidator extends XML11DTDValidator {
+
+    /**
+     * Default constructor. Creates a namespace-aware DTD validator for XML 1.1 documents.
+     */
+    public XML11NSDTDValidator() {
+        super();
+    }
 
     /** Attribute QName. */
     private final QName fAttributeQName = new QName();

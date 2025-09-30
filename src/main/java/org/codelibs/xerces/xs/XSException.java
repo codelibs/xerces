@@ -34,11 +34,20 @@ public class XSException extends RuntimeException {
     /** Serialization version. */
     static final long serialVersionUID = 3111893084677917742L;
 
+    /**
+     * Constructs an XSException with the specified error code and message.
+     * @param code the error code indicating the type of exception
+     * @param message the detailed error message
+     */
     public XSException(short code, String message) {
         super(message);
         this.code = code;
     }
 
+    /**
+     * The error code that indicates the type of exception.
+     * This should be one of the constants defined in this class.
+     */
     public short code;
     // ExceptionCode
     /**

@@ -49,6 +49,8 @@ public class XMLDocumentParser extends AbstractXMLDocumentParser {
 
     /**
      * Constructs a document parser using the specified parser configuration.
+     *
+     * @param config the parser configuration
      */
     public XMLDocumentParser(XMLParserConfiguration config) {
         super(config);
@@ -56,6 +58,8 @@ public class XMLDocumentParser extends AbstractXMLDocumentParser {
 
     /**
      * Constructs a document parser using the specified symbol table.
+     *
+     * @param symbolTable the symbol table to use
      */
     public XMLDocumentParser(SymbolTable symbolTable) {
         super((XMLParserConfiguration) ObjectFactory.createObject("org.codelibs.xerces.xni.parser.XMLParserConfiguration",
@@ -66,6 +70,9 @@ public class XMLDocumentParser extends AbstractXMLDocumentParser {
     /**
      * Constructs a document parser using the specified symbol table and
      * grammar pool.
+     *
+     * @param symbolTable the symbol table to use
+     * @param grammarPool the grammar pool to use
      */
     public XMLDocumentParser(SymbolTable symbolTable, XMLGrammarPool grammarPool) {
         super((XMLParserConfiguration) ObjectFactory.createObject("org.codelibs.xerces.xni.parser.XMLParserConfiguration",

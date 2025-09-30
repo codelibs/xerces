@@ -21,7 +21,8 @@ import org.w3c.dom.html.HTMLTableCellElement;
 import org.w3c.dom.html.HTMLTableRowElement;
 
 /**
- * @xerces.internal
+ * Implementation of HTMLTableCellElement interface for HTML table cell elements.
+ *
  * @version $Revision: 1029415 $ $Date: 2010-10-31 22:32:22 +0530 (Sun, 31 Oct 2010) $
  * @author <a href="mailto:arkin@exoffice.com">Assaf Arkin</a>
  * @see org.w3c.dom.html.HTMLTableCellElement
@@ -52,6 +53,13 @@ public class HTMLTableCellElementImpl extends HTMLElementImpl implements HTMLTab
         return -1;
     }
 
+    /**
+     * Sets the index of this cell within its parent table row.
+     * This method will move the cell to the specified position within
+     * the parent row's cell collection.
+     *
+     * @param cellIndex the new index position for this cell
+     */
     public void setCellIndex(int cellIndex) {
         Node parent;
         Node child;
@@ -199,6 +207,7 @@ public class HTMLTableCellElementImpl extends HTMLElementImpl implements HTMLTab
      * Constructor requires owner document.
      *
      * @param owner The owner HTML document
+     * @param name The element name
      */
     public HTMLTableCellElementImpl(HTMLDocumentImpl owner, String name) {
         super(owner, name);

@@ -26,7 +26,7 @@ import org.codelibs.xerces.impl.dv.ValidationContext;
 /**
  * Validator for &lt;gMonthDay&gt; datatype (W3C Schema Datatypes)
  *
- * @xerces.internal
+
  *
  * @author Elena Litani
  * @author Gopal Sharma, SUN Microsystem Inc.
@@ -35,6 +35,12 @@ import org.codelibs.xerces.impl.dv.ValidationContext;
  */
 
 public class MonthDayDV extends AbstractDateTimeDV {
+
+    /**
+     * Constructs a MonthDayDV validator for gMonthDay datatype.
+     */
+    public MonthDayDV() {
+    }
 
     //size without time zone: --MM-DD
     private final static int MONTHDAY_SIZE = 7;

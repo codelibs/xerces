@@ -30,7 +30,7 @@ import org.codelibs.xerces.xs.XSObjectList;
 import org.w3c.dom.Element;
 
 /**
- * @xerces.internal
+
  *
  * @author Elena Litani, IBM
  * @author Sandy Gao, IBM

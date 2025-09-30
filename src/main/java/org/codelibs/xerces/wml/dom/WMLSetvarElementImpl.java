@@ -19,7 +19,10 @@ package org.codelibs.xerces.wml.dom;
 import org.codelibs.xerces.wml.WMLSetvarElement;
 
 /**
- * @xerces.internal
+ * Implementation of the WML setvar element.
+ * The setvar element is used to set variables in WML documents.
+ * It can set variables that can be referenced by other elements.
+ *
  * @version $Id: WMLSetvarElementImpl.java 661560 2008-05-30 03:22:25Z mrglavas $
  * @author <a href="mailto:david@topware.com.tw">David Li</a>
  */
@@ -27,6 +30,12 @@ public class WMLSetvarElementImpl extends WMLElementImpl implements WMLSetvarEle
 
     private static final long serialVersionUID = -1944519734782236471L;
 
+    /**
+     * Constructs a new WML setvar element.
+     *
+     * @param owner the owner document
+     * @param tagName the tag name
+     */
     public WMLSetvarElementImpl(WMLDocumentImpl owner, String tagName) {
         super(owner, tagName);
     }

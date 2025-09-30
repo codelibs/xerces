@@ -33,7 +33,7 @@ import org.codelibs.xerces.xs.ShortList;
  * for performing the necessary checks required by each type of identity
  * constraint.
  *
- * @xerces.internal
+
  *
  * @author Andy Clark, IBM
  *

@@ -21,7 +21,9 @@ import org.w3c.dom.DOMException;
 import org.w3c.dom.Node;
 
 /**
- * @xerces.internal
+ * Text node implementation for XML Schema processing.
+ * This class provides a specialized Text node implementation
+ * that integrates with the SchemaDOM structure.
  *
  * @author Neil Graham, IBM
  * @version $Id: TextImpl.java 705596 2008-10-17 13:05:10Z mrglavas $
@@ -35,6 +37,13 @@ public class TextImpl extends DefaultText {
     int fRow;
     int fCol;
 
+    /**
+     * Constructor for TextImpl.
+     * @param str the string buffer containing the text data
+     * @param sDOM the SchemaDOM this text node belongs to
+     * @param row the row position in the SchemaDOM relations array
+     * @param col the column position in the SchemaDOM relations array
+     */
     public TextImpl(StringBuffer str, SchemaDOM sDOM, int row, int col) {
         fData = str.toString();
         fSchemaDOM = sDOM;

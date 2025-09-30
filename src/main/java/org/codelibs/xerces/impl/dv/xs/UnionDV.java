@@ -21,9 +21,11 @@ import org.codelibs.xerces.impl.dv.InvalidDatatypeValueException;
 import org.codelibs.xerces.impl.dv.ValidationContext;
 
 /**
- * Represent the schema union types
+ * Represents XML Schema union types.
+ * This class provides validation for union datatypes, which allow
+ * values that match any of the member types in the union.
  *
- * @xerces.internal
+
  *
  * @author Neeraj Bajaj, Sun Microsystems, inc.
  * @author Sandy Gao, IBM
@@ -31,6 +33,12 @@ import org.codelibs.xerces.impl.dv.ValidationContext;
  * @version $Id: UnionDV.java 446745 2006-09-15 21:43:58Z mrglavas $
  */
 public class UnionDV extends TypeValidator {
+
+    /**
+     * Default constructor.
+     */
+    public UnionDV() {
+    }
 
     public short getAllowedFacets() {
         return (XSSimpleTypeDecl.FACET_PATTERN | XSSimpleTypeDecl.FACET_ENUMERATION);

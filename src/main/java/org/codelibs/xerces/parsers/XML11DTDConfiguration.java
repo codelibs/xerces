@@ -104,6 +104,8 @@ public class XML11DTDConfiguration extends ParserConfigurationSettings implement
     //
     // Constants
     //
+
+    /** Factory for XML 1.1 datatype validators. */
     protected final static String XML11_DATATYPE_VALIDATOR_FACTORY = "org.codelibs.xerces.impl.dv.dtd.XML11DTDDVFactoryImpl";
 
     // feature identifiers
@@ -170,6 +172,7 @@ public class XML11DTDConfiguration extends ParserConfigurationSettings implement
     protected static final String DATATYPE_VALIDATOR_FACTORY =
             Constants.XERCES_PROPERTY_PREFIX + Constants.DATATYPE_VALIDATOR_FACTORY_PROPERTY;
 
+    /** Property identifier: validation manager. */
     protected static final String VALIDATION_MANAGER = Constants.XERCES_PROPERTY_PREFIX + Constants.VALIDATION_MANAGER_PROPERTY;
 
     /** Property identifier: JAXP schema language / DOM schema-type. */
@@ -186,11 +189,23 @@ public class XML11DTDConfiguration extends ParserConfigurationSettings implement
     //
     // Data
     //
+
+    /** Symbol table for interning symbols. */
     protected SymbolTable fSymbolTable;
+
+    /** Input source for parsing. */
     protected XMLInputSource fInputSource;
+
+    /** Validation manager. */
     protected ValidationManager fValidationManager;
+
+    /** XML version detector. */
     protected XMLVersionDetector fVersionDetector;
+
+    /** Document locator. */
     protected XMLLocator fLocator;
+
+    /** Locale for error messages. */
     protected Locale fLocale;
 
     /** XML 1.0 Components. */
@@ -783,10 +798,10 @@ public class XML11DTDConfiguration extends ParserConfigurationSettings implement
     } // setFeature(String,boolean)
 
     /**
-     * setProperty
+     * Sets a property.
      *
-     * @param propertyId
-     * @param value
+     * @param propertyId the property identifier
+     * @param value the property value
      */
     public void setProperty(String propertyId, Object value) throws XMLConfigurationException {
         fConfigUpdated = true;

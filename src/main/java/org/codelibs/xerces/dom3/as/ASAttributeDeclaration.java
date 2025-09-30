@@ -36,53 +36,73 @@ public interface ASAttributeDeclaration extends ASObject {
 
     /**
      * Datatype of the attribute.
+     *
+     * @return the datatype of the attribute
      */
     public ASDataType getDataType();
 
     /**
      * Datatype of the attribute.
+     *
+     * @param dataType the datatype to set for the attribute
      */
     public void setDataType(ASDataType dataType);
 
     /**
      * Default or fixed value.
+     *
+     * @return the default or fixed value
      */
     public String getDataValue();
 
     /**
      * Default or fixed value.
+     *
+     * @param dataValue the default or fixed value to set
      */
     public void setDataValue(String dataValue);
 
     /**
      * Valid attribute values, separated by commas, in a string.
+     *
+     * @return the valid attribute values
      */
     public String getEnumAttr();
 
     /**
      * Valid attribute values, separated by commas, in a string.
+     *
+     * @param enumAttr the valid attribute values to set
      */
     public void setEnumAttr(String enumAttr);
 
     /**
      * Owner elements <code>ASObject</code> of attribute, meaning that an
      * attribute declaration can be shared by multiple elements.
+     *
+     * @return the list of owner elements
      */
     public ASObjectList getOwnerElements();
 
     /**
      * Owner elements <code>ASObject</code> of attribute, meaning that an
      * attribute declaration can be shared by multiple elements.
+     *
+     * @param ownerElements the list of owner elements to set
      */
     public void setOwnerElements(ASObjectList ownerElements);
 
     /**
      * Constraint type if any for this attribute.
+     *
+     * @return the constraint type
      */
     public short getDefaultType();
 
     /**
      * Constraint type if any for this attribute.
+     *
+     * @param defaultType the constraint type to set
      */
     public void setDefaultType(short defaultType);
 

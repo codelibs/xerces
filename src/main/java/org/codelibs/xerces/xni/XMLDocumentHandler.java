@@ -273,10 +273,18 @@ public interface XMLDocumentHandler {
      */
     public void endDocument(Augmentations augs) throws XNIException;
 
-    /** Sets the document source. */
+    /**
+     * Sets the document source.
+     *
+     * @param source the source of document events
+     */
     public void setDocumentSource(XMLDocumentSource source);
 
-    /** Returns the document source. */
+    /**
+     * Returns the document source.
+     *
+     * @return the source of document events
+     */
     public XMLDocumentSource getDocumentSource();
 
 } // interface XMLDocumentHandler

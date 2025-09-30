@@ -55,7 +55,7 @@ import org.codelibs.xerces.xni.parser.XMLInputSource;
  *  <li>http://apache.org/xml/properties/internal/datatype-validator-factory</li>
  * </ul>
  *
- * @xerces.internal
+
  *
  * @author Neil Graham, IBM
  * @author Michael Glavassevich, IBM
@@ -106,12 +106,15 @@ public class XMLDTDLoader extends XMLDTDProcessor implements XMLGrammarLoader {
     protected XMLEntityResolver fEntityResolver;
 
     // the scanner we use to actually read the DTD
+    /** The DTD scanner used to read DTD content. */
     protected XMLDTDScannerImpl fDTDScanner;
 
     // the entity manager the scanner needs.
+    /** The entity manager used by the DTD scanner. */
     protected XMLEntityManager fEntityManager;
 
     // what's our Locale?
+    /** The locale for error messages. */
     protected Locale fLocale;
 
     //
@@ -123,10 +126,21 @@ public class XMLDTDLoader extends XMLDTDProcessor implements XMLGrammarLoader {
         this(new SymbolTable());
     } // <init>()
 
+    /**
+     * Constructs a DTD loader with the specified symbol table.
+     *
+     * @param symbolTable the symbol table to use
+     */
     public XMLDTDLoader(SymbolTable symbolTable) {
         this(symbolTable, null);
     } // init(SymbolTable)
 
+    /**
+     * Constructs a DTD loader with the specified symbol table and grammar pool.
+     *
+     * @param symbolTable the symbol table to use
+     * @param grammarPool the grammar pool to use
+     */
     public XMLDTDLoader(SymbolTable symbolTable, XMLGrammarPool grammarPool) {
         this(symbolTable, grammarPool, null, new XMLEntityManager());
     } // init(SymbolTable, XMLGrammarPool)
@@ -179,10 +193,8 @@ public class XMLDTDLoader extends XMLDTDProcessor implements XMLGrammarLoader {
      * @param featureId The feature identifier.
      * @param state     The state of the feature.
      *
-     * @throws SAXNotRecognizedException The component should not throw
+     * @throws XMLConfigurationException The component should not throw
      *                                   this exception.
-     * @throws SAXNotSupportedException The component should not throw
-     *                                  this exception.
      */
     public void setFeature(String featureId, boolean state) throws XMLConfigurationException {
         if (featureId.equals(VALIDATION)) {
@@ -247,10 +259,8 @@ public class XMLDTDLoader extends XMLDTDProcessor implements XMLGrammarLoader {
      * @param propertyId The property identifier.
      * @param value      The value of the property.
      *
-     * @throws SAXNotRecognizedException The component should not throw
+     * @throws XMLConfigurationException The component should not throw
      *                                   this exception.
-     * @throws SAXNotSupportedException The component should not throw
-     *                                  this exception.
      */
     public void setProperty(String propertyId, Object value) throws XMLConfigurationException {
         if (propertyId.equals(SYMBOL_TABLE)) {
@@ -397,6 +407,15 @@ public class XMLDTDLoader extends XMLDTDProcessor implements XMLGrammarLoader {
     /**
      * Parse a DTD internal and/or external subset and insert the content
      * into the existing DTD grammar owned by the given DTDValidator.
+     *
+     * @param validator the DTD validator whose grammar will be updated
+     * @param rootName the root element name
+     * @param publicId the public identifier of the DTD
+     * @param systemId the system identifier of the DTD
+     * @param baseSystemId the base system identifier
+     * @param internalSubset the internal subset content
+     * @throws IOException if an I/O error occurs
+     * @throws XNIException if a parser error occurs
      */
     public void loadGrammarWithContext(XMLDTDValidator validator, String rootName, String publicId, String systemId, String baseSystemId,
             String internalSubset) throws IOException, XNIException {
@@ -442,10 +461,23 @@ public class XMLDTDLoader extends XMLDTDProcessor implements XMLGrammarLoader {
         fErrorReporter.setDocumentLocator(fEntityManager.getEntityScanner());
     }
 
+    /**
+     * Creates a DTD scanner.
+     *
+     * @param symbolTable The symbol table to use.
+     * @param errorReporter The error reporter to use.
+     * @param entityManager The entity manager to use.
+     * @return The created DTD scanner.
+     */
     protected XMLDTDScannerImpl createDTDScanner(SymbolTable symbolTable, XMLErrorReporter errorReporter, XMLEntityManager entityManager) {
         return new XMLDTDScannerImpl(symbolTable, errorReporter, entityManager);
     } // createDTDScanner(SymbolTable, XMLErrorReporter, XMLEntityManager) : XMLDTDScannerImpl
 
+    /**
+     * Returns the scanner version.
+     *
+     * @return The scanner version.
+     */
     protected short getScannerVersion() {
         return Constants.XML_VERSION_1_0;
     } // getScannerVersion() : short

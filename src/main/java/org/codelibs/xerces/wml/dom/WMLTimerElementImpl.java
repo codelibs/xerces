@@ -19,7 +19,9 @@ package org.codelibs.xerces.wml.dom;
 import org.codelibs.xerces.wml.WMLTimerElement;
 
 /**
- * @xerces.internal
+ * Implementation of the WML timer element.
+ * Provides access to timer element attributes for WML countdown timers.
+ *
  * @version $Id: WMLTimerElementImpl.java 661560 2008-05-30 03:22:25Z mrglavas $
  * @author <a href="mailto:david@topware.com.tw">David Li</a>
  */
@@ -27,6 +29,12 @@ public class WMLTimerElementImpl extends WMLElementImpl implements WMLTimerEleme
 
     private static final long serialVersionUID = 9055622169756832726L;
 
+    /**
+     * Constructs a new WML timer element with the specified owner document and tag name.
+     *
+     * @param owner the owner document
+     * @param tagName the tag name for this element
+     */
     public WMLTimerElementImpl(WMLDocumentImpl owner, String tagName) {
         super(owner, tagName);
     }

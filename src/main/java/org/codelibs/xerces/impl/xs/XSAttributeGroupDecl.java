@@ -31,42 +31,59 @@ import org.codelibs.xerces.xs.XSWildcard;
  * The XML representation for an attribute group declaration
  * schema component is a global &lt;attributeGroup&gt; element information item
  *
- * @xerces.internal
+
  *
  * @author Sandy Gao, IBM
+ * XML Schema attribute group declaration implementation.
+ * This class represents an attribute group definition as specified in XML Schema.
+ *
  * @author Rahul Srivastava, Sun Microsystems Inc.
  *
  * @version $Id: XSAttributeGroupDecl.java 1051303 2010-12-20 22:14:58Z mrglavas $
  */
 public class XSAttributeGroupDecl implements XSAttributeGroupDefinition {
 
-    // name of the attribute group
+    /** Name of the attribute group */
     public String fName = null;
-    // target namespace of the attribute group
+    /** Target namespace of the attribute group */
     public String fTargetNamespace = null;
     // number of attribute uses included by this attribute group
     int fAttrUseNum = 0;
     // attribute uses included by this attribute group
     private static final int INITIAL_SIZE = 5;
     XSAttributeUseImpl[] fAttributeUses = new XSAttributeUseImpl[INITIAL_SIZE];
-    // attribute wildcard included by this attribute group
+    /** Attribute wildcard included by this attribute group */
     public XSWildcardDecl fAttributeWC = null;
-    // whether there is an attribute use whose type is or is derived from ID.
+    /** Name of the ID attribute, if there is an attribute use whose type is or is derived from ID */
     public String fIDAttrName = null;
 
-    // optional annotation
+    /** Optional annotations */
     public XSObjectList fAnnotations;
 
+    /** Cached list of attribute uses */
     protected XSObjectListImpl fAttrUses = null;
+
+    /**
+     * Constructs a new XSAttributeGroupDecl instance.
+     * This represents an XML Schema attribute group definition.
+     */
+    public XSAttributeGroupDecl() {
+        // Default constructor
+    }
 
     // The namespace schema information item corresponding to the target namespace
     // of the attribute group definition, if it is globally declared; or null otherwise.
     private XSNamespaceItem fNamespaceItem = null;
 
-    // add an attribute use
-    // if the type is derived from ID, but there is already another attribute
-    // use of type ID, then return the name of the other attribute use;
-    // otherwise, return null
+    /**
+     * Adds an attribute use to this attribute group.
+     * If the type is derived from ID, but there is already another attribute
+     * use of type ID, then return the name of the other attribute use;
+     * otherwise, return null.
+     *
+     * @param attrUse the attribute use to add
+     * @return the name of an existing ID attribute if conflict exists, null otherwise
+     */
     public String addAttributeUse(XSAttributeUseImpl attrUse) {
 
         // if this attribute use is prohibited, then don't check whether it's
@@ -91,6 +108,12 @@ public class XSAttributeGroupDecl implements XSAttributeGroupDefinition {
         return null;
     }
 
+    /**
+     * Replaces an existing attribute use with a new one.
+     *
+     * @param oldUse the attribute use to replace
+     * @param newUse the new attribute use
+     */
     public void replaceAttributeUse(XSAttributeUse oldUse, XSAttributeUseImpl newUse) {
         for (int i = 0; i < fAttrUseNum; i++) {
             if (fAttributeUses[i] == oldUse) {
@@ -99,6 +122,13 @@ public class XSAttributeGroupDecl implements XSAttributeGroupDefinition {
         }
     }
 
+    /**
+     * Gets the attribute use with the specified namespace and name.
+     *
+     * @param namespace the namespace URI of the attribute
+     * @param name the local name of the attribute
+     * @return the attribute use or null if not found
+     */
     public XSAttributeUse getAttributeUse(String namespace, String name) {
         for (int i = 0; i < fAttrUseNum; i++) {
             if ((fAttributeUses[i].fAttrDecl.fTargetNamespace == namespace) && (fAttributeUses[i].fAttrDecl.fName == name))
@@ -108,6 +138,13 @@ public class XSAttributeGroupDecl implements XSAttributeGroupDefinition {
         return null;
     }
 
+    /**
+     * Gets the attribute use with the specified namespace and name, excluding prohibited uses.
+     *
+     * @param namespace the namespace URI of the attribute
+     * @param name the local name of the attribute
+     * @return the attribute use or null if not found or if prohibited
+     */
     public XSAttributeUse getAttributeUseNoProhibited(String namespace, String name) {
         for (int i = 0; i < fAttrUseNum; i++) {
             if ((fAttributeUses[i].fAttrDecl.fTargetNamespace == namespace) && (fAttributeUses[i].fAttrDecl.fName == name)
@@ -118,6 +155,9 @@ public class XSAttributeGroupDecl implements XSAttributeGroupDefinition {
         return null;
     }
 
+    /**
+     * Removes all prohibited attribute uses from this attribute group.
+     */
     public void removeProhibitedAttrs() {
         if (fAttrUseNum == 0)
             return;
@@ -164,6 +204,7 @@ public class XSAttributeGroupDecl implements XSAttributeGroupDefinition {
      *
      * @param typeName the name of the type containing this attribute group, used for error reporting purposes
      * @param baseGroup the XSAttributeGroupDecl that is the base we are checking against
+     * @return an array containing error information if validation fails, null if valid
      */
     public Object[] validRestrictionOf(String typeName, XSAttributeGroupDecl baseGroup) {
 
@@ -300,7 +341,9 @@ public class XSAttributeGroupDecl implements XSAttributeGroupDefinition {
         return newArray;
     }
 
-    // reset the attribute group declaration
+    /**
+     * Resets the attribute group declaration to its initial state.
+     */
     public void reset() {
         fName = null;
         fTargetNamespace = null;

@@ -18,7 +18,8 @@
 package org.codelibs.xerces.impl.dv.xs;
 
 /**
- * @xerces.internal
+ * Exception thrown when an invalid date/time value is encountered during Schema validation.
+ * This runtime exception is used to signal errors in date/time format processing.
  *
  * @version $Id: SchemaDateTimeException.java 446745 2006-09-15 21:43:58Z mrglavas $
  */
@@ -27,10 +28,17 @@ public class SchemaDateTimeException extends RuntimeException {
     /** Serialization version. */
     static final long serialVersionUID = -8520832235337769040L;
 
+    /**
+     * Constructs a new SchemaDateTimeException with no detail message.
+     */
     public SchemaDateTimeException() {
         super();
     }
 
+    /**
+     * Constructs a new SchemaDateTimeException with the specified detail message.
+     * @param s the detail message
+     */
     public SchemaDateTimeException(String s) {
         super(s);
     }

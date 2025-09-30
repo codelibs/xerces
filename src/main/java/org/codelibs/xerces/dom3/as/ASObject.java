@@ -49,6 +49,8 @@ public interface ASObject {
 
     /**
      * A code representing the underlying object as defined above.
+     *
+     * @return The node type constant (AS_ELEMENT_DECLARATION, AS_ATTRIBUTE_DECLARATION, etc.)
      */
     public short getAsNodeType();
 
@@ -56,6 +58,8 @@ public interface ASObject {
      * The <code>ASModel</code> object associated with this
      * <code>ASObject</code>. For a node of type <code>AS_MODEL</code>, this
      * is <code>null</code>.
+     *
+     * @return The owner ASModel, or null if this is an AS_MODEL node
      */
     public ASModel getOwnerASModel();
 
@@ -63,42 +67,56 @@ public interface ASObject {
      * The <code>ASModel</code> object associated with this
      * <code>ASObject</code>. For a node of type <code>AS_MODEL</code>, this
      * is <code>null</code>.
+     *
+     * @param ownerASModel The owner ASModel
      */
     public void setOwnerASModel(ASModel ownerASModel);
 
     /**
      * The <code>name</code> of this <code>ASObject</code> depending on the
      * <code>ASObject</code> type.
+     *
+     * @return The node name
      */
     public String getNodeName();
 
     /**
      * The <code>name</code> of this <code>ASObject</code> depending on the
      * <code>ASObject</code> type.
+     *
+     * @param nodeName The node name to set
      */
     public void setNodeName(String nodeName);
 
     /**
      * The namespace prefix of this node, or <code>null</code> if it is
      * unspecified.
+     *
+     * @return The namespace prefix, or null if unspecified
      */
     public String getPrefix();
 
     /**
      * The namespace prefix of this node, or <code>null</code> if it is
      * unspecified.
+     *
+     * @param prefix The namespace prefix to set
      */
     public void setPrefix(String prefix);
 
     /**
      * Returns the local part of the qualified name of this
      * <code>ASObject</code>.
+     *
+     * @return The local name
      */
     public String getLocalName();
 
     /**
      * Returns the local part of the qualified name of this
      * <code>ASObject</code>.
+     *
+     * @param localName The local name to set
      */
     public void setLocalName(String localName);
 
@@ -106,6 +124,8 @@ public interface ASObject {
      * The namespace URI of this node, or <code>null</code> if it is
      * unspecified.  defines how a namespace URI is attached to schema
      * components.
+     *
+     * @return The namespace URI, or null if unspecified
      */
     public String getNamespaceURI();
 
@@ -113,6 +133,8 @@ public interface ASObject {
      * The namespace URI of this node, or <code>null</code> if it is
      * unspecified.  defines how a namespace URI is attached to schema
      * components.
+     *
+     * @param namespaceURI The namespace URI to set
      */
     public void setNamespaceURI(String namespaceURI);
 

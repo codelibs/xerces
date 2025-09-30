@@ -33,7 +33,7 @@ import org.codelibs.xerces.xni.parser.XMLErrorHandler;
  * Implements the XPointerPart interface for element() scheme specific processing.
  * </p>
  *
- * @xerces.internal
+
  *
  * @version $Id: ElementSchemePointer.java 603808 2007-12-13 03:44:48Z mrglavas $
  */
@@ -473,7 +473,7 @@ final class ElementSchemePointer implements XPointerPart {
     /**
      * List of XPointer Framework tokens.
      *
-     * @xerces.internal
+
      *
      * @author Neil Delima, IBM
      * @version $Id: ElementSchemePointer.java 603808 2007-12-13 03:44:48Z mrglavas $
@@ -637,7 +637,7 @@ final class ElementSchemePointer implements XPointerPart {
      *
      * The XPointer expression scanner.  Scans the XPointer framework expression.
      *
-     * @xerces.internal
+
      *
      * @version $Id: ElementSchemePointer.java 603808 2007-12-13 03:44:48Z mrglavas $
      */

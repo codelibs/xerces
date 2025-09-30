@@ -23,7 +23,7 @@ import org.w3c.dom.Node;
  * ChildNode inherits from NodeImpl and adds the capability of being a child by
  * having references to its previous and next siblings.
  *
- * @xerces.internal
+
  *
  * @version $Id: ChildNode.java 447266 2006-09-18 05:57:49Z mrglavas $
  */
@@ -55,6 +55,8 @@ public abstract class ChildNode extends NodeImpl {
      * instantiated, and those normally via a Document's factory methods
      * <p>
      * Every Node knows what Document it belongs to.
+     *
+     * @param ownerDocument The document that owns this node
      */
     protected ChildNode(CoreDocumentImpl ownerDocument) {
         super(ownerDocument);

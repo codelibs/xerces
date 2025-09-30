@@ -27,6 +27,7 @@ and Save Specification</a>.
 public interface ElementEditAS extends NodeEditAS {
     /**
      * The list of qualified element names defined in the abstract schema.
+     * @return a NodeList containing the defined element type names
      */
     public NodeList getDefinedElementTypes();
 

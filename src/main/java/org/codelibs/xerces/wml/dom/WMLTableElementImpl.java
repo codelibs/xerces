@@ -19,7 +19,8 @@ package org.codelibs.xerces.wml.dom;
 import org.codelibs.xerces.wml.WMLTableElement;
 
 /**
- * @xerces.internal
+ * Implementation of WMLTableElement interface for WML table elements.
+ *
  * @version $Id: WMLTableElementImpl.java 661560 2008-05-30 03:22:25Z mrglavas $
  * @author <a href="mailto:david@topware.com.tw">David Li</a>
  */
@@ -27,6 +28,12 @@ public class WMLTableElementImpl extends WMLElementImpl implements WMLTableEleme
 
     private static final long serialVersionUID = 7676208849347355339L;
 
+    /**
+     * Constructs a new WML table element with the specified owner document and tag name.
+     *
+     * @param owner the owner document
+     * @param tagName the tag name for this element
+     */
     public WMLTableElementImpl(WMLDocumentImpl owner, String tagName) {
         super(owner, tagName);
     }

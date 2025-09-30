@@ -41,6 +41,9 @@ import org.codelibs.xerces.xni.parser.XMLConfigurationException;
  */
 public class ParserConfigurationSettings implements XMLComponentManager {
 
+    /**
+     * Feature identifier for parser settings.
+     */
     protected static final String PARSER_SETTINGS = Constants.XERCES_FEATURE_PREFIX + Constants.PARSER_SETTINGS;
 
     //
@@ -76,6 +79,8 @@ public class ParserConfigurationSettings implements XMLComponentManager {
     /**
      * Constructs a parser configuration settings object with a
      * parent settings object.
+     *
+     * @param parent the parent component manager from which to inherit settings
      */
     public ParserConfigurationSettings(XMLComponentManager parent) {
 
@@ -160,8 +165,8 @@ public class ParserConfigurationSettings implements XMLComponentManager {
     /**
      * setProperty
      *
-     * @param propertyId
-     * @param value
+     * @param propertyId The unique identifier (URI) of the property.
+     * @param value The requested value for the property.
      * @exception org.codelibs.xerces.xni.parser.XMLConfigurationException If the
      *            requested feature is not known.
      */

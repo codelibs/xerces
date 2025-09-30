@@ -35,12 +35,22 @@ import org.xml.sax.SAXNotSupportedException;
  * <code>javax.xml.parsers.SAXParserFactory</code>. This is the platform
  * default implementation for the platform.
  *
+ * <p>This factory provides SAX parsers with support for XML Schema validation,
+ * XInclude processing, and secure processing features. It manages parser
+ * configuration and feature settings for creating SAX parser instances.</p>
+ *
  * @author Rajiv Mordani
  * @author Edwin Goei
  *
  * @version $Id: SAXParserFactoryImpl.java 447237 2006-09-18 05:03:10Z mrglavas $
  */
 public class SAXParserFactoryImpl extends SAXParserFactory {
+
+    /**
+     * Default constructor.
+     */
+    public SAXParserFactoryImpl() {
+    }
 
     /** Feature identifier: namespaces. */
     private static final String NAMESPACES_FEATURE = Constants.SAX_FEATURE_PREFIX + Constants.NAMESPACES_FEATURE;

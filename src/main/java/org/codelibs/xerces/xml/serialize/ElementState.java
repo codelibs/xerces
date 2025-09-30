@@ -33,6 +33,12 @@ import java.util.Hashtable;
 public class ElementState {
 
     /**
+     * Default constructor for internal instantiation during serialization.
+     */
+    public ElementState() {
+    }
+
+    /**
      * The element's raw tag name (local or prefix:local).
      */
     public String rawName;

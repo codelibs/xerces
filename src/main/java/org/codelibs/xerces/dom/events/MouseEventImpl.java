@@ -24,11 +24,17 @@ import org.w3c.dom.views.AbstractView;
 /**
  * An implementation of the DOM Level 2 <code>MouseEvent</code> interface.
  *
- * @xerces.internal
+
  *
  * @version $Id: MouseEventImpl.java 533574 2007-04-30 00:29:47Z mrglavas $
  */
 public class MouseEventImpl extends UIEventImpl implements MouseEvent {
+
+    /**
+     * Constructs a MouseEventImpl instance.
+     */
+    public MouseEventImpl() {
+    }
 
     private int fScreenX;
     private int fScreenY;

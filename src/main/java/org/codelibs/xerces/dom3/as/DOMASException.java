@@ -20,11 +20,18 @@ package org.codelibs.xerces.dom3.as;
 and Save Specification</a>.
  */
 public class DOMASException extends RuntimeException {
+    /**
+     * Constructs a DOMASException with the specified error code and message.
+     *
+     * @param code The error code
+     * @param message The error message
+     */
     public DOMASException(short code, String message) {
         super(message);
         this.code = code;
     }
 
+    /** The exception code. */
     public short code;
     // ASExceptionCode
     /**

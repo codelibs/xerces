@@ -54,40 +54,58 @@ public class XMLStringBuffer extends XMLString {
     //
 
     /**
-     *
+     * Default constructor creates a string buffer with the default size.
      */
     public XMLStringBuffer() {
         this(DEFAULT_SIZE);
     } // <init>()
 
     /**
+     * Constructs a string buffer with the specified initial size.
      *
-     *
-     * @param size
+     * @param size The initial size of the character buffer
      */
     public XMLStringBuffer(int size) {
         ch = new char[size];
     } // <init>(int)
 
-    /** Constructs a string buffer from a char. */
+    /**
+     * Constructs a string buffer from a char.
+     *
+     * @param c The character to initialize the buffer with
+     */
     public XMLStringBuffer(char c) {
         this(1);
         append(c);
     } // <init>(char)
 
-    /** Constructs a string buffer from a String. */
+    /**
+     * Constructs a string buffer from a String.
+     *
+     * @param s The string to initialize the buffer with
+     */
     public XMLStringBuffer(String s) {
         this(s.length());
         append(s);
     } // <init>(String)
 
-    /** Constructs a string buffer from the specified character array. */
+    /**
+     * Constructs a string buffer from the specified character array.
+     *
+     * @param ch The character array
+     * @param offset The offset into the array
+     * @param length The number of characters to use
+     */
     public XMLStringBuffer(char[] ch, int offset, int length) {
         this(length);
         append(ch, offset, length);
     } // <init>(char[],int,int)
 
-    /** Constructs a string buffer from the specified XMLString. */
+    /**
+     * Constructs a string buffer from the specified XMLString.
+     *
+     * @param s The XMLString to initialize the buffer with
+     */
     public XMLStringBuffer(XMLString s) {
         this(s.length);
         append(s);
@@ -104,9 +122,9 @@ public class XMLStringBuffer extends XMLString {
     }
 
     /**
-     * append
+     * Appends a character to this string buffer.
      *
-     * @param c
+     * @param c The character to append
      */
     public void append(char c) {
         if (this.length + 1 > this.ch.length) {
@@ -123,9 +141,9 @@ public class XMLStringBuffer extends XMLString {
     } // append(char)
 
     /**
-     * append
+     * Appends a string to this string buffer.
      *
-     * @param s
+     * @param s The string to append
      */
     public void append(String s) {
         int length = s.length();
@@ -143,11 +161,11 @@ public class XMLStringBuffer extends XMLString {
     } // append(String)
 
     /**
-     * append
+     * Appends characters from a character array to this string buffer.
      *
-     * @param ch
-     * @param offset
-     * @param length
+     * @param ch The character array
+     * @param offset The offset into the array
+     * @param length The number of characters to append
      */
     public void append(char[] ch, int offset, int length) {
         if (this.length + length > this.ch.length) {
@@ -164,9 +182,9 @@ public class XMLStringBuffer extends XMLString {
     } // append(char[],int,int)
 
     /**
-     * append
+     * Appends an XMLString to this string buffer.
      *
-     * @param s
+     * @param s The XMLString to append
      */
     public void append(XMLString s) {
         append(s.ch, s.offset, s.length);

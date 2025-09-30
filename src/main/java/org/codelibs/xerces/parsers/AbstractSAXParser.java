@@ -164,6 +164,7 @@ public abstract class AbstractSAXParser extends AbstractXMLDocumentParser implem
     /** Lexical handler. */
     protected LexicalHandler fLexicalHandler;
 
+    /** Reusable QName object for element and attribute processing. */
     protected final QName fQName = new QName();
 
     // state
@@ -175,23 +176,28 @@ public abstract class AbstractSAXParser extends AbstractXMLDocumentParser implem
      */
     protected boolean fParseInProgress = false;
 
-    // track the version of the document being parsed
+    /** The version of the document being parsed (e.g., "1.0" or "1.1"). */
     protected String fVersion;
 
     // temp vars
     private final AttributesProxy fAttributesProxy = new AttributesProxy();
     private Augmentations fAugmentations = null;
 
-    // allows us to keep track of whether an attribute has
-    // been declared twice, so that we can avoid exposing the
-    // second declaration to any registered DeclHandler
+    /**
+     * Tracks declared attributes to avoid exposing duplicate attribute declarations
+     * to registered DeclHandler instances.
+     */
     protected SymbolHash fDeclaredAttrs = null;
 
     //
     // Constructors
     //
 
-    /** Default constructor. */
+    /**
+     * Creates a SAX parser with the specified configuration.
+     *
+     * @param config the parser configuration to use
+     */
     protected AbstractSAXParser(XMLParserConfiguration config) {
         super(config);
 
@@ -1100,12 +1106,12 @@ public abstract class AbstractSAXParser extends AbstractXMLDocumentParser implem
     } // parse(String)
 
     /**
-     * parse
+     * Parses the specified SAX input source.
      *
-     * @param inputSource
+     * @param inputSource the input source to parse
      *
-     * @exception org.xml.sax.SAXException
-     * @exception java.io.IOException
+     * @exception org.xml.sax.SAXException if a SAX error occurs during parsing
+     * @exception java.io.IOException if an I/O error occurs during parsing
      */
     public void parse(InputSource inputSource) throws SAXException, IOException {
 
@@ -1928,6 +1934,8 @@ public abstract class AbstractSAXParser extends AbstractXMLDocumentParser implem
      *
      * @param handler The new handler.
      *
+     * @throws SAXNotRecognizedException if the property is not recognized
+     * @throws SAXNotSupportedException if the property cannot be set during parsing
      * @see #getDeclHandler
      * @see #setProperty
      */
@@ -1944,6 +1952,9 @@ public abstract class AbstractSAXParser extends AbstractXMLDocumentParser implem
     /**
      * Returns the DTD declaration event handler.
      *
+     * @return the current DTD declaration handler
+     * @throws SAXNotRecognizedException if the property is not recognized
+     * @throws SAXNotSupportedException if the property cannot be accessed
      * @see #setDeclHandler
      */
     protected DeclHandler getDeclHandler() throws SAXNotRecognizedException, SAXNotSupportedException {
@@ -1960,6 +1971,8 @@ public abstract class AbstractSAXParser extends AbstractXMLDocumentParser implem
      *
      * @param handler lexical event handler
      *
+     * @throws SAXNotRecognizedException if the property is not recognized
+     * @throws SAXNotSupportedException if the property cannot be set during parsing
      * @see #getLexicalHandler
      * @see #setProperty
      */
@@ -1976,6 +1989,9 @@ public abstract class AbstractSAXParser extends AbstractXMLDocumentParser implem
     /**
      * Returns the lexical handler.
      *
+     * @return the current lexical handler
+     * @throws SAXNotRecognizedException if the property is not recognized
+     * @throws SAXNotSupportedException if the property cannot be accessed
      * @see #setLexicalHandler
      */
     protected LexicalHandler getLexicalHandler() throws SAXNotRecognizedException, SAXNotSupportedException {
@@ -1984,6 +2000,8 @@ public abstract class AbstractSAXParser extends AbstractXMLDocumentParser implem
 
     /**
      * Send startPrefixMapping events
+     *
+     * @throws SAXException if a SAX error occurs during namespace mapping
      */
     protected final void startNamespaceMapping() throws SAXException {
         int count = fNamespaceContext.getDeclaredPrefixCount();
@@ -2000,6 +2018,8 @@ public abstract class AbstractSAXParser extends AbstractXMLDocumentParser implem
 
     /**
      * Send endPrefixMapping events
+     *
+     * @throws SAXException if a SAX error occurs during namespace mapping
      */
     protected final void endNamespaceMapping() throws SAXException {
         int count = fNamespaceContext.getDeclaredPrefixCount();
@@ -2038,6 +2058,9 @@ public abstract class AbstractSAXParser extends AbstractXMLDocumentParser implem
     // Classes
     //
 
+    /**
+     * Proxy for XMLLocator that implements SAX Locator2 interface.
+     */
     protected static final class LocatorProxy implements Locator2 {
 
         //
@@ -2051,7 +2074,11 @@ public abstract class AbstractSAXParser extends AbstractXMLDocumentParser implem
         // Constructors
         //
 
-        /** Constructs an XML locator proxy. */
+        /**
+         * Constructs an XML locator proxy.
+         *
+         * @param locator The XMLLocator to wrap
+         */
         public LocatorProxy(XMLLocator locator) {
             fLocator = locator;
         }
@@ -2091,7 +2118,16 @@ public abstract class AbstractSAXParser extends AbstractXMLDocumentParser implem
 
     } // class LocatorProxy
 
+    /**
+     * Proxy for XMLAttributes that implements SAX AttributeList and Attributes2 interfaces.
+     */
     protected static final class AttributesProxy implements AttributeList, Attributes2 {
+
+        /**
+         * Default constructor for attributes proxy.
+         */
+        public AttributesProxy() {
+        }
 
         //
         // Data
@@ -2104,7 +2140,11 @@ public abstract class AbstractSAXParser extends AbstractXMLDocumentParser implem
         // Public methods
         //
 
-        /** Sets the XML attributes. */
+        /**
+         * Sets the XML attributes.
+         *
+         * @param attributes The XMLAttributes to wrap
+         */
         public void setAttributes(XMLAttributes attributes) {
             fAttributes = attributes;
         } // setAttributes(XMLAttributes)

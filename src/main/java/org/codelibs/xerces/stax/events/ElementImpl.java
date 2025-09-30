@@ -27,7 +27,8 @@ import javax.xml.stream.Location;
 import javax.xml.stream.events.Namespace;
 
 /**
- * @xerces.internal
+ * Base implementation for XML element events in the StAX API.
+ * Provides common functionality for both start and end element events.
  *
  * @author Lucian Holland
  * @author Michael Glavassevich, IBM
@@ -47,7 +48,11 @@ abstract class ElementImpl extends XMLEventImpl {
     private final List fNamespaces;
 
     /**
-     * Constructor.
+     * Constructor for creating an element event.
+     * @param name the qualified name of the element
+     * @param isStartElement true if this is a start element, false for end element
+     * @param namespaces iterator over namespace declarations
+     * @param location the location object for this event
      */
     ElementImpl(final QName name, final boolean isStartElement, Iterator namespaces, final Location location) {
         super(isStartElement ? START_ELEMENT : END_ELEMENT, location);
@@ -64,6 +69,8 @@ abstract class ElementImpl extends XMLEventImpl {
     }
 
     /**
+     * Returns the qualified name of this element.
+     * @return the qualified name of this element
      * @see javax.xml.stream.events.StartElement#getName()
      * @see javax.xml.stream.events.EndElement#getName()
      */
@@ -72,6 +79,8 @@ abstract class ElementImpl extends XMLEventImpl {
     }
 
     /**
+     * Returns an iterator over the namespace declarations for this element.
+     * @return an iterator over namespace declarations
      * @see javax.xml.stream.events.StartElement#getNamespaces()
      * @see javax.xml.stream.events.EndElement#getNamespaces()
      */

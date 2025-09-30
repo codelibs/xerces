@@ -40,7 +40,7 @@ import org.w3c.dom.Notation;
  * <P>
  * Level 1 of the DOM does not support editing Notation contents.
  *
- * @xerces.internal
+
  *
  * @version $Id: NotationImpl.java 447266 2006-09-18 05:57:49Z mrglavas $
  * @since  PR-DOM-Level-1-19980818.
@@ -74,7 +74,11 @@ public class NotationImpl extends NodeImpl implements Notation {
     // Constructors
     //
 
-    /** Factory constructor. */
+    /**
+     * Factory constructor.
+     * @param ownerDoc the document that owns this notation
+     * @param name the name of the notation
+     */
     public NotationImpl(CoreDocumentImpl ownerDoc, String name) {
         super(ownerDoc);
         this.name = name;
@@ -139,6 +143,7 @@ public class NotationImpl extends NodeImpl implements Notation {
     /**
      * NON-DOM: The Public Identifier for this Notation. If no public
      * identifier was specified, this will be null.
+     * @param id the public identifier
      */
     public void setPublicId(String id) {
 
@@ -156,6 +161,7 @@ public class NotationImpl extends NodeImpl implements Notation {
     /**
      * NON-DOM: The System Identifier for this Notation. If no system
      * identifier was specified, this will be null.
+     * @param id the system identifier
      */
     public void setSystemId(String id) {
 
@@ -193,7 +199,10 @@ public class NotationImpl extends NodeImpl implements Notation {
         return baseURI;
     }
 
-    /** NON-DOM: set base uri*/
+    /**
+     * NON-DOM: set base uri.
+     * @param uri the base URI
+     */
     public void setBaseURI(String uri) {
         if (needsSyncData()) {
             synchronizeData();

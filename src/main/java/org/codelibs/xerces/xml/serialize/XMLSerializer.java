@@ -59,7 +59,7 @@ import org.xml.sax.helpers.AttributesImpl;
  * serializing. For usage instructions see {@link Serializer}.
  * <p>
  * If an output stream is used, the encoding is taken from the
- * output format (defaults to <tt>UTF-8</tt>). If a writer is
+ * output format (defaults to <code>UTF-8</code>). If a writer is
  * used, make sure the writer uses the same encoding (if applies)
  * as specified in the output format.
  * <p>
@@ -97,6 +97,7 @@ public class XMLSerializer extends BaseMarkupSerializer {
     // constants
     //
 
+    /** Debug flag for troubleshooting serialization issues. */
     protected static final boolean DEBUG = false;
 
     //
@@ -116,6 +117,7 @@ public class XMLSerializer extends BaseMarkupSerializer {
     /** symbol table for serialization */
     protected SymbolTable fSymbolTable;
 
+    /** Default namespace prefix for generated namespace declarations. */
     protected final static String PREFIX = "NS";
 
     /**
@@ -147,6 +149,8 @@ public class XMLSerializer extends BaseMarkupSerializer {
      * Constructs a new serializer. The serializer cannot be used without
      * calling {@link #setOutputCharStream} or {@link #setOutputByteStream}
      * first.
+     *
+     * @param format The output format to use, null for the default
      */
     public XMLSerializer(OutputFormat format) {
         super(format != null ? format : new OutputFormat(Method.XML, null, false));
@@ -155,7 +159,7 @@ public class XMLSerializer extends BaseMarkupSerializer {
 
     /**
      * Constructs a new serializer that writes to the specified writer
-     * using the specified output format. If <tt>format</tt> is null,
+     * using the specified output format. If <code>format</code> is null,
      * will use a default output format.
      *
      * @param writer The writer to use
@@ -169,7 +173,7 @@ public class XMLSerializer extends BaseMarkupSerializer {
 
     /**
      * Constructs a new serializer that writes to the specified output
-     * stream using the specified output format. If <tt>format</tt>
+     * stream using the specified output format. If <code>format</code>
      * is null, will use a default output format.
      *
      * @param output The output stream to use
@@ -190,7 +194,7 @@ public class XMLSerializer extends BaseMarkupSerializer {
      * DOM serialization.
      * @see org.w3c.dom.ls.LSSerializer
      *
-     * @param namespaces
+     * @param namespaces true to enable namespace fixup, false otherwise
      */
     public void setNamespaces(boolean namespaces) {
         fNamespaces = namespaces;
@@ -360,6 +364,14 @@ public class XMLSerializer extends BaseMarkupSerializer {
         }
     }
 
+    /**
+     * Ends an element in the serialized XML output.
+     *
+     * @param namespaceURI The namespace URI of the element
+     * @param localName The local name of the element
+     * @param rawName The raw qualified name of the element
+     * @throws IOException If an I/O error occurs while writing
+     */
     public void endElementIO(String namespaceURI, String localName, String rawName) throws IOException {
         ElementState state;
         if (DEBUG) {
@@ -507,6 +519,9 @@ public class XMLSerializer extends BaseMarkupSerializer {
      * pre-root comments and PIs that were accumulated in the document
      * (see {@link #serializePreRoot}). Pre-root will be serialized even if
      * this is not the first root element of the document.
+     *
+     * @param rootTagName The name of the root element
+     * @throws IOException if an I/O error occurs
      */
     protected void startDocument(String rootTagName) throws IOException {
         int i;
@@ -1181,7 +1196,12 @@ public class XMLSerializer extends BaseMarkupSerializer {
         }
     }
 
-    /** print text data */
+    /**
+     * Print text data escaping XML special characters.
+     *
+     * @param ch The character to print
+     * @throws IOException if an I/O error occurs
+     */
     protected void printXMLChar(int ch) throws IOException {
         if (ch == '\r') {
             printHex(ch);

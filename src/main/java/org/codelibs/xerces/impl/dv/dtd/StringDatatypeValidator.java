@@ -34,13 +34,15 @@ import org.codelibs.xerces.impl.dv.ValidationContext;
  * code point ([ISO 10646],[Unicode] and [Unicode3]),
  * which is an integer.</P>
  *
- * @xerces.internal
+
  *
  * @version $Id: StringDatatypeValidator.java 699892 2008-09-28 21:08:27Z mrglavas $
  */
 public class StringDatatypeValidator implements DatatypeValidator {
 
-    // construct a string datatype validator
+    /**
+     * Constructs a string datatype validator.
+     */
     public StringDatatypeValidator() {
     }
 
@@ -50,7 +52,7 @@ public class StringDatatypeValidator implements DatatypeValidator {
      *
      * @param content       the string value that needs to be validated
      * @param context       the validation context
-     * @throws InvalidDatatypeException if the content is
+     * @throws InvalidDatatypeValueException if the content is
      *         invalid according to the rules for the validators
      * @see InvalidDatatypeValueException
      */

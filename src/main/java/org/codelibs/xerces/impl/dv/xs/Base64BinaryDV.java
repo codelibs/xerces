@@ -25,7 +25,7 @@ import org.codelibs.xerces.impl.dv.util.ByteListImpl;
 /**
  * Represent the schema type "base64Binary"
  *
- * @xerces.internal
+
  *
  * @author Neeraj Bajaj, Sun Microsystems, inc.
  * @author Sandy Gao, IBM
@@ -33,6 +33,12 @@ import org.codelibs.xerces.impl.dv.util.ByteListImpl;
  * @version $Id: Base64BinaryDV.java 446745 2006-09-15 21:43:58Z mrglavas $
  */
 public class Base64BinaryDV extends TypeValidator {
+
+    /**
+     * Default constructor for Base64BinaryDV.
+     */
+    public Base64BinaryDV() {
+    }
 
     public short getAllowedFacets() {
         return (XSSimpleTypeDecl.FACET_LENGTH | XSSimpleTypeDecl.FACET_MINLENGTH | XSSimpleTypeDecl.FACET_MAXLENGTH

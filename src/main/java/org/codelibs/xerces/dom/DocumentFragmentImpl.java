@@ -58,7 +58,7 @@ import org.w3c.dom.Text;
  * standard methods from the Node interface, such as insertBefore()
  * and appendChild().
  *
- * @xerces.internal
+
  *
  * @version $Id: DocumentFragmentImpl.java 447266 2006-09-18 05:57:49Z mrglavas $
  * @since  PR-DOM-Level-1-19980818.
@@ -76,7 +76,10 @@ public class DocumentFragmentImpl extends ParentNode implements DocumentFragment
     // Constructors
     //
 
-    /** Factory constructor. */
+    /**
+     * Factory constructor.
+     * @param ownerDoc the document that owns this document fragment
+     */
     public DocumentFragmentImpl(CoreDocumentImpl ownerDoc) {
         super(ownerDoc);
     }

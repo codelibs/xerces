@@ -22,9 +22,7 @@ import org.codelibs.xerces.impl.dv.ValidationContext;
 import org.codelibs.xerces.util.XMLChar;
 
 /**
- * Represent the schema type "IDREF"
- *
- * @xerces.internal
+ * Represent the schema type "IDREF".
  *
  * @author Neeraj Bajaj, Sun Microsystems, inc.
  * @author Sandy Gao, IBM
@@ -32,6 +30,12 @@ import org.codelibs.xerces.util.XMLChar;
  * @version $Id: IDREFDV.java 446745 2006-09-15 21:43:58Z mrglavas $
  */
 public class IDREFDV extends TypeValidator {
+
+    /**
+     * Default constructor for internal instantiation.
+     */
+    public IDREFDV() {
+    }
 
     public short getAllowedFacets() {
         return (XSSimpleTypeDecl.FACET_LENGTH | XSSimpleTypeDecl.FACET_MINLENGTH | XSSimpleTypeDecl.FACET_MAXLENGTH

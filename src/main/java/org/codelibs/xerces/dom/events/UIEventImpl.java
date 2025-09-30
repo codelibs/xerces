@@ -22,12 +22,20 @@ import org.w3c.dom.views.AbstractView;
 
 /**
  * An implementation of the DOM Level 2 <code>UIEvent</code> interface.
+ * This class provides a concrete implementation of UI events such as
+ * focus events, mouse events, and keyboard events.
  *
- * @xerces.internal
+
  *
  * @version $Id: UIEventImpl.java 533574 2007-04-30 00:29:47Z mrglavas $
  */
 public class UIEventImpl extends EventImpl implements UIEvent {
+
+    /**
+     * Default constructor.
+     */
+    public UIEventImpl() {
+    }
 
     private AbstractView fView;
     private int fDetail;

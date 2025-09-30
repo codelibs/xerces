@@ -57,13 +57,18 @@ import org.codelibs.xerces.xni.parser.XMLDocumentSource;
  *  <li>http://apache.org/xml/properties/internal/dtd-scanner</li>
  * </ul>
  *
- * @xerces.internal
- *
  * @author Elena Litani, IBM
  *
  * @version $Id: XMLNSDocumentScannerImpl.java 495747 2007-01-12 21:48:00Z mrglavas $
  */
 public class XMLNSDocumentScannerImpl extends XMLDocumentScannerImpl {
+
+    /**
+     * Default constructor.
+     */
+    public XMLNSDocumentScannerImpl() {
+        super();
+    }
 
     /** If is true, the dtd validator is no longer in the pipeline
       * and the scanner should bind namespaces */
@@ -102,15 +107,15 @@ public class XMLNSDocumentScannerImpl extends XMLDocumentScannerImpl {
      * Scans a start element. This method will handle the binding of
      * namespace information and notifying the handler of the start
      * of the element.
-     * <p>
+     *
      * <pre>
      * [44] EmptyElemTag ::= '&lt;' Name (S Attribute)* S? '/>'
      * [40] STag ::= '&lt;' Name (S Attribute)* S? '>'
      * </pre>
-     * <p>
+     *
      * <strong>Note:</strong> This method assumes that the leading
      * '&lt;' character has been consumed.
-     * <p>
+     *
      * <strong>Note:</strong> This method uses the fElementQName and
      * fAttributes variables. The contents of these variables will be
      * destroyed. The caller should copy important information out of
@@ -432,20 +437,22 @@ public class XMLNSDocumentScannerImpl extends XMLDocumentScannerImpl {
 
     /**
      * Scans an attribute.
-     * <p>
+     *
      * <pre>
      * [41] Attribute ::= Name Eq AttValue
      * </pre>
-     * <p>
+     *
      * <strong>Note:</strong> This method assumes that the next
      * character on the stream is the first character of the attribute
      * name.
-     * <p>
+     *
      * <strong>Note:</strong> This method uses the fAttributeQName and
      * fQName variables. The contents of these variables will be
      * destroyed.
      *
      * @param attributes The attributes list for the scanned attribute.
+     * @throws IOException if an I/O error occurs
+     * @throws XNIException if a parsing error occurs
      */
     protected void scanAttribute(XMLAttributesImpl attributes) throws IOException, XNIException {
         if (DEBUG_CONTENT_SCANNING)
@@ -557,11 +564,11 @@ public class XMLNSDocumentScannerImpl extends XMLDocumentScannerImpl {
 
     /**
      * Scans an end element.
-     * <p>
+     *
      * <pre>
      * [42] ETag ::= '&lt;/' Name S? '>'
      * </pre>
-     * <p>
+     *
      * <strong>Note:</strong> This method uses the fElementQName variable.
      * The contents of this variable will be destroyed. The caller should
      * copy the needed information out of this variable before calling
@@ -634,6 +641,13 @@ public class XMLNSDocumentScannerImpl extends XMLDocumentScannerImpl {
      * Dispatcher to handle content scanning.
      */
     protected final class NSContentDispatcher extends ContentDispatcher {
+
+        /**
+         * Default constructor.
+         */
+        protected NSContentDispatcher() {
+            super();
+        }
 
         /**
          * Scan for root element hook. This method is a hook for

@@ -34,9 +34,17 @@ public final class SAXLocatorWrapper implements XMLLocator {
     private Locator fLocator = null;
     private Locator2 fLocator2 = null;
 
+    /**
+     * Default constructor.
+     */
     public SAXLocatorWrapper() {
     }
 
+    /**
+     * Sets the SAX Locator to wrap.
+     *
+     * @param locator The SAX Locator
+     */
     public void setLocator(Locator locator) {
         fLocator = locator;
         if (locator instanceof Locator2 || locator == null) {
@@ -44,6 +52,11 @@ public final class SAXLocatorWrapper implements XMLLocator {
         }
     }
 
+    /**
+     * Returns the wrapped SAX Locator.
+     *
+     * @return The SAX Locator
+     */
     public Locator getLocator() {
         return fLocator;
     }

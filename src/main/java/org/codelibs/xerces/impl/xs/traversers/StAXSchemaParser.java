@@ -48,7 +48,7 @@ import org.w3c.dom.Document;
  * <p>StAXSchemaParser reads StAX events, converts them into XNI events
  * and passes them directly to the SchemaDOMParser.</p>
  *
- * @xerces.internal
+
  *
  * @version $Id: StAXSchemaParser.java 1785425 2017-03-04 03:51:24Z mukulg $
  */

@@ -53,9 +53,7 @@ import org.codelibs.xerces.xni.parser.XMLInputSource;
  * <p>
  * In addition to the features and properties recognized by the base
  * parser configuration, this class recognizes these additional
- * features and properties:
- * <ul>
- * </ul>
+ * features and properties.
  *
  * @author Neil Graham, IBM
  *
@@ -71,23 +69,29 @@ public class XMLGrammarCachingConfiguration extends XIncludeAwareParserConfigura
     // among
     // potentially man parsers.  Start one as close to 2K (20
     // times larger than normal) and see what happens...
+    /** Large prime number for symbol table size. */
     public static final int BIG_PRIME = 2039;
 
     // the static symbol table to be shared amongst parsers
+    /** Static symbol table shared among parsers. */
     protected static final SynchronizedSymbolTable fStaticSymbolTable = new SynchronizedSymbolTable(BIG_PRIME);
 
     // the Grammar Pool to be shared similarly
+    /** Static grammar pool shared among parsers. */
     protected static final XMLGrammarPoolImpl fStaticGrammarPool = new XMLGrammarPoolImpl();
 
     // schema full checking constant
+    /** Feature identifier: schema full checking. */
     protected static final String SCHEMA_FULL_CHECKING = Constants.XERCES_FEATURE_PREFIX + Constants.SCHEMA_FULL_CHECKING;
 
     // Data
 
     // variables needed for caching schema grammars.
+    /** Schema loader for caching schema grammars. */
     protected XMLSchemaLoader fSchemaLoader;
 
     // the DTD grammar loader
+    /** DTD loader for caching DTD grammars. */
     protected XMLDTDLoader fDTDLoader;
 
     //
@@ -160,6 +164,9 @@ public class XMLGrammarCachingConfiguration extends XIncludeAwareParserConfigura
      * lock the XMLGrammarPoolImpl object so that it does not
      * accept any more grammars from the validators.
      */
+    /**
+     * Locks the grammar pool to prevent further modifications.
+     */
     public void lockGrammarPool() {
         fGrammarPool.lockPool();
     } // lockGrammarPool()
@@ -168,6 +175,9 @@ public class XMLGrammarCachingConfiguration extends XIncludeAwareParserConfigura
      * clear the XMLGrammarPoolImpl object so that it does not
      * contain any more grammars.
      */
+    /**
+     * Clears all grammars from the grammar pool.
+     */
     public void clearGrammarPool() {
         fGrammarPool.clear();
     } // clearGrammarPool()
@@ -175,6 +185,9 @@ public class XMLGrammarCachingConfiguration extends XIncludeAwareParserConfigura
     /*
      * unlock the XMLGrammarPoolImpl object so that it
      * accepts more grammars from the validators.
+     */
+    /**
+     * Unlocks the grammar pool to allow modifications.
      */
     public void unlockGrammarPool() {
         fGrammarPool.unlockPool();

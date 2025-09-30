@@ -25,7 +25,7 @@ import org.codelibs.xerces.impl.xs.XSModelGroupImpl;
  *
  * Content model Bin-Op node.
  *
- * @xerces.internal
+
  *
  * @author Neil Graham, IBM
  * @version $Id: XSCMBinOp.java 476309 2006-11-17 20:49:31Z mrglavas $
@@ -34,6 +34,12 @@ public class XSCMBinOp extends CMNode {
     // -------------------------------------------------------------------
     //  Constructors
     // -------------------------------------------------------------------
+    /**
+     * Constructs a binary operation content model node.
+     * @param type the type of binary operation (CHOICE or SEQUENCE)
+     * @param leftNode the left child node
+     * @param rightNode the right child node
+     */
     public XSCMBinOp(int type, CMNode leftNode, CMNode rightNode) {
         super(type);
 

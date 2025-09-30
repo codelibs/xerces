@@ -35,7 +35,7 @@ import org.xml.sax.SAXException;
 /**
  * This is an implementation of the XSAnnotation schema component.
  *
- * @xerces.internal
+
  *
  * @version $Id: XSAnnotationImpl.java 699892 2008-09-28 21:08:27Z mrglavas $
  */
@@ -51,7 +51,12 @@ public class XSAnnotationImpl implements XSAnnotation {
     // from here when we need them
     private SchemaGrammar fGrammar = null;
 
-    // constructors
+    /**
+     * Constructs an XSAnnotation with the given contents and grammar.
+     *
+     * @param contents The annotation contents
+     * @param grammar The schema grammar that owns this annotation
+     */
     public XSAnnotationImpl(String contents, SchemaGrammar grammar) {
         fData = contents;
         fGrammar = grammar;

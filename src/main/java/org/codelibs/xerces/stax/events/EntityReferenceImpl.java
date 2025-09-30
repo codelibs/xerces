@@ -26,7 +26,8 @@ import javax.xml.stream.events.EntityDeclaration;
 import javax.xml.stream.events.EntityReference;
 
 /**
- * @xerces.internal
+ * Implementation of {@code EntityReference} event for StAX.
+ * Represents an entity reference in an XML document.
  *
  * @author Lucian Holland
  *
@@ -45,19 +46,19 @@ public final class EntityReferenceImpl extends XMLEventImpl implements EntityRef
     private final EntityDeclaration fDecl;
 
     /**
-     * Constructor.
-     * @param decl
-     * @param location
+     * Constructor for creating an entity reference with an entity declaration.
+     * @param decl the entity declaration, or null if not available
+     * @param location the location object for this event
      */
     public EntityReferenceImpl(final EntityDeclaration decl, final Location location) {
         this(decl != null ? decl.getName() : "", decl, location);
     }
 
     /**
-     * Constructor.
-     * @param name
-     * @param decl
-     * @param location
+     * Constructor for creating an entity reference with explicit name and declaration.
+     * @param name the name of the entity
+     * @param decl the entity declaration, or null if not available
+     * @param location the location object for this event
      */
     public EntityReferenceImpl(final String name, final EntityDeclaration decl, final Location location) {
         super(ENTITY_REFERENCE, location);

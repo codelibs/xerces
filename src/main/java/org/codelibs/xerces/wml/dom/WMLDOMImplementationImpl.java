@@ -24,7 +24,8 @@ import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.DocumentType;
 
 /**
- * @xerces.internal
+ * Implementation of WMLDOMImplementation interface for WML DOM implementation.
+ *
  * @version $Id: WMLDOMImplementationImpl.java 809736 2009-08-31 20:43:19Z mrglavas $
  * @author <a href="mailto:david@topware.com.tw">David Li</a>
  */
@@ -32,7 +33,18 @@ public class WMLDOMImplementationImpl extends DOMImplementationImpl implements W
 
     static final DOMImplementationImpl singleton = new WMLDOMImplementationImpl();
 
-    /** NON-DOM: Obtain and return the single shared object */
+    /**
+     * Constructs a new WMLDOMImplementationImpl instance.
+     */
+    public WMLDOMImplementationImpl() {
+        super();
+    }
+
+    /**
+     * NON-DOM: Obtain and return the single shared object.
+     *
+     * @return the singleton DOMImplementation instance for WML documents
+     */
     public static DOMImplementation getDOMImplementation() {
         return singleton;
     }

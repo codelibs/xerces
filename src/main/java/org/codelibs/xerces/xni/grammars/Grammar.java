@@ -46,8 +46,10 @@ package org.codelibs.xerces.xni.grammars;
 public interface Grammar {
 
     /**
-     * get the <code>XMLGrammarDescription</code> associated with this
-     * object
+     * Returns the <code>XMLGrammarDescription</code> associated with this
+     * grammar object.
+     *
+     * @return The grammar description.
      */
     public XMLGrammarDescription getGrammarDescription();
 } // interface Grammar

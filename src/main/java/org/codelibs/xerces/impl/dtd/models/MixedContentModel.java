@@ -33,7 +33,7 @@ import org.codelibs.xerces.xni.QName;
  * validate by just looking up each child being validated by looking it up
  * in the list.
  *
- * @xerces.internal
+
  *
  * @version $Id: MixedContentModel.java 699892 2008-09-28 21:08:27Z mrglavas $
  */

@@ -27,7 +27,7 @@ import org.w3c.dom.TypeInfo;
 /**
  * This class represents a single attribute.
  *
- * @xerces.internal
+
  *
  * @author Rahul Srivastava, Sun Microsystems Inc.
  *

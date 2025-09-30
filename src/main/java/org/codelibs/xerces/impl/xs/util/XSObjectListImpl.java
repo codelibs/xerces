@@ -29,7 +29,7 @@ import org.codelibs.xerces.xs.XSObjectList;
 /**
  * Contains a list of XSObjects.
  *
- * @xerces.internal
+
  *
  * @author Sandy Gao, IBM
  *
@@ -86,6 +86,9 @@ public class XSObjectListImpl extends AbstractList implements XSObjectList {
     // Number of elements in this list
     private int fLength = 0;
 
+    /**
+     * Constructs an empty XSObjectList with default initial capacity.
+     */
     public XSObjectListImpl() {
         fArray = new XSObject[DEFAULT_SIZE];
         fLength = 0;
@@ -126,7 +129,10 @@ public class XSObjectListImpl extends AbstractList implements XSObjectList {
         return fArray[index];
     }
 
-    // clear this object
+    /**
+     * Clears this object list, removing all references to contained objects
+     * and setting the length to zero.
+     */
     public void clearXSObjectList() {
         for (int i = 0; i < fLength; i++) {
             fArray[i] = null;
@@ -135,6 +141,12 @@ public class XSObjectListImpl extends AbstractList implements XSObjectList {
         fLength = 0;
     }
 
+    /**
+     * Adds an XSObject to the end of this list, expanding the internal
+     * array if necessary.
+     *
+     * @param object the XSObject to add
+     */
     public void addXSObject(XSObject object) {
         if (fLength == fArray.length) {
             XSObject[] temp = new XSObject[fLength + 4];
@@ -144,6 +156,12 @@ public class XSObjectListImpl extends AbstractList implements XSObjectList {
         fArray[fLength++] = object;
     }
 
+    /**
+     * Sets the XSObject at the specified index position.
+     *
+     * @param index the index position to set
+     * @param object the XSObject to place at the specified index
+     */
     public void addXSObject(int index, XSObject object) {
         fArray[index] = object;
     }

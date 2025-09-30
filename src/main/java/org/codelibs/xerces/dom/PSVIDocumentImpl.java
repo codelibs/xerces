@@ -35,7 +35,7 @@ import org.w3c.dom.UserDataHandler;
  * Our own document implementation, which knows how to create an element
  * with PSVI information.
  *
- * @xerces.internal
+
  *
  * @author Sandy Gao, IBM
  *
@@ -56,6 +56,8 @@ public class PSVIDocumentImpl extends DocumentImpl {
     /**
      * For DOM2 support.
      * The createDocument factory method is in DOMImplementation.
+     *
+     * @param doctype the document type
      */
     public PSVIDocumentImpl(DocumentType doctype) {
         super(doctype);
@@ -137,10 +139,23 @@ public class PSVIDocumentImpl extends DocumentImpl {
     // REVISIT: Forbid serialization of PSVI DOM until
     // we support object serialization of grammars -- mrglavas
 
+    /**
+     * Serialization is not supported for PSVI documents.
+     *
+     * @param out the ObjectOutputStream to write to
+     * @throws IOException always, as serialization is not supported
+     */
     private void writeObject(ObjectOutputStream out) throws IOException {
         throw new NotSerializableException(getClass().getName());
     }
 
+    /**
+     * Deserialization is not supported for PSVI documents.
+     *
+     * @param in the ObjectInputStream to read from
+     * @throws IOException always, as deserialization is not supported
+     * @throws ClassNotFoundException never thrown, but declared for interface compliance
+     */
     private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         throw new NotSerializableException(getClass().getName());
     }

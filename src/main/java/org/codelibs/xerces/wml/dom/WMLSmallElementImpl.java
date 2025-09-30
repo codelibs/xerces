@@ -19,7 +19,10 @@ package org.codelibs.xerces.wml.dom;
 import org.codelibs.xerces.wml.WMLSmallElement;
 
 /**
- * @xerces.internal
+ * Implementation of the WML small element.
+ * The small element is used to render text in a smaller font size.
+ * It provides visual formatting for text that should appear smaller than normal.
+ *
  * @version $Id: WMLSmallElementImpl.java 661560 2008-05-30 03:22:25Z mrglavas $
  * @author <a href="mailto:david@topware.com.tw">David Li</a>
  */
@@ -27,6 +30,12 @@ public class WMLSmallElementImpl extends WMLElementImpl implements WMLSmallEleme
 
     private static final long serialVersionUID = 2654490940644799492L;
 
+    /**
+     * Constructs a new WMLSmallElementImpl with the specified owner document and tag name.
+     *
+     * @param owner the owner document
+     * @param tagName the name of the element tag
+     */
     public WMLSmallElementImpl(WMLDocumentImpl owner, String tagName) {
         super(owner, tagName);
     }

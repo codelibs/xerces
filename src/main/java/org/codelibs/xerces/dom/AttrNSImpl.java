@@ -28,7 +28,7 @@ import org.w3c.dom.DOMException;
  * used in all queries. On the other hand we recompute the prefix when
  * necessary.
  *
- * @xerces.internal
+
  *
  * @author Arnaud  Le Hors, IBM
  * @author Andy Clark, IBM
@@ -57,14 +57,18 @@ public class AttrNSImpl extends AttrImpl {
     /** DOM2: localName. */
     protected String localName;
 
-    /*
-     * Default constructor
+    /**
+     * Default constructor for namespace-aware attributes.
      */
     public AttrNSImpl() {
     }
 
     /**
      * DOM2: Constructor for Namespace implementation.
+     *
+     * @param ownerDocument the document that owns this attribute
+     * @param namespaceURI the namespace URI of this attribute
+     * @param qualifiedName the qualified name of this attribute
      */
     protected AttrNSImpl(CoreDocumentImpl ownerDocument, String namespaceURI, String qualifiedName) {
 
@@ -104,7 +108,14 @@ public class AttrNSImpl extends AttrImpl {
         }
     }
 
-    // when local name is known
+    /**
+     * Constructor for namespace-aware attributes when local name is known.
+     *
+     * @param ownerDocument the document that owns this attribute
+     * @param namespaceURI the namespace URI of this attribute
+     * @param qualifiedName the qualified name of this attribute
+     * @param localName the local name of this attribute
+     */
     public AttrNSImpl(CoreDocumentImpl ownerDocument, String namespaceURI, String qualifiedName, String localName) {
         super(ownerDocument, qualifiedName);
 
@@ -112,7 +123,12 @@ public class AttrNSImpl extends AttrImpl {
         this.namespaceURI = namespaceURI;
     }
 
-    // for DeferredAttrImpl
+    /**
+     * Constructor for DeferredAttrImpl.
+     *
+     * @param ownerDocument the document that owns this attribute
+     * @param value the value of this attribute
+     */
     protected AttrNSImpl(CoreDocumentImpl ownerDocument, String value) {
         super(ownerDocument, value);
     }
@@ -162,7 +178,7 @@ public class AttrNSImpl extends AttrImpl {
      * The namespace prefix of this node, or null if it is unspecified. <p>
      *
      * For nodes created with a DOM Level 1 method, such as createElement
-     * from the Document interface, this is null. <p>
+     * from the Document interface, this is null.
      *
      * @since WD-DOM-Level-2-19990923
      */
@@ -179,14 +195,15 @@ public class AttrNSImpl extends AttrImpl {
      *
      * Note that setting this attribute changes the nodeName attribute, which
      * holds the qualified name, as well as the tagName and name attributes of
-     * the Element and Attr interfaces, when applicable.<p>
+     * the Element and Attr interfaces, when applicable.
      *
      * @param prefix The namespace prefix of this node, or null(empty string) if it is unspecified.
      *
-     * @exception INVALID_CHARACTER_ERR
+     * @exception DOMException INVALID_CHARACTER_ERR
      *                   Raised if the specified
      *                   prefix contains an invalid character.
-     * @exception DOMException
+     * @exception DOMException NO_MODIFICATION_ALLOWED_ERR
+     *                   Raised if this node is readonly.
      * @since WD-DOM-Level-2-19990923
      */
     public void setPrefix(String prefix) throws DOMException {

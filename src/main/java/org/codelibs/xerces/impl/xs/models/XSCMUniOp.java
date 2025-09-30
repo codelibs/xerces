@@ -25,7 +25,7 @@ import org.codelibs.xerces.impl.xs.XSParticleDecl;
  *
  * Content model Uni-Op node.
  *
- * @xerces.internal
+
  *
  * @author Neil Graham, IBM
  * @version $Id: XSCMUniOp.java 476309 2006-11-17 20:49:31Z mrglavas $
@@ -34,6 +34,11 @@ public class XSCMUniOp extends CMNode {
     // -------------------------------------------------------------------
     //  Constructors
     // -------------------------------------------------------------------
+    /**
+     * Constructs a unary operation content model node.
+     * @param type the type of unary operation (ZERO_OR_ONE, ZERO_OR_MORE, ONE_OR_MORE)
+     * @param childNode the child node
+     */
     public XSCMUniOp(int type, CMNode childNode) {
         super(type);
 

@@ -41,7 +41,7 @@ import org.xml.sax.helpers.LocatorImpl;
  * <p>SchemaContentHandler converts SAX events into XNI
  * and passes them directly to the SchemaDOMParser.</p>
  *
- * @xerces.internal
+
  *
  * @author Michael Glavassevich, IBM
  * @author Jack Z. Wang, IBM

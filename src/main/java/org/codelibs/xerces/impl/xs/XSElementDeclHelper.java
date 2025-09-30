@@ -20,11 +20,17 @@ package org.codelibs.xerces.impl.xs;
 import org.codelibs.xerces.xni.QName;
 
 /**
- * @xerces.internal
+ * Helper class for XML Schema element declarations.
  *
  * @version $Id: XSElementDeclHelper.java 982466 2010-08-05 04:41:01Z mrglavas $
  */
 public interface XSElementDeclHelper {
 
+    /**
+     * Retrieves a global element declaration by its qualified name.
+     *
+     * @param element the qualified name of the element to retrieve
+     * @return the XSElementDecl for the specified element, or null if not found
+     */
     public XSElementDecl getGlobalElementDecl(QName element);
 }

@@ -31,6 +31,12 @@ import java.util.ResourceBundle;
 public class SAXMessageFormatter {
 
     /**
+     * Private constructor to prevent instantiation.
+     */
+    private SAXMessageFormatter() {
+    }
+
+    /**
      * Formats a message with the specified arguments using the given
      * locale information.
      *

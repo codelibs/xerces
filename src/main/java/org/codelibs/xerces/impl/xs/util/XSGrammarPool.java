@@ -30,11 +30,16 @@ import org.codelibs.xerces.xs.XSModel;
  * Add a method that return an <code>XSModel</code> that represents components in
  * the schema grammars in this pool implementation.
  *
- * @xerces.internal
- *
  * @version $Id: XSGrammarPool.java 770963 2009-05-02 15:27:54Z mrglavas $
  */
 public class XSGrammarPool extends XMLGrammarPoolImpl {
+
+    /**
+     * Creates a new instance of XSGrammarPool.
+     */
+    public XSGrammarPool() {
+        // Default constructor
+    }
 
     /**
      * Return an <code>XSModel</code> that represents components in
@@ -46,6 +51,13 @@ public class XSGrammarPool extends XMLGrammarPoolImpl {
         return toXSModel(Constants.SCHEMA_VERSION_1_0);
     }
 
+    /**
+     * Return an <code>XSModel</code> that represents components in
+     * the schema grammars in this pool implementation.
+     *
+     * @param schemaVersion the schema version
+     * @return an <code>XSModel</code> representing this schema grammar
+     */
     public XSModel toXSModel(short schemaVersion) {
         ArrayList list = new ArrayList();
         for (int i = 0; i < fGrammars.length; i++) {
@@ -63,6 +75,13 @@ public class XSGrammarPool extends XMLGrammarPoolImpl {
         return toXSModel(gs, schemaVersion);
     }
 
+    /**
+     * Creates an XSModel from an array of SchemaGrammar objects.
+     *
+     * @param grammars the array of schema grammars
+     * @param schemaVersion the schema version
+     * @return an <code>XSModel</code> representing the schema grammars
+     */
     protected XSModel toXSModel(SchemaGrammar[] grammars, short schemaVersion) {
         return new XSModelImpl(grammars, schemaVersion);
     }

@@ -29,12 +29,18 @@ import org.w3c.dom.DocumentType;
  * methods. However, there's nothing that says it can't be a singleton,
  * so that's how I've implemented it.
  *
- * @xerces.internal
+
  *
  * @version $Id: PSVIDOMImplementationImpl.java 809736 2009-08-31 20:43:19Z mrglavas $
  * @since  PR-DOM-Level-1-19980818.
  */
 public class PSVIDOMImplementationImpl extends DOMImplementationImpl {
+
+    /**
+     * Constructs a new PSVIDOMImplementationImpl instance.
+     */
+    protected PSVIDOMImplementationImpl() {
+    }
 
     //
     // Data
@@ -49,7 +55,11 @@ public class PSVIDOMImplementationImpl extends DOMImplementationImpl {
     // Public methods
     //
 
-    /** NON-DOM: Obtain and return the single shared object */
+    /**
+     * NON-DOM: Obtain and return the single shared object
+     *
+     * @return the singleton DOM implementation instance
+     */
     public static DOMImplementation getDOMImplementation() {
         return singleton;
     }

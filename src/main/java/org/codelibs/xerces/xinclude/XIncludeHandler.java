@@ -88,16 +88,19 @@ import org.codelibs.xerces.xpointer.XPointerProcessor;
  * <p>
  * This component requires the following features and properties from the
  * component manager that uses it:
+ * </p>
  * <ul>
  *  <li>http://xml.org/sax/features/allow-dtd-events-after-endDTD</li>
  *  <li>http://apache.org/xml/properties/internal/error-reporter</li>
  *  <li>http://apache.org/xml/properties/internal/entity-resolver</li>
  * </ul>
+ * <p>
  * Optional property:
+ * </p>
  * <ul>
  *  <li>http://apache.org/xml/properties/input-buffer-size</li>
  * </ul>
- *
+ * <p>
  * Furthermore, the <code>NamespaceContext</code> used in the pipeline is required
  * to be an instance of <code>XIncludeNamespaceSupport</code>.
  * </p>
@@ -116,25 +119,39 @@ import org.codelibs.xerces.xpointer.XPointerProcessor;
  */
 public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDFilter {
 
+    /** Default configuration for XInclude parsing */
     public final static String XINCLUDE_DEFAULT_CONFIGURATION = "org.codelibs.xerces.parsers.XIncludeParserConfiguration";
+    /** HTTP Accept header constant */
     public final static String HTTP_ACCEPT = "Accept";
+    /** HTTP Accept-Language header constant */
     public final static String HTTP_ACCEPT_LANGUAGE = "Accept-Language";
+    /** XPointer constant for fragment identifier processing */
     public final static String XPOINTER = "xpointer";
 
+    /** The XInclude namespace URI */
     public final static String XINCLUDE_NS_URI = "http://www.w3.org/2001/XInclude".intern();
+    /** The XInclude include element local name */
     public final static String XINCLUDE_INCLUDE = "include".intern();
+    /** The XInclude fallback element local name */
     public final static String XINCLUDE_FALLBACK = "fallback".intern();
 
+    /** The parse attribute value for XML parsing */
     public final static String XINCLUDE_PARSE_XML = "xml".intern();
+    /** The parse attribute value for text parsing */
     public final static String XINCLUDE_PARSE_TEXT = "text".intern();
 
+    /** The href attribute local name */
     public final static String XINCLUDE_ATTR_HREF = "href".intern();
+    /** The parse attribute local name */
     public final static String XINCLUDE_ATTR_PARSE = "parse".intern();
+    /** The encoding attribute local name */
     public final static String XINCLUDE_ATTR_ENCODING = "encoding".intern();
+    /** The accept attribute local name */
     public final static String XINCLUDE_ATTR_ACCEPT = "accept".intern();
+    /** The accept-language attribute local name */
     public final static String XINCLUDE_ATTR_ACCEPT_LANGUAGE = "accept-language".intern();
 
-    // Top Level Information Items have [included] property in infoset
+    /** Top Level Information Items have [included] property in infoset */
     public final static String XINCLUDE_INCLUDED = "[included]".intern();
 
     /** The identifier for the Augmentation that contains the current base URI */
@@ -201,6 +218,7 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
     /** property identifier: buffer size. */
     protected static final String BUFFER_SIZE = Constants.XERCES_PROPERTY_PREFIX + Constants.BUFFER_SIZE_PROPERTY;
 
+    /** Feature identifier: parser settings */
     protected static final String PARSER_SETTINGS = Constants.XERCES_FEATURE_PREFIX + Constants.PARSER_SETTINGS;
 
     /** Recognized features. */
@@ -217,65 +235,83 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 
     // instance variables
 
-    // for XMLDocumentFilter
+    /** The document handler for XMLDocumentFilter */
     protected XMLDocumentHandler fDocumentHandler;
+    /** The document source for XMLDocumentFilter */
     protected XMLDocumentSource fDocumentSource;
 
-    // for XMLDTDFilter
+    /** The DTD handler for XMLDTDFilter */
     protected XMLDTDHandler fDTDHandler;
+    /** The DTD source for XMLDTDFilter */
     protected XMLDTDSource fDTDSource;
 
-    // for XIncludeHandler
+    /** The parent XInclude handler in the processing tree */
     protected XIncludeHandler fParentXIncludeHandler;
 
-    // for buffer size in XIncludeTextReader
+    /** Buffer size used in XIncludeTextReader */
     protected int fBufferSize = XMLEntityManager.DEFAULT_BUFFER_SIZE;
 
-    // It "feels wrong" to store this value here.  However,
-    // calculating it can be time consuming, so we cache it.
-    // It's never going to change in the lifetime of this XIncludeHandler
+    /**
+     * Cached parent relative URI to avoid recalculation.
+     * It's never going to change in the lifetime of this XIncludeHandler.
+     */
     protected String fParentRelativeURI;
 
-    // we cache the child parser configuration, so we don't have to re-create
-    // the objects when the parser is re-used
+    /** Cached child parser configuration to avoid re-creation when parser is re-used */
     protected XMLParserConfiguration fChildConfig;
 
-    // The cached child parser configuration, may contain a
-    // XInclude or XPointer Handler.  Cache both these
+    /** Cached child parser configuration for XInclude processing */
     protected XMLParserConfiguration fXIncludeChildConfig;
+    /** Cached child parser configuration for XPointer processing */
     protected XMLParserConfiguration fXPointerChildConfig;
 
-    // The XPointerProcessor
+    /** The XPointer processor */
     protected XPointerProcessor fXPtrProcessor = null;
 
+    /** Document locator for tracking location in source document */
     protected XMLLocator fDocLocation;
+    /** Wrapped locator for XInclude processing */
     protected XMLLocatorWrapper fXIncludeLocator = new XMLLocatorWrapper();
+    /** Message formatter for XInclude-specific error messages */
     protected XIncludeMessageFormatter fXIncludeMessageFormatter = new XIncludeMessageFormatter();
+    /** Namespace context support for XInclude processing */
     protected XIncludeNamespaceSupport fNamespaceContext;
+    /** Symbol table for string interning */
     protected SymbolTable fSymbolTable;
+    /** Error reporter for handling errors during processing */
     protected XMLErrorReporter fErrorReporter;
+    /** Entity resolver for resolving external entities */
     protected XMLEntityResolver fEntityResolver;
+    /** Security manager for enforcing security constraints */
     protected SecurityManager fSecurityManager;
 
-    // these are needed for text include processing
+    /** Text reader for XML 1.0 text includes */
     protected XIncludeTextReader fXInclude10TextReader;
+    /** Text reader for XML 1.1 text includes */
     protected XIncludeTextReader fXInclude11TextReader;
 
-    // these are needed for XML Base processing
+    /** Current base URI resource identifier */
     protected final XMLResourceIdentifier fCurrentBaseURI;
+    /** Stack tracking base URI scope at different depths */
     protected final IntStack fBaseURIScope;
+    /** Stack of base URIs */
     protected final Stack fBaseURI;
+    /** Stack of literal system IDs */
     protected final Stack fLiteralSystemID;
+    /** Stack of expanded system IDs */
     protected final Stack fExpandedSystemID;
 
-    // these are needed for Language Fixup
+    /** Stack tracking language scope at different depths */
     protected final IntStack fLanguageScope;
+    /** Stack of language values */
     protected final Stack fLanguageStack;
+    /** Current language value */
     protected String fCurrentLanguage;
 
+    /** The href attribute value from the parent include element */
     protected String fHrefFromParent;
 
-    // used for passing features on to child XIncludeHandler objects
+    /** Configuration settings for passing features to child handlers */
     protected ParserConfigurationSettings fSettings;
 
     // The current element depth.  We start at depth 0 (before we've reached any elements).
@@ -331,6 +367,9 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 
     // Constructors
 
+    /**
+     * Default constructor. Initializes the XIncludeHandler with default settings.
+     */
     public XIncludeHandler() {
         fDepth = 0;
 
@@ -548,10 +587,8 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
      * @param featureId The feature identifier.
      * @param state     The state of the feature.
      *
-     * @throws SAXNotRecognizedException The component should not throw
+     * @throws XMLConfigurationException The component may throw
      *                                   this exception.
-     * @throws SAXNotSupportedException The component should not throw
-     *                                  this exception.
      */
     public void setFeature(String featureId, boolean state) throws XMLConfigurationException {
         if (featureId.equals(ALLOW_UE_AND_NOTATION_EVENTS)) {
@@ -582,10 +619,8 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
      * @param propertyId The property identifier.
      * @param value      The value of the property.
      *
-     * @throws SAXNotRecognizedException The component should not throw
+     * @throws XMLConfigurationException The component may throw
      *                                   this exception.
-     * @throws SAXNotSupportedException The component should not throw
-     *                                  this exception.
      */
     public void setProperty(String propertyId, Object value) throws XMLConfigurationException {
         if (propertyId.equals(SYMBOL_TABLE)) {
@@ -1225,6 +1260,10 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
         }
     }
 
+    /**
+     * Handles the processing of a fallback element.
+     * Validates that the fallback element is properly nested and updates the processing state.
+     */
     protected void handleFallbackElement() {
         if (!getSawInclude(fDepth - 1)) {
             if (getState() == STATE_IGNORE) {
@@ -1250,6 +1289,14 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
         }
     }
 
+    /**
+     * Handles the processing of an include element.
+     * Validates the include element and processes the included content.
+     *
+     * @param attributes the attributes of the include element
+     * @return true if the include was processed successfully, false otherwise
+     * @throws XNIException if an error occurs during processing
+     */
     protected boolean handleIncludeElement(XMLAttributes attributes) throws XNIException {
         if (getSawInclude(fDepth - 1)) {
             reportFatalError("IncludeChild", new Object[] { XINCLUDE_INCLUDE });
@@ -1633,6 +1680,10 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
         return parentLanguage != null && parentLanguage.equalsIgnoreCase(fCurrentLanguage);
     }
 
+    /**
+     * Sets up the current base URI from the given locator.
+     * @param locator the XMLLocator containing base URI information
+     */
     protected void setupCurrentBaseURI(XMLLocator locator) {
         fCurrentBaseURI.setBaseSystemId(locator.getBaseSystemId());
 
@@ -1684,10 +1735,18 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
         return isTopLevelIncludedItemViaInclude() || isTopLevelIncludedItemViaFallback();
     }
 
+    /**
+     * Checks if this is a top-level included item that was included via an include element.
+     * @return true if this is a top-level item included through an include element, false otherwise
+     */
     protected boolean isTopLevelIncludedItemViaInclude() {
         return fDepth == 1 && !isRootDocument();
     }
 
+    /**
+     * Checks if this is a top-level included item that was included via a fallback.
+     * @return true if this is a top-level item included through fallback processing, false otherwise
+     */
     protected boolean isTopLevelIncludedItemViaFallback() {
         // Technically, this doesn't check if the parent was a fallback, it also
         // would return true if any of the parent's sibling elements were fallbacks.
@@ -1707,7 +1766,7 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
      * <li> For all attributes with a type of ENTITY, ENTITIES or NOTATIONS, the notations and
      * unparsed entities are processed as described in the spec, sections 4.5.1 and 4.5.2
      * </ul>
-     * @param attributes
+     * @param attributes the XMLAttributes to process, may be null
      * @return the processed XMLAttributes
      */
     protected XMLAttributes processAttributes(XMLAttributes attributes) {
@@ -1825,6 +1884,7 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
      * [base URI].  For instance, if the current [base URI] was "dir1/dir2/file.xml"
      * and the include parent's [base URI] was "dir/", this would return "dir2/file.xml".
      * @return the relative URI
+     * @throws MalformedURIException if the URI construction fails
      */
     protected String getRelativeBaseURI() throws MalformedURIException {
         int includeParentDepth = getIncludeParentDepth();
@@ -1979,14 +2039,29 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
         return augs;
     }
 
+    /**
+     * Gets the processing state at the specified depth.
+     *
+     * @param depth the depth at which to retrieve the state
+     * @return the processing state at the given depth
+     */
     protected int getState(int depth) {
         return fState[depth];
     }
 
+    /**
+     * Gets the processing state at the current depth.
+     *
+     * @return the current processing state
+     */
     protected int getState() {
         return fState[fDepth];
     }
 
+    /**
+     * Sets the processing state at the current depth.
+     * @param state the state to set (one of STATE_NORMAL_PROCESSING, STATE_IGNORE, or STATE_EXPECT_FALLBACK)
+     */
     protected void setState(int state) {
         if (fDepth >= fState.length) {
             int[] newarray = new int[fDepth * 2];
@@ -2001,8 +2076,8 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
      * as an ancestor of the current element, or as a sibling of an ancestor of the
      * current element.
      *
-     * @param depth
-     * @param val
+     * @param depth the processing depth at which the fallback was encountered
+     * @param val true if a fallback was encountered, false otherwise
      */
     protected void setSawFallback(int depth, boolean val) {
         if (depth >= fSawFallback.length) {
@@ -2018,7 +2093,8 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
      * as an ancestor of the current element, or as a sibling of an ancestor of the
      * current element.
      *
-     * @param depth
+     * @param depth the processing depth to check for fallback
+     * @return true if a fallback was encountered at the given depth, false otherwise
      */
     protected boolean getSawFallback(int depth) {
         if (depth >= fSawFallback.length) {
@@ -2031,8 +2107,8 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
      * Records that an &lt;include&gt; was encountered at the specified depth,
      * as an ancestor of the current item.
      *
-     * @param depth
-     * @param val
+     * @param depth the processing depth at which the include was encountered
+     * @param val true if an include was encountered, false otherwise
      */
     protected void setSawInclude(int depth, boolean val) {
         if (depth >= fSawInclude.length) {
@@ -2047,7 +2123,7 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
      * Return whether an &lt;include&gt; was encountered at the specified depth,
      * as an ancestor of the current item.
      *
-     * @param depth
+     * @param depth the processing depth to check for include
      * @return true if an include was seen at the given depth, false otherwise
      */
     protected boolean getSawInclude(int depth) {
@@ -2057,26 +2133,56 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
         return fSawInclude[depth];
     }
 
+    /**
+     * Reports a resource error with the given error key.
+     * @param key the error message key
+     */
     protected void reportResourceError(String key) {
         this.reportResourceError(key, null);
     }
 
+    /**
+     * Reports a resource error with the given error key and arguments.
+     * @param key the error message key
+     * @param args the arguments for the error message
+     */
     protected void reportResourceError(String key, Object[] args) {
         this.reportResourceError(key, args, null);
     }
 
+    /**
+     * Reports a resource error with the given error key, arguments, and exception.
+     * @param key the error message key
+     * @param args the arguments for the error message
+     * @param exception the exception associated with the error
+     */
     protected void reportResourceError(String key, Object[] args, Exception exception) {
         this.reportError(key, args, XMLErrorReporter.SEVERITY_WARNING, exception);
     }
 
+    /**
+     * Reports a fatal error with the given error key.
+     * @param key the error message key
+     */
     protected void reportFatalError(String key) {
         this.reportFatalError(key, null);
     }
 
+    /**
+     * Reports a fatal error with the given error key and arguments.
+     * @param key the error message key
+     * @param args the arguments for the error message
+     */
     protected void reportFatalError(String key, Object[] args) {
         this.reportFatalError(key, args, null);
     }
 
+    /**
+     * Reports a fatal error with the given error key, arguments, and exception.
+     * @param key the error message key
+     * @param args the arguments for the error message
+     * @param exception the exception associated with the error
+     */
     protected void reportFatalError(String key, Object[] args, Exception exception) {
         this.reportError(key, args, XMLErrorReporter.SEVERITY_FATAL_ERROR, exception);
     }
@@ -2091,21 +2197,32 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 
     /**
      * Set the parent of this XIncludeHandler in the tree
-     * @param parent
+     * @param parent the parent XIncludeHandler
      */
     protected void setParent(XIncludeHandler parent) {
         fParentXIncludeHandler = parent;
     }
 
+    /**
+     * Sets the href value from the parent handler.
+     * @param href the href value to set
+     */
     protected void setHref(String href) {
         fHrefFromParent = href;
     }
 
+    /**
+     * Sets the XInclude locator wrapper.
+     * @param locator the XMLLocatorWrapper to use for location tracking
+     */
     protected void setXIncludeLocator(XMLLocatorWrapper locator) {
         fXIncludeLocator = locator;
     }
 
-    // used to know whether to pass declarations to the document handler
+    /**
+     * Determines if this handler represents the root document.
+     * @return true if this is the root document (no parent XInclude handler), false otherwise
+     */
     protected boolean isRootDocument() {
         return fParentXIncludeHandler == null;
     }
@@ -2114,6 +2231,7 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
      * Caches an unparsed entity.
      * @param name the name of the unparsed entity
      * @param identifier the location of the unparsed entity
+     * @param notation the notation name for the unparsed entity
      * @param augmentations any Augmentations that were on the original unparsed entity declaration
      */
     protected void addUnparsedEntity(String name, XMLResourceIdentifier identifier, String notation, Augmentations augmentations) {
@@ -2283,8 +2401,13 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
         return isRootDocument() ? fSeenRootElement : fParentXIncludeHandler.getRootElementProcessed();
     }
 
-    // It would be nice if we didn't have to repeat code like this, but there's no interface that has
-    // setFeature() and addRecognizedFeatures() that the objects have in common.
+    /**
+     * Copies feature settings from a component manager to parser configuration settings.
+     * This method copies both Xerces and SAX features.
+     *
+     * @param from the source component manager
+     * @param to the target parser configuration settings
+     */
     protected void copyFeatures(XMLComponentManager from, ParserConfigurationSettings to) {
         Enumeration features = Constants.getXercesFeatures();
         copyFeatures1(features, Constants.XERCES_FEATURE_PREFIX, from, to);
@@ -2292,6 +2415,13 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
         copyFeatures1(features, Constants.SAX_FEATURE_PREFIX, from, to);
     }
 
+    /**
+     * Copies feature settings from a component manager to an XML parser configuration.
+     * This method copies both Xerces and SAX features.
+     *
+     * @param from the source component manager
+     * @param to the target XML parser configuration
+     */
     protected void copyFeatures(XMLComponentManager from, XMLParserConfiguration to) {
         Enumeration features = Constants.getXercesFeatures();
         copyFeatures1(features, Constants.XERCES_FEATURE_PREFIX, from, to);
@@ -2328,15 +2458,31 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
         }
     }
 
-    // This is a storage class to hold information about the notations.
-    // We're not using XMLNotationDecl because we don't want to lose the augmentations.
+    /**
+     * Storage class to hold information about the notations.
+     * We're not using XMLNotationDecl because we don't want to lose the augmentations.
+     */
     protected static class Notation {
+        /** The notation name. */
         public String name;
+        /** The system identifier. */
         public String systemId;
+        /** The base URI. */
         public String baseURI;
+        /** The public identifier. */
         public String publicId;
+        /** The expanded system identifier. */
         public String expandedSystemId;
+        /** The augmentations associated with this notation. */
         public Augmentations augmentations;
+
+        /**
+         * Default constructor for Notation storage class.
+         * Creates a new instance to hold notation information.
+         */
+        public Notation() {
+            // Default constructor
+        }
 
         // equals() returns true if two Notations have the same name.
         // Useful for searching Vectors for notations with the same name
@@ -2351,13 +2497,13 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
             return false;
         }
 
-        // from 4.5.2
-        // Notation items with the same [name], [system identifier],
-        // [public identifier], and [declaration base URI] are considered
-        // to be duplicate. An application may also be able to detect that
-        // notations are duplicate through other means. For instance, the URI
-        // resulting from combining the system identifier and the declaration
-        // base URI is the same.
+        /**
+         * Checks if this notation is a duplicate of another object.
+         * Notation items with the same [name], [system identifier], [public identifier],
+         * and [declaration base URI] are considered to be duplicate.
+         * @param obj the object to compare with
+         * @return true if the notations are duplicates, false otherwise
+         */
         public boolean isDuplicate(Object obj) {
             if (obj != null && obj instanceof Notation) {
                 Notation other = (Notation) obj;
@@ -2371,16 +2517,33 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
         }
     }
 
-    // This is a storage class to hold information about the unparsed entities.
-    // We're not using XMLEntityDecl because we don't want to lose the augmentations.
+    /**
+     * Storage class to hold information about the unparsed entities.
+     * We're not using XMLEntityDecl because we don't want to lose the augmentations.
+     */
     protected static class UnparsedEntity {
+        /** The entity name. */
         public String name;
+        /** The system identifier. */
         public String systemId;
+        /** The base URI. */
         public String baseURI;
+        /** The public identifier. */
         public String publicId;
+        /** The expanded system identifier. */
         public String expandedSystemId;
+        /** The notation name for this unparsed entity. */
         public String notation;
+        /** The augmentations associated with this unparsed entity. */
         public Augmentations augmentations;
+
+        /**
+         * Default constructor for UnparsedEntity storage class.
+         * Creates a new instance to hold unparsed entity information.
+         */
+        public UnparsedEntity() {
+            // Default constructor
+        }
 
         // equals() returns true if two UnparsedEntities have the same name.
         // Useful for searching Vectors for entities with the same name
@@ -2395,13 +2558,13 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
             return false;
         }
 
-        // from 4.5.1:
-        // Unparsed entity items with the same [name], [system identifier],
-        // [public identifier], [declaration base URI], [notation name], and
-        // [notation] are considered to be duplicate. An application may also
-        // be able to detect that unparsed entities are duplicate through other
-        // means. For instance, the URI resulting from combining the system
-        // identifier and the declaration base URI is the same.
+        /**
+         * Checks if this unparsed entity is a duplicate of another object.
+         * Unparsed entity items with the same [name], [system identifier], [public identifier],
+         * [declaration base URI], [notation name], and [notation] are considered to be duplicate.
+         * @param obj the object to compare with
+         * @return true if the unparsed entities are duplicates, false otherwise
+         */
         public boolean isDuplicate(Object obj) {
             if (obj != null && obj instanceof UnparsedEntity) {
                 UnparsedEntity other = (UnparsedEntity) obj;
@@ -2455,6 +2618,8 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 
     /**
      * Discards the language at the top of the stack, and returns the one beneath it.
+     *
+     * @return the language that is now at the top of the stack after popping
      */
     public String restoreLanguage() {
         fLanguageStack.pop();
@@ -2464,7 +2629,7 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 
     /**
      * Gets the base URI that was in use at that depth
-     * @param depth
+     * @param depth the depth at which to retrieve the base URI
      * @return the base URI
      */
     public String getBaseURI(int depth) {
@@ -2474,7 +2639,7 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
 
     /**
      * Gets the language that was in use at that depth.
-     * @param depth
+     * @param depth the depth at which to retrieve the language
      * @return the language
      */
     public String getLanguage(int depth) {
@@ -2489,6 +2654,7 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
      * @param depth the depth at which to start creating the relative URI
      * @return a relative URI to convert the base URI at the given depth to the current
      *         base URI
+     * @throws MalformedURIException if a malformed URI is encountered during processing
      */
     public String getRelativeURI(int depth) throws MalformedURIException {
         // The literal system id at the location given by "start" is *in focus* at
@@ -2530,6 +2696,8 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
     /**
      * Search for a xml:base attribute, and if one is found, put the new base URI into
      * effect.
+     *
+     * @param attributes the attributes of the current element to process
      */
     protected void processXMLBaseAttributes(XMLAttributes attributes) {
         String baseURIValue = attributes.getValue(NamespaceContext.XML_URI, "base");
@@ -2551,6 +2719,8 @@ public class XIncludeHandler implements XMLComponent, XMLDocumentFilter, XMLDTDF
     /**
      * Search for a xml:lang attribute, and if one is found, put the new
      * [language] into effect.
+     *
+     * @param attributes the attributes of the current element to process
      */
     protected void processXMLLangAttributes(XMLAttributes attributes) {
         String language = attributes.getValue(NamespaceContext.XML_URI, "lang");

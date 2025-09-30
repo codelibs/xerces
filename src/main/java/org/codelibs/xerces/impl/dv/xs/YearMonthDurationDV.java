@@ -28,7 +28,7 @@ import org.codelibs.xerces.impl.dv.ValidationContext;
 /**
  * Used to validate the <yearMonthDuration> type
  *
- * @xerces.internal
+
  *
  * @author Ankit Pasricha, IBM
  *

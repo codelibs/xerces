@@ -71,6 +71,7 @@ public interface Augmentations {
     /**
      * Returns an enumeration of the keys in the Augmentations structure
      *
+     * @return an enumeration of the keys in this Augmentations structure
      */
     public Enumeration keys();
 

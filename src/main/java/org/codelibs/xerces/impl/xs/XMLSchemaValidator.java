@@ -101,7 +101,7 @@ import org.codelibs.xerces.xs.XSTypeDefinition;
  *  <li>http://apache.org/xml/properties/internal/entity-resolver</li>
  * </ul>
  *
- * @xerces.internal
+
  *
  * @author Sandy Gao IBM
  * @author Elena Litani IBM
@@ -164,6 +164,7 @@ public class XMLSchemaValidator implements XMLComponent, XMLDocumentFilter, Fiel
     protected static final String CONTINUE_AFTER_FATAL_ERROR =
             Constants.XERCES_FEATURE_PREFIX + Constants.CONTINUE_AFTER_FATAL_ERROR_FEATURE;
 
+    /** Feature identifier: parser settings. */
     protected static final String PARSER_SETTINGS = Constants.XERCES_FEATURE_PREFIX + Constants.PARSER_SETTINGS;
 
     /** Feature identifier: namespace growth */
@@ -198,8 +199,10 @@ public class XMLSchemaValidator implements XMLComponent, XMLDocumentFilter, Fiel
     /** Property identifier: grammar pool. */
     public static final String XMLGRAMMAR_POOL = Constants.XERCES_PROPERTY_PREFIX + Constants.XMLGRAMMAR_POOL_PROPERTY;
 
+    /** Property identifier: validation manager. */
     protected static final String VALIDATION_MANAGER = Constants.XERCES_PROPERTY_PREFIX + Constants.VALIDATION_MANAGER_PROPERTY;
 
+    /** Property identifier: entity manager. */
     protected static final String ENTITY_MANAGER = Constants.XERCES_PROPERTY_PREFIX + Constants.ENTITY_MANAGER_PROPERTY;
 
     /** Property identifier: schema location. */
@@ -258,9 +261,10 @@ public class XMLSchemaValidator implements XMLComponent, XMLDocumentFilter, Fiel
     /** Property defaults. */
     private static final Object[] PROPERTY_DEFAULTS = { null, null, null, null, null, null, null, null, null, null, null };
 
-    // this is the number of valuestores of each kind
-    // we expect an element to have.  It's almost
-    // never > 1; so leave it at that.
+    /**
+     * The number of value stores of each kind we expect an element to have.
+     * It's almost never > 1; so leave it at that.
+     */
     protected static final int ID_CONSTRAINT_NUM = 1;
 
     // xsi:* attribute declarations
@@ -285,30 +289,41 @@ public class XMLSchemaValidator implements XMLComponent, XMLDocumentFilter, Fiel
     // having to create this object continually, it is created here.
     // If it is not present in calls that we're passing on, we *must*
     // clear this before we introduce it into the pipeline.
+    /** Augmentations for current element processing */
     protected final AugmentationsImpl fAugmentations = new AugmentationsImpl();
 
-    // this is included for the convenience of handleEndElement
+    /** Default value for the current element, used in handleEndElement */
     protected XMLString fDefaultValue;
 
-    // Validation features
+    /** Whether dynamic validation is enabled */
     protected boolean fDynamicValidation = false;
+    /** Whether schema dynamic validation is enabled */
     protected boolean fSchemaDynamicValidation = false;
+    /** Whether validation should be performed */
     protected boolean fDoValidation = false;
+    /** Whether full checking of schema constraints is enabled */
     protected boolean fFullChecking = false;
+    /** Whether to normalize data according to schema */
     protected boolean fNormalizeData = true;
+    /** Whether to send element default values via characters() */
     protected boolean fSchemaElementDefault = true;
+    /** Whether to augment PSVI */
     protected boolean fAugPSVI = true;
+    /** Whether identity constraints are enabled for current element */
     protected boolean fIdConstraint = false;
+    /** Whether to use grammar pool only */
     protected boolean fUseGrammarPoolOnly = false;
 
-    // Namespace growth feature
+    /** Whether namespace growth feature is enabled */
     protected boolean fNamespaceGrowth = false;
 
     /** Schema type: None, DTD, Schema */
     private String fSchemaType = null;
 
     // to indicate whether we are in the scope of entity reference or CData
+    /** Whether currently processing an entity reference */
     protected boolean fEntityRef = false;
+    /** Whether currently processing within CDATA section */
     protected boolean fInCDATA = false;
 
     // properties
@@ -322,9 +337,11 @@ public class XMLSchemaValidator implements XMLComponent, XMLDocumentFilter, Fiel
     private XMLLocator fLocator;
 
     /**
-     * A wrapper of the standard error reporter. We'll store all schema errors
-     * in this wrapper object, so that we can get all errors (error codes) of
-     * a specific element. This is useful for PSVI.
+     * A wrapper of the standard error reporter for XSI errors.
+     * We'll store all schema errors in this wrapper object, so that we can
+     * get all errors (error codes) of a specific element. This is useful for PSVI.
+     * This class encapsulates error reporting functionality specific to
+     * XML Schema Instance (XSI) processing.
      */
     protected final class XSIErrorReporter {
 
@@ -337,15 +354,29 @@ public class XMLSchemaValidator implements XMLComponent, XMLDocumentFilter, Fiel
         int[] fContext = new int[INITIAL_STACK_SIZE];
         int fContextCount;
 
-        // set the external error reporter, clear errors
+        /**
+         * Constructs a new XSIErrorReporter instance.
+         * This error reporter is used to collect and report XSI-specific errors during validation.
+         */
+        public XSIErrorReporter() {
+            // Default constructor
+        }
+
+        /**
+         * Sets the external error reporter and clears errors.
+         *
+         * @param errorReporter The error reporter to use
+         */
         public void reset(XMLErrorReporter errorReporter) {
             fErrorReporter = errorReporter;
             fErrors.removeAllElements();
             fContextCount = 0;
         }
 
-        // should be called when starting process an element or an attribute.
-        // store the starting position for the current context
+        /**
+         * Should be called when starting to process an element or an attribute.
+         * Stores the starting position for the current context.
+         */
         public void pushContext() {
             if (!fAugPSVI) {
                 return;
@@ -361,7 +392,11 @@ public class XMLSchemaValidator implements XMLComponent, XMLDocumentFilter, Fiel
             fContext[fContextCount++] = fErrors.size();
         }
 
-        // should be called on endElement: get all errors of the current element
+        /**
+         * Should be called on endElement: get all errors of the current element.
+         *
+         * @return An array of error messages, or null if no errors
+         */
         public String[] popContext() {
             if (!fAugPSVI) {
                 return null;
@@ -383,9 +418,13 @@ public class XMLSchemaValidator implements XMLComponent, XMLDocumentFilter, Fiel
             return errors;
         }
 
-        // should be called when an attribute is done: get all errors of
-        // this attribute, but leave the errors to the containing element
-        // also called after an element was strictly assessed.
+        /**
+         * Should be called when an attribute is done: get all errors of
+         * this attribute, but leave the errors to the containing element.
+         * Also called after an element was strictly assessed.
+         *
+         * @return An array of error messages, or null if no errors
+         */
         public String[] mergeContext() {
             if (!fAugPSVI) {
                 return null;
@@ -407,6 +446,15 @@ public class XMLSchemaValidator implements XMLComponent, XMLDocumentFilter, Fiel
             return errors;
         }
 
+        /**
+         * Reports an error through the wrapped error reporter.
+         *
+         * @param domain The error domain
+         * @param key The error key
+         * @param arguments The error message arguments
+         * @param severity The error severity
+         * @throws XNIException Thrown if the error handler decides to stop processing
+         */
         public void reportError(String domain, String key, Object[] arguments, short severity) throws XNIException {
             String message = fErrorReporter.reportError(domain, key, arguments, severity);
             if (fAugPSVI) {
@@ -415,6 +463,16 @@ public class XMLSchemaValidator implements XMLComponent, XMLDocumentFilter, Fiel
             }
         } // reportError(String,String,Object[],short)
 
+        /**
+         * Reports an error through the wrapped error reporter with location information.
+         *
+         * @param location The location of the error
+         * @param domain The error domain
+         * @param key The error key
+         * @param arguments The error message arguments
+         * @param severity The error severity
+         * @throws XNIException Thrown if the error handler decides to stop processing
+         */
         public void reportError(XMLLocator location, String domain, String key, Object[] arguments, short severity) throws XNIException {
             String message = fErrorReporter.reportError(location, domain, key, arguments, severity);
             if (fAugPSVI) {
@@ -431,21 +489,29 @@ public class XMLSchemaValidator implements XMLComponent, XMLDocumentFilter, Fiel
     protected XMLEntityResolver fEntityResolver;
 
     // updated during reset
+    /** Validation manager for coordinating validation across components */
     protected ValidationManager fValidationManager = null;
+    /** Validation state for tracking validation context */
     protected ConfigurableValidationState fValidationState = new ConfigurableValidationState();
+    /** Grammar pool for caching schema grammars */
     protected XMLGrammarPool fGrammarPool;
 
     // schema location property values
+    /** External schema locations specified via schemaLocation attribute */
     protected String fExternalSchemas = null;
+    /** External no-namespace schema location */
     protected String fExternalNoNamespaceSchema = null;
 
-    //JAXP Schema Source property
+    /** JAXP Schema Source property value */
     protected Object fJaxpSchemaSource = null;
 
     /** Schema Grammar Description passed,  to give a chance to application to supply the Grammar */
     protected final XSDDescription fXSDDescription = new XSDDescription();
+    /** Location pairs for schema locations */
     protected final Hashtable fLocationPairs = new Hashtable();
+    /** Expanded location pairs for schema locations */
     protected final Hashtable fExpandedLocationPairs = new Hashtable();
+    /** List of unparsed schema locations */
     protected final ArrayList fUnparsedLocations = new ArrayList();
 
     // handlers
@@ -453,6 +519,7 @@ public class XMLSchemaValidator implements XMLComponent, XMLDocumentFilter, Fiel
     /** Document handler. */
     protected XMLDocumentHandler fDocumentHandler;
 
+    /** Document source providing events to this component */
     protected XMLDocumentSource fDocumentSource;
 
     //
@@ -478,10 +545,8 @@ public class XMLSchemaValidator implements XMLComponent, XMLDocumentFilter, Fiel
      * @param featureId The feature identifier.
      * @param state     The state of the feature.
      *
-     * @throws SAXNotRecognizedException The component should not throw
+     * @throws XMLConfigurationException The component should not throw
      *                                   this exception.
-     * @throws SAXNotSupportedException The component should not throw
-     *                                  this exception.
      */
     public void setFeature(String featureId, boolean state) throws XMLConfigurationException {
     } // setFeature(String,boolean)
@@ -505,10 +570,8 @@ public class XMLSchemaValidator implements XMLComponent, XMLDocumentFilter, Fiel
      * @param propertyId The property identifier.
      * @param value      The value of the property.
      *
-     * @throws SAXNotRecognizedException The component should not throw
+     * @throws XMLConfigurationException The component should not throw
      *                                   this exception.
-     * @throws SAXNotSupportedException The component should not throw
-     *                                  this exception.
      */
     public void setProperty(String propertyId, Object value) throws XMLConfigurationException {
         if (propertyId.equals(ROOT_TYPE_DEF)) {
@@ -905,6 +968,12 @@ public class XMLSchemaValidator implements XMLComponent, XMLDocumentFilter, Fiel
         return allWhiteSpace;
     }
 
+    /**
+     * Element default value callback. This method is called when an element
+     * has a default value that should be processed.
+     *
+     * @param data The default element data.
+     */
     public void elementDefault(String data) {
         // no-op
     }
@@ -3295,6 +3364,7 @@ public class XMLSchemaValidator implements XMLComponent, XMLDocumentFilter, Fiel
         // Constructors
         //
 
+        /** Default constructor. */
         public XPathMatcherStack() {
         } // <init>()
 
@@ -3311,23 +3381,40 @@ public class XMLSchemaValidator implements XMLComponent, XMLDocumentFilter, Fiel
             fContextStack.clear();
         } // clear()
 
-        /** Returns the size of the stack. */
+        /**
+         * Returns the size of the stack.
+         *
+         * @return The size of the context stack
+         */
         public int size() {
             return fContextStack.size();
         } // size():int
 
-        /** Returns the count of XPath matchers. */
+        /**
+         * Returns the count of XPath matchers.
+         *
+         * @return The number of active matchers
+         */
         public int getMatcherCount() {
             return fMatchersCount;
         } // getMatcherCount():int
 
-        /** Adds a matcher. */
+        /**
+         * Adds a matcher.
+         *
+         * @param matcher The XPath matcher to add
+         */
         public void addMatcher(XPathMatcher matcher) {
             ensureMatcherCapacity();
             fMatchers[fMatchersCount++] = matcher;
         } // addMatcher(XPathMatcher)
 
-        /** Returns the XPath matcher at the specified index. */
+        /**
+         * Returns the XPath matcher at the specified index.
+         *
+         * @param index The index of the matcher to retrieve
+         * @return The XPath matcher at the specified index
+         */
         public XPathMatcher getMatcherAt(int index) {
             return fMatchers[index];
         } // getMatcherAt(index):XPathMatcher
@@ -3373,20 +3460,27 @@ public class XMLSchemaValidator implements XMLComponent, XMLDocumentFilter, Fiel
 
         /** Identity constraint. */
         protected IdentityConstraint fIdentityConstraint;
+        /** Number of fields in the identity constraint */
         protected int fFieldCount = 0;
+        /** Array of fields for the identity constraint */
         protected Field[] fFields = null;
-        /** current data */
+        /** Local values for current field set */
         protected Object[] fLocalValues = null;
+        /** Local value types for current field set */
         protected short[] fLocalValueTypes = null;
+        /** Local item value types for current field set */
         protected ShortList[] fLocalItemValueTypes = null;
 
         /** Current data value count. */
         protected int fValuesCount;
+        /** Whether the current field set has a value */
         protected boolean fHasValue = false;
 
-        /** global data */
+        /** Global data values for all field sets */
         public final Vector fValues = new Vector();
+        /** Global value types for all field sets */
         public ShortVector fValueTypes = null;
+        /** Global item value types for all field sets */
         public Vector fItemValueTypes = null;
 
         private boolean fUseValueTypeVector = false;
@@ -3404,7 +3498,11 @@ public class XMLSchemaValidator implements XMLComponent, XMLDocumentFilter, Fiel
         // Constructors
         //
 
-        /** Constructs a value store for the specified identity constraint. */
+        /**
+         * Constructs a value store for the specified identity constraint.
+         *
+         * @param identityConstraint The identity constraint for this value store
+         */
         protected ValueStoreBase(IdentityConstraint identityConstraint) {
             fIdentityConstraint = identityConstraint;
             fFieldCount = fIdentityConstraint.getFieldCount();
@@ -3421,8 +3519,10 @@ public class XMLSchemaValidator implements XMLComponent, XMLDocumentFilter, Fiel
         // Public methods
         //
 
-        // destroys this ValueStore; useful when, for instance, a
-        // locally-scoped ID constraint is involved.
+        /**
+         * Destroys this ValueStore; useful when, for instance, a
+         * locally-scoped ID constraint is involved.
+         */
         public void clear() {
             fValuesCount = 0;
             fUseValueTypeVector = false;
@@ -3440,7 +3540,11 @@ public class XMLSchemaValidator implements XMLComponent, XMLDocumentFilter, Fiel
             }
         } // end clear():void
 
-        // appends the contents of one ValueStore to those of us.
+        /**
+         * Appends the contents of one ValueStore to those of this value store.
+         *
+         * @param newVal The value store to append
+         */
         public void append(ValueStoreBase newVal) {
             for (int i = 0; i < newVal.fValues.size(); i++) {
                 fValues.addElement(newVal.fValues.elementAt(i));
@@ -3494,6 +3598,10 @@ public class XMLSchemaValidator implements XMLComponent, XMLDocumentFilter, Fiel
         // override this method for purposes of their own.
         // This method is called whenever the DocumentFragment
         // of an ID Constraint goes out of scope.
+        /**
+         * Called when the document fragment of an identity constraint goes out of scope.
+         * Subclasses may override this method for their own purposes.
+         */
         public void endDocumentFragment() {
         } // endDocumentFragment():void
 
@@ -3567,6 +3675,8 @@ public class XMLSchemaValidator implements XMLComponent, XMLDocumentFilter, Fiel
 
         /**
          * Returns true if this value store contains the locally scoped value stores
+         *
+         * @return true if the value store contains the locally scoped values, false otherwise
          */
         public boolean contains() {
             // REVISIT: we can improve performance by using hash codes, instead of
@@ -3601,6 +3711,9 @@ public class XMLSchemaValidator implements XMLComponent, XMLDocumentFilter, Fiel
          * Returns -1 if this value store contains the specified
          * values, otherwise the index of the first field in the
          * key sequence.
+         *
+         * @param vsb The value store base to check for containment
+         * @return -1 if this value store contains the specified values, otherwise the index of the first field
          */
         public int contains(ValueStoreBase vsb) {
 
@@ -3654,11 +3767,20 @@ public class XMLSchemaValidator implements XMLComponent, XMLDocumentFilter, Fiel
         // Protected methods
         //
 
+        /**
+         * Called when duplicate values need to be checked.
+         * Base implementation does nothing; subclasses may override.
+         */
         protected void checkDuplicateValues() {
             // no-op
         } // duplicateValue(Hashtable)
 
-        /** Returns a string of the specified values. */
+        /**
+         * Returns a string of the specified values.
+         *
+         * @param values The array of values to convert to string
+         * @return A comma-separated string representation of the values
+         */
         protected String toString(Object[] values) {
 
             // no values
@@ -3680,7 +3802,14 @@ public class XMLSchemaValidator implements XMLComponent, XMLDocumentFilter, Fiel
 
         } // toString(Object[]):String
 
-        /** Returns a string of the specified values. */
+        /**
+         * Returns a string of the specified values.
+         *
+         * @param values The vector of values to convert to string
+         * @param start The starting position in the vector
+         * @param length The number of values to include
+         * @return A comma-separated string representation of the values
+         */
         protected String toString(Vector values, int start, int length) {
 
             // no values
@@ -3802,7 +3931,11 @@ public class XMLSchemaValidator implements XMLComponent, XMLDocumentFilter, Fiel
         // Constructors
         //
 
-        /** Constructs a unique value store. */
+        /**
+         * Constructs a unique value store.
+         *
+         * @param unique The unique constraint for this value store
+         */
         public UniqueValueStore(UniqueOrKey unique) {
             super(unique);
         } // <init>(Unique)
@@ -3840,7 +3973,11 @@ public class XMLSchemaValidator implements XMLComponent, XMLDocumentFilter, Fiel
         // Constructors
         //
 
-        /** Constructs a key value store. */
+        /**
+         * Constructs a key value store.
+         *
+         * @param key The key constraint for this value store
+         */
         public KeyValueStore(UniqueOrKey key) {
             super(key);
         } // <init>(Key)
@@ -3882,7 +4019,12 @@ public class XMLSchemaValidator implements XMLComponent, XMLDocumentFilter, Fiel
         // Constructors
         //
 
-        /** Constructs a key value store. */
+        /**
+         * Constructs a key reference value store.
+         *
+         * @param keyRef The key reference constraint
+         * @param keyValueStore The key value store that this keyref references
+         */
         public KeyRefValueStore(KeyRef keyRef, KeyValueStore keyValueStore) {
             super(keyRef);
             fKeyValueStore = keyValueStore;
@@ -3978,7 +4120,9 @@ public class XMLSchemaValidator implements XMLComponent, XMLDocumentFilter, Fiel
         // the preceding siblings' eligible id constraints;
         // the fGlobalIDConstraintMap contains descendants+self.
         // keyrefs can only match descendants+self.
+        /** Stack of global identity constraint maps for managing scope. */
         protected final Stack fGlobalMapStack = new Stack();
+        /** Map of identity constraints to their global value stores. */
         protected final HashMap fGlobalIDConstraintMap = new HashMap();
 
         //
@@ -4001,8 +4145,10 @@ public class XMLSchemaValidator implements XMLComponent, XMLDocumentFilter, Fiel
             fGlobalMapStack.removeAllElements();
         } // startDocument()
 
-        // startElement:  pushes the current fGlobalIDConstraintMap
-        // onto fGlobalMapStack and clears fGlobalIDConstraint map.
+        /**
+         * Called at the start of an element. Pushes the current fGlobalIDConstraintMap
+         * onto fGlobalMapStack and clears fGlobalIDConstraint map.
+         */
         public void startElement() {
             // only clone the map when there are elements
             if (fGlobalIDConstraintMap.size() > 0)
@@ -4044,6 +4190,9 @@ public class XMLSchemaValidator implements XMLComponent, XMLDocumentFilter, Fiel
         /**
          * Initializes the value stores for the specified element
          * declaration.
+         *
+         * @param eDecl The element declaration
+         * @param activator The field activator for selector activation
          */
         public void initValueStoresFor(XSElementDecl eDecl, FieldActivator activator) {
             // initialize value stores for unique fields
@@ -4097,22 +4246,36 @@ public class XMLSchemaValidator implements XMLComponent, XMLDocumentFilter, Fiel
             }
         } // initValueStoresFor(XSElementDecl)
 
-        /** Returns the value store associated to the specified IdentityConstraint. */
+        /**
+         * Returns the value store associated to the specified IdentityConstraint.
+         *
+         * @param id The identity constraint
+         * @param initialDepth The initial depth for the constraint
+         * @return The value store for the specified constraint, or null if not found
+         */
         public ValueStoreBase getValueStoreFor(IdentityConstraint id, int initialDepth) {
             fLocalId.fDepth = initialDepth;
             fLocalId.fId = id;
             return (ValueStoreBase) fIdentityConstraint2ValueStoreMap.get(fLocalId);
         } // getValueStoreFor(IdentityConstraint, int):ValueStoreBase
 
-        /** Returns the global value store associated to the specified IdentityConstraint. */
+        /**
+         * Returns the global value store associated to the specified IdentityConstraint.
+         *
+         * @param id The identity constraint
+         * @return The global value store for the specified constraint, or null if not found
+         */
         public ValueStoreBase getGlobalValueStoreFor(IdentityConstraint id) {
             return (ValueStoreBase) fGlobalIDConstraintMap.get(id);
         } // getValueStoreFor(IdentityConstraint):ValueStoreBase
 
-        // This method takes the contents of the (local) ValueStore
-        // associated with id and moves them into the global
-        // hashtable, if id is a <unique> or a <key>.
-        // If it's a <keyRef>, then we leave it for later.
+        /**
+         * Takes the contents of the (local) ValueStore associated with id and moves them into the global
+         * hashtable, if id is a unique or a key. If it's a keyRef, then we leave it for later.
+         *
+         * @param id The identity constraint to transplant
+         * @param initialDepth The initial depth for the constraint
+         */
         public void transplant(IdentityConstraint id, int initialDepth) {
             fLocalId.fDepth = initialDepth;
             fLocalId.fId = id;
@@ -4159,26 +4322,49 @@ public class XMLSchemaValidator implements XMLComponent, XMLDocumentFilter, Fiel
 
     } // class ValueStoreCache
 
-    // the purpose of this class is to enable IdentityConstraint,int
-    // pairs to be used easily as keys in Hashtables.
+    /**
+     * A key class that enables IdentityConstraint and depth pairs
+     * to be used easily as keys in Hashtables.
+     */
     protected static final class LocalIDKey {
 
+        /** The identity constraint */
         public IdentityConstraint fId;
+        /** The depth level */
         public int fDepth;
 
+        /**
+         * Default constructor.
+         */
         public LocalIDKey() {
         }
 
+        /**
+         * Constructs a LocalIDKey with the specified identity constraint and depth.
+         *
+         * @param id The identity constraint
+         * @param depth The depth level
+         */
         public LocalIDKey(IdentityConstraint id, int depth) {
             fId = id;
             fDepth = depth;
         } // init(IdentityConstraint, int)
 
-        // object method
+        /**
+         * Returns the hash code for this LocalIDKey.
+         *
+         * @return The hash code based on identity constraint and depth
+         */
         public int hashCode() {
             return fId.hashCode() + fDepth;
         }
 
+        /**
+         * Compares this LocalIDKey with another object for equality.
+         *
+         * @param localIDKey The object to compare with
+         * @return true if the objects are equal, false otherwise
+         */
         public boolean equals(Object localIDKey) {
             if (localIDKey instanceof LocalIDKey) {
                 LocalIDKey lIDKey = (LocalIDKey) localIDKey;
@@ -4207,9 +4393,17 @@ public class XMLSchemaValidator implements XMLComponent, XMLDocumentFilter, Fiel
         // Constructors
         //
 
+        /**
+         * Default constructor for ShortVector.
+         */
         public ShortVector() {
         }
 
+        /**
+         * Constructs a ShortVector with the specified initial capacity.
+         *
+         * @param initialCapacity The initial capacity of the vector
+         */
         public ShortVector(int initialCapacity) {
             fData = new short[initialCapacity];
         }
@@ -4218,18 +4412,31 @@ public class XMLSchemaValidator implements XMLComponent, XMLDocumentFilter, Fiel
         // Public methods
         //
 
-        /** Returns the length of the vector. */
+        /**
+         * Returns the length of the vector.
+         *
+         * @return The number of elements in the vector
+         */
         public int length() {
             return fLength;
         }
 
-        /** Adds the value to the vector. */
+        /**
+         * Adds the value to the vector.
+         *
+         * @param value The short value to add to the vector
+         */
         public void add(short value) {
             ensureCapacity(fLength + 1);
             fData[fLength++] = value;
         }
 
-        /** Returns the short value at the specified position in the vector. */
+        /**
+         * Returns the short value at the specified position in the vector.
+         *
+         * @param position The position in the vector
+         * @return The short value at the specified position
+         */
         public short valueAt(int position) {
             return fData[position];
         }
@@ -4239,7 +4446,12 @@ public class XMLSchemaValidator implements XMLComponent, XMLDocumentFilter, Fiel
             fLength = 0;
         }
 
-        /** Returns whether the short is contained in the vector. */
+        /**
+         * Returns whether the short is contained in the vector.
+         *
+         * @param value The short value to search for
+         * @return true if the value is contained in the vector, false otherwise
+         */
         public boolean contains(short value) {
             for (int i = 0; i < fLength; ++i) {
                 if (fData[i] == value) {

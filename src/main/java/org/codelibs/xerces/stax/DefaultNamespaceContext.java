@@ -25,10 +25,8 @@ import javax.xml.XMLConstants;
 import javax.xml.namespace.NamespaceContext;
 
 /**
- * <p>A <code>NamespaceContext</code> which only
- * contains bindings for the xml and xmlns prefixes.</p>
- *
- * @xerces.internal
+ * A {@code NamespaceContext} which only
+ * contains bindings for the xml and xmlns prefixes.
  *
  * @author Michael Glavassevich, IBM
  *
@@ -44,11 +42,21 @@ public final class DefaultNamespaceContext implements NamespaceContext {
     private DefaultNamespaceContext() {
     }
 
-    /** Returns the one and only instance of this class. */
+    /**
+     * Returns the one and only instance of this class.
+     *
+     * @return The singleton instance of DefaultNamespaceContext
+     */
     public static DefaultNamespaceContext getInstance() {
         return DEFAULT_NAMESPACE_CONTEXT_INSTANCE;
     }
 
+    /**
+     * Gets the namespace URI for the given prefix.
+     *
+     * @param prefix The namespace prefix
+     * @return The namespace URI for the prefix, or null if not found
+     */
     public String getNamespaceURI(String prefix) {
         if (prefix == null) {
             throw new IllegalArgumentException("Prefix cannot be null.");
@@ -60,6 +68,12 @@ public final class DefaultNamespaceContext implements NamespaceContext {
         return XMLConstants.NULL_NS_URI;
     } // getNamespaceURI(String)
 
+    /**
+     * Gets the prefix for the given namespace URI.
+     *
+     * @param namespaceURI The namespace URI
+     * @return The prefix for the namespace URI, or null if not found
+     */
     public String getPrefix(String namespaceURI) {
         if (namespaceURI == null) {
             throw new IllegalArgumentException("Namespace URI cannot be null.");
@@ -71,6 +85,12 @@ public final class DefaultNamespaceContext implements NamespaceContext {
         return null;
     } // getPrefix(String)
 
+    /**
+     * Gets all prefixes for the given namespace URI.
+     *
+     * @param namespaceURI The namespace URI
+     * @return An iterator over all prefixes for the namespace URI
+     */
     public Iterator getPrefixes(String namespaceURI) {
         if (namespaceURI == null) {
             throw new IllegalArgumentException("Namespace URI cannot be null.");

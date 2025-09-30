@@ -25,7 +25,7 @@ import org.w3c.dom.Node;
  * where an error occured).
  * <p>See also the <a href='http://www.w3.org/TR/2001/WD-DOM-Level-3-Core-20010913'>Document Object Model (DOM) Level 3 Core Specification</a>.
  *
- * @xerces.internal
+
  *
  * @author Gopal Sharma, SUN Microsystems Inc.
  * @version $Id: DOMLocatorImpl.java 447266 2006-09-18 05:57:49Z mrglavas $
@@ -75,15 +75,33 @@ public class DOMLocatorImpl implements DOMLocator {
     // Constructors
     //
 
+    /**
+     * Default constructor.
+     */
     public DOMLocatorImpl() {
     }
 
+    /**
+     * Constructs a locator with line number, column number and URI.
+     *
+     * @param lineNumber The line number
+     * @param columnNumber The column number
+     * @param uri The URI
+     */
     public DOMLocatorImpl(int lineNumber, int columnNumber, String uri) {
         fLineNumber = lineNumber;
         fColumnNumber = columnNumber;
         fUri = uri;
     } // DOMLocatorImpl (int lineNumber, int columnNumber, String uri )
 
+    /**
+     * Constructs a locator with line number, column number, UTF-16 offset and URI.
+     *
+     * @param lineNumber The line number
+     * @param columnNumber The column number
+     * @param utf16Offset The UTF-16 offset
+     * @param uri The URI
+     */
     public DOMLocatorImpl(int lineNumber, int columnNumber, int utf16Offset, String uri) {
         fLineNumber = lineNumber;
         fColumnNumber = columnNumber;
@@ -91,6 +109,15 @@ public class DOMLocatorImpl implements DOMLocator {
         fUtf16Offset = utf16Offset;
     } // DOMLocatorImpl (int lineNumber, int columnNumber, int utf16Offset, String uri )
 
+    /**
+     * Constructs a locator with line number, column number, byte offset, related node and URI.
+     *
+     * @param lineNumber The line number
+     * @param columnNumber The column number
+     * @param byteoffset The byte offset
+     * @param relatedData The related node
+     * @param uri The URI
+     */
     public DOMLocatorImpl(int lineNumber, int columnNumber, int byteoffset, Node relatedData, String uri) {
         fLineNumber = lineNumber;
         fColumnNumber = columnNumber;
@@ -99,6 +126,16 @@ public class DOMLocatorImpl implements DOMLocator {
         fUri = uri;
     } // DOMLocatorImpl (int lineNumber, int columnNumber, int offset, Node errorNode, String uri )
 
+    /**
+     * Constructs a locator with all location information.
+     *
+     * @param lineNumber The line number
+     * @param columnNumber The column number
+     * @param byteoffset The byte offset
+     * @param relatedData The related node
+     * @param uri The URI
+     * @param utf16Offset The UTF-16 offset
+     */
     public DOMLocatorImpl(int lineNumber, int columnNumber, int byteoffset, Node relatedData, String uri, int utf16Offset) {
         fLineNumber = lineNumber;
         fColumnNumber = columnNumber;

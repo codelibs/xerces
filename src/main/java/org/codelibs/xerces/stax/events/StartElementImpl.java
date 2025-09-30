@@ -36,7 +36,8 @@ import javax.xml.stream.events.StartElement;
 import org.codelibs.xerces.stax.DefaultNamespaceContext;
 
 /**
- * @xerces.internal
+ * Implementation of {@code StartElement} event for StAX.
+ * Represents the start of an XML element with its attributes and namespace declarations.
  *
  * @author Lucian Holland
  *
@@ -59,8 +60,13 @@ public final class StartElementImpl extends ElementImpl implements StartElement 
     private final NamespaceContext fNamespaceContext;
 
     /**
-     * @param location
-     * @param schemaType
+     * Constructs a start element event.
+     *
+     * @param name the element name
+     * @param attributes the attributes iterator
+     * @param namespaces the namespaces iterator
+     * @param namespaceContext the namespace context
+     * @param location the location
      */
     public StartElementImpl(final QName name, final Iterator attributes, final Iterator namespaces, final NamespaceContext namespaceContext,
             final Location location) {

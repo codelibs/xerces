@@ -27,19 +27,28 @@ import org.codelibs.xerces.util.MessageFormatter;
  * SchemaMessageProvider implements an XMLMessageProvider that
  * provides localizable error messages for the W3C XML Schema Language
  *
- * @xerces.internal
+
  *
  * @author Elena Litani, IBM
  * @version $Id: XSMessageFormatter.java 813087 2009-09-09 19:35:27Z mrglavas $
  */
 public class XSMessageFormatter implements MessageFormatter {
+
+    /**
+     * Default constructor for XSMessageFormatter.
+     */
+    public XSMessageFormatter() {
+        // Default constructor
+    }
+
     /**
      * The domain of messages concerning the XML Schema: Structures specification.
      */
     public static final String SCHEMA_DOMAIN = "http://www.w3.org/TR/xml-schema-1";
 
-    // private objects to cache the locale and resource bundle
+    /** Cached locale for message formatting. */
     private Locale fLocale = null;
+    /** Cached resource bundle for message formatting. */
     private ResourceBundle fResourceBundle = null;
 
     /**

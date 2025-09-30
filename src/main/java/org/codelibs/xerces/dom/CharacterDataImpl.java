@@ -33,7 +33,7 @@ import org.w3c.dom.NodeList;
  * This class doesn't directly support mutation events, however, it notifies
  * the document when mutations are performed so that the document class do so.
  *
- * @xerces.internal
+
  *
  * @version $Id: CharacterDataImpl.java 1057476 2011-01-11 03:31:36Z mrglavas $
  * @since  PR-DOM-Level-1-19980818.
@@ -51,6 +51,7 @@ public abstract class CharacterDataImpl extends ChildNode {
     // Data
     //
 
+    /** The character data stored in this node. */
     protected String data;
 
     /** Empty child nodes. */
@@ -68,10 +69,16 @@ public abstract class CharacterDataImpl extends ChildNode {
     // Constructors
     //
 
+    /** Default constructor for serialization. */
     public CharacterDataImpl() {
     }
 
-    /** Factory constructor. */
+    /**
+     * Factory constructor.
+     *
+     * @param ownerDocument The document that owns this node
+     * @param data The initial character data for this node
+     */
     protected CharacterDataImpl(CoreDocumentImpl ownerDocument, String data) {
         super(ownerDocument);
         this.data = data;
@@ -98,6 +105,8 @@ public abstract class CharacterDataImpl extends ChildNode {
 
     /** Convenience wrapper for calling setNodeValueInternal when
      * we are not performing a replacement operation
+     *
+     * @param value The new value for this node
      */
     protected void setNodeValueInternal(String value) {
         setNodeValueInternal(value, false);
@@ -109,6 +118,9 @@ public abstract class CharacterDataImpl extends ChildNode {
      *  This is important, because we do one type of Range fix-up,
      *  from the high-level functions in CharacterData, and another
      *  type if the client simply calls setNodeValue(value).
+     *
+     * @param value The new value for this node
+     * @param replace Whether this is a replacement operation
      */
     protected void setNodeValueInternal(String value, boolean replace) {
 
@@ -156,10 +168,12 @@ public abstract class CharacterDataImpl extends ChildNode {
     /**
      * Retrieve character data currently stored in this node.
      *
-     * @throws DOMExcpetion(DOMSTRING_SIZE_ERR) In some implementations,
+     * @throws DOMException DOMSTRING_SIZE_ERR In some implementations,
      * the stored data may exceed the permitted length of strings. If so,
      * getData() will throw this DOMException advising the user to
      * instead retrieve the data in chunks via the substring() operation.
+     *
+     * @return The character data stored in this node
      */
     public String getData() {
         if (needsSyncData()) {
@@ -185,7 +199,8 @@ public abstract class CharacterDataImpl extends ChildNode {
      * by which a DOM could wind up accumulating more data than the
      * language's strings can easily handle. (See above discussion.)
      *
-     * @throws DOMException(NO_MODIFICATION_ALLOWED_ERR) if node is readonly.
+     * @param data The data to append to the existing character data
+     * @throws DOMException NO_MODIFICATION_ALLOWED_ERR if node is readonly.
      */
     public void appendData(String data) {
 
@@ -210,10 +225,12 @@ public abstract class CharacterDataImpl extends ChildNode {
      * string. However, a deletion _count_ that exceeds the available
      * data is accepted as a delete-to-end request.
      *
-     * @throws DOMException(INDEX_SIZE_ERR) if offset is negative or
+     * @param offset The starting offset position for deletion
+     * @param count The number of characters to delete
+     * @throws DOMException INDEX_SIZE_ERR if offset is negative or
      * greater than length, or if count is negative.
      *
-     * @throws DOMException(NO_MODIFICATION_ALLOWED_ERR) if node is
+     * @throws DOMException NO_MODIFICATION_ALLOWED_ERR if node is
      * readonly.
      */
     public void deleteData(int offset, int count) throws DOMException {
@@ -263,10 +280,12 @@ public abstract class CharacterDataImpl extends ChildNode {
      * Insert additional characters into the data stored in this node,
      * at the offset specified.
      *
-     * @throws DOMException(INDEX_SIZE_ERR) if offset is negative or
+     * @param offset The position at which to insert the new data
+     * @param data The new character data to insert
+     * @throws DOMException INDEX_SIZE_ERR if offset is negative or
      * greater than length.
      *
-     * @throws DOMException(NO_MODIFICATION_ALLOWED_ERR) if node is readonly.
+     * @throws DOMException NO_MODIFICATION_ALLOWED_ERR if node is readonly.
      */
     public void insertData(int offset, String data) throws DOMException {
 
@@ -323,10 +342,10 @@ public abstract class CharacterDataImpl extends ChildNode {
      * insertion, and the new data may be longer or shorter
      * than the substring it replaces.
      *
-     * @throws DOMException(INDEX_SIZE_ERR) if offset is negative or
+     * @throws DOMException INDEX_SIZE_ERR if offset is negative or
      * greater than length, or if count is negative.
      *
-     * @throws DOMException(NO_MODIFICATION_ALLOWED_ERR) if node is
+     * @throws DOMException NO_MODIFICATION_ALLOWED_ERR if node is
      * readonly.
      */
     public void replaceData(int offset, int count, String data) throws DOMException {
@@ -364,7 +383,8 @@ public abstract class CharacterDataImpl extends ChildNode {
     /**
      * Store character data into this node.
      *
-     * @throws DOMException(NO_MODIFICATION_ALLOWED_ERR) if node is readonly.
+     * @param value The new character data to store in this node
+     * @throws DOMException NO_MODIFICATION_ALLOWED_ERR if node is readonly.
      */
     public void setData(String value) throws DOMException {
         setNodeValue(value);
@@ -375,17 +395,14 @@ public abstract class CharacterDataImpl extends ChildNode {
      * implementations of the DOM, where the stored data may exceed the
      * length that can be returned in a single string, the only way to
      * read it all is to extract it in chunks via this method.
-     *
-     * @param offset        Zero-based offset of first character to retrieve.
-     * @param count Number of characters to retrieve.
-     *
      * If the sum of offset and count exceeds the length, all characters
      * to end of data are returned.
      *
-     * @throws DOMException(INDEX_SIZE_ERR) if offset is negative or
-     * greater than length, or if count is negative.
-     *
-     * @throws DOMException(WSTRING_SIZE_ERR) In some implementations,
+     * @param offset Zero-based offset of first character to retrieve
+     * @param count Number of characters to retrieve
+     * @return The substring of character data starting at offset for count characters
+     * @throws DOMException INDEX_SIZE_ERR if offset is negative or
+     * greater than length, or if count is negative. WSTRING_SIZE_ERR In some implementations,
      * count may exceed the permitted length of strings. If so,
      * substring() will throw this DOMException advising the user to
      * instead retrieve the data in smaller chunks.

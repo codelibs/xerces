@@ -39,11 +39,15 @@ import org.codelibs.xerces.xni.NamespaceContext;
  */
 public class MultipleScopeNamespaceSupport extends NamespaceSupport {
 
+    /** Array tracking scope boundaries for namespace context management. */
     protected int[] fScope = new int[8];
+
+    /** Index of the current scope in the scope array. */
     protected int fCurrentScope;
 
     /**
-     *
+     * Constructs a MultipleScopeNamespaceSupport instance.
+     * Initializes the scope tracking to support XInclude processing.
      */
     public MultipleScopeNamespaceSupport() {
         super();
@@ -52,7 +56,10 @@ public class MultipleScopeNamespaceSupport extends NamespaceSupport {
     }
 
     /**
-     * @param context
+     * Constructs a MultipleScopeNamespaceSupport instance initialized with
+     * the given namespace context.
+     *
+     * @param context the namespace context to copy prefixes from
      */
     public MultipleScopeNamespaceSupport(NamespaceContext context) {
         super(context);
@@ -88,6 +95,12 @@ public class MultipleScopeNamespaceSupport extends NamespaceSupport {
         return new Prefixes(fPrefixes, count);
     }
 
+    /**
+     * Returns the scope index for the given context.
+     *
+     * @param context the context index
+     * @return the scope index for the given context
+     */
     public int getScopeForContext(int context) {
         int scope = fCurrentScope;
         while (context < fScope[scope]) {
@@ -110,14 +123,36 @@ public class MultipleScopeNamespaceSupport extends NamespaceSupport {
         return getURI(prefix, fNamespaceSize, fContext[fScope[fCurrentScope]]);
     }
 
+    /**
+     * Retrieves the prefix bound to the given namespace URI at the specified context.
+     *
+     * @param uri the namespace URI
+     * @param context the context index
+     * @return the prefix bound to the namespace URI, or null if not found
+     */
     public String getPrefix(String uri, int context) {
         return getPrefix(uri, fContext[context + 1], fContext[fScope[getScopeForContext(context)]]);
     }
 
+    /**
+     * Retrieves the namespace URI bound to the given prefix at the specified context.
+     *
+     * @param prefix the namespace prefix
+     * @param context the context index
+     * @return the namespace URI bound to the prefix, or null if not found
+     */
     public String getURI(String prefix, int context) {
         return getURI(prefix, fContext[context + 1], fContext[fScope[getScopeForContext(context)]]);
     }
 
+    /**
+     * Retrieves the prefix bound to the given namespace URI in the specified range.
+     *
+     * @param uri the namespace URI
+     * @param start the start index in the namespace array
+     * @param end the end index in the namespace array
+     * @return the prefix bound to the namespace URI, or null if not found
+     */
     public String getPrefix(String uri, int start, int end) {
         // this saves us from having a copy of each of these in fNamespace for each scope
         if (uri == NamespaceContext.XML_URI) {
@@ -139,6 +174,14 @@ public class MultipleScopeNamespaceSupport extends NamespaceSupport {
         return null;
     }
 
+    /**
+     * Retrieves the namespace URI bound to the given prefix in the specified range.
+     *
+     * @param prefix the namespace prefix
+     * @param start the start index in the namespace array
+     * @param end the end index in the namespace array
+     * @return the namespace URI bound to the prefix, or null if not found
+     */
     public String getURI(String prefix, int start, int end) {
         // this saves us from having a copy of each of these in fNamespace for each scope
         if (prefix == XMLSymbols.PREFIX_XML) {

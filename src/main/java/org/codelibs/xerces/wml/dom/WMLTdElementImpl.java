@@ -19,7 +19,9 @@ package org.codelibs.xerces.wml.dom;
 import org.codelibs.xerces.wml.WMLTdElement;
 
 /**
- * @xerces.internal
+ * Implementation of the WML table data (td) element.
+ * Provides access to table cell element attributes in WML tables.
+ *
  * @version $Id: WMLTdElementImpl.java 661560 2008-05-30 03:22:25Z mrglavas $
  * @author <a href="mailto:david@topware.com.tw">David Li</a>
  */
@@ -27,6 +29,12 @@ public class WMLTdElementImpl extends WMLElementImpl implements WMLTdElement {
 
     private static final long serialVersionUID = 6074218675876025710L;
 
+    /**
+     * Constructs a new WMLTdElementImpl with the specified owner document and tag name.
+     *
+     * @param owner the owner document
+     * @param tagName the name of the element tag
+     */
     public WMLTdElementImpl(WMLDocumentImpl owner, String tagName) {
         super(owner, tagName);
     }

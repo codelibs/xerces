@@ -24,9 +24,7 @@ import org.codelibs.xerces.impl.dv.InvalidDatatypeValueException;
 import org.codelibs.xerces.impl.dv.ValidationContext;
 
 /**
- * Validator for <date> datatype (W3C Schema datatypes)
- *
- * @xerces.internal
+ * Validator for {@code <date>} datatype (W3C Schema datatypes)
  *
  * @author Elena Litani
  * @author Gopal Sharma, SUN Microsystems Inc.
@@ -34,6 +32,12 @@ import org.codelibs.xerces.impl.dv.ValidationContext;
  * @version $Id: DateDV.java 937741 2010-04-25 04:25:46Z mrglavas $
  */
 public class DateDV extends DateTimeDV {
+
+    /**
+     * Default constructor for DateDV.
+     */
+    public DateDV() {
+    }
 
     public Object getActualValue(String content, ValidationContext context) throws InvalidDatatypeValueException {
         try {

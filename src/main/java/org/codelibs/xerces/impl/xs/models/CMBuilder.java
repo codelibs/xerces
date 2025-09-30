@@ -28,7 +28,7 @@ import org.codelibs.xerces.impl.xs.XSParticleDecl;
 /**
  * This class constructs content models for a given grammar.
  *
- * @xerces.internal
+
  *
  * @author Elena Litani, IBM
  * @author Sandy Gao, IBM
@@ -50,11 +50,21 @@ public class CMBuilder {
     //Factory to create Bin, Uni, Leaf nodes
     private final CMNodeFactory fNodeFactory;
 
+    /**
+     * Constructs a content model builder with the specified node factory.
+     *
+     * @param nodeFactory The factory for creating content model nodes
+     */
     public CMBuilder(CMNodeFactory nodeFactory) {
         fDeclPool = null;
         fNodeFactory = nodeFactory;
     }
 
+    /**
+     * Sets the declaration pool to be used for building content models.
+     *
+     * @param declPool The XML Schema declaration pool
+     */
     public void setDeclPool(XSDeclarationPool declPool) {
         fDeclPool = declPool;
     }
@@ -63,6 +73,7 @@ public class CMBuilder {
      * Get content model for the a given type
      *
      * @param typeDecl  get content model for which complex type
+     * @param forUPA whether the content model is being built for Unique Particle Attribution checking
      * @return          a content model validator
      */
     public XSCMValidator getContentModel(XSComplexTypeDecl typeDecl, boolean forUPA) {

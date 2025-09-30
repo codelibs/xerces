@@ -66,17 +66,26 @@ public class ASModelImpl implements ASModel {
 
     // conceptually, an ASModel may contain grammar information and/or
     // other ASModels.  These two fields divide that function.
+    /** Vector containing nested ASModel objects */
     protected Vector fASModels;
+    /** The associated schema grammar */
     protected SchemaGrammar fGrammar = null;
 
     //
     // Constructors
     //
 
+    /**
+     * Default constructor. Creates a new ASModelImpl instance with namespace awareness enabled.
+     */
     public ASModelImpl() {
         fASModels = new Vector();
     }
 
+    /**
+     * Constructor with namespace awareness setting.
+     * @param isNamespaceAware flag indicating whether this ASModel should be namespace-aware
+     */
     public ASModelImpl(boolean isNamespaceAware) {
         fASModels = new Vector();
         fNamespaceAware = isNamespaceAware;
@@ -261,6 +270,7 @@ public class ASModelImpl implements ASModel {
     /**
      * If <code>usage</code> is EXTERNAL_SUBSET or NOT_USED, and the
      * <code>ASModel</code> is simply a container of other ASModels.
+     * @return true if this ASModel contains a grammar, false otherwise
      */
     public boolean getContainer() {
         return (fGrammar != null);
@@ -476,14 +486,26 @@ public class ASModelImpl implements ASModel {
     }
 
     // convenience methods
+    /**
+     * Gets the associated schema grammar.
+     * @return the schema grammar associated with this ASModel
+     */
     public SchemaGrammar getGrammar() {
         return fGrammar;
     }
 
+    /**
+     * Sets the associated schema grammar.
+     * @param grammar the schema grammar to associate with this ASModel
+     */
     public void setGrammar(SchemaGrammar grammar) {
         fGrammar = grammar;
     }
 
+    /**
+     * Gets the internal vector of nested ASModel objects.
+     * @return the vector containing nested ASModel objects
+     */
     public Vector getInternalASModels() {
         return fASModels;
     }

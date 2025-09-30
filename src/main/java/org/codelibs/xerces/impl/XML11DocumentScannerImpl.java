@@ -45,8 +45,6 @@ import org.codelibs.xerces.xni.XNIException;
  *  <li>http://apache.org/xml/properties/internal/dtd-scanner</li>
  * </ul>
  *
- * @xerces.internal
- *
  * @author Glenn Marcy, IBM
  * @author Andy Clark, IBM
  * @author Arnaud  Le Hors, IBM
@@ -137,7 +135,7 @@ public class XML11DocumentScannerImpl extends XMLDocumentScannerImpl {
      * Scans an attribute value and normalizes whitespace converting all
      * whitespace characters to space characters.
      *
-     * [10] AttValue ::= '"' ([^<&"] | Reference)* '"' | "'" ([^<&'] | Reference)* "'"
+     * [10] AttValue ::= '"' ([^&lt;&amp;"] | Reference)* '"' | "'" ([^&lt;&amp;'] | Reference)* "'"
      *
      * @param value The XMLString to fill in with the value.
      * @param nonNormalizedValue The XMLString to fill in with the

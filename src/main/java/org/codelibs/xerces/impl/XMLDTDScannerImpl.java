@@ -52,8 +52,6 @@ import org.codelibs.xerces.xni.parser.XMLInputSource;
  *  <li>http://apache.org/xml/properties/internal/entity-manager</li>
  * </ul>
  *
- * @xerces.internal
- *
  * @author Arnaud  Le Hors, IBM
  * @author Andy Clark, IBM
  * @author Glenn Marcy, IBM
@@ -192,7 +190,13 @@ public class XMLDTDScannerImpl extends XMLScanner implements XMLDTDScanner, XMLC
     public XMLDTDScannerImpl() {
     } // <init>()
 
-    /** Constructor for he use of non-XMLComponentManagers. */
+    /**
+     * Constructor for he use of non-XMLComponentManagers.
+     *
+     * @param symbolTable The symbol table to use.
+     * @param errorReporter The error reporter to use.
+     * @param entityManager The entity manager to use.
+     */
     public XMLDTDScannerImpl(SymbolTable symbolTable, XMLErrorReporter errorReporter, XMLEntityManager entityManager) {
         fSymbolTable = symbolTable;
         fErrorReporter = errorReporter;
@@ -325,7 +329,7 @@ public class XMLDTDScannerImpl extends XMLScanner implements XMLDTDScanner, XMLC
     /**
      * reset
      *
-     * @param componentManager
+     * @param componentManager The component manager to use for reset.
      */
     public void reset(XMLComponentManager componentManager) throws XMLConfigurationException {
 
@@ -401,7 +405,7 @@ public class XMLDTDScannerImpl extends XMLScanner implements XMLDTDScanner, XMLC
     /**
      * setDTDHandler
      *
-     * @param dtdHandler
+     * @param dtdHandler The DTD handler to set.
      */
     public void setDTDHandler(XMLDTDHandler dtdHandler) {
         fDTDHandler = dtdHandler;
@@ -423,7 +427,7 @@ public class XMLDTDScannerImpl extends XMLScanner implements XMLDTDScanner, XMLC
     /**
      * setDTDContentModelHandler
      *
-     * @param dtdContentModelHandler
+     * @param dtdContentModelHandler The DTD content model handler to set.
      */
     public void setDTDContentModelHandler(XMLDTDContentModelHandler dtdContentModelHandler) {
         fDTDContentModelHandler = dtdContentModelHandler;
@@ -592,6 +596,11 @@ public class XMLDTDScannerImpl extends XMLScanner implements XMLDTDScanner, XMLC
 
     } // getScannerStateName(int):String
 
+    /**
+     * Returns true if the scanner is currently scanning the internal subset.
+     *
+     * @return true if scanning internal subset, false otherwise
+     */
     protected final boolean scanningInternalSubset() {
         return fExtEntityDepth == 0;
     }
@@ -603,6 +612,9 @@ public class XMLDTDScannerImpl extends XMLScanner implements XMLDTDScanner, XMLC
      * @param literal Whether this is happening within a literal
      *
      * @return The name of the parameter entity (with the '%')
+     *
+     * @throws IOException Thrown on i/o error.
+     * @throws XNIException Thrown on XNI error.
      */
     protected String startPE(String name, boolean literal) throws IOException, XNIException {
         int depth = fPEDepth;
@@ -709,12 +721,13 @@ public class XMLDTDScannerImpl extends XMLScanner implements XMLDTDScanner, XMLC
 
     /**
      * Scans a comment.
-     * <p>
      * <pre>
-     * [15] Comment ::= '&lt!--' ((Char - '-') | ('-' (Char - '-')))* '-->'
+     * [15] Comment ::= '&amp;lt;!--' ((Char - '-') | ('-' (Char - '-')))* '--&gt;'
      * </pre>
-     * <p>
      * <strong>Note:</strong> Called after scanning past '&lt;!--'
+     *
+     * @throws IOException Thrown on i/o error.
+     * @throws XNIException Thrown on XNI error.
      */
     protected final void scanComment() throws IOException, XNIException {
 
@@ -732,13 +745,14 @@ public class XMLDTDScannerImpl extends XMLScanner implements XMLDTDScanner, XMLC
 
     /**
      * Scans an element declaration
-     * <p>
      * <pre>
      * [45]    elementdecl    ::=    '&lt;!ELEMENT' S Name S contentspec S? '>'
      * [46]    contentspec    ::=    'EMPTY' | 'ANY' | Mixed | children
      * </pre>
-     * <p>
      * <strong>Note:</strong> Called after scanning past '&lt;!ELEMENT'
+     *
+     * @throws IOException Thrown on i/o error.
+     * @throws XNIException Thrown on XNI error.
      */
     protected final void scanElementDecl() throws IOException, XNIException {
 
@@ -1023,13 +1037,14 @@ public class XMLDTDScannerImpl extends XMLScanner implements XMLDTDScanner, XMLC
 
     /**
      * Scans an attlist declaration
-     * <p>
      * <pre>
      * [52]  AttlistDecl    ::=   '&lt;!ATTLIST' S Name AttDef* S? '>'
      * [53]  AttDef         ::=   S Name S AttType S DefaultDecl
      * </pre>
-     * <p>
      * <strong>Note:</strong> Called after scanning past '&lt;!ATTLIST'
+     *
+     * @throws IOException Thrown on i/o error.
+     * @throws XNIException Thrown on XNI error.
      */
     protected final void scanAttlistDecl() throws IOException, XNIException {
 
@@ -1233,16 +1248,20 @@ public class XMLDTDScannerImpl extends XMLScanner implements XMLDTDScanner, XMLC
 
     /**
      * Scans an attribute default declaration
-     * <p>
      * <pre>
      * [60] DefaultDecl ::= '#REQUIRED' | '#IMPLIED' | (('#FIXED' S)? AttValue)
      * </pre>
      *
-     * @param elName
+     * @param elName The name of the element that this attribute belongs to.
      * @param atName The name of the attribute being scanned.
-     * @param type
+     * @param type The attribute type.
      * @param defaultVal The string to fill in with the default value.
-     * @param nonNormalizedDefaultVal
+     * @param nonNormalizedDefaultVal The string to fill in with the non-normalized default value.
+     *
+     * @return The attribute default type (REQUIRED, IMPLIED, FIXED).
+     *
+     * @throws IOException Thrown on i/o error.
+     * @throws XNIException Thrown on XNI error.
      */
     protected final String scanAttDefaultDecl(String elName, String atName, String type, XMLString defaultVal,
             XMLString nonNormalizedDefaultVal) throws IOException, XNIException {
@@ -1457,6 +1476,9 @@ public class XMLDTDScannerImpl extends XMLScanner implements XMLDTDScanner, XMLC
      *                           non-normalized value.
      *
      * @return Count of direct and indirect references to parameter entities in the value of the entity.
+     *
+     * @throws IOException Thrown on i/o error.
+     * @throws XNIException Thrown on XNI error.
      */
     protected final int scanEntityValue(XMLString value, XMLString nonNormalizedValue) throws IOException, XNIException {
         int quote = fEntityScanner.scanChar();

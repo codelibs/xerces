@@ -29,7 +29,6 @@ import org.codelibs.xerces.xni.QName;
 /**
  * Bare minimum XPath parser.
  *
- * @xerces.internal
  *
  * @author Andy Clark, IBM
  * @version $Id: XPath.java 965250 2010-07-18 16:04:58Z mrglavas $
@@ -63,7 +62,14 @@ public class XPath {
     // Constructors
     //
 
-    /** Constructs an XPath object from the specified expression. */
+    /**
+     * Constructs an XPath object from the specified expression.
+     *
+     * @param xpath the XPath expression string
+     * @param symbolTable the symbol table for interning strings
+     * @param context the namespace context for resolving prefixes
+     * @throws XPathException if the XPath expression is invalid
+     */
     public XPath(String xpath, SymbolTable symbolTable, NamespaceContext context) throws XPathException {
         fExpression = xpath;
         fSymbolTable = symbolTable;
@@ -80,6 +86,8 @@ public class XPath {
     /**
      * Returns a representation of all location paths for this XPath.
      * XPath = locationPath ( '|' locationPath)
+     *
+     * @return an array of all location paths in this XPath expression
      */
     public LocationPath[] getLocationPaths() {
         LocationPath[] ret = new LocationPath[fLocationPaths.length];
@@ -89,7 +97,11 @@ public class XPath {
         return ret;
     } // getLocationPath(LocationPath)
 
-    /** Returns a representation of the first location path for this XPath. */
+    /**
+     * Returns a representation of the first location path for this XPath.
+     *
+     * @return the first location path in this XPath expression
+     */
     public LocationPath getLocationPath() {
         return (LocationPath) fLocationPaths[0].clone();
     } // getLocationPath(LocationPath)
@@ -339,8 +351,7 @@ public class XPath {
     /**
      * A location path representation for an XPath expression.
      *
-     * @xerces.internal
-     *
+         *
      * @author Andy Clark, IBM
      */
     public static class LocationPath implements Cloneable {
@@ -356,12 +367,20 @@ public class XPath {
         // Constructors
         //
 
-        /** Creates a location path from a series of steps. */
+        /**
+         * Creates a location path from a series of steps.
+         *
+         * @param steps The array of steps in the location path
+         */
         public LocationPath(Step[] steps) {
             this.steps = steps;
         } // <init>(Step[])
 
-        /** Copy constructor. */
+        /**
+         * Copy constructor.
+         *
+         * @param path The location path to copy
+         */
         protected LocationPath(LocationPath path) {
             steps = new Step[path.steps.length];
             for (int i = 0; i < steps.length; i++) {
@@ -404,8 +423,7 @@ public class XPath {
     /**
      * A location path step comprised of an axis and node test.
      *
-     * @xerces.internal
-     *
+         *
      * @author Andy Clark, IBM
      */
     public static class Step implements Cloneable {
@@ -424,13 +442,22 @@ public class XPath {
         // Constructors
         //
 
-        /** Constructs a step from an axis and node test. */
+        /**
+         * Constructs a step from an axis and node test.
+         *
+         * @param axis The axis for this step
+         * @param nodeTest The node test for this step
+         */
         public Step(Axis axis, NodeTest nodeTest) {
             this.axis = axis;
             this.nodeTest = nodeTest;
         } // <init>(Axis,NodeTest)
 
-        /** Copy constructor. */
+        /**
+         * Copy constructor.
+         *
+         * @param step The step to copy
+         */
         protected Step(Step step) {
             axis = (Axis) step.axis.clone();
             nodeTest = (NodeTest) step.nodeTest.clone();
@@ -467,8 +494,7 @@ public class XPath {
     /**
      * Axis.
      *
-     * @xerces.internal
-     *
+         *
      * @author Andy Clark, IBM
      */
     public static class Axis implements Cloneable {
@@ -499,12 +525,20 @@ public class XPath {
         // Constructors
         //
 
-        /** Constructs an axis with the specified type. */
+        /**
+         * Constructs an axis with the specified type.
+         *
+         * @param type The axis type (CHILD, ATTRIBUTE, SELF, DESCENDANT)
+         */
         public Axis(short type) {
             this.type = type;
         } // <init>(short)
 
-        /** Copy constructor. */
+        /**
+         * Copy constructor.
+         *
+         * @param axis The axis to copy
+         */
         protected Axis(Axis axis) {
             type = axis.type;
         } // <init>(Axis)
@@ -538,8 +572,7 @@ public class XPath {
     /**
      * Node test.
      *
-     * @xerces.internal
-     *
+         *
      * @author Andy Clark, IBM
      */
     public static class NodeTest implements Cloneable {
@@ -574,24 +607,41 @@ public class XPath {
         // Constructors
         //
 
-        /** Constructs a node test of type WILDCARD or NODE. */
+        /**
+         * Constructs a node test of type WILDCARD or NODE.
+         *
+         * @param type The node test type (WILDCARD or NODE)
+         */
         public NodeTest(short type) {
             this.type = type;
         } // <init>(int)
 
-        /** Constructs a node test of type QName. */
+        /**
+         * Constructs a node test of type QName.
+         *
+         * @param name The qualified name for the node test
+         */
         public NodeTest(QName name) {
             this.type = QNAME;
             this.name.setValues(name);
         } // <init>(QName)
 
-        /** Constructs a node test of type Namespace. */
+        /**
+         * Constructs a node test of type Namespace.
+         *
+         * @param prefix The namespace prefix
+         * @param uri The namespace URI
+         */
         public NodeTest(String prefix, String uri) {
             this.type = NAMESPACE;
             this.name.setValues(prefix, null, null, uri);
         } // <init>(String,String)
 
-        /** Copy constructor. */
+        /**
+         * Copy constructor.
+         *
+         * @param nodeTest The node test to copy
+         */
         public NodeTest(NodeTest nodeTest) {
             type = nodeTest.type;
             name.setValues(nodeTest.name);
@@ -652,8 +702,7 @@ public class XPath {
     /**
      * List of tokens.
      *
-     * @xerces.internal
-     *
+         *
      * @author Glenn Marcy, IBM
      * @author Andy Clark, IBM
      *
@@ -1117,7 +1166,14 @@ public class XPath {
     } // class Tokens
 
     /**
-     * @xerces.internal
+         *
+     * @author Glenn Marcy, IBM
+     * @author Andy Clark, IBM
+     *
+     * @version $Id: XPath.java 965250 2010-07-18 16:04:58Z mrglavas $
+     */
+    /**
+     * XPath expression scanner for tokenizing XPath expressions.
      *
      * @author Glenn Marcy, IBM
      * @author Andy Clark, IBM
@@ -1893,7 +1949,12 @@ public class XPath {
     // MAIN
     //
 
-    /** Main program entry. */
+    /**
+     * Main program entry for testing XPath parsing.
+     *
+     * @param argv the command line arguments (XPath expressions to parse)
+     * @throws Exception if an error occurs during parsing
+     */
     public static void main(String[] argv) throws Exception {
 
         for (int i = 0; i < argv.length; i++) {

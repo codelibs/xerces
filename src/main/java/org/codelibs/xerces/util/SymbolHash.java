@@ -38,7 +38,9 @@ public class SymbolHash {
     /** Maximum hash collisions per bucket. */
     protected static final int MAX_HASH_COLLISIONS = 40;
 
+    /** Size of the multipliers array used for hash functions. */
     protected static final int MULTIPLIERS_SIZE = 1 << 5;
+    /** Mask for accessing multipliers array indices. */
     protected static final int MULTIPLIERS_MASK = MULTIPLIERS_SIZE - 1;
 
     //
@@ -88,8 +90,8 @@ public class SymbolHash {
      * the previous value associated with this key is overwritten by the new
      * value.
      *
-     * @param key
-     * @param value
+     * @param key the key to add
+     * @param value the value to associate with the key
      */
     public void put(Object key, Object value) {
 
@@ -127,7 +129,7 @@ public class SymbolHash {
     /**
      * Get the value associated with the given key.
      *
-     * @param key
+     * @param key the key to look up
      * @return the value associated with the given key.
      */
     public Object get(Object key) {
@@ -167,6 +169,7 @@ public class SymbolHash {
 
     /**
      * Return key/value pairs of all entries in the map
+     * @return array containing alternating keys and values
      */
     public Object[] getEntries() {
         Object[] entries = new Object[fNum << 1];
@@ -182,6 +185,7 @@ public class SymbolHash {
 
     /**
      * Make a clone of this object.
+     * @return a clone of this SymbolHash
      */
     public SymbolHash makeClone() {
         SymbolHash newTable = new SymbolHash(fTableSize);
@@ -207,6 +211,12 @@ public class SymbolHash {
         fHashMultipliers = null;
     } // clear():  void
 
+    /**
+     * Search for an entry with the given key in the specified bucket.
+     * @param key the key to search for
+     * @param bucket the bucket index to search in
+     * @return the entry if found, null otherwise
+     */
     protected Entry search(Object key, int bucket) {
         // search for identical key
         for (Entry entry = fBuckets[bucket]; entry != null; entry = entry.next) {
@@ -220,6 +230,7 @@ public class SymbolHash {
      * Returns a hashcode value for the specified key.
      *
      * @param key The key to hash.
+     * @return the hash code for the key
      */
     protected int hash(Object key) {
         if (fHashMultipliers == null || !(key instanceof String)) {
@@ -294,23 +305,38 @@ public class SymbolHash {
      */
     protected static final class Entry {
         // key/value
+        /** The key for this entry. */
         public Object key;
+        /** The value for this entry. */
         public Object value;
         /** The next entry. */
         public Entry next;
 
+        /**
+         * Default constructor.
+         */
         public Entry() {
             key = null;
             value = null;
             next = null;
         }
 
+        /**
+         * Constructor with parameters.
+         * @param key the key for this entry
+         * @param value the value for this entry
+         * @param next the next entry in the chain
+         */
         public Entry(Object key, Object value, Entry next) {
             this.key = key;
             this.value = value;
             this.next = next;
         }
 
+        /**
+         * Make a clone of this entry.
+         * @return a clone of this entry
+         */
         public Entry makeClone() {
             Entry entry = new Entry();
             entry.key = key;

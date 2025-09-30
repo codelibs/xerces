@@ -55,7 +55,7 @@ import org.w3c.dom.ls.LSResourceResolver;
 /**
  * Xerces implementation of DOMConfiguration that maintains a table of recognized parameters.
  *
- * @xerces.internal
+
  *
  * @author Elena Litani, IBM
  * @author Neeraj Bajaj, Sun Microsystems.
@@ -67,6 +67,7 @@ public class DOMConfigurationImpl extends ParserConfigurationSettings implements
     // Constants
     //
 
+    /** The XML 1.1 datatype validator factory implementation class. */
     protected static final String XML11_DATATYPE_VALIDATOR_FACTORY = "org.codelibs.xerces.impl.dv.dtd.XML11DTDDVFactoryImpl";
 
     // feature identifiers
@@ -77,12 +78,16 @@ public class DOMConfigurationImpl extends ParserConfigurationSettings implements
     /** Feature identifier: namespaces. */
     protected static final String XERCES_NAMESPACES = Constants.SAX_FEATURE_PREFIX + Constants.NAMESPACES_FEATURE;
 
+    /** Feature identifier: schema validation. */
     protected static final String SCHEMA = Constants.XERCES_FEATURE_PREFIX + Constants.SCHEMA_VALIDATION_FEATURE;
 
+    /** Feature identifier: schema full checking. */
     protected static final String SCHEMA_FULL_CHECKING = Constants.XERCES_FEATURE_PREFIX + Constants.SCHEMA_FULL_CHECKING;
 
+    /** Feature identifier: dynamic validation. */
     protected static final String DYNAMIC_VALIDATION = Constants.XERCES_FEATURE_PREFIX + Constants.DYNAMIC_VALIDATION_FEATURE;
 
+    /** Feature identifier: normalize data. */
     protected static final String NORMALIZE_DATA = Constants.XERCES_FEATURE_PREFIX + Constants.SCHEMA_NORMALIZED_VALUE;
 
     /** Feature identifier: send element default value via characters() */
@@ -117,6 +122,7 @@ public class DOMConfigurationImpl extends ParserConfigurationSettings implements
     /** Feature identifier: namespace growth */
     protected static final String NAMESPACE_GROWTH = Constants.XERCES_FEATURE_PREFIX + Constants.NAMESPACE_GROWTH_FEATURE;
 
+    /** Feature identifier: tolerate duplicates. */
     protected static final String TOLERATE_DUPLICATES = Constants.XERCES_FEATURE_PREFIX + Constants.TOLERATE_DUPLICATES_FEATURE;
     // property identifiers
 
@@ -157,6 +163,7 @@ public class DOMConfigurationImpl extends ParserConfigurationSettings implements
     protected static final String DTD_VALIDATOR_FACTORY_PROPERTY =
             Constants.XERCES_PROPERTY_PREFIX + Constants.DATATYPE_VALIDATOR_FACTORY_PROPERTY;
 
+    /** Property identifier: validation manager. */
     protected static final String VALIDATION_MANAGER = Constants.XERCES_PROPERTY_PREFIX + Constants.VALIDATION_MANAGER_PROPERTY;
 
     /** Property identifier: schema location. */
@@ -176,19 +183,32 @@ public class DOMConfigurationImpl extends ParserConfigurationSettings implements
     /** Normalization features*/
     protected short features = 0;
 
+    /** Feature flag: namespaces. */
     protected final static short NAMESPACES = 0x1 << 0;
+    /** Feature flag: datatype normalization. */
     protected final static short DTNORMALIZATION = 0x1 << 1;
+    /** Feature flag: entities. */
     protected final static short ENTITIES = 0x1 << 2;
+    /** Feature flag: CDATA sections. */
     protected final static short CDATA = 0x1 << 3;
+    /** Feature flag: split CDATA. */
     protected final static short SPLITCDATA = 0x1 << 4;
+    /** Feature flag: comments. */
     protected final static short COMMENTS = 0x1 << 5;
+    /** Feature flag: validation. */
     protected final static short VALIDATE = 0x1 << 6;
+    /** Feature flag: PSVI. */
     protected final static short PSVI = 0x1 << 7;
+    /** Feature flag: well-formed. */
     protected final static short WELLFORMED = 0x1 << 8;
+    /** Feature flag: namespace declarations. */
     protected final static short NSDECL = 0x1 << 9;
 
+    /** Infoset parameters that should be true. */
     protected final static short INFOSET_TRUE_PARAMS = NAMESPACES | COMMENTS | WELLFORMED | NSDECL;
+    /** Infoset parameters that should be false. */
     protected final static short INFOSET_FALSE_PARAMS = ENTITIES | DTNORMALIZATION | CDATA;
+    /** Mask for all infoset parameters. */
     protected final static short INFOSET_MASK = INFOSET_TRUE_PARAMS | INFOSET_FALSE_PARAMS;
 
     // components
@@ -199,6 +219,7 @@ public class DOMConfigurationImpl extends ParserConfigurationSettings implements
     /** Components. */
     protected ArrayList fComponents;
 
+    /** Validation manager. */
     protected ValidationManager fValidationManager;
 
     /** Locale. */
@@ -207,6 +228,7 @@ public class DOMConfigurationImpl extends ParserConfigurationSettings implements
     /** Error reporter */
     protected XMLErrorReporter fErrorReporter;
 
+    /** DOM error handler wrapper. */
     protected final DOMErrorHandlerWrapper fErrorHandlerWrapper = new DOMErrorHandlerWrapper();
 
     /** Current Datatype validator factory. */
@@ -530,10 +552,10 @@ public class DOMConfigurationImpl extends ParserConfigurationSettings implements
     } // setFeature(String,boolean)
 
     /**
-     * setProperty
+     * Sets the value of a property.
      *
-     * @param propertyId
-     * @param value
+     * @param propertyId The property identifier
+     * @param value The property value
      */
     public void setProperty(String propertyId, Object value) throws XMLConfigurationException {
 
@@ -979,6 +1001,11 @@ public class DOMConfigurationImpl extends ParserConfigurationSettings implements
 
     } // checkProperty(String)
 
+    /**
+     * Adds a component to the parser configuration.
+     *
+     * @param component The component to add
+     */
     protected void addComponent(XMLComponent component) {
 
         // don't add a component more than once
@@ -997,10 +1024,20 @@ public class DOMConfigurationImpl extends ParserConfigurationSettings implements
 
     } // addComponent(XMLComponent)
 
+    /**
+     * Creates a new validation manager.
+     *
+     * @return A new ValidationManager instance
+     */
     protected ValidationManager createValidationManager() {
         return new ValidationManager();
     }
 
+    /**
+     * Sets the DTD validator factory based on the XML version.
+     *
+     * @param version The XML version ("1.1" or "1.0")
+     */
     protected final void setDTDValidatorFactory(String version) {
         if ("1.1".equals(version)) {
             if (fCurrentDVFactory != fXML11DatatypeFactory) {

@@ -28,6 +28,7 @@ public interface XSImplementation {
     /**
      * A list containing the versions of XML Schema documents recognized by
      * this <code>XSImplemenation</code>.
+     * @return a list containing the versions of XML Schema documents recognized by this implementation
      */
     public StringList getRecognizedVersions();
 

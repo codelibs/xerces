@@ -36,7 +36,7 @@ import org.codelibs.xerces.util.XML11Char;
  * must uniquely identify the elements which bear
  * them.</P>
  *
- * @xerces.internal
+
  *
  * @author Jeffrey Rodriguez, IBM
  * @author Sandy Gao, IBM
@@ -46,7 +46,9 @@ import org.codelibs.xerces.util.XML11Char;
  */
 public class XML11IDDatatypeValidator extends IDDatatypeValidator {
 
-    // construct an ID datatype validator
+    /**
+     * Constructs an ID datatype validator.
+     */
     public XML11IDDatatypeValidator() {
         super();
     }
@@ -57,7 +59,7 @@ public class XML11IDDatatypeValidator extends IDDatatypeValidator {
      *
      * @param content       the string value that needs to be validated
      * @param context       the validation context
-     * @throws InvalidDatatypeException if the content is
+     * @throws InvalidDatatypeValueException if the content is
      *         invalid according to the rules for the validators
      * @see InvalidDatatypeValueException
      */

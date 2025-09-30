@@ -42,7 +42,11 @@ public final class ShadowedSymbolTable extends SymbolTable {
     // Constructors
     //
 
-    /** Constructs a shadow of the specified symbol table. */
+    /**
+     * Constructs a shadow of the specified symbol table.
+     *
+     * @param symbolTable The symbol table to shadow.
+     */
     public ShadowedSymbolTable(SymbolTable symbolTable) {
         fSymbolTable = symbolTable;
     } // <init>(SymbolTable)

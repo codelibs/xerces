@@ -118,6 +118,7 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
     /** Property id: document class name. */
     protected static final String DOCUMENT_CLASS_NAME = Constants.XERCES_PROPERTY_PREFIX + Constants.DOCUMENT_CLASS_NAME_PROPERTY;
 
+    /** Property id: current element node. */
     protected static final String CURRENT_ELEMENT_NODE = Constants.XERCES_PROPERTY_PREFIX + Constants.CURRENT_ELEMENT_NODE_PROPERTY;
 
     // protected static final String GRAMMAR_POOL =
@@ -131,8 +132,10 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
     /** Default document class name. */
     protected static final String DEFAULT_DOCUMENT_CLASS_NAME = "org.codelibs.xerces.dom.DocumentImpl";
 
+    /** Core document class name for basic DOM implementation. */
     protected static final String CORE_DOCUMENT_CLASS_NAME = "org.codelibs.xerces.dom.CoreDocumentImpl";
 
+    /** PSVI document class name for schema-enhanced DOM implementation. */
     protected static final String PSVI_DOCUMENT_CLASS_NAME = "org.codelibs.xerces.dom.PSVIDocumentImpl";
 
     /**
@@ -198,8 +201,14 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
 
     /** Current node. */
     protected Node fCurrentNode;
+
+    /** Current CDATA section node. */
     protected CDATASection fCurrentCDATASection;
+
+    /** Current entity declaration. */
     protected EntityImpl fCurrentEntityDecl;
+
+    /** Deferred entity declaration index. */
     protected int fDeferredEntityDecl;
 
     /** Character buffer */
@@ -212,12 +221,25 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
 
     // deferred expansion data
 
+    /** Flag indicating whether to defer node expansion. */
     protected boolean fDeferNodeExpansion;
+
+    /** Flag indicating whether namespace processing is enabled. */
     protected boolean fNamespaceAware;
+
+    /** Deferred document implementation. */
     protected DeferredDocumentImpl fDeferredDocumentImpl;
+
+    /** Document index in deferred document. */
     protected int fDocumentIndex;
+
+    /** Document type index in deferred document. */
     protected int fDocumentTypeIndex;
+
+    /** Current node index in deferred document. */
     protected int fCurrentNodeIndex;
+
+    /** Current CDATA section index in deferred document. */
     protected int fCurrentCDATASectionIndex;
 
     // state
@@ -260,13 +282,18 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
 
     // handlers
 
+    /** DOM filter for selective processing of nodes. */
     protected LSParserFilter fDOMFilter = null;
 
     //
     // Constructors
     //
 
-    /** Default constructor. */
+    /**
+     * Creates a DOM parser with the specified configuration.
+     *
+     * @param config the parser configuration to use
+     */
     protected AbstractDOMParser(XMLParserConfiguration config) {
 
         super(config);
@@ -290,7 +317,9 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
     } // <init>(XMLParserConfiguration)
 
     /**
-     * This method retreives the name of current document class.
+     * Retrieves the name of current document class.
+     *
+     * @return the fully qualified name of the document class
      */
     protected String getDocumentClassName() {
         return fDocumentClassName;
@@ -344,7 +373,11 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
     // Public methods
     //
 
-    /** Returns the DOM document object. */
+    /**
+     * Returns the DOM document object.
+     *
+     * @return the DOM document that was built by parsing
+     */
     public Document getDocument() {
         return fDocument;
     } // getDocument():Document
@@ -370,7 +403,7 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
     /**
      * Resets the parser state.
      *
-     * @throws SAXException Thrown on initialization error.
+     * @throws XNIException Thrown on initialization error.
      */
     public void reset() throws XNIException {
         super.reset();
@@ -1560,7 +1593,7 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
      * or for the ProcessingInstruction (by setting a baseURI field)
      * Non deferred DOM.
      *
-     * @param node
+     * @param node the node to handle base URI for
      */
     protected final void handleBaseURI(Node node) {
         if (fDocumentImpl != null) {
@@ -1604,12 +1637,11 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
     }
 
     /**
-     *
      * Record baseURI information for the Element (by adding xml:base attribute)
      * or for the ProcessingInstruction (by setting a baseURI field)
      * Deferred DOM.
      *
-     * @param node
+     * @param node the node index in the deferred document to handle base URI for
      */
     protected final void handleBaseURI(int node) {
         short nodeType = fDeferredDocumentImpl.getNodeType(node, false);
@@ -2361,8 +2393,13 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
     public void endAttlist(Augmentations augs) throws XNIException {
     } // endAttlist()
 
-    // method to create an element node.
-    // subclasses can override this method to create element nodes in other ways.
+    /**
+     * Creates an element node.
+     * Subclasses can override this method to create element nodes in other ways.
+     *
+     * @param element the qualified name of the element
+     * @return the created element node
+     */
     protected Element createElementNode(QName element) {
         Element el = null;
 
@@ -2381,8 +2418,13 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
         return el;
     }
 
-    // method to create an attribute node.
-    // subclasses can override this method to create attribute nodes in other ways.
+    /**
+     * Creates an attribute node.
+     * Subclasses can override this method to create attribute nodes in other ways.
+     *
+     * @param attrQName the qualified name of the attribute
+     * @return the created attribute node
+     */
     protected Attr createAttrNode(QName attrQName) {
         Attr attr = null;
 
@@ -2401,7 +2443,8 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
         return attr;
     }
 
-    /*
+    /**
+     * Handles character data state changes.
      * When the first characters() call is received, the data is stored in
      * a new Text node. If right after the first characters() we receive another chunk of data,
      * the data from the Text node, following the new characters are appended
@@ -2411,8 +2454,9 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
      * data must be appended to the current node.
      *
      * Note: if DOMFilter is set, you must make sure that if Node is skipped,
-     * or removed fFistChunk must be set to true, otherwise some data can be lost.
+     * or removed fFirstChunk must be set to true, otherwise some data can be lost.
      *
+     * @param sawChars true if character data was encountered
      */
     protected void setCharacterData(boolean sawChars) {
 
@@ -2462,6 +2506,9 @@ public class AbstractDOMParser extends AbstractXMLDocumentParser {
     }
 
     /**
+     * Aborts the current parsing operation.
+     * This method implements the LSParser abort functionality.
+     *
      * @see org.w3c.dom.ls.LSParser#abort()
      */
     public void abort() {

@@ -27,7 +27,7 @@ import org.w3c.dom.DOMStringList;
  *
  * This class implements the DOM Level 3 Core interface DOMStringList.
  *
- * @xerces.internal
+
  *
  * @author Neil Delima, IBM
  */
@@ -45,6 +45,7 @@ public class DOMStringListImpl implements DOMStringList {
 
     /**
      * Construct a DOMStringListImpl from an ArrayList
+     * @param params the ArrayList of strings to use
      */
     public DOMStringListImpl(ArrayList params) {
         fStrings = params;
@@ -52,6 +53,7 @@ public class DOMStringListImpl implements DOMStringList {
 
     /**
      * Construct a DOMStringListImpl from a Vector
+     * @param params the Vector of strings to use
      */
     public DOMStringListImpl(Vector params) {
         fStrings = new ArrayList(params);

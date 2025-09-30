@@ -26,13 +26,19 @@ import org.codelibs.xerces.impl.dv.ValidationContext;
 /**
  * Validator for &lt;gDay&gt; datatype (W3C Schema datatypes)
  *
- * @xerces.internal
+
  *
  * @author Elena Litani
  * @author Gopal Sharma, SUN Microsystem Inc.
  * @version $Id: DayDV.java 937741 2010-04-25 04:25:46Z mrglavas $
  */
 public class DayDV extends AbstractDateTimeDV {
+
+    /**
+     * Default constructor for DayDV.
+     */
+    public DayDV() {
+    }
 
     //size without time zone: ---09
     private final static int DAY_SIZE = 5;

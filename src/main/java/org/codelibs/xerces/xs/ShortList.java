@@ -25,8 +25,10 @@ import java.util.List;
  */
 public interface ShortList extends List {
     /**
-     *  The number of <code>unsigned short</code>s in the list. The range of
+     * Returns the number of <code>unsigned short</code>s in the list. The range of
      * valid child object indices is 0 to <code>length-1</code> inclusive.
+     *
+     * @return The number of items in the list.
      */
     public int getLength();
 

@@ -20,9 +20,9 @@ package org.codelibs.xerces.impl.xpath.regex;
 import java.text.CharacterIterator;
 
 /**
- * Boyer-Moore searcher.
- *
- * @xerces.internal
+ * Boyer-Moore searcher for efficient string pattern matching.
+ * This class implements the Boyer-Moore algorithm for finding patterns
+ * within text using efficient shift tables.
  *
  * @version $Id: BMPattern.java 572108 2007-09-02 18:48:31Z mrglavas $
  */
@@ -31,10 +31,21 @@ public class BMPattern {
     final int[] shiftTable;
     final boolean ignoreCase;
 
+    /**
+     * Constructs a Boyer-Moore pattern with default table size.
+     * @param pat The pattern string to search for
+     * @param ignoreCase Whether to ignore case during matching
+     */
     public BMPattern(String pat, boolean ignoreCase) {
         this(pat, 256, ignoreCase);
     }
 
+    /**
+     * Constructs a Boyer-Moore pattern with specified table size.
+     * @param pat The pattern string to search for
+     * @param tableSize The size of the shift table for character mapping
+     * @param ignoreCase Whether to ignore case during matching
+     */
     public BMPattern(String pat, int tableSize, boolean ignoreCase) {
         this.pattern = pat.toCharArray();
         this.shiftTable = new int[tableSize];
@@ -64,8 +75,12 @@ public class BMPattern {
     }
 
     /**
+     * Search for this pattern in the given CharacterIterator.
      *
-     * @return -1 if <var>iterator</var> does not contain this pattern.
+     * @param iterator the CharacterIterator to search in
+     * @param start the starting position for the search
+     * @param limit the ending position for the search
+     * @return the position where the pattern is found, or -1 if not found
      */
     public int matches(CharacterIterator iterator, int start, int limit) {
         if (this.ignoreCase)
@@ -92,8 +107,12 @@ public class BMPattern {
     }
 
     /**
+     * Search for this pattern in the given String.
      *
-     * @return -1 if <var>str</var> does not contain this pattern.
+     * @param str the String to search in
+     * @param start the starting position for the search
+     * @param limit the ending position for the search
+     * @return the position where the pattern is found, or -1 if not found
      */
     public int matches(String str, int start, int limit) {
         if (this.ignoreCase)
@@ -121,8 +140,12 @@ public class BMPattern {
     }
 
     /**
+     * Search for this pattern in the given character array.
      *
-     * @return -1 if <var>chars</char> does not contain this pattern.
+     * @param chars the character array to search in
+     * @param start the starting position for the search
+     * @param limit the ending position for the search
+     * @return the position where the pattern is found, or -1 if not found
      */
     public int matches(char[] chars, int start, int limit) {
         if (this.ignoreCase)
@@ -149,6 +172,13 @@ public class BMPattern {
         return -1;
     }
 
+    /**
+     * Case-insensitive pattern matching for CharacterIterator.
+     * @param iterator the CharacterIterator to search in
+     * @param start the starting position for the search
+     * @param limit the ending position for the search
+     * @return the position where the pattern is found, or -1 if not found
+     */
     int matchesIgnoreCase(CharacterIterator iterator, int start, int limit) {
         int plength = this.pattern.length;
         if (plength == 0)
@@ -177,6 +207,13 @@ public class BMPattern {
         return -1;
     }
 
+    /**
+     * Case-insensitive pattern matching for String.
+     * @param text the String to search in
+     * @param start the starting position for the search
+     * @param limit the ending position for the search
+     * @return the position where the pattern is found, or -1 if not found
+     */
     int matchesIgnoreCase(String text, int start, int limit) {
         int plength = this.pattern.length;
         if (plength == 0)
@@ -205,6 +242,13 @@ public class BMPattern {
         return -1;
     }
 
+    /**
+     * Case-insensitive pattern matching for character array.
+     * @param chars the character array to search in
+     * @param start the starting position for the search
+     * @param limit the ending position for the search
+     * @return the position where the pattern is found, or -1 if not found
+     */
     int matchesIgnoreCase(char[] chars, int start, int limit) {
         int plength = this.pattern.length;
         if (plength == 0)

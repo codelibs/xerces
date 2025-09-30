@@ -30,25 +30,53 @@ public interface XMLLocator {
     // XMLLocator methods
     //
 
-    /** Returns the public identifier. */
+    /**
+     * Returns the public identifier.
+     *
+     * @return The public identifier
+     */
     public String getPublicId();
 
-    /** Returns the literal system identifier. */
+    /**
+     * Returns the literal system identifier.
+     *
+     * @return The literal system identifier
+     */
     public String getLiteralSystemId();
 
-    /** Returns the base system identifier. */
+    /**
+     * Returns the base system identifier.
+     *
+     * @return The base system identifier
+     */
     public String getBaseSystemId();
 
-    /** Returns the expanded system identifier. */
+    /**
+     * Returns the expanded system identifier.
+     *
+     * @return The expanded system identifier
+     */
     public String getExpandedSystemId();
 
-    /** Returns the line number, or <code>-1</code> if no line number is available. */
+    /**
+     * Returns the line number, or <code>-1</code> if no line number is available.
+     *
+     * @return The line number
+     */
     public int getLineNumber();
 
-    /** Returns the column number, or <code>-1</code> if no column number is available. */
+    /**
+     * Returns the column number, or <code>-1</code> if no column number is available.
+     *
+     * @return The column number
+     */
     public int getColumnNumber();
 
-    /** Returns the character offset, or <code>-1</code> if no character offset is available. */
+    /**
+     * Returns the character offset, or <code>-1</code> if no character offset is available.
+     *
+     * @return The character offset
+     */
     public int getCharacterOffset();
 
     /**
@@ -58,6 +86,8 @@ public interface XMLLocator {
      * has been determined that there is no such declaration) since, no encoding
      * having been specified on the XMLInputSource, the parser
      * will make an initial "guess" which could be in error.
+     *
+     * @return The encoding
      */
     public String getEncoding();
 
@@ -70,6 +100,8 @@ public interface XMLLocator {
      * document. Also note that, for a given entity, this value can only be considered
      * final once the XML or text declaration has been read or once it has been
      * determined that there is no such declaration.
+     *
+     * @return The XML version
      */
     public String getXMLVersion();
 

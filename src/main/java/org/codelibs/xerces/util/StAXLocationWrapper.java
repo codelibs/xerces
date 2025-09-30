@@ -33,13 +33,26 @@ public final class StAXLocationWrapper implements XMLLocator {
 
     private Location fLocation = null;
 
+    /**
+     * Constructs a new StAX location wrapper with no initial location.
+     */
     public StAXLocationWrapper() {
     }
 
+    /**
+     * Sets the StAX location to be wrapped.
+     *
+     * @param location the StAX location
+     */
     public void setLocation(Location location) {
         fLocation = location;
     }
 
+    /**
+     * Returns the wrapped StAX location.
+     *
+     * @return the StAX location, or null if not set
+     */
     public Location getLocation() {
         return fLocation;
     }

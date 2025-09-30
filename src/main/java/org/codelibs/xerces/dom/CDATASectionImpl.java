@@ -42,7 +42,7 @@ import org.w3c.dom.Node;
  * <P>
  * CDATA does not participate in Element.normalize() processing.
  *
- * @xerces.internal
+
  *
  * @version $Id: CDATASectionImpl.java 447266 2006-09-18 05:57:49Z mrglavas $
  * @since  PR-DOM-Level-1-19980818.
@@ -60,7 +60,12 @@ public class CDATASectionImpl extends TextImpl implements CDATASection {
     // Constructors
     //
 
-    /** Factory constructor for creating a CDATA section. */
+    /**
+     * Factory constructor for creating a CDATA section.
+     *
+     * @param ownerDoc The document that owns this node
+     * @param data The CDATA section data
+     */
     public CDATASectionImpl(CoreDocumentImpl ownerDoc, String data) {
         super(ownerDoc, data);
     }

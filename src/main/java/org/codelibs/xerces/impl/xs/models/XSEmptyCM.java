@@ -29,7 +29,7 @@ import org.codelibs.xerces.xni.QName;
  *
  * This model validated on the way in.
  *
- * @xerces.internal
+
  *
  * @author Elena Litani, IBM
  * @author Lisa Martin, IBM
@@ -49,6 +49,14 @@ public class XSEmptyCM implements XSCMValidator {
     //
     // Data
     //
+
+    /**
+     * Constructs a new XSEmptyCM instance.
+     * This content model validator handles empty content models where no child elements are allowed.
+     */
+    public XSEmptyCM() {
+        // Default constructor
+    }
 
     //
     // XSCMValidator methods

@@ -23,6 +23,9 @@ import org.codelibs.xerces.util.SymbolTable;
 import org.codelibs.xerces.xni.parser.XMLParserConfiguration;
 
 /**
+ * Abstract base class for XML grammar parsers. This class provides common functionality
+ * for parsing XML grammars such as DTDs and XML Schemas.
+ *
  * @version $Id: XMLGrammarParser.java 447239 2006-09-18 05:08:26Z mrglavas $
  */
 public abstract class XMLGrammarParser extends XMLParser {
@@ -39,9 +42,9 @@ public abstract class XMLGrammarParser extends XMLParser {
     //
 
     /**
-     * Construct an XMLGrammarParser with the specified symbol table
+     * Constructs an XMLGrammarParser with the specified symbol table.
      *
-     * @param symbolTable
+     * @param symbolTable the symbol table to use for string interning
      */
     protected XMLGrammarParser(SymbolTable symbolTable) {
         super((XMLParserConfiguration) ObjectFactory.createObject("org.codelibs.xerces.xni.parser.XMLParserConfiguration",

@@ -33,63 +33,124 @@ package org.codelibs.xerces.wml;
 public interface WMLCardElement extends WMLElement {
 
     /**
-     * 'onenterbackward' specifies the event to occur when a user
-     * agent into a card using a 'go' task
+     * Sets the 'onenterbackward' attribute which specifies the event to occur when a user
+     * agent enters a card using a 'go' task.
      * (Section 11.5.1, WAP WML Version 16-Jun-1999)
+     *
+     * @param href the onenterbackward event value to set
      */
     public void setOnEnterBackward(String href);
 
+    /**
+     * Gets the 'onenterbackward' attribute which specifies the event to occur when a user
+     * agent enters a card using a 'go' task.
+     * (Section 11.5.1, WAP WML Version 16-Jun-1999)
+     *
+     * @return the onenterbackward event value
+     */
     public String getOnEnterBackward();
 
     /**
-     * 'onenterforward' specifies the event to occur when a user
-     * agent into a card using a 'prev' task
+     * Sets the 'onenterforward' attribute which specifies the event to occur when a user
+     * agent enters a card using a 'prev' task.
      * (Section 11.5.1, WAP WML Version 16-Jun-1999)
+     *
+     * @param href the onenterforward event value to set
      */
     public void setOnEnterForward(String href);
 
+    /**
+     * Gets the 'onenterforward' attribute which specifies the event to occur when a user
+     * agent enters a card using a 'prev' task.
+     * (Section 11.5.1, WAP WML Version 16-Jun-1999)
+     *
+     * @return the onenterforward event value
+     */
     public String getOnEnterForward();
 
     /**
-     * 'onenterbackward' specifies the event to occur when a timer expires
+     * Sets the 'ontimer' attribute which specifies the event to occur when a timer expires.
      * (Section 11.5.1, WAP WML Version 16-Jun-1999)
+     *
+     * @param href the ontimer event value to set
      */
     public void setOnTimer(String href);
 
+    /**
+     * Gets the 'ontimer' attribute which specifies the event to occur when a timer expires.
+     * (Section 11.5.1, WAP WML Version 16-Jun-1999)
+     *
+     * @return the ontimer event value
+     */
     public String getOnTimer();
 
     /**
-     * 'title' specifies a advisory info about the card
+     * Sets the 'title' attribute which specifies advisory info about the card.
      * (Section 11.5.2, WAP WML Version 16-Jun-1999)
+     *
+     * @param newValue the title value to set
      */
     public void setTitle(String newValue);
 
+    /**
+     * Gets the 'title' attribute which specifies advisory info about the card.
+     * (Section 11.5.2, WAP WML Version 16-Jun-1999)
+     *
+     * @return the title value
+     */
     public String getTitle();
 
     /**
-     * 'newcontext' specifies whether a browser context should be
+     * Sets the 'newcontext' attribute which specifies whether a browser context should be
      * re-initialized upon entering the card. Default to be false.
      * (Section 11.5.2, WAP WML Version 16-Jun-1999)
+     *
+     * @param newValue the newcontext value to set
      */
     public void setNewContext(boolean newValue);
 
+    /**
+     * Gets the 'newcontext' attribute which specifies whether a browser context should be
+     * re-initialized upon entering the card. Default to be false.
+     * (Section 11.5.2, WAP WML Version 16-Jun-1999)
+     *
+     * @return the newcontext value
+     */
     public boolean getNewContext();
 
     /**
-     *  'ordered' attribute specifies a hit to user agent about the
-     *  organization of the card's content
+     * Sets the 'ordered' attribute which specifies a hint to user agent about the
+     * organization of the card's content.
      * (Section 11.5.2, WAP WML Version 16-Jun-1999)
+     *
+     * @param newValue the ordered value to set
      */
     public void setOrdered(boolean newValue);
 
+    /**
+     * Gets the 'ordered' attribute which specifies a hint to user agent about the
+     * organization of the card's content.
+     * (Section 11.5.2, WAP WML Version 16-Jun-1999)
+     *
+     * @return the ordered value
+     */
     public boolean getOrdered();
 
     /**
-     * 'xml:lang' specifics the natural or formal language in which
+     * Sets the 'xml:lang' attribute which specifies the natural or formal language in which
      * the document is written.
      * (Section 8.8, WAP WML Version 16-Jun-1999)
+     *
+     * @param newValue the xml:lang value to set
      */
     public void setXmlLang(String newValue);
 
+    /**
+     * Gets the 'xml:lang' attribute which specifies the natural or formal language in which
+     * the document is written.
+     * (Section 8.8, WAP WML Version 16-Jun-1999)
+     *
+     * @return the xml:lang value
+     */
     public String getXmlLang();
 }

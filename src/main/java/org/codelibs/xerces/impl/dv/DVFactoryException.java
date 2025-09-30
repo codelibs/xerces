@@ -21,7 +21,7 @@ package org.codelibs.xerces.impl.dv;
  * A runtime exception that's thrown if an error happens when the application
  * tries to get a DV factory instance.
  *
- * @xerces.internal
+
  *
  * @version $Id: DVFactoryException.java 446751 2006-09-15 21:54:06Z mrglavas $
  */
@@ -30,10 +30,18 @@ public class DVFactoryException extends RuntimeException {
     /** Serialization version. */
     static final long serialVersionUID = -3738854697928682412L;
 
+    /**
+     * Constructs a new DVFactoryException with no detail message.
+     */
     public DVFactoryException() {
         super();
     }
 
+    /**
+     * Constructs a new DVFactoryException with the specified detail message.
+     *
+     * @param msg the detail message
+     */
     public DVFactoryException(String msg) {
         super(msg);
     }

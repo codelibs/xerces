@@ -48,6 +48,8 @@ public class XHTMLSerializer extends HTMLSerializer {
      * Constructs a new serializer. The serializer cannot be used without
      * calling {@link #setOutputCharStream} or {@link #setOutputByteStream}
      * first.
+     *
+     * @param format the output format to use, null for the default
      */
     public XHTMLSerializer(OutputFormat format) {
         super(true, format != null ? format : new OutputFormat(Method.XHTML, null, false));
@@ -55,7 +57,7 @@ public class XHTMLSerializer extends HTMLSerializer {
 
     /**
      * Constructs a new serializer that writes to the specified writer
-     * using the specified output format. If <tt>format</tt> is null,
+     * using the specified output format. If <code>format</code> is null,
      * will use a default output format.
      *
      * @param writer The writer to use
@@ -68,7 +70,7 @@ public class XHTMLSerializer extends HTMLSerializer {
 
     /**
      * Constructs a new serializer that writes to the specified output
-     * stream using the specified output format. If <tt>format</tt>
+     * stream using the specified output format. If <code>format</code>
      * is null, will use a default output format.
      *
      * @param output The output stream to use

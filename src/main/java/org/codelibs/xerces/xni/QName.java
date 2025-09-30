@@ -70,12 +70,23 @@ public class QName implements Cloneable {
         clear();
     } // <init>()
 
-    /** Constructs a QName with the specified values. */
+    /**
+     * Constructs a QName with the specified values.
+     *
+     * @param prefix the namespace prefix
+     * @param localpart the local part of the qualified name
+     * @param rawname the raw name (prefix:localpart)
+     * @param uri the namespace URI
+     */
     public QName(String prefix, String localpart, String rawname, String uri) {
         setValues(prefix, localpart, rawname, uri);
     } // <init>(String,String,String,String)
 
-    /** Constructs a copy of the specified QName. */
+    /**
+     * Constructs a copy of the specified QName.
+     *
+     * @param qname the QName to copy
+     */
     public QName(QName qname) {
         setValues(qname);
     } // <init>(QName)

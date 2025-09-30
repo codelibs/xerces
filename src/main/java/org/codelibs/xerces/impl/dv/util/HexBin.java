@@ -20,14 +20,19 @@ package org.codelibs.xerces.impl.dv.util;
 /**
  * format validation
  *
- * This class encodes/decodes hexadecimal data
- *
- * @xerces.internal
+ * This class encodes/decodes hexadecimal data.
  *
  * @author Jeffrey Rodriguez
  * @version $Id: HexBin.java 446747 2006-09-15 21:46:20Z mrglavas $
  */
 public final class HexBin {
+
+    /**
+     * Default constructor for internal instantiation.
+     */
+    public HexBin() {
+    }
+
     static private final int BASELENGTH = 128;
     static private final int LOOKUPLENGTH = 16;
     static final private byte[] hexNumberTable = new byte[BASELENGTH];

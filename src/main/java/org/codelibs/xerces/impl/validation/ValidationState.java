@@ -30,12 +30,18 @@ import org.codelibs.xerces.xni.NamespaceContext;
  * Implementation of the ValidationContext interface. Used to establish an
  * environment for simple type validation.
  *
- * @xerces.internal
+
  *
  * @author Elena Litani, IBM
  * @version $Id: ValidationState.java 1380445 2012-09-04 04:43:34Z mrglavas $
  */
 public class ValidationState implements ValidationContext {
+
+    /**
+     * Default constructor.
+     */
+    public ValidationState() {
+    }
 
     //
     // private data
@@ -58,30 +64,58 @@ public class ValidationState implements ValidationContext {
     //
     // public methods
     //
+    /**
+     * Sets whether extra checking is required.
+     * @param newValue true to enable extra checking, false otherwise
+     */
     public void setExtraChecking(boolean newValue) {
         fExtraChecking = newValue;
     }
 
+    /**
+     * Sets whether facet checking is required.
+     * @param newValue true to enable facet checking, false otherwise
+     */
     public void setFacetChecking(boolean newValue) {
         fFacetChecking = newValue;
     }
 
+    /**
+     * Sets whether normalization is required.
+     * @param newValue true to enable normalization, false otherwise
+     */
     public void setNormalizationRequired(boolean newValue) {
         fNormalize = newValue;
     }
 
+    /**
+     * Sets whether namespaces are being used.
+     * @param newValue true to use namespaces, false otherwise
+     */
     public void setUsingNamespaces(boolean newValue) {
         fNamespaces = newValue;
     }
 
+    /**
+     * Sets the entity state.
+     * @param state the entity state to set
+     */
     public void setEntityState(EntityState state) {
         fEntityState = state;
     }
 
+    /**
+     * Sets the namespace context.
+     * @param namespace the namespace context to set
+     */
     public void setNamespaceSupport(NamespaceContext namespace) {
         fNamespaceContext = namespace;
     }
 
+    /**
+     * Sets the symbol table.
+     * @param sTable the symbol table to set
+     */
     public void setSymbolTable(SymbolTable sTable) {
         fSymbolTable = sTable;
     }
@@ -90,6 +124,9 @@ public class ValidationState implements ValidationContext {
      * return null if all IDREF values have a corresponding ID value;
      * otherwise return an iterator for all the IDREF values without
      * a matching ID value.
+     *
+     * @return null if all IDREF values have corresponding ID values, otherwise an iterator
+     *         for all IDREF values without matching ID values
      */
     public Iterator checkIDRefID() {
         HashSet missingIDs = null;
@@ -107,6 +144,9 @@ public class ValidationState implements ValidationContext {
         return (missingIDs != null) ? missingIDs.iterator() : null;
     }
 
+    /**
+     * Resets the validation state to its initial configuration.
+     */
     public void reset() {
         fExtraChecking = true;
         fFacetChecking = true;
@@ -201,6 +241,10 @@ public class ValidationState implements ValidationContext {
 
     // Locale
 
+    /**
+     * Sets the locale for error messages.
+     * @param locale the locale to set
+     */
     public void setLocale(Locale locale) {
         fLocale = locale;
     }

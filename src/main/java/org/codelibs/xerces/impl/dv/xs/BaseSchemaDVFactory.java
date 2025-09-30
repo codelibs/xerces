@@ -28,7 +28,7 @@ import org.codelibs.xerces.xs.XSObjectList;
 /**
  * the base factory to create/return built-in schema DVs and create user-defined DVs
  *
- * @xerces.internal
+
  *
  * @author Neeraj Bajaj, Sun Microsystems, inc.
  * @author Sandy Gao, IBM
@@ -38,11 +38,25 @@ import org.codelibs.xerces.xs.XSObjectList;
  */
 public abstract class BaseSchemaDVFactory extends SchemaDVFactory {
 
+    /**
+     * Default constructor for BaseSchemaDVFactory.
+     */
+    public BaseSchemaDVFactory() {
+    }
+
     static final String URI_SCHEMAFORSCHEMA = "http://www.w3.org/2001/XMLSchema";
 
+    /**
+     * Declaration pool for managing XS declarations.
+     */
     protected XSDeclarationPool fDeclPool = null;
 
-    // create common built-in types
+    /**
+     * Create common built-in types and add them to the provided symbol hash.
+     *
+     * @param builtInTypes the symbol hash to store built-in types
+     * @param baseAtomicType the base atomic type for creating derived types
+     */
     protected static void createBuiltInTypes(SymbolHash builtInTypes, XSSimpleTypeDecl baseAtomicType) {
         // all schema simple type names
         final String ANYSIMPLETYPE = "anySimpleType";
@@ -348,11 +362,20 @@ public abstract class BaseSchemaDVFactory extends SchemaDVFactory {
         return new XSSimpleTypeDecl(name, targetNamespace, finalSet, mtypes, annotations);
     }
 
+    /**
+     * Set the declaration pool for this factory.
+     *
+     * @param declPool the XS declaration pool to use
+     */
     public void setDeclPool(XSDeclarationPool declPool) {
         fDeclPool = declPool;
     }
 
-    /** Implementation internal **/
+    /**
+     * Implementation internal method to create a new XSSimpleTypeDecl.
+     *
+     * @return a new XSSimpleTypeDecl instance
+     */
     public XSSimpleTypeDecl newXSSimpleTypeDecl() {
         return new XSSimpleTypeDecl();
     }

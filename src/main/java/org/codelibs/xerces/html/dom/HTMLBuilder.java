@@ -32,11 +32,16 @@ import org.xml.sax.SAXException;
  * It can build a document from any SAX parser, but is specifically tuned
  * for working with the OpenXML HTML parser.
  *
- *
  * @version $Revision: 1029415 $ $Date: 2010-10-31 22:32:22 +0530 (Sun, 31 Oct 2010) $
  * @author <a href="mailto:arkin@openxml.org">Assaf Arkin</a>
  */
 public class HTMLBuilder implements DocumentHandler {
+
+    /**
+     * Default constructor for internal instantiation.
+     */
+    public HTMLBuilder() {
+    }
 
     /**
      * The document that is being built.
@@ -140,6 +145,12 @@ public class HTMLBuilder implements DocumentHandler {
             _current = (ElementImpl) _current.getParentNode();
     }
 
+    /**
+     * Handles character data events.
+     *
+     * @param text the character data
+     * @throws SAXException if an error occurs
+     */
     public void characters(String text) throws SAXException {
         if (_current == null)
             throw new SAXException("HTM009 State error: character data found outside of root element.");
@@ -170,6 +181,11 @@ public class HTMLBuilder implements DocumentHandler {
             _current.appendChild(_document.createProcessingInstruction(target, instruction));
     }
 
+    /**
+     * Returns the HTML document being built.
+     *
+     * @return the HTML document
+     */
     public HTMLDocument getHTMLDocument() {
         return _document;
     }

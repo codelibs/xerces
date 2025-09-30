@@ -23,7 +23,7 @@ import org.codelibs.xerces.impl.dv.ValidationContext;
 /**
  * Represent the schema type "anySimpleType"
  *
- * @xerces.internal
+
  *
  * @author Neeraj Bajaj, Sun Microsystems, inc.
  * @author Sandy Gao, IBM
@@ -31,6 +31,12 @@ import org.codelibs.xerces.impl.dv.ValidationContext;
  * @version $Id: AnySimpleDV.java 446745 2006-09-15 21:43:58Z mrglavas $
  */
 public class AnySimpleDV extends TypeValidator {
+
+    /**
+     * Default constructor for anySimpleType datatype validator.
+     */
+    public AnySimpleDV() {
+    }
 
     public short getAllowedFacets() {
         // anySimpleType doesn't allow any facet, not even whiteSpace

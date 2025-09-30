@@ -48,6 +48,7 @@ public interface XSComplexTypeDefinition extends XSTypeDefinition {
      * [derivation method]: either <code>DERIVATION_EXTENSION</code>,
      * <code>DERIVATION_RESTRICTION</code>, or <code>DERIVATION_NONE</code>
      * (see <code>XSConstants</code>).
+     * @return the derivation method
      */
     public short getDerivationMethod();
 
@@ -55,17 +56,20 @@ public interface XSComplexTypeDefinition extends XSTypeDefinition {
      * [abstract]: a boolean. Complex types for which <code>abstract</code> is
      * true must not be used as the type definition for the validation of
      * element information items.
+     * @return true if the type is abstract, false otherwise
      */
     public boolean getAbstract();
 
     /**
      *  A set of attribute uses if it exists, otherwise an empty
      * <code>XSObjectList</code>.
+     * @return the attribute uses
      */
     public XSObjectList getAttributeUses();
 
     /**
      * An attribute wildcard if it exists, otherwise <code>null</code>.
+     * @return the attribute wildcard, or null if none
      */
     public XSWildcard getAttributeWildcard();
 
@@ -74,18 +78,21 @@ public interface XSComplexTypeDefinition extends XSTypeDefinition {
      * type definition (<code>CONTENTTYPE_SIMPLE</code>), mixed (
      * <code>CONTENTTYPE_MIXED</code>), or element-only (
      * <code>CONTENTTYPE_ELEMENT</code>).
+     * @return the content type
      */
     public short getContentType();
 
     /**
      * A simple type definition corresponding to a simple content model,
      * otherwise <code>null</code>.
+     * @return the simple type definition, or null if not simple content
      */
     public XSSimpleTypeDefinition getSimpleType();
 
     /**
      * A particle for a mixed or element-only content model, otherwise
      * <code>null</code>.
+     * @return the particle, or null if empty or simple content
      */
     public XSParticle getParticle();
 
@@ -102,11 +109,13 @@ public interface XSComplexTypeDefinition extends XSTypeDefinition {
      *  [prohibited substitutions]: A subset of {extension, restriction} or
      * <code>DERIVATION_NONE</code> represented as a bit flag (see
      * <code>XSConstants</code>).
+     * @return the prohibited substitutions as a bit flag
      */
     public short getProhibitedSubstitutions();
 
     /**
      * A sequence of [annotations] or an empty <code>XSObjectList</code>.
+     * @return the annotations
      */
     public XSObjectList getAnnotations();
 

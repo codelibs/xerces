@@ -19,7 +19,8 @@ package org.codelibs.xerces.wml.dom;
 import org.codelibs.xerces.wml.WMLEmElement;
 
 /**
- * @xerces.internal
+ * Implementation of WMLEmElement interface for WML emphasis text elements.
+ *
  * @version $Id: WMLEmElementImpl.java 661560 2008-05-30 03:22:25Z mrglavas $
  * @author <a href="mailto:david@topware.com.tw">David Li</a>
  */
@@ -27,6 +28,12 @@ public class WMLEmElementImpl extends WMLElementImpl implements WMLEmElement {
 
     private static final long serialVersionUID = 7962278391619830801L;
 
+    /**
+     * Constructs a new WML emphasis element with the specified owner document and tag name.
+     *
+     * @param owner the owner document
+     * @param tagName the tag name for this element
+     */
     public WMLEmElementImpl(WMLDocumentImpl owner, String tagName) {
         super(owner, tagName);
     }

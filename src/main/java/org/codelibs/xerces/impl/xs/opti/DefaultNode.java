@@ -25,7 +25,9 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.UserDataHandler;
 
 /**
- * @xerces.internal
+ * Default DOM Node implementation for XML Schema processing.
+ * This class provides a minimal DOM Node implementation that throws
+ * NOT_SUPPORTED_ERR for most modification operations.
  *
  * @author Rahul Srivastava, Sun Microsystems Inc.
  *
@@ -33,7 +35,9 @@ import org.w3c.dom.UserDataHandler;
  */
 public class DefaultNode implements Node {
 
-    // default constructor
+    /**
+     * Default constructor for DefaultNode.
+     */
     public DefaultNode() {
     }
 

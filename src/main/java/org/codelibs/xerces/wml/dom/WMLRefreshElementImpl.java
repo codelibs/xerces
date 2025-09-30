@@ -19,7 +19,9 @@ package org.codelibs.xerces.wml.dom;
 import org.codelibs.xerces.wml.WMLRefreshElement;
 
 /**
- * @xerces.internal
+ * Implementation of the WML refresh element.
+ * Provides access to refresh element attributes for WML browser context refresh operations.
+ *
  * @version $Id: WMLRefreshElementImpl.java 661560 2008-05-30 03:22:25Z mrglavas $
  * @author <a href="mailto:david@topware.com.tw">David Li</a>
  */
@@ -27,6 +29,12 @@ public class WMLRefreshElementImpl extends WMLElementImpl implements WMLRefreshE
 
     private static final long serialVersionUID = 8781837880806459398L;
 
+    /**
+     * Constructs a new WMLRefreshElementImpl instance.
+     *
+     * @param owner the owning WML document
+     * @param tagName the tag name of the element
+     */
     public WMLRefreshElementImpl(WMLDocumentImpl owner, String tagName) {
         super(owner, tagName);
     }

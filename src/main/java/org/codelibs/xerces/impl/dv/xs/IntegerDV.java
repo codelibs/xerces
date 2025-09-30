@@ -21,15 +21,19 @@ import org.codelibs.xerces.impl.dv.InvalidDatatypeValueException;
 import org.codelibs.xerces.impl.dv.ValidationContext;
 
 /**
- * Represent the schema type "integer"
- *
- * @xerces.internal
+ * Represent the schema type "integer".
  *
  * @author Sandy Gao, IBM
  *
  * @version $Id: IntegerDV.java 446745 2006-09-15 21:43:58Z mrglavas $
  */
 public class IntegerDV extends DecimalDV {
+
+    /**
+     * Default constructor for internal instantiation.
+     */
+    public IntegerDV() {
+    }
 
     public Object getActualValue(String content, ValidationContext context) throws InvalidDatatypeValueException {
         try {

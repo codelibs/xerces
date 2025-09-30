@@ -19,7 +19,9 @@ package org.codelibs.xerces.wml.dom;
 import org.codelibs.xerces.wml.WMLTemplateElement;
 
 /**
- * @xerces.internal
+ * Implementation of the WML template element.
+ * Provides access to template element attributes for defining event handlers in WML cards.
+ *
  * @version $Id: WMLTemplateElementImpl.java 661560 2008-05-30 03:22:25Z mrglavas $
  * @author <a href="mailto:david@topware.com.tw">David Li</a>
  */
@@ -27,6 +29,12 @@ public class WMLTemplateElementImpl extends WMLElementImpl implements WMLTemplat
 
     private static final long serialVersionUID = 4231732841621131049L;
 
+    /**
+     * Constructs a new WMLTemplateElementImpl with the specified owner document and tag name.
+     *
+     * @param owner the owner document
+     * @param tagName the name of the element tag
+     */
     public WMLTemplateElementImpl(WMLDocumentImpl owner, String tagName) {
         super(owner, tagName);
     }

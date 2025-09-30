@@ -122,6 +122,9 @@ public class NonValidatingConfiguration extends BasicParserConfiguration impleme
     protected static final String DATATYPE_VALIDATOR_FACTORY =
             Constants.XERCES_PROPERTY_PREFIX + Constants.DATATYPE_VALIDATOR_FACTORY_PROPERTY;
 
+    /**
+     * Property identifier: validation manager.
+     */
     protected static final String VALIDATION_MANAGER = Constants.XERCES_PROPERTY_PREFIX + Constants.VALIDATION_MANAGER_PROPERTY;
 
     /** Property identifier: XML Schema validator. */
@@ -164,6 +167,9 @@ public class NonValidatingConfiguration extends BasicParserConfiguration impleme
     /** DTD scanner. */
     protected XMLDTDScanner fDTDScanner;
 
+    /**
+     * Validation manager component.
+     */
     protected ValidationManager fValidationManager;
 
     // private data
@@ -692,31 +698,50 @@ public class NonValidatingConfiguration extends BasicParserConfiguration impleme
 
     // factory methods
 
-    /** Creates an entity manager. */
+    /**
+     * Creates an entity manager.
+     * @return a new XMLEntityManager instance
+     */
     protected XMLEntityManager createEntityManager() {
         return new XMLEntityManager();
     } // createEntityManager():XMLEntityManager
 
-    /** Creates an error reporter. */
+    /**
+     * Creates an error reporter.
+     * @return a new XMLErrorReporter instance
+     */
     protected XMLErrorReporter createErrorReporter() {
         return new XMLErrorReporter();
     } // createErrorReporter():XMLErrorReporter
 
-    /** Create a document scanner. */
+    /**
+     * Creates a document scanner.
+     * @return a new XMLDocumentScanner instance, or null
+     */
     protected XMLDocumentScanner createDocumentScanner() {
         return null;
     } // createDocumentScanner():XMLDocumentScanner
 
-    /** Create a DTD scanner. */
+    /**
+     * Creates a DTD scanner.
+     * @return a new XMLDTDScanner instance
+     */
     protected XMLDTDScanner createDTDScanner() {
         return new XMLDTDScannerImpl();
     } // createDTDScanner():XMLDTDScanner
 
-    /** Create a datatype validator factory. */
+    /**
+     * Creates a datatype validator factory.
+     * @return a DTDDVFactory instance
+     */
     protected DTDDVFactory createDatatypeValidatorFactory() {
         return DTDDVFactory.getInstance();
     } // createDatatypeValidatorFactory():DatatypeValidatorFactory
 
+    /**
+     * Creates a validation manager.
+     * @return a new ValidationManager instance
+     */
     protected ValidationManager createValidationManager() {
         return new ValidationManager();
     }

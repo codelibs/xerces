@@ -26,6 +26,7 @@ package org.codelibs.xerces.xs.datatypes;
 public interface XSDouble {
 
     /**
+     * Returns the double value of this XS double datatype.
      * @return a double value
      */
     public double getValue();

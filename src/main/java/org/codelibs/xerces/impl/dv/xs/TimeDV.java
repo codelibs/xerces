@@ -24,9 +24,11 @@ import org.codelibs.xerces.impl.dv.InvalidDatatypeValueException;
 import org.codelibs.xerces.impl.dv.ValidationContext;
 
 /**
- * Validator for &lt;time&gt; datatype (W3C Schema Datatypes)
+ * Validator for &lt;time&gt; datatype (W3C Schema Datatypes).
+ * This class provides validation and normalization of XML Schema time values,
+ * supporting parsing of time strings in the format hh:mm:ss.sss with optional timezone.
  *
- * @xerces.internal
+
  *
  * @author Elena Litani
  * @author Gopal Sharma, SUN Microsystem Inc.
@@ -34,6 +36,12 @@ import org.codelibs.xerces.impl.dv.ValidationContext;
  * @version $Id: TimeDV.java 937741 2010-04-25 04:25:46Z mrglavas $
  */
 public class TimeDV extends AbstractDateTimeDV {
+
+    /**
+     * Default constructor.
+     */
+    public TimeDV() {
+    }
 
     /**
      * Convert a string to a compiled form

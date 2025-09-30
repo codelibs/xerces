@@ -27,7 +27,7 @@ import org.w3c.dom.Node;
  * I've included this in Level 1 purely as an anchor point for default
  * attributes. In Level 2 it should enable the ChildRule support.
  *
- * @xerces.internal
+
  *
  * @version $Id: ElementDefinitionImpl.java 447266 2006-09-18 05:57:49Z mrglavas $
  */
@@ -54,7 +54,11 @@ public class ElementDefinitionImpl extends ParentNode {
     // Constructors
     //
 
-    /** Factory constructor. */
+    /**
+     * Factory constructor.
+     * @param ownerDocument the document that owns this node
+     * @param name the name of the element definition
+     */
     public ElementDefinitionImpl(CoreDocumentImpl ownerDocument, String name) {
         super(ownerDocument);
         this.name = name;

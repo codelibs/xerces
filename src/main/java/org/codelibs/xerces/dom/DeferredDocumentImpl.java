@@ -35,7 +35,7 @@ import org.w3c.dom.Node;
  * which associates them with the Document within whose context they
  * were created.
  *
- * @xerces.internal
+
  *
  * @version $Id: DeferredDocumentImpl.java 965320 2010-07-18 23:25:54Z mrglavas $
  * @since  PR-DOM-Level-1-19980818.
@@ -145,12 +145,19 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
     /**
      * NON-DOM: Actually creating a Document is outside the DOM's spec,
      * since it has to operate in terms of a particular implementation.
+     *
+     * @param namespacesEnabled Flag indicating if namespace support is enabled
      */
     public DeferredDocumentImpl(boolean namespacesEnabled) {
         this(namespacesEnabled, false);
     } // <init>(boolean)
 
-    /** Experimental constructor. */
+    /**
+     * Experimental constructor.
+     *
+     * @param namespaces Flag indicating if namespace support is enabled
+     * @param grammarAccess Flag indicating if grammar access is enabled
+     */
     public DeferredDocumentImpl(boolean namespaces, boolean grammarAccess) {
         super(grammarAccess);
 
@@ -188,13 +195,24 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
 
     // internal factory methods
 
-    /** Creates a document node in the table. */
+    /**
+     * Creates a document node in the table.
+     *
+     * @return The node index of the created document node
+     */
     public int createDeferredDocument() {
         int nodeIndex = createNode(Node.DOCUMENT_NODE);
         return nodeIndex;
     }
 
-    /** Creates a doctype. */
+    /**
+     * Creates a doctype.
+     *
+     * @param rootElementName The name of the root element
+     * @param publicId The public identifier
+     * @param systemId The system identifier
+     * @return The node index of the created document type node
+     */
     public int createDeferredDocumentType(String rootElementName, String publicId, String systemId) {
 
         // create node
@@ -212,6 +230,12 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
 
     } // createDeferredDocumentType(String,String,String):int
 
+    /**
+     * Sets the internal subset for the specified document type.
+     *
+     * @param doctypeIndex The index of the document type node
+     * @param subset The internal subset string
+     */
     public void setInternalSubset(int doctypeIndex, String subset) {
         int chunk = doctypeIndex >> CHUNK_SHIFT;
         int index = doctypeIndex & CHUNK_MASK;
@@ -224,7 +248,15 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
         setChunkValue(fNodeValue, subset, echunk, eindex);
     }
 
-    /** Creates a notation in the table. */
+    /**
+     * Creates a notation in the table.
+     *
+     * @param notationName The notation name
+     * @param publicId The public identifier
+     * @param systemId The system identifier
+     * @param baseURI The base URI
+     * @return The node index of the created notation node
+     */
     public int createDeferredNotation(String notationName, String publicId, String systemId, String baseURI) {
 
         // create node
@@ -251,7 +283,16 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
 
     } // createDeferredNotation(String,String,String):int
 
-    /** Creates an entity in the table. */
+    /**
+     * Creates an entity in the table.
+     *
+     * @param entityName The entity name
+     * @param publicId The public identifier
+     * @param systemId The system identifier
+     * @param notationName The notation name
+     * @param baseURI The base URI
+     * @return The node index of the created entity node
+     */
     public int createDeferredEntity(String entityName, String publicId, String systemId, String notationName, String baseURI) {
         // create node
         int nodeIndex = createNode(Node.ENTITY_NODE);
@@ -290,6 +331,12 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
 
     } // createDeferredEntity(String,String,String,String):int
 
+    /**
+     * Gets the base URI for the specified deferred entity.
+     *
+     * @param entityIndex The index of the entity node
+     * @return The base URI of the entity, or null if not found
+     */
     public String getDeferredEntityBaseURI(int entityIndex) {
         if (entityIndex != -1) {
             int extraDataIndex = getNodeExtra(entityIndex, false);
@@ -299,7 +346,13 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
         return null;
     }
 
-    // DOM Level 3: setting encoding and version
+    /**
+     * DOM Level 3: Sets encoding and version information for an entity.
+     *
+     * @param currentEntityDecl The index of the entity declaration
+     * @param version The version string
+     * @param encoding The encoding string
+     */
     public void setEntityInfo(int currentEntityDecl, String version, String encoding) {
         int eNodeIndex = getNodeExtra(currentEntityDecl, false);
         if (eNodeIndex != -1) {
@@ -310,7 +363,12 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
         }
     }
 
-    // DOM Level 3: sets element TypeInfo
+    /**
+     * DOM Level 3: Sets element type information.
+     *
+     * @param elementNodeIndex The index of the element node
+     * @param type The type information object
+     */
     public void setTypeInfo(int elementNodeIndex, Object type) {
         int elementChunk = elementNodeIndex >> CHUNK_SHIFT;
         int elementIndex = elementNodeIndex & CHUNK_MASK;
@@ -324,6 +382,9 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
      * <code>null</code> otherwise.
      * <br> This attribute represents the property [character encoding scheme]
      * defined in .
+     *
+     * @param currentEntityDecl The index of the current entity declaration
+     * @param value The input encoding value
      */
     public void setInputEncoding(int currentEntityDecl, String value) {
         // get first extra data chunk
@@ -338,7 +399,13 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
 
     }
 
-    /** Creates an entity reference node in the table. */
+    /**
+     * Creates an entity reference node in the table.
+     *
+     * @param name The entity reference name
+     * @param baseURI The base URI
+     * @return The node index of the created entity reference node
+     */
     public int createDeferredEntityReference(String name, String baseURI) {
 
         // create node
@@ -355,6 +422,11 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
 
     /**
      * Creates an element node with a URI in the table and type information.
+     *
+     * @param elementURI The namespace URI of the element
+     * @param elementName The name of the element
+     * @param type The type information object
+     * @return The node index of the created element node
      * @deprecated
      */
     public int createDeferredElement(String elementURI, String elementName, Object type) {
@@ -374,6 +446,9 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
 
     /**
      * Creates an element node in the table.
+     *
+     * @param elementName The name of the element
+     * @return The node index of the created element node
      * @deprecated
      */
     public int createDeferredElement(String elementName) {
@@ -382,6 +457,10 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
 
     /**
      * Creates an element node with a URI in the table.
+     *
+     * @param elementURI The namespace URI of the element
+     * @param elementName The name of the element
+     * @return The node index of the created element node
      */
     public int createDeferredElement(String elementURI, String elementName) {
 
@@ -399,14 +478,15 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
 
     /**
      * This method is used by the DOMParser to create attributes.
-     * @param elementNodeIndex
-     * @param attrName
-     * @param attrURI
-     * @param attrValue
-     * @param specified
-     * @param id
-     * @param type
-     * @return int
+     *
+     * @param elementNodeIndex The index of the element node
+     * @param attrName The attribute name
+     * @param attrURI The attribute namespace URI
+     * @param attrValue The attribute value
+     * @param specified Flag indicating if the attribute was specified
+     * @param id Flag indicating if this is an ID attribute
+     * @param type The type information object
+     * @return The node index of the created attribute
      */
     public int setDeferredAttribute(int elementNodeIndex, String attrName, String attrURI, String attrValue, boolean specified, boolean id,
             Object type) {
@@ -453,6 +533,13 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
 
     /**
      * Sets an attribute on an element node.
+     *
+     * @param elementNodeIndex The index of the element node
+     * @param attrName The attribute name
+     * @param attrURI The attribute namespace URI
+     * @param attrValue The attribute value
+     * @param specified Flag indicating if the attribute was specified
+     * @return The node index of the created attribute
      * @deprecated
      */
     public int setDeferredAttribute(int elementNodeIndex, String attrName, String attrURI, String attrValue, boolean specified) {
@@ -480,12 +567,27 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
 
     } // setDeferredAttribute(int,String,String,String,boolean):int
 
-    /** Creates an attribute in the table. */
+    /**
+     * Creates an attribute in the table.
+     *
+     * @param attrName The attribute name
+     * @param attrValue The attribute value
+     * @param specified Flag indicating if the attribute was specified
+     * @return The node index of the created attribute
+     */
     public int createDeferredAttribute(String attrName, String attrValue, boolean specified) {
         return createDeferredAttribute(attrName, null, attrValue, specified);
     }
 
-    /** Creates an attribute with a URI in the table. */
+    /**
+     * Creates an attribute with a URI in the table.
+     *
+     * @param attrName The attribute name
+     * @param attrURI The attribute namespace URI
+     * @param attrValue The attribute value
+     * @param specified Flag indicating if the attribute was specified
+     * @return The node index of the created attribute
+     */
     public int createDeferredAttribute(String attrName, String attrURI, String attrValue, boolean specified) {
 
         // create node
@@ -503,7 +605,12 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
 
     } // createDeferredAttribute(String,String,String,boolean):int
 
-    /** Creates an element definition in the table.*/
+    /**
+     * Creates an element definition in the table.
+     *
+     * @param elementName The element name
+     * @return The node index of the created element definition
+     */
     public int createDeferredElementDefinition(String elementName) {
 
         // create node
@@ -517,7 +624,13 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
 
     } // createDeferredElementDefinition(String):int
 
-    /** Creates a text node in the table. */
+    /**
+     * Creates a text node in the table.
+     *
+     * @param data The text data
+     * @param ignorableWhitespace Flag indicating if this is ignorable whitespace
+     * @return The node index of the created text node
+     */
     public int createDeferredTextNode(String data, boolean ignorableWhitespace) {
 
         // create node
@@ -533,7 +646,12 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
 
     } // createDeferredTextNode(String,boolean):int
 
-    /** Creates a CDATA section node in the table. */
+    /**
+     * Creates a CDATA section node in the table.
+     *
+     * @param data The CDATA section data
+     * @return The node index of the created CDATA section node
+     */
     public int createDeferredCDATASection(String data) {
 
         // create node
@@ -547,7 +665,13 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
 
     } // createDeferredCDATASection(String):int
 
-    /** Creates a processing instruction node in the table. */
+    /**
+     * Creates a processing instruction node in the table.
+     *
+     * @param target The processing instruction target
+     * @param data The processing instruction data
+     * @return The node index of the created processing instruction node
+     */
     public int createDeferredProcessingInstruction(String target, String data) {
         // create node
         int nodeIndex = createNode(Node.PROCESSING_INSTRUCTION_NODE);
@@ -560,7 +684,12 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
 
     } // createDeferredProcessingInstruction(String,String):int
 
-    /** Creates a comment node in the table. */
+    /**
+     * Creates a comment node in the table.
+     *
+     * @param data The comment data
+     * @return The node index of the created comment node
+     */
     public int createDeferredComment(String data) {
 
         // create node
@@ -574,7 +703,13 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
 
     } // createDeferredComment(String):int
 
-    /** Creates a clone of the specified node. */
+    /**
+     * Creates a clone of the specified node.
+     *
+     * @param nodeIndex The index of the node to clone
+     * @param deep Flag indicating if children should be cloned recursively
+     * @return The node index of the cloned node
+     */
     public int cloneNode(int nodeIndex, boolean deep) {
 
         // clone immediate node
@@ -614,7 +749,12 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
 
     } // cloneNode(int,boolean):int
 
-    /** Appends a child to the specified parent in the table. */
+    /**
+     * Appends a child to the specified parent in the table.
+     *
+     * @param parentIndex The index of the parent node
+     * @param childIndex The index of the child node to append
+     */
     public void appendChild(int parentIndex, int childIndex) {
 
         // append parent index
@@ -633,7 +773,13 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
 
     } // appendChild(int,int)
 
-    /** Adds an attribute node to the specified element. */
+    /**
+     * Adds an attribute node to the specified element.
+     *
+     * @param elemIndex The index of the element node
+     * @param attrIndex The index of the attribute node to add
+     * @return The index of the old attribute if replaced, or -1 if new
+     */
     public int setAttributeNode(int elemIndex, int attrIndex) {
 
         int echunk = elemIndex >> CHUNK_SHIFT;
@@ -696,7 +842,12 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
 
     } // setAttributeNode(int,int):int
 
-    /** Adds an attribute node to the specified element. */
+    /**
+     * Adds an attribute node to the specified element and marks it as an ID attribute.
+     *
+     * @param elemIndex The index of the element node
+     * @param attrIndex The index of the attribute node
+     */
     public void setIdAttributeNode(int elemIndex, int attrIndex) {
 
         int chunk = attrIndex >> CHUNK_SHIFT;
@@ -709,7 +860,11 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
         putIdentifier(value, elemIndex);
     }
 
-    /** Sets type of attribute */
+    /**
+     * Sets the type of attribute to ID.
+     *
+     * @param attrIndex The index of the attribute node
+     */
     public void setIdAttribute(int attrIndex) {
 
         int chunk = attrIndex >> CHUNK_SHIFT;
@@ -719,7 +874,14 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
         setChunkIndex(fNodeExtra, extra, chunk, index);
     }
 
-    /** Inserts a child before the specified node in the table. */
+    /**
+     * Inserts a child before the specified node in the table.
+     *
+     * @param parentIndex The index of the parent node
+     * @param newChildIndex The index of the new child node to insert
+     * @param refChildIndex The index of the reference child node, or -1 to append
+     * @return The index of the inserted child node
+     */
     public int insertBefore(int parentIndex, int newChildIndex, int refChildIndex) {
 
         if (refChildIndex == -1) {
@@ -739,7 +901,12 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
 
     } // insertBefore(int,int,int):int
 
-    /** Sets the last child of the parentIndex to childIndex. */
+    /**
+     * Sets the last child of the parentIndex to childIndex.
+     *
+     * @param parentIndex The index of the parent node
+     * @param childIndex The index of the child node to set as last child
+     */
     public void setAsLastChild(int parentIndex, int childIndex) {
         int pchunk = parentIndex >> CHUNK_SHIFT;
         int pindex = parentIndex & CHUNK_MASK;
@@ -749,6 +916,9 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
     /**
      * Returns the parent node of the given node.
      * <em>Calling this method does not free the parent index.</em>
+     *
+     * @param nodeIndex The index of the node
+     * @return The index of the parent node, or -1 if none
      */
     public int getParentNode(int nodeIndex) {
         return getParentNode(nodeIndex, false);
@@ -756,7 +926,10 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
 
     /**
      * Returns the parent node of the given node.
-     * @param free True to free parent node.
+     *
+     * @param nodeIndex The index of the node
+     * @param free True to free parent node
+     * @return The index of the parent node, or -1 if none
      */
     public int getParentNode(int nodeIndex, boolean free) {
 
@@ -770,14 +943,22 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
 
     } // getParentNode(int):int
 
-    /** Returns the last child of the given node. */
+    /**
+     * Returns the last child of the given node.
+     *
+     * @param nodeIndex The index of the node
+     * @return The index of the last child, or -1 if none
+     */
     public int getLastChild(int nodeIndex) {
         return getLastChild(nodeIndex, true);
     }
 
     /**
      * Returns the last child of the given node.
-     * @param free True to free child index.
+     *
+     * @param nodeIndex The index of the node
+     * @param free True to free child index
+     * @return The index of the last child, or -1 if none
      */
     public int getLastChild(int nodeIndex, boolean free) {
 
@@ -794,6 +975,9 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
     /**
      * Returns the prev sibling of the given node.
      * This is post-normalization of Text Nodes.
+     *
+     * @param nodeIndex The index of the node
+     * @return The index of the previous sibling, or -1 if none
      */
     public int getPrevSibling(int nodeIndex) {
         return getPrevSibling(nodeIndex, true);
@@ -801,7 +985,10 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
 
     /**
      * Returns the prev sibling of the given node.
-     * @param free True to free sibling index.
+     *
+     * @param nodeIndex The index of the node
+     * @param free True to free sibling index
+     * @return The index of the previous sibling, or -1 if none
      */
     public int getPrevSibling(int nodeIndex, boolean free) {
 
@@ -834,6 +1021,9 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
      * Returns the <i>real</i> prev sibling of the given node,
      * directly from the data structures. Used by TextImpl#getNodeValue()
      * to normalize values.
+     *
+     * @param nodeIndex The index of the node
+     * @return The index of the real previous sibling, or -1 if none
      */
     public int getRealPrevSibling(int nodeIndex) {
         return getRealPrevSibling(nodeIndex, true);
@@ -841,7 +1031,10 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
 
     /**
      * Returns the <i>real</i> prev sibling of the given node.
-     * @param free True to free sibling index.
+     *
+     * @param nodeIndex The index of the node
+     * @param free True to free sibling index
+     * @return The index of the real previous sibling, or -1 if none
      */
     public int getRealPrevSibling(int nodeIndex, boolean free) {
 
@@ -859,6 +1052,9 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
      * Returns the index of the element definition in the table
      * with the specified name index, or -1 if no such definition
      * exists.
+     *
+     * @param elementName The name of the element to look up
+     * @return The index of the element definition, or -1 if not found
      */
     public int lookupElementDefinition(String elementName) {
 
@@ -901,7 +1097,12 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
 
     } // lookupElementDefinition(String):int
 
-    /** Instantiates the requested node object. */
+    /**
+     * Instantiates the requested node object.
+     *
+     * @param nodeIndex The index of the node to instantiate
+     * @return The instantiated node object
+     */
     public DeferredNode getNodeObject(int nodeIndex) {
 
         // is there anything to do?
@@ -1061,14 +1262,22 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
 
     } // createNodeObject(int):Node
 
-    /** Returns the name of the given node. */
+    /**
+     * Returns the name of the given node.
+     *
+     * @param nodeIndex The index of the node
+     * @return The name of the node
+     */
     public String getNodeName(int nodeIndex) {
         return getNodeName(nodeIndex, true);
     } // getNodeNameString(int):String
 
     /**
      * Returns the name of the given node.
-     * @param free True to free the string index.
+     *
+     * @param nodeIndex The index of the node
+     * @param free True to free the string index
+     * @return The name of the node
      */
     public String getNodeName(int nodeIndex, boolean free) {
 
@@ -1082,14 +1291,22 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
 
     } // getNodeName(int,boolean):String
 
-    /** Returns the real value of the given node. */
+    /**
+     * Returns the real value of the given node.
+     *
+     * @param nodeIndex The index of the node
+     * @return The value string of the node
+     */
     public String getNodeValueString(int nodeIndex) {
         return getNodeValueString(nodeIndex, true);
     } // getNodeValueString(int):String
 
     /**
      * Returns the real value of the given node.
-     * @param free True to free the string index.
+     *
+     * @param nodeIndex The index of the node
+     * @param free True to free the string index
+     * @return The value string of the node
      */
     public String getNodeValueString(int nodeIndex, boolean free) {
 
@@ -1170,15 +1387,19 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
 
     /**
      * Returns the value of the given node.
+     *
+     * @param nodeIndex The index of the node
+     * @return The value of the node
      */
     public String getNodeValue(int nodeIndex) {
         return getNodeValue(nodeIndex, true);
     }
 
     /**
-     * Clears the type info that is stored in the fNodeValue array
-     * @param nodeIndex
-     * @return Object - type information for the attribute/element node
+     * Clears the type info that is stored in the fNodeValue array.
+     *
+     * @param nodeIndex The index of the node
+     * @return The type information for the attribute/element node
      */
     public Object getTypeInfo(int nodeIndex) {
         if (nodeIndex == -1) {
@@ -1202,7 +1423,10 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
 
     /**
      * Returns the value of the given node.
-     * @param free True to free the value index.
+     *
+     * @param nodeIndex The index of the node
+     * @param free True to free the value index
+     * @return The value of the node
      */
     public String getNodeValue(int nodeIndex, boolean free) {
 
@@ -1219,6 +1443,9 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
     /**
      * Returns the extra info of the given node.
      * Used by AttrImpl to store specified value (1 == true).
+     *
+     * @param nodeIndex The index of the node
+     * @return The extra info value
      */
     public int getNodeExtra(int nodeIndex) {
         return getNodeExtra(nodeIndex, true);
@@ -1226,7 +1453,10 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
 
     /**
      * Returns the extra info of the given node.
-     * @param free True to free the value index.
+     *
+     * @param nodeIndex The index of the node
+     * @param free True to free the value index
+     * @return The extra info value
      */
     public int getNodeExtra(int nodeIndex, boolean free) {
 
@@ -1240,14 +1470,22 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
 
     } // getNodeExtra(int,boolean):int
 
-    /** Returns the type of the given node. */
+    /**
+     * Returns the type of the given node.
+     *
+     * @param nodeIndex The index of the node
+     * @return The type of the node
+     */
     public short getNodeType(int nodeIndex) {
         return getNodeType(nodeIndex, true);
     }
 
     /**
      * Returns the type of the given node.
-     * @param free True to free type index.
+     *
+     * @param nodeIndex The index of the node
+     * @param free True to free type index
+     * @return The type of the node
      */
     public short getNodeType(int nodeIndex, boolean free) {
 
@@ -1261,7 +1499,13 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
 
     } // getNodeType(int):int
 
-    /** Returns the attribute value of the given name. */
+    /**
+     * Returns the attribute value of the given name.
+     *
+     * @param elemIndex The index of the element node
+     * @param name The name of the attribute
+     * @return The attribute value, or null if not found
+     */
     public String getAttribute(int elemIndex, String name) {
         if (elemIndex == -1 || name == null) {
             return null;
@@ -1280,14 +1524,22 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
         return null;
     }
 
-    /** Returns the URI of the given node. */
+    /**
+     * Returns the URI of the given node.
+     *
+     * @param nodeIndex The index of the node
+     * @return The URI of the node
+     */
     public String getNodeURI(int nodeIndex) {
         return getNodeURI(nodeIndex, true);
     }
 
     /**
      * Returns the URI of the given node.
-     * @param free True to free URI index.
+     *
+     * @param nodeIndex The index of the node
+     * @param free True to free URI index
+     * @return The URI of the node
      */
     public String getNodeURI(int nodeIndex, boolean free) {
 
@@ -1303,7 +1555,12 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
 
     // identifier maintenance
 
-    /** Registers an identifier name with a specified element node. */
+    /**
+     * Registers an identifier name with a specified element node.
+     *
+     * @param name The identifier name
+     * @param elementNodeIndex The index of the element node
+     */
     public void putIdentifier(String name, int elementNodeIndex) {
 
         if (DEBUG_IDS) {
@@ -1684,6 +1941,9 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
      * editing the tree -- this makes it a lot easier.
      * This is not directly used in this class but this method is
      * here so that it can be shared by all deferred subclasses of AttrImpl.
+     *
+     * @param a The attribute node to synchronize
+     * @param nodeIndex The index of the node
      */
     protected final void synchronizeChildren(AttrImpl a, int nodeIndex) {
 
@@ -1737,6 +1997,9 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
      * editing the tree -- this makes it a lot easier.
      * This is not directly used in this class but this method is
      * here so that it can be shared by all deferred subclasses of ParentNode.
+     *
+     * @param p The parent node to synchronize
+     * @param nodeIndex The index of the node
      */
     protected final void synchronizeChildren(ParentNode p, int nodeIndex) {
 
@@ -1776,7 +2039,11 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
 
     // utility methods
 
-    /** Ensures that the internal tables are large enough. */
+    /**
+     * Ensures that the internal tables are large enough.
+     *
+     * @param chunk The chunk index to ensure capacity for
+     */
     protected void ensureCapacity(int chunk) {
         if (fNodeType == null) {
             // create buffers
@@ -1843,7 +2110,12 @@ public class DeferredDocumentImpl extends DocumentImpl implements DeferredNode {
 
     } // ensureCapacity(int,int)
 
-    /** Creates a node of the specified type. */
+    /**
+     * Creates a node of the specified type.
+     *
+     * @param nodeType The type of node to create
+     * @return The index of the created node
+     */
     protected int createNode(short nodeType) {
         // ensure tables are large enough
         int chunk = fNodeCount >> CHUNK_SHIFT;

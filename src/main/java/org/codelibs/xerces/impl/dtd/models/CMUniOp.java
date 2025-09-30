@@ -22,7 +22,7 @@ import org.codelibs.xerces.impl.dtd.XMLContentSpec;
 /**
  * Content model Uni-Op node.
  *
- * @xerces.internal
+
  *
  * @version $Id: CMUniOp.java 572057 2007-09-02 18:03:20Z mrglavas $
  */
@@ -30,6 +30,13 @@ public class CMUniOp extends CMNode {
     // -------------------------------------------------------------------
     //  Constructors
     // -------------------------------------------------------------------
+    /**
+     * Constructs a unary operation content model node.
+     *
+     * @param type the type of unary operation (must be ZERO_OR_ONE, ZERO_OR_MORE, or ONE_OR_MORE)
+     * @param childNode the child node this unary operation applies to
+     * @throws RuntimeException if the type is not a valid unary operation type
+     */
     public CMUniOp(int type, CMNode childNode) {
         super(type);
 

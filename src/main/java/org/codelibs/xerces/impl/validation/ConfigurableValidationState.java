@@ -23,7 +23,7 @@ import java.util.Iterator;
  * <p>An extension of ValidationState which can be configured to turn
  * off checking for ID/IDREF errors and unparsed entity errors.</p>
  *
- * @xerces.internal
+
  *
  * @author Peter McCracken, IBM
  * @version $Id: ConfigurableValidationState.java 1380445 2012-09-04 04:43:34Z mrglavas $

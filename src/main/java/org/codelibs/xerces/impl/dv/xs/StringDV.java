@@ -23,7 +23,8 @@ import org.codelibs.xerces.impl.dv.ValidationContext;
 /**
  * Represent the schema type "string"
  *
- * @xerces.internal
+ * <p>This validator handles XML Schema string type validation,
+ * supporting length, minLength, maxLength, pattern, enumeration, and whitespace facets.</p>
  *
  * @author Neeraj Bajaj, Sun Microsystems, inc.
  * @author Sandy Gao, IBM
@@ -31,6 +32,12 @@ import org.codelibs.xerces.impl.dv.ValidationContext;
  * @version $Id: StringDV.java 446745 2006-09-15 21:43:58Z mrglavas $
  */
 public class StringDV extends TypeValidator {
+
+    /**
+     * Default constructor.
+     */
+    public StringDV() {
+    }
 
     public short getAllowedFacets() {
         return (XSSimpleTypeDecl.FACET_LENGTH | XSSimpleTypeDecl.FACET_MINLENGTH | XSSimpleTypeDecl.FACET_MAXLENGTH

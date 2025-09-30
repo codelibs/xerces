@@ -53,22 +53,28 @@ public class DOMASBuilderImpl extends DOMParserImpl implements DOMASBuilder {
 
     // Feature ids
 
+    /** Feature identifier: schema full checking. */
     protected static final String SCHEMA_FULL_CHECKING = Constants.XERCES_FEATURE_PREFIX + Constants.SCHEMA_FULL_CHECKING;
 
     // Property ids
 
+    /** Property identifier: error reporter. */
     protected static final String ERROR_REPORTER = Constants.XERCES_PROPERTY_PREFIX + Constants.ERROR_REPORTER_PROPERTY;
 
+    /** Property identifier: symbol table. */
     protected static final String SYMBOL_TABLE = Constants.XERCES_PROPERTY_PREFIX + Constants.SYMBOL_TABLE_PROPERTY;
 
+    /** Property identifier: entity manager. */
     protected static final String ENTITY_MANAGER = Constants.XERCES_PROPERTY_PREFIX + Constants.ENTITY_MANAGER_PROPERTY;
 
     //
     // Data
     //
 
+    /** Grammar bucket for storing grammars. */
     protected XSGrammarBucket fGrammarBucket;
 
+    /** The Abstract Schema model associated with this builder. */
     protected ASModelImpl fAbstractSchema;
 
     //
@@ -86,6 +92,8 @@ public class DOMASBuilderImpl extends DOMParserImpl implements DOMASBuilder {
      * Constructs a DOM Builder using the specified parser configuration.
      * We must demand that the configuration extend XMLGrammarCachingConfiguration to make
      * sure all relevant methods/features are available.
+     *
+     * @param config The grammar caching parser configuration
      */
     public DOMASBuilderImpl(XMLGrammarCachingConfiguration config) {
         super(config);
@@ -93,6 +101,8 @@ public class DOMASBuilderImpl extends DOMParserImpl implements DOMASBuilder {
 
     /**
      * Constructs a DOM Builder using the specified symbol table.
+     *
+     * @param symbolTable The symbol table to use
      */
     public DOMASBuilderImpl(SymbolTable symbolTable) {
         super(new XMLGrammarCachingConfiguration(symbolTable));
@@ -104,6 +114,9 @@ public class DOMASBuilderImpl extends DOMParserImpl implements DOMASBuilder {
      * The grammarPool implementation should extent the default
      * implementation; otherwise, correct functioning of this class may
      * not occur.
+     *
+     * @param symbolTable The symbol table to use
+     * @param grammarPool The grammar pool to use
      */
     public DOMASBuilderImpl(SymbolTable symbolTable, XMLGrammarPool grammarPool) {
         super(new XMLGrammarCachingConfiguration(symbolTable, grammarPool));
@@ -169,11 +182,11 @@ public class DOMASBuilderImpl extends DOMParserImpl implements DOMASBuilder {
      *   <br> WRONG_MIME_TYPE_ERR: Raised when <code>mimeTypeCheck</code> is
      *   <code>true</code> and the inputsource has an incorrect MIME Type.
      *   See attribute <code>mimeTypeCheck</code>.
-     * @exception DOMSystemException
+     * @exception DOMASException
      *   Exceptions raised by <code>parseURI()</code> originate with the
      *   installed ErrorHandler, and thus depend on the implementation of
      *   the <code>DOMErrorHandler</code> interfaces. The default error
-     *   handlers will raise a DOMSystemException if any form I/O or other
+     *   handlers will raise a DOMASException if any form I/O or other
      *   system error occurs during the parse, but application defined error
      *   handlers are not required to do so.
      */
@@ -199,11 +212,11 @@ public class DOMASBuilderImpl extends DOMParserImpl implements DOMASBuilder {
      *   <br> WRONG_MIME_TYPE_ERR: Raised when <code>mimeTypeCheck</code> is
      *   true and the inputsource has an incorrect MIME Type. See attribute
      *   <code>mimeTypeCheck</code>.
-     * @exception DOMSystemException
+     * @exception DOMASException
      *   Exceptions raised by <code>parseURI()</code> originate with the
      *   installed ErrorHandler, and thus depend on the implementation of
      *   the <code>DOMErrorHandler</code> interfaces. The default error
-     *   handlers will raise a DOMSystemException if any form I/O or other
+     *   handlers will raise a DOMASException if any form I/O or other
      *   system error occurs during the parse, but application defined error
      *   handlers are not required to do so.
      */

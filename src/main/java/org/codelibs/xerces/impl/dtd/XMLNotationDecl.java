@@ -18,7 +18,9 @@
 package org.codelibs.xerces.impl.dtd;
 
 /**
- * @xerces.internal
+ * XML notation declaration representation for DTD processing.
+ * This class holds the declaration information for XML notations
+ * including name, public ID, and system ID.
  *
  * @version $Id: XMLNotationDecl.java 446755 2006-09-15 21:56:27Z mrglavas $
  */
@@ -40,6 +42,12 @@ public class XMLNotationDecl {
     /** base systemId */
     public String baseSystemId;
 
+    /**
+     * Default constructor.
+     */
+    public XMLNotationDecl() {
+    }
+
     //
     // Methods
     //
@@ -47,9 +55,10 @@ public class XMLNotationDecl {
     /**
      * setValues
      *
-     * @param name
-     * @param publicId
-     * @param systemId
+     * @param name the notation name
+     * @param publicId the public identifier
+     * @param systemId the system identifier
+     * @param baseSystemId the base system identifier
      */
     public void setValues(String name, String publicId, String systemId, String baseSystemId) {
         this.name = name;

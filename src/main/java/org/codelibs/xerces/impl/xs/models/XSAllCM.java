@@ -28,7 +28,7 @@ import org.codelibs.xerces.xni.QName;
 /**
  * XSAllCM implements XSCMValidator and handles &lt;all&gt;.
  *
- * @xerces.internal
+
  *
  * @author Pavani Mukthipudi, Sun Microsystems Inc.
  * @version $Id: XSAllCM.java 806363 2009-08-20 21:18:48Z mrglavas $
@@ -57,12 +57,24 @@ public class XSAllCM implements XSCMValidator {
     // Constructors
     //
 
+    /**
+     * Constructs an all content model.
+     *
+     * @param hasOptionalContent whether the content model has optional content
+     * @param size the number of elements in the all group
+     */
     public XSAllCM(boolean hasOptionalContent, int size) {
         fHasOptionalContent = hasOptionalContent;
         fAllElements = new XSElementDecl[size];
         fIsOptionalElement = new boolean[size];
     }
 
+    /**
+     * Adds an element to the all content model.
+     *
+     * @param element the element declaration to add
+     * @param isOptional whether the element is optional
+     */
     public void addElement(XSElementDecl element, boolean isOptional) {
         fAllElements[fNumElements] = element;
         fIsOptionalElement[fNumElements] = isOptional;
@@ -105,7 +117,7 @@ public class XSAllCM implements XSCMValidator {
     /**
      * The method corresponds to one transition in the content model.
      *
-     * @param elementName
+     * @param elementName The element name
      * @param currentState  Current state
      * @return an element decl object
      */

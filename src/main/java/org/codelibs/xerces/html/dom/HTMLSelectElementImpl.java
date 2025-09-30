@@ -24,7 +24,8 @@ import org.w3c.dom.html.HTMLOptionElement;
 import org.w3c.dom.html.HTMLSelectElement;
 
 /**
- * @xerces.internal
+ * Implementation of HTMLSelectElement interface for HTML select form elements.
+ *
  * @version $Revision: 1029415 $ $Date: 2010-10-31 22:32:22 +0530 (Sun, 31 Oct 2010) $
  * @author <a href="mailto:arkin@exoffice.com">Assaf Arkin</a>
  * @see org.w3c.dom.html.HTMLSelectElement
@@ -175,11 +176,15 @@ public class HTMLSelectElementImpl extends HTMLElementImpl implements HTMLSelect
      * Constructor requires owner document.
      *
      * @param owner The owner HTML document
+     * @param name The element name
      */
     public HTMLSelectElementImpl(HTMLDocumentImpl owner, String name) {
         super(owner, name);
     }
 
+    /**
+     * Collection of option elements contained within this select element.
+     */
     private HTMLCollection _options;
 
 }

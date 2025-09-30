@@ -27,7 +27,8 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.events.DTD;
 
 /**
- * @xerces.internal
+ * Implementation of {@code DTD} event for StAX.
+ * Represents a Document Type Declaration in an XML document.
  *
  * @author Lucian Holland
  *
@@ -38,7 +39,10 @@ public final class DTDImpl extends XMLEventImpl implements DTD {
     private final String fDTD;
 
     /**
-     * Constructor.
+     * Constructs a DTD event with the specified document type declaration and location.
+     *
+     * @param dtd the document type declaration string
+     * @param location the location information for this event
      */
     public DTDImpl(final String dtd, final Location location) {
         super(DTD, location);

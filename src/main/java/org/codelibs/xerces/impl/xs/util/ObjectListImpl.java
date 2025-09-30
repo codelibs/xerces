@@ -25,7 +25,7 @@ import org.codelibs.xerces.xs.datatypes.ObjectList;
 /**
  * Contains a list of Objects.
  *
- * @xerces.internal
+
  *
  * @version $Id: ObjectListImpl.java 789785 2009-06-30 15:10:26Z knoaman $
  */
@@ -42,6 +42,12 @@ public final class ObjectListImpl extends AbstractList implements ObjectList {
     // Number of elements in this list
     private final int fLength;
 
+    /**
+     * Constructs an ObjectList with the specified array and length.
+     *
+     * @param array the array containing the objects
+     * @param length the number of valid elements in the array
+     */
     public ObjectListImpl(Object[] array, int length) {
         fArray = array;
         fLength = length;

@@ -184,7 +184,10 @@ public interface XMLParserConfiguration extends XMLComponentManager {
      */
     public void setErrorHandler(XMLErrorHandler errorHandler);
 
-    /** Returns the registered error handler. */
+    /**
+     * Returns the registered error handler.
+     * @return The registered error handler.
+     */
     public XMLErrorHandler getErrorHandler();
 
     /**
@@ -194,7 +197,10 @@ public interface XMLParserConfiguration extends XMLComponentManager {
      */
     public void setDocumentHandler(XMLDocumentHandler documentHandler);
 
-    /** Returns the registered document handler. */
+    /**
+     * Returns the registered document handler.
+     * @return The registered document handler.
+     */
     public XMLDocumentHandler getDocumentHandler();
 
     /**
@@ -204,7 +210,10 @@ public interface XMLParserConfiguration extends XMLComponentManager {
      */
     public void setDTDHandler(XMLDTDHandler dtdHandler);
 
-    /** Returns the registered DTD handler. */
+    /**
+     * Returns the registered DTD handler.
+     * @return The registered DTD handler.
+     */
     public XMLDTDHandler getDTDHandler();
 
     /**
@@ -214,7 +223,10 @@ public interface XMLParserConfiguration extends XMLComponentManager {
      */
     public void setDTDContentModelHandler(XMLDTDContentModelHandler dtdContentModelHandler);
 
-    /** Returns the registered DTD content model handler. */
+    /**
+     * Returns the registered DTD content model handler.
+     * @return The registered DTD content model handler.
+     */
     public XMLDTDContentModelHandler getDTDContentModelHandler();
 
     // other settings
@@ -226,7 +238,10 @@ public interface XMLParserConfiguration extends XMLComponentManager {
      */
     public void setEntityResolver(XMLEntityResolver entityResolver);
 
-    /** Returns the registered entity resolver. */
+    /**
+     * Returns the registered entity resolver.
+     * @return The registered entity resolver.
+     */
     public XMLEntityResolver getEntityResolver();
 
     /**
@@ -239,7 +254,10 @@ public interface XMLParserConfiguration extends XMLComponentManager {
      */
     public void setLocale(Locale locale) throws XNIException;
 
-    /** Returns the locale. */
+    /**
+     * Returns the locale.
+     * @return The current locale.
+     */
     public Locale getLocale();
 
 } // interface XMLParserConfiguration

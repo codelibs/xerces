@@ -35,7 +35,7 @@ import org.codelibs.xerces.impl.dv.ValidationContext;
  * The value space of ENTITY is scoped to a specific
  * instance document.</P>
  *
- * @xerces.internal
+
  *
  * @author Jeffrey Rodriguez, IBM
  * @author Sandy Gao, IBM
@@ -44,7 +44,9 @@ import org.codelibs.xerces.impl.dv.ValidationContext;
  */
 public class ENTITYDatatypeValidator implements DatatypeValidator {
 
-    // construct an ENTITY datatype validator
+    /**
+     * Constructs an ENTITY datatype validator.
+     */
     public ENTITYDatatypeValidator() {
     }
 
@@ -54,7 +56,7 @@ public class ENTITYDatatypeValidator implements DatatypeValidator {
      *
      * @param content       the string value that needs to be validated
      * @param context       the validation context
-     * @throws InvalidDatatypeException if the content is
+     * @throws InvalidDatatypeValueException if the content is
      *         invalid according to the rules for the validators
      * @see InvalidDatatypeValueException
      */

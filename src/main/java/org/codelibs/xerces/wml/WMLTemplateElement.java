@@ -30,15 +30,45 @@ package org.codelibs.xerces.wml;
 
 public interface WMLTemplateElement extends WMLElement {
 
+    /**
+     * Sets the onTimer event handler that is executed when a timer expires.
+     *
+     * @param newValue the new onTimer event handler
+     */
     public void setOnTimer(String newValue);
 
+    /**
+     * Gets the onTimer event handler that is executed when a timer expires.
+     *
+     * @return the onTimer event handler
+     */
     public String getOnTimer();
 
+    /**
+     * Sets the onEnterBackward event handler that is executed when entering this element backwards.
+     *
+     * @param newValue the new onEnterBackward event handler
+     */
     public void setOnEnterBackward(String newValue);
 
+    /**
+     * Gets the onEnterBackward event handler that is executed when entering this element backwards.
+     *
+     * @return the onEnterBackward event handler
+     */
     public String getOnEnterBackward();
 
+    /**
+     * Sets the onEnterForward event handler that is executed when entering this element forwards.
+     *
+     * @param newValue the new onEnterForward event handler
+     */
     public void setOnEnterForward(String newValue);
 
+    /**
+     * Gets the onEnterForward event handler that is executed when entering this element forwards.
+     *
+     * @return the onEnterForward event handler
+     */
     public String getOnEnterForward();
 }

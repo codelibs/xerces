@@ -61,7 +61,7 @@ import org.w3c.dom.Element;
  * - Should have the datatype validators return compiled value
  * - use symbol table instead of many hashtables
  *
- * @xerces.internal
+
  *
  * @author Sandy Gao, IBM
  * @version $Id: XSAttributeChecker.java 704619 2008-10-14 18:59:35Z mrglavas $
@@ -79,46 +79,86 @@ public class XSAttributeChecker {
     private static final String ATTRIBUTE_R = "attribute_r";
 
     private static int ATTIDX_COUNT = 0;
+    /** Attribute index for the 'abstract' attribute. */
     public static final int ATTIDX_ABSTRACT = ATTIDX_COUNT++;
+    /** Attribute index for the 'attributeFormDefault' attribute. */
     public static final int ATTIDX_AFORMDEFAULT = ATTIDX_COUNT++;
+    /** Attribute index for the 'base' attribute. */
     public static final int ATTIDX_BASE = ATTIDX_COUNT++;
+    /** Attribute index for the 'block' attribute. */
     public static final int ATTIDX_BLOCK = ATTIDX_COUNT++;
+    /** Attribute index for the 'blockDefault' attribute. */
     public static final int ATTIDX_BLOCKDEFAULT = ATTIDX_COUNT++;
+    /** Attribute index for the 'default' attribute. */
     public static final int ATTIDX_DEFAULT = ATTIDX_COUNT++;
+    /** Attribute index for the 'elementFormDefault' attribute. */
     public static final int ATTIDX_EFORMDEFAULT = ATTIDX_COUNT++;
+    /** Attribute index for the 'final' attribute. */
     public static final int ATTIDX_FINAL = ATTIDX_COUNT++;
+    /** Attribute index for the 'finalDefault' attribute. */
     public static final int ATTIDX_FINALDEFAULT = ATTIDX_COUNT++;
+    /** Attribute index for the 'fixed' attribute. */
     public static final int ATTIDX_FIXED = ATTIDX_COUNT++;
+    /** Attribute index for the 'form' attribute. */
     public static final int ATTIDX_FORM = ATTIDX_COUNT++;
+    /** Attribute index for the 'id' attribute. */
     public static final int ATTIDX_ID = ATTIDX_COUNT++;
+    /** Attribute index for the 'itemType' attribute. */
     public static final int ATTIDX_ITEMTYPE = ATTIDX_COUNT++;
+    /** Attribute index for the 'maxOccurs' attribute. */
     public static final int ATTIDX_MAXOCCURS = ATTIDX_COUNT++;
+    /** Attribute index for the 'memberTypes' attribute. */
     public static final int ATTIDX_MEMBERTYPES = ATTIDX_COUNT++;
+    /** Attribute index for the 'minOccurs' attribute. */
     public static final int ATTIDX_MINOCCURS = ATTIDX_COUNT++;
+    /** Attribute index for the 'mixed' attribute. */
     public static final int ATTIDX_MIXED = ATTIDX_COUNT++;
+    /** Attribute index for the 'name' attribute. */
     public static final int ATTIDX_NAME = ATTIDX_COUNT++;
+    /** Attribute index for the 'namespace' attribute. */
     public static final int ATTIDX_NAMESPACE = ATTIDX_COUNT++;
+    /** Attribute index for the namespace list. */
     public static final int ATTIDX_NAMESPACE_LIST = ATTIDX_COUNT++;
+    /** Attribute index for the 'nillable' attribute. */
     public static final int ATTIDX_NILLABLE = ATTIDX_COUNT++;
+    /** Attribute index for non-schema attributes. */
     public static final int ATTIDX_NONSCHEMA = ATTIDX_COUNT++;
+    /** Attribute index for the 'processContents' attribute. */
     public static final int ATTIDX_PROCESSCONTENTS = ATTIDX_COUNT++;
+    /** Attribute index for the 'public' attribute. */
     public static final int ATTIDX_PUBLIC = ATTIDX_COUNT++;
+    /** Attribute index for the 'ref' attribute. */
     public static final int ATTIDX_REF = ATTIDX_COUNT++;
+    /** Attribute index for the 'refer' attribute. */
     public static final int ATTIDX_REFER = ATTIDX_COUNT++;
+    /** Attribute index for the 'schemaLocation' attribute. */
     public static final int ATTIDX_SCHEMALOCATION = ATTIDX_COUNT++;
+    /** Attribute index for the 'source' attribute. */
     public static final int ATTIDX_SOURCE = ATTIDX_COUNT++;
+    /** Attribute index for the 'substitutionGroup' attribute. */
     public static final int ATTIDX_SUBSGROUP = ATTIDX_COUNT++;
+    /** Attribute index for the 'system' attribute. */
     public static final int ATTIDX_SYSTEM = ATTIDX_COUNT++;
+    /** Attribute index for the 'targetNamespace' attribute. */
     public static final int ATTIDX_TARGETNAMESPACE = ATTIDX_COUNT++;
+    /** Attribute index for the 'type' attribute. */
     public static final int ATTIDX_TYPE = ATTIDX_COUNT++;
+    /** Attribute index for the 'use' attribute. */
     public static final int ATTIDX_USE = ATTIDX_COUNT++;
+    /** Attribute index for the 'value' attribute. */
     public static final int ATTIDX_VALUE = ATTIDX_COUNT++;
+    /** Attribute index for enumerated namespace declarations. */
     public static final int ATTIDX_ENUMNSDECLS = ATTIDX_COUNT++;
+    /** Attribute index for the 'version' attribute. */
     public static final int ATTIDX_VERSION = ATTIDX_COUNT++;
+    /** Attribute index for the 'xml:lang' attribute. */
     public static final int ATTIDX_XML_LANG = ATTIDX_COUNT++;
+    /** Attribute index for the 'xpath' attribute. */
     public static final int ATTIDX_XPATH = ATTIDX_COUNT++;
+    /** Attribute index for attributes with default values. */
     public static final int ATTIDX_FROMDEFAULT = ATTIDX_COUNT++;
     //public static final int ATTIDX_OTHERVALUES     = ATTIDX_COUNT++;
+    /** Attribute index for attributes that are returned. */
     public static final int ATTIDX_ISRETURNED = ATTIDX_COUNT++;
 
     private static final XIntPool fXIntPool = new XIntPool();
@@ -151,17 +191,27 @@ public class XSAttributeChecker {
     // DT_??? >= 0 : validate using a validator, which is initialized staticly
     // DT_??? <  0 : validate directly, which is done in "validate()"
 
+    /** Datatype constant for anyURI. */
     protected static final int DT_ANYURI = 0;
+    /** Datatype constant for ID. */
     protected static final int DT_ID = 1;
+    /** Datatype constant for QName. */
     protected static final int DT_QNAME = 2;
+    /** Datatype constant for string. */
     protected static final int DT_STRING = 3;
+    /** Datatype constant for token. */
     protected static final int DT_TOKEN = 4;
+    /** Datatype constant for NCName. */
     protected static final int DT_NCNAME = 5;
+    /** Datatype constant for XPath subset. */
     protected static final int DT_XPATH = 6;
+    /** Datatype constant for XPath1 subset. */
     protected static final int DT_XPATH1 = 7;
+    /** Datatype constant for language. */
     protected static final int DT_LANGUAGE = 8;
 
     // used to store extra datatype validators
+    /** Total count of datatype constants. */
     protected static final int DT_COUNT = DT_LANGUAGE + 1;
     private static final XSSimpleType[] fExtraDVs = new XSSimpleType[DT_COUNT];
     static {
@@ -187,22 +237,39 @@ public class XSAttributeChecker {
         fExtraDVs[DT_LANGUAGE] = (XSSimpleType) grammar.getGlobalTypeDecl(SchemaSymbols.ATTVAL_LANGUAGE);
     }
 
+    /** Datatype constant for block attribute validation. */
     protected static final int DT_BLOCK = -1;
+    /** Datatype constant for block1 attribute validation. */
     protected static final int DT_BLOCK1 = -2;
+    /** Datatype constant for final attribute validation. */
     protected static final int DT_FINAL = -3;
+    /** Datatype constant for final1 attribute validation. */
     protected static final int DT_FINAL1 = -4;
+    /** Datatype constant for final2 attribute validation. */
     protected static final int DT_FINAL2 = -5;
+    /** Datatype constant for form attribute validation. */
     protected static final int DT_FORM = -6;
+    /** Datatype constant for maxOccurs attribute validation. */
     protected static final int DT_MAXOCCURS = -7;
+    /** Datatype constant for maxOccurs1 attribute validation. */
     protected static final int DT_MAXOCCURS1 = -8;
+    /** Datatype constant for memberTypes attribute validation. */
     protected static final int DT_MEMBERTYPES = -9;
+    /** Datatype constant for minOccurs1 attribute validation. */
     protected static final int DT_MINOCCURS1 = -10;
+    /** Datatype constant for namespace attribute validation. */
     protected static final int DT_NAMESPACE = -11;
+    /** Datatype constant for processContents attribute validation. */
     protected static final int DT_PROCESSCONTENTS = -12;
+    /** Datatype constant for use attribute validation. */
     protected static final int DT_USE = -13;
+    /** Datatype constant for whitespace attribute validation. */
     protected static final int DT_WHITESPACE = -14;
+    /** Datatype constant for boolean validation. */
     protected static final int DT_BOOLEAN = -15;
+    /** Datatype constant for non-negative integer validation. */
     protected static final int DT_NONNEGINT = -16;
+    /** Datatype constant for positive integer validation. */
     protected static final int DT_POSINT = -17;
 
     static {
@@ -772,27 +839,36 @@ public class XSAttributeChecker {
         fEleAttrsMapL.put(SchemaSymbols.ELT_MINEXCLUSIVE, attrList);
     }
 
-    // used to resolver namespace prefixes
+    /** Used to resolve namespace prefixes */
     protected XSDHandler fSchemaHandler = null;
 
-    // used to store symbols.
+    /** Used to store symbols */
     protected SymbolTable fSymbolTable = null;
 
-    // used to store the mapping from processed element to attributes
+    /** Used to store the mapping from processed element to attributes */
     protected Hashtable fNonSchemaAttrs = new Hashtable();
 
-    // temprory vector, used to hold the namespace list
+    /** Temporary vector, used to hold the namespace list */
     protected Vector fNamespaceList = new Vector();
 
-    // whether this attribute appeared in the current element
+    /** Whether this attribute appeared in the current element */
     protected boolean[] fSeen = new boolean[ATTIDX_COUNT];
     private static boolean[] fSeenTemp = new boolean[ATTIDX_COUNT];
 
-    // constructor. Sets fErrorReproter and get datatype validators
+    /**
+     * Constructor. Sets the schema handler and initializes datatype validators.
+     *
+     * @param schemaHandler the XSD handler for this attribute checker
+     */
     public XSAttributeChecker(XSDHandler schemaHandler) {
         fSchemaHandler = schemaHandler;
     }
 
+    /**
+     * Resets the attribute checker with a new symbol table.
+     *
+     * @param symbolTable the symbol table to use
+     */
     public void reset(SymbolTable symbolTable) {
         fSymbolTable = symbolTable;
         fNonSchemaAttrs.clear();
@@ -1349,10 +1425,14 @@ public class XSAttributeChecker {
         fSchemaHandler.reportSchemaError(key, args, ele);
     }
 
-    // validate attriubtes from non-schema namespaces
-    // REVISIT: why we store the attributes in this way? why not just a list
-    //          of structure {element node, attr name/qname, attr value)?
-    // REVISIT: pass the proper element node to reportSchemaError
+    /**
+     * Validates attributes from non-schema namespaces.
+     * REVISIT: why we store the attributes in this way? why not just a list
+     *          of structure {element node, attr name/qname, attr value)?
+     * REVISIT: pass the proper element node to reportSchemaError
+     *
+     * @param grammarBucket the grammar bucket containing schema grammars
+     */
     public void checkNonSchemaAttributes(XSGrammarBucket grammarBucket) {
         // for all attributes
         Iterator entries = fNonSchemaAttrs.entrySet().iterator();
@@ -1398,7 +1478,13 @@ public class XSAttributeChecker {
         }
     }
 
-    // normalize the string according to the whiteSpace facet
+    /**
+     * Normalizes the string according to the whiteSpace facet.
+     *
+     * @param content the string content to normalize
+     * @param ws the whitespace processing mode
+     * @return the normalized string
+     */
     public static String normalize(String content, short ws) {
         int len = content == null ? 0 : content.length();
         if (len == 0 || ws == XSSimpleType.WS_PRESERVE)
@@ -1460,7 +1546,11 @@ public class XSAttributeChecker {
     // current position of the array pool (# of arrays not returned)
     int fPoolPos = 0;
 
-    // get the next available array
+    /**
+     * Gets the next available array from the pool.
+     *
+     * @return an available array for attribute storage
+     */
     protected Object[] getAvailableArray() {
         // if no array left in the pool, increase the pool size
         if (fArrayPool.length == fPoolPos) {
@@ -1484,7 +1574,12 @@ public class XSAttributeChecker {
         return retArray;
     }
 
-    // return an array back to the pool
+    /**
+     * Returns an array back to the pool for reuse.
+     *
+     * @param attrArray the attribute array to return
+     * @param schemaDoc the schema document information
+     */
     public void returnAttrArray(Object[] attrArray, XSDocumentInfo schemaDoc) {
         // pop the namespace context
         if (schemaDoc != null)
@@ -1507,6 +1602,13 @@ public class XSAttributeChecker {
         fArrayPool[--fPoolPos] = attrArray;
     }
 
+    /**
+     * Resolves namespace declarations from element attributes.
+     *
+     * @param element the element whose namespaces to resolve
+     * @param attrs the attributes of the element
+     * @param nsSupport the namespace support for managing namespace contexts
+     */
     public void resolveNamespace(Element element, Attr[] attrs, SchemaNamespaceSupport nsSupport) {
         // push the namespace context
         nsSupport.pushContext();

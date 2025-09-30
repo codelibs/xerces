@@ -52,7 +52,7 @@ import org.w3c.dom.Element;
  *   Content: (annotation?, (simpleType?))
  * &lt;/attribute&gt;
  *
- * @xerces.internal
+
  *
  * @author Sandy Gao, IBM
  * @author Neeraj Bajaj, Sun Microsystems, inc.

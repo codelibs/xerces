@@ -33,6 +33,8 @@ public interface ByteList extends List {
     /**
      * The number of <code>byte</code>s in the list. The range of
      * valid child object indices is 0 to <code>length-1</code> inclusive.
+     *
+     * @return the number of bytes in the list
      */
     public int getLength();
 
@@ -60,6 +62,8 @@ public interface ByteList extends List {
 
     /**
      * Construct and return a byte array for bytes contained in this list.
+     *
+     * @return a byte array containing all bytes from this list
      */
     public byte[] toByteArray();
 }

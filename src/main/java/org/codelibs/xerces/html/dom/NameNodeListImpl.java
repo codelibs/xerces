@@ -27,7 +27,7 @@ import org.w3c.dom.NodeList;
  * This class implements the DOM's NodeList behavior for
  * HTMLDocuemnt.getElementsByName().
  *
- * @xerces.internal
+
  *
  * @version $Id: NameNodeListImpl.java 447255 2006-09-18 05:36:42Z mrglavas $
  * @since  PR-DOM-Level-1-19980818.
@@ -35,7 +35,11 @@ import org.w3c.dom.NodeList;
  */
 public class NameNodeListImpl extends DeepNodeListImpl implements NodeList {
 
-    /** Constructor. */
+    /**
+     * Constructs a NameNodeListImpl for retrieving elements by name attribute.
+     * @param rootNode the root node from which to search for matching elements
+     * @param tagName the name attribute value to match against elements
+     */
     public NameNodeListImpl(NodeImpl rootNode, String tagName) {
         super(rootNode, tagName);
     }

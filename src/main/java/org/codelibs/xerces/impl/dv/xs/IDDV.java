@@ -22,9 +22,7 @@ import org.codelibs.xerces.impl.dv.ValidationContext;
 import org.codelibs.xerces.util.XMLChar;
 
 /**
- * Represent the schema type "ID"
- *
- * @xerces.internal
+ * Represent the schema type "ID".
  *
  * @author Neeraj Bajaj, Sun Microsystems, inc.
  * @author Sandy Gao, IBM
@@ -32,6 +30,12 @@ import org.codelibs.xerces.util.XMLChar;
  * @version $Id: IDDV.java 699892 2008-09-28 21:08:27Z mrglavas $
  */
 public class IDDV extends TypeValidator {
+
+    /**
+     * Default constructor for internal instantiation.
+     */
+    public IDDV() {
+    }
 
     public short getAllowedFacets() {
         return (XSSimpleTypeDecl.FACET_LENGTH | XSSimpleTypeDecl.FACET_MINLENGTH | XSSimpleTypeDecl.FACET_MAXLENGTH

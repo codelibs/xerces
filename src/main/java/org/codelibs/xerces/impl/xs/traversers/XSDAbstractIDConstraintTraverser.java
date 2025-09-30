@@ -31,7 +31,7 @@ import org.w3c.dom.Element;
  * traversers (the XSDUniqueTraverser, XSDKeyTraverser and
  * XSDKeyrefTraverser) rely upon.
  *
- * @xerces.internal
+
  *
  * @version $Id: XSDAbstractIDConstraintTraverser.java 774786 2009-05-14 14:31:10Z sandygao $
  */

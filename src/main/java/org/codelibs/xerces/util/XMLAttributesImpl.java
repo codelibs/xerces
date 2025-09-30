@@ -52,7 +52,9 @@ public class XMLAttributesImpl implements XMLAttributes {
     /** Maximum hash collisions per bucket. */
     protected static final int MAX_HASH_COLLISIONS = 40;
 
+    /** Size of the hash multipliers array. */
     protected static final int MULTIPLIERS_SIZE = 1 << 5;
+    /** Mask for the hash multipliers array. */
     protected static final int MULTIPLIERS_MASK = MULTIPLIERS_SIZE - 1;
 
     /**
@@ -125,6 +127,8 @@ public class XMLAttributesImpl implements XMLAttributes {
     }
 
     /**
+     * Constructs an XMLAttributesImpl with the specified initial table size.
+     *
      * @param tableSize initial size of table view
      */
     public XMLAttributesImpl(int tableSize) {
@@ -700,7 +704,6 @@ public class XMLAttributesImpl implements XMLAttributes {
 
     /**
      * Look up an augmentation by XML 1.0 qualified name.
-     * <p>
      *
      * @param qName The XML 1.0 qualified name.
      *

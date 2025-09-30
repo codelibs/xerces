@@ -37,10 +37,11 @@ public interface DOMASWriter extends LSSerializer {
      * possible to use this method to convert a DTD to an XML Schema?
      * @param destination The destination for the data to be written.
      * @param model  The Abstract Schema to serialize.
-     * @exception DOMSystemException
+     * @exception DOMASException
      *   This exception will be raised in response to any sort of IO or system
      *   error that occurs while writing to the destination. It may wrap an
      *   underlying system exception.
+     * @throws Exception Thrown if an error occurs while writing the model
      */
     public void writeASModel(java.io.OutputStream destination, ASModel model) throws Exception;
 

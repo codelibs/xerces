@@ -29,19 +29,19 @@ import org.codelibs.xerces.xni.XNIException;
  * the document fragment pointed to be the pointer.
  * </p>
  *
- * @xerces.internal
+
  *
  * @version $Id: XPointerProcessor.java 603808 2007-12-13 03:44:48Z mrglavas $
  */
 public interface XPointerProcessor {
 
-    // The start element event
+    /** Constant representing the start element event. */
     public static final int EVENT_ELEMENT_START = 0;
 
-    // The end element event
+    /** Constant representing the end element event. */
     public static final int EVENT_ELEMENT_END = 1;
 
-    // The empty element event
+    /** Constant representing the empty element event. */
     public static final int EVENT_ELEMENT_EMPTY = 2;
 
     /**

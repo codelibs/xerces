@@ -129,12 +129,20 @@ public class CachingParserPool {
     // Public methods
     //
 
-    /** Returns the symbol table. */
+    /**
+     * Returns the symbol table.
+     *
+     * @return the synchronized symbol table
+     */
     public SymbolTable getSymbolTable() {
         return fSynchronizedSymbolTable;
     } // getSymbolTable():SymbolTable
 
-    /** Returns the grammar pool. */
+    /**
+     * Returns the grammar pool.
+     *
+     * @return the synchronized XML grammar pool
+     */
     public XMLGrammarPool getXMLGrammarPool() {
         return fSynchronizedGrammarPool;
     } // getXMLGrammarPool():XMLGrammarPool
@@ -159,14 +167,22 @@ public class CachingParserPool {
 
     // factory methods
 
-    /** Creates a new DOM parser. */
+    /**
+     * Creates a new DOM parser.
+     *
+     * @return a new DOMParser instance
+     */
     public DOMParser createDOMParser() {
         SymbolTable symbolTable = fShadowSymbolTable ? new ShadowedSymbolTable(fSynchronizedSymbolTable) : fSynchronizedSymbolTable;
         XMLGrammarPool grammarPool = fShadowGrammarPool ? new ShadowedGrammarPool(fSynchronizedGrammarPool) : fSynchronizedGrammarPool;
         return new DOMParser(symbolTable, grammarPool);
     } // createDOMParser():DOMParser
 
-    /** Creates a new SAX parser. */
+    /**
+     * Creates a new SAX parser.
+     *
+     * @return a new SAXParser instance
+     */
     public SAXParser createSAXParser() {
         SymbolTable symbolTable = fShadowSymbolTable ? new ShadowedSymbolTable(fSynchronizedSymbolTable) : fSynchronizedSymbolTable;
         XMLGrammarPool grammarPool = fShadowGrammarPool ? new ShadowedGrammarPool(fSynchronizedGrammarPool) : fSynchronizedGrammarPool;
@@ -195,7 +211,11 @@ public class CachingParserPool {
         // Constructors
         //
 
-        /** Constructs a synchronized grammar pool. */
+        /**
+         * Constructs a synchronized grammar pool.
+         *
+         * @param grammarPool The grammar pool to synchronize
+         */
         public SynchronizedGrammarPool(XMLGrammarPool grammarPool) {
             fGrammarPool = grammarPool;
         } // <init>(XMLGrammarPool)
@@ -339,7 +359,11 @@ public class CachingParserPool {
         // Constructors
         //
 
-        /** Constructs a shadowed grammar pool. */
+        /**
+         * Constructs a shadowed grammar pool.
+         *
+         * @param grammarPool The main grammar pool to shadow
+         */
         public ShadowedGrammarPool(XMLGrammarPool grammarPool) {
             fGrammarPool = grammarPool;
         } // <init>(GrammarPool)

@@ -26,13 +26,19 @@ import org.w3c.dom.DOMImplementation;
  * <p>This implementation simply extends DOMImplementationImpl to differentiate
  * between the Deferred DOM Implementations and Non-Deferred DOM Implementations.</p>
  *
- * @xerces.internal
+
  *
  * @author Neil Delima, IBM
  *
  * @version $Id: DeferredDOMImplementationImpl.java 645327 2008-04-06 23:17:54Z mrglavas $
  */
 public class DeferredDOMImplementationImpl extends DOMImplementationImpl {
+
+    /**
+     * Constructs a new DeferredDOMImplementationImpl instance.
+     */
+    public DeferredDOMImplementationImpl() {
+    }
 
     //
     // Data
@@ -47,7 +53,10 @@ public class DeferredDOMImplementationImpl extends DOMImplementationImpl {
     // Public methods
     //
 
-    /** NON-DOM: Obtain and return the single shared object */
+    /**
+     * NON-DOM: Obtain and return the single shared object.
+     * @return the singleton instance of DeferredDOMImplementationImpl
+     */
     public static DOMImplementation getDOMImplementation() {
         return singleton;
     }

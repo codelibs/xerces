@@ -26,7 +26,7 @@ import org.codelibs.xerces.impl.dv.ValidationContext;
  * These validators can be supplied by the application writer and may be useful as
  * standalone code as well as plugins to the validator architecture.
  *
- * @xerces.internal
+
  *
  * @author Jeffrey Rodriguez, IBM
  * @author Sandy Gao, IBM
@@ -35,7 +35,9 @@ import org.codelibs.xerces.impl.dv.ValidationContext;
  */
 public class NOTATIONDatatypeValidator implements DatatypeValidator {
 
-    // construct a NOTATION datatype validator
+    /**
+     * Constructs a NOTATION datatype validator.
+     */
     public NOTATIONDatatypeValidator() {
     }
 
@@ -45,7 +47,7 @@ public class NOTATIONDatatypeValidator implements DatatypeValidator {
      *
      * @param content       the string value that needs to be validated
      * @param context       the validation context
-     * @throws InvalidDatatypeException if the content is
+     * @throws InvalidDatatypeValueException if the content is
      *         invalid according to the rules for the validators
      * @see InvalidDatatypeValueException
      */

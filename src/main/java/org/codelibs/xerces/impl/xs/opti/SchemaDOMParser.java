@@ -38,7 +38,9 @@ import org.codelibs.xerces.xni.parser.XMLParserConfiguration;
 import org.w3c.dom.Document;
 
 /**
- * @xerces.internal
+ * Schema DOM parser implementation for optimized XML Schema processing.
+ * This parser creates a lightweight DOM representation specifically for
+ * schema validation and processing.
  *
  * @author Rahul Srivastava, Sun Microsystems Inc.
  * @author Sandy Gao, IBM
@@ -58,11 +60,14 @@ public class SchemaDOMParser extends DefaultXMLDocumentHandler {
     public static final String GENERATE_SYNTHETIC_ANNOTATION =
             Constants.XERCES_FEATURE_PREFIX + Constants.GENERATE_SYNTHETIC_ANNOTATIONS_FEATURE;
 
-    // the locator containing line/column information
+    /**
+     * The locator containing line/column information.
+     */
     protected XMLLocator fLocator;
 
-    // namespace context, needed for producing
-    // representations of annotations
+    /**
+     * Namespace context, needed for producing representations of annotations.
+     */
     protected NamespaceContext fNamespaceContext = null;
 
     SchemaDOM schemaDOM;
@@ -73,7 +78,11 @@ public class SchemaDOMParser extends DefaultXMLDocumentHandler {
     // Constructors
     //
 
-    /** Default constructor. */
+    /**
+     * Constructs a SchemaDOMParser with the specified parser configuration.
+     * Sets up the parser to handle document, DTD, and DTD content model events.
+     * @param config the XML parser configuration to use
+     */
     public SchemaDOMParser(XMLParserConfiguration config) {
         this.config = config;
         config.setDocumentHandler(this);
@@ -441,6 +450,8 @@ public class SchemaDOMParser extends DefaultXMLDocumentHandler {
 
     /**
      * Returns the DOM document object.
+     *
+     * @return The Document object
      */
     public Document getDocument() {
         return schemaDOM;
@@ -448,8 +459,9 @@ public class SchemaDOMParser extends DefaultXMLDocumentHandler {
 
     /**
      * Delegates to SchemaParsingConfig.setFeature
-     * @param featureId
-     * @param state
+     *
+     * @param featureId The feature identifier
+     * @param state The feature state
      */
     public void setFeature(String featureId, boolean state) {
         config.setFeature(featureId, state);
@@ -457,8 +469,9 @@ public class SchemaDOMParser extends DefaultXMLDocumentHandler {
 
     /**
      * Delegates to SchemaParsingConfig.getFeature
-     * @param featureId
-     * @return boolean
+     *
+     * @param featureId The feature identifier
+     * @return The feature state
      */
     public boolean getFeature(String featureId) {
         return config.getFeature(featureId);
@@ -466,8 +479,9 @@ public class SchemaDOMParser extends DefaultXMLDocumentHandler {
 
     /**
      * Delegates to SchemaParsingConfig.setProperty.
-     * @param propertyId
-     * @param value
+     *
+     * @param propertyId The property identifier
+     * @param value The property value
      */
     public void setProperty(String propertyId, Object value) {
         config.setProperty(propertyId, value);
@@ -475,8 +489,9 @@ public class SchemaDOMParser extends DefaultXMLDocumentHandler {
 
     /**
      * Delegates to SchemaParsingConfig.getProperty.
-     * @param propertyId
-     * @return Object
+     *
+     * @param propertyId The property identifier
+     * @return The property value
      */
     public Object getProperty(String propertyId) {
         return config.getProperty(propertyId);
@@ -484,7 +499,8 @@ public class SchemaDOMParser extends DefaultXMLDocumentHandler {
 
     /**
      * Delegates to SchemaParsingConfig.setEntityResolver.
-     * @param er XMLEntityResolver
+     *
+     * @param er The XMLEntityResolver
      */
     public void setEntityResolver(XMLEntityResolver er) {
         config.setEntityResolver(er);
@@ -493,8 +509,8 @@ public class SchemaDOMParser extends DefaultXMLDocumentHandler {
     /**
      * Delegates parsing to SchemaParsingConfig
      *
-     * @param inputSource
-     * @throws IOException
+     * @param inputSource The input source to parse
+     * @throws IOException If an I/O error occurs
      */
     public void parse(XMLInputSource inputSource) throws IOException {
         config.parse(inputSource);
@@ -517,7 +533,7 @@ public class SchemaDOMParser extends DefaultXMLDocumentHandler {
     /**
      * A simple boolean based stack.
      *
-     * @xerces.internal
+
      */
     private static final class BooleanStack {
 

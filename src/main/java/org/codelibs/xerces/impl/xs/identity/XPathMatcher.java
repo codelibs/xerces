@@ -30,7 +30,7 @@ import org.xml.sax.SAXException;
 /**
  * XPath matcher.
  *
- * @xerces.internal
+
  *
  * @author Andy Clark, IBM
  *
@@ -67,13 +67,13 @@ public class XPathMatcher {
 
     // constants describing whether a match was made,
     // and if so how.
-    // matched any way
+    /** Indicates that a match was made. */
     protected static final int MATCHED = 1;
-    // matched on the attribute axis
+    /** Indicates that a match was made on the attribute axis. */
     protected static final int MATCHED_ATTRIBUTE = 3;
-    // matched on the descendant-or-self axixs
+    /** Indicates that a match was made on the descendant-or-self axis. */
     protected static final int MATCHED_DESCENDANT = 5;
-    // matched some previous (ancestor) node on the descendant-or-self-axis, but not this node
+    /** Indicates that a match was made on some previous (ancestor) node on the descendant-or-self axis, but not this node. */
     protected static final int MATCHED_DESCENDANT_PREVIOUS = 13;
 
     //
@@ -128,8 +128,9 @@ public class XPathMatcher {
     //
 
     /**
-     * Returns value of first member of fMatched that
-     * is nonzero.
+     * Returns value of first member of fMatched that is nonzero.
+     *
+     * @return true if the XPath expression has been matched, false otherwise
      */
     public boolean isMatched() {
         // xpath has been matched if any one of the members of the union have matched.
@@ -145,15 +146,27 @@ public class XPathMatcher {
     // Protected methods
     //
 
-    // a place-holder method; to be overridden by subclasses
-    // that care about matching element content.
+    /**
+     * Handles element content matching.
+     * This is a placeholder method to be overridden by subclasses that care about matching element content.
+     *
+     * @param type the type definition
+     * @param nillable whether the element is nillable
+     * @param value the actual value
+     * @param valueType the value type
+     * @param itemValueType the item value type list
+     */
     protected void handleContent(XSTypeDefinition type, boolean nillable, Object value, short valueType, ShortList itemValueType) {
     }
 
     /**
-     * This method is called when the XPath handler matches the
-     * XPath expression. Subclasses can override this method to
-     * provide default handling upon a match.
+     * This method is called when the XPath handler matches the XPath expression.
+     * Subclasses can override this method to provide default handling upon a match.
+     *
+     * @param actualValue the actual value that was matched
+     * @param valueType the type of the value
+     * @param itemValueType the item value type list for list types
+     * @param isNil true if the element is nil, false otherwise
      */
     protected void matched(Object actualValue, short valueType, ShortList itemValueType, boolean isNil) {
         if (DEBUG_METHODS3) {
@@ -191,8 +204,6 @@ public class XPathMatcher {
      *
      * @param element    The name of the element.
      * @param attributes The element attributes.
-     *
-     * @throws SAXException Thrown by handler to signal an error.
      */
     public void startElement(QName element, XMLAttributes attributes) {
         if (DEBUG_METHODS2) {
@@ -342,19 +353,17 @@ public class XPathMatcher {
     // startElement(QName,XMLAttrList,int)
 
     /**
-       * @param element
-       *        name of the element.
-       * @param type
-       *        content type of this element. IOW, the XML schema type
-       *        of the <tt>value</tt>. Note that this may not be the type declared
-       *        in the element declaration, but it is "the actual type". For example,
-       *        if the XML is &lt;foo xsi:type="xs:string">aaa&lt;/foo>, this
-       *        parameter will be "xs:string".
-       * @param nillable - nillable
-       *        true if the element declaration is nillable.
-       * @param value - actual value
-       *        the typed value of the content of this element.
-       */
+     * Handles the end of an element.
+     *
+     * @param element the name of the element
+     * @param type the content type of this element (the actual XML schema type of the value,
+     *        which may not be the type declared in the element declaration; for example,
+     *        if the XML is &lt;foo xsi:type="xs:string"&gt;aaa&lt;/foo&gt;, this parameter will be "xs:string")
+     * @param nillable true if the element declaration is nillable
+     * @param value the typed value of the content of this element
+     * @param valueType the type of the value
+     * @param itemValueType the item value type list for list types
+     */
     public void endElement(QName element, XSTypeDefinition type, boolean nillable, Object value, short valueType, ShortList itemValueType) {
         if (DEBUG_METHODS2) {
             System.out.println(toString() + "#endElement(" + "element={" + element + "}," + ")");

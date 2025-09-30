@@ -48,6 +48,7 @@ public interface XSLoader {
      * report errors during the loading of an XML Schema document. </dd>
      * </dl></dd>
      * </dl>
+     * @return The DOM configuration object
      */
     public DOMConfiguration getConfig();
 

@@ -29,7 +29,7 @@ import org.codelibs.xerces.xs.XSTypeDefinition;
 /**
  * To store and validate information about substitutionGroup
  *
- * @xerces.internal
+
  *
  * @author Sandy Gao, IBM
  *
@@ -44,13 +44,19 @@ public class SubstitutionGroupHandler {
 
     /**
      * Default constructor
+     * @param elementDeclHelper the element declaration helper
      */
     public SubstitutionGroupHandler(XSElementDeclHelper elementDeclHelper) {
         fXSElementDeclHelper = elementDeclHelper;
     }
 
-    // 3.9.4 Element Sequence Locally Valid (Particle) 2.3.3
-    // check whether one element decl matches an element with the given qname
+    /**
+     * Check whether one element declaration matches an element with the given QName.
+     * Implementation of 3.9.4 Element Sequence Locally Valid (Particle) 2.3.3.
+     * @param element the element QName to match
+     * @param exemplar the exemplar element declaration
+     * @return the matching element declaration, or null if no match
+     */
     public XSElementDecl getMatchingElemDecl(QName element, XSElementDecl exemplar) {
         if (element.localpart == exemplar.fName && element.uri == exemplar.fTargetNamespace) {
             return exemplar;
@@ -81,8 +87,14 @@ public class SubstitutionGroupHandler {
         return null;
     }
 
-    // 3.3.6 Substitution Group OK (Transitive)
-    // check whether element can substitute exemplar
+    /**
+     * Check whether element can substitute exemplar.
+     * Implementation of 3.3.6 Substitution Group OK (Transitive).
+     * @param element the element declaration to check
+     * @param exemplar the exemplar element declaration
+     * @param blockingConstraint the blocking constraint
+     * @return true if substitution is allowed, false otherwise
+     */
     protected boolean substitutionGroupOK(XSElementDecl element, XSElementDecl exemplar, short blockingConstraint) {
         // For an element declaration (call it D) to be validly substitutable for another element declaration (call it C) subject to a blocking constraint (a subset of {substitution, extension, restriction}, the value of a {disallowed substitutions}) one of the following must be true:
         // 1. D and C are the same element declaration.
@@ -158,7 +170,12 @@ public class SubstitutionGroupHandler {
         return true;
     }
 
-    // check whether element is in exemplar's substitution group
+    /**
+     * Check whether element is in exemplar's substitution group.
+     * @param element the element declaration to check
+     * @param exemplar the exemplar element declaration
+     * @return true if element is in exemplar's substitution group, false otherwise
+     */
     public boolean inSubstitutionGroup(XSElementDecl element, XSElementDecl exemplar) {
         // [Definition:]  Every element declaration (call this HEAD) in the {element declarations} of a schema defines a substitution group, a subset of those {element declarations}, as follows:
         // Define PSG, the potential substitution group for HEAD, as follows:
@@ -189,7 +206,8 @@ public class SubstitutionGroupHandler {
     }
 
     /**
-     * add a list of substitution group information.
+     * Add a list of substitution group information.
+     * @param elements the array of element declarations to add
      */
     public void addSubstitutionGroup(XSElementDecl[] elements) {
         XSElementDecl subHead, element;
@@ -211,12 +229,13 @@ public class SubstitutionGroupHandler {
     }
 
     /**
-     * get all elements that can substitute the given element,
-     * according to the spec, we shouldn't consider the {block} constraints.
-     *
-     * from the spec, substitution group of a given element decl also contains
-     * the element itself. but the array returned from this method doesn't
-     * containt this element.
+     * Get all elements that can substitute the given element.
+     * According to the spec, we shouldn't consider the {block} constraints.
+     * From the spec, substitution group of a given element declaration also contains
+     * the element itself, but the array returned from this method doesn't
+     * contain this element.
+     * @param element the element declaration
+     * @return array of element declarations that can substitute the given element
      */
     public XSElementDecl[] getSubstitutionGroup(XSElementDecl element) {
         // If we already have sub group for this element, just return it.

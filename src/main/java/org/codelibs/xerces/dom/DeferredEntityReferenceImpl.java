@@ -18,7 +18,7 @@
 package org.codelibs.xerces.dom;
 
 /**
- * EntityReference models the XML &entityname; syntax, when used for
+ * EntityReference models the XML &amp;entityname; syntax, when used for
  * entities defined by the DOM. Entities hardcoded into XML, such as
  * character entities, should instead have been translated into text
  * by the code which generated the DOM tree.
@@ -65,7 +65,7 @@ package org.codelibs.xerces.dom;
  * structure-change-monitoring code I implemented to support
  * DeepNodeList.
  *
- * @xerces.internal
+
  *
  * @version $Id: DeferredEntityReferenceImpl.java 447266 2006-09-18 05:57:49Z mrglavas $
  * @since  PR-DOM-Level-1-19980818.

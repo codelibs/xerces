@@ -24,7 +24,7 @@ import org.codelibs.xerces.util.XML11Char;
 /**
  * NMTOKEN datatype validator for NMTokens from XML 1.1.
  *
- * @xerces.internal
+
  *
  * @author Jeffrey Rodriguez, IBM
  * @author Sandy Gao, IBM
@@ -34,7 +34,9 @@ import org.codelibs.xerces.util.XML11Char;
  */
 public class XML11NMTOKENDatatypeValidator extends NMTOKENDatatypeValidator {
 
-    // construct a NMTOKEN datatype validator
+    /**
+     * Constructs a NMTOKEN datatype validator.
+     */
     public XML11NMTOKENDatatypeValidator() {
         super();
     }
@@ -45,7 +47,7 @@ public class XML11NMTOKENDatatypeValidator extends NMTOKENDatatypeValidator {
      *
      * @param content       the string value that needs to be validated
      * @param context       the validation context
-     * @throws InvalidDatatypeException if the content is
+     * @throws InvalidDatatypeValueException if the content is
      *         invalid according to the rules for the validators
      * @see InvalidDatatypeValueException
      */

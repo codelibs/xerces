@@ -34,7 +34,7 @@ import org.w3c.dom.Node;
  * class in order to easily implement some features that we need for
  * efficient schema handling.  It will not be generally useful.
  *
- * @xerces.internal
+
  *
  * @author Neil Graham, IBM
  *
@@ -44,6 +44,11 @@ public class SchemaNamespaceSupport extends NamespaceSupport {
 
     private SchemaRootContext fSchemaRootContext = null;
 
+    /**
+     * Constructs a SchemaNamespaceSupport instance from a schema root element.
+     * @param schemaRoot the root element of the schema document
+     * @param symbolTable the symbol table for string management
+     */
     public SchemaNamespaceSupport(Element schemaRoot, SymbolTable symbolTable) {
         super();
         if (schemaRoot != null && !(schemaRoot instanceof ElementImpl)) {
@@ -54,7 +59,11 @@ public class SchemaNamespaceSupport extends NamespaceSupport {
         }
     } // constructor
 
-    // more effecient than NamespaceSupport(NamespaceContext)
+    /**
+     * Copy constructor that creates a clone of an existing SchemaNamespaceSupport.
+     * More efficient than creating from a generic NamespaceContext.
+     * @param nSupport the SchemaNamespaceSupport instance to copy
+     */
     public SchemaNamespaceSupport(SchemaNamespaceSupport nSupport) {
         fSchemaRootContext = nSupport.fSchemaRootContext;
         fNamespaceSize = nSupport.fNamespaceSize;
@@ -73,10 +82,11 @@ public class SchemaNamespaceSupport extends NamespaceSupport {
      * that this is one unified context.  This is meant to be used in
      * conjunction with things like local elements, whose declarations
      * may be deeply nested but which for all practical purposes may
-     * be regarded as being one level below the global <schema>
+     * be regarded as being one level below the global &lt;schema&gt;
      * element--at least with regard to namespace declarations.
      * It's worth noting that the context from which the strings are
      * being imported had better be using the same SymbolTable.
+     * @param namespaceDecls array of namespace declaration strings to set as effective context
      */
     public void setEffectiveContext(String[] namespaceDecls) {
         if (namespaceDecls == null || namespaceDecls.length == 0)
@@ -97,6 +107,7 @@ public class SchemaNamespaceSupport extends NamespaceSupport {
      * This method returns an array of Strings, as would be stored in
      * a NamespaceSupport object.  This array contains all
      * declarations except those at the global level.
+     * @return array of local namespace declaration strings, or null if none exist
      */
     public String[] getEffectiveLocalContext() {
         // the trick here is to recognize that all local contexts
@@ -116,8 +127,11 @@ public class SchemaNamespaceSupport extends NamespaceSupport {
         return returnVal;
     } // getEffectiveLocalContext():String
 
-    // This method removes from this object all the namespaces
-    // returned by getEffectiveLocalContext.
+    /**
+     * Removes from this object all local namespace declarations,
+     * leaving only global-level namespace declarations.
+     * This method removes all the namespaces returned by getEffectiveLocalContext.
+     */
     public void makeGlobal() {
         if (fCurrentContext >= 3) {
             fCurrentContext = 3;

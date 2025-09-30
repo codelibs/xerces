@@ -19,7 +19,8 @@ package org.codelibs.xerces.html.dom;
 import org.w3c.dom.html.HTMLModElement;
 
 /**
- * @xerces.internal
+ * Implementation of HTML Mod element.
+ *
  * @version $Revision: 1029415 $ $Date: 2010-10-31 22:32:22 +0530 (Sun, 31 Oct 2010) $
  * @author <a href="mailto:arkin@exoffice.com">Assaf Arkin</a>
  * @see org.w3c.dom.html.HTMLModElement
@@ -49,6 +50,7 @@ public class HTMLModElementImpl extends HTMLElementImpl implements HTMLModElemen
      * Constructor requires owner document and tag name.
      *
      * @param owner The owner HTML document
+     * @param name The element name
      */
     public HTMLModElementImpl(HTMLDocumentImpl owner, String name) {
         super(owner, name);

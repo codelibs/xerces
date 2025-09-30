@@ -63,7 +63,11 @@ public class XMLParseException extends XNIException {
     // Constructors
     //
 
-    /** Constructs a parse exception. */
+    /**
+     * Constructs a parse exception.
+     * @param locator the XMLLocator containing location information
+     * @param message the error message
+     */
     public XMLParseException(XMLLocator locator, String message) {
         super(message);
         if (locator != null) {
@@ -77,7 +81,12 @@ public class XMLParseException extends XNIException {
         }
     } // <init>(XMLLocator,String)
 
-    /** Constructs a parse exception. */
+    /**
+     * Constructs a parse exception.
+     * @param locator the XMLLocator containing location information
+     * @param message the error message
+     * @param exception the wrapped exception
+     */
     public XMLParseException(XMLLocator locator, String message, Exception exception) {
         super(message, exception);
         if (locator != null) {
@@ -95,37 +104,58 @@ public class XMLParseException extends XNIException {
     // Public methods
     //
 
-    /** Returns the public identifier. */
+    /**
+     * Returns the public identifier.
+     * @return the public identifier
+     */
     public String getPublicId() {
         return fPublicId;
     } // getPublicId():String
 
-    /** Returns the expanded system identifier. */
+    /**
+     * Returns the expanded system identifier.
+     * @return the expanded system identifier
+     */
     public String getExpandedSystemId() {
         return fExpandedSystemId;
     } // getExpandedSystemId():String
 
-    /** Returns the literal system identifier. */
+    /**
+     * Returns the literal system identifier.
+     * @return the literal system identifier
+     */
     public String getLiteralSystemId() {
         return fLiteralSystemId;
     } // getLiteralSystemId():String
 
-    /** Returns the base system identifier. */
+    /**
+     * Returns the base system identifier.
+     * @return the base system identifier
+     */
     public String getBaseSystemId() {
         return fBaseSystemId;
     } // getBaseSystemId():String
 
-    /** Returns the line number. */
+    /**
+     * Returns the line number.
+     * @return the line number
+     */
     public int getLineNumber() {
         return fLineNumber;
     } // getLineNumber():int
 
-    /** Returns the row number. */
+    /**
+     * Returns the column number.
+     * @return the column number
+     */
     public int getColumnNumber() {
         return fColumnNumber;
     } // getRowNumber():int
 
-    /** Returns the character offset. */
+    /**
+     * Returns the character offset.
+     * @return the character offset
+     */
     public int getCharacterOffset() {
         return fCharacterOffset;
     } // getCharacterOffset():int

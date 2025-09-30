@@ -41,16 +41,19 @@ public interface XSIDCDefinition extends XSObject {
 
     /**
      * [identity-constraint category]: one of key, keyref or unique.
+     * @return the identity-constraint category
      */
     public short getCategory();
 
     /**
      * [selector]: a restricted XPath 1.0 expression.
+     * @return the selector string
      */
     public String getSelectorStr();
 
     /**
      * [fields]: a non-empty list of restricted  XPath 1.0 expressions.
+     * @return the list of field strings
      */
     public StringList getFieldStrs();
 
@@ -58,11 +61,13 @@ public interface XSIDCDefinition extends XSObject {
      * [referenced key]: required if [identity-constraint category] is keyref,
      * <code>null</code> otherwise. An identity-constraint definition with [
      * identity-constraint category] equal to key or unique.
+     * @return the referenced key definition or null
      */
     public XSIDCDefinition getRefKey();
 
     /**
      * A sequence of [annotations] or an empty  <code>XSObjectList</code>.
+     * @return the list of annotations
      */
     public XSObjectList getAnnotations();
 

@@ -34,8 +34,15 @@ public interface WMLUElement extends WMLElement {
      * The xml:lang that specifics the natural or formal language in
      * which the document is written.
      * (Section 8.8, WAP WML Version 16-Jun-1999)
+     *
+     * @param newValue the new xml:lang value
      */
     public void setXmlLang(String newValue);
 
+    /**
+     * Returns the xml:lang attribute value.
+     *
+     * @return the xml:lang attribute value
+     */
     public String getXmlLang();
 }

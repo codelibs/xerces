@@ -24,7 +24,7 @@ import org.w3c.dom.Element;
  * an XML schema annotation as well as information on the location
  * of the annotation in the document it originated from.
  *
- * @xerces.internal
+
  *
  * @author Michael Glavassevich, IBM
  * @version $Id: XSAnnotationInfo.java 699892 2008-09-28 21:08:27Z mrglavas $

@@ -220,10 +220,11 @@ public class DatatypeFactoryImpl extends DatatypeFactory {
     /**
      * <p>Create an <code>XMLGregorianCalendar</code> from a {@link GregorianCalendar}.</p>
      *
-     * <table border="2" rules="all" cellpadding="2">
+     * <table border="1">
+     *   <caption>Field by Field Conversion from GregorianCalendar to XMLGregorianCalendar</caption>
      *   <thead>
      *     <tr>
-     *       <th align="center" colspan="2">
+     *       <th colspan="2">
      *          Field by Field Conversion from
      *          {@link GregorianCalendar} to an {@link XMLGregorianCalendar}
      *       </th>
@@ -271,7 +272,8 @@ public class DatatypeFactoryImpl extends DatatypeFactory {
      * using the <code>this.getTimezone()</code>.</li>
      * <li>else use the <code>GregorianCalendar</code> default timezone value
      * for the host is defined as specified by
-     * <code>java.util.TimeZone.getDefault()</code>.</li></p>
+     * <code>java.util.TimeZone.getDefault()</code>.</li>
+     * </ul>
      *
      * @param cal <code>java.util.GregorianCalendar</code> used to create <code>XMLGregorianCalendar</code>
      *

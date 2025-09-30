@@ -37,58 +37,39 @@ import org.codelibs.xerces.xni.parser.XMLConfigurationException;
 import org.codelibs.xerces.xni.parser.XMLErrorHandler;
 
 /**
- * <p>
- * This is a pipeline component which extends the XIncludeHandler to perform
- * XPointer specific processing specified in the W3C XPointerFramework and
- * element() Scheme Recommendations.
- * </p>
- *
- * <p>
- * This component analyzes each event in the pipeline, looking for an element
- * that matches a PointerPart in the parent XInclude element's xpointer attribute
- * value.  If the match succeeds, all children are passed by this component.
- * </p>
- *
- * <p>
- * See the <a href="http://www.w3.org/TR/xptr-framework//">XPointer Framework Recommendation</a> for
- * more information on the XPointer Framework and ShortHand Pointers.
- * See the <a href="http://www.w3.org/TR/xptr-element/">XPointer element() Scheme Recommendation</a> for
- * more information on the XPointer element() Scheme.
- * </p>
- *
- * @xerces.internal
- *
- * @version $Id: XPointerHandler.java 603808 2007-12-13 03:44:48Z mrglavas $
+ * XPointer handler that extends XInclude functionality to support XPointer expressions.
+ * This class processes XPointer expressions to identify and select specific parts of XML documents.
  */
-public final class XPointerHandler extends XIncludeHandler implements XPointerProcessor {
+public class XPointerHandler extends XIncludeHandler implements XPointerProcessor {
 
     // Fields
-    // An ArrayList of XPointerParts
+    /** An ArrayList of XPointerParts. */
     protected ArrayList fXPointerParts = null;
 
-    // The current XPointerPart
+    /** The current XPointerPart. */
     protected XPointerPart fXPointerPart = null;
 
-    // Has the fXPointerPart resolved successfully
+    /** Indicates whether the fXPointerPart has resolved successfully. */
     protected boolean fFoundMatchingPtrPart = false;
 
-    // The XPointer Error reporter
+    /** The XPointer Error reporter. */
     protected XMLErrorReporter fXPointerErrorReporter;
 
-    // The XPointer Error Handler
+    /** The XPointer Error Handler. */
     protected XMLErrorHandler fErrorHandler;
 
-    // XPointerFramework symbol table
+    /** XPointerFramework symbol table. */
     protected SymbolTable fSymbolTable = null;
 
     // Supported schemes
     private final String ELEMENT_SCHEME_NAME = "element";
 
-    // Has the XPointer resolved the subresource
+    /** Indicates whether the XPointer has resolved the subresource. */
     protected boolean fIsXPointerResolved = false;
 
-    // Fixup xml:base and xml:lang attributes
+    /** Indicates whether to fixup xml:base attributes. */
     protected boolean fFixupBase = false;
+    /** Indicates whether to fixup xml:lang attributes. */
     protected boolean fFixupLang = false;
 
     // ************************************************************************
@@ -96,7 +77,7 @@ public final class XPointerHandler extends XIncludeHandler implements XPointerPr
     // ************************************************************************
 
     /**
-     *
+     * Default constructor.
      */
     public XPointerHandler() {
         super();
@@ -105,6 +86,13 @@ public final class XPointerHandler extends XIncludeHandler implements XPointerPr
         fSymbolTable = new SymbolTable();
     }
 
+    /**
+     * Constructor with symbol table, error handler and error reporter.
+     *
+     * @param symbolTable The symbol table to use
+     * @param errorHandler The error handler to use
+     * @param errorReporter The error reporter to use
+     */
     public XPointerHandler(SymbolTable symbolTable, XMLErrorHandler errorHandler, XMLErrorReporter errorReporter) {
         super();
 
@@ -115,18 +103,19 @@ public final class XPointerHandler extends XIncludeHandler implements XPointerPr
         //fErrorReporter = errorReporter; // The XInclude ErrorReporter
     }
 
-    public void setDocumentHandler(XMLDocumentHandler handler) {
-        fDocumentHandler = handler;
-    }
-
     // ************************************************************************
-    //  Implementation of the XPointerProcessor interface.
+    // Implementation of the XPointerProcessor interface.
     // ************************************************************************
 
     /**
-     * Parses the XPointer framework expression and delegates scheme specific parsing.
+     * Parses an XPointer expression.  It performs scheme specific processing
+     * depending on the pointer parts and sets up a Vector of XPointerParts
+     * in the order (left-to-right) they appear in the XPointer expression.
      *
-     * @see org.codelibs.xerces.xpointer.XPointerProcessor#parseXPointer(java.lang.String)
+     * @param xpointer A String representing the xpointer expression.
+     * @throws XNIException Thrown if the xpointer string does not conform to
+     *         the XPointer Framework syntax or the syntax of the pointer part does
+     *         not conform to its definition for its scheme.
      */
     public void parseXPointer(String xpointer) throws XNIException {
 
@@ -148,7 +137,7 @@ public final class XPointerHandler extends XIncludeHandler implements XPointerPr
             }
         };
 
-        // scan the XPointer expression
+        // parse the expression and report any errors if the xpointer is invalid
         int length = xpointer.length();
         boolean success = scanner.scanExpr(fSymbolTable, tokens, xpointer, 0, length);
 
@@ -223,7 +212,13 @@ public final class XPointerHandler extends XIncludeHandler implements XPointerPr
                 closeParenCount++;
 
                 while (tokens.hasMore()) {
-                    if (tokens.getTokenString(tokens.peekToken()) != "XPTRTOKEN_OPEN_PAREN") {
+                    if (closeParenCount < openParenCount) {
+                        token = tokens.nextToken();
+                        closeParen = tokens.getTokenString(token);
+                        if (closeParen != "XPTRTOKEN_CLOSE_PAREN") {
+                            break;
+                        }
+                    } else {
                         break;
                     }
                     closeParenCount++;
@@ -241,13 +236,13 @@ public final class XPointerHandler extends XIncludeHandler implements XPointerPr
                     elementSchemePointer.setSchemeName(schemeName);
                     elementSchemePointer.setSchemeData(schemeData);
 
-                    // If an exception occurs while parsing the element() scheme expression
-                    // ignore it and move on to the next pointer part
+                    // Try to parse the element pointer scheme and catch
+                    // any XNI Exceptions
                     try {
                         elementSchemePointer.parseXPointer(schemeData);
                         fXPointerParts.add(elementSchemePointer);
                     } catch (XNIException e) {
-                        // Re-throw the XPointer element() scheme syntax error.
+                        // Re-throw the exception ???
                         throw new XNIException(e);
                     }
 
@@ -273,16 +268,12 @@ public final class XPointerHandler extends XIncludeHandler implements XPointerPr
         boolean resolved = false;
 
         // The result of the first pointer part whose evaluation identifies
-        // one or more subresources is reported by the XPointer processor as the
-        // result of the pointer as a whole, and evaluation stops.
-        // In our implementation, typically the first xpointer scheme that
-        // matches an element is the document is considered.
-        // If the pointer part resolved then use it, else search for the fragment
-        // using next pointer part from lef-right.
+        // one or more subresources is reported as the result of the
+        // XPointer as a whole, and evaluation stops.
         if (!fFoundMatchingPtrPart) {
 
-            // for each element, attempt to resolve it against each pointer part
-            // in the XPointer expression until a matching element is found.
+            // Find the next pointer part token that identifies some subresource
+            // of the input resource.
             for (int i = 0; i < fXPointerParts.size(); i++) {
 
                 fXPointerPart = (XPointerPart) fXPointerParts.get(i);
@@ -306,26 +297,11 @@ public final class XPointerHandler extends XIncludeHandler implements XPointerPr
     }
 
     /**
-     * Returns true if the Node fragment is resolved.
-     *
-     * @see org.codelibs.xerces.xpointer.XPointerProcessor#isFragmentResolved()
-     */
-    public boolean isFragmentResolved() throws XNIException {
-        boolean resolved = (fXPointerPart != null) ? fXPointerPart.isFragmentResolved() : false;
-
-        if (!fIsXPointerResolved) {
-            fIsXPointerResolved = resolved;
-        }
-
-        return resolved;
-    }
-
-    /**
      * Returns true if the XPointer expression resolves to a non-element child
      * of the current resource fragment.
      *
      * @see org.codelibs.xerces.xpointer.XPointerPart#isChildFragmentResolved()
-     *
+     * @return true if the XPointer expression resolves to a non-element child
      */
     public boolean isChildFragmentResolved() throws XNIException {
         boolean resolved = (fXPointerPart != null) ? fXPointerPart.isChildFragmentResolved() : false;
@@ -337,6 +313,17 @@ public final class XPointerHandler extends XIncludeHandler implements XPointerPr
      *
      * @see org.codelibs.xerces.xpointer.XPointerProcessor#isFragmentResolved()
      */
+    public boolean isFragmentResolved() throws XNIException {
+        boolean resolved = (fXPointerPart != null) ? fXPointerPart.isFragmentResolved() : false;
+        return resolved;
+    }
+
+    /**
+     * Returns true if the XPointer expression resolves to a resource fragment
+     * specified as input else returns false.
+     *
+     * @see org.codelibs.xerces.xpointer.XPointerProcessor#isFragmentResolved()
+     */
     public boolean isXPointerResolved() throws XNIException {
         return fIsXPointerResolved;
     }
@@ -344,15 +331,14 @@ public final class XPointerHandler extends XIncludeHandler implements XPointerPr
     /**
      * Returns the pointer part used to resolve the document fragment.
      *
-     * @return String - The pointer part used to resolve the document fragment.
+     * @return The pointer part used to resolve the document fragment.
      */
     public XPointerPart getXPointerPart() {
         return fXPointerPart;
     }
 
     /**
-     * Reports XPointer Errors
-     *
+     * Reports an XPointer error
      */
     private void reportError(String key, Object[] arguments) throws XNIException {
         /*
@@ -365,8 +351,7 @@ public final class XPointerHandler extends XIncludeHandler implements XPointerPr
     }
 
     /**
-     * Reports XPointer Warnings
-     *
+     * Reports an XPointer warning
      */
     private void reportWarning(String key, Object[] arguments) throws XNIException {
         fXPointerErrorReporter.reportError(XPointerMessageFormatter.XPOINTER_DOMAIN, key, arguments, XMLErrorReporter.SEVERITY_WARNING);
@@ -374,7 +359,6 @@ public final class XPointerHandler extends XIncludeHandler implements XPointerPr
 
     /**
      * Initializes error handling objects
-     *
      */
     protected void initErrorReporter() {
         if (fXPointerErrorReporter == null) {
@@ -384,9 +368,8 @@ public final class XPointerHandler extends XIncludeHandler implements XPointerPr
             fErrorHandler = new XPointerErrorHandler();
         }
         /*
-         fXPointerErrorReporter.setProperty(Constants.XERCES_PROPERTY_PREFIX
-         + Constants.ERROR_HANDLER_PROPERTY, fErrorHandler);
-         */
+        fXPointerErrorReporter.setProperty(ERROR_HANDLER, fErrorHandler);
+        */
         fXPointerErrorReporter.putMessageFormatter(XPointerMessageFormatter.XPOINTER_DOMAIN, new XPointerMessageFormatter());
     }
 
@@ -414,9 +397,84 @@ public final class XPointerHandler extends XIncludeHandler implements XPointerPr
     }
 
     /**
+     * List of framework provided features that the XPointer component
+     * recognized.
+     */
+    private final String[] fRecognizedFeatures = new String[] {
+
+    };
+
+    /**
+     * List of framework provided properties that the XPointer component
+     * recognized.
+     */
+    private final String[] fRecognizedProperties = new String[] { Constants.XERCES_PROPERTY_PREFIX + Constants.ERROR_HANDLER_PROPERTY,
+            Constants.XERCES_PROPERTY_PREFIX + Constants.ERROR_REPORTER_PROPERTY,
+            Constants.XERCES_PROPERTY_PREFIX + Constants.XINCLUDE_FIXUP_BASE_URIS_FEATURE,
+            Constants.XERCES_PROPERTY_PREFIX + Constants.XINCLUDE_FIXUP_LANGUAGE_FEATURE,
+            Constants.XERCES_PROPERTY_PREFIX + Constants.SYMBOL_TABLE_PROPERTY };
+
+    /**
+     *
+     * @see org.codelibs.xerces.xinclude.XIncludeHandler#setProperty(java.lang.String, java.lang.Object)
+     */
+    public void setProperty(String propertyId, Object value) throws XMLConfigurationException {
+
+        // Error reporter
+        if (propertyId.equals(Constants.XERCES_PROPERTY_PREFIX + Constants.ERROR_REPORTER_PROPERTY)) {
+            if (value != null) {
+                fXPointerErrorReporter = (XMLErrorReporter) value;
+            } else {
+                fXPointerErrorReporter = null;
+            }
+        }
+        // Error handler
+        if (propertyId.equals(Constants.XERCES_PROPERTY_PREFIX + Constants.ERROR_HANDLER_PROPERTY)) {
+            if (value != null) {
+                fErrorHandler = (XMLErrorHandler) value;
+            } else {
+                fErrorHandler = null;
+            }
+        }
+        // xml:lang
+        if (propertyId.equals(Constants.XERCES_PROPERTY_PREFIX + Constants.XINCLUDE_FIXUP_LANGUAGE_FEATURE)) {
+            if (value != null) {
+                fFixupLang = ((Boolean) value).booleanValue();
+            } else {
+                fFixupLang = false;
+            }
+        }
+        // xml:base
+        if (propertyId.equals(Constants.XERCES_PROPERTY_PREFIX + Constants.XINCLUDE_FIXUP_BASE_URIS_FEATURE)) {
+            if (value != null) {
+                fFixupBase = ((Boolean) value).booleanValue();
+            } else {
+                fFixupBase = false;
+            }
+        }
+        // SymbolTable
+        if (propertyId.equals(Constants.XERCES_PROPERTY_PREFIX + Constants.SYMBOL_TABLE_PROPERTY)) {
+            if (value != null) {
+                fSymbolTable = (SymbolTable) value;
+            } else {
+                fSymbolTable = null;
+            }
+        }
+
+        super.setProperty(propertyId, value);
+    }
+
+    //
+    // ************************************************************************
+    // Token classes and Scanner classes  for  parsing the XPointer expressions
+    // ************************************************************************
+
+    /**
      * List of XPointer Framework tokens.
      *
      * @xerces.internal
+     *
+     * @author Arun Yadav, Sun Microsytems, Inc.
      *
      */
     private final class Tokens {
@@ -443,9 +501,7 @@ public final class XPointerHandler extends XIncludeHandler implements XPointerPr
 
         // Token count
         private static final int INITIAL_TOKEN_COUNT = 1 << 8;
-
         private int[] fTokens = new int[INITIAL_TOKEN_COUNT];
-
         private int fTokenCount = 0;
 
         // Current token position
@@ -485,7 +541,8 @@ public final class XPointerHandler extends XIncludeHandler implements XPointerPr
          * @param token The token string
          */
         private void addToken(String tokenStr) {
-            Integer tokenInt = (Integer) fTokenNames.get(tokenStr);
+            String str = (String) fTokenNames.get(tokenStr);
+            Integer tokenInt = str == null ? null : Integer.parseInt(str);
             if (tokenInt == null) {
                 tokenInt = new Integer(fTokenNames.size());
                 fTokenNames.put(tokenInt, tokenStr);
@@ -502,9 +559,9 @@ public final class XPointerHandler extends XIncludeHandler implements XPointerPr
             try {
                 fTokens[fTokenCount] = token;
             } catch (ArrayIndexOutOfBoundsException ex) {
-                int[] oldList = fTokens;
+                int[] oldArray = fTokens;
                 fTokens = new int[fTokenCount << 1];
-                System.arraycopy(oldList, 0, fTokens, 0, fTokenCount);
+                System.arraycopy(oldArray, 0, fTokens, 0, fTokenCount);
                 fTokens[fTokenCount] = token;
             }
             fTokenCount++;
@@ -554,19 +611,26 @@ public final class XPointerHandler extends XIncludeHandler implements XPointerPr
         }
 
         /**
-         * Obtains the token at the current position as a String.
+         * Obtains the token String at the current position, then advance
+         * the current position by one.
          *
-         * If there's no current token or if the current token
-         * is not a string token, this method throws
-         * If there's no such next token, this method throws
+         * throws If there's no such next token, this method throws
          * <tt>new XNIException("XPointerProcessingError");</tt>.
          */
         private String nextTokenAsString() throws XNIException {
-            String tokenStrint = getTokenString(nextToken());
-            if (tokenStrint == null) {
+            String tokenStr = getTokenString(nextToken());
+            if (tokenStr == null) {
                 reportError("XPointerProcessingError", null);
             }
-            return tokenStrint;
+            return tokenStr;
+        }
+
+        /**
+         * Returns the number of tokens.
+         *
+         */
+        private int getTokenCount() {
+            return fTokenCount;
         }
     }
 
@@ -576,6 +640,8 @@ public final class XPointerHandler extends XIncludeHandler implements XPointerPr
      *
      * @xerces.internal
      *
+     * @author Arun Yadav, Sun Microsystems, Inc.
+     *
      */
     private class Scanner {
 
@@ -583,14 +649,14 @@ public final class XPointerHandler extends XIncludeHandler implements XPointerPr
          * 7-bit ASCII subset
          *
          *  0   1   2   3   4   5   6   7   8   9   A   B   C   D   E   F
-         *  0,  0,  0,  0,  0,  0,  0,  0,  0, HT, LF,  0,  0, CR,  0,  0,  // 0
-         *  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  // 1
-         * SP,  !,  ",  #,  $,  %,  &,  ',  (,  ),  *,  +,  ,,  -,  .,  /,  // 2
-         *  0,  1,  2,  3,  4,  5,  6,  7,  8,  9,  :,  ;,  <,  =,  >,  ?,  // 3
-         *  @,  A,  B,  C,  D,  E,  F,  G,  H,  I,  J,  K,  L,  M,  N,  O,  // 4
-         *  P,  Q,  R,  S,  T,  U,  V,  W,  X,  Y,  Z,  [,  \,  ],  ^,  _,  // 5
-         *  `,  a,  b,  c,  d,  e,  f,  g,  h,  i,  j,  k,  l,  m,  n,  o,  // 6
-         *  p,  q,  r,  s,  t,  u,  v,  w,  x,  y,  z,  {,  |,  },  ~, DEL  // 7
+         *  0,  0,  0,  0,  0,  0,  0,  0,  0, HT, LF,  0,  0, CR,  0,  0,  // 0x00 to 0x0F
+         *  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  // 0x10 to 0x1F
+         * SP,  !,  ",  #,  $,  %,  &,  ',  (,  ),  *,  +,  ,,  -,  .,  /,  // 0x20 to 0x2F
+         *  0,  1,  2,  3,  4,  5,  6,  7,  8,  9,  :,  ;,  <,  =,  >,  ?,  // 0x30 to 0x3F
+         *  @,  A,  B,  C,  D,  E,  F,  G,  H,  I,  J,  K,  L,  M,  N,  O,  // 0x40 to 0x4F
+         *  P,  Q,  R,  S,  T,  U,  V,  W,  X,  Y,  Z,  [,  \,  ],  ^,  _,  // 0x50 to 0x5F
+         *  `,  a,  b,  c,  d,  e,  f,  g,  h,  i,  j,  k,  l,  m,  n,  o,  // 0x60 to 0x6F
+         *  p,  q,  r,  s,  t,  u,  v,  w,  x,  y,  z,  {,  |,  },  ~, DEL  // 0x70 to 0x7F
          */
         private static final byte CHARTYPE_INVALID = 0, // invalid XML character
                 CHARTYPE_OTHER = 1, // not special - one of "#%&;?\`{}~" or DEL
@@ -612,6 +678,10 @@ public final class XPointerHandler extends XIncludeHandler implements XPointerPr
                 0, 2, 1, 1, 1, 1, 1, 1, 1, 4, 5, 1, 1, 1, 6, 7, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 1, 1, 11, 1, 1, 1, 12, 12, 12, 12, 12,
                 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 1, 1, 1, 3, 13, 1, 12, 12, 12, 12, 12,
                 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 1, 1, 1, 1, 1 };
+
+        /**
+         * Symbol literals
+         */
 
         //
         // Data
@@ -795,13 +865,19 @@ public final class XPointerHandler extends XIncludeHandler implements XPointerPr
                         openParen = 0;
                         schemeDataBuff.delete(0, schemeDataBuff.length());
 
+                        break;
+
                     } else {
                         // ex. schemeName()
                         // Should we throw an exception with a more suitable message instead??
                         return false;
                     }
+
+                default:
+                    reportError("InvalidXPointerExpression", new Object[] { data });
+                    return false;
                 }
-            } // end while
+            }
             return true;
         }
 
@@ -813,7 +889,7 @@ public final class XPointerHandler extends XIncludeHandler implements XPointerPr
          *
          * @param data A String containing the XPointer expression
          * @param endOffset The int XPointer expression length
-         * @param currentOffset An int representing the current position of the XPointer expression pointer
+         * @param currentOffset The current position of the XPointer expression pointer
          */
         private int scanNCName(String data, int endOffset, int currentOffset) {
             int ch = data.charAt(currentOffset);
@@ -910,10 +986,13 @@ public final class XPointerHandler extends XIncludeHandler implements XPointerPr
         /**
          * This method adds the specified token to the token list. By
          * default, this method allows all tokens. However, subclasses
-         * of the XPathExprScanner can override this method in order
+         * of the XPointerFrameworkParser can override this method in order
          * to disallow certain tokens from being used in the scanned
-         * XPath expression. This is a convenient way of allowing only
-         * a subset of XPath.
+         * XPointer expression. This is a convenient way of allowing only
+         * a subset of XPointer Framework features to be used in the
+         * XPointer expression.
+         *
+         * @param tokens The feature/property name.
          */
         protected void addToken(Tokens tokens, int token) throws XNIException {
             tokens.addToken(token);
@@ -924,6 +1003,7 @@ public final class XPointerHandler extends XIncludeHandler implements XPointerPr
     // ************************************************************************
     //  Overridden XMLDocumentHandler methods
     // ************************************************************************
+
     /**
      * If the comment is a child of a matched element, then pass else return.
      *
@@ -991,6 +1071,7 @@ public final class XPointerHandler extends XIncludeHandler implements XPointerPr
 
             return;
         }
+
         super.startElement(element, attributes, augs);
     }
 
@@ -1013,10 +1094,8 @@ public final class XPointerHandler extends XIncludeHandler implements XPointerPr
             if (fFixupLang) {
                 processXMLLangAttributes(attributes);
             }
-            // no need to restore restoreBaseURI() for xml:base and xml:lang processing
-
-            // set the context invalid if the element till an element from the result infoset is included
-            fNamespaceContext.setContextInvalid();
+            // no need to restore the context for empty elements.
+            //fNamespaceContext.setContextInvalid();
             return;
         }
         super.emptyElement(element, attributes, augs);
@@ -1071,7 +1150,8 @@ public final class XPointerHandler extends XIncludeHandler implements XPointerPr
     public void endElement(QName element, Augmentations augs) throws XNIException {
         if (!resolveXPointer(element, null, augs, XPointerPart.EVENT_ELEMENT_END)) {
 
-            // no need to restore restoreBaseURI() for xml:base and xml:lang processing
+            // no need to restore the context for empty elements.
+            //fNamespaceContext.setContextInvalid();
             return;
         }
         super.endElement(element, augs);
@@ -1108,69 +1188,22 @@ public final class XPointerHandler extends XIncludeHandler implements XPointerPr
     }
 
     // ************************************************************************
-    // Overridden XMLComponent methods
-    // ************************************************************************
+
     /**
-     * <p>
-     * Sets the value of a property. This method is called by the component
-     * manager any time after reset when a property changes value.
-     * </p>
-     * <strong>Note:</strong> Components should silently ignore properties
-     * that do not affect the operation of the component.
+     * Sets a property for XPointer processing.
      *
-     * @param propertyId The property identifier.
-     * @param value      The value of the property.
-     *
-     * @throws XMLConfigurationException Thrown for configuration error.
-     *                                  In general, components should
-     *                                  only throw this exception if
-     *                                  it is <strong>really</strong>
-     *                                  a critical error.
+     * @param uri the namespace URI of the property
+     * @param localpart the local name of the property
+     * @param qname the qualified name of the property
+     * @param element the element context for the property
+     * @return true if the property was successfully set, false otherwise
+     * @throws XNIException if an error occurs during property setting
      */
-    public void setProperty(String propertyId, Object value) throws XMLConfigurationException {
+    public boolean setProperty(String uri, String localpart, String qname, QName element) throws XNIException {
 
-        // Error reporter
-        if (propertyId == Constants.XERCES_PROPERTY_PREFIX + Constants.ERROR_REPORTER_PROPERTY) {
-            if (value != null) {
-                fXPointerErrorReporter = (XMLErrorReporter) value;
-            } else {
-                fXPointerErrorReporter = null;
-            }
-        }
+        // Do nothing
 
-        // Error handler
-        if (propertyId == Constants.XERCES_PROPERTY_PREFIX + Constants.ERROR_HANDLER_PROPERTY) {
-            if (value != null) {
-                fErrorHandler = (XMLErrorHandler) value;
-            } else {
-                fErrorHandler = null;
-            }
-        }
-
-        // xml:lang
-        if (propertyId == Constants.XERCES_FEATURE_PREFIX + Constants.XINCLUDE_FIXUP_LANGUAGE_FEATURE) {
-            if (value != null) {
-                fFixupLang = ((Boolean) value).booleanValue();
-            } else {
-                fFixupLang = false;
-            }
-        }
-
-        // xml:base
-        if (propertyId == Constants.XERCES_FEATURE_PREFIX + Constants.XINCLUDE_FIXUP_BASE_URIS_FEATURE) {
-            if (value != null) {
-                fFixupBase = ((Boolean) value).booleanValue();
-            } else {
-                fFixupBase = false;
-            }
-        }
-
-        //
-        if (propertyId == Constants.XERCES_PROPERTY_PREFIX + Constants.NAMESPACE_CONTEXT_PROPERTY) {
-            fNamespaceContext = (XIncludeNamespaceSupport) value;
-        }
-
-        super.setProperty(propertyId, value);
+        return false;
     }
 
 }

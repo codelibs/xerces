@@ -75,6 +75,8 @@ public class XML11NonValidatingConfiguration extends ParserConfigurationSettings
     //
     // Constants
     //
+
+    /** The XML 1.1 datatype validator factory implementation class name. */
     protected final static String XML11_DATATYPE_VALIDATOR_FACTORY = "org.codelibs.xerces.impl.dv.dtd.XML11DTDDVFactoryImpl";
 
     // feature identifiers
@@ -135,6 +137,7 @@ public class XML11NonValidatingConfiguration extends ParserConfigurationSettings
     protected static final String DATATYPE_VALIDATOR_FACTORY =
             Constants.XERCES_PROPERTY_PREFIX + Constants.DATATYPE_VALIDATOR_FACTORY_PROPERTY;
 
+    /** Property identifier: validation manager. */
     protected static final String VALIDATION_MANAGER = Constants.XERCES_PROPERTY_PREFIX + Constants.VALIDATION_MANAGER_PROPERTY;
 
     // debugging
@@ -145,11 +148,23 @@ public class XML11NonValidatingConfiguration extends ParserConfigurationSettings
     //
     // Data
     //
+
+    /** Symbol table used for symbol resolution during parsing. */
     protected SymbolTable fSymbolTable;
+
+    /** The input source for the document being parsed. */
     protected XMLInputSource fInputSource;
+
+    /** Validation manager for coordinating validation components. */
     protected ValidationManager fValidationManager;
+
+    /** Version detector used to determine XML version (1.0 or 1.1). */
     protected XMLVersionDetector fVersionDetector;
+
+    /** Locator for reporting error locations in the document. */
     protected XMLLocator fLocator;
+
+    /** Locale for internationalized error messages. */
     protected Locale fLocale;
 
     /** XML 1.0 Components. */
@@ -712,10 +727,11 @@ public class XML11NonValidatingConfiguration extends ParserConfigurationSettings
     } // setFeature(String,boolean)
 
     /**
-     * setProperty
+     * Sets the value of a property. This method forwards the property
+     * to all registered components in the parser configuration.
      *
-     * @param propertyId
-     * @param value
+     * @param propertyId The unique identifier (URI) of the property being set
+     * @param value The value to which the property is being set
      */
     public void setProperty(String propertyId, Object value) throws XMLConfigurationException {
         fConfigUpdated = true;

@@ -20,11 +20,19 @@ package org.codelibs.xerces.impl.dtd;
 import org.codelibs.xerces.impl.dv.DatatypeValidator;
 
 /**
- * @xerces.internal
+ * XML simple type representation for DTD processing.
+ * This class represents simple types used in DTD attribute declarations
+ * including CDATA, ENTITY, ENUMERATION, and other type constraints.
  *
  * @version $Id: XMLSimpleType.java 446755 2006-09-15 21:56:27Z mrglavas $
  */
 public class XMLSimpleType {
+
+    /**
+     * Default constructor.
+     */
+    public XMLSimpleType() {
+    }
 
     //
     // Constants
@@ -99,16 +107,16 @@ public class XMLSimpleType {
     //
 
     /**
-     * setValues
+     * Sets all values of this XMLSimpleType.
      *
-     * @param type
-     * @param name
-     * @param enumeration
-     * @param list
-     * @param defaultType
-     * @param defaultValue
-     * @param nonNormalizedDefaultValue
-     * @param datatypeValidator
+     * @param type The attribute type (TYPE_CDATA, TYPE_ENTITY, etc.)
+     * @param name The attribute name
+     * @param enumeration The enumeration values if this is an enumeration type
+     * @param list Whether this is a list type
+     * @param defaultType The default type (DEFAULT_TYPE_DEFAULT, DEFAULT_TYPE_FIXED, etc.)
+     * @param defaultValue The default value of the attribute
+     * @param nonNormalizedDefaultValue The non-normalized default value
+     * @param datatypeValidator The datatype validator for this type
      */
     public void setValues(short type, String name, String[] enumeration, boolean list, short defaultType, String defaultValue,
             String nonNormalizedDefaultValue, DatatypeValidator datatypeValidator) {
@@ -130,7 +138,11 @@ public class XMLSimpleType {
 
     } // setValues(short,String,String[],boolean,short,String,String,DatatypeValidator)
 
-    /** Set values. */
+    /**
+     * Sets values from another XMLSimpleType.
+     *
+     * @param simpleType The XMLSimpleType to copy values from
+     */
     public void setValues(XMLSimpleType simpleType) {
 
         type = simpleType.type;

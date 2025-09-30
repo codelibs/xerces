@@ -26,7 +26,7 @@ import org.codelibs.xerces.impl.dv.ValidationContext;
 /**
  * Validator for &lt;gMonth&gt; datatype (W3C Schema Datatypes)
  *
- * @xerces.internal
+
  *
  * @author Elena Litani
  * @author Gopal Sharma, SUN Microsystem Inc.
@@ -35,6 +35,12 @@ import org.codelibs.xerces.impl.dv.ValidationContext;
  */
 
 public class MonthDV extends AbstractDateTimeDV {
+
+    /**
+     * Constructs a MonthDV validator for gMonth datatype.
+     */
+    public MonthDV() {
+    }
 
     /**
      * Convert a string to a compiled form

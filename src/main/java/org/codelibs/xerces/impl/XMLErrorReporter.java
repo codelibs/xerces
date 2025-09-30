@@ -61,8 +61,6 @@ import org.xml.sax.ErrorHandler;
  *  <li>http://apache.org/xml/features/continue-after-fatal-error</li>
  * </ul>
  *
- * @xerces.internal
- *
  * @see MessageFormatter
  *
  * @author Eric Ye, IBM
@@ -223,8 +221,8 @@ public class XMLErrorReporter implements XMLComponent {
      * formatter to be lost. This method replaces any previously registered
      * message formatter for the specified domain.
      *
-     * @param domain
-     * @param messageFormatter
+     * @param domain The domain for the message formatter
+     * @param messageFormatter The message formatter to register
      */
     public void putMessageFormatter(String domain, MessageFormatter messageFormatter) {
         fMessageFormatters.put(domain, messageFormatter);
@@ -235,6 +233,7 @@ public class XMLErrorReporter implements XMLComponent {
      * or null if no message formatter is registered for that domain.
      *
      * @param domain The domain of the message formatter.
+     * @return The message formatter for the domain
      */
     public MessageFormatter getMessageFormatter(String domain) {
         return (MessageFormatter) fMessageFormatters.get(domain);
@@ -245,6 +244,7 @@ public class XMLErrorReporter implements XMLComponent {
      * returns the removed message formatter.
      *
      * @param domain The domain of the message formatter.
+     * @return The removed message formatter
      */
     public MessageFormatter removeMessageFormatter(String domain) {
         return (MessageFormatter) fMessageFormatters.remove(domain);
@@ -399,12 +399,11 @@ public class XMLErrorReporter implements XMLComponent {
      *
      * @param componentManager The component manager.
      *
-     * @throws SAXException Thrown by component on initialization error.
+     * @throws XMLConfigurationException Thrown by component on initialization error.
      *                      For example, if a feature or property is
      *                      required for the operation of the component, the
      *                      component manager may throw a
-     *                      SAXNotRecognizedException or a
-     *                      SAXNotSupportedException.
+     *                      XMLConfigurationException.
      */
     public void reset(XMLComponentManager componentManager) throws XNIException {
 
@@ -439,10 +438,8 @@ public class XMLErrorReporter implements XMLComponent {
      * @param featureId The feature identifier.
      * @param state     The state of the feature.
      *
-     * @throws SAXNotRecognizedException The component should not throw
+     * @throws XMLConfigurationException The component should not throw
      *                                   this exception.
-     * @throws SAXNotSupportedException The component should not throw
-     *                                  this exception.
      */
     public void setFeature(String featureId, boolean state) throws XMLConfigurationException {
 
@@ -467,6 +464,13 @@ public class XMLErrorReporter implements XMLComponent {
     } // setFeature(String,boolean)
 
     // return state of given feature or false if unsupported.
+    /**
+     * Gets the state of the feature.
+     *
+     * @param featureId The feature identifier
+     * @return The feature state
+     * @throws XMLConfigurationException if the feature is not recognized
+     */
     public boolean getFeature(String featureId) throws XMLConfigurationException {
 
         //
@@ -509,10 +513,8 @@ public class XMLErrorReporter implements XMLComponent {
      * @param propertyId The property identifier.
      * @param value      The value of the property.
      *
-     * @throws SAXNotRecognizedException The component should not throw
+     * @throws XMLConfigurationException The component should not throw
      *                                   this exception.
-     * @throws SAXNotSupportedException The component should not throw
-     *                                  this exception.
      */
     public void setProperty(String propertyId, Object value) throws XMLConfigurationException {
 
@@ -568,6 +570,8 @@ public class XMLErrorReporter implements XMLComponent {
 
     /**
      * Get the internal XMLErrrorHandler.
+     *
+     * @return The error handler
      */
     public XMLErrorHandler getErrorHandler() {
         return fErrorHandler;
@@ -576,6 +580,8 @@ public class XMLErrorReporter implements XMLComponent {
     /**
      * Gets the internal XMLErrorHandler
      * as SAX ErrorHandler.
+     *
+     * @return The SAX error handler
      */
     public ErrorHandler getSAXErrorHandler() {
         if (fSaxProxy == null) {

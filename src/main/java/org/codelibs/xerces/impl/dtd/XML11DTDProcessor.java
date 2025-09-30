@@ -34,7 +34,7 @@ import org.codelibs.xerces.xni.parser.XMLEntityResolver;
  * be processed correctly (hence it's rather anomalous-appearing
  * derivation from XMLDTDLoader).
  *
- * @xerces.internal
+
  *
  * @author Neil Graham, IBM
  *
@@ -44,14 +44,28 @@ public class XML11DTDProcessor extends XMLDTDLoader {
 
     // constructors
 
+    /**
+     * Default constructor.
+     */
     public XML11DTDProcessor() {
         super();
     } // <init>()
 
+    /**
+     * Constructor with symbol table.
+     *
+     * @param symbolTable the symbol table to use
+     */
     public XML11DTDProcessor(SymbolTable symbolTable) {
         super(symbolTable);
     } // init(SymbolTable)
 
+    /**
+     * Constructor with symbol table and grammar pool.
+     *
+     * @param symbolTable the symbol table to use
+     * @param grammarPool the grammar pool to use
+     */
     public XML11DTDProcessor(SymbolTable symbolTable, XMLGrammarPool grammarPool) {
         super(symbolTable, grammarPool);
     } // init(SymbolTable, XMLGrammarPool)

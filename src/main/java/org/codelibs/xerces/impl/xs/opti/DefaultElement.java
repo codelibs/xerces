@@ -24,7 +24,9 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.TypeInfo;
 
 /**
- * @xerces.internal
+ * Default implementation of DOM Element interface for XML Schema processing.
+ * This class provides a minimal DOM Element implementation that throws
+ * NOT_SUPPORTED_ERR for modification operations.
  *
  * @author Rahul Srivastava, Sun Microsystems Inc.
  *
@@ -32,10 +34,22 @@ import org.w3c.dom.TypeInfo;
  */
 public class DefaultElement extends NodeImpl implements Element {
 
-    // default constructor
+    /**
+     * Default constructor.
+     * Creates a new default element.
+     */
     public DefaultElement() {
     }
 
+    /**
+     * Constructor with element details.
+     *
+     * @param prefix The namespace prefix
+     * @param localpart The local part of the element name
+     * @param rawname The raw element name
+     * @param uri The namespace URI
+     * @param nodeType The node type
+     */
     public DefaultElement(String prefix, String localpart, String rawname, String uri, short nodeType) {
         super(prefix, localpart, rawname, uri, nodeType);
     }

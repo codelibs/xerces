@@ -58,12 +58,10 @@ public interface NamespaceContext {
 
     /**
      * Start a new Namespace context.
-     * <p>
      * A new context should be pushed at the beginning
      * of each XML element: the new context will automatically inherit
      * the declarations of its parent context, but it will also keep
      * track of which declarations were made within this context.
-     * <p>
      *
      * @see #popContext
      */
@@ -143,11 +141,14 @@ public interface NamespaceContext {
     /**
      * Return a count of locally declared prefixes, including
      * the default prefix if bound.
+     * @return the count of locally declared prefixes
      */
     public int getDeclaredPrefixCount();
 
     /**
      * Returns the prefix at the specified index in the current context.
+     * @param index the index of the prefix to return
+     * @return the prefix at the specified index
      */
     public String getDeclaredPrefixAt(int index);
 

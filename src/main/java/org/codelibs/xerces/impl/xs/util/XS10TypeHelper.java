@@ -25,7 +25,7 @@ import org.codelibs.xerces.xs.XSTypeDefinition;
 /**
  * Class defining utility/helper methods to support XML Schema 1.0 implementation.
  *
- * @xerces.internal
+
  *
  * @author Mukul Gandhi, IBM
  * @version $Id: XS10TypeHelper.java 1428379 2013-01-03 14:55:20Z mukulg $
@@ -40,9 +40,12 @@ public class XS10TypeHelper {
         // this is a good practice, since all methods of this class are "static".
     }
 
-    /*
+    /**
      * Get name of an XSD type definition as a string value (which will typically be the value of "name" attribute of a
      * type definition, or an internal name determined by the validator for anonymous types).
+     *
+     * @param typeDefn The type definition
+     * @return The type name as a string
      */
     public static String getSchemaTypeName(XSTypeDefinition typeDefn) {
 

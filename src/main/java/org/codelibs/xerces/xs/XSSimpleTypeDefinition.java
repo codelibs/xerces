@@ -114,6 +114,7 @@ public interface XSSimpleTypeDefinition extends XSTypeDefinition {
 
     /**
      * [variety]: one of {atomic, list, union} or absent.
+     * @return the variety of this simple type definition
      */
     public short getVariety();
 
@@ -121,6 +122,7 @@ public interface XSSimpleTypeDefinition extends XSTypeDefinition {
      * If variety is <code>atomic</code> the primitive type definition (a
      * built-in primitive datatype definition or the simple ur-type
      * definition) is available, otherwise <code>null</code>.
+     * @return the primitive type definition if variety is atomic, null otherwise
      */
     public XSSimpleTypeDefinition getPrimitiveType();
 
@@ -128,6 +130,7 @@ public interface XSSimpleTypeDefinition extends XSTypeDefinition {
      * Returns the closest built-in type category this type represents or
      * derived from. For example, if this simple type is a built-in derived
      * type integer the <code>INTEGER_DV</code> is returned.
+     * @return the built-in kind as a short value
      */
     public short getBuiltInKind();
 
@@ -135,6 +138,7 @@ public interface XSSimpleTypeDefinition extends XSTypeDefinition {
      * If variety is <code>list</code> the item type definition (an atomic or
      * union simple type definition) is available, otherwise
      * <code>null</code>.
+     * @return the item type definition if variety is list, null otherwise
      */
     public XSSimpleTypeDefinition getItemType();
 
@@ -142,12 +146,14 @@ public interface XSSimpleTypeDefinition extends XSTypeDefinition {
      * If variety is <code>union</code> the list of member type definitions (a
      * non-empty sequence of simple type definitions) is available,
      * otherwise an empty <code>XSObjectList</code>.
+     * @return the list of member types if variety is union, empty list otherwise
      */
     public XSObjectList getMemberTypes();
 
     /**
      * [facets]: all facets defined on this type. The value is a bit
      * combination of FACET_XXX constants of all defined facets.
+     * @return a bit combination of all defined facets
      */
     public short getDefinedFacets();
 
@@ -161,6 +167,7 @@ public interface XSSimpleTypeDefinition extends XSTypeDefinition {
 
     /**
      * [facets]: all defined facets for this type which are fixed.
+     * @return a bit combination of all fixed facets
      */
     public short getFixedFacets();
 
@@ -189,32 +196,38 @@ public interface XSSimpleTypeDefinition extends XSTypeDefinition {
     /**
      * A list of enumeration values if it exists, otherwise an empty
      * <code>StringList</code>.
+     * @return a list of enumeration values, or an empty list if none exist
      */
     public StringList getLexicalEnumeration();
 
     /**
      * A list of pattern values if it exists, otherwise an empty
      * <code>StringList</code>.
+     * @return a list of pattern values, or an empty list if none exist
      */
     public StringList getLexicalPattern();
 
     /**
      *  Fundamental Facet: ordered.
+     * @return the ordered fundamental facet value
      */
     public short getOrdered();
 
     /**
      * Fundamental Facet: cardinality.
+     * @return true if the cardinality is finite, false otherwise
      */
     public boolean getFinite();
 
     /**
      * Fundamental Facet: bounded.
+     * @return true if the type is bounded, false otherwise
      */
     public boolean getBounded();
 
     /**
      * Fundamental Facet: numeric.
+     * @return true if the type is numeric, false otherwise
      */
     public boolean getNumeric();
 
@@ -223,22 +236,27 @@ public interface XSSimpleTypeDefinition extends XSTypeDefinition {
      * <code>XSObjectList</code>. Note: This method must not be used to
      * retrieve values for <code>enumeration</code> and <code>pattern</code>
      * facets.
+     * @return a list of constraining facets, or an empty list if none exist
      */
     public XSObjectList getFacets();
 
     /**
      *  A list of enumeration and pattern constraining facets if it exists,
      * otherwise an empty <code>XSObjectList</code>.
+     * @return a list of enumeration and pattern facets, or an empty list if none exist
      */
     public XSObjectList getMultiValueFacets();
 
     /**
      * A constraining facet object. An instance of XSFacet or XSMultiValueFacet.
+     * @param facetType the type of facet to retrieve
+     * @return a constraining facet object, or null if not found
      */
     public XSObject getFacet(int facetType);
 
     /**
      * A sequence of [annotations] or an empty <code>XSObjectList</code>.
+     * @return a list of annotations, or an empty list if no annotations exist
      */
     public XSObjectList getAnnotations();
 

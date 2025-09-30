@@ -26,6 +26,7 @@ public interface XSModel {
      * this schema. The value <code>null</code> is not a valid namespace
      * name, but if there are components that do not have a target namespace
      * , <code>null</code> is included in this list.
+     * @return a list of all namespaces that belong to this schema
      */
     public StringList getNamespaces();
 
@@ -36,6 +37,7 @@ public interface XSModel {
      * used for that assessment, and one for absent if any schema component
      * in the schema had no target namespace. For more information see
      * schema information.
+     * @return a list of namespace schema information items
      */
     public XSNamespaceItemList getNamespaceItems();
 
@@ -75,6 +77,7 @@ public interface XSModel {
     /**
      *  [annotations]: a set of annotations if it exists, otherwise an empty
      * <code>XSObjectList</code>.
+     * @return a set of annotations if it exists, otherwise an empty XSObjectList
      */
     public XSObjectList getAnnotations();
 

@@ -26,7 +26,7 @@ import org.codelibs.xerces.impl.dv.DatatypeValidator;
 /**
  * the factory to create/return built-in XML 1.1 DVs and create user-defined DVs
  *
- * @xerces.internal
+
  *
  * @author Neil Graham, IBM
  *
@@ -35,6 +35,13 @@ import org.codelibs.xerces.impl.dv.DatatypeValidator;
 public class XML11DTDDVFactoryImpl extends DTDDVFactoryImpl {
 
     static final Hashtable fXML11BuiltInTypes = new Hashtable();
+
+    /**
+     * Default constructor.
+     */
+    public XML11DTDDVFactoryImpl() {
+        super();
+    }
 
     /**
      * return a dtd type of the given name

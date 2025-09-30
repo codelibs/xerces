@@ -63,6 +63,7 @@ public class SAXParser extends AbstractSAXParser {
 
     /**
      * Constructs a SAX parser using the specified parser configuration.
+     * @param config the XML parser configuration to use
      */
     public SAXParser(XMLParserConfiguration config) {
         super(config);
@@ -77,6 +78,7 @@ public class SAXParser extends AbstractSAXParser {
 
     /**
      * Constructs a SAX parser using the specified symbol table.
+     * @param symbolTable the symbol table to use for string management
      */
     public SAXParser(SymbolTable symbolTable) {
         this(symbolTable, null);
@@ -85,6 +87,8 @@ public class SAXParser extends AbstractSAXParser {
     /**
      * Constructs a SAX parser using the specified symbol table and
      * grammar pool.
+     * @param symbolTable the symbol table to use for string management
+     * @param grammarPool the grammar pool to use for caching grammars
      */
     public SAXParser(SymbolTable symbolTable, XMLGrammarPool grammarPool) {
         super((XMLParserConfiguration) ObjectFactory.createObject("org.codelibs.xerces.xni.parser.XMLParserConfiguration",

@@ -31,7 +31,7 @@ import org.w3c.dom.DOMException;
  * used in all queries. On the other hand we recompute the prefix when
  * necessary.
  *
- * @xerces.internal
+
  *
  * @author Elena litani, IBM
  * @author Neeraj Bajaj, Sun Microsystems
@@ -61,12 +61,20 @@ public class ElementNSImpl extends ElementImpl {
     // REVISIT: we are losing the type information in DOM during serialization
     transient XSTypeDefinition type;
 
+    /**
+     * Protected constructor for use by subclasses.
+     * Initializes an element with namespace support but without owner document or name.
+     */
     protected ElementNSImpl() {
         super();
     }
 
     /**
      * DOM2: Constructor for Namespace implementation.
+     * @param ownerDocument the document that owns this element
+     * @param namespaceURI the namespace URI of the element
+     * @param qualifiedName the qualified name of the element
+     * @throws DOMException if the qualified name is malformed
      */
     protected ElementNSImpl(CoreDocumentImpl ownerDocument, String namespaceURI, String qualifiedName) throws DOMException {
         super(ownerDocument, qualifiedName);
@@ -132,7 +140,14 @@ public class ElementNSImpl extends ElementImpl {
         }
     }
 
-    // when local name is known
+    /**
+     * Protected constructor used when local name is already known.
+     * @param ownerDocument the document that owns this element
+     * @param namespaceURI the namespace URI of the element
+     * @param qualifiedName the qualified name of the element
+     * @param localName the local name of the element
+     * @throws DOMException if the parameters are invalid
+     */
     protected ElementNSImpl(CoreDocumentImpl ownerDocument, String namespaceURI, String qualifiedName, String localName)
             throws DOMException {
         super(ownerDocument, qualifiedName);
@@ -141,7 +156,11 @@ public class ElementNSImpl extends ElementImpl {
         this.namespaceURI = namespaceURI;
     }
 
-    // for DeferredElementImpl
+    /**
+     * Protected constructor for use by DeferredElementImpl.
+     * @param ownerDocument the document that owns this element
+     * @param value the element name
+     */
     protected ElementNSImpl(CoreDocumentImpl ownerDocument, String value) {
         super(ownerDocument, value);
     }
@@ -187,12 +206,12 @@ public class ElementNSImpl extends ElementImpl {
     }
 
     /**
-     * Introduced in DOM Level 2. <p>
+     * Introduced in DOM Level 2.
      *
-     * The namespace prefix of this node, or null if it is unspecified. <p>
+     * The namespace prefix of this node, or null if it is unspecified.
      *
      * For nodes created with a DOM Level 1 method, such as createElement
-     * from the Document interface, this is null. <p>
+     * from the Document interface, this is null.
      *
      * @since WD-DOM-Level-2-19990923
      */
@@ -206,18 +225,17 @@ public class ElementNSImpl extends ElementImpl {
     }
 
     /**
-     * Introduced in DOM Level 2. <p>
+     * Introduced in DOM Level 2.
      *
      * Note that setting this attribute changes the nodeName attribute, which holds the
      * qualified name, as well as the tagName and name attributes of the Element
-     * and Attr interfaces, when applicable.<p>
+     * and Attr interfaces, when applicable.
      *
      * @param prefix The namespace prefix of this node, or null(empty string) if it is unspecified.
      *
-     * @exception INVALID_CHARACTER_ERR
-     *                   Raised if the specified
+     * @exception DOMException INVALID_CHARACTER_ERR: Raised if the specified
      *                   prefix contains an invalid character.
-     * @exception DOMException
+     *                   NAMESPACE_ERR: Raised if the qualifiedName has a prefix and the namespaceURI is null.
      * @since WD-DOM-Level-2-19990923
      */
     public void setPrefix(String prefix) throws DOMException {
@@ -329,7 +347,8 @@ public class ElementNSImpl extends ElementImpl {
     }
 
     /**
-     * NON-DOM: setting type used by the DOM parser
+     * NON-DOM: setting type used by the DOM parser.
+     * @param type the XML Schema type definition
      * @see NodeImpl#setReadOnly
      */
     public void setType(XSTypeDefinition type) {

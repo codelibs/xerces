@@ -89,7 +89,7 @@ import org.xml.sax.InputSource;
  * The caller must ensure that all its properties (schemaLocation, JAXPSchemaSource
  * etc.) have been properly set.
  *
- * @xerces.internal
+
  *
  * @author Neil Graham, IBM
  * @version $Id: XMLSchemaLoader.java 982466 2010-08-05 04:41:01Z mrglavas $
@@ -128,8 +128,10 @@ public class XMLSchemaLoader implements XMLGrammarLoader, XMLComponent, XSElemen
     protected static final String HONOUR_ALL_SCHEMALOCATIONS =
             Constants.XERCES_FEATURE_PREFIX + Constants.HONOUR_ALL_SCHEMALOCATIONS_FEATURE;
 
+    /** Feature identifier: augment PSVI */
     protected static final String AUGMENT_PSVI = Constants.XERCES_FEATURE_PREFIX + Constants.SCHEMA_AUGMENT_PSVI;
 
+    /** Feature identifier: parser settings */
     protected static final String PARSER_SETTINGS = Constants.XERCES_FEATURE_PREFIX + Constants.PARSER_SETTINGS;
 
     /** Feature identifier: namespace growth */
@@ -172,11 +174,13 @@ public class XMLSchemaLoader implements XMLGrammarLoader, XMLComponent, XSElemen
     /** Property identifier: JAXP schema source. */
     protected static final String JAXP_SCHEMA_SOURCE = Constants.JAXP_PROPERTY_PREFIX + Constants.SCHEMA_SOURCE;
 
+    /** Property identifier: security manager */
     protected static final String SECURITY_MANAGER = Constants.XERCES_PROPERTY_PREFIX + Constants.SECURITY_MANAGER_PROPERTY;
 
     /** Property identifier: locale. */
     protected static final String LOCALE = Constants.XERCES_PROPERTY_PREFIX + Constants.LOCALE_PROPERTY;
 
+    /** Property identifier: entity manager */
     protected static final String ENTITY_MANAGER = Constants.XERCES_PROPERTY_PREFIX + Constants.ENTITY_MANAGER_PROPERTY;
 
     // recognized properties
@@ -223,11 +227,18 @@ public class XMLSchemaLoader implements XMLGrammarLoader, XMLComponent, XSElemen
     /** DOM L3 resource resolver */
     private DOMEntityResolverWrapper fResourceResolver = null;
 
-    // default constructor.  Create objects we absolutely need:
+    /**
+     * Default constructor. Creates objects we absolutely need.
+     */
     public XMLSchemaLoader() {
         this(new SymbolTable(), null, new XMLEntityManager(), null, null, null);
     }
 
+    /**
+     * Constructs an XMLSchemaLoader with the specified symbol table.
+     *
+     * @param symbolTable the symbol table to use
+     */
     public XMLSchemaLoader(SymbolTable symbolTable) {
         this(symbolTable, null, new XMLEntityManager(), null, null, null);
     }
@@ -525,11 +536,11 @@ public class XMLSchemaLoader implements XMLGrammarLoader, XMLComponent, XSElemen
      * to find in the hashtable whether there is a value for that namespace,
      * if so, pass that location value to the user-defined entity resolver.
      *
-     * @param desc
-     * @param locationPairs
-     * @param entityResolver
-     * @return the XMLInputSource
-     * @throws IOException
+     * @param desc the XSD description containing schema information
+     * @param locationPairs hashtable containing namespace/location pairs
+     * @param entityResolver the entity resolver to use for resolution
+     * @return the XMLInputSource for the resolved schema
+     * @throws IOException if an I/O error occurs during resolution
      */
     public static XMLInputSource resolveDocument(XSDDescription desc, Hashtable locationPairs, XMLEntityResolver entityResolver)
             throws IOException {
@@ -559,7 +570,16 @@ public class XMLSchemaLoader implements XMLGrammarLoader, XMLComponent, XSElemen
         return entityResolver.resolveEntity(desc);
     }
 
-    // add external schema locations to the location pairs
+    /**
+     * Adds external schema locations to the location pairs.
+     * Processes the schema location and no-namespace schema location properties
+     * and adds them to the locations hashtable.
+     *
+     * @param sl the schema location string (namespace/URI pairs)
+     * @param nsl the no-namespace schema location string
+     * @param locations hashtable to store the processed locations
+     * @param er the error reporter for validation errors
+     */
     public static void processExternalHints(String sl, String nsl, Hashtable locations, XMLErrorReporter er) {
         if (sl != null) {
             try {
@@ -598,13 +618,16 @@ public class XMLSchemaLoader implements XMLGrammarLoader, XMLComponent, XSElemen
         }
     }
 
-    // this method takes a SchemaLocation string.
-    // If an error is encountered, false is returned;
-    // otherwise, true is returned.  In either case, locations
-    // is augmented to include as many tokens as possible.
-    // @param schemaStr     The schemaLocation string to tokenize
-    // @param locations     Hashtable mapping namespaces to LocationArray objects holding lists of locaitons
-    // @return true if no problems; false if string could not be tokenized
+    /**
+     * Tokenizes a SchemaLocation string into namespace/location pairs.
+     * If an error is encountered, false is returned; otherwise, true is returned.
+     * In either case, locations is augmented to include as many tokens as possible.
+     *
+     * @param schemaStr the schemaLocation string to tokenize
+     * @param locations hashtable mapping namespaces to LocationArray objects holding lists of locations
+     * @param base the base URI for resolving relative locations
+     * @return true if no problems; false if string could not be tokenized
+     */
     public static boolean tokenizeSchemaLocationStr(String schemaStr, Hashtable locations, String base) {
         if (schemaStr != null) {
             StringTokenizer t = new StringTokenizer(schemaStr, " \n\t\r");

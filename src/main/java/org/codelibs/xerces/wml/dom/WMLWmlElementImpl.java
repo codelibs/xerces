@@ -19,7 +19,8 @@ package org.codelibs.xerces.wml.dom;
 import org.codelibs.xerces.wml.WMLWmlElement;
 
 /**
- * @xerces.internal
+ * Implementation of WMLWmlElement interface for WML document root elements.
+ *
  * @version $Id: WMLWmlElementImpl.java 661560 2008-05-30 03:22:25Z mrglavas $
  * @author <a href="mailto:david@topware.com.tw">David Li</a>
  */
@@ -27,6 +28,12 @@ public class WMLWmlElementImpl extends WMLElementImpl implements WMLWmlElement {
 
     private static final long serialVersionUID = -7008023851895920651L;
 
+    /**
+     * Constructs a new WML wml element.
+     *
+     * @param owner the owner document
+     * @param tagName the tag name
+     */
     public WMLWmlElementImpl(WMLDocumentImpl owner, String tagName) {
         super(owner, tagName);
     }

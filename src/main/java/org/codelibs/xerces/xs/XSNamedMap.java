@@ -31,6 +31,7 @@ public interface XSNamedMap extends Map {
      * The number of <code>XSObjects</code> in the <code>XSObjectList</code>.
      * The range of valid child object indices is 0 to <code>length-1</code>
      * inclusive.
+     * @return the number of XSObjects in this XSNamedMap
      */
     public int getLength();
 

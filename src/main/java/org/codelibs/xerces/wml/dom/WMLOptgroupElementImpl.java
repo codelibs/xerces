@@ -19,7 +19,8 @@ package org.codelibs.xerces.wml.dom;
 import org.codelibs.xerces.wml.WMLOptgroupElement;
 
 /**
- * @xerces.internal
+ * Implementation of WMLOptgroupElement interface for WML option group elements.
+ *
  * @version $Id: WMLOptgroupElementImpl.java 661560 2008-05-30 03:22:25Z mrglavas $
  * @author <a href="mailto:david@topware.com.tw">David Li</a>
  */
@@ -27,6 +28,12 @@ public class WMLOptgroupElementImpl extends WMLElementImpl implements WMLOptgrou
 
     private static final long serialVersionUID = 1592761119479339142L;
 
+    /**
+     * Constructs a new WMLOptgroupElementImpl instance.
+     *
+     * @param owner the owning WML document
+     * @param tagName the tag name of the element
+     */
     public WMLOptgroupElementImpl(WMLDocumentImpl owner, String tagName) {
         super(owner, tagName);
     }

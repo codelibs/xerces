@@ -22,11 +22,18 @@ package org.codelibs.xerces.util;
  *
  * moved to org.codelibs.xerces.util by neilg to support the
  * XPathMatcher.
+ *
  * @author  Andy Clark, IBM
  *
  * @version $Id: IntStack.java 447241 2006-09-18 05:12:57Z mrglavas $
  */
 public final class IntStack {
+
+    /**
+     * Default constructor for internal instantiation.
+     */
+    public IntStack() {
+    }
 
     //
     // Data
@@ -42,28 +49,44 @@ public final class IntStack {
     // Public methods
     //
 
-    /** Returns the size of the stack. */
+    /**
+     * Returns the size of the stack.
+     * @return the size of the stack
+     */
     public int size() {
         return fDepth;
     }
 
-    /** Pushes a value onto the stack. */
+    /**
+     * Pushes a value onto the stack.
+     * @param value the value to push
+     */
     public void push(int value) {
         ensureCapacity(fDepth + 1);
         fData[fDepth++] = value;
     }
 
-    /** Peeks at the top of the stack. */
+    /**
+     * Peeks at the top of the stack.
+     * @return the value at the top of the stack
+     */
     public int peek() {
         return fData[fDepth - 1];
     }
 
-    /** Returns the element at the specified depth in the stack. */
+    /**
+     * Returns the element at the specified depth in the stack.
+     * @param depth the depth of the element to return
+     * @return the element at the specified depth
+     */
     public int elementAt(int depth) {
         return fData[depth];
     }
 
-    /** Pops a value off of the stack. */
+    /**
+     * Pops a value off of the stack.
+     * @return the value that was popped from the stack
+     */
     public int pop() {
         return fData[--fDepth];
     }

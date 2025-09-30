@@ -41,23 +41,27 @@ public interface XSModelGroup extends XSTerm {
      * [compositor]: one of all, choice or sequence. The valid constant values
      * are:
      * <code>COMPOSITOR_SEQUENCE, COMPOSITOR_CHOICE, COMPOSITOR_ALL</code>.
+     * @return the compositor type (sequence, choice, or all)
      */
     public short getCompositor();
 
     /**
      *  A list of [particles] if it exists, otherwise an empty
      * <code>XSObjectList</code>.
+     * @return a list of particles or an empty XSObjectList
      */
     public XSObjectList getParticles();
 
     /**
      * An annotation if it exists, otherwise <code>null</code>. If not null
      * then the first [annotation] from the sequence of annotations.
+     * @return an annotation if it exists, otherwise null
      */
     public XSAnnotation getAnnotation();
 
     /**
      * A sequence of [annotations] or an empty <code>XSObjectList</code>.
+     * @return a sequence of annotations or an empty XSObjectList
      */
     public XSObjectList getAnnotations();
 }

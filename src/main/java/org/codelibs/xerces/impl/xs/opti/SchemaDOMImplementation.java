@@ -23,7 +23,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.DocumentType;
 
 /**
- * @xerces.internal
+
  *
  * @version $Id: SchemaDOMImplementation.java 982727 2010-08-05 18:40:07Z mrglavas $
  */

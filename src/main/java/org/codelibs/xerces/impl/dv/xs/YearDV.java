@@ -24,17 +24,23 @@ import org.codelibs.xerces.impl.dv.InvalidDatatypeValueException;
 import org.codelibs.xerces.impl.dv.ValidationContext;
 
 /**
- * Validator for &lt;gYear&gt; datatype (W3C Schema Datatypes)
- *
- * @xerces.internal
+ * Validator for &lt;gYear&gt; datatype (W3C Schema Datatypes).
+ * This class provides validation for the gYear datatype which represents a Gregorian year.
+ * The gYear datatype represents a specific year in the Gregorian calendar.
  *
  * @author Elena Litani
  * @author Gopal Sharma, SUN Microsystem Inc.
  *
  * @version $Id: YearDV.java 937741 2010-04-25 04:25:46Z mrglavas $
  */
-
 public class YearDV extends AbstractDateTimeDV {
+
+    /**
+     * Default constructor. Creates a new YearDV validator instance.
+     */
+    public YearDV() {
+        // Default constructor
+    }
 
     /**
      * Convert a string to a compiled form

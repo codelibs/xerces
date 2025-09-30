@@ -34,19 +34,36 @@ import org.w3c.dom.Element;
 public interface WMLElement extends Element {
 
     /**
-     * The element's identifier which is unique in a single deck.
+     * Sets the element's identifier which is unique in a single deck.
      * (Section 8.9, WAP WML Version 16-Jun-1999)
+     *
+     * @param newValue the identifier value to set
      */
     public void setId(String newValue);
 
+    /**
+     * Gets the element's identifier which is unique in a single deck.
+     * (Section 8.9, WAP WML Version 16-Jun-1999)
+     *
+     * @return the element's identifier
+     */
     public String getId();
 
     /**
-     * The 'class' attribute of a element that affiliates an elements
+     * Sets the 'class' attribute of a element that affiliates an elements
      * with one or more elements.
      * (Section 8.9, WAP WML Version 16-Jun-1999)
+     *
+     * @param newValue the class name value to set
      */
     public void setClassName(String newValue);
 
+    /**
+     * Gets the 'class' attribute of a element that affiliates an elements
+     * with one or more elements.
+     * (Section 8.9, WAP WML Version 16-Jun-1999)
+     *
+     * @return the class name value
+     */
     public String getClassName();
 }

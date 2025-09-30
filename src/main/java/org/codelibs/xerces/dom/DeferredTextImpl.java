@@ -30,7 +30,7 @@ package org.codelibs.xerces.dom;
  * valid, since they're really just two different ways of quoting
  * characters when they're written out as part of an XML stream.
  *
- * @xerces.internal
+
  *
  * @version $Id: DeferredTextImpl.java 447266 2006-09-18 05:57:49Z mrglavas $
  * @since  PR-DOM-Level-1-19980818.

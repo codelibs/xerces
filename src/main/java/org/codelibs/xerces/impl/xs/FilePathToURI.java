@@ -18,7 +18,7 @@
 package org.codelibs.xerces.impl.xs;
 
 /**
- * @xerces.internal
+
  *
  * @version $Id: FilePathToURI.java 937829 2010-04-25 17:11:12Z mrglavas $
  */
