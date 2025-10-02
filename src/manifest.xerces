@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Created-By: @java.version@ (@java.vendor@)
 
-Name: org/apache/xerces/impl/
+Name: org/codelibs/xerces/impl/
 Comment: @impl.name@ 
-Implementation-Title: org.apache.xerces.impl.Version
+Implementation-Title: org.codelibs.xerces.impl.Version
 Implementation-Version: @impl.version@
 Implementation-Vendor: Apache Software Foundation
 Implementation-URL: http://xerces.apache.org/xerces2-j/
@@ -108,12 +108,12 @@ Implementation-Version: 1.4.01
 Implementation-Vendor: Apache Software Foundation
 Implementation-URL: http://xml.apache.org/commons/
 
-Name: org/apache/xerces/xni/
+Name: org/codelibs/xerces/xni/
 Comment: Xerces Native Interface
 Specification-Title: Xerces Native Interface
 Specification-Version: 1.2
 Specification-Vendor: Apache Software Foundation
-Implementation-Title: org.apache.xerces.xni
+Implementation-Title: org.codelibs.xerces.xni
 Implementation-Version: 1.2
 Implementation-Vendor: Apache Software Foundation
 Implementation-URL: http://xerces.apache.org/xerces2-j/

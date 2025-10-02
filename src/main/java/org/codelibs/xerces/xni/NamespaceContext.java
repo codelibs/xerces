@@ -26,9 +26,6 @@ import java.util.Enumeration;
  * each string should be internalized (@see String.intern())
  * or added to the <code>SymbolTable</code>
  *
- * @see <a href="../../../../../xerces2/org/apache/xerces/util/SymbolTable.html">
- * org.codelibs.xerces.util.SymbolTable</a>
- *
  * @author Andy Clark, IBM
  *
  * @version $Id: NamespaceContext.java 447247 2006-09-18 05:23:52Z mrglavas $
