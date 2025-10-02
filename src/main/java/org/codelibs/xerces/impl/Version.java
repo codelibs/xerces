@@ -30,16 +30,6 @@ public class Version {
     public Version() {
     }
 
-    //
-    // Data
-    //
-
-    /** Version string.
-     * @deprecated  getVersion() should be used instead.  */
-    public static String fVersion = "@@VERSION@@";
-
-    private static final String fImmutableVersion = "@@VERSION@@";
-
     // public methods
 
     /**
@@ -47,7 +37,14 @@ public class Version {
      * @return the version of the parser
      */
     public static String getVersion() {
-        return fImmutableVersion;
+        Package pkg = Version.class.getPackage();
+        if (pkg != null) {
+            String v = pkg.getImplementationVersion();
+            if (v != null) {
+                return "Xerces-J " + v;
+            }
+        }
+        return "Xerces-J UNKNOWN";
     } // getVersion():  String
 
     //
@@ -60,7 +57,7 @@ public class Version {
      * @param argv command line arguments (not used)
      */
     public static void main(String argv[]) {
-        System.out.println(fVersion);
+        System.out.println(getVersion());
     }
 
 } // class Version
